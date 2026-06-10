@@ -1,0 +1,56 @@
+[
+ {
+  "type": "assessment_align",
+  "gap": "The practice item with id ...ai_boundary (concept ai_supported_learning) does not actually test an AI/software support boundary, which is LO3 ('Document a bounded AI/software support move with accepted and rejected suggestions') and the ALGET-native AI-feedback accept/reject judgment gate. Its stem is about synchronous-vs-asynchronous facilitation. So LO3 has zero aligned assessment in this section, and the item is mislabeled to the ai_supported_learning concept.",
+  "proposed_change": "Replace or add an item that genuinely tests the AI-feedback judgment gate, e.g.: an LXD optimizer suggests auto-sending daily check-in emails to all 14 students; the learner must identify that this should be REJECTED because it raises transactional pressure without adding an observation point, while accepting a different bounded suggestion (e.g., an AI-drafted stuck-note template). Tie correct rationale to documenting both an accepted and a rejected suggestion.",
+  "needs_research": false,
+  "search_terms": [],
+  "where_to_apply": "01.practice.json problem id ail606_supplement_8_1_facilitating_asynchronous_design_work_ai_boundary",
+  "priority": "high",
+  "section_key": "ail606/08/01",
+  "op_index": 3
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The misconceptions file omits the misread the MDX itself names as 'the most common' (lines 78, 84): equating facilitation with communication volume (more announcements/reminders/nudges), which raises transactional pressure without lowering transactional distance. There is no misconception entry capturing this, despite it being the headline misreading in the prose.",
+  "proposed_change": "Add a misconception entry, e.g. id ail606_supplement_8_1_async_volume_equals_facilitation, pattern 'reminder_volume_as_facilitation', description 'Believing more announcements/reminders facilitate an asynchronous cohort', trigger 'learner proposes adding reminders/check-in emails instead of observation points', feedback 'Volume raises transactional pressure without lowering transactional distance; add a checkpoint or stuck-note channel, not more nudges', rail_action 'explain'. Add a matching distractor-based practice item or attach it as the misconception_id on the revised ai_boundary item.",
+  "needs_research": false,
+  "search_terms": [],
+  "where_to_apply": "01.misconceptions.json misconceptions array",
+  "priority": "high",
+  "section_key": "ail606/08/01",
+  "op_index": 4
+ },
+ {
+  "type": "assessment_align",
+  "gap": "All four learning_objectives (meta.json and the MDX Learning Targets) are the templated stock strings keyed to 'storyboard frame sequence ... defensible decision in AIL 606' and the generic AI/annotation moves. None of them name rubric calibration, inter-rater reliability, observable vs adjective descriptors, or the reconcile-by-evidence-not-average move that the entire body teaches. The constructive-alignment validator is a no-op on plain strings, so this mismatch is silent.",
+  "proposed_change": "Rewrite the four LOs to match the body, e.g.: (1) 'Diagnose why a rubric descriptor produces inter-rater disagreement by distinguishing adjective descriptors from observable, countable anchors.' (2) 'Reconcile a rater split by tracing it to a feature of the work rather than averaging the scores.' (3) 'Rewrite a level descriptor into a countable observation and verify the gain by re-scoring drafts and re-checking exact agreement.' (4) 'Apply the new-rater test to judge whether reported agreement is calibration or convergence by habit.' Mirror these in MDX Learning Targets (lines 13-16).",
+  "needs_research": false,
+  "where_to_apply": "03.meta.json learning_objectives (lines 6-9) and 03.mdx Learning Targets (lines 13-16)",
+  "priority": "high",
+  "section_key": "ail606/08/03",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The four learning_objectives in 04.meta.json are the templated stock strings flagged in known-issues (constructive-alignment validator no-op). LO1 ('Analyze how the AI-USE disclosure excerpt tied to one bounded design-support decision shows a defensible decision in AIL 606') is near-unreadable boilerplate and does not name this section's actual content (deterrence vs transparency model; distinguishability/disclosure-cost/accessibility checks). The practice items and misconceptions align well to the CONTENT but map to generic LOs.",
+  "proposed_change": "Rewrite the four learning_objectives to be section-specific and measurable: (1) 'Contrast deterrence and transparency models of integrity and explain why generative AI makes deterrence unenforceable.' (2) 'Write an AI-use clause with bounded permission, a one-line disclosure format with a worked example, and an accessibility carve-out.' (3) 'Apply the distinguishability, disclosure-cost, and accessibility checks to evaluate a draft AI-use policy.' (4) 'Predict the behavioral effect (concealment, exclusion, transparency) a clause will produce.' These match the existing items: artifact_signal->LO2/3, annotation_signal->LO2, ai_boundary->LO3, calibration->LO4. Mirror into the MDX Learning Targets.",
+  "needs_research": false,
+  "where_to_apply": "04.meta.json learning_objectives array (all 4) + 04.mdx 'Learning Targets' lines 13-16",
+  "priority": "high",
+  "search_terms": [],
+  "section_key": "ail606/08/04",
+  "op_index": 4
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The meta description and learning_objectives are the generic stock strings keyed to 'storyboard frame sequence with narration, signaling, and reader-action notes' (the chapter-08 signature-artifact name), but this section's actual content and worked examples are about running a WCAG-anchored accessibility review and prioritizing fixes by depth of exclusion. None of the four learning_objectives mention accessibility, WCAG, POUR, exclusion-depth prioritization, or redundant cues. The constructive-alignment validator is a no-op on plain-string LOs, so this mismatch is silent. The practice items and misconceptions DO target the real content (clean!=accessible, color-only cue, content-image-no-alt, fix ordering), so the LOs are the weak link, not the assessment.",
+  "proposed_change": "Rewrite the four learning_objectives in 05.meta.json (and the mirrored Learning Targets list in the MDX, lines 13-16) to be section-specific, e.g.: (1) 'Map each element of a prototype screen to a named WCAG 2.2 success criterion (1.1.1, 1.4.1, 1.4.3, 2.1.1, 2.2.1) rather than judging by appearance.' (2) 'Prioritize accessibility fixes by depth of exclusion (full lock-out before strain).' (3) 'Add redundant cues (color plus label plus icon) consistent with UDL learner variability without raising load for other learners.' (4) 'Judge an AI-drafted alt text against WCAG 1.1.1 (names what the image shows and why) before accepting it.' Update the meta description to name accessibility-review/WCAG instead of the storyboard-frame artifact.",
+  "needs_research": false,
+  "search_terms": [],
+  "where_to_apply": "05.meta.json learning_objectives + description fields; 05.mdx Learning Targets (lines 13-16).",
+  "priority": "high",
+  "section_key": "ail606/08/05",
+  "op_index": 2
+ }
+]

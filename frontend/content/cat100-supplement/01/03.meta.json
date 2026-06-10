@@ -6,10 +6,10 @@
   "title": "ETHOBOT CAT100 Orientation",
   "description": "CAT 100 textbook section connecting ethobot cat100 orientation to AI critique log showing accepted, modified, and rejected suggestions, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the AI critique log showing accepted, modified, and rejected suggestions shows a defensible decision in CAT 100.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    "Bring a draft of your own to the tutor instead of asking it to generate from scratch.",
+    "Record each tutor suggestion as accepted, modified, or rejected with a one-line reason.",
+    "Keep rejected suggestions in the log so the trail shows what you turned down.",
+    "Use the tutor to sharpen claims without letting it invent facts or inflate them."
   ],
   "concept_ids": [
     "cat100_supplement_digital_citizenship_and_ai_readiness",

@@ -6,10 +6,10 @@
   "title": "Module 1 Readiness Studio",
   "description": "CAT 100 textbook section connecting module 1 readiness studio to module 1 readiness map, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the module 1 readiness map shows a defensible decision in CAT 100.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    "Audit a single artifact against all four Module 1 skills at once.",
+    "Mark each skill honestly as pass or gap based on what the artifact actually shows.",
+    "Resist the urge to check every box; flag real gaps instead of hiding them.",
+    "Convert each gap into a specific, targeted practice step."
   ],
   "concept_ids": [
     "cat100_supplement_digital_citizenship_and_ai_readiness",
@@ -30,4 +30,3 @@
     "cat100_supplement_1_8_module_1_readiness_studio_calibration"
   ]
 }
-

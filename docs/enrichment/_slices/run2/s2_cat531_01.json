@@ -1,0 +1,35 @@
+[
+ {
+  "type": "assessment_align",
+  "gap": "Learning objectives 2-4 are template-stamped/byte-identical course-wide (artifact polish vs revision; bounded AI move with accepted/rejected suggestions; annotations/support/revision to make a decision defensible). Objective 1 names the studio map but not the section's actual core skill: graded, variable-by-variable comparison of a study's context against your own to decide transfer.",
+  "proposed_change": "Rewrite objective 1 (or add a section-specific objective) to target the real skill, e.g., 'Perform a graded variable-by-variable comparison of a study or vendor pilot's reported context against your own classroom to decide whether a borrowed result transfers, is suspended, or must be locally piloted.' Keep the artifact reference but make the cognitive target context-comparison. Optionally de-template objectives 2-4 to reference context variables.",
+  "where_to_apply": "05.meta.json — learning_objectives[0] (lines 9-12); consider de-templating [1]-[3]",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat531/01/05",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The artifact, learning objective 1, the Artifact Studio block, the download packet, and the Adaptive Support block are all template-stamped to the 'Design Tension Studio map naming a classroom value conflict and negotiated decision.' That artifact mismatches THIS section: the entire prose (Why This Section Matters, Core Concept, Worked Example, Walkthrough, Stronger Artifact Standard, Transfer Case) teaches portfolio-entry setup, i.e. anchoring competency claims to inspectable artifacts and showing growth as a two-artifact delta. Verified in 07.mdx: lines 13 (objective 1), 108/110 (Artifact Studio + download), 119 (Adaptive Support 'confusion' bullet), 123 (dynamic-scenario), 133 (Final Check) all literally say 'Design Tension Studio map', and 07.meta.json learning_objectives[0] + description repeat it. The natural CAT531 artifact is a Portfolio Evidence Entry / field-placement transfer note pairing an early and later artifact, NOT a DTS tension map. The mismatch breaks constructive alignment among objective, prose, and produced work-product; NOVELTY_STRENGTHENING_BRIEF Move R-7 calls for discipline-specific work-product scoring.",
+  "proposed_change": "Reframe the section artifact from the DTS tension map to a 'Portfolio Evidence Entry' work-product: a two-artifact growth trace (early artifact + later artifact + annotated reasoning delta + competency claim stated as a testable hypothesis). Update 07.meta.json learning_objectives[0] and description; in 07.mdx update line 13 (Learning Target 1), line 108 download link text, line 110 artifact-studio artifact= attribute, the Artifact Studio prose (108-112), line 119 Adaptive Support 'confusion' bullet, line 123 dynamic-scenario prompt, and line 133 Final Check to reference the portfolio-entry artifact. Keep the existing three-move evidence rubric already in the prose (claim-as-hypothesis / anchor-to-artifact / growth-as-delta, lines 26-30, 65-67) as the scoring scheme so prose and work-product align.",
+  "where_to_apply": "07.meta.json learning_objectives[0] + description; 07.mdx line 13, 108-112 (Artifact Studio + download), 119 (Adaptive Support), 123 (dynamic-scenario), 133 (Final Check)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat531/01/07",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The section's actual construct is synthesis/transfer in a closing reflection, but learning_objectives are the template-stamped CAT531 set: LO1 names the 'Design Tension Studio map naming a classroom value conflict and negotiated decision' and LO3 names 'a bounded AI/software support move with accepted and rejected suggestions'. Neither maps to this section's real targets (name a sourced principle, show a revised belief, transfer to a new dilemma, leave an honest open tension). The body, practice items, and misconceptions are all about reflection/transfer, so constructive alignment to the meta objectives is weak. The MDX 'Learning Targets' block (lines 13-16) lists the DTS-map and accepted/rejected-suggestion objectives the section never teaches.",
+  "proposed_change": "Rewrite LO1 and the MDX 'Learning Targets' to match the section's true construct, e.g. LO1 = 'Distinguish a synthesis reflection (names a sourced principle, shows a revised belief, transfers to a new dilemma, leaves an honest open tension) from a vague recap' and LO3 = 'Transfer a module principle to a classroom dilemma the module never used.' Keep LO2 (artifact polish vs evidence-based revision) which already fits. Align 08.meta.json learning_objectives and the MDX 'Learning Targets' list so they describe what is actually assessed in 08.practice.json (the four items test recognizing weak/vague reflections and applied transfer).",
+  "where_to_apply": "08.meta.json field learning_objectives (LO1 line 9, LO3 line 11) AND 08.mdx '## Learning Targets' block (lines 13-16)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat531/01/08",
+  "op_index": 0
+ }
+]

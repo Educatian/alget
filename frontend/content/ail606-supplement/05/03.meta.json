@@ -3,10 +3,10 @@
   "title": "Task Scenarios for Prototype Testing",
   "description": "AIL 606 textbook section connecting task scenarios for prototype testing to moderated usability test script with observation-to-revision trace, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the moderated usability test script with observation-to-revision trace shows a defensible decision in AIL 606.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    "Write goal-based scenarios that state a desired end-state and a realistic context, never a click path.",
+    "Detect and remove embedded solutions, vocabulary leaks, and other cues that hand the participant the answer.",
+    "Define an observable, promptable-free success condition the moderator can score consistently.",
+    "Calibrate task difficulty so the design can fail without the task being impossible."
   ],
   "concept_ids": [
     "ail606_supplement_usability_testing_and_learning_evidence",

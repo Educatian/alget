@@ -1,0 +1,170 @@
+{
+  "cat100/02/01": {
+    "los": [
+      "Convert a duty-list resume bullet into an accomplishment using the action + scope + result pattern, backed by a verifiable fact.",
+      "Distinguish artifact polish from evidence-based revision.",
+      "Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "Diagnose which failure mode a weak bullet has (vague, inflated, or borrowed) and apply the matching fix without inventing facts."
+    ]
+  },
+  "cat100/02/02": {
+    "los": [
+      "Sort critiques from two independent AI tools into agreement, conflict, and unique, and explain why the conflict bucket carries the most value.",
+      "Break a tool-vs-tool conflict using an external anchor (the job posting or rubric) rather than the tool's tone or order.",
+      "Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    ]
+  },
+  "cat100/02/03": {
+    "los": [
+      "Construct a short professional bio using the role-focus-proof pattern, replacing generic intensifiers with one named focus and one checkable proof.",
+      "Distinguish artifact polish from evidence-based revision.",
+      "Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    ]
+  },
+  "cat100/02/04": {
+    "los": [
+      "Run a cross-platform alignment audit (inventory, detect, reconcile, diff) on one role across resume, LinkedIn, and portfolio, anchoring to the truthful version.",
+      "Identify the four anchors (display name, current title or role, dates, headline accomplishment) and verify they do not contradict across platforms.",
+      "Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    ]
+  },
+  "cat100/02/05": {
+    "los": [
+      "Apply the defensibility test to decide whether to keep or reject an AI resume suggestion.",
+      "Classify a failed AI suggestion as fabrication, inflation, keyword stuffing, or identity guessing.",
+      "Audit a whole-document AI rewrite line by line and log each rejection with its reason in the critique log.",
+      "Explain the asymmetric-cost rule: default to leaving out a flattering claim you could not defend."
+    ]
+  },
+  "cat100/02/07": {
+    "los": [
+      "Produce located, actionable peer feedback (location + problem + question) that preserves the writer's ownership.",
+      "Distinguish artifact polish from evidence-based revision.",
+      "Apply the professional-materials privacy boundary: strip a peer's identifying data before any third-party tool use, or review it yourself.",
+      "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    ]
+  },
+  "cat100/02/08": {
+    "los": [
+      "Build a cross-artifact comparison table (name, title, dates, headline proof) and identify contradictions that live between artifacts rather than inside them.",
+      "Distinguish artifact polish from evidence-based revision.",
+      "Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "Resolve cross-artifact contradictions toward the truth and complete an AI-use log before declaring the package ready."
+    ]
+  },
+  "cat100/03/01": {
+    "los": [
+      "Audit a raw spreadsheet export against the four tidy-data rules (one header row, one value per cell, one record per row, consistent category labels) and name the analytical failure each defect causes.",
+      "Diagnose and repair numbers-stored-as-text by reading default alignment and confirming SUM matches a hand count.",
+      "Choose the correct repair tool (Text to Columns, Find and Replace, or row deletion) for a given structural defect.",
+      "Document a bounded AI/software support move with accepted and rejected suggestions."
+    ]
+  },
+  "cat100/03/02": {
+    "los": [
+      "Predict how a relative, absolute ($F$1), or mixed (B$1, $A2) reference rewrites when a formula is copied down or across.",
+      "Choose relative references for per-row inputs and absolute references for shared constants, and justify the lock pattern in a trace.",
+      "Verify a copied formula column by reading the formula in the last filled cell, not just the first.",
+      "Explain SUM, AVERAGE, and COUNT semantics, including why AVERAGE skips blanks but counts a stray zero."
+    ]
+  },
+  "cat100/03/04": {
+    "los": [
+      "Choose the pivot aggregation (Sum, Count, or Average) that matches the stated question, and justify it in the artifact source note.",
+      "Distinguish a per-category pivot row from the Grand Total, and confirm the pivot is refreshed against a source range that covers all the data before quoting any figure.",
+      "Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    ]
+  },
+  "cat100/03/05": {
+    "los": [
+      "Read an Excel error code (#DIV/0!, #REF!, #VALUE!, #NAME?, #N/A) to predict the cause before asking for help.",
+      "Write a four-part debugging prompt: the formula, the wrong result, the suspected cause, and the exact desired behavior including the edge case.",
+      "Verify an AI-suggested formula on a known-answer row before copying it down.",
+      "Document a bounded AI/software support move with accepted and rejected suggestions."
+    ]
+  },
+  "cat100/03/06": {
+    "los": [
+      "Identify when a small dataset is re-identifiable through a combination of quasi-identifiers even after direct identifiers are removed.",
+      "Apply a three-point ethics screen (re-identification, group-of-one, honest magnitude) to decide how to report a small-n finding.",
+      "Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    ]
+  },
+  "cat100/04/02": {
+    "los": [
+      "Plan and label a three-move scenario dialogue (SET CONTEXT, NARROW, STRESS-TEST) so each turn changes exactly one thing.",
+      "Distinguish artifact polish from evidence-based revision.",
+      "Log at least one accepted and one rejected AI suggestion inside the labeled dialogue transcript.",
+      "Attribute each change in the AI's output to the labeled turn that caused it."
+    ]
+  },
+  "cat100/04/06": {
+    "los": [
+      "Convert a feelings paragraph into a decision log with one row per AI suggestion (situation, what the AI said, decision, reason).",
+      "Judge whether a reason is defensible by testing if it points to a standard a reader could re-apply, rather than a mood.",
+      "Distinguish ACCEPT, OVERRIDE, and REJECT, and log a rejected unrequested AI addition.",
+      "Read the accept/override ratio as evidence of weighing rather than blanket trust or contrarianism."
+    ]
+  },
+  "cat100/05/01": {
+    "los": [
+      "Derive a presentation's slide count and slide-level evidence from a named audience's time budget, prior knowledge, and the decision they own.",
+      "Justify each slide by the audience question it answers, and identify at least one slide cut because it served no audience question.",
+      "Document which AI suggestion (such as adding a metric or a slide) you accepted versus rejected against the audience time budget.",
+      "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    ]
+  },
+  "cat100/05/05": {
+    "los": [
+      "Interpret AI speech-coaching metrics (pace, filler count, clarity) as gameable proxies for the listener's experience, not as goals.",
+      "Distinguish artifact polish from evidence-based revision.",
+      "Apply one-change-per-take, single-variable practice and confirm each metric gain with a human listener.",
+      "Document accepted, modified, and rejected AI coach suggestions in the critique log with reasons."
+    ]
+  },
+  "cat100/05/06": {
+    "los": [
+      "Apply the four attribution obligations (trace the source, check the license, verify the exact figure or quote location, disclose AI authorship) to a borrowed chart, a quotation, and an AI-generated asset.",
+      "Distinguish citation (making a borrowed fact or asset checkable) from AI-use disclosure (making your own slide's authorship honest), and distinguish public-domain government works from CC-licensed third-party assets.",
+      "Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    ]
+  },
+  "cat100/06/02": {
+    "los": [
+      "Construct a minimal valid HTML document, placing metadata (title, charset, stylesheet link) in <head> and visible content in <body>.",
+      "Write descriptive alt text for informative images and justify empty alt for decorative ones against WCAG 2.2 SC 1.1.1.",
+      "Predict which CSS rule wins when selectors conflict, using specificity first and source order as the tiebreaker.",
+      "Document a bounded AI/software support move with accepted and rejected suggestions."
+    ]
+  },
+  "cat100/06/05": {
+    "los": [
+      "Write a verifiable debugging prompt that states the symptom and includes the relevant code, and contrast it with a prompt the AI can only guess at.",
+      "Classify each AI debugging suggestion as accept, modify, or reject using a match check, a scope check, and a browser verify check, recording the reason.",
+      "Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    ]
+  },
+  "cat100/06/08": {
+    "los": [
+      "Verify an integrated published artifact on its live URL, distinguishing a clean commit history from a clean latest snapshot, and explain why integration testing catches failures that per-section checks miss.",
+      "Distinguish artifact polish from evidence-based revision.",
+      "Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    ]
+  },
+  "cat100/08/08": {
+    "los": [
+      "Convert a vague learning intention into a measurable, dated goal tied to a named proof artifact.",
+      "Sequence learning goals by prerequisite so each goal builds on a verified earlier skill.",
+      "Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    ]
+  }
+}

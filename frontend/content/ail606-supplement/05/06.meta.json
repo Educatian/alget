@@ -3,10 +3,10 @@
   "title": "Analyzing Feedback Without Overclaiming",
   "description": "AIL 606 textbook section connecting analyzing feedback without overclaiming to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the storyboard frame sequence with narration, signaling, and reader-action notes shows a defensible decision in AIL 606.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    "Scale claim strength to sample size and evidence type, distinguishing a candidate issue from a confirmed defect.",
+    "Replace evaluative language (hate, fails, proves) with counts of what was actually observed.",
+    "Separate a frequent signal from a severe one, and name which the evidence supports.",
+    "State the verification step a finding needs before it justifies a costly design change."
   ],
   "concept_ids": [
     "ail606_supplement_usability_testing_and_learning_evidence",

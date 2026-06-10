@@ -3,10 +3,10 @@
   "title": "Cognitive Load Analysis in the Draft",
   "description": "AIL 606 textbook section connecting cognitive load analysis in the draft to cognitive load diagnosis table with intrinsic/extraneous/germane load evidence, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence shows a defensible decision in AIL 606.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    "Classify a screen's demand into intrinsic, extraneous, and germane load with evidence.",
+    "Attribute each load source to a specific feature, not a vague overall feeling.",
+    "Prescribe the type-appropriate move (segment, remove, protect) for each source.",
+    "Recognize when a \"reduce load\" suggestion would actually cut germane processing."
   ],
   "concept_ids": [
     "ail606_supplement_design_draft_and_theory_to_prototype_alignment",

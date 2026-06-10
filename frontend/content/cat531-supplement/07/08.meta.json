@@ -6,10 +6,10 @@
   "chapter": "07",
   "section": "08",
   "learning_objectives": [
-    "Analyze how the field-placement transfer note connecting tool choice to classroom constraints shows a defensible decision in CAT 531.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible."
+    "Thread a single technology decision through the chapter's tools (transfer, observation, audit, revision, voice) into one coherent argument.",
+    "Make a context-bound decision legible to an outsider who was never in the placement.",
+    "Document a bounded AI/software support move, including an AI narrative you corrected for erasing a real tension.",
+    "Demonstrate transfer by showing the same decision rule holding across two situations under different constraints."
   ],
   "concept_ids": [
     "cat531_supplement_field_based_transfer_and_coaching",

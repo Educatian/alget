@@ -1,0 +1,24 @@
+[
+ {
+  "type": "evidence_add",
+  "gap": "The Transfer Case (line 109) introduces a district policy 'banning any tool that uploads student-created media to an outside server,' which is squarely a FERPA/student-data-privacy issue, yet the section cites no statute. A graduate teacher-ed AI-ethics course that repeatedly invokes privacy/consent with minors should ground at least one such constraint in FERPA/COPPA.",
+  "proposed_change": "Add a brief parenthetical/footnote in the Transfer Case tying the 'no upload to outside server' policy to the real privacy regime: FERPA governs disclosure of education records to third-party vendors (permitted without consent only under the narrow 'school official exception'), and the amended COPPA Rule (effective June 23, 2025; full compliance by April 22, 2026) adds obligations including biometric data and separate consent for third-party disclosure for under-13 users. This shows the policy is a real legal standard, not an arbitrary scenario rule.",
+  "where_to_apply": "01.mdx — Transfer Case (lines 107-109)",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "U.S. Dept. of Education, Student Privacy Policy Office — Responsibilities of Third-Party Service Providers under FERPA",
+    "url_or_doi": "https://studentprivacy.ed.gov/resources/responsibilities-third-party-service-providers-under-ferpa",
+    "finding": "FERPA bars disclosure of PII from education records to third parties (including edtech vendors) without consent unless an exception applies; the 'school official exception' requires the vendor be under district control and not redisclose data. This makes 'no upload to an outside server' a real FERPA-grounded constraint, not arbitrary."
+   },
+   {
+    "cite": "FTC, Children's Online Privacy Protection Rule — Final Amendments, Federal Register (April 22, 2025)",
+    "url_or_doi": "https://www.federalregister.gov/documents/2025/04/22/2025-05904/childrens-online-privacy-protection-rule",
+    "finding": "The amended COPPA Rule is effective June 23, 2025, with full compliance required by April 22, 2026; it expands 'personal information' to include biometric data (e.g., facial recognition) and requires separate parental consent for third-party disclosures — directly relevant to uploading student-created media for under-13 students. Confirms the proposed '2025 COPPA rule update' framing."
+   }
+  ],
+  "section_key": "cat531/07/01",
+  "op_index": 4
+ }
+]

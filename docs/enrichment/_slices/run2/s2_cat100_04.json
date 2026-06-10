@@ -1,0 +1,112 @@
+[
+ {
+  "type": "assessment_align",
+  "gap": "The Decision Rule centers on the 'Bound check': KNOWLEDGE BOUND must name a real source ('use the standards I paste') rather than decoration like 'be accurate' (lines 83, 87). This frequent error has NO misconception entry. The misconceptions file (01.misconceptions.json) has only three entries (persona_reduced_to_role, missing_hard_stop_constraint, confusing_persona_with_question); KNOWLEDGE BOUND being treated as a generic accuracy plea is unrepresented, and no practice problem targets it.",
+  "proposed_change": "Add a fourth misconception id 'cat100_supplement_4_1_knowledge_bound_is_decorative', pattern 'knowledge_bound_decorative', describing learners who write 'be accurate / you know all of math' instead of naming a real source, with feedback that a bound must name a checkable source or the model still invents. Verified against file: this maps directly to the step-reveal choice on line 75 ('Be accurate' = decoration vs the Grade-3-standards version = control) and the Bound check on line 83, so it is well-anchored in body text but missing from assessment. Optionally retarget the calibration practice item (currently misconception_id cat100_supplement_4_1_no_hard_stop, but it tests reject-and-log behavior tied to evidence_based_revision) and add one new practice item probing the bound-naming distinction.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\04\\01.misconceptions.json (add entry) and C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\04\\01.practice.json (calibration item misconception_id; optional new item)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/04/01",
+  "op_index": 3
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Construct mismatch: the body teaches a three-move dialogue (SET CONTEXT / NARROW / STRESS-TEST) and the real artifact is the labeled dialogue transcript, but LO1, meta.json, and the Artifact Studio attribute all name the Chapter-2 boilerplate 'AI critique log showing accepted, modified, and rejected suggestions.' LO1 is a fill-in-the-blank frame and LO3/LO4 are cross-section template text, so the objective set never names this section's actual construct.",
+  "proposed_change": "Rewrite LO1 to name the real construct, e.g. 'Plan and label a three-move scenario dialogue (SET CONTEXT, NARROW, STRESS-TEST) so each turn changes exactly one thing.' Differentiate LO3/LO4 from the template (e.g. LO3 -> log one accept/reject decision inside the transcript; LO4 -> attribute each output change to its labeled turn). Update meta.json learning_objectives[0,2,3] and description, the 02.mdx '## Learning Targets' bullet 1, and the '## Artifact Studio' artifact-studio artifact= attribute (and the download link text) so the named artifact is the labeled dialogue transcript with an embedded accept/reject note, not a generic 'AI critique log.'",
+  "where_to_apply": "02.meta.json learning_objectives[0,2,3] and description; 02.mdx line 13 '## Learning Targets' bullet 1; 02.mdx line 125 download-link text and line 127 artifact-studio artifact= attribute",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/04/02",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The misconceptions file (04.misconceptions.json) has only 3 entries (cat100_supplement_4_4_vague_subject_line, _no_concrete_fact, _no_clear_action) and is missing the Tone/proportion failure, which the body teaches as a co-equal fourth part and emphasizes twice as a top misreading ('adding urgency to seem responsible'; the rejected 'this is urgent and serious' line). The hardest practice item (ai_boundary, line 43-60) and the worked example both turn on this proportion failure, but ai_boundary currently sets misconception_id = cat100_supplement_4_4_no_concrete_fact, which is a mis-map: that item tests rejecting an alarmist phrase against an already-passing tone field, not supplying a missing fact.",
+  "proposed_change": "Add a fourth misconception object id 'cat100_supplement_4_4_disproportionate_tone', pattern 'urgency_to_seem_responsible', description 'Adding alarming or urgent wording (\"this is urgent and serious\") to seem diligent, which fails the proportion check by alarming the reader without adding a fact', trigger 'wording intensity exceeds the actual stakes', feedback tying back to the proportion check (concreteness not intensity makes a message land), rail_action 'explain'. Then repoint the ai_boundary practice item's misconception_id from cat100_supplement_4_4_no_concrete_fact to the new tone misconception so the assessment maps to the construct it tests.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\04\\04.misconceptions.json (add 4th object) and 04.practice.json (ai_boundary item line 59, fix misconception_id)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/04/04",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Learning objectives 2-4 are the boilerplate template shared verbatim across sections (polish-vs-revision, bounded AI move, feedback-to-improve), and LO1 is the fill-in-the-blank frame. The section's distinctive content -- the four-category bias taxonomy (unobservable cause, person label, false urgency, audience mismatch), the three diagnostic checks (observability/behavior/audience), and audience-as-the-frame-that-decides-which-word-is-wrong -- is never named in the objectives, defeating the constructive-alignment check.",
+  "proposed_change": "Rewrite LO1 to name the section-specific skill, e.g. 'Classify loaded language into the four bias patterns (unobservable cause, person label, false urgency, audience mismatch) and select the matching repair move.' Repurpose one objective to capture the diagnostic taught, e.g. 'Apply the observability, behavior, and audience checks to flag and replace audience-wrong words, naming the reader before scanning.' Mirror wording in 05.mdx 'Learning Targets'. Keep one AI-boundary objective (the rejected-suggestion log is genuinely assessed); drop the generic duplicates.",
+  "where_to_apply": "05.meta.json field 'learning_objectives' (all 4) and 05.mdx '## Learning Targets' list (lines 13-16)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/04/05",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The body prose distinguishes THREE moves: ACCEPT, OVERRIDE, and REJECT (the closing artifact note at line 111 explicitly 'rejected the AI's offer to add a confident-sounding summary line'). REJECT is also the course-wide signature construct (accepted vs modified vs REJECTED). But every practice item and every misconception is framed as a binary accept/override dichotomy; the distinctive REJECT-an-unrequested-addition move is never assessed or given a misconception. Confirmed against 06.mdx (line 111) and 06.meta.json practice_ids (lines 26-31, all four are accept/override-framed signals).",
+  "proposed_change": "Add one practice item (multiple_choice, difficulty hard) targeting REJECT: stem 'The AI offers to add a confident-sounding summary line you did not ask for. The strongest log entry is...' with the correct option being REJECT because a confident summary would hide the actual accept/override ratio (paraphrasing line 111); distractors = ACCEPT it for polish, OVERRIDE it, omit it silently. Add a matching misconception in 06.misconceptions.json (id cat100_supplement_4_6_reject_not_logged, pattern 'unrequested_addition_accepted', rail_action 'explain') describing failure to log/reject AI additions that inflate the artifact. Wire the new practice item id into 06.meta.json practice_ids.",
+  "where_to_apply": "practice (06.practice.json problems array, add item); misconceptions (06.misconceptions.json misconceptions array, add entry); meta (06.meta.json practice_ids)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/04/06",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Learning objectives are known-issue boilerplate: confirmed in 06.meta.json lines 9-12 and mirrored in 06.mdx Learning Targets lines 13-16. LO1 is a fill-in-the-blank frame ('Analyze how the decision log shows a defensible decision in CAT 100') and LO2-4 are generic strings reused across sections (artifact polish, bounded AI/software support move, feedback/revision notes). None names the section's actual constructs: accept/override/reject logging, the reason-points-to-a-standard test, or the accept/override ratio as evidence. This defeats the constructive-alignment check and leaves practice/misconceptions unverifiable against meaningful targets.",
+  "proposed_change": "Rewrite the four learning_objectives in 06.meta.json (and the matching Learning Targets list in 06.mdx lines 13-16, keeping wording identical) to be section-specific and measurable: (1) 'Convert a feelings paragraph into a decision log with one row per AI suggestion (situation, AI said, decision, reason).' (2) 'Judge whether a reason is defensible by testing if it points to a standard a reader could re-apply, rather than a mood.' (3) 'Distinguish ACCEPT, OVERRIDE, and REJECT, and log a rejected unrequested AI addition.' (4) 'Read the accept/override ratio as evidence of weighing rather than blanket trust or contrarianism.'",
+  "where_to_apply": "meta (06.meta.json learning_objectives, lines 8-13) and mdx (06.mdx Learning Targets, lines 13-16) - keep both in sync",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/04/06",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "LO3 ('Document a bounded AI/software support move with accepted and rejected suggestions') is the chapter-4 AI-as-teacher through-line, but the body never works a decision log. It appears only as one manifest row ('04_decision_log.xlsx | I overrode the AI twice and accepted once, with reasons'). No accepted/modified/REJECTED structure is shown, so the section asserts the objective without teaching or modeling it.",
+  "proposed_change": "Add a short worked sub-example under Worked Example (after Step 4, line 68) or a new 'Decision Log' callout showing the inside of 04_decision_log.xlsx as a 3-column table: AI suggestion | decision (accepted/modified/rejected) | reason/evidence. Reuse artifacts already in the section: e.g. row 'AI suggested adding \"studies show 90% of students improve\" -> rejected -> could not verify the source' (ties directly to the 02_factcheck row at line 62) and a row showing an accepted suggestion with its reason. This turns the decision log from a filename into a concrete artifact and anchors LO3.",
+  "where_to_apply": "07.mdx, Worked Example section after Step 4 (line 68) or a new small table near the manifest example (lines 59-64)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/04/07",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Practice item id 'cat100_supplement_4_7_evidence_collection_ai_boundary' (concept_id ai_supported_learning) is actually about pruning a stray screenshot ('You have a stray screenshot that maps to no claim... What is the strongest move?'), substantively identical to the 'more_is_better' theme and even linked to misconception_id cat100_supplement_4_7_more_is_better. It does not assess the AI-boundary / accepted-vs-rejected idea its id and ai_supported_learning concept claim, leaving LO3 unassessed in practice.",
+  "proposed_change": "Replace the ai_boundary problem stem/options/explanation with a genuine AI-suggestion-boundary item, e.g.: 'Your AI tutor suggests adding the line \"studies show 90% of students improve.\" You cannot find a source. What belongs in your decision log?' with correct option 'Record it as rejected, with the reason that the statistic could not be verified.' Update misconception_id from cat100_supplement_4_7_more_is_better to a new AI-suggestion misconception (see new misconception entry below).",
+  "where_to_apply": "07.practice.json, problem id cat100_supplement_4_7_evidence_collection_ai_boundary (stem/options/explanation/misconception_id, lines 42-61)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/04/07",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "A high-salience integrity misconception surfaced twice in the body (inline-check distractor 'Rename the final file to persona_v2.txt and call it proof of revision', line 39; Textbook Walkthrough 'Suppose you saved only the final persona and overwrote the draft. Then the claim \"I revised it\" is unsupported', line 98) is not encoded in 07.misconceptions.json (which holds only meaningless_filenames, no_claim_mapping, more_is_better). The remediation layer cannot fire on the most integrity-relevant error in the section: treating a renamed/overwritten final file as proof of revision.",
+  "proposed_change": "Add a misconception entry: id cat100_supplement_4_7_rename_as_proof, pattern 'overwrite_passed_off_as_revision', description 'Renaming or keeping only the final file and claiming it proves revision happened, when no before/after evidence exists', trigger 'claim of revision with only one version saved', feedback 'Save both versions (persona_v1.txt and persona_v2.txt) or drop the claim; a single final file cannot back \"I revised it.\"', rail_action 'represent'.",
+  "where_to_apply": "07.misconceptions.json, misconceptions array (new entry, after line 27)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/04/07",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "CHAPTER-LEVEL CONTENT MISMATCH (dominant issue). Chapter 04 is 'AI Conversations as a Teacher' (teacher-persona setup, scenario dialogue, checking AI pedagogical advice, classroom communication drafts, tone/bias/audience). But the ENTIRE section body (cat100-supplement/04/08.mdx) teaches GitHub Pages HTML publishing (<title>, <h1>, href, gh-pages, 404 on live URL). CONFIRMED by reading all four files: Opening Case, Core Concept table, Worked Example, Common Misreadings, Textbook Walkthrough, Transfer Case, all 4 practice items, and all 3 misconceptions are about HTML publishing, not AI-as-teacher dialogue. The title 'Module 4 Dialogue Studio' and artifact name 'publish checklist for the Module 4 dialogue studio' are an incoherent splice. This is a copy-paste error from a Ch6-style HTML-publishing section. meta.json title='Module 4 Dialogue Studio' and chapter_title='AI Conversations as a Teacher' while description references 'a publish checklist and live HTML page'.",
+  "proposed_change": "Re-author the section so the named artifact is a Chapter-4 dialogue artifact: a teacher-persona setup + a multi-turn teacher-AI scenario dialogue + a critique log of where the AI's pedagogical advice was accepted/modified/rejected (tone/bias/audience checks). Replace the HTML publish checklist with a 'dialogue defensibility checklist' (persona/role stated, scenario goal stated, at least one AI pedagogical claim fact-checked or rejected with reason, tone matched to audience). Rewrite Opening Case, Core Concept table, Worked Example, Common Misreadings, Walkthrough, Transfer Case, all 4 practice problems and all 3 misconceptions, plus the meta description, so they assess the stated LOs about AI conversations as a teacher rather than HTML publishing. If editorial intent is that 04.08 really IS a publishing studio, instead fix the chapter assignment/title and meta chapter_title; the more likely fix is re-theming to Ch4.",
+  "where_to_apply": "ALL FOUR FILES: cat100-supplement/04/08.mdx (every heading from 'Opening Case' through 'Transfer Case' plus title H1), 08.meta.json (title/description/concept_ids/practice_ids all encode HTML), 08.practice.json (all 4 problems), 08.misconceptions.json (all 3). Anchor: title 'Module 4 Dialogue Studio' vs body about GitHub Pages.",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/04/08",
+  "op_index": 0
+ }
+]

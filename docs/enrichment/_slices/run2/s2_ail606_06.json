@@ -1,0 +1,43 @@
+[
+ {
+  "type": "assessment_align",
+  "gap": "The meta description and learning_objectives are templated stock strings keyed to the wrong (storyboard) artifact and do not describe what the section actually teaches: constructing a goal+constraint+context persona, driving it off the happy path, and converting failures to inspectable screen revisions. The constructive-alignment validator is a no-op on plain-string LOs, so this drift goes unchecked, and the LOs do not map to the four practice items (artifact_signal=persona quality, annotation_signal=happy-path-only, ai_boundary=AI persona not user data, calibration=finding-to-revision).",
+  "proposed_change": "Rewrite the four learning_objectives to be section-specific and aligned to the practice/misconception set, e.g.: (1) Construct a persona from goal, constraint, and context with no demographic filler; (2) Predict which screen a given constraint will stress and drive the persona off the happy path until it fails; (3) Distinguish AI persona role-play (hypotheses to verify) from real user data; (4) Convert each observed failure into a specific screen revision or a justified decision to accept it. Rewrite the description to match. Consider adding an lo_practice_map linking each LO to its practice id.",
+  "needs_research": false,
+  "where_to_apply": "03.meta.json: learning_objectives array and description field; mirror in 03.mdx Learning Targets (lines 13-16)",
+  "priority": "high",
+  "section_key": "ail606/06/03",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Learning objective #1 in both 04.mdx 'Learning Targets' and 04.meta.json is the templated stock string ('Analyze how the prototype README traceability matrix connecting theory to screen changes shows a defensible decision in AIL 606'). This section is about criterion-referenced quality review with severity classification, NOT the README traceability matrix. The actual core skill -- define fixed observable criteria, attach screen-level evidence, score severity independently of quality, order revisions by severity -- has no matching LO. The strongest practice item (calibration -> severity) and the central misconception (review_without_severity) map to an unstated objective.",
+  "proposed_change": "Rewrite LO #1 to a section-specific objective, e.g. 'Conduct an analytic, criterion-referenced prototype quality review that scores severity independently of quality and orders revisions by severity, not by lowest score.' Keep LOs 2-4. Update both 04.mdx Learning Targets bullet 1 and 04.meta.json learning_objectives[0] identically.",
+  "needs_research": false,
+  "search_terms": [],
+  "where_to_apply": "04.mdx 'Learning Targets' first bullet AND 04.meta.json learning_objectives[0]",
+  "priority": "high",
+  "section_key": "ail606/06/04",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Meta learning_objectives are templated and now misdescribe the section. LO1 ('Analyze how the storyboard frame sequence ... shows a defensible decision') names the wrong artifact and the wrong skill; this section teaches giving criterion-anchored critique and receiving it with a reasoned disposition. The MDX 'Learning Targets' inherit the same wrong LO1. The 4 practice items (praise-as-critique, opinion-without-criterion, AI-critique verification, disposition-per-comment) are actually well-aligned to the TRUE skills of the section, so they currently map to objectives the LOs do not state.",
+  "proposed_change": "Rewrite LO1 to the section's real construct, e.g. 'Convert praise/preference into criterion-anchored, actionable peer critique using the element-problem-criterion frame.' Add an LO for the receiving side, e.g. 'Respond to each critique point with a reasoned disposition (accept/modify/reject), including at least one reasoned reject.' Keep LO3 but specialize it to this section's AI move: 'Verify an AI-drafted critique against the actual artifact before adopting it.' Mirror the same edits in MDX '## Learning Targets'. This makes the existing 4 practice items map to stated LOs.",
+  "needs_research": false,
+  "where_to_apply": "06.meta.json: learning_objectives[]; 06.mdx: '## Learning Targets'",
+  "priority": "high",
+  "section_key": "ail606/06/06",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "meta.json learning_objectives and the MDX Learning Targets are templated stock strings keyed to the wrong (storyboard) artifact. LO1 ('Analyze how the storyboard frame sequence ... shows a defensible decision') is not what this section teaches; the section teaches treating the package as one argument, reconciling cross-component contradictions, and writing a reflective synthesis. The practice items (artifact_signal, annotation_signal, ai_boundary, calibration) and misconceptions actually DO target the real content (coherence vs assembly, cross-artifact contradiction, AI-assembled-summary verification, synthesis), so the objectives are misaligned with both the body and the well-aligned assessments.",
+  "proposed_change": "Rewrite the four learning_objectives to match the body and the practice/misconception set: (1) Treat a six-component capstone package as one argument and list every cross-component claim; (2) Reconcile contradictory claims by correcting the inaccurate component toward recorded evidence (not inflating the log); (3) Verify any AI-assembled package summary against each underlying artifact before submitting; (4) Write a reflective synthesis naming how design judgment changed across the module. Mirror the same edits in the MDX Learning Targets list.",
+  "needs_research": false,
+  "where_to_apply": "meta.json: learning_objectives[0..3]; mdx: Learning Targets (lines 13-16)",
+  "priority": "high",
+  "section_key": "ail606/06/08",
+  "op_index": 1
+ }
+]

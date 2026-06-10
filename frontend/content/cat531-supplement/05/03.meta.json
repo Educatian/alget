@@ -6,10 +6,10 @@
   "chapter": "05",
   "section": "03",
   "learning_objectives": [
-    "Analyze how the equity-oriented edtech evaluation matrix with context-specific risk notes shows a defensible decision in CAT 531.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible."
+    "Define usability, accessibility, and equity as three distinct checks with three distinct populations.",
+    "Run each check as its own test rather than inferring all three from a single smooth experience.",
+    "Recognize when a compliance badge (for example WCAG AA) does not match the tool's core task.",
+    "Document a decision that names which check failed, for whom, and what condition must be met before adoption."
   ],
   "concept_ids": [
     "cat531_supplement_educational_technology_evaluation",

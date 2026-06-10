@@ -3,10 +3,10 @@
   "title": "Reflection as Data",
   "description": "AIL 606 textbook section connecting reflection as data to the reflection codebook with coded excerpts and decision-linkage trace, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the reflection codebook with coded excerpts and decision-linkage trace shows a defensible decision in AIL 606.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    "Distinguish a global impression (uncodeable) from an analytic excerpt that names a feature and a learner action.",
+    "Apply a defined code to an excerpt and link the code to a specific design decision.",
+    "Keep the inference modest: treat reflection as evidence of perceived experience, not as a measured learning gain, and pair it with a planned check.",
+    "Reject coding that reads competence into a reaction."
   ],
   "concept_ids": [
     "ail606_supplement_research_translation_for_learning_design",

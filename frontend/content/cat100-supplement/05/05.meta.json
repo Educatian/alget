@@ -6,10 +6,10 @@
   "title": "Self-Recording With AI Coaching",
   "description": "CAT 100 textbook section connecting self-recording with ai coaching to AI critique log showing accepted, modified, and rejected suggestions, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the AI critique log showing accepted, modified, and rejected suggestions shows a defensible decision in CAT 100.",
+    "Interpret AI speech-coaching metrics (pace, filler count, clarity) as gameable proxies for the listener's experience, not as goals.",
     "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    "Apply one-change-per-take, single-variable practice and confirm each metric gain with a human listener.",
+    "Document accepted, modified, and rejected AI coach suggestions in the critique log with reasons."
   ],
   "concept_ids": [
     "cat100_supplement_ai_enhanced_presentation_development",

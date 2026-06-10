@@ -1,0 +1,114 @@
+[
+ {
+  "type": "assessment_align",
+  "gap": "The germane-load distinction is the single most emphasized idea in the MDX (Core Concept table, Decision Rule warning at line 82, Common Misreadings second error at line 89, Transfer Case expertise-reversal). Yet NO practice problem and NO misconception targets the germane-load trap (mistaking productive difficulty for removable extraneous load, or stripping a prediction/self-explanation prompt and calling it an improvement). The four practice items cover dual-channel routing, sensory->working selection, presentation-vs-learning, and segmenting/capacity, but the germane/expertise-reversal axis is assessed nowhere. Learning Target 'Separate intrinsic, extraneous, and germane load and assign each a source' is only partially assessed.",
+  "proposed_change": "Add a misconception 'germane_load_is_removable' (learner sees a prediction prompt or a self-explanation step as clutter and removes it to 'reduce load') with feedback that germane processing is difficulty you protect, plus a practice item presenting a revision that lowered extraneous load but deleted the prediction prompt, asking the learner to identify the germane-load casualty. Optionally add an expertise-reversal item tied to the Transfer Case.",
+  "needs_research": false,
+  "where_to_apply": "01.misconceptions.json (add new misconception object) and 01.practice.json (add problem; current set has exactly 4 with templated ids artifact_signal/annotation_signal/ai_boundary/calibration)",
+  "priority": "high",
+  "section_key": "ail606/01/01",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The MDX 'Common Misreadings' section (line 78) names three misreadings, the first being 'more principles applied equals better design' (over-application). This is the central misreading the whole constraint framing is built to counter, yet it has NO misconceptions.json entry and NO practice item. The misconceptions file covers redundancy-helps, seductive-details-help, and principles-are-absolute, but not over-application. Constructive alignment is broken: the most distinctive learning target ('apply only the principle that addresses the issue') is untested.",
+  "proposed_change": "Add a fourth misconception to 02.misconceptions.json: id 'ail606_supplement_1_2_mayer_more_principles_better', pattern 'principle_over_application', description 'Believing that applying more Mayer principles to a frame produces a better design, regardless of which problem the frame actually has.', trigger 'learner applies personalization/signaling/segmenting to a frame whose only issue was redundancy', feedback 'Each principle targets a specific processing problem. Applying principles a frame does not need adds design work and can introduce new costs. Apply only the principle that addresses the diagnosed issue.', rail_action 'ask'. Then add a matching practice item (see assessment item below).",
+  "needs_research": false,
+  "where_to_apply": "02.misconceptions.json (add 4th misconception object) + 02.practice.json",
+  "priority": "high",
+  "section_key": "ail606/01/02",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "All four practice items test single-principle identification (spatial contiguity, redundancy, coherence, expertise reversal). None tests the section's signature skill: resolving a CONFLICT between two principles by naming which governs for the stated learner (MDX learning target line 12; Decision Rule step 3 'Rank on conflict'; the entire branching-scenario). The most novel and hardest learning target has zero practice coverage.",
+  "proposed_change": "Add a conflict-ranking practice item (replace the formulaic 4-item pattern or add a 5th). Stem: present the pump slide where redundancy says delete on-screen text but a stakeholder cites 'accessibility' for captions; ask which move honors both for novices on a system-paced slide. Correct answer: offer a captions-on toggle so text is opt-in (separates the accessibility axis from the redundancy axis), distractors = 'add captions for all' (reintroduces redundancy) and 'delete all text and refuse captions' (ignores access). Map concept_id 'mayer_principles', difficulty 'hard', misconception_id the new over-application or principles-are-absolute id.",
+  "needs_research": false,
+  "where_to_apply": "02.practice.json problems array (add conflict-resolution MCQ)",
+  "priority": "high",
+  "section_key": "ail606/01/02",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The meta learning_objectives are the templated stock strings keyed to the chapter-level signature artifact ('Analyze how the cognitive load diagnosis table ... shows a defensible decision', 'Distinguish artifact polish from evidence-based revision'). They do not match the section's actual, sharper Learning Targets in the MDX, which are about decomposing a difficulty into three load sources, estimating element interactivity for a NAMED learner, and ordering remedies. The constructive-alignment validator is a no-op on plain-string LOs, so this misalignment is invisible to CI but real.",
+  "proposed_change": "Replace the four templated LOs in 03.meta.json learning_objectives with section-specific ones mirroring the MDX Learning Targets: (1) 'Decompose a single felt difficulty into intrinsic, extraneous, and germane load and attribute each to artifact evidence.' (2) 'Estimate element interactivity for a named learner and explain why the same task is high-load for a novice and low-load for an expert.' (3) 'Apply the forced diagnostic order (cut extraneous, sequence intrinsic, then spend on germane) and justify each remedy by load source.' (4) 'Document a bounded AI/software support move with an accepted and a rejected suggestion and the load-theory reason for each.' This aligns LOs to the four practice items and three misconceptions.",
+  "needs_research": false,
+  "where_to_apply": "03.meta.json -> learning_objectives array",
+  "priority": "high",
+  "section_key": "ail606/01/03",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Practice items follow the formulaic artifact_signal/annotation_signal/ai_boundary/calibration ID pattern, but two of the four items are mis-cast relative to their intended slot. The 'ai_boundary' item (id ...ai_boundary) actually tests learner-relative intrinsic load, not an AI/software boundary judgment, even though the AI accept/reject judgment gate is a core LO and is richly developed in the MDX (the rejected 'remove the second factor' suggestion). No practice item assesses the AI accept/reject decision, so LO 'Document a bounded AI/software support move with accepted and rejected suggestions' is unassessed.",
+  "proposed_change": "Re-task the ai_boundary problem to genuinely assess the AI-judgment gate, e.g. stem: 'An AI tutor reviewing your interaction-effects tutorial offers four edits. Which should you REJECT because it manages load by deleting the concept rather than its load?' with the distractor/correct options drawn from the MDX (remove the second factor = reject; on-plot labels, pre-train single main effect, keep prediction prompt = accept). Keep the relabeled-learner intrinsic item but move it to the artifact_signal/calibration slot.",
+  "needs_research": false,
+  "where_to_apply": "03.practice.json -> problem id ail606_supplement_1_3_cognitive_load_diagnosis_ai_boundary (stem/options/explanation)",
+  "priority": "high",
+  "section_key": "ail606/01/03",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The meta.json learning_objectives are the generic templated stock strings ('Analyze how the storyboard frame sequence ... shows a defensible decision in AIL 606', 'Distinguish artifact polish from evidence-based revision') and do NOT match the excellent, section-specific Learning Targets already written in the MDX (worked-example effect in terms of search vs schema load; engineer a worked/completion/open fade matched to schema growth). The constructive-alignment between the authoritative metadata LOs and the body/practice is broken: the practice items (worked-example effect, fading/completion problem, expertise reversal, intermediate steps) align to the MDX targets, not to the meta LOs.",
+  "proposed_change": "Replace the four templated LOs in meta.json with the four section-specific targets already proven in the MDX Learning Targets: (1) Explain the worked-example effect as search load vs schema-building load; (2) Engineer a worked->completion->open fading sequence (incl. backward fading and self-explanation prompts) matched to the learner's growing schema; (3) Identify when the expertise-reversal effect requires raising the starting support level; (4) Document a bounded AI/software support move with an accepted and a rejected suggestion and the reason. This makes the four practice items and four misconceptions map cleanly to stated LOs.",
+  "needs_research": false,
+  "where_to_apply": "04.meta.json -> learning_objectives array (all four entries); also update description field which currently uses the generic 'storyboard frame sequence ... reader notes, support moments, and revision evidence' stock string.",
+  "priority": "high",
+  "section_key": "ail606/01/04",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The MDX explicitly names a third misreading: confusing surface variety with access (three inaccessible PDF formats), and the inline-check tests exactly this. But 05.misconceptions.json has only three entries (formats-only, lower-the-bar, retrofit) and NO entry for the false-variety/inaccessible-formats misconception. This is a common, high-value misconception with no rail support, and the inline-check is not backed by a misconception id.",
+  "proposed_change": "Add a fourth misconception (e.g., id ail606_supplement_1_5_udl_surface_variety_not_access, pattern variety_without_accessibility): description = treating multiple formats that share the same access barrier as multiple means of representation; trigger = learner offers PDF + scanned image + screenshot of the same content; feedback = real representation flexibility provides genuinely different, accessible access paths (tagged HTML, narrated audio), not redundant inaccessible copies; rail_action = explain. Wire it to the existing inline-check.",
+  "needs_research": false,
+  "search_terms": [],
+  "where_to_apply": "05.misconceptions.json misconceptions array (add 4th entry); optionally reference from inline-check in 05.mdx",
+  "priority": "high",
+  "section_key": "ail606/01/05",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Meta learning_objectives are templated stock strings keyed to 'storyboard frame sequence' and do not match the section's actual, well-written Learning Targets (firm goal vs flexible means; three UDL principles; construct-relevant vs construct-irrelevant variance). The constructive-alignment validator is a no-op on plain-string LOs, so the misalignment is invisible to CI but real for learners. Three of four practice items map to universal_design_for_learning while LOs never mention UDL constructs.",
+  "proposed_change": "Rewrite 05.meta.json learning_objectives to mirror the MDX Learning Targets: (1) Distinguish the firm learning goal from the flexible means; (2) Apply the three UDL principles to remove construct-irrelevant barriers without changing the construct; (3) Classify a proposed option as construct-relevant or construct-irrelevant variance; (4) Document a bounded AI/software support move with accepted and rejected suggestions. Also fix the templated description to name UDL/construct-irrelevant variance rather than 'storyboard frame sequence'.",
+  "needs_research": false,
+  "search_terms": [],
+  "where_to_apply": "05.meta.json learning_objectives array and description field",
+  "priority": "high",
+  "section_key": "ail606/01/05",
+  "op_index": 3
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The meta.json learning_objectives are stock chapter-signature strings about a 'storyboard frame sequence with narration, signaling, and reader-action notes.' This section's MDX body is entirely about tool/software selection (objective->affordance->constraint discipline) and never mentions storyboards. The LOs and the MDX 'Learning Targets' (map objective to affordance; select least-capable-sufficient tool; constraint-filter veto) do not match. The constructive-alignment validator is a no-op on these generic strings.",
+  "proposed_change": "Rewrite the four learning_objectives in 06.meta.json to mirror the MDX Learning Targets and Core Concept: (1) Translate the verb in a learning objective into the specific affordance it requires, named independently of any product; (2) Apply the least-capable-sufficient heuristic to select among tools that afford the action; (3) Use the constraint filter (access, cost, time, support, accessibility) as a veto and show it disqualifying at least one candidate; (4) Document a bounded AI/software support move with an accepted and a rejected suggestion. Update the meta 'description' to reference 'software-case selection rationale / objective-to-affordance mapping' instead of the storyboard string.",
+  "needs_research": false,
+  "where_to_apply": "06.meta.json -> learning_objectives array and description field",
+  "priority": "high",
+  "section_key": "ail606/01/06",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The meta-layer learning_objectives are templated to the chapter-level stock artifact and do not describe what this section actually teaches. LO1 ('Analyze how the storyboard frame sequence with narration, signaling, and reader-action notes shows a defensible decision') and LO2 ('Distinguish artifact polish from evidence-based revision') do not match the MDX, which is about constructing a Toulmin/QOC design-rationale argument (claim, evidence, warrant, rejected alternatives, planned check). The MDX's own 'Learning Targets' (lines 11-14) are excellent and section-specific; the meta LOs ignore them.",
+  "proposed_change": "Replace the four meta learning_objectives with the four section-specific Learning Targets already in the MDX body: (1) Distinguish a design description from a rationale (why, with alternatives weighed); (2) Structure a rationale entry as claim, evidence, warrant, and rejected alternatives (Toulmin); (3) Document a bounded AI support move with an accepted and a rejected suggestion; (4) Use annotations, support requests, and revision notes to decide the next help or design change. This also makes the practice items (which test rationale-vs-description, rationale-vs-preference, alternatives) actually map to the stated LOs.",
+  "needs_research": false,
+  "where_to_apply": "07.meta.json -> learning_objectives array (and description field, which also mis-references the storyboard artifact)",
+  "priority": "high",
+  "section_key": "ail606/01/07",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The meta learning_objectives are the generic stock template (analyze how the [artifact] shows a defensible decision / distinguish polish from evidence-based revision / document AI accept-reject / use annotations to decide next help). They do NOT name this section's actual, distinctive skill, which the MDX 'Learning Targets' states crisply: integrate multiple principles onto ONE decision, NAME a principle conflict and RESOLVE it by ownership for a stated learner, and re-derive the resolution when the learner changes (expertise reversal). The MDX targets are far stronger than the meta LOs, so the constructive-alignment layer understates what the practice items actually assess.",
+  "proposed_change": "Rewrite 08.meta.json learning_objectives to mirror the MDX Learning Targets and the practice/misconception coverage, e.g.: (1) 'Integrate multiple Module 1 principles into a single design decision rather than listing them in parallel.' (2) 'Name a conflict between two principles and resolve it by ownership (each principle governs the variable it owns) for a stated learner.' (3) 'Record a defensible synthesis brief that names the goal, the converging principles, the resolved tension, and one rejected alternative.' (4) 'Re-derive how a conflict resolution changes when the learner shifts (e.g., novice to expert).' This tightens alignment to the four practice items (artifact_signal=integration, annotation_signal=tension resolution, ai_boundary=summary-vs-synthesis, calibration=full brief) and the three misconceptions.",
+  "needs_research": false,
+  "where_to_apply": "08.meta.json learning_objectives array",
+  "priority": "high",
+  "section_key": "ail606/01/08",
+  "op_index": 1
+ }
+]

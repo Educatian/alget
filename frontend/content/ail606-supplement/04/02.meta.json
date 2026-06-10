@@ -3,10 +3,10 @@
   "title": "Principle-to-Feature Traceability",
   "description": "AIL 606 textbook section connecting principle-to-feature traceability to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the storyboard frame sequence with narration, signaling, and reader-action notes shows a defensible decision in AIL 606.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    "Map one controlling principle to one feature, with the processing demand named explicitly.",
+    "Detect post-hoc justification (many principles attached to one cosmetic change).",
+    "Describe features as mechanisms that act on a demand, not as decoration.",
+    "Defend any feature by tracing it forward from principle to demand to implementation."
   ],
   "concept_ids": [
     "ail606_supplement_design_draft_and_theory_to_prototype_alignment",

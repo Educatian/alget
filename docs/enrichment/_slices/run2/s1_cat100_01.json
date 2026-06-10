@@ -1,0 +1,242 @@
+[
+ {
+  "type": "evidence_add",
+  "gap": "The 'scans the top third of your resume for six seconds' claim (01.mdx line 12) and the recurring 'top third of the page' framing (lines 19, 39, 41) are presented as fact with no source. This is a real, citable finding (Ladders eye-tracking study) but '6 seconds' is the 2012 number; the 2018 update reports 7.4 seconds. An unsourced popularized stat is a soft spot in an evidence-grounding course.",
+  "proposed_change": "Update the figure and attach a citation: change 'for six seconds' to 'for roughly seven seconds' (or 'about 7.4 seconds') and cite the Ladders 2018 Eye-Tracking Study as the basis for the top-third emphasis. Add the source to the References list (after line 148). The study also supports the 'top third' / simple-layout / bold-titles framing because recruiters skim layout, job titles, and keywords in that brief window.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\01\\01.mdx -> 'Why This Section Matters' (line 12) and References (after line 148)",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "Ladders, Inc. (2018) Ladders Updates Popular Recruiter Eye-Tracking Study (PR Newswire press release)",
+    "url_or_doi": "https://www.prnewswire.com/news-releases/ladders-updates-popular-recruiter-eye-tracking-study-with-new-key-insights-on-how-job-seekers-can-improve-their-resumes-300744217.html",
+    "finding": "The 2018 study found recruiters spend an average of 7.4 seconds on the initial screening of a resume, up from the 6-second average found in the original 2012 study; top-performing resumes used simple layouts with clear section/heading titles and bold job titles supported by bulleted accomplishments, and recruiters skim for layout, job titles, text flow, and keywords."
+   },
+   {
+    "cite": "HR Dive (2018) Eye tracking study shows recruiters look at resumes for 7 seconds",
+    "url_or_doi": "https://www.hrdive.com/news/eye-tracking-study-shows-recruiters-look-at-resumes-for-7-seconds/541582/",
+    "finding": "Independent trade-press confirmation that the Ladders 2018 eye-tracking study reported an average ~7.4-second resume review time, an increase over the 6 seconds reported in 2012."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/01/01",
+  "op_index": 2
+ },
+ {
+  "type": "evidence_add",
+  "gap": "ISTE is listed as a recurring chapter anchor and appears in References (01.mdx line 148, generic https://iste.org/standards/students), and the chapter is titled 'Digital Citizenship and AI Readiness', but the MDX body never invokes any ISTE digital-citizenship standard. NACE is well-integrated (line 31, with deep link), but the ISTE through-line for Chapter 1 is decorative, not load-bearing.",
+  "proposed_change": "Add one sentence in 'Core Concept' (around line 31) or 'Why This Section Matters' tying professional digital identity to the ISTE Student Standard for Digital Citizen, with the specific indicator wording: students 'cultivate and manage their digital identity and reputation and are aware of the permanence of their actions in the digital world' (ISTE Standards for Students, Standard 1.2 Digital Citizen, indicator 1.2.a / shown as 2a in the current edition). Optionally deep-link the indicator rather than the bare standards landing page. This makes the citizenship anchor substantive.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\01\\01.mdx -> 'Core Concept' (around line 31) and References (line 148)",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "ISTE Standards for Students, Standard 2 Digital Citizen, indicator 2a (Digital Identity)",
+    "url_or_doi": "https://iste.web.unc.edu/iste-student-standards/standard-2-digital-citizen/",
+    "finding": "The Digital Citizen standard's digital-identity sub-indicator reads verbatim: 'Students cultivate and manage their digital identity and reputation and are aware of the permanence of their actions in the digital world.' This directly supports a substantive tie between professional digital identity/footprint and the section's resume work."
+   },
+   {
+    "cite": "ISTE (UNC) Standard 2: Digital Citizen overview",
+    "url_or_doi": "https://iste.web.unc.edu/iste-student-standards/standard-2-digital-citizen/",
+    "finding": "The Digital Citizen standard also covers positive/safe/legal/ethical online behavior, intellectual-property respect, and managing personal data/digital privacy; the digital-identity/reputation indicator is the load-bearing one for a 'professional presence' section. Note: the current (2017) edition labels this Standard 1.2 in ISTE's own numbering, displayed as Standard 2 / indicator 2a in some renderings; confirm the exact numbering string against iste.org before inserting."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/01/01",
+  "op_index": 3
+ },
+ {
+  "type": "evidence_add",
+  "gap": "This is an evidence-grounding course, yet the academic-integrity and AI-disclosure claims rest entirely on a fictional assignment policy with no external authority. There is no citation to a real institutional AI-use/academic-integrity standard or GenAI disclosure guidance, and the References list carries an irrelevant Tufte 'data-ink' source (a Ch3/Ch5 visual-evidence anchor with no place in an AI-ethics section).",
+  "proposed_change": "Drop the Tufte data-ink reference (02.mdx line 144) and add a real AI-disclosure standard plus one inline 'Recent Evidence' callout under Core Concept. CONFIRMED authorities: (1) The MLA-CCCC Joint Task Force on Writing and AI Student Guide to AI Literacy recommends a disclosure/attribution statement naming the AI tool used WITH its version number — this directly grounds the section's four-part disclosure (tool/action/ownership/rejection) and the 'name the tool and version' currency caveat. (Note the Task Force concluded/sunsetted spring 2025; cite the standing guidance, with successor work at mlaai.mla.hcommons.org.) (2) For the assistance-vs-substitution line, ICMJE (Jan 2026 update) and COPE distinguish routine language polishing (grammar/spelling/formatting, often no disclosure) from substantive content generation (always disclosed) — the exact boundary the Core Concept teaches. Optionally cite Chan (2023) 'A comprehensive AI policy education framework' (Int J Educ Technol High Educ, 1,144 citations) as the scholarly anchor for per-assignment AI policy.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\01\\02.mdx -> References list (remove line 144 Tufte data-ink; add MLA-CCCC and/or ICMJE/COPE source) and add one inline 'Recent Evidence' callout under Core Concept (after line 37)",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "MLA-CCCC Joint Task Force on Writing and AI, Student Guide to AI Literacy (2025)",
+    "url_or_doi": "https://aiandwriting.hcommons.org/student-guide-to-ai-literacy/",
+    "finding": "Recommends students provide a disclosure (attribution/contribution) statement in the body or an appendix stating which AI tool was used WITH its version number; notes APA/MLA/Chicago citation guidance for generative AI may change as the technology evolves. Directly grounds the four-part disclosure and the name-the-tool/version requirement."
+   },
+   {
+    "cite": "ICMJE Recommendations (Jan 2026 update) / COPE position on AI tools",
+    "url_or_doi": "https://lifesciences.enago.com/blogs/key-changes-and-implications-for-medical-communication-and-publishing",
+    "finding": "AI tools cannot be authors; all AI use must be disclosed with tool name, version, and purpose; policies distinguish routine language polishing (grammar/spelling/formatting, typically no disclosure) from substantive content generation (always disclosed) — the same assistance-vs-substitution boundary the section teaches."
+   },
+   {
+    "cite": "Chan, C. K. Y. (2023). A comprehensive AI policy education framework for university teaching and learning.",
+    "url_or_doi": "https://doi.org/10.1186/s41239-023-00408-3",
+    "finding": "Peer-reviewed framework (Int J Educ Technol High Educ; ~1,144 citations) for university-level GenAI policy and disclosure, supporting the section's per-assignment policy-reading skill with scholarly authority."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/01/02",
+  "op_index": 2
+ },
+ {
+  "type": "new_callout",
+  "gap": "The section never names the real institutional stakes/process it gestures at ('academic-integrity meeting' line 7, 'integrity review' line 78). The intro promises that 'workplaces are writing the same kind of AI-use rules' (line 7) but never instantiates a concrete current workplace/professional AI-disclosure norm.",
+  "proposed_change": "Add a small transfer callout (1-2 sentences) after the Transfer Case (line 105) giving a concrete current professional AI-disclosure requirement, reinforcing that the coursework disclosure skill transfers directly to professional settings. CONFIRMED current example: academic journals now require contributors to disclose generative-AI assistance and forbid listing AI as an author. The ICMJE (Jan 2026 update) and COPE require any AI use in drafting/editing/analysis to be disclosed with the tool's name, version, and purpose, while routine grammar/spelling polishing may be exempt — exactly the assistance/substitution + disclosure habit the section teaches.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\01\\02.mdx -> append to Transfer Case (after line 105) or a new small callout after it",
+  "priority": "low",
+  "sources": [
+   {
+    "cite": "ICMJE 2025/2026 Recommendations & COPE position on AI in scholarly publishing",
+    "url_or_doi": "https://www.proof-reading-service.com/blogs/ai-in-scholarly-publishing/icmje-2025-key-changes-in-authorship-ai-use-and-ethical-publishing",
+    "finding": "ICMJE and COPE require contributors to disclose generative-AI use (tool name, version, purpose) and prohibit listing AI as an author; substantive content generation must be disclosed while routine language polishing may be exempt — a real professional disclosure norm that mirrors the coursework skill."
+   },
+   {
+    "cite": "Texas A&M-San Antonio Library, Journal Policies on AI Use (2025)",
+    "url_or_doi": "https://libguides.tamusa.edu/AI_for_lit_research/journal_requirements",
+    "finding": "Documents that major journals/publishers now require authors to disclose generative-AI assistance and bar AI authorship, confirming the workplace/professional transfer claim is real and current."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/01/02",
+  "op_index": 6
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The section's central empirical claim (lines 34, 78-80) that uncritically accepting AI suggestions degrades the work and that selective rejection/modification preserves quality is asserted purely from first principles. Verified that robust peer-reviewed 2021-2023 HCI literature on overreliance/automation bias supports exactly this: users tend to accept AI suggestions even when wrong, and interventions that force critical engagement reduce that overreliance.",
+  "proposed_change": "Add a one-line 'Recent Evidence' inline note near Common Misreadings (lines 76-80) or a References entry grounding the overreliance point, e.g.: research on overreliance shows people often accept an AI suggestion even when it is wrong, and prompting deliberate engagement reduces this; the rejected/modified rows are exactly that deliberate-engagement discipline. This grounds the 'a log with only accepted rows is indistinguishable from copy-paste' argument (line 34).",
+  "where_to_apply": "03.mdx -> 'Common Misreadings' (lines 76-80, new inline note) and/or References section (lines 142-147)",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Bucinca, Malaya & Gajos (2021) To Trust or to Think: Cognitive Forcing Reduces Overreliance on AI in AI-Assisted Decision-Making, Proc. ACM HCI (CSCW)",
+    "url_or_doi": "https://doi.org/10.1145/3449287",
+    "finding": "Found that people frequently accept an AI's suggestion even when it is wrong (overreliance); cognitive-forcing interventions that compel more thoughtful engagement significantly reduced overreliance. ~731 citations. Directly grounds the rejected-rows / critical-engagement discipline."
+   },
+   {
+    "cite": "Vasconcelos et al. (2023) Explanations Can Reduce Overreliance on AI Systems During Decision-Making, Proc. ACM HCI (CSCW)",
+    "url_or_doi": "https://doi.org/10.1145/3579605",
+    "finding": "Across five studies, shows overreliance is a cost-benefit behavior and that strategically engaging with AI output (rather than accepting it wholesale) reduces overreliance. ~283 citations. Supports the claim that selective acceptance/rejection preserves quality."
+   }
+  ],
+  "section_key": "cat100/01/03",
+  "op_index": 4
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The section's central empirical claims (LLMs state false facts with the same confidence as true ones; fabricated citations are 'the model's specialty', lines 26, 75, 81) are asserted without any source, in a course whose through-line is evidence-grounding. Fabricated-citation rates are now well documented in 2023-2026 peer-reviewed literature, so this is a genuine opportunity to model the very behavior the section teaches.",
+  "proposed_change": "Add a one-to-two sentence 'Recent Evidence' callout after 'Core Concept' (or in the citation-fabrication paragraph of 'Textbook Walkthrough', line 81) plus a References entry, grounding the hallucination claim: cite Walters & Wilder (2023, Scientific Reports), who found 55% of GPT-3.5 and 18% of GPT-4 citations were entirely fabricated and a majority contained errors, and the real-world Mata v. Avianca (S.D.N.Y. 2023) sanction where lawyers were fined $5,000 for filing fabricated ChatGPT case citations. Then point back to the per-claim verification loop. Keep it short and link out.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\01\\04.mdx -> after 'Core Concept' (line 36) or in 'Textbook Walkthrough' (line 81), plus a References entry (after line 144)",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "Walters, W. H. & Wilder, E. I. (2023). Fabrication and errors in the bibliographic citations generated by ChatGPT. Scientific Reports.",
+    "url_or_doi": "https://doi.org/10.1038/s41598-023-41032-5",
+    "finding": "Peer-reviewed empirical study: 55% of GPT-3.5 citations and 18% of GPT-4 citations were entirely fabricated; among non-fabricated citations a substantial share contained citation errors. Directly grounds 'fabricated citations are the model's specialty' with a real percentage."
+   },
+   {
+    "cite": "Mata v. Avianca, Inc., 678 F.Supp.3d 443 (S.D.N.Y. 2023)",
+    "url_or_doi": "https://en.wikipedia.org/wiki/Mata_v._Avianca,_Inc.",
+    "finding": "On June 22, 2023 the court sanctioned two lawyers and their firm $5,000 for submitting a brief with non-existent case citations and fabricated quotations generated by ChatGPT. A documented real-world consequence of trusting fluent-but-false AI output, exactly the failure the section teaches against."
+   },
+   {
+    "cite": "High Rates of Fabricated and Inaccurate References in ChatGPT-Generated Medical Content (2023), PMC10277170",
+    "url_or_doi": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10277170/",
+    "finding": "In ChatGPT-generated medical content, 47% of references were fabricated, 46% authentic but inaccurate, and only 7% authentic and accurate, reinforcing that confident formatting is no evidence of truth."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/01/04",
+  "op_index": 2
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The claim in 'Why This Section Matters' (06.mdx line 12) that accessibility 'in many settings it is a legal requirement' is asserted with no source. For a US undergraduate gen-ed course this is verifiable, and a named anchor strengthens the legal-requirement claim and the 'not charity' framing.",
+  "proposed_change": "Attach a brief parenthetical citation/link to the legal-requirement clause on line 12: the DOJ's April 2024 ADA Title II final rule, which adopts WCAG 2.1 AA as the technical standard for state and local government web content and mobile apps (this expressly covers public colleges and universities), and/or Section 508 for federal contexts. Keep it to one parenthetical link so it does not bloat the intro. Note (currency): in April 2026 DOJ extended the compliance dates, so phrase the anchor around the rule/standard, not a specific past deadline.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\01\\06.mdx -> 'Why This Section Matters' (line 12, sentence ending 'in many settings it is a legal requirement')",
+  "priority": "low",
+  "sources": [
+   {
+    "cite": "ADA.gov (U.S. DOJ), Fact Sheet: New Rule on the Accessibility of Web Content and Mobile Apps Provided by State and Local Governments, 2024",
+    "url_or_doi": "https://www.ada.gov/resources/2024-03-08-web-rule/",
+    "finding": "DOJ's final rule under ADA Title II (published in the Federal Register April 24, 2024) sets WCAG 2.1 Level AA as the technical standard for web content and mobile apps of all state and local government entities."
+   },
+   {
+    "cite": "Federal Register, Nondiscrimination on the Basis of Disability; Accessibility of Web Information and Services of State and Local Government Entities, 89 FR (Apr 24, 2024)",
+    "url_or_doi": "https://www.federalregister.gov/documents/2024/04/24/2024-07758/nondiscrimination-on-the-basis-of-disability-accessibility-of-web-information-and-services-of-state",
+    "finding": "The rule applies to all departments, agencies, and instrumentalities of state/local government, which DOJ and university counsel guidance confirm includes public colleges and universities."
+   },
+   {
+    "cite": "Federal Register, Extension of Compliance Dates ... State and Local Government Entities, 2026",
+    "url_or_doi": "https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web",
+    "finding": "In April 2026 DOJ extended Title II web-accessibility compliance dates (entities of 50,000+ population to April 26, 2027), so the citation should anchor on the WCAG 2.1 AA standard and rule rather than a fixed deadline (currency note)."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/01/06",
+  "op_index": 5
+ },
+ {
+  "type": "evidence_add",
+  "gap": "Confirmed at 07.mdx line 142: the ISTE reference links to the generic Students landing page (iste.org/standards/students). The section's central artifact (2FA on school email, 'account safety', lines 20/30/51-54) maps precisely to ISTE Standard 1.2 Digital Citizen indicator 1.2d. Verbatim 1.2d text confirmed via official sources: students 'manage their personal data to maintain digital privacy and security and are aware of data-collection technology used to track their navigation online.' The 2024 ISTE Standards document is v4.02. Anchoring to the named, current standard confirms currency and strengthens evidence-grounding.",
+  "proposed_change": "In References (line 142) and where 'account safety' is introduced (Opening Case line 20 / Core Concept table line 30), cite ISTE Standard 1.2 Digital Citizen (2024, v4.02), indicator 1.2d on protecting digital privacy and managing personal data and security, as the named competency the 2FA artifact maps to. Update the reference label from 'ISTE digital citizenship' to 'ISTE Standards for Students 1.2 Digital Citizen (2024)'.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\01\\07.mdx -> References line 142 and Core Concept/Opening Case competency naming (lines 20, 30)",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "ISTE Standards for Students 1.2 Digital Citizen, indicator 1.2d (2024)",
+    "url_or_doi": "https://edtechsandbox.org/digital-citizen/iste-standards-for-students-1-2-digital-citizen/",
+    "finding": "Verbatim 1.2d: students 'manage their personal data to maintain digital privacy and security and are aware of data-collection technology used to track their navigation online' - the named competency the 2FA artifact maps to."
+   },
+   {
+    "cite": "ISTE Standards 2024, Version 4.02 (official PDF)",
+    "url_or_doi": "https://cms-live-media.iste.org/ISTE_STANDARDS_2024_v02.pdf",
+    "finding": "Confirms the current ISTE Standards edition is the 2024 release, version 4.02, so the proposed 'ISTE Standards for Students 1.2 Digital Citizen (2024, v4.02)' citation is current and correctly versioned."
+   }
+  ],
+  "section_key": "cat100/01/07",
+  "op_index": 2
+ },
+ {
+  "type": "new_callout",
+  "gap": "Confirmed at 07.mdx line 81: the section teaches AI-use disclosure as a portfolio entry ('disclosed brainstorming help and rejected a thesis rewrite') but names no concrete 2026 AI tool and no institutional academic-integrity/AI-disclosure norm. Research confirms current (2025-2026) university practice expects disclosure of which tool/model assisted and what was accepted vs rejected, with a structured statement format - so this is the right place for a current, named anchor that does not break the tool-agnostic BigAL framing elsewhere.",
+  "proposed_change": "Add a short 'Recent Evidence'/disclosure-norms callout near the Textbook Walkthrough disclosure entry (line 81): note that 2026 GenAI academic-integrity expectations increasingly require naming which tool/model assisted and stating what was accepted vs rejected, and give a concrete current example format (e.g., 'AI use: used a chat assistant to brainstorm bullet phrasing; accepted 2 rewordings, rejected an invented metric'). Keep BigAL as the in-course persona while grounding the disclosure habit in current named-tool practice.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\01\\07.mdx -> Textbook Walkthrough disclosure entry, around line 81, as a new callout",
+  "priority": "low",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "University of Waterloo, Disclosing your use of GenAI (AI Disclosure / AID Framework)",
+    "url_or_doi": "https://uwaterloo.ca/students/blog/disclosing-your-use-genai",
+    "finding": "Current university guidance requires an AI Disclosure statement that always names the specific Artificial Intelligence Tool(s) used plus the purpose/execution for each (e.g., 'Microsoft Copilot ... January 15-25 2025; Execution: ... used to create the design schematic'), confirming the named-tool + what-was-used disclosure norm the callout would teach."
+   },
+   {
+    "cite": "Princeton University Library, Disclosing the Use of AI (Generative AI guide)",
+    "url_or_doi": "https://libguides.princeton.edu/generativeAI/disclosure",
+    "finding": "A disclosure statement should explain which AI system(s) were used and for what purpose, with format dictated by the course/faculty, supporting the proposed concrete disclosure format naming tool and accepted/rejected contributions."
+   },
+   {
+    "cite": "EDUCAUSE Review (2026), From Prompt to Practice: A Framework for Transparent GenAI Use in Higher Education",
+    "url_or_doi": "https://er.educause.edu/articles/2026/3/from-prompt-to-practice-a-framework-for-transparent-genai-use-in-higher-education",
+    "finding": "A 2026 higher-education framework on transparent GenAI use (title and date confirm currency of the disclosure-transparency norm); corroborates that 2026 academic-integrity practice centers on transparent, structured disclosure of GenAI use."
+   }
+  ],
+  "section_key": "cat100/01/07",
+  "op_index": 5
+ },
+ {
+  "type": "scaffolding",
+  "gap": "In the Core Concept table (line 30) the truthful-evidence row's inspectable action ('Does each claim survive a reference check?') is vaguer than accessibility ('Alt text, headings, color, contrast') and privacy ('Unique password, 2FA, no exposed data'); it assumes the learner recalls what a reference check is from 1.1 with no inline cue for performing it on a slide bullet. Confirmed by reading 08.mdx table lines 28-33.",
+  "proposed_change": "Add a one-line concrete inspection cue to the truthful-evidence row's 'What you inspect' cell (or a short parenthetical), e.g.: 'pick one number-bearing bullet and confirm you could point to where the number came from (a real count, date, or outcome) if a grader asked.' This mirrors the concreteness of the other three rows and links back to 1.1 without re-teaching it.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\01\\08.mdx -> Core Concept table, 'Truthful evidence (1.1)' row 'What you inspect' cell (line 30)",
+  "priority": "low",
+  "sources": [
+   {
+    "cite": "Andrade, H. L. (2019). A Critical Review of Research on Student Self-Assessment. Frontiers in Education, 4:87.",
+    "url_or_doi": "https://doi.org/10.3389/feduc.2019.00087",
+    "finding": "Self-assessment is more accurate and useful for learning when criteria are concrete, transparent, and tied to inspectable evidence rather than global judgments. Supports making each readiness-table row name a specific, inspectable check (including the truthful-evidence row) so the self-audit measures rather than performs readiness."
+   },
+   {
+    "cite": "Eva, K. W. & Regehr, G. (2005). Self-Assessment in the Health Professions: A Reformulation and Research Agenda. Academic Medicine, 80(10 Suppl), S46-S54.",
+    "url_or_doi": "https://doi.org/10.1097/00001888-200510001-00015",
+    "finding": "Unaided global self-assessment is poorly calibrated; accurate self-monitoring requires checking performance against external, specific reference points rather than memory. Grounds the section's 'inspect the artifact, not your memory' principle and the value of concrete per-row inspection cues."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/01/08",
+  "op_index": 5
+ }
+]

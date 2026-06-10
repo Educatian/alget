@@ -6,10 +6,10 @@
   "title": "Prompting With Verification",
   "description": "CAT 100 textbook section connecting prompting with verification to AI critique log showing accepted, modified, and rejected suggestions, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the AI critique log showing accepted, modified, and rejected suggestions shows a defensible decision in CAT 100.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    "Write a prompt specific enough to produce checkable claims, and ask the model to flag uncertainty.",
+    "Separate the model's output into individual factual claims you can verify one at a time.",
+    "Confirm, correct, or remove each claim against an official source, and log the result.",
+    "Recognize a hallucination: a confident, specific claim with no source behind it."
   ],
   "concept_ids": [
     "cat100_supplement_digital_citizenship_and_ai_readiness",

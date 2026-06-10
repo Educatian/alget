@@ -1,0 +1,176 @@
+[
+ {
+  "type": "evidence_add",
+  "gap": "The load-bearing claim that two tools help because 'large language models are not interchangeable: they are trained on different data, tuned with different guidelines... so they fail in different places' (line 28) is asserted with no source, as is the 'unreliable about facts' / confident-hallucination claim ('What Strong Reading Looks Like', line 108).",
+  "proposed_change": "Add a brief 'Recent Evidence' callout (or References entries) grounding both pillars: (a) that LLM outputs are non-deterministic and vary even on identical inputs, and that different models/evaluators carry different biases so they fail in different places, and (b) that LLMs confidently fabricate facts. Reference the disagreement/variance source from line 28 and the hallucination source from line 108. Verified=confirmed: peer-reviewed and well-cited works support each claim; recommend Farquhar et al. (2024, Nature) and Huang et al. (2023 survey) for hallucination, Ouyang et al. (2024) for output non-determinism/variability, and Zheng et al. (2023) for LLM-evaluator bias/disagreement.",
+  "where_to_apply": "02.mdx, Core Concept (line 28) and 'What Strong Reading Looks Like' (line 108); add to References list (lines 147-152)",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Farquhar, S. et al. (2024) Detecting hallucinations in large language models using semantic entropy. Nature.",
+    "url_or_doi": "https://doi.org/10.1038/s41586-024-07421-0",
+    "finding": "Peer-reviewed Nature paper (cited 590+) treats LLM 'confabulations' as arbitrary, confidently-stated false outputs and develops entropy-based detection; directly grounds the line-108 claim that LLMs are unreliable about facts and fabricate confidently."
+   },
+   {
+    "cite": "Ouyang, S. et al. (2024) An Empirical Study of the Non-Determinism of ChatGPT in Code Generation. ACM TOSEM.",
+    "url_or_doi": "https://doi.org/10.1145/3697010",
+    "finding": "Empirical study across 829 tasks finds substantial run-to-run output variability, with most tasks showing non-identical outputs even at temperature 0. Grounds the line-28 premise that the same input does not yield a single fixed answer, so comparing outputs is informative."
+   },
+   {
+    "cite": "Zheng, L. et al. (2023) Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena.",
+    "url_or_doi": "https://doi.org/10.48550/arxiv.2306.05685",
+    "finding": "Documents systematic, model-specific biases in LLM evaluators (position, verbosity, self-enhancement bias), evidence that differently-trained/tuned models judge and fail in different places, anchoring the 'not interchangeable, fail in different places' rationale at line 28."
+   }
+  ],
+  "section_key": "cat100/02/02",
+  "op_index": 1
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The section's central empirical claim - that recruiters/readers scan quickly and reward a specific focus up front while skimming past adjectives ('a recruiter's first scan rewards the focus up front', line 108; 'the first full sentence a stranger reads', line 9) - is asserted without any source. The course values evidence-grounding, and real recruiter eye-tracking and LinkedIn-profile research supports it.",
+  "proposed_change": "Add a one-line 'Recent Evidence' callout grounding the scan-and-skim claim near '## Why This Section Matters' (after line 9) or '## Transfer Case' (line 108), citing recruiter eye-tracking time-on-resume findings (Ladders ~6-7.4s; Pina et al. 2023 peer-reviewed eye-tracking) showing initial screening is fast and gaze concentrates on a few high-value fields - so front-loading a specific focus and proof matters. Keep the prose as is.",
+  "where_to_apply": "03.mdx new short 'Recent Evidence' callout near '## Why This Section Matters' (after line 9) or '## Transfer Case' (line 108)",
+  "priority": "low",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Pina, A. et al. (2023) Using Machine Learning with Eye-Tracking Data to Predict if a Recruiter Will Approve a Resume. Machine Learning and Knowledge Extraction 5(3)",
+    "url_or_doi": "https://doi.org/10.3390/make5030038",
+    "finding": "Peer-reviewed eye-tracking study showing recruiters' gaze concentrates on specific resume sections (Experience, Education) and that gaze/dwell features predict approval (AUC 0.767) - empirical support that readers fixate on a few high-value content areas during fast screening."
+   },
+   {
+    "cite": "TheLadders (2012/2018) Eye-Tracking Study / Recruiter Behavior",
+    "url_or_doi": "https://www.theladders.com/static/images/basicSite/pdfs/TheLadders-EyeTracking-StudyC2.pdf",
+    "finding": "Recruiters spend roughly 6 seconds (2012) rising to ~7.4 seconds (2018) on an initial resume scan, with ~80% of attention on name, current/previous titles, dates, and education - supports the 'fast first scan rewards specific focus up front' claim. (Cite with the caveat that the original sample was only ~30 recruiters; it is industry, not peer-reviewed, research.)"
+   },
+   {
+    "cite": "Hartel, T. M. et al. (2024) LinkedIn... A machine learning approach using valid LinkedIn cues to predict narcissism and intelligence. Journal of Occupational and Organizational Psychology",
+    "url_or_doi": "https://doi.org/10.1111/joop.12531",
+    "finding": "Peer-reviewed study of 406 LinkedIn profiles (64 cues) showing profile content carries valid, readable signal about the person - supports the premise that specific, concrete bio content (vs. generic adjectives) conveys real information a reader can act on."
+   }
+  ],
+  "section_key": "cat100/02/03",
+  "op_index": 6
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The central motivating claim that recruiters cross-check candidates across resume, LinkedIn, and portfolio and penalize inconsistency ('the mismatch reads as a credibility problem', line 20; 'a recruiter doing a normal background check opens all three', line 7) is asserted as fact throughout (Why This Section Matters, Opening Case) but carries no source, in a course that explicitly values evidence-grounding. Verified: the underlying premise is well-supported. CareerBuilder reports ~70% of employers research candidates via social/professional networking sites, and a substantial share have screened out candidates over what they found; scholarship on 'cybervetting' documents recruiters routinely vetting applicants' online profiles and using profile information in selection. A one-sentence cite would materially strengthen the premise.",
+  "proposed_change": "Add a brief 'Recent Evidence' callout or inline cite grounding the recruiter cross-check claim, e.g. 'Roughly seven in ten employers research candidates on social and professional networking sites before hiring (CareerBuilder), and research on \"cybervetting\" finds recruiters routinely use applicants' online profiles in selection decisions.' Keep it to one sentence with the link added to References (lines 138-141). The CareerBuilder figure grounds the practitioner premise; the cybervetting work (Jacobson 2020; Wilcox 2022) grounds the scholarly claim that profile information feeds hiring judgments.",
+  "where_to_apply": "04.mdx '## Why This Section Matters' (line 7) as an inline cite, or a new short callout; add the source to '## References' (lines 138-141).",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "CareerBuilder, 70% of Employers Use Social Networking Sites to Research Candidates During Hiring Process",
+    "url_or_doi": "https://www.careerbuilder.com/advice/employer-blog/70-of-employers-use-social-networking-sites-to-research-candidates-during-hiring-process",
+    "finding": "70% of employers use social/professional networking sites to research job candidates during hiring (the highest in a decade), and a large share have eliminated candidates over what they found online. Grounds the section's premise that recruiters cross-check candidates' online presence."
+   },
+   {
+    "cite": "Jacobson, J. & Gruzd, A. (2020) Cybervetting job applicants on social media: the new normal?",
+    "url_or_doi": "https://doi.org/10.1007/s10676-020-09526-2",
+    "finding": "Peer-reviewed study documenting that recruiters routinely 'cybervet' applicants by reviewing their social/professional profiles and factor that information into hiring, establishing cross-platform online screening as normalized recruiter behavior."
+   },
+   {
+    "cite": "Wilcox, A., Damarin, A. K. & McDonald, S. (2022) Is cybervetting valuable?",
+    "url_or_doi": "https://doi.org/10.1017/iop.2022.28",
+    "finding": "Examines recruiters' use of online profile information in candidate evaluation, supporting that inconsistencies/red flags surfaced across a candidate's online presence affect selection judgments, the mechanism the section relies on."
+   }
+  ],
+  "section_key": "cat100/02/04",
+  "op_index": 4
+ },
+ {
+  "type": "evidence_add",
+  "gap": "Two load-bearing empirical claims are asserted without any source: (a) 'modern systems flag' keyword stuffing / ATS no longer reward stuffed keywords, and (b) the asymmetric-cost claim that fabrications get 'an offer rescinded when a background check or a single interview question exposes it.' The course values evidence-grounding and both claims are checkable.",
+  "proposed_change": "Add a 'Recent Evidence' note grounding the ATS claim (modern ATS such as Workday, Greenhouse, and Lever use NLP/semantic matching that understands synonymous skills and flags unnatural keyword repetition as a manipulation signal; benefit plateaus at ~3-4 contextual mentions) attached to the Core Concept table, and ground the rescinded-offer claim (survey data: a large share of hiring managers report catching resume lies, and a substantial fraction of those caught had offers rescinded) attached to 'Why This Section Matters'. Cite a recruiting-tech/ATS explainer for parsing and a ResumeBuilder/FlexJobs survey for falsification consequences. Note that exact percentages vary by survey and should be cited with the source and year rather than stated as a single fact.",
+  "where_to_apply": "cat100-supplement/02/05.mdx - small note attached to the Core Concept table (after line 37) for the ATS claim, and to 'Why This Section Matters' (line 9) for the rescinded-offer claim",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "The Interview Guys (2025) ATS 2.0: What 'Semantic Matching' Means for Your Resume",
+    "url_or_doi": "https://blog.theinterviewguys.com/what-semantic-matching-means/",
+    "finding": "Modern ATS (Workday, Greenhouse, Lever AI layers) use NLP/semantic analysis that evaluates context, treats 'Python programming/development/scripting' as one competency, and flags unnatural keyword repetition as a manipulation signal; keyword-density benefit plateaus at ~3-4 contextual mentions. Confirms the section's 'modern systems flag it' claim."
+   },
+   {
+    "cite": "PassTheScan (2025) 2025 ATS Technology Report",
+    "url_or_doi": "https://www.passthescan.com/blog/ats-technology-report-2025-what-changed-this-year",
+    "finding": "Reports Greenhouse (~300M resumes/yr) found hidden white-text keyword manipulation in ~1% of resumes in H1 2025, and an iCIMS 2026 study found resumes flagged for manipulation tactics are 67% less likely to advance even when otherwise qualified. Independent corroboration that stuffing/manipulation is detected and penalized, not rewarded."
+   },
+   {
+    "cite": "ResumeBuilder.com (2025) survey, reported via FlexJobs: Job Search Trends 2025",
+    "url_or_doi": "https://www.flexjobs.com/blog/post/job-search-trends-lying-on-resume",
+    "finding": "Survey data show roughly 1 in 3 workers admit to lying on a resume/cover letter, ~85% of hiring managers report catching a resume lie, and among those caught, offers were rescinded in about 41% of cases and firings in about 18%. Grounds the 'offer rescinded' asymmetric-cost claim (cite percentages with source/year; figures vary across surveys)."
+   }
+  ],
+  "section_key": "cat100/02/05",
+  "op_index": 3
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The transfer claim (lines 9, 90, 96) that a revision log is 'the same instinct' as Git commit messages, lab notebooks, and tracked changes is the conceptual payoff but rests on assertion alone. The course values evidence-grounding; a brief authoritative anchor would substantiate 'this is a real professional practice' without changing pedagogy.",
+  "proposed_change": "Add one short anchor citation tying the revision-log practice to authoritative version-control and record-keeping sources, with one inline reference in 'What Strong Reading Looks Like' (line 90) or 'Transfer Case' (line 96) and a matching one-line entry in References. The Pro Git book's contributing chapter directly supports the parallel (commit messages must record the motivation/why of a change, mirroring the log's 'why / what prompted it' columns); the ELN literature supports the lab-notebook-integrity parallel (dated, traceable, non-overwritten records for reproducibility).",
+  "where_to_apply": "C:/Users/jewoo/Projects/alget/frontend/content/cat100-supplement/02/06.mdx — inline at 'Transfer Case' (line 96) or 'What Strong Reading Looks Like' (line 90), plus a one-line entry in the References list (lines 129-134).",
+  "priority": "low",
+  "sources": [
+   {
+    "cite": "Chacon & Straub, Pro Git (2nd ed.), 'Contributing to a Project' — Commit Guidelines",
+    "url_or_doi": "https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project",
+    "finding": "Pro Git states the detailed commit explanation should 'include your motivation for the change and contrast its implementation with previous behavior' — i.e., commit messages record what changed and why, exactly the revision-log construct, grounding the 'Git commit messages are revision logs' transfer claim."
+   },
+   {
+    "cite": "Higgins, S. G., et al. (2022) 'Considerations for implementing electronic laboratory notebooks in an academic research environment', Nature Protocols",
+    "url_or_doi": "https://doi.org/10.1038/s41596-021-00645-8",
+    "finding": "Peer-reviewed Nature Protocols guidance on ELNs frames the lab notebook as a dated, traceable, tamper-evident record for research integrity/reproducibility — the same dated-and-preserved-history principle the section teaches; supports the lab-notebook transfer parallel."
+   },
+   {
+    "cite": "Bird, C. L., Willoughby, C., & Frey, J. G. (2013) 'Laboratory notebooks in the digital era: the role of ELNs in record keeping for chemistry and other sciences', Chemical Society Reviews",
+    "url_or_doi": "https://doi.org/10.1039/c3cs60122f",
+    "finding": "Reviews record-keeping practice across sciences, emphasizing that a notebook must preserve a dated, locatable, non-overwritten trail of decisions — corroborating the section's 'keep originals, never overwrite' standard as an established professional practice."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/02/06",
+  "op_index": 3
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The 'privacy boundary is paranoia / overreaction' misreading is explicitly raised in prose (line 95) but has no dedicated misconception entry and no practice item targeting the reasoning (why the data is sensitive) as opposed to the behavior. The existing ai_boundary practice item (07.meta.json line 29) tests the behavioral rule (don't paste it); the attitude misconception is not encoded for the misconceptions/rail layer.",
+  "proposed_change": "Add a misconception object (id 'cat100_supplement_2_7_privacy_is_paranoia', pattern 'privacy_boundary_is_overreaction') to 07.misconceptions.json describing the belief that treating a peer's contact block as sensitive is an overreaction, with feedback grounding why resume PII is high-risk (FTC: name/address/SSN/account numbers enable account opening, loans, tax/job fraud) and rail_action 'explain'. Optionally add or repoint a practice distractor in 07.practice.json to target the reasoning.",
+  "where_to_apply": "07.misconceptions.json — add misconception object; optionally 07.practice.json",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "FTC, 'What To Know About Identity Theft' (Consumer Advice)",
+    "url_or_doi": "https://consumer.ftc.gov/articles/what-know-about-identity-theft",
+    "finding": "FTC confirms the resume PII set (name, address, account/SSN) is precisely what enables identity theft, grounding the misconception feedback that the privacy boundary is a normal professional standard rather than an overreaction."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/02/07",
+  "op_index": 5
+ },
+ {
+  "type": "new_callout",
+  "gap": "The section teaches that contradictions live between artifacts but offers no quick reinforcement of HOW a recruiter actually cross-references platforms, nor a 'Recent Evidence' note grounding the 'a recruiter would catch this' claim (line 7, 22) in a real-world mechanism.",
+  "proposed_change": "Add a short 'Recent Evidence'-style callout after Core Concept (after line 37) or within Transfer Case (line 111) noting that recruiters routinely cross-check a resume against the candidate's LinkedIn, so a date/title mismatch is a concrete, commonly-flagged trust break. Research supports the magnitude: ~72% of recruiters use LinkedIn in hiring and 64% of hiring managers have viewed candidates' LinkedIn profiles — so a resume-vs-LinkedIn graduation-date contradiction is a real, observed failure mode, not a hypothetical. Cite one of the survey sources below.",
+  "where_to_apply": "08.mdx — new callout after Core Concept (after line 37) or within Transfer Case (line 111)",
+  "priority": "low",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Robert Walters — Employers check LinkedIn profiles before hiring (recruiter/employer survey)",
+    "url_or_doi": "https://www.robertwalters.co.uk/insights/career-advice/blog/64-percent-of-employers-view-candidate-professional-social-network-profiles-before-hiring.html",
+    "finding": "64% of hiring managers/employers have viewed job seekers' professional social-network (LinkedIn) profiles before hiring — grounds the claim that a resume-LinkedIn inconsistency is commonly seen by recruiters."
+   },
+   {
+    "cite": "LinkedIn / recruiting-statistics aggregations (2025-2026)",
+    "url_or_doi": "https://www.zippia.com/advice/linkedin-statistics/",
+    "finding": "Approximately 72% of recruiters use LinkedIn in their hiring process and 87% identify it as their most effective candidate-vetting channel, so a LinkedIn profile that contradicts the resume on dates/titles is a high-probability, real cross-check point."
+   }
+  ],
+  "section_key": "cat100/02/08",
+  "op_index": 5
+ }
+]

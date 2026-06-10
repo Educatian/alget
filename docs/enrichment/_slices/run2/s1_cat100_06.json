@@ -1,0 +1,229 @@
+[
+ {
+  "type": "new_callout",
+  "gap": "The section repeatedly tells learners to 'read the markup, not the preview' and verify structure, alt text, and the cascade by reading source, but never names the free authoritative tools that automate these checks: the W3C Markup Validation Service for valid HTML and a browser accessibility audit (Lighthouse in Chrome/Edge DevTools, or axe DevTools) for missing alt text. Naming them turns the Decision Rule's three checks into a reproducible, evidence-producing workflow that fits the course's evidence-grounding value and feeds the Artifact Studio before/after requirement.",
+  "proposed_change": "Add a short callout after the '## Decision Rule' three-check list (after line 90): 'You do not have to catch every issue by eye. Run your HTML through the W3C Markup Validation Service (validator.w3.org) for structure, and a browser accessibility audit (Lighthouse in Chrome/Edge DevTools, or axe DevTools) to flag images with missing alt text. Treat their reports as evidence in your revision trace.' IMPORTANT scoping correction grounded in the sources: phrase it as flagging MISSING alt (the automated image-alt rule), not judging alt quality, because Lighthouse/axe (axe-core) detect a missing/empty alt attribute but cannot evaluate whether the alt text is meaningful, and automated tools catch only ~30-40% of WCAG issues. This actually reinforces the section's 'read each alt aloud yourself' manual check rather than replacing it.",
+  "where_to_apply": "02.mdx, new callout after '## Decision Rule' three-check list (after line 90)",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "W3C Markup Validation Service (validator.w3.org)",
+    "url_or_doi": "https://validator.w3.org/",
+    "finding": "Free W3C service checking markup validity of HTML5/HTML LS documents (via the Nu validator); live and current as of 2026 -- the correct named tool and URL for the structure-check half of the callout."
+   },
+   {
+    "cite": "Chrome for Developers - Lighthouse; inclly axe vs Lighthouse (2026)",
+    "url_or_doi": "https://developer.chrome.com/docs/lighthouse/overview/",
+    "finding": "Lighthouse is built into Chrome DevTools (no install) and powers its accessibility score using the axe-core library; both Lighthouse and axe DevTools are free. CRITICAL CAVEAT: neither can evaluate alt-text QUALITY (only flag missing/empty alt via the image-alt rule), and automated testing catches only ~30-40% of WCAG issues -- so the callout must say 'flag missing alt text' and preserve the manual read-aloud check."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/06/02",
+  "op_index": 4
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The WCAG link (line 30, https://www.w3.org/TR/WCAG22/) is present and correct, but the specific normative basis for the alt-text rule is asserted only in prose ('WCAG guidelines treat missing alt text on informative images as a failure') without naming the exact success criterion. For an evidence-grounded course whose central accessibility claim this is, citing SC 1.1.1 Non-text Content makes the claim defensible and models precise standard citation.",
+  "proposed_change": "In the '## Core Concept' Accessible images paragraph (line 30), anchor the WCAG link to the specific criterion: '...treat missing alt text on informative images as a failure of WCAG 2.2 Success Criterion 1.1.1 (Non-text Content) (a Level A criterion), which is why this is not optional polish.' VERIFIED: WCAG 2.2 is the current W3C Recommendation (originally published 5 Oct 2023; current republished version dated 12 Dec 2024) and SC 1.1.1 'Non-text Content' (Level A) is unchanged from WCAG 2.0/2.1 -- it requires a text alternative for all non-text content, the normative basis for image alt text. WCAG 3.0 remains a Working Draft (March 2026) and is not expected as a Recommendation before ~2028, so WCAG 2.2 / SC 1.1.1 is the correct current citation.",
+  "where_to_apply": "02.mdx '## Core Concept', Accessible images paragraph (line 30)",
+  "priority": "low",
+  "sources": [
+   {
+    "cite": "W3C, Web Content Accessibility Guidelines (WCAG) 2.2",
+    "url_or_doi": "https://www.w3.org/TR/WCAG22/",
+    "finding": "WCAG 2.2 is the current W3C Recommendation; Success Criterion 1.1.1 'Non-text Content' (Level A) requires that all non-text content presented to the user has a text alternative serving the equivalent purpose -- the exact normative basis for alt text on informative images. SC numbering is unchanged from WCAG 2.0/2.1."
+   },
+   {
+    "cite": "W3C WAI - WCAG 3 Working Draft (2026-03-03)",
+    "url_or_doi": "https://www.w3.org/WAI/news/2026-03-03/wcag3/",
+    "finding": "WCAG 3.0 is still a Working Draft as of March 2026 and not expected as a W3C Recommendation before roughly 2028, confirming WCAG 2.2 SC 1.1.1 remains the correct current citation rather than any WCAG 3 outcome."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/06/02",
+  "op_index": 5
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The claim that 'Index.HTML returns a 404 on case-sensitive servers' (Worked Example Step 4 line 70-71, Decision Rule check 3 line 84, step-reveal line 90, and a full practice item) is stated as fact but uncited. It is subtle: GitHub Pages serves from a Linux (case-sensitive) backend so the claim is correct, but a careful reader on a case-insensitive local machine (Windows/macOS default) sees it work locally and may doubt it.",
+  "proposed_change": "Add a brief evidence anchor (GitHub Pages 404-troubleshooting docs) and a one-line note that local preview on Windows/macOS may not surface the case bug because those filesystems are case-insensitive by default, so it only fails once published. This closes the 'works on my machine' trap the misconception item implies but does not explain.",
+  "where_to_apply": "03.mdx -- Worked Example Step 4 (lines 70-71) / Decision Rule check 3 (line 84), and add to References (lines 158-163)",
+  "priority": "low",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "GitHub Docs, Troubleshooting 404 errors for GitHub Pages sites",
+    "url_or_doi": "https://docs.github.com/en/pages/getting-started-with-github-pages/troubleshooting-404-errors-for-github-pages-sites",
+    "finding": "GitHub Pages is served from case-sensitive Linux servers; the entry file must be named exactly index.html (Index.html or index.HTML will not be served and yields a 404), and case mismatches that work on case-insensitive local machines fail once published."
+   }
+  ],
+  "section_key": "cat100/06/03",
+  "op_index": 7
+ },
+ {
+  "type": "accessibility",
+  "gap": "The hero image alt text is templated and non-descriptive: 'Publishing With GitHub Pages textbook visual'. WCAG 2.2 (cited by this very section) SC 1.1.1 calls for a text alternative that serves the equivalent purpose. Given the course flags a11y as a gate and this section is literally about publishing accessible pages, a placeholder alt string is a self-inconsistency.",
+  "proposed_change": "Replace the alt text with a description of what the visual conveys, e.g., 'Diagram contrasting a styled local editor preview with an unstyled live project site, showing an absolute /style.css path 404ing on the /portfolio/ subpath.' If the image is purely decorative, mark it decorative (empty alt); otherwise describe its instructional content. Justified by WCAG 2.2 SC 1.1.1 (verified current Recommendation).",
+  "where_to_apply": "04.mdx, line 3 image alt attribute",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "W3C, WCAG 2.2 SC 1.1.1 Non-text Content, W3C Recommendation (12 Dec 2024)",
+    "url_or_doi": "https://www.w3.org/TR/WCAG22/",
+    "finding": "SC 1.1.1 requires all non-text content presented to the user to have a text alternative that serves the equivalent purpose; a templated placeholder string fails this, confirming the proposed descriptive (or explicitly decorative) alt fix."
+   }
+  ],
+  "section_key": "cat100/06/04",
+  "op_index": 4
+ },
+ {
+  "type": "scaffolding",
+  "gap": "The section repeatedly tells the student to 'check the build status' and 'wait for the build to finish' (Decision Rule check 1, step-reveal, practice ai_boundary) but never shows WHERE the build status appears. A first-time publisher does not know the Pages dashboard shows the latest deployment or that the Actions tab shows a running/green/red workflow. This is the one concrete operational step asserted but not scaffolded, and it is the prerequisite for the entire 'diagnose before you rewrite' rule.",
+  "proposed_change": "Add a one- or two-sentence scaffold (in Core Concept's build paragraph or Worked Example Step 2) telling the learner exactly where to look: the repo's Actions tab shows the deploy workflow (yellow=running, green=done, red=failed) and the Settings > Pages panel shows 'Your site was last deployed...'. This makes 'wait for the build' actionable. Note: GitHub Docs confirms every Pages deploy is an Actions workflow run, so pointing students to the Actions tab is accurate even for 'Deploy from a branch' sites.",
+  "where_to_apply": "04.mdx, Core Concept build-pipeline paragraph (line 28) or Worked Example Step 2 (line 44)",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "GitHub Docs, 'Configuring a publishing source for your GitHub Pages site' (2026)",
+    "url_or_doi": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site",
+    "finding": "GitHub Pages 'will always be deployed with a GitHub Actions workflow run' even under branch-based publishing, so the Actions tab reliably shows the deploy workflow status and the Settings > Pages panel reports the last deployment; directing learners there is accurate."
+   }
+  ],
+  "section_key": "cat100/06/04",
+  "op_index": 5
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The CORS-cannot-apply-to-a-same-folder-local-file claim is the section's central rejection example and is asserted in the inline-check (line 36), Core Concept (line 32), Worked Example log row (line 60), Textbook Walkthrough (line 93), and the ai_diagnosis_unverified misconception, but is never linked to an authoritative source despite the course's evidence-grounding through-line. A precise framing also matters: a same-folder image referenced by a relative path on a served GitHub Pages site is same-ORIGIN, not cross-origin, so CORS does not govern it.",
+  "proposed_change": "Add MDN's CORS page to the References list and link it at first use of the CORS claim (Core Concept line 32 or the Worked Example log row line 60), with the sharper framing: 'A same-folder image loaded via a relative path is same-origin, so CORS, which governs cross-origin requests, does not apply.' This both grounds the load-bearing claim and tightens the technical accuracy.",
+  "where_to_apply": "05.mdx -> References (lines 151-156) plus inline link at Core Concept (line 32) and/or Worked Example log row (line 60)",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "MDN Web Docs, 'Cross-Origin Resource Sharing (CORS)'",
+    "url_or_doi": "https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS",
+    "finding": "MDN: 'Cross-Origin Resource Sharing (CORS) is an HTTP-header based mechanism that allows a server to indicate any origins (domain, scheme, or port) other than its own from which a browser should permit loading resources.' An origin is defined by scheme+domain+port; same-origin requests (e.g., a relative-path resource on the same site) are not subject to CORS. Confirms a same-folder/relative-path image is same-origin and CORS cannot apply."
+   }
+  ],
+  "section_key": "cat100/06/05",
+  "op_index": 4
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The central empirical claim that recruiters/hiring managers reward quantified, specific, achievement-based bullets over duty statements (06.mdx lines 7, 28, 83) is asserted but never cited, despite the course's evidence-grounding value.",
+  "proposed_change": "Add a one-line 'Recent Evidence' callout after Core Concept citing the NACE Job Outlook 2026 employer survey (skills-based hiring now dominant; employers want evidence of skills via specific examples) so the 'specific measurable result beats duty statement' claim is evidence-backed. Note: OpenAlex returned only automated/LLM resume-screening papers (Gan 2024, Abhishek 2025), none of which directly support the quantified-bullet claim, so the NACE survey is the appropriate ground rather than a scholarly study.",
+  "where_to_apply": "06.mdx — new short callout after 'Core Concept' (after the Action plus artifact plus result paragraph, ~line 28).",
+  "priority": "low",
+  "sources": [
+   {
+    "cite": "NACE — Job Outlook 2026 (employer survey)",
+    "url_or_doi": "https://www.naceweb.org/research/reports/job-outlook/2026/",
+    "finding": "70% of employers in NACE's Job Outlook 2026 report using skills-based hiring for entry-level hires (up from 65% prior year); GPA screening fell to ~42% (from ~73% in 2019). Employers want graduates to provide evidence of skills (teamwork, problem-solving, communication) — grounds the 'specific, measurable, evidence-based bullet beats a duty statement' claim."
+   },
+   {
+    "cite": "NACE — Career Readiness Defined / Competencies",
+    "url_or_doi": "https://naceweb.org/career-readiness/competencies/career-readiness-defined",
+    "finding": "NACE states the top way students can demonstrate skills is to share specific examples and situations where they used a skill to solve a problem — directly supports favoring concrete evidence statements over generic duty language."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/06/06",
+  "op_index": 5
+ },
+ {
+  "type": "example_improve",
+  "gap": "The body teaches link integrity and the practice item references 'a link-checker tool', but the section only offers manual 'click every link', which does not scale for a multi-page portfolio and misses naming a concrete, current, free link-checking approach.",
+  "proposed_change": "In Worked Example Step 2 (link-check step, line 67) or as a short callout after line 73, add a concrete scalable option alongside manual clicking: the open-source lychee CLI (or W3C Link Checker / a browser link-checker extension) framed as the verifiable form of the link step, with the checker's report being what 'a reviewer can confirm was done.' Keep manual clicking as the floor.",
+  "where_to_apply": "07.mdx '## Worked Example' Step 2 link-check step (line 67) or new sentence after line 73",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "lycheeverse/lychee (GitHub) — fast async link checker in Rust",
+    "url_or_doi": "https://github.com/lycheeverse/lychee",
+    "finding": "lychee is a free, open-source, actively maintained (recent commit activity; NLnet/NGI0 funded) CLI that scans HTML/Markdown/websites for broken hyperlinks and emails and integrates into CI; suitable as the named scalable link-checker. Official docs at https://lychee.cli.rs/ and a GitHub Action exist."
+   },
+   {
+    "cite": "lychee — official documentation",
+    "url_or_doi": "https://lychee.cli.rs/",
+    "finding": "Documents lychee as a command-line application, library, and GitHub Action for checking links in static sites/docs, confirming it is a concrete, current, free option a learner can run and whose report is reviewable."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/06/07",
+  "op_index": 2
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The section invokes NACE ('professionalism') and ISTE ('publishing responsibly') as value anchors but cites only landing pages; the specific NACE 'Professionalism' competency and the specific ISTE 'Digital Citizen' standard are not named, so alignment to those frameworks is asserted rather than grounded, and current-edition currency is unconfirmed.",
+  "proposed_change": "Name the specific anchors at line 43 / References: NACE 'Professionalism' (one of the eight Career Readiness Competencies, current revision) and ISTE 'Standard 2: Digital Citizen' from the ISTE Standards for Students (© 2024 edition). Both frameworks are current; NACE still has eight competencies and Professionalism remains one of them; ISTE Standards for Students © 2024 is the current edition and Digital Citizen is the second standard (sub-elements on managing digital identity/reputation directly fit 'maintaining what you publish').",
+  "where_to_apply": "07.mdx line 43 (ISTE/NACE framing sentence) and '## References'",
+  "priority": "low",
+  "sources": [
+   {
+    "cite": "NACE — Career Readiness Competencies (Professionalism), current revision",
+    "url_or_doi": "https://www.naceweb.org/career-readiness/competencies",
+    "finding": "NACE still defines eight Career Readiness Competencies (Career & Self-Development, Communication, Critical Thinking, Equity & Inclusion, Leadership, Professionalism, Teamwork, Technology); 'Professionalism' = understanding and demonstrating effective work habits and acting in the interest of the larger community/workplace. The set has not been reduced/renamed away from eight as of the 2024-2025 revision (PDF dated Apr 2024 / Dec 2025)."
+   },
+   {
+    "cite": "ISTE Standards for Students — Standard 2: Digital Citizen (© 2024)",
+    "url_or_doi": "https://iste.org/standards/students",
+    "finding": "Current ISTE Standards for Students edition is © 2024; Standard 2 'Digital Citizen' includes cultivating/managing one's digital identity and reputation and being aware of the permanence of online actions — the precise anchor for 'maintaining what you publish is publishing responsibly.' Cite as 'ISTE Standard 2: Digital Citizen' rather than the framework generally."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/06/07",
+  "op_index": 5
+ },
+ {
+  "type": "new_callout",
+  "gap": "The Opening Case asserts 'a recruiter who finds the site assumes it is abandoned' with no evidence, in a course that values evidence-grounding. The transfer case stays within personal/team artifacts.",
+  "proposed_change": "Add a short 'Recent Evidence' callout near the Opening Case or end of 'Why This Section Matters' grounding the claim that employers actively review candidates' online presence (so a stale/broken professional site harms impressions). Use one cited current source (recruiter survey + a peer-reviewed cybervetting study), one to two sentences.",
+  "where_to_apply": "07.mdx after '## Opening Case' (after line 22) or end of '## Why This Section Matters'",
+  "priority": "low",
+  "sources": [
+   {
+    "cite": "CareerBuilder / Harris Poll — employers research candidates online",
+    "url_or_doi": "https://resources.careerbuilder.com/employer-blog/70-of-employers-use-social-networking-sites-to-research-candidates-during-hiring-process",
+    "finding": "About 70% of employers use online/social channels to research candidates and 57% have found content causing them NOT to hire; ~47% are less likely to interview a candidate they cannot find online — grounding the claim that an outdated/absent online presence harms a candidate's impression."
+   },
+   {
+    "cite": "Akbulut, Y. (2024) Employer and employee perceptions of cybervetting as a selection method",
+    "url_or_doi": "https://doi.org/10.1111/ijsa.12463",
+    "finding": "Peer-reviewed (Int. J. of Selection and Assessment, 2024) evidence that cybervetting — screening applicants' online presence as a selection input — is a real, perceived-as-legitimate hiring practice, supporting that a candidate's public site materially shapes recruiter judgments."
+   },
+   {
+    "cite": "Walrave, M. et al. (2022) Checked and Approved? HR Managers' Uses of Social Media for Cybervetting",
+    "url_or_doi": "https://doi.org/10.3390/jcp2020021",
+    "finding": "Peer-reviewed study documenting HR managers routinely use candidates' online/social presence to form impressions during selection, reinforcing the Opening Case premise that a neglected public site sends a negative signal."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/06/07",
+  "op_index": 7
+ },
+ {
+  "type": "scaffolding",
+  "gap": "The section asserts the remedy 'rotate and purge the secret' (step-reveal final reveal, line 87) and 'a secret in an old commit still fails privacy' (line 81) but never scaffolds HOW. A digital-fluency capstone learner who finds a committed token gets a directive with no support: no mention that the key must first be revoked/rotated at the provider (because git history can be cloned, and public-repo secrets are scanned by bots within minutes), nor any named purge mechanism.",
+  "proposed_change": "Add a brief scaffold (2-3 sentences or small callout) on the correct order for a leaked secret: (1) revoke/rotate the key at the provider immediately, because anyone who saw the repo may already have it and public-repo keys are probed by bots within minutes; (2) remove it from history (git filter-repo or BFG Repo-Cleaner, or for a small personal repo, recreate the repo clean); (3) re-verify. Emphasize that purging history alone is not safe if the key was ever pushed. Order and tools confirmed against GitHub Docs and security guidance.",
+  "where_to_apply": "cat100-supplement/06/08.mdx — new small callout after the Decision Rule History check (after line 83), or inside the step-reveal final reveal (line 87)",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "GitHub Docs — Removing sensitive data from a repository",
+    "url_or_doi": "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository",
+    "finding": "GitHub instructs that once a credential is committed it should be considered compromised and rotated; history can be purged with git filter-repo or the BFG Repo-Cleaner, but rotation is required because the data may already be cloned/cached and persists in forks."
+   },
+   {
+    "cite": "Truffle Security — Deleting leaked API keys isn't a solution (key rotation)",
+    "url_or_doi": "https://trufflesecurity.com/blog/remediate-leaked-api-keys-with-key-rotation",
+    "finding": "Correct remediation order is revoke/rotate FIRST then clean history; leaked keys on public GitHub repos are tested by automated bots within ~1-5 minutes, so purging history alone leaves the exposed key live."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/06/08",
+  "op_index": 5
+ }
+]

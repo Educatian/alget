@@ -3,9 +3,9 @@
   "title": "Peer Scholarly Critique",
   "description": "AIL 606 textbook section connecting peer scholarly critique to peer-critique-and-disposition log (criterion-anchored critique points plus accept / modify / reject dispositions), reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the peer-critique-and-disposition log (criterion-anchored critique points plus accept / modify / reject dispositions) shows a defensible decision in AIL 606.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
+    "Convert praise or preference into criterion-anchored, actionable peer critique using the element-problem-criterion frame.",
+    "Respond to each critique point with a reasoned disposition (accept, modify, or reject), including at least one reasoned rejection.",
+    "Verify an AI-drafted critique against the actual artifact before adopting any of its points.",
     "Use annotations, support requests, and revision notes to decide what help or design change should come next."
   ],
   "concept_ids": [

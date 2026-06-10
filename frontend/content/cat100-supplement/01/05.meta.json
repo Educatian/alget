@@ -6,10 +6,10 @@
   "title": "Privacy and Account Safety",
   "description": "CAT 100 textbook section on privacy and account safety, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the privacy and account safety checklist shows a defensible decision in CAT 100.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    "Create a unique, strong passphrase and stop reusing one password across sites.",
+    "Turn on two-factor authentication and explain why a stolen password alone then fails.",
+    "Spot the standard signals of a phishing message and respond without clicking.",
+    "Strip personal and others' data out of any text before pasting it into an AI tool."
   ],
   "concept_ids": [
     "cat100_supplement_digital_citizenship_and_ai_readiness",
@@ -30,4 +30,3 @@
     "cat100_supplement_1_5_privacy_and_account_safety_calibration"
   ]
 }
-

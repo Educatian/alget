@@ -1,0 +1,112 @@
+[
+ {
+  "type": "assessment_align",
+  "gap": "The meta.json learning_objectives are the templated/generic ALGET frame (LO1 is a fill-in-the-blank 'Analyze how the [artifact] shows a defensible decision'; LO2-4 are identical boilerplate). Verified against the file: 01.meta.json lines 8-13 carry the generic objectives, while the MDX 'Learning Targets' (01.mdx lines 18-21) are specific (duties-vs-results, role-fit-top-third, AI-disclosure accepted/rejected, defensible-against-reference-check) and are what the 4 practice_ids and 4 misconceptions actually map to. This defeats the constructive-alignment check, which treats objectives as plain strings.",
+  "proposed_change": "Replace the four generic objectives in 01.meta.json learning_objectives with the four concrete MDX Learning Targets (or close paraphrases): (1) Convert a duty statement into an accomplishment statement = strong action verb + quantified truthful result; (2) Tailor resume claims to a specific role so fit is visible in the top third of the page; (3) Disclose AI editing help with a note recording what was accepted and rejected; (4) Keep every claim defensible against a reference check. This makes meta LOs match the MDX targets, the 4 practice problems, and the 4 misconceptions one-to-one.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\01\\01.meta.json -> learning_objectives array (all 4 entries, lines 8-13)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/01/01",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The meta.json learning_objectives are the generic ALGET template (LO2 'Distinguish artifact polish from evidence-based revision', LO3 'Document a bounded AI/software support move...', LO4 'Use feedback... before sharing it' are boilerplate; LO1 is the fill-in-the-blank frame). They do NOT match the body's section-specific 'Learning Targets' (read a policy and sort actions into allowed/required/prohibited; write a disclosure naming tool/step/rejection; recognize assistance vs substitution; keep private data out of tools). Constructive-alignment soft check is a no-op and the four practice items map to the body targets, not the stated objectives.",
+  "proposed_change": "Replace the four templated learning_objectives in 02.meta.json with the four concrete body Learning Targets reworded as measurable objectives: (1) 'Read an assignment AI policy and classify each planned action as allowed, required, or prohibited.' (2) 'Write a four-part AI-use disclosure naming the tool, the action, your own ownership, and at least one rejected suggestion.' (3) 'Distinguish AI assistance (helping you think) from substitution (doing the graded thinking) by locating the assignment graded verb.' (4) 'Identify and strip private/identifying data before pasting text into a tool that may store or train on inputs.' This aligns the four practice items (artifact_signal=disclosure, annotation_signal=per-course policy, ai_boundary=editing vs generating, calibration=paraphrase-still-disclose) to the objectives.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\01\\02.meta.json -> learning_objectives array (all four entries)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/01/02",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Three of four learning objectives in 03.meta.json are generic boilerplate (LO2 'Distinguish artifact polish from evidence-based revision', LO3 'Document a bounded AI/software support move...', LO4 'Use feedback, support requests...') and LO1 is the fill-in-the-blank frame. Confirmed against 03.meta.json lines 8-13. The MDX body teaches three distinct, namable skills (bring-your-own-draft, route each suggestion accept/modify/reject against improvement+truth tests, keep rejected rows visible) plus a fourth 'reconstruct reasoning from the log' reader skill, none of which the templated objectives name. Defeats the CONTENT_MODEL.md sec 5 constructive-alignment check.",
+  "proposed_change": "Rewrite the four learning_objectives in 03.meta.json to be section-specific and behaviorally distinct: (1) 'Bring an existing draft to ETHOBOT and request critique rather than authored output.' (2) 'Classify each tutor suggestion as accepted, modified, or rejected using an improvement check and a truth/defensibility check.' (3) 'Record accepted, modified, and rejected suggestions with a one-line reason, keeping rejected rows visible.' (4) 'Reconstruct a learner's reasoning from a critique log alone and judge whether the final artifact matches the logged decisions.' These map 1:1 to the Learning Targets (lines 13-16), Decision Rule (lines 70-74), and What Strong Reading Looks Like (lines 92-97) sections already in the MDX.",
+  "where_to_apply": "03.meta.json -> learning_objectives array (lines 8-13)",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/01/03",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Confirmed practice/body misalignment. In 03.practice.json, only one of four items (calibration) tests the three-way accept/modify/reject decision and the keep-rejected-rows discipline, which is the body's center of gravity (Core Concept table line 28-34, Worked Example lines 50-58, branching-scenario line 62, Common Misreadings lines 78-80, Final Check line 140). Two items (artifact_signal 'Did I pass?', ai_boundary 'write my whole post') test the tutor-is-not-grader / tutor-is-not-author boundary that the body only touches in the opening paragraph (line 7). The 'modified' decision (subtlest of the three, central to the worked example's 'co-led' tweak, line 53) is never isolated in a practice item or misconception; 03.misconceptions.json has no entry for binary-only accept/reject thinking.",
+  "proposed_change": "Add one practice problem to 03.practice.json that isolates the 'modified' decision: present a tutor suggestion that is directionally right but overreaches (e.g., tutor says replace 'helped organize' with 'managed the entire program'; learner managed part), and ask which log entry is correct (modify to the defensible scope vs accept vs reject). Add a matching misconception in 03.misconceptions.json: pattern 'accept_or_reject_only', description 'Treating every suggestion as a binary accept-or-reject and skipping the modify path that trims an overreaching suggestion to a defensible claim.' This pulls the practice set toward the body's actual emphasis.",
+  "where_to_apply": "03.practice.json -> problems array (new item); 03.misconceptions.json -> misconceptions array (new item)",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/01/03",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "meta.json learning_objectives are the generic 64-section boilerplate (defensible decision; polish vs evidence-based revision; bounded AI/software support move; use feedback/revision notes). None name what this section actually teaches: hallucination recognition, atomizing output into checkable claims, and per-claim confirm/correct/remove verification. The MDX 'Learning Targets' (lines 13-16) are specific and excellent, but the machine-readable LOs that drive the constructive-alignment check are templated, making the alignment soft check a no-op here.",
+  "proposed_change": "Replace the four 04.meta.json learning_objectives with section-specific objectives mirroring the MDX Learning Targets: (1) 'Write a constrained prompt that produces specific, checkable claims and invites the model to flag uncertainty.' (2) 'Atomize AI output into individual factual claims that can be verified one at a time.' (3) 'Confirm, correct, or remove each claim against an authoritative source and log the per-claim decision and source.' (4) 'Recognize a hallucination as a confident, specific claim with no source behind it, and treat fluency and accuracy as independent.' This also maps the practice items and misconceptions cleanly to the LOs.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\01\\04.meta.json -> learning_objectives array (all four entries, lines 9-12)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/01/04",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The meta.json learning_objectives are templated boilerplate (LO2-4 identical across sections; LO1 a generic fill-in frame) and do NOT describe this section's content. The MDX 'Learning Targets' (unique passphrase, 2FA, phishing, AI data boundary) are section-specific and are what the four practice items and four misconceptions actually map to, so the constructive-alignment check scores generic strings disconnected from the assessment.",
+  "proposed_change": "Replace the four boilerplate strings in cat100-supplement/01/05.meta.json learning_objectives with the four concrete targets already in the MDX 'Learning Targets', phrased as measurable objectives: (1) Create a unique strong passphrase and stop reusing a password across sites; (2) Enable two-factor authentication and explain why a stolen password alone then fails; (3) Identify standard phishing signals and respond by verifying through a known-good channel without clicking; (4) Redact personal and third-party identifiers from text before pasting it into an AI tool. This makes each practice item (artifact_signal->LO1, annotation_signal->LO2, calibration->LO3, ai_boundary->LO4) map 1:1 to a stated objective.",
+  "where_to_apply": "cat100-supplement/01/05.meta.json -> learning_objectives array (all 4 entries)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/01/05",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The four learning_objectives in 06.meta.json are generic course-wide boilerplate (defensible decision / polish vs revision / bounded AI move / use feedback to revise) and never name the actual taught skills: alt text, real headings, color independence, contrast. The body 'Learning Targets' (lines 18-21) and all four practice problems are tightly about WCAG-specific accessibility skills. Confirmed by reading 06.meta.json (learning_objectives lines 9-12) vs 06.mdx Learning Targets and practice_ids; the meta objectives do not map to the practice items or body, so the soft alignment check is a no-op here.",
+  "proposed_change": "Replace the 3 fully-templated objectives in 06.meta.json with accessibility-specific, measurable ones that mirror the body 'Learning Targets' (06.mdx lines 18-21) and the four practice problems: (1) 'Write functional alt text that conveys an image's meaning/conclusion in context rather than its filename or appearance.' (2) 'Apply real heading styles (not visual bold) so assistive technology can navigate structure.' (3) 'Identify and fix information carried by color alone by adding a non-color cue.' (4) 'Check body-text contrast against the WCAG 4.5:1 threshold and treat AI-generated alt text as a draft to verify.' Keep one objective tying to the bounded-AI-use through-line.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\01\\06.meta.json -> learning_objectives array (all four entries)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/01/06",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "meta.json learning_objectives (lines 8-13) are generic course-wide boilerplate (Analyze how the X shows a defensible decision; Distinguish artifact polish from evidence-based revision; Document a bounded AI/software support move; Use feedback to improve the artifact). They do NOT match the four section-specific Learning Targets in the MDX body (lines 13-16): map artifact to a competency; write a caption stating which skill AND how; add a before-after note showing growth; curate to the few strongest. Confirmed by reading both files: this is a constructive-alignment no-op (LO templating defeats CONTENT_MODEL.md sec 5), and unusually fixable because the MDX targets are concrete.",
+  "proposed_change": "Rewrite the four meta.json learning_objectives to mirror the MDX Learning Targets: (1) Map a chosen artifact to a specific digital-citizenship competency; (2) Write a caption that states which skill the artifact demonstrates and how it does so; (3) Add a before-after note that evidences growth rather than a finished state; (4) Curate the few strongest artifacts rather than collecting everything. Keep a bounded-AI objective only if reworded to this section's actual move: use BigAL to compare two candidate artifacts against a competency (line 98), not to write the reflection.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\01\\07.meta.json -> learning_objectives array (lines 8-13)",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/01/07",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The 08.meta.json learning_objectives are the generic course-wide boilerplate set (\"Analyze how the module 1 readiness map shows a defensible decision\", \"Distinguish artifact polish from evidence-based revision\", \"Document a bounded AI/software support move with accepted and rejected suggestions\", \"Use feedback... to improve the artifact\"). They do NOT match the section's real Learning Targets in the MDX (audit one artifact against all four Module 1 skills at once; mark each skill honestly pass/gap; resist the all-pass reflex; convert each gap into a targeted practice step). The boilerplate LO3 about an accepted/modified/rejected AI-suggestion log is not the focus of this integration/self-audit section. Confirmed by reading 08.meta.json lines 8-13 against 08.mdx lines 13-16.",
+  "proposed_change": "Replace the four generic learning_objectives in 08.meta.json with section-specific objectives mirroring the MDX Learning Targets, as distinct strings: (1) \"Audit a single artifact against all four Module 1 skills (truthful evidence, AI disclosure, accessibility, privacy) in one pass.\" (2) \"Assign each skill an honest pass/gap status based on inspecting the actual artifact rather than memory.\" (3) \"Resist the all-pass reflex and flag real gaps instead of hiding them.\" (4) \"Convert each flagged gap into a specific fix and re-inspect that row before marking it pass.\"",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\01\\08.meta.json -> learning_objectives array (lines 8-13)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/01/08",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The MDX heavily emphasizes the inspect/fix/re-inspect loop and the distinctive failure of fixing a gap then forgetting to re-inspect it (step-reveal step 3 at line 64, Decision Rule item 3 at line 76, Common Misreadings paragraph 2 at lines 81-82, and strong-reader question 4 at line 99). But none of the four misconceptions (busywork, skills-don't-connect, ai-replaces-judgment, gaps-left-unmarked) nor any of the four practice items targets premature pass-after-fix. Confirmed by reading 08.misconceptions.json (4 entries) and 08.practice.json (4 problems).",
+  "proposed_change": "Add a misconception (id e.g. cat100_supplement_1_8_module_1_readiness_studio_fix_without_recheck, pattern 'gap_marked_pass_without_reinspection', rail_action 'practice') describing marking a row pass as soon as a fix is intended/applied without confirming on the actual artifact. Add a matching practice MCQ: 'You flagged privacy as a gap, then enabled 2FA. Can you now mark the privacy row pass?' with correct answer 'Not until you re-open the account setting and confirm 2FA is actually on.' Wire the new practice item's misconception_id to the new misconception and add its id to practice_ids in 08.meta.json.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\01\\08.misconceptions.json -> misconceptions array (new entry); 08.practice.json -> problems array (new item); 08.meta.json -> practice_ids (lines 26-31)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/01/08",
+  "op_index": 1
+ }
+]

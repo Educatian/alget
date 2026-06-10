@@ -1,0 +1,23 @@
+[
+ {
+  "type": "assessment_align",
+  "gap": "All 4 practice problems are multiple_choice on the fixed artifact_signal/annotation_signal/ai_boundary/calibration template, and they test recognition of the four checks. None requires the learner to judge EQUIVALENCE of a fallback (the section's hardest, most distinctive idea: 'equivalent not lesser,' reinforced in the self-explain, the branching scenario, and the Transfer Case on summative comparability). The misconception 'fallback reaches a lower target' (Common Misreadings line 74) has no practice item or misconception-rail entry at all.",
+  "proposed_change": "Replace or add one item that targets fallback equivalence: present two candidate non-AI fallbacks (one reduced-difficulty, one same-target) and ask which is defensible and why, mapped to a new misconception 'fallback_reaches_lower_target.' Add the matching entry to misconceptions.json. This tightens alignment to LO1 (defensible decision) and the Transfer Case.",
+  "needs_research": false,
+  "where_to_apply": "06.practice.json — add/replace one problem; 06.misconceptions.json — add 'lesser fallback' misconception entry",
+  "search_terms": [],
+  "priority": "high",
+  "section_key": "cat531/08/06",
+  "op_index": 3
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The entire MDX teaches and builds toward an evidence-collection checklist row (claim/source/baseline/dimensioned result/disconfirmation/verification path), and the worked example, decision rule, transfer case, and 'Stronger Artifact Standard' all center that row. But the Artifact Studio block, the download packet link, and the meta learning_objective #1 all name the artifact as a 'Design Tension Studio map naming a classroom value conflict and negotiated decision.' This is the repo-wide template-stamp mismatch: the section's actual work-product is an auditable evidence row, not a DTS tension map. Learners are told to produce a different artifact than the one the whole section scaffolds, which directly undercuts constructive alignment and the course's signature artifact-centered loop.",
+  "proposed_change": "Reconcile the artifact identity to the section's real work-product. In 07.mdx change the Artifact Studio <artifact-studio> name and the download-link label from 'Design Tension Studio map naming a classroom value conflict and negotiated decision' to 'evidence-collection checklist row (auditable: source, baseline, dimensioned result, disconfirmation, verification path)'. Update 07.meta.json learning_objective #1 and the description to match. Update the 'Adaptive Support' bullets (lines naming the DTS map) and the <dynamic-scenario> prompt to reference the evidence row. If the equity-oriented edtech evaluation matrix is the intended signature artifact for Ch8 toolkit sections, pick that instead — but make MDX, meta, and download packet name ONE consistent artifact that matches the scaffolded work.",
+  "needs_research": false,
+  "where_to_apply": "07.mdx Artifact Studio block (the <artifact-studio> tag and the /downloads link), Adaptive Support bullets, and <dynamic-scenario>; 07.meta.json learning_objectives[0] and description",
+  "priority": "high",
+  "section_key": "cat531/08/07",
+  "op_index": 0
+ }
+]

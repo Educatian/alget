@@ -6,10 +6,10 @@
   "title": "Spreadsheet Structure and Clean Data",
   "description": "CAT 100 textbook section connecting spreadsheet structure and clean data to Excel pivot-table finding with unit labels, source note, and claim-first chart title, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the Excel pivot-table finding with unit labels, source note, and claim-first chart title shows a defensible decision in CAT 100.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    "Audit a raw spreadsheet export against the four tidy-data rules (one header row, one value per cell, one record per row, consistent category labels) and name the analytical failure each defect causes.",
+    "Diagnose and repair numbers-stored-as-text by reading default alignment and confirming SUM matches a hand count.",
+    "Choose the correct repair tool (Text to Columns, Find and Replace, or row deletion) for a given structural defect.",
+    "Document a bounded AI/software support move with accepted and rejected suggestions."
   ],
   "concept_ids": [
     "cat100_supplement_data_storytelling_with_excel",

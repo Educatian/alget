@@ -1,0 +1,401 @@
+[
+ {
+  "type": "assessment_align",
+  "gap": "The meta learning_objectives and description are the templated chapter-level stock strings keyed to 'storyboard frame sequence with narration, signaling, and reader-action notes.' They never name this section's actual constructs (affordance, soft/hard constraint, signifier, action-to-affordance map), even though every practice item, misconception, inline-check, and worked example is about affordance mapping. The constructive-alignment chain (LO -> body -> practice) is broken at the LO node.",
+  "proposed_change": "Rewrite the 4 learning_objectives to be section-specific, e.g.: (1) Distinguish a platform feature from an affordance/constraint relative to a named learner action; (2) Build an action-to-affordance map that classifies responses as affordance, soft constraint, or hard constraint and re-runs the classification across learner variability; (3) Choose among redesign-the-action, retool, or keep-the-constraint-on-purpose when hitting a hard constraint, with a stated learning reason; (4) Verify an affordance against the live tool rather than assuming it from a feature name. Mirror the same wording into 02.mdx Learning Targets and update the meta description to name affordances/constraints/signifier instead of the storyboard stock string.",
+  "needs_research": false,
+  "where_to_apply": "02.meta.json -- learning_objectives[] and description; 02.mdx -- ## Learning Targets (keep in sync)",
+  "priority": "high",
+  "search_terms": [],
+  "section_key": "ail606/02/02",
+  "op_index": 4
+ },
+ {
+  "type": "assessment_align",
+  "gap": "learning_objectives in 03.meta.json are the templated stock strings keyed to the generic storyboard artifact ('Analyze how the storyboard frame sequence ... shows a defensible decision'). They do not mention interaction-cognition fit, the three failure modes, the closed-loop test, or equity, which are the actual taught constructs. The constructive-alignment between LOs and the (strong) MDB/practice is therefore weak.",
+  "proposed_change": "Rewrite LOs to be section-specific, e.g.: (1) 'Match a cognitive operation (compare/sequence/decide/observe) to the interaction pattern whose structure enacts it (interaction-cognition fit).' (2) 'Diagnose an interaction for split attention, seductive detail, or interaction-cost asymmetry.' (3) 'Verify an interaction closes its loop with a visible consequence and is equitable for keyboard/screen-reader learners.' (4) 'Defend a pattern choice with behavioral evidence and a named rejected alternative rather than production value.' Mirror in Learning Targets in MDX.",
+  "needs_research": false,
+  "where_to_apply": "03.meta.json learning_objectives array and description; mirror in 03.mdx 'Learning Targets' (lines 13-16)",
+  "priority": "high",
+  "section_key": "ail606/02/03",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "LO #1 in both 04.mdx Learning Targets (line 13) and 04.meta.json learning_objectives[0] reads 'Analyze how the storyboard frame sequence... shows a defensible decision' — a templated chapter-level string that does not describe this section's actual learning (analyzing feedback content/timing and calibrating learner control). The remaining LOs (#2-4) are also generic ALGET stock strings; none names feedback, timing, or learner control, so the constructive-alignment between the four practice items and the stated LOs is loose.",
+  "proposed_change": "Rewrite section-specific LOs, e.g.: (1) 'Diagnose whether a practice loop feeds forward using Hattie and Timperley's three questions and rewrite a bare verdict into actionable feedback'; (2) 'Choose a feedback-reveal timing (immediate vs brief-delay) justified by task type and learner expertise'; (3) 'Design calibrated learner control that preserves autonomy while naming the cost of skipping'; (4) 'Tie each loop revision to a behavioral signal (repeat-error rate, skip rate, retry uptake).' Mirror in 04.meta.json learning_objectives and consider adding an lo_practice_map linking artifact_signal->LO1, annotation_signal/control->LO3, ai_boundary->LO2, calibration->LO4.",
+  "needs_research": false,
+  "where_to_apply": "04.mdx Learning Targets (lines 13-16); 04.meta.json learning_objectives array (lines 5-10)",
+  "priority": "high",
+  "search_terms": [],
+  "section_key": "ail606/02/04",
+  "op_index": 5
+ },
+ {
+  "type": "assessment_align",
+  "gap": "All four learning_objectives (in both 06.meta.json and the MDX 'Learning Targets' heading) are the templated chapter-level stock strings keyed to 'storyboard frame sequence with narration, signaling, and reader-action notes.' This section is not about storyboarding at all; its substantive content is critically triaging an LXD optimizer report (proxy vs learning goal, goal-aligned/neutral/opposed taxonomy, Goodhart's law, accessibility undervaluation by usage metrics). LO1 in particular asserts the section teaches storyboard-frame analysis, which it does not. The validator is a no-op on plain-string LOs, so this mismatch is invisible to CI but real to a reader, and it breaks constructive alignment with the practice items (which DO test optimizer triage).",
+  "proposed_change": "Rewrite the four LOs to match the actual content. Suggested: (1) 'Classify an optimizer suggestion as goal-aligned, goal-neutral, or goal-opposed by reading its mechanism before its predicted-gain magnitude.' (2) 'Explain why engagement proxies (completion, time-on-page, efficiency) cannot, on their own, certify that learning occurred, using Goodhart's law.' (3) 'Defend an accessibility provision against an efficiency edit on UDL learner-variability grounds the usage metric cannot see.' (4) 'Produce a triaged optimizer report with per-row verdict, mechanism, at least one reasoned rejection, and a before/after transfer check on the accepted edit.' Apply identical text to 06.meta.json learning_objectives and the MDX 'Learning Targets' bullets.",
+  "needs_research": false,
+  "where_to_apply": "06.meta.json field learning_objectives (all 4) AND 06.mdx '## Learning Targets' bullets",
+  "priority": "high",
+  "section_key": "ail606/02/06",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "All four learning_objectives (meta.json + MDX Learning Targets) are the templated stock strings keyed to the chapter signature artifact ('storyboard frame sequence...'). LO1 literally asks learners to analyze how a storyboard shows a defensible decision, but the section never teaches storyboards; it teaches comparative auditing with gates. The LOs do not name the actual high-value skills (deriving criteria from the task, distinguishing gates from weights, applying gates before totals, stating a context-bounded recommendation with a re-entry condition).",
+  "proposed_change": "Rewrite the four LOs to be section-specific: (1) 'Build a comparative audit matrix that scores every candidate tool on the same task-derived criteria.' (2) 'Distinguish a pass-or-fail gate from a weighted dimension and apply gates before reading totals.' (3) 'State a recommendation bounded by its named context (learners, budget, constraints) plus the re-entry condition that would change the winner.' (4) 'Document a bounded AI/software support move with an accepted and a rejected suggestion, e.g., using BigAL to attack the criteria rather than rank the tools.' Mirror the same edits in the MDX Learning Targets list (lines 13-16). This also makes practice items artifact_signal/annotation_signal/calibration map cleanly to stated objectives.",
+  "needs_research": false,
+  "where_to_apply": "07.meta.json learning_objectives array; 07.mdx Learning Targets (lines 13-16)",
+  "priority": "high",
+  "section_key": "ail606/02/07",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The meta.json learning_objectives are templated stock strings that do NOT match the rich content this MDX actually teaches. LO1 ('Analyze how the storyboard frame sequence... shows a defensible decision') restates the chapter artifact name and is vague; the section's real teaching targets are the four-slot claim structure (prior state / predicted action / warrant / disconfirming evidence), the three falsifiability tests (action/warrant/disconfirmation), and claim-chaining across frames. The practice items and misconceptions are well-aligned to that actual content, so the LOs are the weak link in constructive alignment.",
+  "proposed_change": "Rewrite the four learning_objectives to be section-specific and measurable, e.g.: (1) Convert a descriptive storyboard caption into a four-slot frame claim (prior state, predicted action with a learner verb, warrant tying a feature to a Mayer/CLT principle, disconfirming evidence). (2) Apply the three falsifiability tests (action, warrant, disconfirmation) to diagnose a frame. (3) Verify claim-chaining so frame N's predicted action becomes frame N+1's prior state. (4) Judge an AI suggestion against the warrant standard, accepting/rejecting with a stated reason. This aligns LOs with the existing practice IDs (artifact_signal, annotation_signal=warrant, ai_boundary, calibration=chain).",
+  "needs_research": false,
+  "search_terms": [],
+  "where_to_apply": "01.meta.json learning_objectives array (lines 5-10); mirror the revised LO1 into the MDX 'Learning Targets' list (lines 13-16) so the two stay in sync",
+  "priority": "high",
+  "section_key": "ail606/03/01",
+  "op_index": 3
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The four learning_objectives in 02.meta.json are the templated chapter-keyed stock strings ('Analyze how the storyboard frame sequence ... shows a defensible decision', 'Distinguish artifact polish from evidence-based revision', etc.). They never name signaling, segmenting, cue-budget/contrast, the seam test, or the calibration-to-a-named-learner idea that the entire MDX body and all four practice items actually teach and assess. The practice items (artifact_signal = over-cuing/contrast, annotation_signal = segmenting vs chunking, ai_boundary = cue load budget, calibration = seam placement) and the four misconceptions are tightly built around signaling/segmenting calibration, but the stated LOs do not constructively align to them. This is the documented meta-layer no-op the CONTENT_MODEL flags.",
+  "proposed_change": "Rewrite learning_objectives to be section-specific and aligned to prose + practice: (1) 'Apply the scarcity/contrast law of signaling: justify cuing exactly one element on a frame and naming the cues withheld.' (2) 'Run the seam test to place a learner-controlled segmentation break at a conceptual boundary, and distinguish segmenting from pagination/chunking and from auto-advance.' (3) 'Treat a signaling cue as a cognitive-load expenditure and judge an AI-proposed cue (e.g., animated glow) against its processing cost for a named learner.' (4) 'Tie cue count and segment count to learner expertise (novice vs near-expert / expertise reversal) and document calibration as restraint in the storyboard artifact trace.' Optionally add an lo_practice_map linking LO1->artifact_signal, LO2->annotation_signal+calibration, LO3->ai_boundary, LO4->calibration.",
+  "needs_research": false,
+  "where_to_apply": "02.meta.json -> learning_objectives array (and the duplicated Learning Targets list in 02.mdx lines 13-16 should be updated to match)",
+  "priority": "high",
+  "section_key": "ail606/03/02",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The four learning_objectives in 03.meta.json (and the Learning Targets in the MDX, lines 13-16) are the templated chapter-stock strings. LO1 references 'the storyboard frame sequence with narration, signaling, and reader-action notes' — the chapter-level artifact — not this section's actual subject, which is commissioning and verifying GENERATED INSTRUCTIONAL IMAGES via the function/coherence/accuracy three-gate screen. The practice items and misconceptions are all keyed to image generation, so the LOs under-describe what the section teaches and what is assessed (constructive-alignment validator is a no-op on these strings).",
+  "proposed_change": "Rewrite the four LOs to be section-specific and aligned to the actual content and the four practice items: (1) 'State the representational function of an instructional image in one sentence before prompting'; (2) 'Apply the function/coherence/accuracy three-gate screen to a generated image and reject at the first failure'; (3) 'Verify generated image content (labels, counts, proportions, and social representation) against an authoritative source and document an accepted and a rejected AI suggestion'; (4) 'Distinguish prompt-craft polish from a function-first, verified image decision.' Mirror the same text in the MDX 'Learning Targets' list.",
+  "needs_research": false,
+  "where_to_apply": "03.meta.json field 'learning_objectives' (all 4) and 03.mdx 'Learning Targets' section",
+  "priority": "high",
+  "section_key": "ail606/03/03",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The learning_objectives (07.meta.json lines 5-10) and the MDX 'Learning Targets' (lines 11-14) are the generic chapter-templated stock strings (artifact-shows-defensible-decision; polish-vs-revision; AI accept/reject; annotations-decide-support). None of them names peer review, the three-property review model (anchored/actionable/authorship-preserving), or the accept-or-reject documented response that is the section's actual headline construct. The body teaches a specific, well-developed skill that the stated objectives do not describe, so the constructive-alignment between objectives, the worked example, the decision rule, and the practice items is asserted rather than real.",
+  "proposed_change": "Rewrite the 4 learning_objectives (and the mirrored MDX Learning Targets) to be section-specific, e.g.: (1) 'Diagnose why a storyboard peer comment fails by identifying which of the three properties (anchored, actionable, authorship-preserving) is missing.' (2) 'Rewrite a praise/taste comment into a three-part review (observation, anchor, option) that cites a Mayer principle or the frame objective.' (3) 'Explain why the author's documented accept-or-reject response, not the comment, is the design evidence, and why a principled rejection can be stronger than an acceptance.' (4) 'Maintain anchored, authorship-preserving review across a power gradient (senior-to-junior transfer case).' Keep the same array length/order so the validator and lo_practice_map stay intact.",
+  "needs_research": false,
+  "where_to_apply": "07.meta.json field learning_objectives (lines 5-10); mirror in 07.mdx '## Learning Targets' (lines 11-14)",
+  "priority": "high",
+  "section_key": "ail606/03/07",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Learning objective #1 in both 04.mdx 'Learning Targets' and 04.meta.json is the templated stock string ('Analyze how the prototype README traceability matrix connecting theory to screen changes shows a defensible decision in AIL 606'). This section is about criterion-referenced quality review with severity classification, NOT the README traceability matrix. The actual core skill -- define fixed observable criteria, attach screen-level evidence, score severity independently of quality, order revisions by severity -- has no matching LO. The strongest practice item (calibration -> severity) and the central misconception (review_without_severity) map to an unstated objective.",
+  "proposed_change": "Rewrite LO #1 to a section-specific objective, e.g. 'Conduct an analytic, criterion-referenced prototype quality review that scores severity independently of quality and orders revisions by severity, not by lowest score.' Keep LOs 2-4. Update both 04.mdx Learning Targets bullet 1 and 04.meta.json learning_objectives[0] identically.",
+  "needs_research": false,
+  "search_terms": [],
+  "where_to_apply": "04.mdx 'Learning Targets' first bullet AND 04.meta.json learning_objectives[0]",
+  "priority": "high",
+  "section_key": "ail606/06/04",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Meta learning_objectives are templated and now misdescribe the section. LO1 ('Analyze how the storyboard frame sequence ... shows a defensible decision') names the wrong artifact and the wrong skill; this section teaches giving criterion-anchored critique and receiving it with a reasoned disposition. The MDX 'Learning Targets' inherit the same wrong LO1. The 4 practice items (praise-as-critique, opinion-without-criterion, AI-critique verification, disposition-per-comment) are actually well-aligned to the TRUE skills of the section, so they currently map to objectives the LOs do not state.",
+  "proposed_change": "Rewrite LO1 to the section's real construct, e.g. 'Convert praise/preference into criterion-anchored, actionable peer critique using the element-problem-criterion frame.' Add an LO for the receiving side, e.g. 'Respond to each critique point with a reasoned disposition (accept/modify/reject), including at least one reasoned reject.' Keep LO3 but specialize it to this section's AI move: 'Verify an AI-drafted critique against the actual artifact before adopting it.' Mirror the same edits in MDX '## Learning Targets'. This makes the existing 4 practice items map to stated LOs.",
+  "needs_research": false,
+  "where_to_apply": "06.meta.json: learning_objectives[]; 06.mdx: '## Learning Targets'",
+  "priority": "high",
+  "section_key": "ail606/06/06",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "meta.json learning_objectives and the MDX Learning Targets are templated stock strings keyed to the wrong (storyboard) artifact. LO1 ('Analyze how the storyboard frame sequence ... shows a defensible decision') is not what this section teaches; the section teaches treating the package as one argument, reconciling cross-component contradictions, and writing a reflective synthesis. The practice items (artifact_signal, annotation_signal, ai_boundary, calibration) and misconceptions actually DO target the real content (coherence vs assembly, cross-artifact contradiction, AI-assembled-summary verification, synthesis), so the objectives are misaligned with both the body and the well-aligned assessments.",
+  "proposed_change": "Rewrite the four learning_objectives to match the body and the practice/misconception set: (1) Treat a six-component capstone package as one argument and list every cross-component claim; (2) Reconcile contradictory claims by correcting the inaccurate component toward recorded evidence (not inflating the log); (3) Verify any AI-assembled package summary against each underlying artifact before submitting; (4) Write a reflective synthesis naming how design judgment changed across the module. Mirror the same edits in the MDX Learning Targets list.",
+  "needs_research": false,
+  "where_to_apply": "meta.json: learning_objectives[0..3]; mdx: Learning Targets (lines 13-16)",
+  "priority": "high",
+  "section_key": "ail606/06/08",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "All four learning_objectives (meta.json and the MDX Learning Targets) are the templated stock strings keyed to 'storyboard frame sequence ... defensible decision in AIL 606' and the generic AI/annotation moves. None of them name rubric calibration, inter-rater reliability, observable vs adjective descriptors, or the reconcile-by-evidence-not-average move that the entire body teaches. The constructive-alignment validator is a no-op on plain strings, so this mismatch is silent.",
+  "proposed_change": "Rewrite the four LOs to match the body, e.g.: (1) 'Diagnose why a rubric descriptor produces inter-rater disagreement by distinguishing adjective descriptors from observable, countable anchors.' (2) 'Reconcile a rater split by tracing it to a feature of the work rather than averaging the scores.' (3) 'Rewrite a level descriptor into a countable observation and verify the gain by re-scoring drafts and re-checking exact agreement.' (4) 'Apply the new-rater test to judge whether reported agreement is calibration or convergence by habit.' Mirror these in MDX Learning Targets (lines 13-16).",
+  "needs_research": false,
+  "where_to_apply": "03.meta.json learning_objectives (lines 6-9) and 03.mdx Learning Targets (lines 13-16)",
+  "priority": "high",
+  "section_key": "ail606/08/03",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The four learning_objectives in 04.meta.json are the templated stock strings flagged in known-issues (constructive-alignment validator no-op). LO1 ('Analyze how the AI-USE disclosure excerpt tied to one bounded design-support decision shows a defensible decision in AIL 606') is near-unreadable boilerplate and does not name this section's actual content (deterrence vs transparency model; distinguishability/disclosure-cost/accessibility checks). The practice items and misconceptions align well to the CONTENT but map to generic LOs.",
+  "proposed_change": "Rewrite the four learning_objectives to be section-specific and measurable: (1) 'Contrast deterrence and transparency models of integrity and explain why generative AI makes deterrence unenforceable.' (2) 'Write an AI-use clause with bounded permission, a one-line disclosure format with a worked example, and an accessibility carve-out.' (3) 'Apply the distinguishability, disclosure-cost, and accessibility checks to evaluate a draft AI-use policy.' (4) 'Predict the behavioral effect (concealment, exclusion, transparency) a clause will produce.' These match the existing items: artifact_signal->LO2/3, annotation_signal->LO2, ai_boundary->LO3, calibration->LO4. Mirror into the MDX Learning Targets.",
+  "needs_research": false,
+  "where_to_apply": "04.meta.json learning_objectives array (all 4) + 04.mdx 'Learning Targets' lines 13-16",
+  "priority": "high",
+  "search_terms": [],
+  "section_key": "ail606/08/04",
+  "op_index": 4
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The meta description and learning_objectives are the generic stock strings keyed to 'storyboard frame sequence with narration, signaling, and reader-action notes' (the chapter-08 signature-artifact name), but this section's actual content and worked examples are about running a WCAG-anchored accessibility review and prioritizing fixes by depth of exclusion. None of the four learning_objectives mention accessibility, WCAG, POUR, exclusion-depth prioritization, or redundant cues. The constructive-alignment validator is a no-op on plain-string LOs, so this mismatch is silent. The practice items and misconceptions DO target the real content (clean!=accessible, color-only cue, content-image-no-alt, fix ordering), so the LOs are the weak link, not the assessment.",
+  "proposed_change": "Rewrite the four learning_objectives in 05.meta.json (and the mirrored Learning Targets list in the MDX, lines 13-16) to be section-specific, e.g.: (1) 'Map each element of a prototype screen to a named WCAG 2.2 success criterion (1.1.1, 1.4.1, 1.4.3, 2.1.1, 2.2.1) rather than judging by appearance.' (2) 'Prioritize accessibility fixes by depth of exclusion (full lock-out before strain).' (3) 'Add redundant cues (color plus label plus icon) consistent with UDL learner variability without raising load for other learners.' (4) 'Judge an AI-drafted alt text against WCAG 1.1.1 (names what the image shows and why) before accepting it.' Update the meta description to name accessibility-review/WCAG instead of the storyboard-frame artifact.",
+  "needs_research": false,
+  "search_terms": [],
+  "where_to_apply": "05.meta.json learning_objectives + description fields; 05.mdx Learning Targets (lines 13-16).",
+  "priority": "high",
+  "section_key": "ail606/08/05",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "LO templating is the top course-wide risk: LO1 is the fill-in-the-blank frame ('Analyze how the resume before-after revision with truthful evidence, role fit, and AI-use note shows a defensible decision in CAT 100') and LO4 is generic boilerplate ('Use feedback, support requests, and revision notes to improve the artifact'). Neither names this section's actual cognitive target (the claim = action+scope+result pattern, the three quality tests, the three failure modes), so the constructive-alignment check is a no-op even though the calibration item and worked example actually test action-scope-result.",
+  "proposed_change": "Differentiate LO1 to name this section's content, e.g. 'Convert a duty-list resume bullet into an accomplishment using the action + scope + result pattern, backed by a verifiable fact.' Differentiate LO4 to name the diagnostic skill, e.g. 'Diagnose which failure mode a weak bullet has (vague, inflated, or borrowed) and apply the matching fix without inventing facts.' Apply identically in both 01.meta.json learning_objectives and 01.mdx 'Learning Targets' to keep the two files in sync.",
+  "where_to_apply": "01.meta.json learning_objectives (lines 9 and 12) and 01.mdx 'Learning Targets' (lines 13 and 16) — keep the two files identical",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/02/01",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Three of four learning objectives (LO2 polish-vs-evidence, LO3 bounded AI move, LO4 revision loop) are templated frames repeated across all sections, and LO1 is the fill-in-the-blank '<artifact> shows a defensible decision' frame. None names the section-specific construct (the three-bucket sort agreement/conflict/unique; resolving conflict with an external anchor). Volume-not-novelty / constructive-alignment no-op risk.",
+  "proposed_change": "Differentiate LO1 and LO2 to the actual content: LO1 'Sort critiques from two independent AI tools into agreement, conflict, and unique, and explain why the conflict bucket carries the most value'; LO2 'Break a tool-vs-tool conflict using an external anchor (the job posting or rubric) rather than the tool's tone or order.' Keep one bounded-AI objective (LO3) and one revision-loop objective (LO4) for course consistency. Update 02.mdx 'Learning Targets' (lines 13-16) and 02.meta.json learning_objectives (lines 8-13) in parallel so the two files stay in sync.",
+  "where_to_apply": "02.meta.json learning_objectives (lines 8-13) and 02.mdx 'Learning Targets' (lines 13-16) — keep the two files in sync",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/02/02",
+  "op_index": 3
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Learning Objective 1 is the fill-in-the-blank template frame and names the WRONG artifact: it reads 'Analyze how the resume before-after revision with truthful evidence, role fit, and AI-use note shows a defensible decision in CAT 100', but this section's artifact is a professional BIO (before/after bio revision), not a resume. LO1 therefore does not describe what the section actually teaches (role-focus-proof bio drafting), defeating constructive alignment and confusing the learner about the deliverable. Confirmed present verbatim in both 03.mdx '## Learning Targets' first bullet (line 13) and 03.meta.json learning_objectives[0] (line 9).",
+  "proposed_change": "Rewrite LO1 to a section-specific, bio-focused objective, e.g.: 'Construct a short professional bio using the role-focus-proof pattern, replacing generic intensifiers with one named focus and one checkable proof.' Keep LO2-LO4. Apply the identical edit to both 03.mdx (## Learning Targets, first bullet, line 13) and 03.meta.json (learning_objectives[0], line 9) so they stay in sync.",
+  "where_to_apply": "03.meta.json learning_objectives[0] (line 9); 03.mdx '## Learning Targets' first bullet (line 13) - both currently identical resume-templated text",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/02/03",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Three of four learning objectives (LO2 polish-vs-evidence; LO3 bounded AI move; LO4 feedback/revision notes) are boilerplate strings shared across all sections, and LO1 is the fill-in-the-blank template ('resume before-after revision') artifact, which names the WRONG artifact for this section. This section's actual through-line is a cross-platform ALIGNMENT audit (inventory/detect/reconcile/diff across resume, LinkedIn, portfolio around four anchors), and no objective names that section-specific skill. Confirmed against the files: 04.mdx lines 13-16 and 04.meta.json learning_objectives both carry the generic strings; the body (Core Concept line 26, Worked Example line 38, Decision Rule line 71) is entirely about cross-platform alignment, so the objectives do not match the construct actually taught/assessed. Defeats the constructive-alignment check and is the volume-not-novelty risk the novelty brief warns of.",
+  "proposed_change": "Differentiate LO1 to the real construct and add one alignment-specific objective. LO1: 'Run a cross-platform alignment audit (inventory, detect, reconcile, diff) on one role across resume, LinkedIn, and portfolio, anchoring to the truthful version.' Add: 'Identify the four anchors (display name, current title/role, dates, headline accomplishment) and verify they do not contradict across platforms.' Keep LO3 (AI boundary) since the rejected 'Award-Winning Developer' headline genuinely instantiates it. Mirror identical edits in BOTH 04.meta.json 'learning_objectives' and the '## Learning Targets' list in 04.mdx (lines 13-16) so they stay in sync.",
+  "where_to_apply": "04.meta.json field 'learning_objectives' (lines 8-13); 04.mdx '## Learning Targets' list (lines 13-16). Both must match.",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/02/04",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Learning-objective templating (course-wide issue): LO1 is the fill-in-the-blank frame ('Analyze how the AI critique log showing accepted, modified, and rejected suggestions shows a defensible decision in CAT 100') and LO2-LO4 are near-identical generic strings reused across sections. The section's actual sharp skill (the defensibility test and the four failure categories) is never named, defeating the constructive-alignment soft check.",
+  "proposed_change": "Rewrite learning_objectives (and the matching Learning Targets bullets in the MDX) to name this section's specific competencies: (1) 'Apply the defensibility test to decide whether to keep or reject an AI resume suggestion'; (2) 'Classify a failed AI suggestion as fabrication, inflation, keyword stuffing, or identity guessing'; (3) 'Audit a whole-document AI rewrite line by line and log each rejection with its reason'; (4) 'Explain the asymmetric-cost rule (default to leaving out an indefensible flattering claim)'. Keep the critique-log artifact reference but make objectives section-specific.",
+  "where_to_apply": "cat100-supplement/02/05.meta.json learning_objectives[] AND 05.mdx 'Learning Targets' section (lines 13-16) - keep the two in sync",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/02/05",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Learning objectives are largely the cross-section template (07.mdx lines 13-16; 07.meta.json lines 8-13): LO1 is the generic fill-in-the-blank 'shows a defensible decision' frame and LO2-4 are generic polish-vs-revision / bounded-AI / use-feedback objectives. The section's distinctive content — the 'location + problem + question' feedback shape, raising risky claims as questions while preserving ownership, and the professional-materials privacy/data-stripping boundary — is named in no objective.",
+  "proposed_change": "Rewrite at least LO1 and one other objective to name this section's constructs, e.g. LO1: 'Produce located, actionable peer feedback (location + problem + question) that preserves the writer's ownership.' Add an objective: 'Apply the professional-materials privacy boundary — strip a peer's identifying data before any third-party tool use, or self-review.' Mirror the same wording in 07.meta.json learning_objectives (lines 8-13) so the constructive-alignment check has section-specific targets.",
+  "where_to_apply": "07.mdx — Learning Targets (lines 13-16) AND 07.meta.json — learning_objectives (lines 8-13)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/02/07",
+  "op_index": 4
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Learning-objective templating: LO1 is the fill-in-the-blank frame ('Analyze how the module 2 branding checklist shows a defensible decision in CAT 100'), and LO4 is the generic feedback/revision frame repeated course-wide. Neither names the section's signature skill — the cross-artifact consistency audit. Confirmed: 08.meta.json learning_objectives[0] and [3] are the generic strings, mirrored in 08.mdx Learning Targets at lines 13 and 16.",
+  "proposed_change": "Rewrite LO1 to the section-specific skill, e.g. 'Build a cross-artifact comparison table (name, title, dates, headline proof) and identify contradictions that live between artifacts rather than inside them.' Tighten LO4 to the capstone synthesis, e.g. 'Resolve cross-artifact contradictions toward the truth and complete an AI-use log before declaring the package ready.' Keep LO2/LO3 (polish vs evidence-based revision; bounded AI move) since they map cleanly to practice items. Apply identical edits in both 08.meta.json (objectives[0],[3]) and 08.mdx Learning Targets bullets (lines 13, 16).",
+  "where_to_apply": "08.meta.json — learning_objectives[0] and [3]; mirror in 08.mdx Learning Targets bullets (lines 13 and 16)",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/02/08",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The four learning objectives are templated boilerplate. LO1 is the fill-in-the-blank artifact frame ('Analyze how the Excel pivot-table finding... shows a defensible decision in CAT 100', 01.mdx line 13 / 01.meta.json line 9), and LO2-LO4 (polish-vs-revision, bounded AI move, feedback/revision) are identical across all sections. None name what this section actually teaches and assesses: tidy-data structure (one header / one value per cell / one record per row / consistent labels), numbers-stored-as-text and the SUM-skips-text symptom, Text to Columns for atomic cells, and category-label standardization. The practice and misconception sets target THIS content tightly, so assessments are well-aligned to the body but orphaned from the stated objectives, defeating the constructive-alignment soft check (CONTENT_MODEL.md sec 5).",
+  "proposed_change": "Differentiate the per-section objectives so 2-3 name the concrete skills, e.g.: (1) 'Audit a raw spreadsheet export against the four tidy-data rules (one header row, one value per cell, one record per row, consistent category labels) and name the analytical failure each defect causes.' (2) 'Diagnose and repair numbers-stored-as-text by reading default alignment and confirming SUM matches a hand count.' (3) 'Choose the correct repair tool (Text to Columns vs Find and Replace vs row deletion) for a given structural defect.' Keep one objective on the artifact/AI-disclosure through-line to preserve the course spine. Update both 01.mdx '## Learning Targets' (lines 13-16) and 01.meta.json 'learning_objectives' (lines 9-12) so they match each other and the practice/misconception set.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\03\\01.meta.json 'learning_objectives' array (lines 8-13) AND C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\03\\01.mdx '## Learning Targets' (lines 11-16) — keep the two in sync",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/03/01",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The Learning Targets (02.mdx lines 13-16) and meta.json learning_objectives (lines 8-13) are the generic CAT100 template strings ('Analyze how the Excel pivot-table finding...', 'Distinguish artifact polish...', 'Document a bounded AI/software support move', 'Use feedback... to improve the artifact'). NONE name the actual content: relative/absolute/mixed reference behavior on fill, and SUM/AVERAGE/COUNT semantics including AVERAGE-ignores-blanks-but-counts-zero. The body, worked example, decision rule, and 3 of 4 practice items all teach references/aggregation, so the section's real teaching is invisible to a constructive-alignment check that only reads the templated LO strings. Confirmed against the live files: meta.json LOs and the MDX Learning Targets are byte-identical generic template text.",
+  "proposed_change": "Rewrite the 4 objectives to match the section's content, e.g.: (1) 'Predict how a relative, absolute ($F$1), or mixed (B$1, $A2) reference rewrites when a formula is copied down or across.' (2) 'Choose relative for per-row inputs and absolute for shared constants, and justify the lock pattern in a trace.' (3) 'Verify a copied column by reading the formula in the LAST filled cell, not just the first.' (4) 'Explain SUM/AVERAGE/COUNT semantics, including why AVERAGE skips blanks but counts a stray zero.' Mirror identical text in both 02.mdx Learning Targets and 02.meta.json learning_objectives so the two stay in sync.",
+  "where_to_apply": "02.mdx '## Learning Targets' (lines 13-16) AND 02.meta.json 'learning_objectives' array (lines 8-13) — keep the two in sync",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [
+   {
+    "cite": "Biggs & Tang, Teaching for Quality Learning at University (constructive alignment framework)",
+    "url_or_doi": "https://api.openalex.org/works?search=constructive+alignment",
+    "finding": "Constructive alignment requires intended learning outcomes, teaching activities, and assessment to address the same verbs/content; templated LOs that name no taught content break this alignment. Seminal, ~6,700 citations."
+   }
+  ],
+  "section_key": "cat100/03/02",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Learning objectives are the templated frame (LO1 'shows a defensible decision in CAT 100'; LO2/3/4 identical across sections). None names the pivot-specific cognition this section teaches (choosing aggregation to match a question, distinguishing category rows from Grand Total, source-range freshness).",
+  "proposed_change": "Differentiate at least LO1 (and ideally a new LO) to name section-specific cognition while keeping the artifact/AI through-line. e.g. LO1: 'Choose the pivot aggregation (Sum, Count, Average) that matches the stated question, and justify it in the artifact source note.' Add an LO: 'Distinguish a per-category pivot row from the Grand Total, and confirm the pivot is refreshed against a source range that covers all data, before quoting any figure.' Mirror the wording in both 04.mdx Learning Targets and 04.meta.json learning_objectives.",
+  "where_to_apply": "04.meta.json learning_objectives array (lines 8-13) + 04.mdx '## Learning Targets' bullets (lines 13-16). Confirmed the four meta objectives are verbatim-identical to the four mdx bullets, so edits must be applied to both to stay in sync.",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/03/04",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Learning Objective 1 ('Analyze how the Excel pivot-table finding ... shows a defensible decision') plus LO2/LO4 are the templated cross-section frame and do not name the skills this section actually teaches and assesses: reading Excel error codes, writing a four-part debugging prompt, and verifying on a known-answer row. The four practice items (error_codes x2, unverified_ai_fix, vague_prompt) and three misconceptions are tightly about error-code reading, prompt precision, and AI-fix verification, but the objectives never mention these. The artifact named in LO1 (pivot-table finding) is also a mismatch: this section's artifact work is an AI-debugging trace, not a pivot finding. This defeats the constructive-alignment check.",
+  "proposed_change": "Replace templated LO1 and tighten so at least two objectives are section-specific and map to practice/misconception IDs: (1) 'Read an Excel error code (#DIV/0!, #REF!, #VALUE!, #NAME?, #N/A) to predict the cause before asking for help' (maps *_error_codes); (2) 'Write a four-part debugging prompt (formula, wrong result, suspected cause, exact desired behavior incl. edge case)' (maps *_vague_prompt); (3) 'Verify an AI-suggested formula on a known-answer row before copying it' (maps *_unverified_ai_fix); keep one bounded-AI-use/accepted-vs-rejected objective. Mirror identically in 05.meta.json learning_objectives and 05.mdx 'Learning Targets' (lines 11-14).",
+  "where_to_apply": "05.meta.json 'learning_objectives' (lines 8-13) and 05.mdx 'Learning Targets' (lines 11-14) — must be kept identical; align to practice IDs *_error_codes, *_vague_prompt, *_unverified_ai_fix",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/03/05",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The four learning objectives (06.meta.json lines 8-13; 06.mdx '## Learning Targets' lines 11-14) are templated cross-section boilerplate. LO1 is the fill-in-the-blank artifact frame; LO2-4 are identical across sections. None mentions privacy, re-identification, quasi-identifiers, honest reporting at small n, or group-of-one suppression, which is the entire substance of the section, its four practice items, and three misconceptions. The constructive-alignment check is a no-op here.",
+  "proposed_change": "Replace LO1 (and ideally add one) with section-specific measurable objectives, e.g. 'Identify when a small dataset is re-identifiable through a combination of quasi-identifiers even after direct identifiers are removed' and 'Apply a three-point ethics screen (re-identification, group-of-one, honest-magnitude) to decide how to report a small-n finding.' Edit both 06.meta.json 'learning_objectives' AND 06.mdx '## Learning Targets' so they stay in sync. (No external research required; structural fix verified against this section's own content.)",
+  "where_to_apply": "06.meta.json 'learning_objectives' (lines 8-13) AND 06.mdx '## Learning Targets' (lines 11-14) — keep both in sync.",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/03/06",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Construct mismatch: the body teaches a three-move dialogue (SET CONTEXT / NARROW / STRESS-TEST) and the real artifact is the labeled dialogue transcript, but LO1, meta.json, and the Artifact Studio attribute all name the Chapter-2 boilerplate 'AI critique log showing accepted, modified, and rejected suggestions.' LO1 is a fill-in-the-blank frame and LO3/LO4 are cross-section template text, so the objective set never names this section's actual construct.",
+  "proposed_change": "Rewrite LO1 to name the real construct, e.g. 'Plan and label a three-move scenario dialogue (SET CONTEXT, NARROW, STRESS-TEST) so each turn changes exactly one thing.' Differentiate LO3/LO4 from the template (e.g. LO3 -> log one accept/reject decision inside the transcript; LO4 -> attribute each output change to its labeled turn). Update meta.json learning_objectives[0,2,3] and description, the 02.mdx '## Learning Targets' bullet 1, and the '## Artifact Studio' artifact-studio artifact= attribute (and the download link text) so the named artifact is the labeled dialogue transcript with an embedded accept/reject note, not a generic 'AI critique log.'",
+  "where_to_apply": "02.meta.json learning_objectives[0,2,3] and description; 02.mdx line 13 '## Learning Targets' bullet 1; 02.mdx line 125 download-link text and line 127 artifact-studio artifact= attribute",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/04/02",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Learning objectives are known-issue boilerplate: confirmed in 06.meta.json lines 9-12 and mirrored in 06.mdx Learning Targets lines 13-16. LO1 is a fill-in-the-blank frame ('Analyze how the decision log shows a defensible decision in CAT 100') and LO2-4 are generic strings reused across sections (artifact polish, bounded AI/software support move, feedback/revision notes). None names the section's actual constructs: accept/override/reject logging, the reason-points-to-a-standard test, or the accept/override ratio as evidence. This defeats the constructive-alignment check and leaves practice/misconceptions unverifiable against meaningful targets.",
+  "proposed_change": "Rewrite the four learning_objectives in 06.meta.json (and the matching Learning Targets list in 06.mdx lines 13-16, keeping wording identical) to be section-specific and measurable: (1) 'Convert a feelings paragraph into a decision log with one row per AI suggestion (situation, AI said, decision, reason).' (2) 'Judge whether a reason is defensible by testing if it points to a standard a reader could re-apply, rather than a mood.' (3) 'Distinguish ACCEPT, OVERRIDE, and REJECT, and log a rejected unrequested AI addition.' (4) 'Read the accept/override ratio as evidence of weighing rather than blanket trust or contrarianism.'",
+  "where_to_apply": "meta (06.meta.json learning_objectives, lines 8-13) and mdx (06.mdx Learning Targets, lines 13-16) - keep both in sync",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/04/06",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "LO2/LO3/LO4 are verbatim boilerplate shared across all 64 sections, and LO1 is the fill-in-the-blank frame ('Analyze how the [artifact] shows a defensible decision in CAT 100'). None encode this section's actual teaching target: deriving deck scope and slide-level evidence from a named audience's time budget, prior knowledge, and the decision they own. Confirmed in 01.meta.json learning_objectives (lines 8-13) and the identical '## Learning Targets' bullets in 01.mdx (lines 13-16).",
+  "proposed_change": "Rewrite LO1 section-specific and verb-precise: 'Derive a presentation's slide count and slide-level evidence from a named audience's time budget, prior knowledge, and the decision they own.' Rewrite LO2 to bind polish-vs-revision to THIS artifact: 'Justify each slide by the audience question it answers, and identify at least one slide cut because it served no audience question.' Keep LO3/LO4 but specialize LO3 to presentations: 'Document which AI suggestion (e.g., add a metric, add a slide) you accepted vs. rejected against the audience time budget.' Update the identical '## Learning Targets' bullets in 01.mdx to stay in sync. The body already operationalizes these (slide/question table lines 46-50; the cut as evidence of judgment line 52, 60; AI accept/reject note line 105), so the rewrite aligns LOs to existing instruction.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\05\\01.meta.json field 'learning_objectives' (all four, lines 8-13); and C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\05\\01.mdx '## Learning Targets' bullet list (lines 13-16) — must stay in sync",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/05/01",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "LO1 in 05.meta.json and the mdx 'Learning Targets' is the boilerplate fill-in-the-blank frame and is grammatically broken ('Analyze how the AI critique log showing accepted, modified, and rejected suggestions shows a defensible decision in CAT 100'). LO2-LO4 are near-identical to the cross-section template, and none of the four objectives names the section's distinctive constructs: process metrics as gameable proxies, one-change-per-take, and human-in-the-loop confirmation.",
+  "proposed_change": "Rewrite LO1 to be section-specific and grammatical: 'Interpret AI speech-coaching metrics (pace, filler count, clarity) as gameable proxies for the listener's experience, not as goals.' Repoint one objective to 'Apply one-change-per-take, single-variable practice and confirm each metric gain with a human listener.' Keep one objective on documenting accepted/modified/rejected coach suggestions in the critique log. Mirror identical wording in both 05.meta.json learning_objectives (items 1,3,4) and the mdx 'Learning Targets' bullets.",
+  "where_to_apply": "05.meta.json 'learning_objectives' (items 1,3,4) and 05.mdx 'Learning Targets' bullets",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/05/05",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Three of four learning objectives (LO2 polish-vs-revision, LO3 bounded AI move, LO4 feedback/revision loop) are verbatim boilerplate shared across all 64 sections, and LO1 is the fill-in-the-blank '...the [artifact] shows a defensible decision in CAT 100' frame. None name this section's hard content: the four-question attribution model (source / license / verification / disclosure), the citation-vs-disclosure distinction, the public-domain-vs-CC license distinction, or the 'wrong page' verification near-miss.",
+  "proposed_change": "Differentiate LO1 and one other objective to this section. LO1: 'Distinguish the four attribution obligations (trace the source, check the license, verify the exact figure/quote location, disclose AI authorship) and apply them to a borrowed chart, a quotation, and an AI-generated asset.' Add: 'Distinguish citation (making a borrowed fact/asset checkable) from AI-use disclosure (making your own slide's authorship honest), and distinguish public-domain government works from CC-licensed third-party assets.' Keep wording parallel across 06.mdx Learning Targets and 06.meta.json learning_objectives.",
+  "where_to_apply": "06.meta.json learning_objectives (4 strings) and 06.mdx Learning Targets (lines 13-16) — keep both files in sync.",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/05/06",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Learning objectives 2-4 are verbatim boilerplate shared across all 64 sections (polish-vs-revision, bounded AI support move, feedback/revision notes) and LO1 is the fill-in-the-blank '...shows a defensible decision in CAT 100' template. None of LO1-4 names the section's actual testable skills: writing accessible alt text, predicting the cascade at equal specificity, and building a minimal valid HTML document. This defeats the course-wide constructive-alignment check (a known P0). The four practice items and four misconceptions are content-specific, but the objectives they should map to are generic.",
+  "proposed_change": "Differentiate at least two objectives to the section's real content, mirrored in both 02.mdx '## Learning Targets' (lines 13-16) and 02.meta.json 'learning_objectives' (lines 8-13). Suggested: (1) 'Construct a minimal valid HTML document, placing metadata (title, charset, stylesheet link) in <head> and visible content in <body>.' (2) 'Write descriptive alt text for informative images and justify empty alt for decorative ones against WCAG 2.2 SC 1.1.1.' (3) 'Predict which CSS rule wins when selectors conflict, using specificity first and source order as the tiebreaker.' Keep one revision/AI-disclosure objective to preserve the course through-line. These map cleanly onto the existing practice items (artifact_signal -> minimal doc, calibration/alt_text -> alt text, annotation_signal/first_rule_wins -> cascade) and the four misconceptions.",
+  "where_to_apply": "02.mdx '## Learning Targets' (lines 13-16) and 02.meta.json 'learning_objectives' array (lines 8-13)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/06/02",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "LO2 ('Distinguish artifact polish from evidence-based revision'), LO3, and LO4 are boilerplate objectives repeated across all 64 sections; only LO1 is section-specific (and it is the fill-in-the-blank frame). The section's actual targeted skills are (a) reading a code symptom before prompting, (b) writing a verifiable vs guessable prompt, (c) classifying suggestions accept/modify/reject via match+scope+verify checks. Practice items align to the body but not cleanly to the stated objectives, defeating the constructive-alignment check.",
+  "proposed_change": "Differentiate at least two objectives to the section's actual constructs: 'Write a verifiable debugging prompt that states the symptom and includes the relevant code, and contrast it with a prompt the AI can only guess at' (aligns to annotation_signal / vague_prompt items) and 'Classify each AI debugging suggestion as accept, modify, or reject using a match check, a scope check, and a browser verify check, recording the reason' (aligns to ai_boundary, calibration, and artifact_signal items). Optionally keep one cross-cutting objective. Update both 05.mdx Learning Targets and 05.meta.json learning_objectives so practice IDs map to named LOs.",
+  "where_to_apply": "05.meta.json -> learning_objectives array (lines 8-13) and 05.mdx -> Learning Targets (lines 13-16)",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/06/05",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Learning objectives are the known templated set: LO1 is the fill-in-the-blank frame ('Analyze how the [artifact] shows a defensible decision in CAT 100') and LO2-LO4 are identical across sections, so the constructive-alignment check is a no-op. The section's genuinely distinctive contribution (integration is its own skill; clean commit history vs clean latest snapshot; the live-URL test subsumes per-section checks) is not captured by any objective, so the section's real intellectual core is unassessed at the objective level even though practice items and misconceptions map to the generic objectives.",
+  "proposed_change": "Differentiate LO1 to name this section's distinctive skill, e.g., 'Verify an integrated published artifact on its live URL, distinguishing a clean commit history from a clean latest snapshot, and explain why integration testing catches failures that per-section checks miss.' Keep one templated objective for the AI-disclosure through-line (current LO3). Update 08.meta.json learning_objectives[] and the matching 'Learning Targets' list in 08.mdx (lines 13-16) in lockstep. Grounded in constructive alignment (Biggs): assessment and objectives must target the actual intended skill (here, integration/verification), not a generic frame.",
+  "where_to_apply": "cat100-supplement/06/08.meta.json learning_objectives[] (lines 8-13) and cat100-supplement/06/08.mdx 'Learning Targets' (lines 13-16)",
+  "priority": "high",
+  "sources": [
+   {
+    "cite": "Biggs, J. (1999/2011) Teaching for Quality Learning at University (constructive alignment)",
+    "url_or_doi": "https://doi.org/10.1007/BF00138871",
+    "finding": "Constructive alignment requires intended learning outcomes, teaching activities, and assessment to target the same specific competence; generic/boilerplate objectives that do not name the section's actual target skill break alignment."
+   }
+  ],
+  "verified": "unverified",
+  "section_key": "cat100/06/08",
+  "op_index": 3
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Three of the four learning objectives (LO2 'Distinguish artifact polish from evidence-based revision', LO3 'Document a bounded AI/software support move with accepted and rejected suggestions', LO4 'Use feedback...to improve the artifact before sharing') are the cross-section boilerplate template, and the body prose does not actually teach two of them. The body is entirely about goal-setting (measurable/dated/sequenced goals); polish-vs-revision and the AI accepted/rejected log are asserted in the Final Check and Adaptive Support but never developed in the Core Concept, Worked Example, or Decision Rule. This is the LO-templating no-op flagged in the known-issues list, and it breaks constructive alignment for this specific section.",
+  "proposed_change": "Rewrite LO1 to be section-specific and at least one of LO2-LO4 to match what is actually taught. Suggested: LO1 'Convert a vague learning intention into a measurable, dated goal tied to a named proof artifact.' LO2 'Sequence learning goals by prerequisite so each goal builds on a verified earlier skill.' Keep LO3 (AI boundary) and LO4 (revision) only if the body is also extended to teach them (see the AI-boundary scaffolding item). Update both 08.mdx 'Learning Targets' list and 08.meta.json 'learning_objectives' to match.",
+  "where_to_apply": "08.meta.json field 'learning_objectives' (lines 8-13) AND 08.mdx '## Learning Targets' list (lines 13-16). Verified file paths: C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\08\\08.meta.json and 08.mdx.",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/08/08",
+  "op_index": 0
+ }
+]

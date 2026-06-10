@@ -3,10 +3,10 @@
   "title": "Small-N Testing and Design Claims",
   "description": "AIL 606 textbook section connecting small-n testing and design claims to moderated usability test script with observation-to-revision trace, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the moderated usability test script with observation-to-revision trace shows a defensible decision in AIL 606.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    "Explain why small-N moderated testing is strong for surfacing usability problems but weak for outcome claims.",
+    "Convert an overreaching efficacy claim into a scoped problem-and-revision claim the sample can support.",
+    "Use observation frequency (e.g., 4 of 5) to prioritize revisions and to flag low-frequency signals for watching rather than acting.",
+    "Reject outcome language (\"improves learning\") when no comparison or baseline exists."
   ],
   "concept_ids": [
     "ail606_supplement_research_translation_for_learning_design",
