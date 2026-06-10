@@ -88,7 +88,7 @@ Before your first push, run three checks in this order, because each one is hard
 
 1. **Name check:** Does the repo name produce the URL you want? Use `username.github.io` for a root user site; accept a subpath only if you have written your asset paths to suit it.
 2. **Secret check:** Is there any credential, key, token, or private path among the files? If so, add it to `.gitignore` before you stage anything. If a secret was already committed, plan to rotate it, not just delete it.
-3. **Entry-file check:** Is there a lowercase `index.html` at the level GitHub will serve? The root URL looks for `index.html`; a file named `Index.HTML` returns a 404 on case-sensitive servers.
+3. **Entry-file check:** Is there a lowercase `index.html` at the level GitHub will serve? The root URL looks for `index.html`; a file named `Index.HTML` returns a 404 on case-sensitive servers (see [GitHub's Pages 404 troubleshooting](https://docs.github.com/en/pages/getting-started-with-github-pages/troubleshooting-404-errors-for-github-pages-sites)). Note that a local preview on Windows or macOS may not surface the case bug, because those filesystems are case-insensitive by default; it only fails once published.
 
 A failure here is not cosmetic. The wrong name means rebuilding URLs; a leaked secret means a real exposure; a missing index means a blank live site.
 

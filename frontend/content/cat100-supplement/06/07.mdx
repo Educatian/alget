@@ -17,6 +17,8 @@ This section also teaches a transferable judgment skill: filtering a generic AI-
 
 ## Opening Case
 
+Employers do look: large majorities of recruiters report researching candidates online before hiring (CareerBuilder/Harris Poll surveys), and the "cybervetting" research literature confirms online-presence checks are a routine part of selection, so a stale or broken professional site is seen, not hypothetical.
+
 A student finishes his portfolio and writes a maintenance note: "Keep the site updated sometime." A year later nothing has changed. The resume PDF is from freshman year, two project links 404 because he renamed the files, and the About page still says "incoming first-year." A recruiter who finds the site assumes it is abandoned. Wanting to do better, he asks an AI for a website maintenance checklist and gets a generic list: renew the SSL certificate monthly, patch server dependencies, refresh content quarterly, check links periodically. He starts trying to renew an SSL certificate that GitHub already manages for him and looking for a server that does not exist.
 
 Two failures meet here: a plan too vague to follow, and a checklist not matched to a static site. This section fixes both.
@@ -42,7 +44,7 @@ The table shows that filtering applied to a typical AI checklist:
 | Refresh content quarterly | Keep | Resume and projects go stale |
 | Check links periodically | Keep | Renamed files break internal links |
 
-This is [ISTE digital citizenship](https://iste.org/standards/students) in its quiet form: maintaining what you publish is part of publishing responsibly, and a neglected site misleads the people who rely on it. [NACE career readiness](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined) frames the routine as professionalism; keeping a public artifact current is the kind of follow-through employers value.
+This is ISTE's Standard 1.2 Digital Citizen ([ISTE Standards for Students, 2024 edition](https://iste.org/standards/students)) in its quiet form: maintaining what you publish is part of publishing responsibly, and a neglected site misleads the people who rely on it. The NACE competency in play is [Professionalism](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined), one of the eight Career Readiness Competencies; keeping a public artifact current is the kind of follow-through employers value.
 
 <inline-check question="A generic AI checklist tells you to renew the SSL certificate monthly for your static GitHub Pages portfolio. Keep this item?" explanation="GitHub Pages provides HTTPS automatically, so certificate renewal is GitHub's job, not yours. Keeping the item would have you chasing a task you cannot perform. The platform check drops server and certificate tasks for a static site and keeps content freshness and link integrity." options='[{"text":"Drop it: Pages provides HTTPS automatically, so certificate renewal is not your task","correct":true},{"text":"Keep it: every website needs its certificate renewed monthly by the owner","correct":false},{"text":"Keep it but change monthly to yearly to reduce the workload","correct":false}]'></inline-check>
 
@@ -102,7 +104,7 @@ A second misreading is treating "I'll keep it updated" as a plan. Without a trig
 
 Apply the rule to the student's situation. He starts from the AI checklist and runs the platform check first. "Renew SSL certificate monthly" is dropped because Pages handles HTTPS automatically. "Patch server dependencies" is dropped because a static site has no server. "Refresh content quarterly" and "check links periodically" survive, because resumes go stale and renamed files break links on exactly this kind of site.
 
-He then runs the specificity and trigger checks by rewriting the survivors into a dated routine: trigger on the first day of each quarter, then four named steps (replace the oldest project card, export the current resume to assets/resume.pdf, click every nav and project link and fix any 404, open the live URL on a phone to confirm layout). Compared with "keep the site updated sometime," every step is now actionable and verifiable, and the cadence is concrete. The plan matches the platform, names a trigger, and lists steps a future version of him can follow without guessing.
+He then runs the specificity and trigger checks by rewriting the survivors into a dated routine: trigger on the first day of each quarter, then four named steps (replace the oldest project card, export the current resume to assets/resume.pdf, click every nav and project link and fix any 404, open the live URL on a phone to confirm layout). Manual clicking is the floor; at scale, an automated link checker such as the open-source [lychee](https://github.com/lycheeverse/lychee) CLI or the W3C Link Checker produces a report a reviewer can confirm was actually run. Compared with "keep the site updated sometime," every step is now actionable and verifiable, and the cadence is concrete. The plan matches the platform, names a trigger, and lists steps a future version of him can follow without guessing.
 
 ## What Strong Reading Looks Like
 

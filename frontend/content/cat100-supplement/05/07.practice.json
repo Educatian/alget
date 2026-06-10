@@ -75,6 +75,25 @@
       "correct_index": 1,
       "explanation": "Contrast is fixed by adjusting the color values to meet the ratio, not by resizing or animating the text.",
       "difficulty": "medium"
+    },
+    {
+      "id": "cat100_supplement_5_7_accessibility_in_design_large_text_threshold",
+      "type": "multiple_choice",
+      "concept_id": "evidence_based_revision",
+      "stem": "Your 40pt slide title is a light color and you want to verify its contrast. Which WCAG AA threshold applies?",
+      "options": [
+        "4.5:1, the same as body text.",
+        "3:1, the large-text threshold (text 18pt and up, or 14pt bold).",
+        "No threshold; large text is exempt from contrast checks.",
+        "7:1, because titles matter more."
+      ],
+      "correct_index": 1,
+      "explanation": "WCAG AA sets 4.5:1 for normal text and 3:1 for large text, defined as 18pt and up (or 14pt bold). A 40pt title is large text, so 3:1 applies; that is a lower bar, not an exemption, and a pale title can still fail it. (7:1 is the AAA normal-text level, not the AA title rule.)",
+      "misconception_id": "cat100_supplement_5_7_contrast_threshold_confusion",
+      "difficulty": "medium",
+      "concept_ids": [
+        "evidence_based_revision"
+      ]
     }
   ]
 }

@@ -19,7 +19,7 @@ A privacy checklist is the discipline of inspecting your own artifacts the way a
 
 Maya is about to share her GitHub Pages portfolio in the capstone showcase. The site looks finished: a clean header, three project cards, a contact form. What she cannot see from the rendered page is that her `app.js` still holds a weather API key she pasted while testing, and her `contact.html` carries a leftover comment with an SMTP password.
 
-The rendered website hides both. A reviewer browsing the live page would never notice. But in a public GitHub repository, automated bots scrape new commits for exactly these strings within minutes. Maya's artifact is visually polished and simultaneously a security incident. The privacy checklist exists to catch the gap between "looks done" and "is safe to publish."
+The rendered website hides both. A reviewer browsing the live page would never notice. But in a public GitHub repository, automated bots scrape new commits for exactly these strings within minutes; researchers who planted honeytoken AWS keys saw exploitation in about 30 minutes on average (Meli et al., 2019), and GitHub reported detecting 39 million leaked secrets in 2024, which is why push protection is now on by default. Maya's artifact is visually polished and simultaneously a security incident. The privacy checklist exists to catch the gap between "looks done" and "is safe to publish."
 
 ## Core Concept
 
@@ -159,6 +159,7 @@ Before you move on, make sure your trace links claim, evidence, tool boundary, r
 
 - [NACE career readiness](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined)
 - [ISTE digital citizenship](https://iste.org/standards/students)
-- data-ink and visual evidence. https://www.edwardtufte.com/tufte/books_vdqi
+- Meli, M., McNiece, M. R., & Reaves, B. (2019). How bad can it Git? Characterizing secret leakage in public GitHub repositories. NDSS. https://doi.org/10.14722/ndss.2019.23418
+- GitHub Blog: Next evolution of push protection (39M secrets detected in 2024). https://github.blog/security/application-security/next-evolution-github-advanced-security/
 - [WCAG accessibility](https://www.w3.org/TR/WCAG22/)
 

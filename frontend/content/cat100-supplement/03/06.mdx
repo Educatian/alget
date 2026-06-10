@@ -75,7 +75,7 @@ Protect the person and respect the sample size. Before you share any small-datas
 Apply this three-point ethics screen to a small dataset:
 
 1. **Re-identification check:** Could any combination of remaining columns single out one individual? If so, generalize or merge those columns.
-2. **Group-of-one check:** Does any reported average or percentage cover a subgroup with n of 1? If so, suppress or combine it.
+2. **Group-of-one check:** Does any reported average or percentage cover a subgroup with n of 1? If so, suppress or combine it. A common rule of thumb in education reporting is to suppress or merge any subgroup smaller than about 5 (NCES guidance; some agencies, like CMS, use stricter thresholds), and in a 7-row table that means almost everything must be reported in aggregate. It is a guideline rather than a law, and it tightens as the attribute gets more sensitive.
 3. **Honest-magnitude check:** Are you reporting raw counts and naming the sample size, rather than a bare percentage that implies precision?
 
 If a friend in the dataset could recognize their own row from your published summary, the re-identification check failed.
@@ -116,6 +116,8 @@ A strong small-data artifact documents the privacy and honesty decisions, not ju
 
 The weak version shares a tidy percentage and a deidentified-looking table. The strong version makes the protective choices visible, so a reviewer can confirm that no individual is exposed and no claim outruns the sample.
 
+**Why the screen is not optional.** When the small dataset holds other students' records, FERPA applies: personally identifiable information includes not just direct identifiers but indirect identifiers and "other information that, alone or in combination, is linkable to a specific student" (U.S. Department of Education, studentprivacy.ed.gov). The quasi-identifier risk this section teaches is the federal definition, not an abstraction.
+
 ## Transfer Case
 
 The same ethics screen transfers from a survey to an open-ended dataset, where the risk hides in the text. Suppose you collect short written comments from eight tutoring clients to share themes. There is no name column, but a comment that mentions a specific course, a specific time slot, and a personal detail can identify the writer as surely as a name. The re-identification check now means scanning quotes for identifying specifics and paraphrasing them, and the group-of-one check means not attributing a unique, recognizable comment to its lone author. The data type changed from numbers to text, but the duty, prevent re-identification and do not over-claim from few voices, is the same, which shows the screen is about the people, not the cell format.
@@ -152,6 +154,7 @@ Before you move on, make sure your trace links claim, evidence, tool boundary, r
 ## References
 
 - [NACE career readiness](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined)
+- U.S. Department of Education, Protecting Student Privacy: Personally identifiable information and data de-identification terms. https://studentprivacy.ed.gov/content/personally-identifiable-information-education-records
 - [ISTE digital citizenship](https://iste.org/standards/students)
 - data-ink and visual evidence. https://www.edwardtufte.com/tufte/books_vdqi
 - [WCAG accessibility](https://www.w3.org/TR/WCAG22/)

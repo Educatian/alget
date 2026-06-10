@@ -80,6 +80,8 @@ Before you call the studio complete, the submission must pass one integrated tes
 2. **Live check:** Open the published URL in a private window on a phone. Do pages load, do all links resolve, does alt text announce, does the layout hold?
 3. **History check:** Is the repo clean across its whole history, not just the latest snapshot? A secret in an old commit still fails privacy.
 
+If the history check fails, fix in this order: (1) revoke or rotate the key at the provider immediately, because bots probe public repos for credentials within minutes and anyone who saw the repo may already hold it; (2) purge it from history (git filter-repo or BFG Repo-Cleaner, or for a small personal repo simply recreate the repo clean; see [GitHub's removing-sensitive-data guide](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository)); (3) re-verify the whole history. Purging history without rotating the key leaves the stolen credential alive.
+
 If the live check passes on the real URL, you have a published site. If you only verified locally, you have not finished the studio.
 
 > **Recent flow (as of June 2026).** The publishing toggle lives at Settings > Pages > Build and deployment > Source, with two options: "Deploy from a branch" (the right choice for this hand-written site) and "GitHub Actions" (for framework builds). GitHub periodically changes this UI, so the live URL, not the settings screen, remains the source of truth; section 06.04 walks the step-by-step.

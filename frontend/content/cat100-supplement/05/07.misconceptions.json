@@ -24,6 +24,14 @@
       "trigger": "learner marks 'pass' green and 'fail' red with no label or shape difference",
       "feedback": "Pair color with a label, icon, or pattern so the meaning survives without color perception.",
       "rail_action": "represent"
+    },
+    {
+      "id": "cat100_supplement_5_7_contrast_threshold_confusion",
+      "pattern": "contrast_threshold_confusion",
+      "description": "Applying the 4.5:1 normal-text threshold to large display headings, or assuming a large title needs no contrast check at all.",
+      "trigger": "learner over-corrects a 40pt title against 4.5:1, or skips checking it because 'big text is always readable'",
+      "feedback": "Large text (18pt and up, or 14pt bold) uses the 3:1 threshold under WCAG AA. That is a lower bar, not no bar: a pale-gray 40pt title can still fail 3:1. Check the ratio with the right threshold for the text size.",
+      "rail_action": "represent"
     }
   ]
 }
