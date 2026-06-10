@@ -9,7 +9,7 @@
 
 ## Why This Section Matters
 
-A slide that only some of your audience can read is a slide that failed for the rest. Low-contrast text disappears for anyone with reduced vision or on a sun-washed projector. A chart with no alternative text is silent to a screen-reader user. Status dots that mean "red equals risk" are invisible to the roughly one in twelve men with color vision deficiency. None of these problems show up when the designer, who can see the slide perfectly, looks at it; they show up only when you test against specific, measurable criteria.
+A slide that only some of your audience can read is a slide that failed for the rest. Low-contrast text disappears for anyone with reduced vision or on a sun-washed projector. A chart with no alternative text is silent to a screen-reader user. Status dots that mean "red equals risk" are invisible to the roughly one in twelve men with color vision deficiency (about 8% of men of Northern European descent; prevalence is lower in Asian and African populations). None of these problems show up when the designer, who can see the slide perfectly, looks at it; they show up only when you test against specific, measurable criteria.
 
 This section teaches a concrete, repeatable accessibility pass built on the Web Content Accessibility Guidelines: check contrast against the 4.5:1 ratio, give every meaningful image alternative text, and never let color carry meaning alone. The artifact is a storyboard that records each check and the fix it triggered, so a reviewer can confirm the slide works for varied viewers.
 
@@ -28,7 +28,7 @@ A team is proud of a sleek slide: light gray headings on white, a clean chart, a
 
 Accessibility on slides is not subjective taste; it is a set of testable criteria, and three of them catch the large majority of real problems:
 
-- **Contrast.** Text must stand out enough from its background to be legible. [WCAG](https://www.w3.org/TR/WCAG22/) sets a minimum contrast ratio of 4.5:1 for normal text (3:1 for large text). The ratio is computed from the relative luminance of the two colors; you do not eyeball it, you check it. Light gray on white, a common "elegant" choice, often lands near 1.9:1, far below the line.
+- **Contrast.** Text must stand out enough from its background to be legible. [WCAG](https://www.w3.org/TR/WCAG22/) sets a minimum contrast ratio of 4.5:1 for normal text (3:1 for large text); these are the Level AA thresholds, the conformance level institutions typically target (WebAIM). The ratio is computed from the relative luminance of the two colors; you do not eyeball it, you check it. Light gray on white, a common "elegant" choice, often lands near 1.9:1, far below the line.
 - **Text alternatives.** Every image that carries meaning needs alt text that states the point, not the file type. "Chart" is useless; "Bar chart; signups rose from 1,200 to 2,400 after launch" conveys what a sighted viewer gets.
 - **Do not rely on color alone.** If color is the only thing distinguishing two states (green vs. red, used vs. free), viewers with color vision deficiency cannot read it. Add a label, a shape, or a pattern so the meaning survives in grayscale.
 

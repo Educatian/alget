@@ -29,6 +29,8 @@ A submission checklist is a list of concrete, testable requirements, where each 
 | --- | --- | --- |
 | Format | Correct file type (PDF, not PPTX) | Export, then open the exported file and confirm nothing shifted |
 | Access | Link is public | Open it in an incognito or signed-out window and confirm no 404 |
+
+A signed-out 404 can also mean the GitHub Pages build has not finished yet (Pages publishes via a build workflow and can lag a minute or two after a push). Wait for the build to report success under the repo's Actions tab or Pages settings, then re-run the incognito test; the live URL is the source of truth.
 | Identification | Filename follows the convention | Read the requirement, rename to match (`lastname_course_v3.pdf`) |
 | Safety | No private data or credentials | For a repo artifact, rerun the `git grep` credential scan; for a document or spreadsheet, open the file and scan for embedded keys, passwords, tokens, or personal data |
 | Correctness | No broken values | Open the file and confirm totals compute, with no `#REF!` |

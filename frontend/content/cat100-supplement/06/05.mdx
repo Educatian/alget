@@ -29,7 +29,7 @@ Effective AI-assisted debugging has three moving parts.
 
 **Write a verifiable prompt.** "Fix my site" gives the assistant nothing to verify against, so it guesses. A verifiable prompt states the symptom, includes the relevant code, and asks a specific question: "Every paragraph below my nav renders blue and underlined as if it were a link. Here is my nav block and the first paragraph. What in my markup causes this?" A prompt grounded in the symptom and the code produces suggestions you can check against reality.
 
-**Classify every suggestion: accept, modify, or reject, with a reason.** An assistant produces a mix of right, half-right, and irrelevant ideas. The discipline is to judge each one against the evidence. Accept a fix that matches the symptom. Modify a fix that is close but wrong in detail. Reject a fix that cannot apply (a CORS server config has nothing to do with a same-folder local image) or that is out of scope (rewriting everything to fix one tag). The reason is what proves the judgment was yours.
+**Classify every suggestion: accept, modify, or reject, with a reason.** An assistant produces a mix of right, half-right, and irrelevant ideas. The discipline is to judge each one against the evidence. Accept a fix that matches the symptom. Modify a fix that is close but wrong in detail. Reject a fix that cannot apply (a same-folder image loaded by a relative path is same-origin, so [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS), which governs cross-origin requests, does not apply) or that is out of scope (rewriting everything to fix one tag). The reason is what proves the judgment was yours.
 
 Whether the assistant is GitHub Copilot Chat in VS Code, ChatGPT, Claude, or Gemini, the method is the same. Model versions and behavior change frequently, so what transfers is the supervision method (read the symptom, write a verifiable prompt, classify with a reason, verify in the browser), not the specific tool.
 
@@ -154,6 +154,7 @@ Before you move on, make sure your trace links claim, evidence, tool boundary, r
 ## References
 
 - [NACE career readiness](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined)
+- MDN Web Docs: Cross-Origin Resource Sharing (CORS). https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 - [ISTE digital citizenship](https://iste.org/standards/students)
 - data-ink and visual evidence. https://www.edwardtufte.com/tufte/books_vdqi
 - [WCAG accessibility](https://www.w3.org/TR/WCAG22/)

@@ -25,7 +25,7 @@ The case shows the core lesson: the tools cannot resolve their own disagreement,
 
 The two-AI workflow is a structured comparison, not a vote. You send identical input to two independent tools, capture each critique verbatim, and then sort the results into three buckets: **agreement** (both flag the same issue, usually safe to act on), **conflict** (they contradict each other, requires your judgment), and **unique** (only one raised it, worth a deliberate decision). The value is concentrated in the conflict bucket, because that is where a single tool would have quietly steered you.
 
-The reason two tools help is that large language models are not interchangeable: they are trained on different data, tuned with different guidelines, and prompted through different interfaces, so they fail in different places. One conflict resolution principle governs the whole process:
+The reason two tools help is that large language models are not interchangeable: they are trained on different data, tuned with different guidelines, and prompted through different interfaces, so they fail in different places. The research record backs both halves of this: model outputs are non-deterministic, varying even on identical prompts (Ouyang et al., 2024), and models confidently fabricate, which is why hallucination detection is an active research field (Farquhar et al., 2024, Nature). One conflict resolution principle governs the whole process:
 
 | Situation | Who decides | On what basis |
 | --- | --- | --- |
@@ -147,6 +147,8 @@ Before you move on, check that the AI critique log showing accepted, modified, a
 ## References
 
 - [NACE career readiness](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined)
+- Farquhar, S., et al. (2024). Detecting hallucinations in large language models using semantic entropy. Nature. https://doi.org/10.1038/s41586-024-07421-0
+- Ouyang, S., et al. (2024). An empirical study of the non-determinism of ChatGPT in code generation. ACM TOSEM. https://doi.org/10.1145/3697010
 - [ISTE digital citizenship](https://iste.org/standards/students)
 - data-ink and visual evidence. https://www.edwardtufte.com/tufte/books_vdqi
 - [WCAG accessibility](https://www.w3.org/TR/WCAG22/)

@@ -4,7 +4,7 @@
 
 An AI assistant can write an Excel formula faster than you can type it, but it cannot know whether the formula is right for your data. It does not see your sheet; it only sees the words in your prompt. So the value you get from AI debugging depends almost entirely on two things you control: how precisely you describe the problem, and how rigorously you verify the answer before you trust it.
 
-This section treats AI as a fast assistant that is sometimes confidently wrong. The discipline it teaches is a loop: read the actual error code to diagnose the cause, write a prompt that names the exact cells and the behavior you want, then verify the returned formula on a row whose answer you already know. Skipping the diagnosis or the verification is how a plausible-looking AI formula ships a hidden bug.
+This section treats AI as a fast assistant that is sometimes confidently wrong; surveys of LLM hallucination document that models state incorrect facts and code with high fluency and confidence (Zhang et al., 2023), which is exactly why the known-answer-row gate below exists. The discipline it teaches is a loop: read the actual error code to diagnose the cause, write a prompt that names the exact cells and the behavior you want, then verify the returned formula on a row whose answer you already know. Skipping the diagnosis or the verification is how a plausible-looking AI formula ships a hidden bug.
 
 ## Learning Targets
 
@@ -148,7 +148,8 @@ Before you move on, check that the Excel pivot-table finding with unit labels, s
 
 ## References
 
-- [NACE career readiness](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined) (eight career-readiness competencies; current as of 2026)
+- [NACE career readiness](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined)
+- Zhang, Y., et al. (2023). Siren's song in the AI ocean: A survey on hallucination in large language models. https://doi.org/10.48550/arXiv.2309.01219 (eight career-readiness competencies; current as of 2026)
 - [ISTE digital citizenship](https://iste.org/standards/students) (ISTE Standards for Students, 2024 edition v4.02)
 - data-ink and visual evidence. https://www.edwardtufte.com/tufte/books_vdqi
 - [WCAG accessibility](https://www.w3.org/TR/WCAG22/) (WCAG 2.2, the current W3C Recommendation as of 2026)

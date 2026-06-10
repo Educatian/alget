@@ -31,7 +31,7 @@ A scenario-based dialogue has three structural moves, run in order. Skipping or 
 | NARROW | add one hard constraint at a time | length, vocabulary, format, or tone |
 | STRESS-TEST | introduce a complication | robustness when the easy case breaks |
 
-The reason for one job per turn is diagnosis. If you change three things in a single message and the reply gets worse, you cannot tell which change caused it. Isolating one move per turn means every improvement and every regression has a single visible cause. This is the same logic a programmer uses when changing one variable at a time to find a bug.
+The reason for one job per turn is diagnosis. If you change three things in a single message and the reply gets worse, you cannot tell which change caused it. Isolating one move per turn means every improvement and every regression has a single visible cause. This is the same logic a programmer uses when changing one variable at a time to find a bug, and it matches the prompting research: decomposing a complex request into sequential single-purpose steps yields better and more diagnosable model output than one all-at-once prompt (least-to-most prompting, Zhou et al., 2022; chain-of-thought, Wei et al., 2022).
 
 <inline-check question="In one message you write: 'Make it under 90 seconds, drop the jargon, and add a reassurance line for a nervous student.' The reply gets worse. What is the structural problem?" explanation="The message merges three jobs (a NARROW for length, a NARROW for vocabulary, and a STRESS-TEST for nerves) into one turn. Because three things changed at once, you cannot tell which one caused the regression. One job per turn is what gives every change a single visible cause." options='[{"text":"Three jobs changed in one turn, so no single change has a visible cause","correct":true},{"text":"The turn was too polite","correct":false},{"text":"It needed more adjectives to be specific","correct":false},{"text":"Nothing; merging jobs always speeds up the dialogue","correct":false}]'></inline-check>
 
@@ -152,6 +152,8 @@ Before you move on, check that your transcript labels each turn's job, shows a v
 ## References
 
 - [NACE career readiness](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined)
+- Zhou, D., et al. (2022). Least-to-most prompting enables complex reasoning in large language models. https://doi.org/10.48550/arXiv.2205.10625
+- Wei, J., et al. (2022). Chain-of-thought prompting elicits reasoning in large language models. NeurIPS. https://arxiv.org/abs/2201.11903
 - [ISTE digital citizenship](https://iste.org/standards/students)
 - data-ink and visual evidence. https://www.edwardtufte.com/tufte/books_vdqi
 - [WCAG accessibility](https://www.w3.org/TR/WCAG22/)

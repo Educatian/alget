@@ -27,7 +27,7 @@ AI-assisted email rests on three moves: specify, verify, and bound.
 
 **Specify.** An AI tool produces output proportional to the constraints you give it. A prompt with the recipient, course, exact request, deadline, and reason yields a sendable draft; a vague prompt yields generic filler with placeholders. The prompt is where you do the thinking; the tool handles phrasing.
 
-**Verify.** AI tools generate text that is statistically likely, not necessarily true. They will confidently produce a name or date that sounds right but is wrong. So every factual element (the greeting name, the deadline, the course number, the specific ask) gets checked against a real source before sending. Fluency is not evidence of accuracy.
+**Verify.** AI tools generate text that is statistically likely, not necessarily true. They will confidently produce a name or date that sounds right but is wrong. So every factual element (the greeting name, the deadline, the course number, the specific ask) gets checked against a real source before sending. Fluency is not evidence of accuracy; the hallucination research literature treats confidently stated false names and dates as a structural property of language models, not an occasional bug (Huang et al., 2024), which is why verification is structural, not optional.
 
 **Bound.** Some AI tools retain or train on what you type, and the default varies by tool and account tier, so unless you have confirmed otherwise, treat the prompt as potentially stored. Identifiers and sensitive details (your student ID, grades, health specifics) should never go into the prompt. You add such items by hand, privately, only if the recipient actually needs them. The boundary is decided by the data's sensitivity, not by convenience.
 
@@ -160,5 +160,6 @@ Before you move on, confirm your email passes the specificity, verification, and
 ## References
 
 - [NACE career readiness](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined)
+- Huang, L., et al. (2024). A survey on hallucination in large language models: Principles, taxonomy, challenges, and open questions. ACM TOIS. https://doi.org/10.1145/3703155
 - [ISTE digital citizenship](https://iste.org/standards/students)
 - [WCAG accessibility](https://www.w3.org/TR/WCAG22/)

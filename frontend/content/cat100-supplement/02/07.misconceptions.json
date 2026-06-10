@@ -32,6 +32,14 @@
       "trigger": "writer applies all comments verbatim or rejects all of them without reasons",
       "feedback": "Judge each comment against your goal. Act on the ones that fit, decline the rest with a reason, and log the decisions.",
       "rail_action": "practice"
+    },
+    {
+      "id": "cat100_supplement_2_7_privacy_is_paranoia",
+      "pattern": "privacy_boundary_is_overreaction",
+      "description": "Believing that treating a peer's contact block (name, address, phone, email) as sensitive data is an overreaction that slows the review down.",
+      "trigger": "learner pastes a peer's full resume, contact block included, into a third-party tool because 'it is just a resume'",
+      "feedback": "Resume PII is high-risk by the FTC's own identity-theft guidance: a name plus address and account-adjacent details is enough to open accounts, take out loans, or commit tax and employment fraud in someone else's name. Stripping the contact block before any third-party tool use is the professional norm, not paranoia.",
+      "rail_action": "explain"
     }
   ]
 }

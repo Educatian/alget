@@ -27,7 +27,7 @@ Three mechanics carry most of the weight in starter HTML and CSS.
 
 **The minimal valid document.** Every HTML page needs a small, fixed skeleton: a `<!DOCTYPE html>` line, an `<html>` element with a `lang` attribute, a `<head>` for metadata the visitor does not see (the `<title>`, the character set, the stylesheet link), and a `<body>` for the content they do see. The `<title>` lives in the head and controls the browser tab and the bookmark name; it is not visible on the page itself. Getting this skeleton right is what makes a file a web page rather than a text file.
 
-**Accessible images.** The `alt` attribute on an `<img>` is the text a screen reader announces and the text a browser shows when an image fails to load. `alt` should describe the image's content or function, not repeat the word "image." A decorative flourish can use empty `alt=""` so screen readers skip it; a meaningful photo needs a real description. [WCAG accessibility](https://www.w3.org/TR/WCAG22/) guidelines treat missing alt text on informative images as a failure, which is why this is not optional polish.
+**Accessible images.** The `alt` attribute on an `<img>` is the text a screen reader announces and the text a browser shows when an image fails to load. `alt` should describe the image's content or function, not repeat the word "image." A decorative flourish can use empty `alt=""` so screen readers skip it; a meaningful photo needs a real description. [WCAG 2.2](https://www.w3.org/TR/WCAG22/) treats missing alt text on informative images as a failure of Success Criterion 1.1.1 (Non-text Content), a Level A criterion, which is why this is not optional polish.
 
 **The cascade and specificity.** "Cascading" in CSS means rules can conflict, and the browser resolves conflicts with predictable rules. When two rules target the same element with the same specificity, the one written later wins. When specificity differs, the more specific selector wins regardless of order (an id beats a class, a class beats a bare tag). Understanding this is what separates "I changed a color and the whole page broke" from "I know exactly which rule is in charge."
 
@@ -88,6 +88,8 @@ Before you call an HTML page finished, read the markup, not the preview, against
 3. **Cascade check:** For any element you styled, can you name which rule is winning and why? If two rules target it, the later one wins at equal specificity; if you did not intend that, delete or rename one.
 
 If you cannot pass all three by reading the source, the page may look done but is not done.
+
+**You do not have to catch every issue by eye.** Run your HTML through the [W3C Markup Validation Service](https://validator.w3.org/) for structure, and a browser accessibility audit (Lighthouse in Chrome/Edge DevTools, or axe DevTools) to flag images with missing alt text. Treat their reports as evidence in your revision trace.
 
 Order the parts of a minimal valid HTML document from the outside in. Some pieces live in the head (unseen metadata) and some in the body (visible content), and the skeleton only validates when they nest in the right sequence.
 

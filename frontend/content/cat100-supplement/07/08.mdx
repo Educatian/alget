@@ -17,7 +17,7 @@ The skill matters because "it works on my machine" is not the same as "it works 
 
 ## Opening Case
 
-A student finishes a workflow write-up, pushes the files to GitHub, and visits the site URL, only to see a 404. The HTML is perfect, but the file is named `home.html`, and a web server looks for `index.html` at the root by default. They rename it, and the page appears, but the chart is a broken-image icon because the `<img>` tag points at `C:/Users/student/Desktop/chart.png`, a path that exists only on their laptop. No visitor's browser can reach the student's Desktop.
+A student finishes a workflow write-up, pushes the files to GitHub, and visits the site URL, only to see a 404. The HTML is perfect, but the file is named `home.html`, and a web server looks for `index.html` at the root by default (GitHub Pages documents that it looks for `index.html`, `index.md`, or `README.md` as the entry file; the same convention is Apache's `DirectoryIndex index.html` default). They rename it, and the page appears, but the chart is a broken-image icon because the `<img>` tag points at `C:/Users/student/Desktop/chart.png`, a path that exists only on their laptop. No visitor's browser can reach the student's Desktop.
 
 These are not coding mistakes in the usual sense; the markup is valid. They are publishing mistakes: the page assumed a local context that does not exist on the web.
 
@@ -167,6 +167,8 @@ Before you move on, confirm your site passes the root, path, and publish checks:
 ## References
 
 - [NACE career readiness](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined)
+- GitHub Docs: Creating a GitHub Pages site (entry file conventions). https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site
+- Apache HTTP Server: DirectoryIndex directive. https://httpd.apache.org/docs/2.4/mod/mod_dir.html
 - [ISTE digital citizenship](https://iste.org/standards/students)
 - data-ink and visual evidence. https://www.edwardtufte.com/tufte/books_vdqi
 - [WCAG accessibility](https://www.w3.org/TR/WCAG22/)

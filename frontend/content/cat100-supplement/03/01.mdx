@@ -6,7 +6,7 @@
 
 Every chart, pivot, and formula later in this module assumes the data underneath is clean. If the rows are not laid out the way Excel expects, nothing downstream behaves: a SUM skips numbers stored as text, a pivot splits `TX` and `texas` into two regions, and a chart inherits the mess. Clean structure is not housekeeping; it is the load-bearing step that decides whether the rest of your data story is trustworthy.
 
-A spreadsheet built for analysis follows one quiet rule called tidy data: one variable per column, one observation (record) per row, and exactly one value in each cell. Downloaded exports almost never arrive that way. They carry banner titles, merged cells, blank spacer rows, two facts crammed into one column, and three spellings of the same category. This section teaches you to spot those defects and repair them in a sequence a reader can re-trace against the original file.
+A spreadsheet built for analysis follows one quiet rule, a structure popularized as tidy data (Wickham, 2014): one variable per column, one observation (record) per row, and exactly one value in each cell. Downloaded exports almost never arrive that way. They carry banner titles, merged cells, blank spacer rows, two facts crammed into one column, and three spellings of the same category. This section teaches you to spot those defects and repair them in a sequence a reader can re-trace against the original file.
 
 ## Learning Targets
 
@@ -151,6 +151,7 @@ Before you move on, check that the Excel pivot-table finding with unit labels, s
 ## References
 
 - [NACE career readiness](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined)
+- Wickham, H. (2014). Tidy data. Journal of Statistical Software, 59(10). https://doi.org/10.18637/jss.v059.i10
 - [ISTE digital citizenship](https://iste.org/standards/students)
 - data-ink and visual evidence. https://www.edwardtufte.com/tufte/books_vdqi
 - [WCAG accessibility](https://www.w3.org/TR/WCAG22/)
