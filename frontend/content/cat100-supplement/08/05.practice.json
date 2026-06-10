@@ -76,6 +76,25 @@
       "explanation": "A closed-loop row names the suggestion, the decision, the exact edit (file and line), and the re-test, so a reviewer can verify the change happened.",
       "misconception_id": "cat100_supplement_8_5_log_no_outcome",
       "difficulty": "medium"
+    },
+    {
+      "id": "cat100_supplement_8_5_feedback_integration_log_modify_case",
+      "type": "multiple_choice",
+      "concept_id": "evidence_based_revision",
+      "stem": "A peer suggests: 'Add a total row at the bottom of your budget table.' The need is real (readers want the total), but the table scrolls and a bottom row disappears off-screen. What is the strongest log entry?",
+      "options": [
+        "Accept: implement it exactly as suggested, at the bottom.",
+        "Reject: the suggestion conflicts with the scrolling table, so the idea is unusable.",
+        "Modify: place the total where it stays visible (a pinned summary line above the table), and record that the suggestion's need was real but its placement failed the visibility constraint.",
+        "Not loggable: formatting choices do not belong in a feedback log."
+      ],
+      "correct_index": 2,
+      "explanation": "This is the Modify case: a genuine underlying need (show the total) attached to a fix that violates a constraint (a bottom row scrolls out of view). Accepting ships the flaw, rejecting loses the need; modifying implements the intent a better way and the log records the diagnosis, which is the demanding part of the judgment.",
+      "misconception_id": "cat100_supplement_8_5_modify_collapsed_to_accept_or_reject",
+      "difficulty": "hard",
+      "concept_ids": [
+        "evidence_based_revision"
+      ]
     }
   ]
 }

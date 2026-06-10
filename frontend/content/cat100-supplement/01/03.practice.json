@@ -76,6 +76,25 @@
       "explanation": "A complete log shows accepted, modified, and rejected suggestions with reasons, so a reader can audit your judgment.",
       "misconception_id": "cat100_supplement_1_3_ethobot_cat100_orientation_log_skips_rejections",
       "difficulty": "medium"
+    },
+    {
+      "id": "cat100_supplement_1_3_ethobot_cat100_orientation_modify_path",
+      "type": "multiple_choice",
+      "concept_id": "ai_supported_learning",
+      "stem": "The tutor suggests replacing your resume line 'helped organize the volunteer program' with 'managed the entire volunteer program.' You coordinated one of its three committees. Which log entry is right?",
+      "options": [
+        "Accept: the tutor's version is stronger and recruiters like strong verbs.",
+        "Reject: the suggestion touched your wording, so the whole idea is unusable.",
+        "Modify: keep the stronger verb but trim to the defensible scope, e.g. 'coordinated one of three committees in the volunteer program,' and log what you changed and why.",
+        "Accept now, and plan to soften it if anyone asks."
+      ],
+      "correct_index": 2,
+      "explanation": "The suggestion is directionally right (the original undersells) but overreaches (you did not manage the entire program). The modify move keeps the improvement while keeping the claim defensible, and the log records the trim so a reviewer can see the judgment, not just the outcome.",
+      "misconception_id": "cat100_supplement_1_3_accept_or_reject_only",
+      "difficulty": "medium",
+      "concept_ids": [
+        "ai_supported_learning"
+      ]
     }
   ]
 }

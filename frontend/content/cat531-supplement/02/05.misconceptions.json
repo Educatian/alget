@@ -24,6 +24,14 @@
       "trigger": "teacher applies a generic accommodation tied to a label without naming the task-specific barrier",
       "feedback": "Name the barrier this task creates for this student, then adapt to that barrier. Labels are not lesson plans.",
       "rail_action": "explain"
+    },
+    {
+      "id": "cat531_supplement_2_5_adapting_plans_for_learner_variability_ai_rewrite_preserves_goal",
+      "pattern": "ai_simplification_assumed_faithful",
+      "description": "Assuming an AI text simplification preserved the cognitive demand when it actually stripped out the complexity the objective asked students to analyze.",
+      "trigger": "teacher assigns an AI-simplified source without comparing its demand to the original",
+      "feedback": "Compare the adapted task's demand to the original before trusting it: easier reading is not the same thinking. If the objective asks students to analyze competing causes and the simplification removed all but one cause, the goal was quietly lowered in disguise.",
+      "rail_action": "represent"
     }
   ]
 }

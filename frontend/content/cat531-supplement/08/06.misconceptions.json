@@ -32,6 +32,14 @@
       "trigger": "memo names no data-retention boundary for student text",
       "feedback": "State the privacy boundary: confirm student text is not retained by the vendor for training.",
       "rail_action": "practice"
+    },
+    {
+      "id": "cat531_supplement_8_6_fallback_reaches_lower_target",
+      "pattern": "fallback_reaches_lower_target",
+      "description": "Offering a non-AI fallback that aims at an easier learning target, treating opt-out students as entitled to less rather than to an equivalent path.",
+      "trigger": "fallback task drops the analysis or revision demand that the AI-assisted path requires",
+      "feedback": "The fallback must reach the same learning target by other means: equivalent, not lesser. If the AI path asks students to critique and revise an argument, the fallback can use a teacher-provided exemplar to critique and revise, but it cannot downgrade to summarizing.",
+      "rail_action": "represent"
     }
   ]
 }

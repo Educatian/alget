@@ -78,6 +78,25 @@
       "explanation": "The Value Field Settings dialog controls how a field is aggregated. Choosing Average makes each region row report the mean sale instead of the sum.",
       "misconception_id": "cat100_supplement_3_4_pivot_tables_as_summaries_count_vs_sum",
       "difficulty": "medium"
+    },
+    {
+      "id": "cat100_supplement_3_4_pivot_tables_as_summaries_grand_total",
+      "type": "multiple_choice",
+      "concept_id": "cat100_supplement_pivot_tables_as_summaries",
+      "stem": "Your pivot shows West 1,200, East 550, South 150, Grand Total 1,900. A teammate reports 'our top region sold 1,900.' What is wrong?",
+      "options": [
+        "Nothing; 1,900 is the West total.",
+        "1,900 is the all-data Grand Total across every region; the top region is West at 1,200. Quoting the Grand Total as one category is a category error.",
+        "The pivot needs refreshing before any number can be quoted.",
+        "1,900 is the order count, not the sales total."
+      ],
+      "correct_index": 1,
+      "explanation": "The Grand Total row sums every category, so it can never be read as the value of one region. The top region is the largest category row (West, 1,200). Reading 1,900 as a region's sales is the Grand-Total-as-category error.",
+      "misconception_id": "cat100_supplement_3_4_pivot_tables_as_summaries_grand_total_misread",
+      "difficulty": "medium",
+      "concept_ids": [
+        "cat100_supplement_pivot_tables_as_summaries"
+      ]
     }
   ]
 }

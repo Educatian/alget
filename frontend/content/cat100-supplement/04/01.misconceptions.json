@@ -24,6 +24,14 @@
       "trigger": "learner pastes a specific homework question into the persona file",
       "feedback": "The persona defines who the AI is and stays constant. The task goes in your first message, not in the saved persona.",
       "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_4_1_knowledge_bound_is_decorative",
+      "pattern": "knowledge_bound_decorative",
+      "description": "Writing a decorative knowledge bound like 'be accurate' or 'you know all of math' instead of naming a real, checkable source the AI must work from.",
+      "trigger": "persona's KNOWLEDGE BOUND contains a quality adjective rather than a named source such as 'use the Grade 3 standards I paste'",
+      "feedback": "A bound controls the model only if it names a checkable source ('use the standards I paste below'). 'Be accurate' is decoration; the model still invents, and you have no way to test compliance. Name the source, then you can verify every claim against it.",
+      "rail_action": "represent"
     }
   ]
 }

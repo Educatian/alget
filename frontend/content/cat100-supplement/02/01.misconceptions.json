@@ -32,6 +32,14 @@
       "trigger": "learner submits a before-after pair where both versions are equally vague",
       "feedback": "Revision means new information, not new synonyms. Add what you did and how much, not just a different phrasing of \"responsible for.\"",
       "rail_action": "practice"
+    },
+    {
+      "id": "cat100_supplement_2_1_modesty_buries_evidence",
+      "pattern": "modesty_buries_evidence",
+      "description": "Believing that omitting or softening a real, defensible achievement is more honest or humble than stating it.",
+      "trigger": "learner deletes or hedges a truthful quantified accomplishment because it sounds like bragging",
+      "feedback": "The standard is truthful and specific, not quiet. If you can defend the fact against a reference check, state it plainly with its number and scope; hiding a real result is not honesty, it is lost evidence.",
+      "rail_action": "represent"
     }
   ]
 }

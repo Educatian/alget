@@ -1,12 +1,12 @@
 {
   "chapter_title": "Educational Technology Evaluation",
   "title": "Classroom Fit Matrix",
-  "description": "CAT 531 textbook section connecting classroom fit matrix to Design Tension Studio map naming a classroom value conflict and negotiated decision, reader notes, support moments, and revision evidence.",
+  "description": "CAT 531 textbook section connecting classroom fit matrix to an equity-oriented edtech evaluation matrix with gates applied above scored rows, reader notes, support moments, and revision evidence.",
   "course": "cat531-supplement",
   "chapter": "05",
   "section": "05",
   "learning_objectives": [
-    "Analyze how the Design Tension Studio map naming a classroom value conflict and negotiated decision shows a defensible decision in CAT 531.",
+    "Build an edtech evaluation matrix that applies pass-or-fail gates (privacy, accessibility, equity) before scored criteria, and record eliminated tools rather than averaging a must-have away.",
     "Distinguish artifact polish from evidence-based revision.",
     "Document a bounded AI/software support move with accepted and rejected suggestions.",
     "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible."

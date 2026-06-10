@@ -24,6 +24,14 @@
       "trigger": "log lists suggestions but the artifact and the log show no resulting edit",
       "feedback": "Close the loop. Each accepted item should point to the exact edit it produced, such as a changed cell, a renamed file, or an added HTML attribute.",
       "rail_action": "represent"
+    },
+    {
+      "id": "cat100_supplement_8_5_modify_collapsed_to_accept_or_reject",
+      "pattern": "modify_collapsed_to_accept_or_reject",
+      "description": "Treating a Modify case as a binary accept/reject, either implementing a flawed fix verbatim or discarding the genuine need underneath it.",
+      "trigger": "learner accepts a suggestion whose fix violates a constraint, or rejects it outright even though the underlying need is real",
+      "feedback": "When a suggestion names a real need but proposes the wrong fix, the strongest log entry is Modify: implement the underlying intent a better way and record why the proposed version failed. Accept ships the flaw; reject loses the need.",
+      "rail_action": "represent"
     }
   ]
 }

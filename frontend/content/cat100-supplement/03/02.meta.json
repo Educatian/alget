@@ -4,7 +4,7 @@
   "section": "02",
   "chapter_title": "Data Storytelling With Excel",
   "title": "Formulas for Everyday Analysis",
-  "description": "CAT 100 textbook section connecting formulas for everyday analysis to Excel pivot-table finding with unit labels, source note, and claim-first chart title, reader notes, support moments, and revision evidence.",
+  "description": "CAT 100 textbook section connecting formulas for everyday analysis to a spreadsheet formula trace with locked-constant labels and a bottom-row verification note, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
     "Predict how a relative, absolute ($F$1), or mixed (B$1, $A2) reference rewrites when a formula is copied down or across.",
     "Choose relative references for per-row inputs and absolute references for shared constants, and justify the lock pattern in a trace.",

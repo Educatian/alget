@@ -6,10 +6,10 @@
   "title": "Charts That Answer Questions",
   "description": "CAT 100 textbook section connecting charts that answer questions to Excel pivot-table finding with unit labels, source note, and claim-first chart title, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the Excel pivot-table finding with unit labels, source note, and claim-first chart title shows a defensible decision in CAT 100.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    "Select a chart type (bar, line, pie, scatter) that matches the question the chart must answer.",
+    "Apply the zero-baseline rule so bar and column lengths stay proportional, and recognize a truncated value axis as misleading.",
+    "Write a claim-first chart title that states the finding the chart supports.",
+    "Document a bounded AI/software support move with accepted and rejected suggestions."
   ],
   "concept_ids": [
     "cat100_supplement_data_storytelling_with_excel",

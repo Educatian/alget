@@ -27,6 +27,7 @@
         "cat100_supplement_4_6_reflection_on_teacher_judgment_artifact_signal",
         "cat100_supplement_4_6_reflection_on_teacher_judgment_annotation_signal",
         "cat100_supplement_4_6_reflection_on_teacher_judgment_ai_boundary",
-        "cat100_supplement_4_6_reflection_on_teacher_judgment_calibration"
+        "cat100_supplement_4_6_reflection_on_teacher_judgment_calibration",
+        "cat100_supplement_4_6_reflection_on_teacher_judgment_reject_row"
     ]
 }

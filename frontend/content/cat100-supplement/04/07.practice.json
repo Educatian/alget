@@ -47,16 +47,16 @@
         "ai_supported_learning",
         "cat100_supplement_evidence_collection"
       ],
-      "stem": "You have a stray screenshot that maps to no claim in your manifest. What is the strongest move?",
+      "stem": "Your AI tutor suggests strengthening your evidence package with the line 'studies show 90% of students improve.' You search and cannot find a credible source. What belongs in your decision log?",
       "options": [
-        "Keep it; more files make the portfolio look fuller.",
-        "Cut it and note that it proved nothing on its own.",
-        "Rename it 'important.png' and keep it.",
-        "Add three more screenshots to balance it."
+        "Add the line anyway; the tutor is usually right.",
+        "Record it as REJECTED, with the reason that the statistic could not be verified, and keep the row in the log.",
+        "Soften it to 'many students improve' so no source is needed.",
+        "Delete the suggestion from the log so the package stays clean."
       ],
       "correct_index": 1,
-      "explanation": "Files that back no claim are clutter; cutting them and noting why keeps the evidence honest.",
-      "misconception_id": "cat100_supplement_4_7_more_is_better",
+      "explanation": "The decision log is where AI suggestions meet evidence. A statistic with no verifiable source cannot enter the package in any wording; softening it just hides the same unverified claim. The defensible move is a logged rejection with its reason, which is itself evidence of your verification work (it ties to the 02_factcheck row).",
+      "misconception_id": "cat100_supplement_4_7_unverified_ai_claim_kept",
       "difficulty": "hard"
     },
     {

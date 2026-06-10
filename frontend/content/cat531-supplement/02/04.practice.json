@@ -75,7 +75,7 @@
       ],
       "correct_index": 1,
       "explanation": "A defensible map names the tension between an AI suggestion's appeal and its fit to the objective, records the negotiated change, and explains the rejection.",
-      "misconception_id": "cat531_supplement_2_4_comparing_ai_suggestions_to_pedagogy_activity_over_objective",
+      "misconception_id": "cat531_supplement_2_4_comparing_ai_suggestions_to_pedagogy_objective_lowered_to_fit_activity",
       "difficulty": "hard",
       "concept_ids": [
         "cat531_supplement_comparing_ai_suggestions_to_pedagogy",

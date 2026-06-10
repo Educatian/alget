@@ -6,8 +6,8 @@
   "title": "Peer Showcase Feedback",
   "description": "CAT 100 textbook section connecting peer showcase feedback to AI critique log showing accepted, modified, and rejected suggestions, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the AI critique log showing accepted, modified, and rejected suggestions shows a defensible decision in CAT 100.",
-    "Distinguish artifact polish from evidence-based revision.",
+    "Triage each showcase suggestion into accept, modify, reject, or not-loggable, and justify the decision against what the artifact means rather than who suggested it.",
+    "Reject a plausible-sounding suggestion that would misrepresent the data, and record an auditable reason (the meaning guard).",
     "Document a bounded AI/software support move with accepted and rejected suggestions.",
     "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
   ],
@@ -27,6 +27,7 @@
     "cat100_supplement_8_5_peer_showcase_feedback_artifact_signal",
     "cat100_supplement_8_5_peer_showcase_feedback_annotation_signal",
     "cat100_supplement_8_5_peer_showcase_feedback_ai_boundary",
-    "cat100_supplement_8_5_peer_showcase_feedback_calibration"
+    "cat100_supplement_8_5_peer_showcase_feedback_calibration",
+    "cat100_supplement_8_5_feedback_integration_log_modify_case"
   ]
 }

@@ -76,6 +76,25 @@
       "explanation": "A verifiable note names which slide moved, where, and the audience reason, so a reviewer can judge the storytelling decision.",
       "misconception_id": "cat100_supplement_8_2_same_deck_every_audience",
       "difficulty": "medium"
+    },
+    {
+      "id": "cat100_supplement_8_2_professional_story_across_artifacts_ai_log",
+      "type": "multiple_choice",
+      "concept_id": "ai_supported_learning",
+      "stem": "For a hiring-manager audience, an AI suggests opening your professional story deck with your full resume slide. Your log reads: 'Rejected: the manager's question is can this person do the job we posted; the opening must answer that with the strongest matching artifact, not a document they already have.' What makes this a strong bounded-AI move?",
+      "options": [
+        "It rejects the AI, and rejecting AI suggestions is always the safer call.",
+        "It records the decision and ties the reason to the named audience's question, so a reviewer can audit why the suggestion failed.",
+        "It is polite to the AI while still ignoring it.",
+        "It shows the deck was made without AI involvement."
+      ],
+      "correct_index": 1,
+      "explanation": "A bounded AI move is not about accepting or rejecting per se; it is about the documented judgment. The log names the suggestion, the call, and a reason anchored in the audience question, which is exactly what lets someone else verify the decision was principled rather than reflexive.",
+      "misconception_id": "cat100_supplement_8_2_accept_all_ai_suggestions",
+      "difficulty": "medium",
+      "concept_ids": [
+        "ai_supported_learning"
+      ]
     }
   ]
 }

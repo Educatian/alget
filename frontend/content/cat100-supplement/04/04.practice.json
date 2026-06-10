@@ -56,7 +56,7 @@
       ],
       "correct_index": 1,
       "explanation": "Rejecting against an already-passing field and recording the reason is the evidence trace.",
-      "misconception_id": "cat100_supplement_4_4_no_concrete_fact",
+      "misconception_id": "cat100_supplement_4_4_disproportionate_tone",
       "difficulty": "hard"
     },
     {

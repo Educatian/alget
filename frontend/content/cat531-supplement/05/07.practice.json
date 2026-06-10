@@ -81,6 +81,24 @@
         "evidence_based_revision",
         "peer_review"
       ]
+    },
+    {
+      "id": "cat531_supplement_5_7_peer_review_of_evaluation_briefs_closure",
+      "type": "multiple_choice",
+      "concept_id": "evidence_based_revision",
+      "stem": "A brief concludes 'the discussion tool supports equitable participation for quiet students,' and its evidence is that total posting volume rose 40%. Your review names the construct mismatch. Which specific evidence closes it?",
+      "options": [
+        "A larger rise in total posts next term, to confirm the trend.",
+        "A per-student distribution of posts, showing whether quiet students participate more rather than a few students driving the total.",
+        "A restatement of the conclusion with a citation to the vendor's whitepaper.",
+        "Screenshots of the busiest discussion threads."
+      ],
+      "correct_index": 1,
+      "explanation": "Total volume is blind to who is posting: three prolific students can produce the whole increase. The construct is equity of participation, so the closing evidence must show the distribution across students. More aggregate volume, restated conclusions, or vivid examples measure activity, not equity.",
+      "difficulty": "hard",
+      "concept_ids": [
+        "evidence_based_revision"
+      ]
     }
   ]
 }

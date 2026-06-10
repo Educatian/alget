@@ -76,6 +76,25 @@
       "explanation": "An honestly flagged gap routes you to the right practice. A false all-clear hides exactly the skill you most need to build.",
       "misconception_id": "cat100_supplement_1_8_module_1_readiness_studio_gaps_left_unmarked",
       "difficulty": "medium"
+    },
+    {
+      "id": "cat100_supplement_1_8_module_1_readiness_studio_recheck",
+      "type": "multiple_choice",
+      "concept_id": "evidence_based_revision",
+      "stem": "Your readiness checklist flagged 'no two-factor authentication' as a gap. You just walked through your account's 2FA setup screens. Can you mark the privacy row 'pass'?",
+      "options": [
+        "Yes; you performed the fix, so the gap is closed.",
+        "Not yet: re-open the account's security settings and confirm 2FA is actually showing as enabled before the row earns its pass.",
+        "Yes, as long as you note the date you made the change.",
+        "No; privacy rows can never be marked pass."
+      ],
+      "correct_index": 1,
+      "explanation": "The distinctive failure of checklist work is fixing a gap and forgetting to re-inspect it. Setup flows fail silently (an unconfirmed code, an unsaved toggle), so the loop closes only when the artifact itself shows the fixed state. Inspect, fix, re-inspect.",
+      "misconception_id": "cat100_supplement_1_8_module_1_readiness_studio_fix_without_recheck",
+      "difficulty": "easy",
+      "concept_ids": [
+        "evidence_based_revision"
+      ]
     }
   ]
 }

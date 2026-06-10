@@ -1,0 +1,58 @@
+{
+  "cat100/05/08": {
+    "los": [
+      "Sequence and integrate the six presentation layers (purpose, structure, media, narration, citation, accessibility) in dependency order, justifying why each check must precede or follow another.",
+      "Distinguish artifact polish from evidence-based revision when running the layered checks on a finished deck.",
+      "Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    ]
+  },
+  "cat100/06/01": {
+    "los": [
+      "Write a one-sentence purpose statement ([audience] + [single job]) and use it to rank candidate pages.",
+      "Apply the task, reach, and empty checks to keep, promote, or cut each candidate page within the click budget.",
+      "Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    ]
+  },
+  "cat100/06/03": {
+    "los": [
+      "Predict whether a given repository name publishes at the root user-site URL (username.github.io) or at a /repo subpath.",
+      "Explain why a committed credential must be rotated, not just deleted, and how .gitignore prevents the exposure in the first place.",
+      "Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    ]
+  },
+  "cat100/06/07": {
+    "los": [
+      "Design a maintenance plan that is triggered (a concrete date or event), specific enough to verify, and matched to a static GitHub Pages platform.",
+      "Distinguish artifact polish from evidence-based revision.",
+      "Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "Use feedback, support requests, and revision notes to improve the maintenance plan before sharing it."
+    ]
+  },
+  "cat100/07/07": {
+    "los": [
+      "Rank tasks by weekly cost (frequency times duration) to identify the true highest-cost target rather than the task that feels worst.",
+      "Convert a felt improvement into a measured one using a before/after baseline of time and error rate.",
+      "Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    ]
+  },
+  "cat100/08/05": {
+    "los": [
+      "Triage each showcase suggestion into accept, modify, reject, or not-loggable, and justify the decision against what the artifact means rather than who suggested it.",
+      "Reject a plausible-sounding suggestion that would misrepresent the data, and record an auditable reason (the meaning guard).",
+      "Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    ]
+  },
+  "cat100/08/07": {
+    "los": [
+      "Translate each literal assignment requirement into a testable checklist row with a pass condition.",
+      "Verify each row from the recipient's position, such as loading links in a signed-out window and opening the exported file you actually submitted.",
+      "Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    ]
+  }
+}

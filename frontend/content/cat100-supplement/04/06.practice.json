@@ -78,6 +78,25 @@
       "explanation": "A visible accept/override ratio lets a reader gauge how much independent judgment occurred.",
       "misconception_id": "cat100_supplement_4_6_only_accepts",
       "difficulty": "medium"
+    },
+    {
+      "id": "cat100_supplement_4_6_reflection_on_teacher_judgment_reject_row",
+      "type": "multiple_choice",
+      "concept_id": "ai_supported_learning",
+      "stem": "While you compile your decision log, the AI offers to add a confident-sounding summary line you did not ask for: 'Overall, my judgments consistently outperformed the AI's suggestions.' What is the strongest log entry?",
+      "options": [
+        "ACCEPT it; a confident summary polishes the log.",
+        "OVERRIDE it by toning the wording down slightly.",
+        "REJECT it, with the reason: an unrequested self-congratulatory summary would hide the actual accept/override ratio the log exists to show.",
+        "Leave it out silently; unrequested suggestions do not belong in the log."
+      ],
+      "correct_index": 2,
+      "explanation": "The log's evidence is the pattern of decisions, including rejections. A flattering summary you did not ask for is itself a suggestion that must be judged, and it fails: it asserts a conclusion the rows may not support. Logging the rejection, with its reason, is what makes the judgment visible; silent omission erases the decision.",
+      "misconception_id": "cat100_supplement_4_6_reject_not_logged",
+      "difficulty": "hard",
+      "concept_ids": [
+        "ai_supported_learning"
+      ]
     }
   ]
 }

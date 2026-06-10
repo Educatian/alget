@@ -24,6 +24,22 @@
       "trigger": "learner asks AI to produce the data story rather than review it",
       "feedback": "Keep the data and the claim yours. Use AI to critique a draft against your real numbers, accepting or rejecting each suggestion with reasons.",
       "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_3_8_module_3_data_story_studio_polish_before_reconcile",
+      "pattern": "format_before_reconcile",
+      "description": "Spending formatting effort on a polished slide before running the three-way match, which makes a wrong story look more credible.",
+      "trigger": "learner styles the chart and headline before confirming headline, pivot cell, and bar height agree",
+      "feedback": "Reconcile first, format last. A crisp chart can still carry a stale-pivot mismatch, and polish makes the wrong number more persuasive, not more correct. Run the headline=pivot=bar check, then style.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "cat100_supplement_3_8_module_3_data_story_studio_integration_assumed",
+      "pattern": "integration_assumed_from_parts",
+      "description": "Assuming that because each pipeline stage (clean, pivot, chart, narrate) worked alone, the assembled pipeline works together.",
+      "trigger": "learner skips end-to-end checks after assembling individually verified stages",
+      "feedback": "Integration introduces failures no single stage could: a refreshed pivot feeding a stale chart, a headline written from an earlier draft. Verify the assembled story end to end, not just each part in isolation.",
+      "rail_action": "explain"
     }
   ]
 }

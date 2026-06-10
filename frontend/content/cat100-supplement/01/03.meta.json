@@ -27,6 +27,7 @@
     "cat100_supplement_1_3_ethobot_cat100_orientation_artifact_signal",
     "cat100_supplement_1_3_ethobot_cat100_orientation_annotation_signal",
     "cat100_supplement_1_3_ethobot_cat100_orientation_ai_boundary",
-    "cat100_supplement_1_3_ethobot_cat100_orientation_calibration"
+    "cat100_supplement_1_3_ethobot_cat100_orientation_calibration",
+    "cat100_supplement_1_3_ethobot_cat100_orientation_modify_path"
   ]
 }

@@ -24,6 +24,14 @@
       "trigger": "message asks the reader to do nothing specific by no specific time",
       "feedback": "State exactly what you want the reader to do and by when. 'At some point' is not an action the reader can take.",
       "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_4_4_disproportionate_tone",
+      "pattern": "urgency_to_seem_responsible",
+      "description": "Adding alarming or urgent wording ('this is urgent and serious') to seem diligent, which fails the proportion check by alarming the reader without adding a fact.",
+      "trigger": "the wording's intensity exceeds the actual stakes of the message",
+      "feedback": "Concreteness, not intensity, is what makes a message land. The proportion check asks whether the tone matches the stakes: a routine reminder written as an emergency costs you credibility and buries the one fact and the one action the reader needs.",
+      "rail_action": "explain"
     }
   ]
 }

@@ -81,6 +81,25 @@
         "cat531_supplement_low_tech_fallbacks",
         "evidence_based_revision"
       ]
+    },
+    {
+      "id": "cat531_supplement_8_6_ai_use_policies_and_fallbacks_equivalence",
+      "type": "multiple_choice",
+      "concept_id": "evidence_based_revision",
+      "stem": "Your AI-assisted task: students generate an argument draft with a chatbot, then critique and revise it against the rubric. Two families opt out. Which fallback is defensible?",
+      "options": [
+        "Have opt-out students summarize the textbook chapter instead, since they cannot generate a draft.",
+        "Give opt-out students a teacher-provided draft to critique and revise against the same rubric, so they practice the same target without the AI step.",
+        "Excuse opt-out students from the assignment.",
+        "Require opt-out students to watch classmates use the chatbot."
+      ],
+      "correct_index": 1,
+      "explanation": "The learning target is critiquing and revising an argument against the rubric; the chatbot is only the draft source. A teacher-provided draft preserves the same cognitive work, making the fallback equivalent. Summarizing reaches a lower target, excusal reaches none, and watching others is not doing the work.",
+      "misconception_id": "cat531_supplement_8_6_fallback_reaches_lower_target",
+      "difficulty": "hard",
+      "concept_ids": [
+        "evidence_based_revision"
+      ]
     }
   ]
 }
