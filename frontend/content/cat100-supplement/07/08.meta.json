@@ -6,10 +6,10 @@
   "title": "Workflow Studio",
   "description": "CAT 100 textbook section connecting workflow studio to published workflow site with revision trace, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the published workflow site with revision trace shows a defensible decision in CAT 100.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    "Name the homepage `index.html` so the site resolves at its root instead of returning a 404.",
+    "Use relative image paths so images load for every visitor, not just on your computer.",
+    "Enable publishing in the host's settings, since pushing files alone does not make a site live.",
+    "Close every HTML tag so the browser renders the content as intended."
   ],
   "concept_ids": [
     "cat100_supplement_productivity_and_workflow_automation",
@@ -30,4 +30,3 @@
     "cat100_supplement_7_8_workflow_studio_calibration"
   ]
 }
-

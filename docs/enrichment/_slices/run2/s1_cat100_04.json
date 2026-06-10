@@ -1,0 +1,193 @@
+[
+ {
+  "type": "evidence_add",
+  "gap": "The central claim 'A persona is a system prompt: text that defines the assistant's standing instructions before any task' (line 26) is stated as fact with no source. The system-prompt vs user-prompt distinction and the value of saved instructions are well-documented by current model providers; grounding this matches the course's evidence-first ethos and can replace the irrelevant Tufte cite.",
+  "proposed_change": "Add one citation to a current provider doc on system prompts / custom instructions inline near line 26 and to the References list, supporting the 'persona = system prompt / standing instructions' claim. The OpenAI Custom Instructions help-center page directly substantiates the 'standing instructions applied before/across every conversation' framing; optionally add Shanahan (2023, Nature) for a peer-reviewed grounding of the role/persona framing. Both verified to support the claim.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\04\\01.mdx, Core Concept (line 26) and References list",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "OpenAI Help Center, 'ChatGPT Custom Instructions' (accessed 2026)",
+    "url_or_doi": "https://help.openai.com/en/articles/8096356-chatgpt-custom-instructions",
+    "finding": "Custom instructions let you add standing preferences/requirements that the model considers every time it responds, applied to all conversations without re-stating; this provider doc grounds 'persona = standing instructions before any task.'"
+   },
+   {
+    "cite": "Shanahan, M. (2023) 'Role play with large language models', Nature",
+    "url_or_doi": "https://doi.org/10.1038/s41586-023-06647-8",
+    "finding": "Peer-reviewed (Nature) account of how an LLM's behavior is set by a role/persona framing supplied in instructions, supporting the conceptual claim that a persona functions as standing role instructions (cited_by ~378)."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/04/01",
+  "op_index": 2
+ },
+ {
+  "type": "new_callout",
+  "gap": "The Transfer Case (lines 124-126) handles a privacy-stricter setting well, but never names the broader 2026 reality: institutional AI-use / academic-integrity policies and disclosure norms. A learner building a persona for coursework should be reminded that a real institution may require an AI-use disclosure even when the persona forbids pasting student data.",
+  "proposed_change": "Add a short 'Recent Evidence / Real-World Constraint' callout after the Transfer Case (after line 126) linking the persona's HARD STOP (no student records) to the institution's own AI-use and FERPA-style data-handling expectations, and pointing forward to the Ch1 responsible-AI-use and Ch8 AI-disclosure-portfolio threads. Verified current: as of 2026 disclosure has become the standard institutional posture, and faculty guidance broadly forbids entering student names/grades/identifiable work into public generative-AI tools (FERPA), so both the disclosure reminder and the HARD-STOP/no-student-records link are accurate to name.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\04\\01.mdx, after Transfer Case (line 126) as a new callout",
+  "priority": "low",
+  "sources": [
+   {
+    "cite": "Northern Michigan University CTL, 'Understanding FERPA in the Context of Generative AI: A Guide for Faculty' (accessed 2026)",
+    "url_or_doi": "https://nmu.edu/ctl/understanding-ferpa-context-generative-ai-guide-faculty",
+    "finding": "Faculty are advised not to input student information (names, grades, identifiable content) into public generative-AI platforms; doing so without consent can violate FERPA. Directly supports tying the persona HARD STOP (no student records) to institutional FERPA-style data-handling expectations."
+   },
+   {
+    "cite": "Azevedo et al. (2025), 'Institutional Policies on Artificial Intelligence in Higher Education', New Directions for Adult and Continuing Education (Wiley)",
+    "url_or_doi": "https://doi.org/10.1002/ace.70013",
+    "finding": "Peer-reviewed account that institutions recommend faculty disclose when/how AI is used and have moved (since 2025) to framework-based policies with course-level disclosure requirements. Grounds the 'a real institution may require an AI-use disclosure' reminder."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/04/01",
+  "op_index": 6
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The core diagnostic claim ('change one variable at a time so every change has a single visible cause', the one-job-per-turn rule, and the programmer-debugging analogy on line 34) is asserted without any source, in a course that explicitly values evidence-grounding. Real literature on prompt decomposition / step-by-step prompting improving LLM outputs would strengthen the claim that single-job turns beat one monolithic prompt.",
+  "proposed_change": "Add a brief 'Recent Evidence' callout after the one-variable-at-a-time sentence (line 34) citing prompt-decomposition / step-by-step prompting work showing that breaking a complex task into sequential single-purpose steps yields better, more diagnosable LLM output than one all-at-once prompt. Frame the one-factor-at-a-time / debugging-isolation analogy as a controlled-experiment principle (isolate one change to attribute the effect); the scholarly anchor for the LLM half is decomposition/CoT, and the OFAT half can stay as the everyday controlled-change analogy already in the text.",
+  "where_to_apply": "02.mdx '## Core Concept', new short callout after the one-variable-at-a-time / debugging sentence on line 34",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "Zhou, D. et al. (2022) Least-to-Most Prompting Enables Complex Reasoning in Large Language Models",
+    "url_or_doi": "https://doi.org/10.48550/arXiv.2205.10625",
+    "finding": "Decomposing a complex problem into a sequence of simpler subproblems solved in order sharply improves accuracy (e.g. SCAN ~99% vs ~16% for chain-of-thought), directly supporting the claim that single-job sequential turns beat one monolithic prompt."
+   },
+   {
+    "cite": "Wei, J. et al. (2022) Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (NeurIPS)",
+    "url_or_doi": "https://arxiv.org/abs/2201.11903",
+    "finding": "Prompting an LLM to produce a series of intermediate, step-by-step reasoning steps significantly improves performance on arithmetic, commonsense, and symbolic reasoning tasks, grounding the 'step-by-step / one-job-at-a-time prompting improves reliability' claim."
+   },
+   {
+    "cite": "Wang, L. et al. (2023) Plan-and-Solve Prompting (ACL 2023)",
+    "url_or_doi": "https://doi.org/10.18653/v1/2023.acl-long.147",
+    "finding": "Explicitly planning then solving a task in separated steps improves zero-shot reasoning across multiple benchmarks, reinforcing that structuring a task into distinct sequential moves outperforms an undecomposed single prompt."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/04/02",
+  "op_index": 3
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The central empirical premise in 04.mdx line 7, that AI 'defaults to vague, hedged drafts ... because vagueness is the safe statistical average of all the emails they have seen', and the repeat at line 35 ('the model knows the genre ... but not the dates ... so it hedges'), is stated as fact but is an unsourced characterization of LLM behavior in a course that values evidence-grounding.",
+  "proposed_change": "Add one brief grounding clause/footnote in 'Why This Section Matters' (line 7) or 'Core Concept' (line 35) and soften 'statistical average of all the emails they have seen' to a defensible phrasing: models are trained to produce fluent, generic text and tend to hedge or avoid committing to specifics when they lack the concrete grounding facts. This is supported by research on LLMs' reluctance to express/commit calibrated uncertainty.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\04\\04.mdx line 7 ('Why This Section Matters') and/or line 35 ('Core Concept' hedging sentence)",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "Zhou, Kaitlyn et al. (2024) Relying on the Unreliable: The Impact of Language Models' Reluctance to Express Uncertainty (ACL 2024)",
+    "url_or_doi": "https://doi.org/10.18653/v1/2024.acl-long.198",
+    "finding": "Documents that LLMs are reluctant to express uncertainty and default to confident-but-generic phrasing, supporting the reframe that models hedge/produce safe generic text rather than committing to specifics they lack."
+   },
+   {
+    "cite": "Zhou, Kaitlyn et al. (2023) Navigating the Grey Area: How Expressions of Uncertainty and Overconfidence Affect Language Models (EMNLP 2023)",
+    "url_or_doi": "https://doi.org/10.18653/v1/2023.emnlp-main.335",
+    "finding": "Studies how uncertainty/overconfidence expressions shape model output, grounding the claim that LLMs tend toward generic, hedged wording absent concrete grounding."
+   },
+   {
+    "cite": "Zhang, Yue et al. (2025) Siren's Song in the AI Ocean: A Survey on Hallucination in Large Language Models (Computational Linguistics)",
+    "url_or_doi": "https://doi.org/10.1162/coli.a.16",
+    "finding": "Survey establishing that LLMs lack the specific factual grounding for a given case and fill gaps with plausible-but-unsupported generic content, supporting 'knows the genre but not the dates' reframed as missing case-specific facts."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/04/04",
+  "op_index": 2
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The section's core move -- distinguishing observable behavior from inferred internal cause ('you can see the score, not whether the child studied'; replace inferred cause with observed fact) -- is presented as the author's framing with no source, although it is a well-established principle (fundamental attribution error / dispositional-vs-situational attribution; behavior-specific feedback).",
+  "proposed_change": "Add a short 'Recent Evidence' callout or footnote near the 'Core Concept' table grounding the unobservable-cause -> observed-fact move. Frame it as: writers default to dispositional explanations they cannot verify (the correspondence bias / fundamental attribution error), and behavior-specific feedback research shows that naming the observable behavior is both fairer and more actionable than a trait label.",
+  "where_to_apply": "05.mdx after the '## Core Concept' table, in the paragraph beginning 'The deepest of these is the unobservable cause' (around line 35)",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "Gawronski, B. (2004). Theory-based bias correction in dispositional inference: The fundamental attribution error is dead, long live the correspondence bias. European Review of Social Psychology",
+    "url_or_doi": "https://doi.org/10.1080/10463280440000026",
+    "finding": "Establishes the well-documented human tendency (correspondence bias / fundamental attribution error) to infer stable dispositional causes (e.g. 'didn't study,' 'lazy') from behavior while underweighting situational information the observer cannot verify -- grounding the 'unobservable cause' category."
+   },
+   {
+    "cite": "Sutherland, K. S., Wehby, J. H., & Copeland, S. R. (2000). Effect of varying rates of behavior-specific praise on the on-task behavior of students with EBD. Journal of Emotional and Behavioral Disorders",
+    "url_or_doi": "https://doi.org/10.1177/106342660000800101",
+    "finding": "Demonstrates that feedback naming a specific observable behavior (vs. a general or character-level statement) produces measurable, actionable change -- supporting 'name the observable behavior is both fairer and more actionable.'"
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/04/05",
+  "op_index": 1
+ },
+ {
+  "type": "evidence_add",
+  "gap": "NACE and ISTE are cited only as bare landing-page links in Adaptive Support and References; no specific competency or standard is named, so alignment is asserted rather than shown, and wording may be stale.",
+  "proposed_change": "Name the specific NACE competency this section develops (Communication; arguably Equity & Inclusion for the audience/bias work) and the specific ISTE Student standard. NOTE: the opportunity proposed '2.2.b' but the current 2024 ISTE Standards for Students number Digital Citizen as standard 1.2 with indicator 1.2.b ('engage in positive, safe, legal, and ethical behavior when using technology, including social interactions online'). Cite NACE 'Communication' (and optionally 'Equity & Inclusion') and ISTE '1.2.b Digital Citizen' rather than linking landing pages generically.",
+  "where_to_apply": "05.mdx '## Adaptive Support' bullets (lines 139, 144) and '## References' (lines 158-159)",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "NACE (2024). Career Readiness Competencies (revised Apr 2024)",
+    "url_or_doi": "https://www.naceweb.org/docs/default-source/default-document-library/2024/resources/nace-career-readiness-competencies-revised-apr-2024.pdf",
+    "finding": "Current NACE set is 8 competencies: Career & Self-Development, Communication, Critical Thinking, Equity & Inclusion, Leadership, Professionalism, Teamwork, Technology. Confirms 'Communication' and 'Equity & Inclusion' exist verbatim -- both nameable for this section's audience/bias work."
+   },
+   {
+    "cite": "ISTE Standards for Students (2024 edition), Standard 1.2 Digital Citizen, indicator 1.2.b",
+    "url_or_doi": "https://iste.org/standards/students",
+    "finding": "Digital Citizen is standard 1.2; indicator 1.2.b reads 'engage in positive, safe, legal, and ethical behavior when using technology, including social interactions online or networked devices.' The opportunity's '2.2.b' is outdated/incorrect numbering; current citation is 1.2.b."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/04/05",
+  "op_index": 3
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The core claim driving the whole section -- that descriptive/structured file naming and a manifest/README reduce reviewer effort and lost credit -- is asserted from intuition with no source (Core Concept lines 26-37, Why This Section Matters lines 7-9). The course values evidence-grounding and cites NACE/ISTE/Tufte/WCAG elsewhere, so this load-bearing claim is under-supported.",
+  "proposed_change": "Add a one-line citation to recognized research-data-management / findability guidance: (a) the canonical FAIR principles paper (Wilkinson et al., 2016) for the 'findable' principle behind descriptive naming + documentation, and (b) a university-library RDM file-naming/README guide (e.g. Harvard Medical School Data Management, or UBC Library RDM). Place in References (after line 161) plus an inline tie-in at the manifest/README claim (line 37 / lines 113) noting that descriptive naming + a README manifest is standard RDM practice that makes a file set findable and verifiable.",
+  "where_to_apply": "07.mdx References (after line 161) + Core Concept manifest/README claim (line 37) or Stronger Artifact Standard (line 113)",
+  "priority": "low",
+  "sources": [
+   {
+    "cite": "Wilkinson, M. D., et al. (2016) The FAIR Guiding Principles for scientific data management and stewardship. Scientific Data 3:160018",
+    "url_or_doi": "https://doi.org/10.1038/sdata.2016.18",
+    "finding": "Canonical (17,000+ citations) statement that data should be Findable, Accessible, Interoperable, Reusable; 'Findable' requires rich, descriptive metadata and identifiers -- the scholarly grounding for descriptive naming + a manifest making a file set findable/verifiable."
+   },
+   {
+    "cite": "Harvard Medical School Data Management, File Naming Conventions (RDM guide, accessed 2026)",
+    "url_or_doi": "https://datamanagement.hms.harvard.edu/plan-design/file-naming-conventions",
+    "finding": "Standard RDM guidance that file names should be unique, descriptive, consistent, zero-padded/sequenced (01-99) and dated (ISO 8601 YYYY-MM-DD), with a README describing the naming scheme -- directly supports the section's numbered-prefix + README manifest practice."
+   },
+   {
+    "cite": "UBC Library Research Commons, File Naming (Research Data Management, accessed 2026)",
+    "url_or_doi": "https://ubc-library-rc.github.io/rdm/content/01_file_naming.html",
+    "finding": "Library RDM guidance that descriptive, consistently-applied file names plus a README documenting the convention let others (and reviewers) locate and interpret files without opening each one -- corroborates the reviewer-effort/findability claim."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/04/07",
+  "op_index": 6
+ },
+ {
+  "type": "evidence_add",
+  "gap": "References (08.mdx line 173) include an orphan Tufte entry ('data-ink and visual evidence. https://www.edwardtufte.com/tufte/books_vdqi') with zero connection to this section (no charts/data-ink anywhere in the body); it is a leftover from a data-storytelling template. WCAG (line 35, line 89, line 174) is invoked for 'semantic markup' in an HTML section that, post-re-theme, will not be about markup.",
+  "proposed_change": "Remove the orphan Tufte reference. After re-theming, replace WCAG-as-semantic-markup framing with Ch4-appropriate anchors: ISTE digital-citizenship (already cited, line 172) for critically evaluating AI advice, plus NACE communication/critical-thinking competencies (already cited, line 171) for audience-appropriate teaching communication. Add a scholarly anchor for the critical-evaluation/AI-literacy construct. Keep only references actually cited in the body.",
+  "where_to_apply": "08.mdx References section (Tufte line 173) and WCAG citations in Core Concept (line 35) + step-reveal (line 89)",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Walter (2024), Embracing the Future of Artificial Intelligence in the Classroom, International Journal of Educational Technology in Higher Education",
+    "url_or_doi": "https://doi.org/10.1186/s41239-024-00448-3",
+    "finding": "Identifies AI literacy as crucial and stresses developing critical-thinking skills (not just prompt engineering); supports replacing the Tufte/WCAG-markup anchors with a critical-evaluation-of-AI anchor."
+   },
+   {
+    "cite": "Chan (2023), Students' Voices on Generative AI: Perceptions, Benefits, and Challenges, International Journal of Educational Technology in Higher Education",
+    "url_or_doi": "https://doi.org/10.1186/s41239-023-00411-8",
+    "finding": "Documents student concerns over GenAI accuracy and ethics, grounding the Ch4 emphasis on checking AI pedagogical advice rather than HTML semantic markup."
+   }
+  ],
+  "section_key": "cat100/04/08",
+  "op_index": 3
+ }
+]

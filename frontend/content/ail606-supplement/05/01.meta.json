@@ -3,10 +3,10 @@
   "title": "From Rationale to Testable Hypotheses",
   "description": "AIL 606 textbook section connecting from rationale to testable hypotheses to moderated usability test script with observation-to-revision trace, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the moderated usability test script with observation-to-revision trace shows a defensible decision in AIL 606.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    "Convert a design rationale into a falsifiable, directional hypothesis with an observable outcome and a stated threshold.",
+    "Distinguish a prediction the session can disconfirm from a goal it can only restate.",
+    "Ground each hypothesis in a named mechanism (for example, an extraneous-load reduction) so the test checks a theory, not a preference.",
+    "Decide when a result should revise the design and when it should revise the rationale."
   ],
   "concept_ids": [
     "ail606_supplement_usability_testing_and_learning_evidence",

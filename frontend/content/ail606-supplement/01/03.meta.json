@@ -3,8 +3,8 @@
   "title": "Cognitive Load Diagnosis",
   "description": "AIL 606 textbook section connecting cognitive load diagnosis to cognitive load diagnosis table with intrinsic/extraneous/germane load evidence, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence shows a defensible decision in AIL 606.",
-    "Distinguish artifact polish from evidence-based revision.",
+    "Decompose a single difficulty into intrinsic, extraneous, and germane components.",
+    "Estimate element interactivity for a named learner and tie it to a revision.",
     "Document a bounded AI/software support move with accepted and rejected suggestions.",
     "Use annotations, support requests, and revision notes to decide what help or design change should come next."
   ],

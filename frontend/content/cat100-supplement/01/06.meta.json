@@ -6,10 +6,10 @@
   "title": "Accessibility Basics",
   "description": "CAT 100 textbook section connecting accessibility basics to accessibility revision pass, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the accessibility revision pass shows a defensible decision in CAT 100.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    "Write alt text that conveys an image's meaning, not just its file name.",
+    "Use real heading styles so assistive technology can navigate the structure.",
+    "Ensure no information is carried by color alone.",
+    "Check text contrast against the [WCAG](https://www.w3.org/TR/WCAG22/) threshold and fix failures."
   ],
   "concept_ids": [
     "cat100_supplement_digital_citizenship_and_ai_readiness",
@@ -30,4 +30,3 @@
     "cat100_supplement_1_6_accessibility_basics_calibration"
   ]
 }
-

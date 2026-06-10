@@ -1,0 +1,54 @@
+[
+ {
+  "type": "assessment_align",
+  "gap": "Artifact/content mismatch undermines constructive alignment. The entire body (title, Why-This-Matters, Learning Targets, Worked Example, Walkthrough, Final Check) teaches TECHNOLOGY OBSERVATION NOTES and explicitly targets 'Produce a note set a second observer could use to reach an independent conclusion.' But the Artifact Studio block, the downloadable packet, the Adaptive Support compare-move, the dynamic-scenario, and all four meta.json learning_objectives instead point to the 'Design Tension Studio map naming a classroom value conflict and negotiated decision.' A learner is taught observation notes and then asked to produce a tension map. The natural CAT531 artifact here is the field-placement technology observation note (low-inference record), not the DTS map.",
+  "proposed_change": "Reconcile the artifact to the section content. Either (a) change the ArtifactStudio artifact, the download link label, the Adaptive Support compare line, the dynamic-scenario prompt, and meta.json learning_objectives 1+3 to reference a 'technology observation note (low-inference record + access-distribution + deleted AI-added claim)', OR (b) if the DTS map must remain the course-default artifact, add one bridging sentence in Artifact Studio explaining that the observation note is the EVIDENCE INPUT feeding the tension map. Option (a) is the honest fix given the body. Update meta.json LO1 from the byte-identical DTS template to a section-specific objective about producing a verifiable observation record.",
+  "needs_research": false,
+  "where_to_apply": "03.mdx '## Artifact Studio' block (artifact-studio tag, download link line 115), '## Adaptive Support' compare bullet (line 126) and dynamic-scenario (line 130); 03.meta.json learning_objectives[0] and [2], description field",
+  "priority": "high",
+  "section_key": "cat531/07/03",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The section is about gathering, disaggregating, and acting on student-voice/exit-form data, but the assigned ArtifactStudio artifact is the generic default 'Design Tension Studio map naming a classroom value conflict and negotiated decision.' That artifact (a value-conflict negotiation map) does not match the section's actual work product: a disaggregated exit-form analysis showing a minority signal -> concrete change -> report-back. The 'Stronger Artifact Standard' prose explicitly describes a student-voice artifact ('show the disaggregated data, not just the average, and name the change the feedback produced'), which the DTS map does not capture. This is the single largest gap and directly instantiates the NOVELTY brief's Move R-7 (differentiation must become discipline-specific work-product scoring).",
+  "proposed_change": "Replace the artifact with a section-specific 'student voice / disaggregated exit-form trace' artifact: a before/after record showing (1) the collection method (anonymous + specific), (2) the disaggregated subgroup table (not just the average), (3) the AI-theming check (which critical comments were dropped/restored), (4) the concrete lesson change, and (5) the report-back to students. Update the artifact-studio component's artifact attribute, the download link/filename, the 'Open the studio packet' line, and the Adaptive Support 'compare a weak and strong version of [artifact]' references to name this voice artifact instead of the DTS map.",
+  "needs_research": false,
+  "where_to_apply": "05.mdx Artifact Studio section (artifact-studio component artifact attribute + download link line) and Adaptive Support block; 05.meta.json learning_objectives[0] and description; create/rename 05.practice/misconception references consistently",
+  "priority": "high",
+  "section_key": "cat531/07/05",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "meta.json learning_objectives are the template-stamped homogenized set (objectives 2-4 are byte-identical to every other section; objective 1 only varies by artifact name). They reference 'Design Tension Studio map' and generic 'bounded AI/software support move,' and do not align with the genuinely section-specific 'Learning Targets' in the MDX (distinguish performative feedback from decision-changing feedback; gather voice so dissent survives; refuse to average a subgroup away; close the loop). Weak constructive alignment between meta objectives and actual content/practice.",
+  "proposed_change": "Rewrite meta.json learning_objectives to mirror the four MDX Learning Targets, which already align tightly to the four practice problems (artifact_signal->performative vs decision-changing; annotation_signal->disaggregate subgroup; ai_boundary->AI theming drops voice; calibration->close-the-loop trace). E.g., obj1 'Distinguish performative feedback (claps, popularity) from feedback that can change a decision'; obj2 'Disaggregate a feedback distribution and refuse to average a subgroup's critical signal away'; obj3 'Verify AI-themed feedback against raw comments and restore dropped critical voice'; obj4 'Close the loop by tracing a minority signal to a concrete change and a report-back to students.'",
+  "needs_research": false,
+  "where_to_apply": "05.meta.json learning_objectives array (all four entries)",
+  "priority": "high",
+  "section_key": "cat531/07/05",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The meta.json learning_objectives are the homogenized/template-stamped set (objectives 2-4 are byte-identical to every other CAT531 section; objective 1 varies only by artifact name). They do not match the genuinely section-specific Learning Targets already written in the MDX (isolate which component failed; distinguish design flaw vs context mismatch; reject an AI reframing that ignores the real cause; show original plan + prompting data + targeted change + follow-up data). This is a real constructive-alignment weakness flagged course-wide.",
+  "proposed_change": "Replace the four generic meta.json learning_objectives with the four MDX Learning Targets (verbatim, lines 13-16): (1) Read field evidence to isolate which component of a plan failed rather than defending or scrapping the whole; (2) Distinguish a design flaw from a context mismatch (laziness versus an access barrier); (3) Document a bounded AI/software support move, including an AI reframing you rejected because it ignored the real cause; (4) Show evidence-based revision: original plan, prompting data, targeted change, and follow-up data. This aligns stored objectives with the prose, the four practice items (artifact_signal/annotation_signal/ai_boundary/calibration), and the misconception rail.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat531-supplement\\07\\06.meta.json -> learning_objectives array (all four entries, lines 8-13)",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat531/07/06",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "learning_objectives in meta.json are the homogenized course template: objective 1 just substitutes the artifact name, and objectives 2-4 ('Distinguish artifact polish from evidence-based revision', 'Document a bounded AI/software support move...', 'Use annotations...to make a classroom technology decision more defensible') are byte-identical boilerplate shared across sections. They do NOT name this capstone's distinctive content: threading one decision across multiple tools (coherence), legibility-for-an-outsider, and the two-situation transfer demonstration. The MDX 'Learning Targets' (lines 13-16) are far better aligned than the meta objectives.",
+  "proposed_change": "Rewrite meta.json learning_objectives to match the section's actual targets and the Learning Targets block in the MDX: (1) thread a single technology decision through the chapter's tools into one coherent argument; (2) make a context-bound decision legible to an evaluator who was not in the placement; (3) document a bounded AI support move including correcting an AI narrative that erased a real tension; (4) demonstrate transferable judgment by showing the same decision rule hold across two situations under different constraints. This tightens constructive alignment to the practice items, which already test exactly these (artifact_signal=coherence, annotation_signal=legibility, ai_boundary=restore tension, calibration=two-situation transfer).",
+  "needs_research": false,
+  "search_terms": [],
+  "where_to_apply": "08.meta.json learning_objectives (lines 8-13)",
+  "priority": "high",
+  "section_key": "cat531/07/08",
+  "op_index": 3
+ }
+]

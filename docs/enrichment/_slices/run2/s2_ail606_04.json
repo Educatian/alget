@@ -1,0 +1,85 @@
+[
+ {
+  "type": "assessment_align",
+  "gap": "The meta.json learning_objectives are generic templated stock strings about 'the storyboard frame sequence with narration, signaling, and reader-action notes' showing a 'defensible decision', distinguishing 'artifact polish from evidence-based revision', etc. They do NOT describe this section's actual content. The MDX body already contains excellent, section-specific 'Learning Targets' (lines 13-16). Because the LOs are generic, constructive alignment between LOs and the (well-aligned) practice items is broken: practice tests problem-statement/profile skills while the LOs talk about generic artifact polish.",
+  "proposed_change": "Replace the four generic learning_objectives in 01.meta.json with the section-specific targets already in the MDX 'Learning Targets' block: (1) Write a problem statement naming a located performance gap, its conditions, and a measurable target; (2) Build a learner profile in which every attribute changes at least one storyboard/frame decision (design-consequence test); (3) Separate design-driving attributes from flattering adjectives; (4) Document how a revised problem statement changes which evidence would count as success. Keep an AI-boundary objective since practice item 3 tests it.",
+  "needs_research": false,
+  "where_to_apply": "01.meta.json field learning_objectives (and the templated description string on line 4, rewritten to describe problem-statement/learner-profile work)",
+  "priority": "high",
+  "section_key": "ail606/04/01",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The meta.json learning_objectives are the generic templated stock strings (artifact-shows-a-defensible-decision, artifact-polish-vs-evidence-based-revision, bounded-AI-support-move, annotations-decide-next-help). They are keyed to the chapter signature artifact, not to this section's actual content. The MDX already contains four crisp, section-specific 'Learning Targets' (map one controlling principle to one feature with the demand named; detect post-hoc justification; describe features as mechanisms not decoration; defend a feature via the reverse trace). The meta LOs and the MDX targets are out of sync, and the four practice items actually assess the MDX targets, not the meta LOs.",
+  "proposed_change": "Replace the four generic learning_objectives in 02.meta.json with section-specific LOs lifted/adapted from the MDX Learning Targets, e.g.: (1) 'Map one controlling principle to one feature, naming the processing demand it acts on.' (2) 'Detect post-hoc justification (principle inflation) where many principles are stapled to one cosmetic change.' (3) 'Write a feature as a mechanism (a verb acting on attention/processing) rather than as appearance.' (4) 'Audit a traceability row with the subtraction, mechanism, and demand tests so it survives the reverse trace.' This makes the constructive-alignment mapping real: each LO then maps cleanly to practice items artifact_signal (LO3), annotation_signal (LO1), ai_boundary (LO2/audit), calibration (LO2 inflation).",
+  "needs_research": false,
+  "where_to_apply": "02.meta.json field learning_objectives (all four entries); also update description field which currently uses the generic 'support moments, and revision evidence' stock string.",
+  "priority": "high",
+  "section_key": "ail606/04/02",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "03.meta.json learning_objectives are the stock templated strings ('Analyze how the storyboard frame sequence... shows a defensible decision', 'Distinguish artifact polish from evidence-based revision', etc.) and do not match the section's actual, well-written Learning Targets in the MDX (annotate each region with learner action + sequence position; detect contradictions between purpose and affordances; encode intent through layout choices; critique a wireframe as a teaching decision). The constructive-alignment layer is therefore disconnected from the content.",
+  "proposed_change": "Rewrite the four learning_objectives in 03.meta.json to match the MDX Learning Targets (lines 13-16): (1) Annotate each wireframe region with the learner action it supports and its instructional-sequence phase; (2) Detect contradictions between a screen's pedagogical purpose and its interaction affordances; (3) Encode instructional intent through layout decisions such as control prominence and feedback timing; (4) Critique a wireframe as a teaching decision rather than a visual arrangement. This also makes the practice items (artifact_signal/annotation_signal/ai_boundary/calibration) map to real, section-specific LOs.",
+  "needs_research": false,
+  "where_to_apply": "03.meta.json learning_objectives array",
+  "priority": "high",
+  "section_key": "ail606/04/03",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The meta.json learning_objectives are the templated stock strings keyed only to the chapter signature-artifact name. They do NOT match the section's actual, well-written Learning Targets in the MDX (classify demand into intrinsic/extraneous/germane with evidence; attribute each source to a feature; prescribe the type-appropriate move; recognize a 'reduce load' suggestion that cuts germane). This breaks constructive alignment between the metadata layer and the body, and the validator is a no-op on plain-string LOs.",
+  "proposed_change": "Replace the four templated learning_objectives in 04.meta.json with section-specific ones from the MDX Learning Targets: (1) Classify a draft screen's demand into intrinsic, extraneous, and germane load with feature-level evidence; (2) Attribute each load source to a specific screen feature rather than an overall rating; (3) Prescribe the type-matched move (stage intrinsic, remove extraneous, protect germane) and order operations (strip extraneous first); (4) Detect and reject a 'reduce load' suggestion that would cut germane processing. Each maps cleanly to the 4 practice items and 3 misconceptions.",
+  "needs_research": false,
+  "where_to_apply": "04.meta.json field learning_objectives (and tighten the generic stock description string)",
+  "priority": "high",
+  "section_key": "ail606/04/04",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The meta.json description and all four learning_objectives are the generic chapter-level stock strings about 'storyboard frame sequence with narration, signaling, and reader-action notes' and 'a defensible decision' / 'artifact polish vs evidence-based revision'. They do not mention accessibility, WCAG, contrast, alt text, or color-only meaning at all. Meanwhile the MDX already contains excellent section-specific 'Learning Targets' (lines 13-16) that precisely state the four assessable outcomes. The current LOs make the constructive-alignment validator a no-op and mis-describe the section. This is the meta-templating known issue (backlog 19 / R-7) manifesting in a section whose body is otherwise specialized.",
+  "proposed_change": "Rewrite meta.json learning_objectives to mirror the MDX Learning Targets: (1) Audit a draft screen against specific WCAG 2.2 AA success criteria rather than 'looks accessible' impressions; (2) Compute and verify color-contrast ratios against the 4.5:1 (normal) / 3:1 (large) thresholds for 1.4.3; (3) Write alt text that conveys an image's informational content (1.1.1), not its existence; (4) Ensure no status or meaning is carried by color alone (1.4.1) and document each fix as criterion-plus-reproducible-result. Rewrite the description to name accessibility auditing as a verifiable, criterion-based revision discipline rather than the storyboard stock string. This tightens alignment to the four practice items, which already map cleanly to these targets.",
+  "needs_research": false,
+  "where_to_apply": "05.meta.json fields 'description' and 'learning_objectives'",
+  "priority": "high",
+  "search_terms": [],
+  "section_key": "ail606/04/05",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The meta-layer is templated and mislabels the section's signature artifact. The Artifact Studio embeds 'storyboard frame sequence with narration, signaling, and reader-action notes' (the chapter-03 storyboarding artifact), and the meta.json description, learning_objectives, and Adaptive Support block all inherit that storyboard wording. This is a known mislabel (04.06 is an AI-assisted-authoring/Codex section, not a storyboarding section). The artifact the MDX actually trains is an AI-authoring prompt-specification + accept/reject audit record + AI-USE disclosure paragraph, not a storyboard frame sequence.",
+  "proposed_change": "Retag the artifact-studio to an AIL606-specific AI-authoring artifact, e.g. 'AI-assisted authoring record: instructional specification prompt + accepted/rejected suggestion log + AI-USE disclosure paragraph' (matching the 'useful final paragraph' the MDX already models on line 118). Update the artifact-studio artifact= attribute (line 128), the download-packet link text (line 126), the meta.json description and the Adaptive Support 'confusion' bullet (line 137) and dynamic-scenario (line 141) so they reference the AI-authoring artifact instead of the storyboard frame sequence. This aligns the studio and support layer with the section's actual learning targets.",
+  "needs_research": false,
+  "search_terms": [],
+  "where_to_apply": "06.mdx artifact-studio (line 128), download link (line 126), Adaptive Support confusion bullet (line 137), dynamic-scenario (line 141); 06.meta.json 'description' field",
+  "priority": "high",
+  "section_key": "ail606/04/06",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The meta.json learning_objectives are generic stock strings ('Analyze how the storyboard frame sequence ... shows a defensible decision', 'Distinguish artifact polish from evidence-based revision', etc.) that do not match the four concrete, well-written Learning Targets in the MDX (lines 13-16: specify the interaction precisely, keep design decisions with the human, audit generated code for encoded pedagogy errors, document each accepted/rejected suggestion with the instructional reason). The constructive-alignment validator is a no-op on plain strings, so this misalignment is invisible to CI but real for learners and instructors.",
+  "proposed_change": "Replace the four templated learning_objectives in meta.json with section-specific objectives that mirror the MDX Learning Targets, e.g.: (1) Translate a goal-level prompt into an instructional specification that fixes feedback timing, answer reveal, content/logic separation, and reward conditions; (2) Distinguish instructional decisions (owned by the designer) from implementation details (delegated to the tool); (3) Audit AI-generated code for encoded pedagogy errors (rewarding wrong answers, exposed answers, fused content/logic) rather than only whether it runs; (4) Document each accepted and rejected AI suggestion with its instructional reason for the AI-USE disclosure.",
+  "needs_research": false,
+  "search_terms": [],
+  "where_to_apply": "06.meta.json 'learning_objectives' array",
+  "priority": "high",
+  "section_key": "ail606/04/06",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "meta.json learning_objectives are the templated stock strings (artifact 'shows a defensible decision', 'artifact polish from evidence-based revision', 'bounded AI/software support move', 'use annotations to decide what help comes next'). They do not match the section's actual, excellent in-body Learning Targets (synthesize module artifacts into one plan; rank revisions by evidenced impact on the named outcome; filter AI critique to substantiable claims; defend a prioritization). The constructive-alignment validator is a no-op on plain strings, so this drift is invisible to CI.",
+  "proposed_change": "Rewrite meta.json learning_objectives to mirror the four in-body Learning Targets: (1) synthesize problem statement, load diagnosis, accessibility pass, and traceability into one revision plan; (2) rank revisions by evidenced impact on the problem statement's named outcome; (3) filter generic AI critique down to claims you can substantiate against your own evidence; (4) defend a prioritization rather than produce a list. This also tightens alignment to the four practice items (artifact_signal, annotation/preference, ai_boundary, calibration/prioritization).",
+  "needs_research": false,
+  "where_to_apply": "08.meta.json learning_objectives array",
+  "priority": "high",
+  "section_key": "ail606/04/08",
+  "op_index": 1
+ }
+]

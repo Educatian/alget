@@ -3,10 +3,10 @@
   "title": "Accessibility and WCAG Checks",
   "description": "AIL 606 textbook section connecting accessibility and wcag checks to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the storyboard frame sequence with narration, signaling, and reader-action notes shows a defensible decision in AIL 606.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    "Audit a screen against specific WCAG 2.2 AA success criteria, not general \"looks accessible\" impressions.",
+    "Compute and check color contrast against the 4.5:1 threshold for normal text.",
+    "Write alt text that conveys the information an image carries, not the word \"image.\"",
+    "Ensure no status or meaning is communicated by color alone."
   ],
   "concept_ids": [
     "ail606_supplement_design_draft_and_theory_to_prototype_alignment",

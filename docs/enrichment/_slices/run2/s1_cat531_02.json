@@ -1,0 +1,139 @@
+[
+ {
+  "type": "evidence_add",
+  "gap": "The central claim — engagement metrics (taps, logins, time-on-task) are not evidence of learning (lines 70, 80; practice item 2; misconception engagement_equals_learning) — is load-bearing and repeated but never cited.",
+  "proposed_change": "Add a one-line 'Recent Evidence' grounding to the 'most common error' paragraph (line 70) citing learning-analytics work that distinguishes behavioral engagement / clickstream / time-on-task proxies from learning outcomes. Prose stays; adds a real anchor.",
+  "where_to_apply": "01.mdx — paragraph after branching-scenario (line 70); optionally References",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Bergdahl, N. et al. (2024). Unpacking student engagement in higher education learning analytics: a systematic review. Int. J. Educational Technology in Higher Education 21:38",
+    "finding": "Systematic review finds learning analytics 'overwhelmingly' rely on observable behavioural-engagement measures such as clicks and task duration, with very few studies addressing other engagement dimensions — directly supporting that behavioral/time-on-task metrics are not equivalent to learning.",
+    "url_or_doi": "https://doi.org/10.1186/s41239-024-00493-y"
+   },
+   {
+    "cite": "Baker, R. et al. (2020). The benefits and caveats of using clickstream data to understand student self-regulatory behaviors. Int. J. Educational Technology in Higher Education 17:13",
+    "finding": "Clickstream/behavioral logs give only a 'partial and noisy record' of learning processes, cautioning against reading behavioral traces as direct evidence of learning — grounds the proxy-metric caution.",
+    "url_or_doi": "https://doi.org/10.1186/s41239-020-00187-1"
+   }
+  ],
+  "section_key": "cat531/02/01",
+  "op_index": 2
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The Opening and Transfer Cases use only generic illustrative scenarios (polling app, exit-ticket app). Classroom surveillance cases (facial recognition, webcam engagement-tracking) are core Ch2 topics but are illustrative and uncited; a real 2023-2025 case would sharpen the surveillance/datafication anchor.",
+  "proposed_change": "Add a small 'Recent Evidence' callout near the Data exposure discussion citing a documented real case so the abstract 'responses are stored, scored, sometimes sold or profiled' claim has a concrete grounded referent.",
+  "where_to_apply": "01.mdx — after Core Concept swap table (line 34) or in Textbook Walkthrough (line 74)",
+  "priority": "low",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "New York State Education Department, Determination on Biometric Identifying Technology in Schools (Commissioner Rosa, Sept. 27, 2023)",
+    "finding": "On Sept. 27, 2023, NY became the first state to ban schools from purchasing or using facial recognition technology, following an Aug. 7, 2023 state ITS biometrics report finding the risks outweighed benefits — a concrete, datable surveillance/regulatory case for the callout.",
+    "url_or_doi": "https://www.nysed.gov/news/2023/state-education-department-issues-determination-biometric-identifying-technology-schools"
+   },
+   {
+    "cite": "Univ. of Michigan Ford School (STPP), 'Cameras in the Classroom: Facial Recognition Technology in Schools' (research report)",
+    "finding": "U-M study identifies five harms of facial recognition in schools (exacerbating racism, normalizing surveillance/eroding privacy, narrowing the 'acceptable' student, commodifying data, institutionalizing inaccuracy) and recommends a ban; notes biometrics increasingly used to measure engagement — grounds the surveillance/datafication anchor.",
+    "url_or_doi": "https://stpp.fordschool.umich.edu/research/research-report/cameras-classroom-facial-recognition-technology-schools"
+   }
+  ],
+  "section_key": "cat531/02/01",
+  "op_index": 7
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The section invokes 'critical edtech studies' (lines 32, 112, 127) and 'TPACK' (lines 32, 107, 126) as cautions but the References use an unnamed Selwyn book DOI (10.4324/9781315670160) and a Wikipedia link for TPACK. Neither is named or tied to a specific claim, so the evidence is decorative. The TPACK DOI in the References (10.1111/j.1467-9620.2006.00684.x) is in fact the canonical Mishra & Koehler (2006) paper, but the inline link points at Wikipedia, not the DOI.",
+  "proposed_change": "Name Mishra & Koehler (2006) explicitly for TPACK and replace the Wikipedia inline link (lines 32, 107) with the canonical DOI already present (10.1111/j.1467-9620.2006.00684.x). Name Selwyn explicitly in the critical-edtech reference. To support the AI-specific 'check the tool changed access, not analysis' claim, add a current AI-TPACK source: Ning et al. (2024) 'Teachers' AI-TPACK' (doi 10.3390/su16030978) or Al-Abdullatif (2024) on intelligent TPACK + generative AI (doi 10.3390/educsci14111209).",
+  "where_to_apply": "05.mdx — '## References' (TPACK and critical edtech entries, lines 126-127) and inline TPACK links in Core Concept (line 32) and Adaptive Support (line 107)",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "Mishra, P. & Koehler, M. J. (2006). Technological Pedagogical Content Knowledge: A Framework for Teacher Knowledge. Teachers College Record, 108(6).",
+    "url_or_doi": "https://doi.org/10.1111/j.1467-9620.2006.00684.x",
+    "finding": "Confirmed via OpenAlex as the canonical TPACK source (~9,600+ citations); this exact DOI is ALREADY in the References list, so the fix is to name the authors and repoint the inline link from Wikipedia to this DOI."
+   },
+   {
+    "cite": "Ning, Y. et al. (2024). Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements. Sustainability, 16(3), 978.",
+    "url_or_doi": "https://doi.org/10.3390/su16030978",
+    "finding": "Current (2024), 221 citations; extends TPACK to AI (AI-TPACK), supporting the section's claim that teachers must judge whether an AI tool changed access vs analysis. Suitable AI-TPACK anchor."
+   },
+   {
+    "cite": "Al-Abdullatif, A. M. (2024). Modeling Teachers' Acceptance of Generative AI Use in Higher Education: AI Literacy, Intelligent TPACK, and Perceived Trust. Education Sciences, 14(11), 1209.",
+    "url_or_doi": "https://doi.org/10.3390/educsci14111209",
+    "finding": "Current (2024) generative-AI teacher-knowledge framework operationalizing 'intelligent TPACK'; alternative/additional anchor for the AI-literacy caution."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat531/02/05",
+  "op_index": 5
+ },
+ {
+  "type": "new_callout",
+  "gap": "The Transfer Case (06.mdx line 87) is strong but stays inside human observation. The chapter's TeachGen@i framing offers a high-value transfer that is missing: an AI tool that surfaces 'engagement' or 'aggregate patterns' from exit data is itself making a description-vs-verdict move, and its aggregate can mask subgroup differences (the disaggregation/aggregate-masking theme from the course bias topics).",
+  "proposed_change": "Add a short callout (~3-4 sentences, fits existing structure) noting that when TeachGen@i reports an aggregate pattern, the teacher's noticing discipline now extends to auditing the tool's claim: is the AI's 'pattern' a verifiable description or a vendor verdict, and does the class-level aggregate hide a subgroup the disaggregated tickets would reveal? Frame as applying describe-vs-verdict and moment-vs-pattern to the tool's output, not just the teacher's. Cite a current algorithmic-fairness-in-education source for the aggregate-masking point.",
+  "where_to_apply": "06.mdx — after Transfer Case (line 87) or as a Core Concept sub-note near line 28",
+  "priority": "low",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Kizilcec, R. F., & Lee, H. (2022). Algorithmic fairness in education. In The Ethics of Artificial Intelligence in Education (pp. 174-202). Routledge.",
+    "url_or_doi": "https://doi.org/10.4324/9780429329067-10",
+    "finding": "Education-specific treatment locating bias across the algorithmic pipeline (measurement, model learning, action) and distinguishing statistical, similarity-based, and causal fairness; grounds the point that a tool's aggregate 'pattern' can mask disparate subgroup outcomes and must be audited, not trusted as a description."
+   },
+   {
+    "cite": "Caton, S., & Haas, C. (2023). Fairness in Machine Learning: A Survey. ACM Computing Surveys, 56(7).",
+    "url_or_doi": "https://doi.org/10.1145/3616865",
+    "finding": "Recent survey documenting how aggregate/binary-classification fairness metrics can obscure subgroup disparities and that different fairness metrics give non-uniform results by case; supports the aggregate-masking caution as a general (cross-domain) anchor where an education-specific one is wanted alongside Kizilcec & Lee."
+   }
+  ],
+  "section_key": "cat531/02/06",
+  "op_index": 6
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The section's central pedagogical claim -- that AI-generated polish is worthless as competency evidence and reviewers discount it (Core Concept line 33, branching 'polish' node line 72, Stronger Artifact Standard line 86) -- is asserted repeatedly but uncited. In an evidence-grounding course this needs a 2024-2026 source on GenAI authorship/authenticity in assessment.",
+  "proposed_change": "Add a one-line 'Recent Evidence' note near the Stronger Artifact Standard (or inline at Core Concept line 33) citing Kofinas et al. (2025, BJET): an empirical study finding markers cannot reliably distinguish GenAI-assisted from non-AI student work, which is exactly why output/product polish fails as competency evidence and why the inspectable warrant and measured outcome (process evidence) must carry the weight. This grounds the 'a tool can generate a flawless artifact in seconds, which makes the artifact worthless as evidence of your skill' claim.",
+  "where_to_apply": "07.mdx -- Core Concept (line 33) or a new Recent Evidence callout near Stronger Artifact Standard (line 86)",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Kofinas, A. K., et al. (2025). The impact of generative AI on academic integrity of authentic assessments within a higher education context. British Journal of Educational Technology, 56.",
+    "url_or_doi": "https://doi.org/10.1111/bjet.13585",
+    "finding": "Empirical finding: markers cannot reliably distinguish student work produced with vs. without GenAI input; recommends de-emphasizing output-based asynchronous artifacts in favor of social/experiential/performative evidence. Directly supports that AI-polished artifacts cannot demonstrate competency and that warrant+outcome (process) evidence must carry the claim."
+   },
+   {
+    "cite": "Francis, N. J., et al. (2025). Generative AI in Higher Education: Balancing Innovation and Integrity. British Journal of Biomedical Science.",
+    "url_or_doi": "https://doi.org/10.3389/bjbs.2024.14048",
+    "finding": "Argues authentic-assessment design alone is not sufficient protection against GenAI; competency claims must rest on critical-thinking/process evidence rather than polished product, reinforcing the section's warrant-and-outcome standard."
+   }
+  ],
+  "section_key": "cat531/02/07",
+  "op_index": 1
+ },
+ {
+  "type": "scaffolding",
+  "gap": "The section depends on recall of prior Module 8 artifacts -- the gate explicitly cites artifacts from sections 08.01 (tension map), 08.02 (TeachGen@i transcript), 08.04 (rubric), 08.06 (policy memo), and 08.07 (evidence plan) at lines 26, 46-50, 54, etc. But 08.meta.json prereq_section_ids lists only one prerequisite: 'cat531-supplement/08/07' (line 21). A learner who has not retained 08.01-08.06 has no scaffolded reminder of what each cited artifact was.",
+  "proposed_change": "Add the prior Module 8 section ids that the gate actually cites (cat531-supplement/08/01, 08/02, 08/04, 08/06) to prereq_section_ids; optionally add a one-clause gloss per cited artifact in Core Concept (line 26) reminding the learner what each prior artifact was.",
+  "where_to_apply": "08.meta.json prereq_section_ids (lines 20-22); optionally 08.mdx Core Concept (line 26).",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [],
+  "section_key": "cat531/02/08",
+  "op_index": 8
+ },
+ {
+  "type": "accessibility",
+  "gap": "Hero image alt text is generic placeholder phrasing: 'Readiness Review textbook visual' (08.mdx line 3) -- conveys nothing about image content (a11y gate issue). Separately, the 'What Strong Reading Looks Like' two-column note strategy (line 84) is presented spatially ('left'/'right' columns: prior artifact+criterion on the left, verdict+evidence on the right), which is hard for screen-reader users to follow. (Note: the opportunity cited line 81; the real strategy is at line 84.)",
+  "proposed_change": "Replace alt text with a description of what the image actually depicts about the readiness-gate/go-no-go concept. For the two-column note, add a linear framing sentence (e.g., 'for each prior artifact, pair it with its criterion, then attach the verdict and its evidence') so the relationship survives without the left/right column metaphor.",
+  "where_to_apply": "08.mdx image alt text (line 3) and 'What Strong Reading Looks Like' (line 84).",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [],
+  "section_key": "cat531/02/08",
+  "op_index": 10
+ }
+]

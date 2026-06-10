@@ -6,9 +6,9 @@
   "title": "Presentation Purpose and Audience",
   "description": "CAT 100 textbook section connecting presentation purpose and audience to presentation storyboard with audience constraint and slide-level evidence, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the presentation storyboard with audience constraint and slide-level evidence shows a defensible decision in CAT 100.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
+    "Derive a presentation's slide count and slide-level evidence from a named audience's time budget, prior knowledge, and the decision they own.",
+    "Justify each slide by the audience question it answers, and identify at least one slide cut because it served no audience question.",
+    "Document which AI suggestion (such as adding a metric or a slide) you accepted versus rejected against the audience time budget.",
     "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
   ],
   "concept_ids": [

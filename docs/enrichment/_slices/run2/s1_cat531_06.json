@@ -1,0 +1,100 @@
+[
+ {
+  "type": "evidence_add",
+  "gap": "The Opening Case, Worked Example, and Textbook Walkthrough hinge on concrete fairness/datafication harms (reading-level labels following students as fixed identity, vendor resale of usage analytics, keystroke-level data licensing, AI essay-feedback training on student submissions) that are illustrative but uncited. For a graduate ethics/judgment capstone, at least one named real case would strengthen the claim that these harms are real rather than hypothetical.",
+  "proposed_change": "Add a single 'Recent Evidence' callout (one to two sentences, one citation) after the Opening Case (after line 22) or after the Worked Example (after line 71), grounding the most load-bearing harm. Recommended anchor: the FTC action against Illuminate Education (Dec 2025), an edtech provider whose products serve 17M+ students across 5,200 districts, where a breach exposed disability and disciplinary records of 10M+ students and the order forces deletion of unnecessary student data and a public retention schedule -- a documented real case of edtech student-data harm. For the resale/monetization angle specifically, cite the IXL Learning lawsuit (Kansas parents alleging collection and monetization of children's data without parental consent). Keep to one callout to honor the 'stop adding volume' directive.",
+  "where_to_apply": "01.mdx after '## Opening Case' (after line 22) or after the Worked Example (after line 71) as a new <callout>/'Recent Evidence' note",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "FTC (2025) Action Against Education Technology Provider Illuminate Education",
+    "url_or_doi": "https://www.ftc.gov/news-events/news/press-releases/2025/12/ftc-takes-action-against-education-technology-provider-failing-secure-students-personal-data",
+    "finding": "FTC alleged Illuminate Education's security failures exposed personal data (incl. disability and disciplinary records) of 10M+ students; products used by 17M+ students across 5,200 districts. Proposed order forces deletion of unnecessary student data + public retention schedule. A documented real edtech student-data harm grounding the section's 'data follows students' / vendor-data claims."
+   },
+   {
+    "cite": "Public Interest Privacy Center / FTC amicus re IXL Learning",
+    "url_or_doi": "https://publicinterestprivacy.org/ftc-amicus-briefs-ixl-learning/",
+    "finding": "Kansas public-school parents sued IXL Learning alleging collection and monetization of millions of children's data without parental consent -- a real case grounding the 'vendor resale / monetization of student analytics' claim in the Opening Case (line 20) and Textbook Walkthrough (line 97)."
+   }
+  ],
+  "section_key": "cat531/06/01",
+  "op_index": 3
+ },
+ {
+  "type": "new_callout",
+  "gap": "The Transfer Case (line 116-118) moves writing->math, but the course's signature equity/critical-edtech lens (whose hidden burden a default carries) is named abstractly (lines 37, 53-55) and never given a concrete philosophy example in this section. A 'whose burden' transfer note would tie the philosophy artifact to the Selwyn critical-edtech anchor with a concrete, citable bias case.",
+  "proposed_change": "Add a brief Transfer/Recent-Evidence callout: a teacher's stated value 'AI gives every student fast feedback' but the auto-feedback/detection tool performs worse on multilingual or AAVE writers, so the disclosed value silently shifts burden onto those students, forcing a boundary ('I check tool error rates by subgroup before trusting AI feedback'). Ground it in the citable disparate-error-rate evidence below, consistent with the course's disaggregation topic.",
+  "where_to_apply": "02.mdx Transfer Case (after line 118) or as a callout in Core Concept near the critical-edtech mention (line 37)",
+  "priority": "low",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Liang et al. (2023) GPT detectors are biased against non-native English writers, Patterns",
+    "url_or_doi": "https://doi.org/10.1016/j.patter.2023.100779",
+    "finding": "GPT detectors achieved near-perfect accuracy on US 8th-grade essays but misclassified over half of TOEFL (non-native) essays as AI-generated (avg false-positive ~61%); a concrete, well-cited (>430 citations) disparate-error-rate case for the 'whose burden' callout."
+   },
+   {
+    "cite": "Yamashita (2025) Exploring potential biases in GPT-4o's ratings of English language learners' essays, Language Testing",
+    "url_or_doi": "https://doi.org/10.1177/02655322251329435",
+    "finding": "2025 study testing GPT-4o essay ratings for bias across ELL writers' race/ethnicity (incl. Black/African American), gender, and SES — current evidence that AI writing-feedback scoring can produce subgroup disparities, grounding the equity boundary."
+   }
+  ],
+  "section_key": "cat531/06/02",
+  "op_index": 7
+ },
+ {
+  "type": "evidence_add",
+  "gap": "References are thin and Wikipedia-anchored as the course audit warns. 'critical edtech studies' is a bare DOI with no author (intended as Selwyn 2016, Is Technology Good for Education?); 'AI and education datafication' is a single 2020 DOI reused verbatim across sections; TPACK is Wikipedia + the 2006 DOI. Selwyn is invoked twice in the prose ('critical edtech studies drives the equity check') but never named, so a student cannot trace the claim. Research also surfaced a DOI-integrity problem: the reference DOIs do not match their intended works.",
+  "proposed_change": "Name authors/years in References: the 'critical edtech studies' entry should read Selwyn, N. (2016), Is Technology Good for Education? (Polity Press) — and FIX the DOI, because 10.4324/9781315670160 is a Routledge prefix that does not resolve to this Polity book (OpenAlex/doi.org both 404); cite by ISBN 9780745696461/9780745696478 or a resolving identifier instead. The 'AI and education datafication' DOI (10.1080/17439884.2020.1686017) actually resolves to Perrotta, C. & Selwyn, N. (2019/2020), 'Deep learning goes to school: toward a relational understanding of AI in education,' Learning, Media and Technology 45(3), 251-269 — so name it correctly rather than as a generic 'datafication' label. In the Core Concept paragraph (line 33), add a parenthetical author anchor where 'critical edtech studies' and 'datafication' are invoked. For this privacy/consent section, add one consent/data-ethics-in-education source rather than reusing only the generic datafication DOI.",
+  "where_to_apply": "05.mdx — References list (lines 147-150); Core Concept paragraph (line 33).",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "Selwyn, N. (2016). Is Technology Good for Education? Polity Press.",
+    "url_or_doi": "ISBN 9780745696461 (hardcover) / 9780745696478; publisher: https://www.politybooks.com/bookdetail?book_slug=is-technology-good-for-education--9780745696461",
+    "finding": "The intended 'critical edtech studies' work is Neil Selwyn's 2016 Polity Press book. The DOI currently in the References (10.4324/9781315670160) is a Routledge prefix and returns 404 from both OpenAlex and doi.org — it does not resolve to this Polity title, so the citation should be corrected to name Selwyn (2016) and use a valid identifier."
+   },
+   {
+    "cite": "Perrotta, C. & Selwyn, N. (2019/2020). Deep learning goes to school: toward a relational understanding of AI in education. Learning, Media and Technology 45(3), 251-269.",
+    "url_or_doi": "https://doi.org/10.1080/17439884.2020.1686017",
+    "finding": "OpenAlex confirms the DOI the section labels 'AI and education datafication' actually belongs to Perrotta & Selwyn's relational-understanding-of-AI article — the References label should name these authors/title rather than a generic 'datafication' tag."
+   },
+   {
+    "cite": "Akgün, S. & Greenhow, C. (2021). Artificial intelligence in education: Addressing ethical challenges in K-12 settings. AI and Ethics.",
+    "url_or_doi": "https://doi.org/10.1007/s43681-021-00096-7",
+    "finding": "A peer-reviewed, on-topic K-12 source on AI ethics including student data and consent considerations — suitable as the dedicated consent/data-ethics-in-education citation the section currently lacks. (Alternative: Huang, L. (2023), Ethics of AI in Education: Student Privacy and Data Protection, https://doi.org/10.15354/sief.23.re202.)"
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat531/06/05",
+  "op_index": 3
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The three scholarly anchors are invoked by bare name with thin, reused citations: TPACK links only to Wikipedia + a 2006 DOI; 'critical edtech studies' is an unnamed 2016 DOI (Selwyn not named in-text at Core Concept/Worked Example); datafication is a single 2020 DOI reused verbatim across sections. For this capstone/professional-vision section, the 'equity commitment survives' and reflection-closing-the-loop framing would be stronger with named, current (2023-2026) critical-edtech and AI-era TPACK sources.",
+  "proposed_change": "Name the critical-edtech scholar in-text at '## Core Concept' / '## Worked Example' where 'critical edtech studies' is invoked, and refresh '## References' with a current critical-edtech/datafication source and a generative-AI-era TPACK (AI-TPACK) source, supplementing the reused 2006/2016/2020 anchors. Verified current candidates below are real and well-aligned (datafication/surveillance of schooling for the equity claim; AI-TPACK for the AI-era teacher-knowledge claim). NOTE: the canonical 'Intelligent-TPACK / ethics' source (Celik 2023, CHB) did not surface in OpenAlex during this check, so do NOT cite it unless separately verified; use the confirmed Ning (2024) AI-TPACK work instead.",
+  "where_to_apply": "08.mdx — '## References'; in-text at '## Core Concept' and '## Worked Example' where critical edtech studies / TPACK / datafication are named",
+  "priority": "low",
+  "sources": [
+   {
+    "cite": "Ning, Y. et al. (2024) Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements. Sustainability, 16(3), 978.",
+    "url_or_doi": "https://doi.org/10.3390/su16030978",
+    "finding": "Current empirical AI-TPACK framework extending TPACK to generative-AI teacher knowledge; a defensible replacement/supplement for the 2006 TPACK DOI to reflect the 2026 AI literature the course is positioned against."
+   },
+   {
+    "cite": "Khalil, M. et al. (2022) In the nexus of integrity and surveillance: Proctoring (re)considered. Journal of Computer Assisted Learning, 38(6).",
+    "url_or_doi": "https://doi.org/10.1111/jcal.12713",
+    "finding": "Recent critical-edtech work on surveillance/datafication of students; supports the 'equity commitment must survive into the plan and reflection' framing with a named, current source instead of the anonymous 2016 DOI."
+   },
+   {
+    "cite": "Feldman, J. (2023) Transitions in education: Educators, digitalisation, and datafication. Perspectives in Education, 41(2).",
+    "url_or_doi": "https://doi.org/10.17159/2520-9868/i92a03",
+    "finding": "Current (2023) datafication-in-education source; a defensible refresh for the verbatim-reused 2020 datafication DOI for this capstone section."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat531/06/08",
+  "op_index": 5
+ }
+]

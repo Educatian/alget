@@ -1,0 +1,85 @@
+[
+ {
+  "type": "accessibility",
+  "gap": "The hero image alt text is the generic templated string 'Storyboard Frames as Claims textbook visual' (line 3). This is a non-descriptive alt that conveys no content of the image, an a11y gate issue the project flagged. It is especially incongruous in a section that teaches signaling and UDL learner variability (visual/sensory access), where the section itself argues a feature with no function is decoration.",
+  "proposed_change": "Replace the alt text with a content-bearing description of what the figure actually depicts (e.g., describe the before/after frame contrast or the four-slot claim structure shown). If the image is purely decorative, mark it as such; but given it is the section hero illustrating frames-as-claims, a substantive alt that names the visual's instructional content is appropriate. Audit consistency with WCAG 2.2 AA non-text-content guidance.",
+  "needs_research": false,
+  "search_terms": [],
+  "where_to_apply": "01.mdx line 3, the hero image alt attribute '![Storyboard Frames as Claims textbook visual]'",
+  "priority": "high",
+  "section_key": "ail606/03/01",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The meta.json learning_objectives are templated stock strings that do NOT match the rich content this MDX actually teaches. LO1 ('Analyze how the storyboard frame sequence... shows a defensible decision') restates the chapter artifact name and is vague; the section's real teaching targets are the four-slot claim structure (prior state / predicted action / warrant / disconfirming evidence), the three falsifiability tests (action/warrant/disconfirmation), and claim-chaining across frames. The practice items and misconceptions are well-aligned to that actual content, so the LOs are the weak link in constructive alignment.",
+  "proposed_change": "Rewrite the four learning_objectives to be section-specific and measurable, e.g.: (1) Convert a descriptive storyboard caption into a four-slot frame claim (prior state, predicted action with a learner verb, warrant tying a feature to a Mayer/CLT principle, disconfirming evidence). (2) Apply the three falsifiability tests (action, warrant, disconfirmation) to diagnose a frame. (3) Verify claim-chaining so frame N's predicted action becomes frame N+1's prior state. (4) Judge an AI suggestion against the warrant standard, accepting/rejecting with a stated reason. This aligns LOs with the existing practice IDs (artifact_signal, annotation_signal=warrant, ai_boundary, calibration=chain).",
+  "needs_research": false,
+  "search_terms": [],
+  "where_to_apply": "01.meta.json learning_objectives array (lines 5-10); mirror the revised LO1 into the MDX 'Learning Targets' list (lines 13-16) so the two stay in sync",
+  "priority": "high",
+  "section_key": "ail606/03/01",
+  "op_index": 3
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The four learning_objectives in 02.meta.json are the templated chapter-keyed stock strings ('Analyze how the storyboard frame sequence ... shows a defensible decision', 'Distinguish artifact polish from evidence-based revision', etc.). They never name signaling, segmenting, cue-budget/contrast, the seam test, or the calibration-to-a-named-learner idea that the entire MDX body and all four practice items actually teach and assess. The practice items (artifact_signal = over-cuing/contrast, annotation_signal = segmenting vs chunking, ai_boundary = cue load budget, calibration = seam placement) and the four misconceptions are tightly built around signaling/segmenting calibration, but the stated LOs do not constructively align to them. This is the documented meta-layer no-op the CONTENT_MODEL flags.",
+  "proposed_change": "Rewrite learning_objectives to be section-specific and aligned to prose + practice: (1) 'Apply the scarcity/contrast law of signaling: justify cuing exactly one element on a frame and naming the cues withheld.' (2) 'Run the seam test to place a learner-controlled segmentation break at a conceptual boundary, and distinguish segmenting from pagination/chunking and from auto-advance.' (3) 'Treat a signaling cue as a cognitive-load expenditure and judge an AI-proposed cue (e.g., animated glow) against its processing cost for a named learner.' (4) 'Tie cue count and segment count to learner expertise (novice vs near-expert / expertise reversal) and document calibration as restraint in the storyboard artifact trace.' Optionally add an lo_practice_map linking LO1->artifact_signal, LO2->annotation_signal+calibration, LO3->ai_boundary, LO4->calibration.",
+  "needs_research": false,
+  "where_to_apply": "02.meta.json -> learning_objectives array (and the duplicated Learning Targets list in 02.mdx lines 13-16 should be updated to match)",
+  "priority": "high",
+  "section_key": "ail606/03/02",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The four learning_objectives in 03.meta.json (and the Learning Targets in the MDX, lines 13-16) are the templated chapter-stock strings. LO1 references 'the storyboard frame sequence with narration, signaling, and reader-action notes' — the chapter-level artifact — not this section's actual subject, which is commissioning and verifying GENERATED INSTRUCTIONAL IMAGES via the function/coherence/accuracy three-gate screen. The practice items and misconceptions are all keyed to image generation, so the LOs under-describe what the section teaches and what is assessed (constructive-alignment validator is a no-op on these strings).",
+  "proposed_change": "Rewrite the four LOs to be section-specific and aligned to the actual content and the four practice items: (1) 'State the representational function of an instructional image in one sentence before prompting'; (2) 'Apply the function/coherence/accuracy three-gate screen to a generated image and reject at the first failure'; (3) 'Verify generated image content (labels, counts, proportions, and social representation) against an authoritative source and document an accepted and a rejected AI suggestion'; (4) 'Distinguish prompt-craft polish from a function-first, verified image decision.' Mirror the same text in the MDX 'Learning Targets' list.",
+  "needs_research": false,
+  "where_to_apply": "03.meta.json field 'learning_objectives' (all 4) and 03.mdx 'Learning Targets' section",
+  "priority": "high",
+  "section_key": "ail606/03/03",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "All four practice items test only modality/redundancy/accessibility content (LO1/LO3 surface). The stated learning objectives LO2 ('Distinguish artifact polish from evidence-based revision') and LO4 ('Use annotations, support requests, and revision notes to decide what help or design change comes next') have NO practice item directly assessing them. The 'calibration' item is about captions, not about reading the note+artifact+confidence+revision-quality signal that LO4 and the Check Your Understanding quiz emphasize. This is a real constructive-alignment hole.",
+  "proposed_change": "Repurpose the 'calibration' item (or add a 5th item) so it tests LO4 directly: present a short scenario where a learner leaves a 'confusion' annotation on a frame that swapped narration for text, with low confidence and a before/after that only changed font/size (polish) rather than the modality logic; ask which signal should drive the next adaptive move, with the correct answer combining the annotation TYPE + the fact the revision was cosmetic not evidence-based. This aligns the assessment to LO2 and LO4 and to the interactive-quiz answer key (note+artifact+confidence+revision quality).",
+  "needs_research": false,
+  "where_to_apply": "04.practice.json — replace/augment problem 'ail606_supplement_3_4_narration_and_modality_decisions_calibration'; keep one accessibility item but add a polish-vs-evidence/adaptive-signal item",
+  "priority": "high",
+  "section_key": "ail606/03/04",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The MDX body is entirely about curating PROMPT LOGS, but Learning Objective #1, the meta description, and the artifact-studio tag all reference the chapter-level stock artifact 'storyboard frame sequence with narration, signaling, and reader-action notes', which the section never produces. This is the documented artifact mis-labeling / meta-templating pattern (P0). The actual signature artifact of this section is a curated prompt log (intent/outcome/disposition + verification). The metadata layer does not match the prose.",
+  "proposed_change": "Rewrite LO #1 to be section-specific, e.g. 'Curate a raw AI chat history into a prompt log that argues for the final asset, with each kept entry carrying intent, outcome, and disposition.' Rewrite LO #2/#3 to name the prompt log explicitly (e.g. 'Distinguish a passive transcript from a curated design log'; 'Preserve at least one informative rejection tied to the learning function the asset must serve'). Update the meta.json description to describe prompt-log curation rather than the storyboard frame sequence. Change the artifact-studio tag (MDX line 114) and the download packet label (line 112) from 'storyboard frame sequence with narration, signaling, and reader-action notes' to 'curated prompt log'. Update Adaptive Support bullets (lines 123, 127) that also reference the storyboard artifact.",
+  "needs_research": false,
+  "where_to_apply": "06.meta.json learning_objectives[0-2] and description; 06.mdx Learning Targets (lines 11-14), Artifact Studio (lines 112-114), Adaptive Support (lines 123, 127)",
+  "priority": "high",
+  "section_key": "ail606/03/06",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The learning_objectives (07.meta.json lines 5-10) and the MDX 'Learning Targets' (lines 11-14) are the generic chapter-templated stock strings (artifact-shows-defensible-decision; polish-vs-revision; AI accept/reject; annotations-decide-support). None of them names peer review, the three-property review model (anchored/actionable/authorship-preserving), or the accept-or-reject documented response that is the section's actual headline construct. The body teaches a specific, well-developed skill that the stated objectives do not describe, so the constructive-alignment between objectives, the worked example, the decision rule, and the practice items is asserted rather than real.",
+  "proposed_change": "Rewrite the 4 learning_objectives (and the mirrored MDX Learning Targets) to be section-specific, e.g.: (1) 'Diagnose why a storyboard peer comment fails by identifying which of the three properties (anchored, actionable, authorship-preserving) is missing.' (2) 'Rewrite a praise/taste comment into a three-part review (observation, anchor, option) that cites a Mayer principle or the frame objective.' (3) 'Explain why the author's documented accept-or-reject response, not the comment, is the design evidence, and why a principled rejection can be stronger than an acceptance.' (4) 'Maintain anchored, authorship-preserving review across a power gradient (senior-to-junior transfer case).' Keep the same array length/order so the validator and lo_practice_map stay intact.",
+  "needs_research": false,
+  "where_to_apply": "07.meta.json field learning_objectives (lines 5-10); mirror in 07.mdx '## Learning Targets' (lines 11-14)",
+  "priority": "high",
+  "section_key": "ail606/03/07",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The section heavily emphasizes the AI accept/reject judgment (LO3: 'Document a bounded AI/software support move with accepted and rejected suggestions') via the cut AI-suggested bonus frame, but no misconception captures the AI-boundary error pattern, and the ai_boundary practice item actually tests 'collection vs integration' (mapped to studio_is_just_assembly) rather than an accept/reject judgment. LO3 has no dedicated misconception.",
+  "proposed_change": "Add a misconception in 08.misconceptions.json for the AI-boundary pattern, e.g. id ail606_supplement_3_8_ai_suggestion_accepted_uncritically: pattern 'ai_suggestion_kept_because_plausible', description 'accepting an AI-suggested addition (e.g., a bonus frame) because it looks good rather than because it serves the single objective', trigger 'learner keeps an AI-suggested frame that adds a second objective', feedback tying back to objective-trace/subtraction, rail_action 'represent'. Optionally re-point or rewrite the ai_boundary practice item so its stem tests a genuine accept/reject decision against the objective.",
+  "needs_research": false,
+  "search_terms": [],
+  "where_to_apply": "08.misconceptions.json (add entry) and 08.practice.json ai_boundary item (misconception_id + stem)",
+  "priority": "high",
+  "section_key": "ail606/03/08",
+  "op_index": 3
+ }
+]

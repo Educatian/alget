@@ -1,0 +1,162 @@
+[
+ {
+  "type": "assessment_align",
+  "gap": "The four learning objectives are templated boilerplate. LO1 is the fill-in-the-blank artifact frame ('Analyze how the Excel pivot-table finding... shows a defensible decision in CAT 100', 01.mdx line 13 / 01.meta.json line 9), and LO2-LO4 (polish-vs-revision, bounded AI move, feedback/revision) are identical across all sections. None name what this section actually teaches and assesses: tidy-data structure (one header / one value per cell / one record per row / consistent labels), numbers-stored-as-text and the SUM-skips-text symptom, Text to Columns for atomic cells, and category-label standardization. The practice and misconception sets target THIS content tightly, so assessments are well-aligned to the body but orphaned from the stated objectives, defeating the constructive-alignment soft check (CONTENT_MODEL.md sec 5).",
+  "proposed_change": "Differentiate the per-section objectives so 2-3 name the concrete skills, e.g.: (1) 'Audit a raw spreadsheet export against the four tidy-data rules (one header row, one value per cell, one record per row, consistent category labels) and name the analytical failure each defect causes.' (2) 'Diagnose and repair numbers-stored-as-text by reading default alignment and confirming SUM matches a hand count.' (3) 'Choose the correct repair tool (Text to Columns vs Find and Replace vs row deletion) for a given structural defect.' Keep one objective on the artifact/AI-disclosure through-line to preserve the course spine. Update both 01.mdx '## Learning Targets' (lines 13-16) and 01.meta.json 'learning_objectives' (lines 9-12) so they match each other and the practice/misconception set.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\03\\01.meta.json 'learning_objectives' array (lines 8-13) AND C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\03\\01.mdx '## Learning Targets' (lines 11-16) — keep the two in sync",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/03/01",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The Learning Targets (02.mdx lines 13-16) and meta.json learning_objectives (lines 8-13) are the generic CAT100 template strings ('Analyze how the Excel pivot-table finding...', 'Distinguish artifact polish...', 'Document a bounded AI/software support move', 'Use feedback... to improve the artifact'). NONE name the actual content: relative/absolute/mixed reference behavior on fill, and SUM/AVERAGE/COUNT semantics including AVERAGE-ignores-blanks-but-counts-zero. The body, worked example, decision rule, and 3 of 4 practice items all teach references/aggregation, so the section's real teaching is invisible to a constructive-alignment check that only reads the templated LO strings. Confirmed against the live files: meta.json LOs and the MDX Learning Targets are byte-identical generic template text.",
+  "proposed_change": "Rewrite the 4 objectives to match the section's content, e.g.: (1) 'Predict how a relative, absolute ($F$1), or mixed (B$1, $A2) reference rewrites when a formula is copied down or across.' (2) 'Choose relative for per-row inputs and absolute for shared constants, and justify the lock pattern in a trace.' (3) 'Verify a copied column by reading the formula in the LAST filled cell, not just the first.' (4) 'Explain SUM/AVERAGE/COUNT semantics, including why AVERAGE skips blanks but counts a stray zero.' Mirror identical text in both 02.mdx Learning Targets and 02.meta.json learning_objectives so the two stay in sync.",
+  "where_to_apply": "02.mdx '## Learning Targets' (lines 13-16) AND 02.meta.json 'learning_objectives' array (lines 8-13) — keep the two in sync",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [
+   {
+    "cite": "Biggs & Tang, Teaching for Quality Learning at University (constructive alignment framework)",
+    "url_or_doi": "https://api.openalex.org/works?search=constructive+alignment",
+    "finding": "Constructive alignment requires intended learning outcomes, teaching activities, and assessment to address the same verbs/content; templated LOs that name no taught content break this alignment. Seminal, ~6,700 citations."
+   }
+  ],
+  "section_key": "cat100/03/02",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The named artifact is 'Excel pivot-table finding with unit labels, source note, and claim-first chart title' — but pivot tables/charts are taught in later sections, not here; this section teaches formulas and references. Verified the mismatch propagates through 02.mdx: the artifact-studio artifact= attribute (line 120), the Artifact Studio download link text (line 118), the Adaptive Support 'confusion' bullet (line 129), the dynamic-scenario prompt (line 133), and meta.json description (line 7). The Stronger Artifact Standard (lines 106-110) already describes the correct formula-trace artifact, so the named artifact contradicts the section's own standard.",
+  "proposed_change": "Retitle the section artifact to a formula-appropriate one, e.g. 'spreadsheet formula trace with locked-constant labels and a bottom-row verification note' (a before/after of the order or study-budget sheet showing which cells are locked and why). Update: artifact-studio artifact= attribute (line 120), the Artifact Studio download link text (line 118), the Adaptive Support 'confusion' bullet (line 129), the dynamic-scenario prompt (line 133), the 'Why This Section Matters' framing, and meta.json description (line 7). Align the named artifact to the Stronger Artifact Standard already in the section.",
+  "where_to_apply": "02.mdx artifact-studio attribute (line 120), download link (line 118), Adaptive Support (line 129), dynamic-scenario (line 133), '## Why This Section Matters'; 02.meta.json description (line 7)",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/03/02",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Three of the four learning objectives are the boilerplate template shared across all 64 sections (LO1 the fill-in-the-blank 'Analyze how the [artifact] shows a defensible decision' frame; LO3 'document a bounded AI/software support move'; LO4 'use feedback... to improve the artifact'). None names the actual cognitive content this section teaches and assesses: matching chart type to question type, the zero-baseline rule for bars, and claim-first titles. All four practice items and all four misconceptions target those three skills, so the objectives do not constructively align with the assessment actually present.",
+  "proposed_change": "Replace LO1 with a content-specific objective, e.g. 'Select a chart type (bar, line, pie, scatter) that matches the question a chart must answer.' Add or substitute objectives for the other two core skills actually assessed: 'Apply the zero-baseline rule to keep bar/column lengths proportional and recognize a truncated value axis as misleading' and 'Write a claim-first chart title that states the finding the chart supports.' These map 1:1 to the existing practice items (artifact_signal=line for trend, annotation_signal=truncated axis, ai_boundary=claim-first title, calibration=bar for categories) and the four misconceptions.",
+  "where_to_apply": "03.meta.json learning_objectives array (lines 8-13) and mirror the Learning Targets list in 03.mdx (lines 13-16).",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/03/03",
+  "op_index": 0
+ },
+ {
+  "type": "accessibility",
+  "gap": "The section is entirely about building and reading charts, and a11y is a stated project gate, yet it never mentions chart accessibility: do not encode the finding by color alone, label series directly or in a legend, ensure sufficient contrast, and provide a text alternative/caption stating the finding (WCAG 2.2 cited only as a bare link at line 150). A chart whose meaning lives only in color fails red-green color-blind readers, which is directly on-topic here.",
+  "proposed_change": "Add a short callout (in 'Stronger Artifact Standard' or as a new 'Accessible by Design' note) stating that a strong chart artifact also: does not rely on color alone to distinguish series (use direct labels/patterns), meets WCAG 2.2 contrast, and uses the claim-first title as a text alternative so screen-reader users get the finding without seeing the image. Note this reinforces, not contradicts, the claim-first-title rule already taught (WCAG 2.2 SC 1.4.1 Use of Color; SC 1.1.1 Non-text Content).",
+  "where_to_apply": "03.mdx new callout after 'Stronger Artifact Standard' (line 110) or within it; reference WCAG 2.2 (line 150).",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/03/03",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The Grand-Total-as-category error is the single most heavily taught trap (Opening Case, Core Concept, Common Misreadings, step-reveal item 3, Transfer Case row-vs-column totals) and has its own misconception entry (cat100_supplement_3_4_pivot_tables_as_summaries_grand_total_misread, rail_action ask), but NONE of the four practice problems maps to it: three map to count_vs_sum and one to stale_source_range. The grand_total_misread misconception is orphaned from the practice set.",
+  "proposed_change": "Add a 5th multiple_choice practice problem keyed to misconception_id cat100_supplement_3_4_pivot_tables_as_summaries_grand_total_misread, reusing the worked-example numbers. stem = 'Your pivot shows West 1200, East 550, South 150, Grand Total 1900. A teammate reports \"our top region sold 1900.\" What is wrong?' Correct option: '1900 is the all-data Grand Total across every region; the top region is West at 1200 - quoting the Grand Total as one category is a category error.' Distractors: '1900 is correct, it is the West total'; 'The pivot needs refreshing first'; '1900 is the order count, not sales.' difficulty medium, concept_ids include cat100_supplement_pivot_tables_as_summaries. Append the new practice id to 04.meta.json practice_ids.",
+  "where_to_apply": "04.practice.json (add problem object to problems array) + 04.meta.json (append id to practice_ids array). Confirmed: practice_ids array currently lists exactly the four ids (lines 26-31 of 04.meta.json), none keyed to grand_total_misread; misconception id exists at 04.misconceptions.json lines 21-27.",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/03/04",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Learning objectives are the templated frame (LO1 'shows a defensible decision in CAT 100'; LO2/3/4 identical across sections). None names the pivot-specific cognition this section teaches (choosing aggregation to match a question, distinguishing category rows from Grand Total, source-range freshness).",
+  "proposed_change": "Differentiate at least LO1 (and ideally a new LO) to name section-specific cognition while keeping the artifact/AI through-line. e.g. LO1: 'Choose the pivot aggregation (Sum, Count, Average) that matches the stated question, and justify it in the artifact source note.' Add an LO: 'Distinguish a per-category pivot row from the Grand Total, and confirm the pivot is refreshed against a source range that covers all data, before quoting any figure.' Mirror the wording in both 04.mdx Learning Targets and 04.meta.json learning_objectives.",
+  "where_to_apply": "04.meta.json learning_objectives array (lines 8-13) + 04.mdx '## Learning Targets' bullets (lines 13-16). Confirmed the four meta objectives are verbatim-identical to the four mdx bullets, so edits must be applied to both to stay in sync.",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/03/04",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Learning Objective 1 ('Analyze how the Excel pivot-table finding ... shows a defensible decision') plus LO2/LO4 are the templated cross-section frame and do not name the skills this section actually teaches and assesses: reading Excel error codes, writing a four-part debugging prompt, and verifying on a known-answer row. The four practice items (error_codes x2, unverified_ai_fix, vague_prompt) and three misconceptions are tightly about error-code reading, prompt precision, and AI-fix verification, but the objectives never mention these. The artifact named in LO1 (pivot-table finding) is also a mismatch: this section's artifact work is an AI-debugging trace, not a pivot finding. This defeats the constructive-alignment check.",
+  "proposed_change": "Replace templated LO1 and tighten so at least two objectives are section-specific and map to practice/misconception IDs: (1) 'Read an Excel error code (#DIV/0!, #REF!, #VALUE!, #NAME?, #N/A) to predict the cause before asking for help' (maps *_error_codes); (2) 'Write a four-part debugging prompt (formula, wrong result, suspected cause, exact desired behavior incl. edge case)' (maps *_vague_prompt); (3) 'Verify an AI-suggested formula on a known-answer row before copying it' (maps *_unverified_ai_fix); keep one bounded-AI-use/accepted-vs-rejected objective. Mirror identically in 05.meta.json learning_objectives and 05.mdx 'Learning Targets' (lines 11-14).",
+  "where_to_apply": "05.meta.json 'learning_objectives' (lines 8-13) and 05.mdx 'Learning Targets' (lines 11-14) — must be kept identical; align to practice IDs *_error_codes, *_vague_prompt, *_unverified_ai_fix",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/03/05",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The misconception set (error_codes, unverified_ai_fix, vague_prompt) omits the section's single most-emphasized misreading, stated explicitly in 'Common Misreadings' (line 82) and the inline-check (line 104): 'the error disappeared = the formula is correct.' The unverified_ai_fix misconception is close but is framed around AI confidence, not around the red-error-vanishing signal. There is also no misconception capturing the privacy misreading ('paste the whole sheet of sensitive data into the chat') that the body text (line 84) and dynamic-scenario raise.",
+  "proposed_change": "Add two entries to 05.misconceptions.json: (1) pattern 'error_absence_equals_correct' — learner treats disappearance of the red error as proof of correctness; feedback: an AI fix can replace #DIV/0! with a wrong number; only a known-answer row confirms correctness; rail_action 'represent'. (2) pattern 'pasting_sensitive_data_to_ai' — learner pastes names/grades/private values to get formula help; feedback: the tool needs the formula, error, and intended behavior, not the people's data; describe structure, not values; rail_action 'ask'. Optionally add a matching privacy-boundary item to 05.practice.json.",
+  "where_to_apply": "05.misconceptions.json 'misconceptions' array (add 2 entries); optionally one new item in 05.practice.json",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/03/05",
+  "op_index": 3
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The four learning objectives (06.meta.json lines 8-13; 06.mdx '## Learning Targets' lines 11-14) are templated cross-section boilerplate. LO1 is the fill-in-the-blank artifact frame; LO2-4 are identical across sections. None mentions privacy, re-identification, quasi-identifiers, honest reporting at small n, or group-of-one suppression, which is the entire substance of the section, its four practice items, and three misconceptions. The constructive-alignment check is a no-op here.",
+  "proposed_change": "Replace LO1 (and ideally add one) with section-specific measurable objectives, e.g. 'Identify when a small dataset is re-identifiable through a combination of quasi-identifiers even after direct identifiers are removed' and 'Apply a three-point ethics screen (re-identification, group-of-one, honest-magnitude) to decide how to report a small-n finding.' Edit both 06.meta.json 'learning_objectives' AND 06.mdx '## Learning Targets' so they stay in sync. (No external research required; structural fix verified against this section's own content.)",
+  "where_to_apply": "06.meta.json 'learning_objectives' (lines 8-13) AND 06.mdx '## Learning Targets' (lines 11-14) — keep both in sync.",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/03/06",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Learning objectives are the course-wide template (LO1 is the fill-in-the-blank 'Analyze how the [artifact] shows a defensible decision' frame; LO2-4 are byte-identical across all 64 sections). They do not name the section's actual teachable skills: computing percentage change correctly, matching verb to magnitude, and distinguishing correlation from cause. This defeats the constructive-alignment check (objectives are plain strings) and is the volume-not-novelty risk the audit warns about.",
+  "proposed_change": "Rewrite learning_objectives in 07.meta.json (and mirror the Learning Targets list in 07.mdx) with section-specific objectives, e.g.: (1) 'Compute a percentage change correctly as (new - old) / old and state it without rounding-up inflation'; (2) 'Write a finding-first sentence that leads with the result before the procedure'; (3) 'Match the verb to the magnitude (40% is \"higher,\" not \"skyrocketed\")'; (4) 'Flag a correlation as a correlation and name a competing explanation rather than asserting cause.' Keep the bounded-AI-use objective but specialize it to data narration (accept/reject AI rewrites that inflate magnitude or smuggle causal verbs). Confirmed against the file: lines 8-13 of 07.meta.json carry the byte-identical LO2-4 template, and lines 11-14 of 07.mdx mirror them under '## Learning Targets'.",
+  "where_to_apply": "07.meta.json field learning_objectives (lines 8-13); 07.mdx '## Learning Targets' bullet list (lines 11-14)",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/03/07",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The body and step-reveal both teach the percentage-base error (step-reveal choices include '20% higher: (700 minus 500) divided by 1000' and '140% higher: 700 divided by 500'), but 07.misconceptions.json has no entry for it. The file covers narrating_process_not_finding, correlation_stated_as_cause, and overstating_the_magnitude, but not the arithmetic error of dividing by the wrong base when computing percentage change. This is a distinct, explicitly-taught error with no remediation rail.",
+  "proposed_change": "Add a fourth misconception to 07.misconceptions.json: id 'cat100_supplement_3_7_narrating_a_data_finding_percent_base_error', pattern 'wrong_base_for_percent_change', description 'computing percentage change against the wrong denominator (e.g., dividing the gap by the sum or by the new value instead of the old)', trigger 'learner reports a % change that does not equal (new - old) / old', feedback 'Percentage change is (new - old) divided by the OLD value: (700 - 500)/500 = 40%. Dividing by 1000 or by 700 gives a different, wrong number.', rail_action 'represent'. Optionally add a matching practice item or retag an existing one. Verified: the wrong-base distractors are present in the step-reveal JSON at 07.mdx line 60.",
+  "where_to_apply": "07.misconceptions.json misconceptions array (new entry, after the three existing entries on lines 4-27)",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/03/07",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The body teaches a per-category three-way match (West headline 2,400 must equal West pivot cell 1,200 and West bar). But the annotation_signal practice problem (08.practice.json) compares the chart TOTAL (1,900, the Grand Total) against a headline of 2,400 and explains it as 'the headline likely counted rows the pivot range excluded.' Comparing a Grand Total to a single-category headline is a category/aggregation confusion the body explicitly does not teach here; it muddies the clean three-way-match construct (headline cell = pivot cell = bar height for the SAME category). Confirmed against files: the Worked Example sets Grand Total = 1900 and West = 1200, and the mdx Decision Rule/inline-check frame reconciliation strictly per-category (headline = pivot cell = bar for one category), so the practice stem's 1,900-vs-2,400 total framing is genuinely off-construct.",
+  "proposed_change": "Rewrite the annotation_signal stem and explanation to match the body's per-category construct: e.g., 'Your West bar reads 1,200 in the pivot but your headline says West led at 2,400.' Keep the correct option as tracing the mismatch to a stale pivot range or active filter, and keep 'reconcile before publishing.' Drop the Grand-Total framing so the three representations being matched are headline cell, pivot cell, and bar height for one category.",
+  "where_to_apply": "cat100-supplement/03/08.practice.json -> problem id cat100_supplement_3_8_module_3_data_story_studio_annotation_signal (stem + explanation)",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/03/08",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The single most-named capstone error in the body ('the most common capstone error is polishing the slide before reconciling the numbers ... Reconcile first, format last,' 08.mdx line 85) and the second-named error ('assuming that because each stage worked alone, the pipeline works together ... Integration introduces failures no single stage could,' line 87) have no matching entry in 08.misconceptions.json. The misconceptions file lists only 3 patterns (visuals_before_clean_data, headline_chart_mismatch, ai_authors_the_finding), none of which is 'polish-before-reconcile' or 'integration-introduces-new-failures.' Additionally, the calibration practice problem (about the verifiable package) points to misconception_id ...chart_before_clean, which is about ordering, not the verifiable-package content, leaving a loose mapping. Both confirmed by reading the two files.",
+  "proposed_change": "Add a misconception entry, e.g. id ...polish_before_reconcile, pattern 'format_before_reconcile', description 'Spending formatting effort on a polished slide before running the three-way match, which makes a wrong story look more credible', trigger 'learner styles the chart/headline before confirming headline=pivot=bar', feedback 'Reconcile first, format last: a crisp chart can still carry a stale-pivot mismatch', rail_action 'represent'. Optionally add an 'integration_assumed_from_parts' misconception. Then repoint the calibration problem's misconception_id to a verifiable-package-related id rather than chart_before_clean.",
+  "where_to_apply": "cat100-supplement/03/08.misconceptions.json (add 1-2 entries) + 08.practice.json calibration problem misconception_id",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/03/08",
+  "op_index": 1
+ }
+]

@@ -3,8 +3,8 @@
   "title": "Worked Examples and Fading",
   "description": "AIL 606 textbook section connecting worked examples and fading to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the storyboard frame sequence with narration, signaling, and reader-action notes shows a defensible decision in AIL 606.",
-    "Distinguish artifact polish from evidence-based revision.",
+    "Explain the [worked-example effect](https://en.wikipedia.org/wiki/Worked-example_effect) in terms of search load versus schema-building load.",
+    "Engineer a fading sequence (worked, completion, open) matched to the learner's growing schema.",
     "Document a bounded AI/software support move with accepted and rejected suggestions.",
     "Use annotations, support requests, and revision notes to decide what help or design change should come next."
   ],

@@ -6,10 +6,10 @@
   "title": "Calendar and Task Systems",
   "description": "CAT 100 textbook section connecting calendar and task systems to one-week calendar and task plan, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the one-week calendar and task plan shows a defensible decision in CAT 100.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    "Separate fixed-time events (which belong on a calendar) from deadline-bound work (which belongs on a task list).",
+    "Schedule a work block for each task before its deadline, so the work has a reserved time and not just a due time.",
+    "Set reminder lead times that account for travel and setup, not just the moment the event starts.",
+    "Track task state (not started, in progress, done) so the list shows what is left, not just what exists."
   ],
   "concept_ids": [
     "cat100_supplement_productivity_and_workflow_automation",
@@ -30,4 +30,3 @@
     "cat100_supplement_7_2_calendar_and_task_systems_calibration"
   ]
 }
-

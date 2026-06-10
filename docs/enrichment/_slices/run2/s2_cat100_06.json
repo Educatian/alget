@@ -1,0 +1,85 @@
+[
+ {
+  "type": "assessment_align",
+  "gap": "Three of the four learning objectives (LO2 distinguish polish from evidence-based revision; LO3 document a bounded AI/software move; LO4 use feedback/revision notes) are the verbatim course-wide boilerplate, and LO1 is the fill-in-the-blank frame ('Analyze how the GitHub Pages file tree ... shows a defensible decision'). None of them name the actual constructs this section teaches: purpose statement, navigation depth / click budget, and descriptive labeling. The practice items (artifact_signal, annotation_signal, calibration) and the inline-check/sequence-builder all assess IA-specific skills that no objective actually states.",
+  "proposed_change": "Differentiate LO1 to name the section's real targets, e.g. 'Write a one-sentence purpose statement ([audience] + [single job]) and use it to rank candidate pages.' Add or revise an objective to cover the click-budget/navigation-depth and labeling skills that the inline-check and calibration item test, e.g. 'Apply the task / reach / empty checks to keep, promote, or cut each candidate page.' Keep LO2-LO4 only if their evidence-revision and AI-boundary language is retained for the artifact-studio trace, but make at least the first two objectives section-specific so the alignment check has something to bind to.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\06\\01.meta.json learning_objectives array (lines 8-13) and mirror the same edits in C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\06\\01.mdx 'Learning Targets' list (lines 13-16)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/06/01",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Learning objectives 2-4 are verbatim boilerplate shared across all 64 sections (polish-vs-revision, bounded AI support move, feedback/revision notes) and LO1 is the fill-in-the-blank '...shows a defensible decision in CAT 100' template. None of LO1-4 names the section's actual testable skills: writing accessible alt text, predicting the cascade at equal specificity, and building a minimal valid HTML document. This defeats the course-wide constructive-alignment check (a known P0). The four practice items and four misconceptions are content-specific, but the objectives they should map to are generic.",
+  "proposed_change": "Differentiate at least two objectives to the section's real content, mirrored in both 02.mdx '## Learning Targets' (lines 13-16) and 02.meta.json 'learning_objectives' (lines 8-13). Suggested: (1) 'Construct a minimal valid HTML document, placing metadata (title, charset, stylesheet link) in <head> and visible content in <body>.' (2) 'Write descriptive alt text for informative images and justify empty alt for decorative ones against WCAG 2.2 SC 1.1.1.' (3) 'Predict which CSS rule wins when selectors conflict, using specificity first and source order as the tiebreaker.' Keep one revision/AI-disclosure objective to preserve the course through-line. These map cleanly onto the existing practice items (artifact_signal -> minimal doc, calibration/alt_text -> alt text, annotation_signal/first_rule_wins -> cascade) and the four misconceptions.",
+  "where_to_apply": "02.mdx '## Learning Targets' (lines 13-16) and 02.meta.json 'learning_objectives' array (lines 8-13)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/06/02",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Learning Objective 1 is the course-wide fill-in-the-blank template ('Analyze how the GitHub Pages file tree with accessibility, privacy, and publishing checks shows a defensible decision in CAT 100', meta line 9 / mdx line 13) and LOs 2-4 (lines 14-16) are identical to every other section. None names this section's actual hard content: repo-name-determines-URL, the add/commit/push staging pipeline, or history-permanence-and-rotation. The four practice items (repo name, filename case, force-push, committed secret) test those real concepts but map only loosely to the generic LOs, defeating the constructive-alignment check.",
+  "proposed_change": "Differentiate at least one or two LOs to name the section's real targets, e.g. 'Predict whether a given repository name publishes at the root user-site URL (username.github.io) or a /repo subpath' and 'Explain why a committed credential must be rotated, not just deleted, and how .gitignore prevents the exposure.' Then the four existing practice items map cleanly to specific objectives.",
+  "where_to_apply": "03.meta.json learning_objectives (lines 8-13) and mirror headings in 03.mdx Learning Targets (lines 13-16)",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/06/03",
+  "op_index": 3
+ },
+ {
+  "type": "assessment_align",
+  "gap": "LO2 ('Distinguish artifact polish from evidence-based revision'), LO3, and LO4 are boilerplate objectives repeated across all 64 sections; only LO1 is section-specific (and it is the fill-in-the-blank frame). The section's actual targeted skills are (a) reading a code symptom before prompting, (b) writing a verifiable vs guessable prompt, (c) classifying suggestions accept/modify/reject via match+scope+verify checks. Practice items align to the body but not cleanly to the stated objectives, defeating the constructive-alignment check.",
+  "proposed_change": "Differentiate at least two objectives to the section's actual constructs: 'Write a verifiable debugging prompt that states the symptom and includes the relevant code, and contrast it with a prompt the AI can only guess at' (aligns to annotation_signal / vague_prompt items) and 'Classify each AI debugging suggestion as accept, modify, or reject using a match check, a scope check, and a browser verify check, recording the reason' (aligns to ai_boundary, calibration, and artifact_signal items). Optionally keep one cross-cutting objective. Update both 05.mdx Learning Targets and 05.meta.json learning_objectives so practice IDs map to named LOs.",
+  "where_to_apply": "05.meta.json -> learning_objectives array (lines 8-13) and 05.mdx -> Learning Targets (lines 13-16)",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/06/05",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "All four practice items and four misconceptions (06.practice.json, 06.misconceptions.json, practice_ids in 06.meta.json lines 26-31) are about resume bullets (duties vs impact, overclaiming, AI fabrication, one-resume-fits-all). None assess the chapter-06 GitHub Pages portfolio artifact. No item probes what counts as defensible evidence ON a published portfolio site (linking to the live artifact, before/after of a project card, the live URL as verifiable proof). Constructive alignment is to the resume theme, not the GitHub Pages chapter.",
+  "proposed_change": "Add a 5th practice item anchored to portfolio-site evidence: stem 'Your GitHub Pages portfolio lists a project as \"Built a website.\" Which revision gives a reviewer verifiable evidence?' with correct option linking to the live URL plus naming the artifact and a result; distractors being decoration/inflation. Add misconception 'screenshot_or_claim_replaces_live_artifact' (treating a screenshot or claim as sufficient when the live published URL is the strongest evidence).",
+  "where_to_apply": "06.practice.json — add a 5th problem; 06.misconceptions.json — add a 5th misconception; reference new id from 06.meta.json practice_ids (lines 26-31).",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/06/06",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "LO1 is the templated fill-in-the-blank frame ('Analyze how the AI critique log showing accepted, modified, and rejected suggestions shows a defensible decision in CAT 100') appearing verbatim across sections. It does not describe this section's actual content (designing a triggered, specific, platform-matched maintenance plan) and is not what the practice items or misconceptions assess (maintenance-plan design, link-rot, generic-checklist filtering, trigger/specificity).",
+  "proposed_change": "Replace LO1 with a section-specific objective: 'Design a maintenance plan that is triggered (concrete date/event), specific/verifiable, and matched to a static GitHub Pages platform.' Mirror the same wording in the MDX 'Learning Targets' first bullet (line 13) so the constructive-alignment check binds to a real string. Optionally tighten LO4 to name the maintenance-plan artifact explicitly.",
+  "where_to_apply": "07.meta.json learning_objectives[0] AND 07.mdx '## Learning Targets' first bullet (line 13)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/06/07",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Learning objectives are the known templated set: LO1 is the fill-in-the-blank frame ('Analyze how the [artifact] shows a defensible decision in CAT 100') and LO2-LO4 are identical across sections, so the constructive-alignment check is a no-op. The section's genuinely distinctive contribution (integration is its own skill; clean commit history vs clean latest snapshot; the live-URL test subsumes per-section checks) is not captured by any objective, so the section's real intellectual core is unassessed at the objective level even though practice items and misconceptions map to the generic objectives.",
+  "proposed_change": "Differentiate LO1 to name this section's distinctive skill, e.g., 'Verify an integrated published artifact on its live URL, distinguishing a clean commit history from a clean latest snapshot, and explain why integration testing catches failures that per-section checks miss.' Keep one templated objective for the AI-disclosure through-line (current LO3). Update 08.meta.json learning_objectives[] and the matching 'Learning Targets' list in 08.mdx (lines 13-16) in lockstep. Grounded in constructive alignment (Biggs): assessment and objectives must target the actual intended skill (here, integration/verification), not a generic frame.",
+  "where_to_apply": "cat100-supplement/06/08.meta.json learning_objectives[] (lines 8-13) and cat100-supplement/06/08.mdx 'Learning Targets' (lines 13-16)",
+  "priority": "high",
+  "sources": [
+   {
+    "cite": "Biggs, J. (1999/2011) Teaching for Quality Learning at University (constructive alignment)",
+    "url_or_doi": "https://doi.org/10.1007/BF00138871",
+    "finding": "Constructive alignment requires intended learning outcomes, teaching activities, and assessment to target the same specific competence; generic/boilerplate objectives that do not name the section's actual target skill break alignment."
+   }
+  ],
+  "verified": "unverified",
+  "section_key": "cat100/06/08",
+  "op_index": 3
+ }
+]

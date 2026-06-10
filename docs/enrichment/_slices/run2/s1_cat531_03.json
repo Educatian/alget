@@ -1,0 +1,134 @@
+[
+ {
+  "type": "evidence_add",
+  "gap": "The data-bias example in practice item 2 (a reading-recommendation app trained on past borrowing data steering striving readers toward easier books) is pedagogically excellent but presented as an asserted mechanism with no evidence anchor. The course values grounding bias claims in current algorithmic-fairness-in-education evidence, and the item makes a falsifiable empirical claim about feedback loops in recommendation models.",
+  "proposed_change": "Add a one-line 'Recent Evidence' note (in Core Concept near line 38, or as the explanation in practice item 2) citing current work on recommender feedback-loop bias so the 'trained on past borrowing data steers readers' claim is grounded rather than asserted. Use the fairness/feedback-loop literature below. Note: a tightly education-specific feedback-loop-in-reading-recommenders paper did not surface in OpenAlex; the general recommender-fairness and human-AI feedback-loop sources are the closest solid anchors, so frame the claim as an instance of a documented general mechanism rather than citing a study of this exact app.",
+  "where_to_apply": "01.mdx — short note in Core Concept (near line 38) and/or 01.practice.json annotation_signal explanation (line 37)",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Wang, Y., et al. (2022). A Survey on the Fairness of Recommender Systems. ACM Transactions on Information Systems.",
+    "url_or_doi": "https://doi.org/10.1145/3547333",
+    "finding": "Documents how recommender models trained on historical interaction data perpetuate and amplify inequities, the general mechanism behind 'trained on past borrowing data steers readers.'"
+   },
+   {
+    "cite": "Glickman, M., & Sharot, T. (2024). How human-AI feedback loops alter human perceptual, emotional and social judgements. Nature Human Behaviour.",
+    "url_or_doi": "https://doi.org/10.1038/s41562-024-02077-2",
+    "finding": "Empirically shows human-AI feedback loops amplify bias over time as model outputs reshape subsequent human behavior — grounds the feedback-loop claim with a 2024 primary source."
+   },
+   {
+    "cite": "Gottschalk, F., & Weise, C. (2023). Digital equity and inclusion in education. OECD Education Working Papers.",
+    "url_or_doi": "https://doi.org/10.1787/7cb15030-en",
+    "finding": "Shows persistent digital inequalities in education systems disproportionately affect disadvantaged students, an education-specific equity anchor for the disparate-outcome claim."
+   }
+  ],
+  "section_key": "cat531/03/01",
+  "op_index": 6
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The Opening Case (line 20-22) and Core Concept make a strong asymmetry claim - detectors flag careful/formulaic multilingual writers while fluent native speakers who copied from a chatbot read as 'human' and slide through. This is the most persuasive empirical assertion and is presented as established fact but is uncited and slightly conflates two separate findings (biased false positives vs low recall / easy evasion).",
+  "proposed_change": "Ground this with Liang et al. (2023) and add one precision sentence: detectors fail in BOTH directions - high false positives on non-native/formulaic writers AND easy evasion by capable writers (Liang showed a simple 'enhance word choice' prompt drops the AI flag to near zero). Cite the study so the claim is precise rather than rhetorical.",
+  "where_to_apply": "02.mdx - Opening Case (line 22) and Core Concept detector paragraph (line 30)",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Liang, Yuksekgonul, Mao, Wu & Zou (2023) GPT detectors are biased against non-native English writers",
+    "url_or_doi": "https://doi.org/10.1016/j.patter.2023.100779",
+    "finding": "Detectors misclassified the majority (61.3%) of non-native TOEFL essays as AI while reading native-speaker prose as human (the false-positive asymmetry), AND a self-editing/word-choice-enhancing prompt let genuinely AI-generated text evade detection (the easy-evasion direction). Confirms the claim works in both directions, justifying the precision edit."
+   }
+  ],
+  "section_key": "cat531/03/02",
+  "op_index": 5
+ },
+ {
+  "type": "evidence_add",
+  "gap": "Privacy/legal grounding gap: the section discusses running every submission through detectors (line 20) and storing draft/version history as integrity evidence, but never names the student-data implications (FERPA for education records; COPPA for under-13 minors) of feeding student writing into third-party detection/AI services, or of retaining version-history surveillance. The datafication/critical-edtech anchor is thematically present but not made explicit.",
+  "proposed_change": "Add a brief 'Hidden cost' callout connecting to the critical-edtech/datafication thread: submitting student work to a commercial detector or genAI service is itself a data-disclosure decision (FERPA education records; COPPA where under-13 minors are involved), and version-history-as-evidence is a form of process surveillance whose burden falls unevenly. Anchor with the FTC's January 2025 COPPA rule amendments (default shifted from opt-out to opt-in parental consent) and the U.S. Dept of Education's 2024 guidance on third-party AI tool data handling.",
+  "where_to_apply": "02.mdx - add a short callout in Core Concept after the two numbered ideas (after line 32) or in Common Misreadings (line 82)",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "FTC (January 2025) Final amendments to the Children's Online Privacy Protection Rule (COPPA)",
+    "url_or_doi": "https://www.nea.org/sites/default/files/2025-06/5.1-ai-policy-overview-of-federal-regulations-final.pdf",
+    "finding": "In January 2025 the FTC finalized COPPA rule amendments addressing evolving digital practices; the default shifted from opt-out to opt-in, and vendors must obtain explicit, documented parental consent - directly relevant to feeding under-13 student work into third-party AI/detection services."
+   },
+   {
+    "cite": "Future of Privacy Forum (Oct 2024) Vetting Generative AI Tools for Use in Schools / Student Privacy Compass",
+    "url_or_doi": "https://fpf.org/wp-content/uploads/2024/10/Ed_AI_legal_compliance.pdf_FInal_OCT24.pdf",
+    "finding": "Current (2024) legal-compliance guidance: schools subject to FERPA must treat processing student work through an outside AI/detection third party as a data-disclosure decision; processing student records through external AI services raises FERPA education-records obligations. Grounds the 'data-disclosure decision' framing."
+   }
+  ],
+  "section_key": "cat531/03/02",
+  "op_index": 7
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The section repeatedly invokes high-stakes school decisions (referral, placement, discipline) and equity harms but never cites a legal/policy standard. The course currency-watch wants FERPA/COPPA and student-data-privacy standards present; a bias/consequence section recommending 'advisory only with human review' is the natural place to anchor the legal floor.",
+  "proposed_change": "Add one tight 'Policy floor' callout after the Decision Rule (line 75) distinguishing the legal minimum from the higher pedagogical/ethical bar the section argues for. Cite FERPA (educational-records access/consent/amendment rights) and the amended COPPA Rule (2025 final rule, effective June 23, 2025, compliance by April 22, 2026), noting the 2025 amendments now treat biometric identifiers as protected personal information and require separate parental consent for third-party disclosure — directly relevant to webcam/affect tools. Note that COPPA's edtech-specific provisions were deferred to FERPA, so schools still carry the data-governance duty. Keep it to one callout per the no-volume directive.",
+  "where_to_apply": "03.mdx — new small 'Policy floor' callout after Decision Rule (line 75)",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Federal Trade Commission (2025). Children's Online Privacy Protection Rule; Final Rule. 90 Fed. Reg. (Apr. 22, 2025).",
+    "url_or_doi": "https://www.federalregister.gov/documents/2025/04/22/2025-05904/childrens-online-privacy-protection-rule",
+    "finding": "Amended COPPA Rule published Apr. 22, 2025, effective June 23, 2025, full compliance by Apr. 22, 2026; expands 'personal information' to include biometric identifiers, requires separate verifiable parental consent for third-party disclosure, bars indefinite data retention. FTC declined edtech-specific amendments citing FERPA interplay — establishes the current legal floor for minors' data in AI tools."
+   },
+   {
+    "cite": "U.S. Dept. of Education, Family Educational Rights and Privacy Act (FERPA), 20 U.S.C. 1232g; 34 CFR Part 99.",
+    "url_or_doi": "https://studentprivacy.ed.gov/ferpa",
+    "finding": "FERPA governs access, consent, and amendment of education records; an AI tool that scores, flags, or refers a student generates records subject to FERPA, establishing the records/consent legal minimum the section's 'advisory only with human review' standard sits above."
+   }
+  ],
+  "section_key": "cat531/03/03",
+  "op_index": 3
+ },
+ {
+  "type": "new_callout",
+  "gap": "The 'do my essay' / outsourcing risk and the input-privacy claim are framed as timeless caution; a graduate course gains credibility from a current evidence note grounding both named risks in current data rather than assertion.",
+  "proposed_change": "Add a small one-sentence-plus-citation 'Recent Evidence' callout after 'Why This Section Matters' or under Core Concept, citing 2024-2026 data on how prevalent student generative-AI use for schoolwork now is (and the attendant input-privacy exposure). Keep it to one sentence + citation per the NOVELTY brief's 'stop adding volume' guidance.",
+  "where_to_apply": "05.mdx — short callout after 'Why This Section Matters' or under Core Concept",
+  "priority": "low",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Pew Research Center (2025). 'About a quarter of U.S. teens have used ChatGPT for schoolwork — double the share in 2023.'",
+    "url_or_doi": "https://www.pewresearch.org/short-reads/2025/01/15/about-a-quarter-of-us-teens-have-used-chatgpt-for-schoolwork-double-the-share-in-2023/",
+    "finding": "Teens (13-17) reporting ChatGPT use for schoolwork doubled from 13% (2023) to 26% (2024), establishing rapid, mainstream adoption that makes per-prompt coaching a current necessity."
+   },
+   {
+    "cite": "Pew Research Center (2026). 'How Teens Use and View AI.'",
+    "url_or_doi": "https://www.pewresearch.org/internet/2026/02/24/how-teens-use-and-view-ai/",
+    "finding": "In a Sept-Oct 2025 survey of 1,458 U.S. teens, 54% report using chatbots for schoolwork and 59% say AI-assisted cheating is a regular occurrence at their school, grounding both the input-privacy and the outsourcing/'do my essay' risks in current data."
+   },
+   {
+    "cite": "College Board (2025). High school students' use of generative AI for schoolwork.",
+    "url_or_doi": "https://newsroom.collegeboard.org/new-research-majority-high-school-students-use-generative-ai-schoolwork",
+    "finding": "69% of high school students reported using ChatGPT to help with assignments/homework (May 2025), corroborating majority-level adoption."
+   }
+  ],
+  "section_key": "cat531/03/05",
+  "op_index": 8
+ },
+ {
+  "type": "new_callout",
+  "gap": "The Transfer Case (build-it-in-house, line 107) is good but the section never positions its capstone move against the current SOTA bar (Google 'Learn Your Way' 2025; AI-personalized adaptive textbooks). A one-line framing note would sharpen the closed-evidence-loop contribution the NOVELTY_STRENGTHENING_BRIEF asks for, without adding page volume.",
+  "proposed_change": "Add a single 'Connect to practice' sentence in the Transfer Case (line 107) or Why This Section Matters noting that the same integrated weighing applies to today's most advanced adaptive systems — e.g., Google's Learn Your Way (launched Sept 2025), an AI-personalized textbook that rewrites content to reading level and interest and reported an 11-point recall gain in a small RCT — which still face the same adopt/decline judgment (subgroup fairness, granular data logging, disclosure) this capstone teaches, so the capstone skill is the durable judgment that outlasts any specific 2026 tool. Keep it to one or two sentences.",
+  "where_to_apply": "08.mdx — one sentence in 'Transfer Case' (line 107) or 'Why This Section Matters'",
+  "priority": "low",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Google Research, 'Learn Your Way: Reimagining textbooks with generative AI' (Sept 17, 2025)",
+    "url_or_doi": "https://research.google/blog/learn-your-way-reimagining-textbooks-with-generative-ai/",
+    "finding": "Google launched Learn Your Way via Google Labs on Sept 17, 2025: a LearnLM/Gemini 2.5 Pro-powered adaptive textbook that rewrites passages to a target reading grade level and learner interest and generates multiple representations (mind maps, audio, quizzes); a small RCT (n=60, ages 15-18) reported an 11-percentage-point long-term recall advantage over a standard digital reader. Confirms the named SOTA adaptive-textbook bar exists as of 2025, and such tools still require the same adoption judgment (logging granular student data, subgroup fairness, disclosure)."
+   }
+  ],
+  "section_key": "cat531/03/08",
+  "op_index": 7
+ }
+]

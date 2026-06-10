@@ -3,10 +3,10 @@
   "title": "AI Policy Language for Students",
   "description": "AIL 606 textbook section connecting ai policy language for students to AI-USE disclosure excerpt tied to one bounded design-support decision, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the AI-USE disclosure excerpt tied to one bounded design-support decision shows a defensible decision in AIL 606.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    "Contrast deterrence and transparency models of academic integrity and explain why generative AI makes deterrence unenforceable.",
+    "Write an AI-use clause with a bounded permission, a one-line disclosure format with a worked example, and an accessibility carve-out.",
+    "Apply the distinguishability, disclosure-cost, and accessibility checks to evaluate a draft AI-use policy.",
+    "Predict the behavioral effect (concealment, exclusion, or transparency) a policy clause will produce."
   ],
   "concept_ids": [
     "ail606_supplement_instructor_implementation_toolkit",

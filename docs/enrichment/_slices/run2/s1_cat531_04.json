@@ -1,0 +1,100 @@
+[
+ {
+  "type": "evidence_add",
+  "gap": "The two reused course anchors are weakly cited (References lines 140-141): 'critical edtech studies' is a bare Routledge DOI (10.4324/9781315670160) with no named author, and the 'AI and education datafication' entry is a bare DOI (10.1080/17439884.2020.1686017) presented as a faceless link. For a graduate course this is a citation-hygiene problem that undercuts the auditability the section preaches.",
+  "proposed_change": "Name the authors and titles. CONFIRMED: the 'AI and education datafication' DOI 10.1080/17439884.2020.1686017 actually resolves to Perrotta & Selwyn (2019), 'Deep learning goes to school: toward a relational understanding of AI in education,' Learning, Media and Technology — so it should be attributed by author/title/year (note: it is 2019, not 2020, and is a relational-AI-in-education paper, so the 'datafication' label is loose; consider relabeling). The critical-edtech DOI (10.4324/9781315670160, a Routledge book DOI) does not resolve in OpenAlex or Crossref; it is a Selwyn-area Routledge title but the exact book title could not be confirmed from authoritative APIs — verify the title before printing it. Also consider adding one post-2020 critical-edtech/datafication source so the framing is not anchored entirely to 2016-2020 literature in a 2026 course.",
+  "where_to_apply": "02.mdx — References (lines 140-141)",
+  "priority": "low",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Perrotta & Selwyn (2019) Deep learning goes to school: toward a relational understanding of AI in education, Learning, Media and Technology",
+    "url_or_doi": "https://doi.org/10.1080/17439884.2020.1686017",
+    "finding": "The bare 'AI and education datafication' DOI in the References resolves to this Perrotta & Selwyn (2019) article — confirming the author identity (Selwyn) and correct year/title that should replace the faceless link; the issue assigned to vol/year 2020 but the work is 2019."
+   },
+   {
+    "cite": "OpenAlex + Crossref lookup of DOI 10.4324/9781315670160 (critical edtech book anchor)",
+    "url_or_doi": "https://doi.org/10.4324/9781315670160",
+    "finding": "This Routledge (10.4324 prefix = Routledge/Taylor & Francis) book DOI returns no record in OpenAlex or Crossref, so the exact title/author could not be authoritatively verified; treat the specific title as unconfirmed and verify directly with the publisher before naming it, even though the surrounding anchor is Selwyn critical-edtech."
+   }
+  ],
+  "section_key": "cat531/04/02",
+  "op_index": 7
+ },
+ {
+  "type": "new_callout",
+  "gap": "The section's examples (24-month retention, training on student inputs, 90-day webcam cloud storage) are realistic but uncited and undated; there is no concrete real-world anchor showing 'vendor default trains on student data' is a current reality rather than a hypothetical.",
+  "proposed_change": "Add a small 'Recent Evidence' callout (matching the supplements' callout structure) after 'Why This Section Matters' or in the Core Concept datafication paragraph, anchoring the vendor-default-trains/retains-on-student-data claim and/or the webcam-monitoring proportionality case to a real, dated 2024-2026 example. Strong anchors: (1) the FTC's late-2025 settlement with edtech provider Illuminate Education after a breach exposed data on 10M+ students, requiring deletion of unnecessary student data and a public retention schedule -- a documented case that vendor data hoarding is real and now enforced against; (2) New York's statewide ban on facial recognition in schools and Colorado's law requiring school biometric data deletion within 18 months -- real, dated proportionality/biometric-monitoring anchors for the webcam case; (3) retirement of the voluntary Student Privacy Pledge in May 2025, signaling self-regulation is no longer treated as sufficient. Keep to one short paragraph.",
+  "where_to_apply": "04.mdx -- add 'Recent Evidence' callout after 'Why This Section Matters' (after line 9) or within the Core Concept datafication paragraph (line 34)",
+  "priority": "low",
+  "sources": [
+   {
+    "cite": "ListEdTech -- 'Student Privacy at Risk? EdTech Surveillance in Focus'",
+    "url_or_doi": "https://www.listedtech.com/blog/student-privacy-at-risk-edtech-surveillance-in-focus/",
+    "finding": "Documents the FTC's late-2025 settlement with Illuminate Education (breach exposed 10M+ students' data; required deletion of unnecessary student data and a public retention schedule), and the May 2025 retirement of the Student Privacy Pledge -- concrete, dated 2025 anchors that vendor data retention/hoarding is a real, currently-enforced practice rather than a thought experiment."
+   },
+   {
+    "cite": "EdWeek -- 'New York Banned Facial Recognition in Schools. Will Other States Follow?'",
+    "url_or_doi": "https://www.edweek.org/technology/new-york-banned-facial-recognition-in-schools-will-other-states-follow/2020/12",
+    "finding": "New York banned facial recognition technology in schools; complemented by Colorado legislation requiring school-collected biometric data be deleted within 18 months -- real, dated proportionality/biometric-monitoring policy anchors for the section's webcam-monitoring decline case."
+   },
+   {
+    "cite": "FTC (2025) COPPA final-rule press release",
+    "url_or_doi": "https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-finalizes-changes-childrens-privacy-rule-limiting-companies-ability-monetize-kids-data",
+    "finding": "2025 COPPA amendments prohibit indefinite retention of children's data and restrict monetization/disclosure -- a dated regulatory anchor showing the section's 24-month-retention/training-on-student-data concern is the exact practice current federal rule now constrains."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat531/04/04",
+  "op_index": 6
+ },
+ {
+  "type": "scaffolding",
+  "gap": "The section teaches inter-rater agreement entirely as a thought experiment ('imagine a colleague applying your definitions') and never names the discipline's actual reliability tooling (percent agreement; chance-corrected Cohen's kappa). Learners leave able to assert agreement but with no vocabulary for the field's standard, weakening transfer to any coding study they read or run.",
+  "proposed_change": "Add one short callout (or 2-3 sentences in Core Concept principle three / after Decision Rule check 3 'Agreement') naming percent agreement as the simplest check (raters agree on N of M coded turns) and noting that formal studies report a chance-corrected statistic (Cohen's kappa) because two raters can agree by luck on a small code set. Keep it light: the 'imagine a colleague' move is the practical floor for a single teacher (a definition tight enough that agreement is predictable, not a kappa computation); the callout just supplies the named ceiling so the term is not foreign in the literature.",
+  "where_to_apply": "05.mdx — Core Concept third design principle ('Third, test for agreement'); or a new short callout immediately after the Decision Rule's check 3 ('Agreement').",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "Cohen, J. (1960) A Coefficient of Agreement for Nominal Scales. Educational and Psychological Measurement",
+    "url_or_doi": "https://doi.org/10.1177/001316446002000104",
+    "finding": "Foundational definition of kappa as agreement corrected for chance, the canonical chance-corrected statistic referenced when two raters could agree by luck on a small category set."
+   },
+   {
+    "cite": "McHugh, M.L. (2012) Interrater reliability: the kappa statistic. Biochemia Medica",
+    "url_or_doi": "https://doi.org/10.11613/BM.2012.031",
+    "finding": "Standard tutorial establishing that percent agreement overstates reliability for small code sets and that Cohen's kappa is the conventional chance-corrected reporting standard, supporting the 'simplest check vs named ceiling' framing."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat531/04/05",
+  "op_index": 0
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The recurring hallway-cameras / school-surveillance scenario (Opening Case L20, Core Concept L32, Worked Example L51) is pedagogically apt but legally uncited; the course anchors stress FERPA/COPPA, student-data privacy, and critical edtech, yet the MDX cites no statute or surveillance-in-schools source while building its entire worked example on hallway-camera surveillance ethics.",
+  "proposed_change": "CONFIRMED. Add a short 'Recent Evidence' callout after the Opening Case (L20) or in Core Concept grounding the hallway-camera scenario in real stakes, and add one citation to References. Suggested anchor: in Sept 2023 the New York State Education Department barred public schools from purchasing or using facial-recognition technology, citing unproven safety benefit and documented misidentification of people of color; FERPA already treats biometric records (including facial characteristics) as protected student data. This makes the scenario rest on actual current policy rather than a hypothetical.",
+  "where_to_apply": "07.mdx — new short callout after 'Opening Case' (line 20) or in 'Core Concept'; References list (lines 142-145).",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Foley Hoag LLP (2023). NY State Education Department Bans Facial Recognition Technology",
+    "url_or_doi": "https://foleyhoag.com/news-and-insights/blogs/security-privacy-and-the-law/2023/october/ny-state-education-department-bans-facial-recognition-technology/",
+    "finding": "Sept 2023 NYSED order bars NY public schools from purchasing/using facial-recognition technology; rationale cites unproven safety value and racially biased misidentification — real stakes behind the hallway-camera scenario."
+   },
+   {
+    "cite": "New York State Senate Bill 2025-S9643 (biometric identifying technology in schools)",
+    "url_or_doi": "https://www.nysenate.gov/legislation/bills/2025/S9643",
+    "finding": "2025 Senate-passed bill would prohibit elementary/secondary schools from purchasing or using biometric identifying technology, showing the surveillance debate is live policy in 2024-2026."
+   },
+   {
+    "cite": "Future of Privacy Forum / Student Privacy Compass — Facial Recognition Technology issue brief",
+    "url_or_doi": "https://studentprivacycompass.org/issuebriefacialrecognition/",
+    "finding": "FERPA defines 'biometric records' (including facial characteristics) as protected education records, grounding the privacy stakes of school surveillance in existing federal statute."
+   }
+  ],
+  "section_key": "cat531/04/07",
+  "op_index": 3
+ }
+]

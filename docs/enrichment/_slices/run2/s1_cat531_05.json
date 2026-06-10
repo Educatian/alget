@@ -1,0 +1,156 @@
+[
+ {
+  "type": "new_callout",
+  "gap": "The Opening Case and Worked Example rest on the empirical claim that aggregate edtech ratings are demographically skewed / poor fit predictors (reviews 'come overwhelmingly from parents'), but the section never grounds it with evidence.",
+  "proposed_change": "Add a small 'Recent Evidence' callout (after the '## Core Concept' table or in the explorer caption) citing current evidence that popularity/ratings outrun rigorous efficacy evidence: Instructure/LearnPlatform EdTech Evidence Reports show only ~32% of the 2024 EdTech Top 40 have research meeting any of ESSA's four evidence tiers, and only ~40% of purpose-built tools (vs ~2% of consumer technologies used in classrooms) have ESSA-aligned evidence, with districts accessing ~2,700+ distinct tools annually. This converts the rhetorical claim into an evidence-grounded one matching the course's evidence-claim-vs-vendor-claim value. (Note: these findings document the popularity-vs-efficacy gap; they are not a direct study of app-store reviewer demographic skew, so frame the callout around the efficacy-evidence gap, not a literal 'reviews come from parents' citation.)",
+  "where_to_apply": "01.mdx — after '## Core Concept' table or in '## Decision Rule' explorer caption",
+  "priority": "low",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "LearnPlatform by Instructure — The EdTech Evidence Report (2024)",
+    "url_or_doi": "https://www.instructure.com/edtech-evidence-report-learnplatform-instructure",
+    "finding": "Only 32% of tools on the 2024 EdTech Top 40 have published research meeting one of ESSA's four evidence tiers; among tools with evidence the distribution skews to weaker tiers (Level I ~2%, II ~5%, III ~14%, IV ~19%). Grounds 'popularity does not equal demonstrated fit/efficacy.'"
+   },
+   {
+    "cite": "Instructure (2026) press release — 2026 Evidence Report: most classroom consumer technology lacks verified proof of impact",
+    "url_or_doi": "https://www.instructure.com/press-release/ai-and-screen-time-scrutiny-rise-instructures-2026-evidence-report-finds-most",
+    "finding": "~40% of purpose-built edtech tools have ESSA-aligned evidence vs only ~2% of consumer technologies used in classrooms; districts access ~2,739 distinct tools annually — adoption/popularity is decoupled from rigorous efficacy evidence."
+   },
+   {
+    "cite": "Nature Humanities & Social Sciences Communications (2025) Developing evidence indicators for evaluating K-12 EdTech",
+    "url_or_doi": "https://www.nature.com/articles/s41599-025-05330-9",
+    "finding": "Peer-reviewed 2025 article building consensus evidence indicators for K-12 edtech impact, documenting the gap between marketed/adopted tools and rigorous educational-impact evidence; a scholarly anchor alongside the industry reports."
+   }
+  ],
+  "section_key": "cat531/05/01",
+  "op_index": 6
+ },
+ {
+  "type": "new_callout",
+  "gap": "The section uses a clean but hypothetical running case (the 35% writing-feedback vendor). It never names a real, current 2024-2026 category of edtech claim teachers face: generative-AI tutoring/feedback tools whose marketing leans on 'AI personalization' and outcome claims with exactly the design weaknesses taught here. A short 'Recent Evidence' callout grounding the lesson in a current real example would sharpen transfer.",
+  "proposed_change": "Add a compact 'Recent Evidence' callout (2-3 sentences) after the Transfer Case or Decision Rule using the documented Khanmigo case: as of 2025, Khan Academy has not run an RCT on its Khanmigo AI tutor (citing expense), and independent observers note vendors promote generative-AI tutors despite 'little to no evidence' they match human tutoring — a real instance of an AI-tutor efficacy claim that fails the control/sample/funder tests the section teaches. Cite the K-12 Dive (2025) report.",
+  "where_to_apply": "02.mdx — new callout after Transfer Case (line 116) or after Decision Rule (line 81)",
+  "priority": "low",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Merod, A. (2025, Aug 25). '3 questions for K-12 leaders to consider amid the AI tutoring boom.' K-12 Dive.",
+    "url_or_doi": "https://www.k12dive.com/news/3-questions-for-k-12-leaders-to-consider-amid-the-ai-tutoring-boom/757314/",
+    "finding": "Reports that 'evidence is still scant as to whether [AI tutors] can actually improve student outcomes,' that Khan Academy has not yet tested Khanmigo via an RCT due to expense, and (via Common Sense Media's Robbie Torney) that there is 'little to no evidence' generative-AI tutors match human tutoring. A current, documented real-world instance of an AI-tutor efficacy claim lacking the control/sample/independence rigor the section teaches."
+   },
+   {
+    "cite": "Khan Academy Blog (2024, Nov). 'Khan Academy Efficacy Results, November 2024.'",
+    "url_or_doi": "https://blog.khanacademy.org/khan-academy-efficacy-results-november-2024/",
+    "finding": "Khan Academy's own efficacy reporting describes Khanmigo studies as still underway rather than a completed RCT, corroborating that even a well-resourced vendor's flagship AI tutor lacks gold-standard (controlled) evidence as of 2024-2025 — exactly the gap the lesson asks teachers to detect."
+   }
+  ],
+  "section_key": "cat531/05/02",
+  "op_index": 6
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The equity examples (home-internet dependency, the 'digital divide' framing, adaptivity degrading for students with less data history on line 40) are illustrative but uncited. A real statistic on the homework gap / home-broadband access among low-income or rural K-12 students would convert a plausible example into evidence.",
+  "proposed_change": "Add a 'Recent Evidence' note in the Core Concept Equity bullet (line 30/36) or Transfer Case (line 120) with a current statistic on the K-12 homework gap, citing Pew Research. Confirmed facts: ~1/3 of households with children ages 6-17 earning under $30,000/year lack high-speed home internet vs ~6% of households earning $75,000+; 17% of US teens (24% of teens in households under $30,000) report being unable to complete homework at times due to lack of reliable internet/computer. This grounds the home-internet equity example the worked example, branching scenario, and practice item all hinge on.",
+  "where_to_apply": "03.mdx — Core Concept Equity bullet (lines 30/36) or Transfer Case (line 120); add to References",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Pew Research Center (2018, with 2021/2024 broadband data). The digital 'homework gap'",
+    "url_or_doi": "https://www.pewresearch.org/short-reads/2018/10/26/nearly-one-in-five-teens-cant-always-finish-their-homework-because-of-the-digital-divide/",
+    "finding": "17% of US teens are often or sometimes unable to complete homework due to lack of reliable internet or a computer; this rises to 24% among teens in households earning under $30,000/year — a direct statistic for the home-internet equity example."
+   },
+   {
+    "cite": "Pew Research Center (2021/2024). Lower-income Americans still less likely to have home broadband / Home Broadband and Mobile Use",
+    "url_or_doi": "https://www.pewresearch.org/short-reads/2021/06/22/digital-divide-persists-even-as-americans-with-lower-incomes-make-gains-in-tech-adoption/",
+    "finding": "Roughly one-third of households with children ages 6-17 earning under $30,000/year lack a high-speed home internet connection, versus about 6% of such households earning $75,000+, with disparities sharper for Black and Hispanic low-income households."
+   }
+  ],
+  "section_key": "cat531/05/03",
+  "op_index": 2
+ },
+ {
+  "type": "new_callout",
+  "gap": "The section warns that a 'free' tool's real price may be 'student data monetized elsewhere' (datafication anchor) but never gives a concrete 2024-2026 example of an ed-tech free-tier monetization, sunset, or price-hike that stranded schools/data. The sustainability-cliff concept would land harder with one real, current case.",
+  "proposed_change": "Add a two-sentence 'Recent Evidence' callout after the 'sits on a sustainability cliff' sentence (04.mdx line 37) citing the verified 2024 AllHere/LAUSD collapse: AllHere (named to TIME's 2024 top-edtech list, $12M VC-backed) abruptly furloughed staff and LAUSD discontinued its 'Ed' chatbot mid-contract (~$3M of a $6M/5-yr deal spent), and a former engineer warned the company had mishandled student data. This is a concrete, documented case where a tool vanished and data fate became a live question, exactly the cliff the section names. (LAUSD's contract reserving data as district property and requiring deletion-on-request also illustrates the exit-check clause the Decision Rule teaches.)",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat531-supplement\\05\\04.mdx -> 'Core Concept' sustainability-cliff paragraph, after line 37",
+  "priority": "low",
+  "sources": [
+   {
+    "cite": "EdSurge (2024) An Education Chatbot Company Collapsed. Where Did the Student Data Go?",
+    "url_or_doi": "https://www.edsurge.com/news/2024-07-15-an-education-chatbot-company-collapsed-where-did-the-student-data-go",
+    "finding": "AllHere Education collapsed in July 2024 (furloughing most staff) months after LAUSD launched its 'Ed' AI chatbot in March 2024; LAUSD had paid ~$3M of a ~$6M five-year contract. The contract stated student data remained exclusive LAUSD property with deletion-on-request, yet a former AllHere engineer warned the company mishandled student data, leaving its fate a public concern, a concrete sustainability-cliff/data-stranding case."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat531/05/04",
+  "op_index": 4
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The datafication anchor is invoked as 'a gate of its own: a privacy or data-handling line' (line 46) and the Core Concept lists 'a signed data agreement before student accounts exist' as a canonical gate (line 29), yet no legal standard is cited. For a graduate course stressing FERPA/COPPA and student-data retention/opt-out, the privacy-gate example should be grounded in statute.",
+  "proposed_change": "Add a one-clause citation to the privacy-gate sentence anchoring it to FERPA (20 U.S.C. 1232g; 34 CFR Part 99) and COPPA (15 U.S.C. 6501-6506; FTC Rule), e.g. 'a signed data-privacy agreement consistent with FERPA/COPPA before student accounts exist.' IMPORTANT currency note: the FTC's 2025 COPPA amendments (final rule effective June 23, 2025; compliance deadline April 22, 2026) did NOT finalize the proposed school-consent provisions. The FTC declined to adopt the new 'School' and 'School-authorized education purpose' definitions, deferring to the U.S. Dept. of Education's planned FERPA updates. So the long-standing school-consent practice (a district may consent in lieu of parents when data is used solely for educational, non-commercial purposes) is UNCHANGED. The citation should reflect the current amended Rule but should not claim the 2025 amendments changed school-consent. Cite the FTC Final Rule and the Federal Register entry.",
+  "where_to_apply": "05.mdx Core Concept gating-constraint bullet (line 29) and datafication anchor sentence (line 46); add FERPA/COPPA reference to References (lines 155-158)",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "Federal Trade Commission (Jan 2025), 'FTC Finalizes Changes to Children's Privacy Rule Limiting Companies' Ability to Monetize Kids' Data'",
+    "url_or_doi": "https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-finalizes-changes-childrens-privacy-rule-limiting-companies-ability-monetize-kids-data",
+    "finding": "FTC finalized COPPA Rule amendments in Jan 2025; the Commission decided NOT to finalize the proposed ed-tech / school-consent amendments (new 'School' and 'School-authorized education purpose' definitions), citing potential conflict with forthcoming FERPA updates. School-consent-in-lieu-of-parents for non-commercial educational use is unchanged."
+   },
+   {
+    "cite": "Children's Online Privacy Protection Rule, Final Rule, 90 Fed. Reg. (Apr 22, 2025)",
+    "url_or_doi": "https://www.federalregister.gov/documents/2025/04/22/2025-05904/childrens-online-privacy-protection-rule",
+    "finding": "Final amended COPPA Rule published in the Federal Register; effective date June 23, 2025, with a full compliance deadline of April 22, 2026. This is the current version to cite."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat531/05/05",
+  "op_index": 2
+ },
+ {
+  "type": "new_callout",
+  "gap": "The central distinction (compensatory averaging vs non-compensatory gating, line 31) is a well-established decision-analysis concept but is presented as if invented for the classroom case, with no pointer to the underlying literature. A graduate course that values evidence-grounding would benefit from a brief anchor naming the compensatory/non-compensatory model-selection literature (and conjunctive/lexicographic decision rules), reinforcing that this is transferable methodology, not a one-off trick.",
+  "proposed_change": "Add a short 'Recent Evidence' / margin callout (2-3 sentences, no added volume) after the Core Concept compensatory/non-compensatory paragraph naming that compensatory vs non-compensatory (conjunctive) decision rules are a standard multi-criteria decision-analysis distinction, with one citation. Recommended anchors: Cinelli, Kadzinski, Gonzalez & Slowinski (2020) MCDA taxonomy in Omega for the formal MCDA framing, and/or the classic behavioral-decision compensatory-vs-noncompensatory strategy literature (Payne/Bettman/Johnson; reachable via Gigerenzer 2010 'Heuristic Decision Making' which reviews these strategies). This shows the matrix sits on established decision theory.",
+  "where_to_apply": "05.mdx short callout after the Core Concept compensatory/non-compensatory paragraph (line 31)",
+  "priority": "low",
+  "sources": [
+   {
+    "cite": "Cinelli, M., Kadzinski, M., Gonzalez, M., & Slowinski, R. (2020). How to support the application of multiple criteria decision analysis? Let us start with a comprehensive taxonomy. Omega, 96, 102261.",
+    "url_or_doi": "https://doi.org/10.1016/j.omega.2020.102261",
+    "finding": "Comprehensive, well-cited MCDA taxonomy paper distinguishing decision-rule families (compensatory aggregation vs non-compensatory/outranking and conjunctive approaches); grounds the matrix's compensatory-vs-gating distinction in formal MCDA literature."
+   },
+   {
+    "cite": "Gigerenzer, G., & Gaissmaier, W. (2010). Heuristic Decision Making. Annual Review of Psychology, 62, 451-482.",
+    "url_or_doi": "https://doi.org/10.1146/annurev-psych-120709-145346",
+    "finding": "Reviews compensatory vs non-compensatory choice strategies (incl. lexicographic / take-the-best / conjunctive elimination), establishing the compensatory-vs-noncompensatory distinction as standard behavioral decision theory the section can name."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat531/05/05",
+  "op_index": 7
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The 'evidence-to-conclusion link' and 'construct mismatch' framing is the intellectual core of the section but is presented as the author's own informal logic with no grounding. The 'total volume vs. equitable participation' case is a textbook construct-validity threat that has a deep, citable home in assessment-validity theory (Messick's unified validity; Kane's argument-based validity; the construct-irrelevant variance / construct underrepresentation pair).",
+  "proposed_change": "Add one sentence in Core Concept after the 'construct mismatch' paragraph naming this as the classic validity threat of construct-irrelevant variance / construct underrepresentation (Messick, 1995), and frame peer review of a brief as a small argument-based validity argument (Kane, 2013): the conclusion is the proposed interpretation/use, the evidence is the data offered to warrant it, and the reviewer audits whether the warrant holds. Add labeled author-year references for Messick (1995) and Kane (2013) to the References list.",
+  "where_to_apply": "07.mdx — Core Concept section (after the construct-mismatch paragraph, line 28) + References list (lines 147-152)",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "Messick, S. (1995). Validity of psychological assessment: Validation of inferences from persons' responses and performances as scientific inquiry into score meaning. American Psychologist, 50(9), 741-749.",
+    "finding": "Foundational source for the unified view of construct validity and the two principal threats — construct-irrelevant variance (the measure captures something other than the target construct) and construct underrepresentation (the measure is too narrow to cover the construct). The 'total volume cannot show equitable participation' case is precisely construct underrepresentation / a construct-irrelevant proxy, making this the canonical scholarly home for the section's central move.",
+    "url_or_doi": "https://doi.org/10.1037/0003-066x.50.9.741"
+   },
+   {
+    "cite": "Kane, M. T. (2013). Validating the Interpretations and Uses of Test Scores. Journal of Educational Measurement, 50(1), 1-73.",
+    "finding": "Defines the argument-based approach to validity: an interpretation/use is validated by laying out the chain of inferences and assumptions linking evidence to the intended conclusion, then evaluating whether each link is warranted. This directly supplies the transferable vocabulary for framing peer review of a brief as a small validity argument that audits the evidence-to-conclusion link. DOI verified via OpenAlex.",
+    "url_or_doi": "https://doi.org/10.1111/jedm.12000"
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat531/05/07",
+  "op_index": 0
+ }
+]

@@ -3,10 +3,10 @@
   "title": "Publication-Ready Artifact Packaging",
   "description": "AIL 606 textbook section connecting publication-ready artifact packaging to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the storyboard frame sequence with narration, signaling, and reader-action notes shows a defensible decision in AIL 606.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    "Identify the reuse test: could a competent stranger find the canonical artifact and reproduce its use from the package alone?",
+    "Build a package with a README (intent and decision log), a single dated canonical file, per-asset provenance, an explicit license, and a changelog.",
+    "Record asset provenance (source and license) rather than silently reusing images.",
+    "Decide what to include and what to summarize (e.g., disclose AI assistance in the README rather than dumping a full chat log)."
   ],
   "concept_ids": [
     "ail606_supplement_research_translation_for_learning_design",

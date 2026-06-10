@@ -6,10 +6,10 @@
   "title": "Responsible AI Use in Coursework",
   "description": "CAT 100 textbook section connecting responsible ai use in coursework to responsible AI use disclosure note, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the responsible AI use disclosure note shows a defensible decision in CAT 100.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    "Read an assignment's AI policy and sort each planned action into allowed, required, or prohibited.",
+    "Write an AI-use disclosure that names the tool, the step, and the suggestions you rejected.",
+    "Recognize the line between AI assisting your thinking and AI replacing your thinking.",
+    "Keep private data (yours and others') out of tools that may store or train on inputs."
   ],
   "concept_ids": [
     "cat100_supplement_digital_citizenship_and_ai_readiness",
@@ -30,4 +30,3 @@
     "cat100_supplement_1_2_responsible_ai_use_in_coursework_calibration"
   ]
 }
-

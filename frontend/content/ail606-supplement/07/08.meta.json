@@ -3,10 +3,10 @@
   "title": "Research Translation Studio",
   "description": "AIL 606 textbook section connecting research translation studio to the research-translation argument trace (finding to principle to decision to evidence to disclosed revision), reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the research-translation argument trace (finding to principle to decision to evidence to disclosed revision) shows a defensible decision in AIL 606.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    "Assemble a complete translation chain: finding to principle to design decision to evidence to disclosed revision.",
+    "Locate the broken link in an argument where a finding is cited but never changes a decision, or a decision is made but never tested.",
+    "Reject decorative citations that do not alter any design choice.",
+    "Show that each design decision traces backward to a source and forward to evidence."
   ],
   "concept_ids": [
     "ail606_supplement_research_translation_for_learning_design",

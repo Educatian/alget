@@ -1,0 +1,46 @@
+[
+ {
+  "type": "assessment_align",
+  "gap": "04.misconceptions.json lists three misconceptions (fluent_equals_sound -> ask, activity_over_objective -> represent, one_size_for_all -> explain). 04.practice.json has four problems but maps them onto only those three ids, reusing 'activity_over_objective' for two problems (the annotation_signal problem and the calibration problem). There is NO misconception entry for silent objective-lowering, even though the MDX makes it the third and 'subtler' misreading and the branching-scenario's whole 'lower' branch turns on it - the most pedagogically central error has no rail entry and no dedicated practice item. (Note: contrary to the gap brief, 'fluent_equals_sound' DOES exist in misconceptions.json; the genuine confirmed issues are the missing silent-objective-lowering entry and the duplicated activity_over_objective mapping.)",
+  "proposed_change": "Add a fourth misconception (id suggestion: cat531_supplement_2_4_..._objective_lowered_to_fit_activity; pattern: objective_quietly_lowered_to_fit_activity; trigger: teacher downgrades the objective verb, e.g. explain->match, so an appealing activity fits; feedback: restore the verb and raise the activity to it, never lower the goal; rail_action per canonical set, e.g. advance or ask). Then retarget the calibration problem (currently the second use of activity_over_objective) - or better the branching-aligned item - to the new misconception so each of the four practice problems maps to a distinct misconception.",
+  "where_to_apply": "04.misconceptions.json (add 4th misconception) and 04.practice.json (calibration problem misconception_id at line 78, currently the duplicate activity_over_objective)",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat531/02/04",
+  "op_index": 3
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The 'AI rewrite preserved the goal' trap is the section's third Common Misreading (line 73), the entire premise of the self-explain prompt (line 93), and a distinct error from the label trap. But 05.misconceptions.json contains only three entries (differentiation_is_volume, lower_the_goal, label_drives_plan) and NONE captures 'trusting an AI simplification preserved the cognitive demand.' The ai_boundary practice item (05.practice.json) actually tests the label trap (it maps to label_drives_plan), not the AI-strips-complexity trap. There is no misconception rail for the most AI-specific, course-central error.",
+  "proposed_change": "Add a fourth misconception object to 05.misconceptions.json: id 'cat531_supplement_2_5_adapting_plans_for_learner_variability_ai_rewrite_preserves_goal', pattern 'ai_simplification_assumed_faithful', description 'Assuming an AI text-simplification preserved the cognitive demand when it stripped the complexity the objective asked students to analyze', trigger 'teacher assigns an AI-simplified source without comparing its demand to the original', feedback 'Compare the adapted task demand to the original before trusting it; easier reading is not the same as the same thinking', rail_action 'represent' (matches lower_the_goal, since the failure mode is a lowered goal in disguise). Optionally add or repoint a practice item so this misconception is assessed (the current ai_boundary item tests the label trap).",
+  "where_to_apply": "05.misconceptions.json — add 4th misconception object; cross-check against 05.practice.json ai_boundary item (currently misconception_id = ..._label_drives_plan)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat531/02/05",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Terminology drift: Adaptive Support (lines 106-111) advertises support moves ask-explanation / compare-weak-and-strong / transfer / show-connection, but the misconceptions rail_action vocabulary is ask / represent / explain (and the backend policy set is explain/represent/practice/ask/advance). The learner-facing 'compare a weak and strong version' and 'transfer the decision rule' moves do not reconcile with the rail_action policy that actually fires, breaking the closed-loop alignment the course thesis depends on.",
+  "proposed_change": "Reconcile the Adaptive Support move vocabulary with the rail_action vocabulary (explain/represent/practice/ask/advance). Map each learner-facing trigger to a policy action explicitly: question -> ask; confusion -> represent; insight -> advance; connection -> explain (or practice). Rewrite the four Adaptive Support bullets so the advertised routing names the same actions the misconceptions file fires.",
+  "where_to_apply": "07.mdx -- Adaptive Support (lines 106-111) reconciled against 07.misconceptions.json rail_action fields (currently ask / represent / explain)",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat531/02/07",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The misconceptions file has only 3 entries (artifact_mistaken_for_evidence, claim_without_warrant, single_artifact_overclaimed), but the MDX develops FOUR named misreadings -- the fourth being 'mistaking AI polish for evidence of skill' (Core Concept line 33, branching 'polish' node, line 74 'The third, growing with generative tools, is mistaking AI polish for evidence of skill'). This fourth, arguably the most course-central (GenAI) failure, has no entry and so cannot route adaptive support.",
+  "proposed_change": "Add a fourth misconception object (e.g. pattern 'ai_polish_mistaken_for_skill_evidence') with trigger 'entry leans on AI-polished artifact quality rather than warrant/outcome', feedback pointing the learner to foreground the inspectable warrant and measured outcome a tool cannot fabricate, and a rail_action from the reconciled vocabulary (e.g. 'represent' to surface the underlying process, or 'practice'). Optionally retarget the ai_boundary practice item's misconception_id to this new entry.",
+  "where_to_apply": "07.misconceptions.json -- add 4th object to misconceptions array; optionally retarget 07.practice.json ai_boundary item (lines 46-64) misconception_id",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat531/02/07",
+  "op_index": 3
+ }
+]

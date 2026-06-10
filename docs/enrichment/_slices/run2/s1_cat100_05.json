@@ -1,0 +1,198 @@
+[
+ {
+  "type": "evidence_add",
+  "gap": "The section's central empirical claim — that audience-first design and tight scoping outperform 'cover more' decks ('Coverage is the opposite of purpose', line 78; 'every extra slide spends the audience's limited attention') — is asserted rhetorically with no source. The Tufte reference (01.mdx line 150) is a bare URL with no markdown link and is never used to support a body claim. Research confirms a citable basis for the 'more material = less understanding' claim.",
+  "proposed_change": "Add a short 'Recent Evidence' callout near '## Common Misreadings' (the 'covers more' misreading, line 78) grounding the cognitive cost of over-coverage in Mayer's coherence principle (removing extraneous material improves learning, d ~= 0.70) and the 'when presenting more material results in less understanding' / seductive-details finding (Mayer, Heiser & Lonn, 2001). Properly markdown-link the Tufte 'data-ink' entry and tie it to the one place the body invokes it ('the data-ink anchor matters later', line 36): Tufte's data-ink ratio = the proportion of a graphic's ink devoted to non-redundant data display, the visual analogue of cutting slides that serve no audience question. Fix the bare-URL Tufte entry at line 150 to a proper markdown link.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\05\\01.mdx new small callout near '## Common Misreadings' (the 'covers more' misreading, line 78); and fix the bare-URL Tufte entry in '## References' (line 150)",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "Mayer, R. E., & Fiorella, L. (2014). Principles for Reducing Extraneous Processing in Multimedia Learning (Cambridge Handbook of Multimedia Learning, 2nd ed.)",
+    "url_or_doi": "https://doi.org/10.1017/cbo9781139547369.015",
+    "finding": "States the coherence principle — people learn more deeply when extraneous (interesting-but-irrelevant) material is excluded — with a reported effect size of d ~= 0.70. Grounds 'every extra slide spends attention' / 'coverage is the opposite of purpose' as evidence rather than opinion."
+   },
+   {
+    "cite": "Mayer, R. E., Heiser, J., & Lonn, S. (2001). Cognitive constraints on multimedia learning: When presenting more material results in less understanding. Journal of Educational Psychology, 93(1), 187-198.",
+    "url_or_doi": "https://doi.org/10.1037/0022-0663.93.1.187",
+    "finding": "Empirically shows that adding interesting-but-irrelevant ('seductive') details to a presentation lowered retention and transfer test performance — direct support for the claim that a longer 'covers more' deck harms, rather than helps, the audience's takeaway."
+   },
+   {
+    "cite": "Tufte, E. R., The Visual Display of Quantitative Information (data-ink ratio definition, edwardtufte.com)",
+    "url_or_doi": "https://www.edwardtufte.com/tufte/books_vdqi",
+    "finding": "Tufte's data-ink ratio = the proportion of a graphic's ink devoted to the non-redundant display of data ('above all else show the data; maximize data-ink, erase non-data-ink'). Confirms the existing reference is real and supplies the exact claim the body's 'data-ink anchor' clause should be linked to."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/05/01",
+  "op_index": 4
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The section's central premise — a generated image 'looks authoritative' and viewers 'trust the picture precisely because it looks finished' (lines 7, 31, 77) — is asserted as fact but ungrounded, exactly the kind of claim the course values grounding. A real research base exists (truthiness / nonprobative-photo belief-inflation; processing-fluency-as-truth). Tufte is cited only as a bare book URL, which carries the explanation-vs-decoration axis but not the polish-equals-accuracy claim.",
+  "proposed_change": "Add a short 'Why this happens' callout after Core Concept (line 31) or within Common Misreadings (after line 77) grounding the polish-equals-truth claim: an accompanying image that provides no real evidence (a 'nonprobative' photo) still inflates belief in the claim it sits beside, and information that is easier to process feels truer. One or two citations; add to References (lines 149-152). Strengthens Core Concept and Common Misreadings without changing structure.",
+  "where_to_apply": "03.mdx — new short callout after Core Concept (line 31) or within Common Misreadings (after line 77); add citation to References (lines 149-152).",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Cardwell, Henkel, Garry, Newman & Foster (2016), 'Nonprobative photos rapidly lead people to believe claims about their own (and other people's) pasts', Memory & Cognition",
+    "url_or_doi": "https://doi.org/10.3758/s13421-016-0603-1",
+    "finding": "Photos that provide no probative evidence still inflate the subjective truth of associated claims — direct empirical support for 'viewers trust the picture precisely because it looks finished.'"
+   },
+   {
+    "cite": "Reber & Unkelbach (2010), 'The Epistemic Status of Processing Fluency as Source for Judgments of Truth', Review of Philosophy and Psychology",
+    "url_or_doi": "https://doi.org/10.1007/s13164-010-0039-7",
+    "finding": "Processing fluency (ease of perception/processing) is used as a cue for truth, so a polished, easy-to-read image feels more credible independent of its accuracy — grounds the 'polish is mistaken for accuracy' claim. (Newman et al. 2015, doi:10.1037/xlm0000099, on truthiness of trivia claims is an additional confirmed anchor.)"
+   }
+  ],
+  "section_key": "cat100/05/03",
+  "op_index": 4
+ },
+ {
+  "type": "new_callout",
+  "gap": "The Transfer Case covers the 'images banned, use a shape tool' direction but never the citation/attribution dimension: when a generated image goes on a slide, the AI-use disclosure / attribution norm (a Ch5 recurring anchor and cross-cutting course theme) is unmentioned, even though the chapter is about AI-enhanced presentations and disclosure is a through-line. The artifact is literally an AI-use critique log, so 'how do you disclose the generated image on the slide itself' is a natural missing reinforcement.",
+  "proposed_change": "Add a one-paragraph transfer/callout (append to Transfer Case after line 110, or a bullet in Final Check at line 145): a generated image that stays on the slide should carry a brief on-slide disclosure note (the tool/version and that the image was AI-generated), distinct from the internal critique log, consistent with the course's AI-use disclosure norm. Tie to the existing NACE/ISTE framing rather than inventing a policy; keep it short.",
+  "where_to_apply": "03.mdx — append to Transfer Case (after line 110) or add a bullet to Final Check (line 145).",
+  "priority": "low",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Thesify, 'Generative AI Policies at the World's Top Universities: October 2025 Update' (2025)",
+    "url_or_doi": "https://www.thesify.ai/blog/gen-ai-policies-update-2025",
+    "finding": "Across top universities (2025) AI use is increasingly permitted in specified ways but conditioned on required disclosure of the tool, including naming the tool/version and purpose — grounds a brief on-slide disclosure note for a generated image as a current, real norm rather than an invented rule."
+   },
+   {
+    "cite": "Azevedo (2025), 'Institutional Policies on Artificial Intelligence in Higher Education', New Directions for Adult and Continuing Education (Wiley)",
+    "url_or_doi": "https://doi.org/10.1002/ace.70013",
+    "finding": "Peer-reviewed framework confirming structured-disclosure approaches (name tool, state purpose) as the dominant institutional best practice, supporting tying the callout to a disclosure norm rather than a one-off policy."
+   }
+  ],
+  "section_key": "cat100/05/03",
+  "op_index": 5
+ },
+ {
+  "type": "evidence_add",
+  "gap": "Load-bearing empirical claims are stated without any source: that ~140 wpm is a good presentation target, that 190 wpm reads as rushed, and that monotone harms the listener even at a 'perfect' pace.",
+  "proposed_change": "Add a 'Recent Evidence' / source note after 'Core Concept' grounding the pace figures: a comfortable English presentation rate is roughly 100-165 wpm (Microsoft's own field-study-based Speaker Coach guidance), so ~140 wpm sits mid-range and 190 wpm is above it and reads as rushed; speech-comprehension research shows listening comprehension declines as word rate climbs well past normal conversational rates (Foulke 1968; Griffiths 1992). Anchor the 140-vs-190 contrast in the Worked Example to this note. For the monotone claim, present it as practitioner/tool consensus (Speaker Coach explicitly flags monotone and advises varying pitch) rather than as a cited experimental finding, since a direct monotone-vs-varied comprehension study did not surface in OpenAlex; phrase it as 'coaching tools flag monotone because flat pitch reduces listener engagement' rather than asserting a measured comprehension drop.",
+  "where_to_apply": "05.mdx new callout after 'Core Concept' (paragraph defining process metrics / 140 wpm monotone example), and References section",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Griffiths, R. (1992). Speech Rate and Listening Comprehension: Further Evidence of the Relationship. TESOL Quarterly.",
+    "url_or_doi": "https://doi.org/10.2307/3587015",
+    "finding": "Empirically links speech rate to listening comprehension, supporting the principle that faster delivery degrades comprehension (151 citations)."
+   },
+   {
+    "cite": "Foulke, E. (1968). Listening Comprehension as a Function of Word Rate. Journal of Communication.",
+    "url_or_doi": "https://doi.org/10.1111/j.1460-2466.1968.tb00070.x",
+    "finding": "Comprehension is roughly preserved up to ~250 wpm and then declines rapidly thereafter, grounding the existence of a comfortable rate band and a rushed-pace threshold."
+   },
+   {
+    "cite": "Microsoft Support, Speaker Coach pace guidance (accessed 2026)",
+    "url_or_doi": "https://support.microsoft.com/en-us/office/suggestions-from-speaker-coach-25e7d866-c895-4aa1-9b90-089b70a4ea38",
+    "finding": "Recommends 100-165 wpm as the range most audiences find easiest to process and explicitly flags monotone delivery, advising speakers to vary volume/pitch on key phrases — corroborates ~140 wpm as a sound target, 190 wpm as rushed, and the monotone concern as field/practitioner consensus."
+   }
+  ],
+  "section_key": "cat100/05/05",
+  "op_index": 1
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The section makes copyright/reuse claims stated as authority without a citable source: 'Public-domain government data (like BLS releases) is broadly reusable but still must be cited' (line 27), the CC BY reuse-with-credit rule, and the fair-use-flavored 'a short attributed quotation for commentary is generally fine' claim (line 85). References (lines 151-154) cite NACE, ISTE, Tufte, WCAG but nothing for the copyright/license/public-domain subject matter.",
+  "proposed_change": "Add authoritative sources for the public-domain/government-works claim (17 U.S.C. 105 via Cornell LII; USAGov government-copyright page; and/or the BLS Copyright Information page) and for the CC license meaning (creativecommons.org CC BY 4.0 deed). Add these to References and hyperlink the public-domain claim inline in Core Concept. For the quotation/fair-use claim, soften to 'brief attributed quotation' and either scope it to 'follow your course's academic-integrity guidance' or anchor it to the U.S. Copyright Office fair-use FAQ to avoid stating a legal conclusion.",
+  "where_to_apply": "06.mdx Core Concept (line 27 public-domain claim), Textbook Walkthrough (line 85 quotation/use claim), References (lines 149-154 add copyright/CC sources).",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "17 U.S. Code Sec. 105 (Cornell Legal Information Institute)",
+    "url_or_doi": "https://www.law.cornell.edu/uscode/text/17/105",
+    "finding": "Authoritative statutory basis that U.S. Government works are in the public domain; supports the 'public-domain government data is broadly reusable' claim and corrects the CC BY mislabel."
+   },
+   {
+    "cite": "USAGov, Learn about copyright and federal government materials",
+    "url_or_doi": "https://www.usa.gov/government-copyright",
+    "finding": "Plain-language government source confirming federal-government works are generally in the public domain and may be reused (with attribution as good practice), an accessible inline-citation anchor for the Core Concept public-domain claim."
+   },
+   {
+    "cite": "U.S. Copyright Office, Fair Use FAQ",
+    "url_or_doi": "https://www.copyright.gov/help/faq/faq-fairuse.html",
+    "finding": "Authoritative fair-use overview suitable for anchoring/softening the 'brief attributed quotation for commentary' claim instead of asserting a bare legal conclusion."
+   }
+  ],
+  "section_key": "cat100/05/06",
+  "op_index": 4
+ },
+ {
+  "type": "assessment_align",
+  "gap": "WCAG 2.2 contrast for NORMAL vs LARGE text is taught (4.5:1 vs 3:1 in Core Concept line 31 and the sequence-builder line 96), but no misconception or practice problem tests the large-text distinction. A common misreading is applying 4.5:1 to large display headings or assuming a big title needs no check. The misconceptions file (verified) has only low_contrast, no_alt_text, color_only_meaning — nothing on the large-text threshold or what counts as 'large text' (18pt / 14pt bold).",
+  "proposed_change": "Add a 4th misconception 'contrast_threshold_confusion' (id e.g. cat100_supplement_5_7_..._contrast_threshold) where the learner applies 4.5:1 to a large display heading and over-corrects, or assumes a large title needs no contrast check; feedback should clarify that large text = 18pt or 14pt bold and uses the 3:1 threshold (still a real threshold, not 'no check'). Optionally add a 5th practice item (07.practice.json currently has 4) asking which threshold applies to a 40pt slide title (answer: 3:1, large text). The WCAG large-text definition is verified below.",
+  "where_to_apply": "07.misconceptions.json — add a 4th misconception object; optionally 07.practice.json — add a 5th problem",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "WebAIM: Understanding WCAG 2 Contrast and Color Requirements",
+    "url_or_doi": "https://webaim.org/articles/contrast/",
+    "finding": "WCAG AA requires 4.5:1 for normal text and 3:1 for large text, where large text is defined as 18pt+ (or 14pt+ if bold). This grounds the proposed contrast_threshold_confusion misconception and the 40pt-title practice item (3:1 applies)."
+   }
+  ],
+  "section_key": "cat100/05/07",
+  "op_index": 3
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The '4.5:1' and '3:1' thresholds are anchored to WCAG (good live link). But the framing claim 'three of them catch the large majority of real problems' (line 29) and the Opening Case 'roughly one in twelve men with color vision deficiency' stat (line 12) are asserted without source. The color-blindness prevalence figure is the only quantitative claim in the Opening Case and the course values evidence-grounding.",
+  "proposed_change": "Add a one-line 'Recent Evidence' citation for the color vision deficiency prevalence. 'One in twelve men' = ~8%, which is well-grounded for men of Northern European / Euro-Caucasian descent (note the population caveat: rates are markedly lower in Asian and African populations, so the figure is descent-specific, not universal). Optionally note that 4.5:1 is the WCAG AA conformance level (the level institutions typically target), citing WebAIM. The line-29 'large majority of real problems' claim is editorial framing and was not separately verifiable; leave it or soften to 'a large share of common problems.'",
+  "where_to_apply": "07.mdx — Opening Case (line 12, the one-in-twelve stat) and Core Concept (line 31, note WCAG AA level)",
+  "priority": "low",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Delpero et al. (2005) Aviation-relevant epidemiology of color vision deficiency (OpenAlex)",
+    "url_or_doi": "https://api.openalex.org/works?search=color%20vision%20deficiency%20prevalence%20men",
+    "finding": "The overall ~8% (about 1 in 12) prevalence of color vision deficiency in men applies specifically to Euro-Caucasian populations, with significantly lower rates in other racial groups — supports the 'one in twelve men' stat and the descent caveat."
+   },
+   {
+    "cite": "Colourblind statistics / VisionCenter (2026) Prevalence of Color Blindness",
+    "url_or_doi": "https://www.visioncenter.org/resources/color-blind-statistics/",
+    "finding": "Color vision deficiency affects up to ~8% of males and ~0.5% of females of Northern European descent; ~300 million people worldwide, confirming the 'roughly one in twelve men' figure."
+   },
+   {
+    "cite": "WebAIM: Understanding WCAG 2 Contrast and Color Requirements",
+    "url_or_doi": "https://webaim.org/articles/contrast/",
+    "finding": "The 4.5:1 normal-text / 3:1 large-text thresholds are the WCAG 2 Level AA requirements — the conformance level commonly targeted by institutions — letting the section name AA explicitly."
+   }
+  ],
+  "section_key": "cat100/05/07",
+  "op_index": 5
+ },
+ {
+  "type": "new_callout",
+  "gap": "The Adaptive Support block is the identical 4-bullet menu used in every section, and the section never shows annotation type actually changing support selection (closed-loop / R-2 ablation gap). A capstone is a strong place to add one concrete 'Recent Evidence' or transfer micro-callout that reinforces why the dependency-order claim is more than course dogma, grounding the central pipeline idea in an external principle the chapter already invokes.",
+  "proposed_change": "Add a short 'Recent Evidence' callout near Core Concept or Transfer Case tying the order-before-polish principle to an established design source the chapter already anchors on: Mayer's coherence and signaling principles (cut extraneous detail; cue the essential structure) and cognitive load theory (extraneous load = processing that does not contribute to learning). One sentence on why structuring meaning before adding visual polish reduces extraneous load and frees working memory for the message. The chapter already cites Tufte (References, line 156) for data-ink/media verification, so pair that with Mayer for the structure-before-decoration claim.",
+  "where_to_apply": "08.mdx — new callout after Core Concept (line ~37) or within Transfer Case",
+  "priority": "low",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Mayer, R. E. (2024) 'The Past, Present, and Future of the Cognitive Theory of Multimedia Learning'",
+    "url_or_doi": "https://doi.org/10.1007/s10648-023-09842-1",
+    "finding": "Recent (2024, ~388 citations) restatement of CTML, whose coherence principle (people learn better when extraneous material is excluded) and signaling principle (cueing essential structure) directly ground 'structure meaning before adding visual polish' as a way to reduce extraneous processing."
+   },
+   {
+    "cite": "Mayer, R. E. & Fiorella, L. (2014) 'Principles for Reducing Extraneous Processing in Multimedia Learning' (coherence, signaling, redundancy)",
+    "url_or_doi": "https://doi.org/10.1017/cbo9781139547369.015",
+    "finding": "Names coherence and signaling among the principles for reducing extraneous processing, supporting the order-before-polish / structure-before-decoration claim with a citable design source."
+   },
+   {
+    "cite": "Sweller, J. et al. (2019) 'Cognitive Architecture and Instructional Design: 20 Years Later'",
+    "url_or_doi": "https://doi.org/10.1007/s10648-019-09465-5",
+    "finding": "Defines extraneous cognitive load as processing that does not contribute to learning and is imposed by poor instructional design; grounds the 'visual polish before structure increases extraneous load' rationale (~1,890 citations)."
+   }
+  ],
+  "section_key": "cat100/05/08",
+  "op_index": 5
+ }
+]

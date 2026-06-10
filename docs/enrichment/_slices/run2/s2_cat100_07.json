@@ -1,0 +1,112 @@
+[
+ {
+  "type": "assessment_align",
+  "gap": "Three of four learning_objectives in 01.meta.json are the course-wide templated set ('Distinguish artifact polish from evidence-based revision', 'Document a bounded AI/software support move...', 'Use feedback... to improve the artifact'), and LO1 is the generic fill-in-the-blank frame ('Analyze how the coursework file organization plan shows a defensible decision'). None name the section's actual teachable claims: folder hierarchy (course/module/task), the date_course_task_version naming pattern, or the two-copies backup rule. This defeats the constructive-alignment soft check and leaves the rich body content unrepresented. (Note: the .mdx 'Learning Targets' section already lists strong section-specific targets at lines 13-16, so the fix can mirror those.)",
+  "proposed_change": "Rewrite LO1 and LO2 to be section-specific and observable, mirroring the existing Learning Targets, e.g. 'Construct a three-level course/module/task folder tree so all files for one assignment travel together'; 'Apply an ISO-date-leading date_course_task_version naming pattern so the newest version is identifiable without opening the file.' Add a third covering 'Justify a backup choice using the two-copies-two-places rule, adapting it when employer policy forbids personal cloud copies.' Keep one evidence-based-revision objective so the through-line stays.",
+  "where_to_apply": "01.meta.json, 'learning_objectives' array (lines 8-13)",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/07/01",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The meta.json learning_objectives are the generic course-wide 4-bullet template (analyze the artifact shows a defensible decision / distinguish polish from evidence-based revision / document a bounded AI support move / use feedback to improve the artifact). They do NOT describe what this section teaches. The MDX 'Learning Targets' (separate fixed-time events from deadline-bound work; schedule a work block per task; set reminder lead time; track task state) are the real objectives. The soft constructive-alignment check is a no-op because the objectives are not section-specific; the practice items and misconceptions all map to the MDX targets, not these strings.",
+  "proposed_change": "Replace the four templated learning_objectives in 02.meta.json with the four section-specific Learning Targets from the MDX (lines 13-16): (1) Separate fixed-time events from deadline-bound work and place each in the correct tool; (2) Reserve a work block for each task before its deadline (work time, not just due time); (3) Set reminder lead times that cover travel and setup; (4) Track task state (not started / in progress / done). This makes the four practice problems and four misconceptions provably aligned: artifact_signal->LO1, no_due_date->LO4/sort, ai_boundary+deadline_as_workblock->LO2, calibration+no_reminder_lead->LO3. Confirmed by reading 02.practice.json and 02.misconceptions.json: items map cleanly to LO1-LO3 but LO4 (task-state) has no aligned probe (see separate assessment_align item).",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\07\\02.meta.json -> learning_objectives array (all 4 entries, lines 8-13)",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/07/02",
+  "op_index": 0
+ },
+ {
+  "type": "accessibility",
+  "gap": "Line 98 (the final step-reveal text) contains UTF-8 mojibake: the phrase reads 'with only â€™lab due Wedâ€™ written down' where smart quotes around 'lab due Wed' were corrupted into garbage byte sequences (U+00E2 U+20AC U+2122 = the classic UTF-8-read-as-Windows-1252 corruption of a right single quote). A screen reader reads this as gibberish and it renders as visible junk. Confirmed present at line 98 on read. Note: the proposed fixed sentence should also restore the negation -- the corrupted source reads 'you would notice' but the intended meaning (per line 96) is 'you would NOT have noticed' the squeeze until too late.",
+  "proposed_change": "Fix the corrupted characters in the step-reveal final reveal string so it reads with plain straight quotes: 'Discovering the collision early is the whole payoff. With only \"lab due Wed\" written down, you would not have noticed the shift ate your work time until Wednesday evening, far too late to recover.' Use straight quotes (escaped within the JSON-in-attribute) rather than smart quotes to avoid re-encoding corruption, and preserve the 'would not have noticed' negation that matches the prose at line 96.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\07\\02.mdx -> <step-reveal> component, final steps[] object 'reveal' field (line 98)",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/07/02",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "meta.json learning_objectives (lines 8-13) are the generic course boilerplate (LO1 'Analyze how the reusable spreadsheet template...shows a defensible decision'; LO2-4 identical across sections) and do not name the section's actual taught skills shown in 'Learning Targets' (mdx lines 13-16): =SUM formulas vs typed values, relative vs absolute references, master vs working copy. Confirmed: the four meta.json objectives are the template-filled boilerplate, while the body Learning Targets and the practice items test references/formulas/master-copy.",
+  "proposed_change": "Replace the 4 boilerplate learning_objectives in meta.json with the section's real targets: (1) 'Replace hand-typed totals with =SUM formulas so values recalculate when inputs change'; (2) 'Distinguish relative (B2) from absolute ($C$1) references and predict copy behavior'; (3) 'Keep a blank master template separate from each filled working copy'; (4) 'Document an accepted vs rejected AI/formula suggestion when revising the template.' Keep the one disclosed-AI objective (4) to preserve the through-line so practice items map tightly to objectives.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\07\\03.meta.json -- 'learning_objectives' array (lines 8-13)",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/07/03",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The four 04.meta.json learning_objectives are generic ALGET boilerplate ('Analyze how the AI critique log...shows a defensible decision', 'Distinguish artifact polish from evidence-based revision', 'Document a bounded AI/software support move...', 'Use feedback...to improve the artifact') and do NOT correspond to the section's sharper body 'Learning Targets' (specific email prompt with recipient/course/ask/deadline/reason; fact-verification pass; keep private data out of public AI tools; accept/modify/reject log). The constructive-alignment check is a no-op: the objectives do not match what the four practice items actually assess (specificity, verification, privacy boundary, tone).",
+  "proposed_change": "Replace the 4 generic objectives in 04.meta.json learning_objectives with section-specific ones lifted from the body Learning Targets (confirmed present at lines 11-16): (1) 'Write a specific email prompt that names the recipient, course, exact request, deadline, and reason.' (2) 'Run a verification pass on every fact (name, date, course, the ask) in an AI-drafted email before sending.' (3) 'Keep private identifiers (student ID, grades, medical detail) out of public AI tools and add them by hand only when needed.' (4) 'Maintain an accept/modify/reject critique log that records the judgment behind the final email.' This maps each practice item (artifact_signal=verify, annotation_signal=specify, ai_boundary=tone/bound, calibration=privacy) to a distinct objective.",
+  "where_to_apply": "04.meta.json -> learning_objectives array (lines 8-13)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/07/04",
+  "op_index": 0
+ },
+ {
+  "type": "accessibility",
+  "gap": "Mojibake encoding corruption in two interactive component props. The inline-check 'question' attribute (line 38) and the step-reveal 'steps' prompts (line 73) contain the literal sequence 'a€™' (UTF-8-as-Latin-1 garbage) wherever a curly apostrophe/single-quote should be. Confirmed present in the file: line 38 'A team says a€™we all trust each other...documenta€™ and each edit wherever we want.a€™'; line 73 step 1 ''anyone with the link can edit.a€™'' and step 3 'each othera€™s sections'. Renders as garbage on screen and is read aloud as nonsense by screen readers, violating the a11y gate (this section already carries a FAIL screenshot at screenshots/sweep/cat100-supplement__07_06__FAIL.png).",
+  "proposed_change": "Replace every 'a€™' sequence with a plain straight apostrophe ('). In the inline-check question (line 38), replace the two curly-quote artifacts wrapping the trust statement with straight single quotes (or remove them). In the step-reveal (line 73): step 1 prompt fix '...anyone with the link can edit.' (both the leading open-quote artifact and the trailing one), and step 3 'each other's sections'. Save as UTF-8 without re-introducing smart quotes.",
+  "where_to_apply": "C:/Users/jewoo/Projects/alget/frontend/content/cat100-supplement/07/06.mdx — inline-check element line 38 ('question' attr) and step-reveal element line 73 ('steps' JSON prompts)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/07/06",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Learning objectives in 06.meta.json are course boilerplate. LO1 is the fill-in-the-blank frame ('Analyze how the shared document collaboration setup with access and comment controls shows a defensible decision in CAT 100.') and LO2-4 are the generic polish/AI-disclosure/revision objectives reused across sections. None name the four concrete constructs the body teaches and assesses (least-access sharing, section ownership, suggesting-mode/comment visibility, internal deadline). The four practice items and four misconceptions map cleanly onto those four norms, but the stated objectives do not, so constructive-alignment checking is a no-op. Confirmed against the body: Learning Targets (lines 13-16) already name all four norms explicitly, so the meta.json objectives simply lag the prose.",
+  "proposed_change": "Differentiate the learning_objectives array to name the section's four norms, mirroring the in-prose Learning Targets (lines 13-16): LO1 'Configure least-access sharing (named editors, everyone else view-only) for a shared group document.' LO2 'Assign section ownership so no two contributors edit the same content simultaneously.' LO3 'Use suggesting mode/comments so edits are visible and reversible rather than silent overwrites.' LO4 'Set an internal deadline ahead of the real deadline to reserve review time.' Optionally keep the bounded-AI/disclosure through-line as a fifth objective, but make at least the first three section-specific so practice/misconception alignment is inspectable.",
+  "where_to_apply": "C:/Users/jewoo/Projects/alget/frontend/content/cat100-supplement/07/06.meta.json — 'learning_objectives' array (lines 8-13)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/07/06",
+  "op_index": 1
+ },
+ {
+  "type": "accessibility",
+  "gap": "Encoding corruption (mojibake) in the step-reveal component on 07.mdx line 74. The JSON contains 'reportâ€™s' and 'â€™it feels fasterâ€™' where curly apostrophes/quotes were double-encoded (UTF-8 read as Latin-1). Screen readers and sighted users both see garbled characters.",
+  "proposed_change": "In 07.mdx line 74, replace the corrupted byte sequences with plain straight apostrophes/quotes: 'reportâ€™s' -> \"report's\" (step 2 reveal), and the step-3 prompt 'â€™it feels fasterâ€™' -> wrap 'it feels faster' in straight single quotes.",
+  "where_to_apply": "07.mdx <step-reveal> steps JSON (line 74): the 'reveal' string for step 2 and the 'prompt' string for step 3",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/07/07",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Stated learning_objectives in 07.meta.json (entries 1-2) are the generic ALGET template (analyze a defensible decision / artifact polish vs evidence-based revision) and do not name the actual construct this section teaches: weekly-cost = frequency x duration, the measure-rank-re-measure loop, and felt-vs-measured improvement. The misconceptions and practice items are well-built around the real content but map to the body, not the stated LOs.",
+  "proposed_change": "Differentiate LO1 and LO2 in 07.meta.json to the real construct. LO1: 'Rank tasks by weekly cost (frequency x duration) to identify the true highest-cost target rather than the task that feels worst.' LO2: 'Convert a felt improvement into a measured one using a before/after baseline of time and error rate.' Keep the AI-disclosure/bounded-support LO (entry 3).",
+  "where_to_apply": "07.meta.json learning_objectives array, entries 1 and 2",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/07/07",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The 08.meta.json learning_objectives are the generic templated four (analyze defensible decision / polish vs evidence-based revision / bounded AI move with accepted+rejected / use feedback to revise) and do NOT match the body's concrete 'Learning Targets' (name index.html, use relative paths, enable publishing, close HTML tags). The four practice problems and four misconceptions all test the BODY targets (index.html name, absolute-vs-relative path, Pages source not set, unclosed tags) and not the meta LOs, defeating constructive alignment (CONTENT_MODEL.md sec 5 LO-templating issue). Confirmed by reading 08.meta.json (lines 8-13, generic four) vs 08.mdx Learning Targets (lines 13-16, the four mechanics).",
+  "proposed_change": "Rewrite 08.meta.json learning_objectives to the four section-specific, measurable targets actually taught and assessed, matching the body Learning Targets verbatim where possible: (1) Name the repo-root homepage index.html so the site resolves instead of 404; (2) Use repository-relative asset paths (./images/...) instead of absolute local paths so images load for every visitor; (3) Enable the Pages source (branch + folder) in Settings because pushing alone does not publish; (4) Close and correctly nest every HTML tag so structure renders. Optionally fold the artifact/AI-disclosure framing into one objective, but keep at least three differentiated from the template.",
+  "where_to_apply": "08.meta.json -> learning_objectives array (all 4 entries)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/07/08",
+  "op_index": 0
+ }
+]

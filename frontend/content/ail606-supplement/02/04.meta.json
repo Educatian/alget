@@ -3,10 +3,10 @@
   "title": "Feedback Loops and Learner Control",
   "description": "AIL 606 textbook section connecting feedback loops and learner control to a feedback-loop specification (feed-forward text, reveal-timing rule, calibrated control, behavioral signal), reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the feedback-loop specification (feed-forward text, reveal-timing rule, calibrated control with named skip cost) shows a defensible decision in AIL 606.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    "Diagnose whether a practice loop feeds forward using Hattie and Timperley's three questions, and rewrite a bare verdict into actionable feedback.",
+    "Choose a feedback-reveal timing (immediate versus brief delay) justified by task type and learner expertise.",
+    "Design calibrated learner control that preserves autonomy while naming the cost of skipping.",
+    "Tie each loop revision to a behavioral signal such as repeat-error rate, skip rate, or retry uptake."
   ],
   "concept_ids": [
     "ail606_supplement_learning_experience_design_and_software_technology",

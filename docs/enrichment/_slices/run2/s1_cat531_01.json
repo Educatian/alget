@@ -1,0 +1,188 @@
+[
+ {
+  "type": "new_callout",
+  "gap": "The bias/fairness lens ('whose burden/surveillance/exclusion') is named abstractly in the anchor table and gestured at in the Walkthrough ('summarizer trained on majority-register prose may flatten multilingual students', line 92) but has no concrete, cited real-world example of an algorithmic-fairness failure in education.",
+  "proposed_change": "Add a 2-3 sentence 'Recent Evidence' callout near the Walkthrough's critical-edtech paragraph (after line 92) giving one concrete cited example: Liang et al. (2023) found GPT detectors misclassify non-native English writers' text as AI-generated at far higher rates, a documented disparate-error harm to multilingual students. This makes the abstract anchor and the line-92 multilingual claim evidence-grounded without adding a section.",
+  "where_to_apply": "01.mdx Textbook Walkthrough after line 92, or as a callout under the Core Concept anchor table",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Liang et al. (2023) GPT detectors are biased against non-native English writers (Patterns)",
+    "url_or_doi": "10.1016/j.patter.2023.100779",
+    "finding": "Peer-reviewed study (Cell Press Patterns, 438 citations) showing GPT-detector classifiers flag writing by non-native English speakers as AI-generated at sharply higher false-positive rates than native writers; a concrete, well-cited disparate-error fairness failure directly relevant to the section's multilingual-student concern."
+   },
+   {
+    "cite": "Rezai et al. (2022) Demographic biases and assessment fairness in classroom",
+    "url_or_doi": "10.1186/s40468-022-00157-6",
+    "finding": "Documents gender, ethnicity, and SES bias in classroom assessment that can propagate into automated scoring; a supplementary example if an essay-scoring framing is preferred over the detector example."
+   }
+  ],
+  "section_key": "cat531/01/01",
+  "op_index": 4
+ },
+ {
+  "type": "evidence_add",
+  "gap": "References (lines 149-152) are the thin/Wikipedia-anchored set reused course-wide: TPACK = Wikipedia + bare 2006 DOI; 'critical edtech studies' = unnamed DOI; 'AI and education datafication' = reused 2020 DOI; 'teacher professional judgment' = unnamed DOI. For a course thesized on evidence-grounded judgment, anchors are dated and unattributed.",
+  "proposed_change": "Attribute authors/titles (TPACK = Mishra & Koehler 2006, Teachers College Record) and refresh with 2023-2026 anchors: add an AI-TPACK / generative-AI teacher-knowledge source for the tool-fit pole (Ning et al. 2024 or Al-Abdullatif et al. 2024) and a current critical-edtech/datafication source (Williamson et al. 2023) to replace the verbatim 2020 reuse. Keep list short; modernize and attribute.",
+  "where_to_apply": "02.mdx References (lines 149-152); mirror author names into prose descriptions where cited.",
+  "priority": "low",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Mishra & Koehler (2006). Technological Pedagogical Content Knowledge: A Framework for Teacher Knowledge. Teachers College Record 108(6).",
+    "url_or_doi": "https://doi.org/10.1111/j.1467-9620.2006.00684.x",
+    "finding": "OpenAlex confirms the DOI already in the References resolves to Mishra & Koehler (2006), Teachers College Record. Replace the bare/Wikipedia TPACK entry with this attributed citation."
+   },
+   {
+    "cite": "Ning, Zhang, Wu, et al. (2024). Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements. Sustainability 16(3), 978.",
+    "url_or_doi": "https://doi.org/10.3390/su16030978",
+    "finding": "Current (2024) AI-TPACK framework extending TPACK to AI tool integration (221+ citations); a fitting modern anchor for the tool-fit (first) pole."
+   },
+   {
+    "cite": "Williamson, Macgilchrist & Potter (2023). Re-examining AI, automation and datafication in education. Learning, Media and Technology 48(1).",
+    "url_or_doi": "https://doi.org/10.1080/17439884.2023.2167830",
+    "finding": "Current critical-edtech/datafication source (136+ citations) to replace the verbatim 2020 datafication DOI for the cost/equity (second) pole. (Selwyn & Pangrazio 2023, Critical Data Literacies, MIT Press, https://doi.org/10.7551/mitpress/14155.001.0001 is an alternative attributed critical-edtech anchor.)"
+   }
+  ],
+  "section_key": "cat531/01/02",
+  "op_index": 6
+ },
+ {
+  "type": "evidence_add",
+  "gap": "Opening case and worked example assert that a text-only, fast-typing discussion-bot disadvantages multilingual learners and that a reading-level mismatch makes struggling readers 'decode instructions rather than practice math.' These equity/exclusion claims (the Selwyn 'who a context mismatch excludes' lens, line 35) are stated as intuition with no cite.",
+  "proposed_change": "Add a one-sentence 'Recent Evidence' note (or a callout after the Worked Example) citing that interface/interaction-model demands (English-text load, language demands) produce disparate participation/access for multilingual learners in digital tools. Anchor the exclusion claim instead of asserting it.",
+  "where_to_apply": "05.mdx — Core Concept 'Learner composition' / 'Interaction model fit' bullets (lines 31-33) or a new Recent Evidence callout after the Worked Example (after line 60)",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Grapin, Lee et al. (2023) Science education with multilingual learners: Equity as access and equity as transformation, Science Education 107(4)",
+    "url_or_doi": "https://doi.org/10.1002/sce.21791",
+    "finding": "Distinguishes equity-as-access from equity-as-transformation and documents how uniform tool/task designs that ignore language demands fail to provide multilingual learners genuine participation — grounds the 'who a context mismatch excludes' claim with a peer-reviewed source rather than intuition."
+   },
+   {
+    "cite": "Gándara, Rumberger, Maxwell-Jolly & Callahan (2003) English Learners in California Schools: Unequal Resources, Unequal Outcomes, Education Policy Analysis Archives 11(36)",
+    "url_or_doi": "https://doi.org/10.14507/epaa.v11n36.2003",
+    "finding": "Foundational documentation that English/multilingual learners face systematically inferior conditions and access; supports that an English-text-heavy interaction model can produce disparate participation for this composition. (Older anchor; pair with Grapin 2023 for currency.)"
+   }
+  ],
+  "section_key": "cat531/01/05",
+  "op_index": 3
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The discussion-bot '30 percent participation' (line 20) and vendor 'math-fluency game, 200 students' (line 84) are presented as illustrative studies but are invented placeholders with no citation. For a course that grades vendor-claim vs evidence-claim scrutiny, using fabricated 'published study' numbers as the teaching exemplar undercuts the modeled standard.",
+  "proposed_change": "Either label the 30% and 200-student figures as illustrative composites (one clause each), or replace one with a real, citable case where an edtech effect was setting-dependent across contexts. Strong real candidates exist (Yeager 2019 growth-mindset national experiment, effect only where peer norms aligned; Muralidharan et al. 2019 tech-aided instruction in India with effects varying by baseline achievement). The course's anti-vendor-number stance argues against presenting uncited numbers as 'published.'",
+  "where_to_apply": "05.mdx — Opening Case (line 20) and Textbook Walkthrough (line 84)",
+  "priority": "low",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Yeager et al. (2019) A national experiment reveals where a growth mindset improves achievement, Nature 573",
+    "url_or_doi": "https://doi.org/10.1038/s41586-019-1466-y",
+    "finding": "Documented real case of context-dependent transfer: the online intervention changed grades only where peer norms aligned, so the same treatment did not replicate uniformly across school contexts — a citable substitute for the invented 30% figure."
+   },
+   {
+    "cite": "Muralidharan, Singh & Ganimian (2019) Disrupting Education? Experimental Evidence on Technology-Aided Instruction in India, American Economic Review 109(4)",
+    "url_or_doi": "https://doi.org/10.1257/aer.20171112",
+    "finding": "Real edtech RCT (personalized software) whose effects varied sharply by student baseline (much larger relative gains for weaker students) — a citable example that an edtech effect is conditional on learner composition, replacing the fabricated vendor pilot."
+   }
+  ],
+  "section_key": "cat531/01/05",
+  "op_index": 8
+ },
+ {
+  "type": "new_callout",
+  "gap": "The section stresses 'feed evidence upward' and 'log every deviation on named students' and uses surveillance-adjacent examples (adaptive platform tracking who is fast-tracked, an AI comment-bank reviewing student writing) but never cites the statutory frame the course foregrounds (FERPA on education records, COPPA for under-13, and 2024-2026 state student-data-privacy and school-AI guidance).",
+  "proposed_change": "Add a brief 2-3 sentence callout after the Decision Rule (line 72) noting that named-student deviation logs and routing data are education records under FERPA (and that COPPA governs vendor data for minors under 13), and that 2024-2026 brought a finalized COPPA Rule plus a wave of state student-data-privacy and school-AI guidance teachers should check before exporting named-student gap data upward.",
+  "where_to_apply": "06.mdx — new callout after Decision Rule (line 72)",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "FTC (2025) Children's Online Privacy Protection Rule, final amendments",
+    "url_or_doi": "https://www.federalregister.gov/documents/2025/04/22/2025-05904/childrens-online-privacy-protection-rule",
+    "finding": "Amended COPPA Rule effective June 23, 2025 with a compliance deadline of April 22, 2026; expands 'personal information' to biometric/government IDs, bars indefinite retention, and requires separate verifiable parental consent for third-party data sharing — current frame for under-13 edtech data."
+   },
+   {
+    "cite": "U.S. Dept. of Education, Protecting Student Privacy / 2025 FERPA resources",
+    "url_or_doi": "https://studentprivacy.ed.gov/guidance",
+    "finding": "2025 FERPA guidance/FAQ confirms named-student records held by schools and third-party edtech are education records under FERPA, with controls on disclosure to vendors — grounds treating named-student deviation logs and routing data as FERPA-relevant records."
+   },
+   {
+    "cite": "Student Privacy Compass / AI for Education, State Guidance on Generative AI in K-12 (2024-2025)",
+    "url_or_doi": "https://studentprivacycompass.org/state-guidance-on-the-use-of-generative-ai-in-k-12-education/",
+    "finding": "As of Aug 2025, 33 states had released AI-in-education guidance; state laws (e.g., California AB 1159 barring use of student data to train AI; Idaho SB 1227 requiring AI data-privacy protections) and required human oversight (OK, MD) make 'check current state/school AI guidance before exporting named-student data' an accurate 2026 statement."
+   }
+  ],
+  "section_key": "cat531/01/06",
+  "op_index": 3
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The Transfer Case (lines 102-104) invokes 'a National Board or licensure portfolio where an external assessor scores entries blind' as the high-stakes setting that validates the whole evidence-setup method, but cites nothing. This is a real, citable, course-relevant standard and the strongest claim in the section sits as bare assertion.",
+  "proposed_change": "Add a short 'Recent Evidence' note to the Transfer Case anchoring the 'blind external assessor scores inspectable artifacts' claim to NBPTS portfolio architecture, and add the entry to the References block (lines 142-146). NBPTS confirms the claim: the certification process collects standards-based evidence of accomplished practice (student work samples, video, teaching exhibits) scored against the Five Core Propositions and the Architecture of Accomplished Teaching, i.e. artifact-anchored, not reflection-only, evidence. Add a currency caveat on edTPA: governance now sits with ETS, and the assessment is no longer universally mandated. Illinois eliminated the edTPA requirement via SB 1488 (signed 2023, effective through Aug 31 2025), California's SB 1263 removed the edTPA/CalTPA/FAST passing requirement, and ETS is discontinuing the related PPAT performance assessment effective Dec 31 2025. So if edTPA is named, frame it as 'where adopted' rather than as a current universal gate; NBPTS is the safer, still-current anchor for a blind artifact-scored portfolio.",
+  "where_to_apply": "07.mdx Transfer Case (lines 102-104) and References (lines 142-146)",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "NBPTS, 'Five Core Propositions' and 'General Portfolio Instructions' (National Board for Professional Teaching Standards)",
+    "url_or_doi": "https://www.nbpts.org/certification/five-core-propositions/",
+    "finding": "National Board certification collects standards-based evidence of accomplished practice (student work, video, teaching exhibits) compiled into a classroom performance portfolio and evaluated against the Five Core Propositions and the Architecture of Accomplished Teaching; entries must show evidence that standards were met in the classroom, i.e. artifact-anchored rather than reflection-only evidence scored by an external assessor."
+   },
+   {
+    "cite": "edTPA / ETS state policy (edtpa.org State Policy Overview, rev. Jan 2025; CTA 2024-25)",
+    "url_or_doi": "https://edtpa.org/resource_item/StatePolicyOverview",
+    "finding": "edTPA is administered under ETS but is no longer a universal mandate: Illinois eliminated the requirement via SB 1488 (signed Aug 2023, through Aug 31 2025), California's SB 1263 removed edTPA/CalTPA/FAST passing requirements, and ETS is discontinuing the PPAT performance assessment effective Dec 31 2025. Any edTPA reference should be scoped to 'where adopted,' as of 2024-2026."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat531/01/07",
+  "op_index": 1
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The References block (lines 142-146) is the generic course-wide shared list: TPACK pinned to Wikipedia + a 2006 DOI, 'critical edtech studies' as an unnamed 2016 DOI, and a reused 2020 datafication DOI. None is load-bearing for portfolio evidence setup, the section's actual subject. The central scholarly construct (evidence-vs-reflection in competency portfolios; claim-as-hypothesis) has no anchor, while TPACK and critical-edtech are name-dropped at lines 32 and 118 without doing work here.",
+  "proposed_change": "Add a section-specific reference grounding the portfolio-evidence-vs-reflection distinction. Verified on-topic anchors via OpenAlex: Klenowski, Askew & Carnell (2005) on portfolios for learning, assessment and professional development in higher education (directly addresses portfolio evidence and assessment), and Farrell (2020) on the evolution of the eportfolio in higher education. Either can replace the misfit datafication entry as the section anchor. Re-label the TPACK and critical-edtech entries to reflect their minor labeling role (used only as names for what an artifact demonstrates, lines 32 and 118) rather than as the section's scholarly anchors; do not present them as load-bearing.",
+  "where_to_apply": "07.mdx References (lines 142-146); cross-check the TPACK/critical-edtech name-drops at lines 32 and 118",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "Klenowski, V., Askew, S., & Carnell, E. (2005) Portfolios for learning, assessment and professional development in higher education",
+    "url_or_doi": "https://doi.org/10.1080/02602930500352816",
+    "finding": "Peer-reviewed work (Assessment & Evaluation in Higher Education) directly on portfolios as evidence for learning, assessment, and professional development in higher education; an on-topic scholarly anchor for the section's evidence-vs-reflection construct, currently absent from the reference list."
+   },
+   {
+    "cite": "Farrell, O. (2020) From Portafoglio to Eportfolio: The Evolution of Portfolio in Higher Education",
+    "url_or_doi": "https://doi.org/10.5334/jime.574",
+    "finding": "Recent (2020) open-access review tracing the eportfolio in higher education as an evidence-and-reflection assessment artifact; supports grounding the portfolio-evidence framing with a current, section-relevant citation."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat531/01/07",
+  "op_index": 2
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The section's central empirical claim, repeated three times ('transfer, not coverage, is the evidence of learning' line 33; 'transfer requires new ground, because reusing the original case tests memory rather than understanding' lines 30/74; step-reveal 'Reusing the original case tests memory, not understanding' line 58), is stated as settled fact with no citation. This evidence-grounding course makes a strong, research-backed claim (transfer of learning, recall-vs-transfer distinction, far transfer) with zero support; uncited prose carries the whole section thesis.",
+  "proposed_change": "Add one 'Recent Evidence' or footnote-style anchor in Core Concept (near line 33) grounding the transfer-vs-recall distinction in learning-science literature. The Barnett & Ceci (2002) far-transfer taxonomy and Gick & Holyoak (1983) analogical-transfer experiments both directly support the claim that applying a principle to a genuinely NEW problem (not the trained case) is the evidence of understanding, whereas reapplying it to the original case tests memory. One real citation suffices; do not add volume.",
+  "where_to_apply": "08.mdx '## Core Concept' near the 'transfer, not coverage, is the evidence of learning' sentence (line 33)",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "Barnett, S. M., & Ceci, S. J. (2002). When and where do we apply what we learn? A taxonomy for far transfer. Psychological Bulletin, 128(4), 612-637.",
+    "url_or_doi": "https://doi.org/10.1037/0033-2909.128.4.612",
+    "finding": "Canonical taxonomy formalizing transfer as applying learning to new contexts/content/contexts that differ from the original learning situation; distinguishes near from far transfer, grounding the claim that application on new ground (not the trained case) is the evidence of transfer rather than mere recall."
+   },
+   {
+    "cite": "Gick, M. L., & Holyoak, K. J. (1983). Schema induction and analogical transfer. Cognitive Psychology, 15(1), 1-38.",
+    "url_or_doi": "https://doi.org/10.1016/0010-0285(83)90002-6",
+    "finding": "Classic experiments showing learners abstract a schema from worked cases and transfer it to a structurally new problem; successful transfer to a novel problem (not the studied one) is the operational evidence of understanding the principle, directly supporting 'reusing the original case tests memory, not understanding.'"
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat531/01/08",
+  "op_index": 2
+ }
+]

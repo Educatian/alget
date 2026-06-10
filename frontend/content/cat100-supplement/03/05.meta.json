@@ -6,10 +6,10 @@
   "title": "AI Help for Excel Debugging",
   "description": "CAT 100 textbook section connecting ai help for excel debugging to Excel pivot-table finding with unit labels, source note, and claim-first chart title, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the Excel pivot-table finding with unit labels, source note, and claim-first chart title shows a defensible decision in CAT 100.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    "Read an Excel error code (#DIV/0!, #REF!, #VALUE!, #NAME?, #N/A) to predict the cause before asking for help.",
+    "Write a four-part debugging prompt: the formula, the wrong result, the suspected cause, and the exact desired behavior including the edge case.",
+    "Verify an AI-suggested formula on a known-answer row before copying it down.",
+    "Document a bounded AI/software support move with accepted and rejected suggestions."
   ],
   "concept_ids": [
     "cat100_supplement_data_storytelling_with_excel",

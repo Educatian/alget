@@ -1,0 +1,79 @@
+[
+ {
+  "type": "assessment_align",
+  "gap": "LO3 ('Document a bounded AI/software support move with accepted and rejected suggestions') is the most-tested-against objective by intent, but the practice item tagged to ai_supported_learning (cat100_supplement_8_2_professional_story_across_artifacts_ai_boundary) actually tests the audience constraint (same-deck-every-audience), and its misconception_id is cat100_supplement_8_2_same_deck_every_audience. No practice item or misconception covers the accepted-vs-rejected AI suggestion move that LO3 names, even though the MDX body has a strong concrete instance (rejecting the AI suggestion to open with the resume).",
+  "proposed_change": "Add a 4th misconception (id cat100_supplement_8_2_accept_all_ai_suggestions: pattern accept_ai_reorder_without_reason; trigger 'learner accepts AI's slide order without checking it against the audience question'; feedback tying back to the rejected 'open with the resume' suggestion). Then either retag the ai_boundary practice item to this new misconception OR add a new MC item that tests recognizing a well-documented accepted/modified/rejected AI suggestion and references the new misconception, so LO3 has a real assessment + misconception hook. Note: the ai_boundary item content genuinely tests audience constraint, so adding a NEW LO3 item (and leaving ai_boundary tagged to same_deck_every_audience, or retagging it to a clearer audience misconception) is cleaner than retagging the existing item.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\08\\02.misconceptions.json (add misconception object) + 02.practice.json (add a new LO3/ai_supported_learning MC problem) + 02.meta.json (add new practice id to practice_ids)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/08/02",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The 'Modify' decision is the most cognitively demanding of the four log outcomes (recognize a real underlying need AND diagnose that the proposed fix is wrong AND implement a better one), but no practice item targets it. All four practice items exercise Accept (calibration row), Reject (ai_boundary, artifact_signal), and not-loggable (annotation_signal). The misconception set similarly has no Modify-specific entry. This leaves the Decision Rule's 'Intent rescue' step (mdx line 69) unassessed.",
+  "proposed_change": "Add a fifth multiple_choice practice item targeting Modify, mapped to concept evidence_based_revision and difficulty hard. Stem: an AI/peer suggestion that names a genuine need but proposes a fix that violates a constraint (e.g., 'Add a total row at the bottom of the budget table' when the table scrolls and the total must stay visible, or 'Make the heading bigger' when the real issue is heading hierarchy). Correct option = Modify: implement the underlying intent a better way and record why. Distractors = blind Accept, Reject (the need is real), and a cosmetic restatement. Optionally add a companion misconception 'modify_collapsed_to_accept_or_reject' (treating a Modify case as a binary accept/reject, losing the intent). Note: the worked-example row 3 (total-row, placed at top to stay visible) is a ready-made model to mirror.",
+  "where_to_apply": "C:/Users/jewoo/Projects/alget/frontend/content/cat100-supplement/08/05.practice.json problems array (add a 5th item); optionally C:/Users/jewoo/Projects/alget/frontend/content/cat100-supplement/08/05.misconceptions.json misconceptions array (add modify-collapse entry) and C:/Users/jewoo/Projects/alget/frontend/content/cat100-supplement/08/05.meta.json practice_ids",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/08/05",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Learning objectives are largely templated. LO2 (artifact polish vs evidence-based revision), LO3 (bounded AI/software support move), and LO4 (feedback/revision notes) are course-wide boilerplate, and LO1 is the fill-in-the-blank '...shows a defensible decision in CAT 100' frame. Because objectives are plain strings, the constructive-alignment soft check (CONTENT_MODEL.md sec 5) is a no-op here, and the objectives do not name the section's actual distinctive construct: the four-way triage (accept / modify / reject / not-loggable) and the meaning-guard test. Confirmed against 05.meta.json lines 8-12 and mdx Learning Targets lines 13-16, which are verbatim-mirrored, so both must be edited together.",
+  "proposed_change": "Rewrite LO1 to be section-specific and measurable, e.g., 'Triage each showcase suggestion into accept, modify, reject, or not-loggable, and justify the decision against what the artifact means rather than its source.' Add or rewrite one objective to name the 'meaning guard' / source-does-not-determine-quality idea explicitly (e.g., 'Reject a plausible-sounding suggestion that would misrepresent data, and record an auditable reason'). Mirror the same wording in the mdx 'Learning Targets' list (lines 13-16) so the page and meta stay in sync.",
+  "where_to_apply": "C:/Users/jewoo/Projects/alget/frontend/content/cat100-supplement/08/05.meta.json learning_objectives (LO1 and one other); C:/Users/jewoo/Projects/alget/frontend/content/cat100-supplement/08/05.mdx 'Learning Targets' section lines 13-16",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/08/05",
+  "op_index": 1
+ },
+ {
+  "type": "accessibility",
+  "gap": "The section's single image uses generic, non-descriptive alt text ('Revision Sprint textbook visual') that conveys no information to a screen-reader user. WCAG 2.2 is a named anchor in this very section, yet the alt text fails WCAG 1.1.1 (Non-text Content) by naming the file's role instead of its content.",
+  "proposed_change": "Replace 06.mdx line 3 alt text with a content description tied to the instructional point, e.g. '![A revision-sprint triage ladder: tier 1 Correctness (#REF! fix, dead-link fix) at top, then Usability/Access, then Cosmetic, with a deferred full CSS-grid rebuild marked Out-of-scope, under a fixed 30-minute budget arrow](...)'. If the PNG is purely decorative, use empty alt (alt=\"\"); if it encodes the triage hierarchy it must be described or paired with a visible caption.",
+  "where_to_apply": "06.mdx line 3 (image alt text under the H1)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/08/06",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The practice problem cat100_supplement_8_7_final_submission_checklist_ai_boundary tests AI over-trust (letting an AI 'auto-generate and confirm everything is done'), but it is tagged with misconception_id 'cat100_supplement_8_7_untested_link', which is about submitting an unopened link. There is no misconception entry covering the AI-confirmation/over-trust pattern this item actually probes, so remediation routing will mis-fire (it will surface incognito-link feedback for a learner who over-trusted an AI completeness claim). Confirmed against the files: 07.practice.json line 58 sets misconception_id to cat100_supplement_8_7_untested_link for the ai_boundary item, and 07.misconceptions.json contains only three entries (wrong_export_format, untested_link, meaningless_filename) — none about AI completeness claims.",
+  "proposed_change": "Add a fourth misconception object to 07.misconceptions.json: id 'cat100_supplement_8_7_ai_confirms_complete', pattern 'trust_ai_completeness_claim', description 'Treating an AI tool's claim that the submission is complete as verification, rather than running each test yourself', trigger 'learner accepts an AI everything-is-done confirmation without opening files or testing links', feedback 'An AI cannot open your exported PDF or load your link signed out. Let it draft the checklist, but verify every row against the real artifact yourself.', rail_action 'represent'. Then repoint the ai_boundary practice problem's misconception_id (07.practice.json line 58) to this new entry.",
+  "where_to_apply": "07.misconceptions.json (add new misconception object after line 27) + 07.practice.json field misconception_id of cat100_supplement_8_7_final_submission_checklist_ai_boundary (line 58)",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/08/07",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Learning objectives 2-4 in 07.meta.json (lines 10-12) are the identical boilerplate triplet used across sections (polish-vs-evidence, bounded AI move accepted/rejected, use-feedback-to-revise), and LO1 (line 9) is the generic fill-in-the-blank frame ('Analyze how the final submission checklist shows a defensible decision in CAT 100'). The 07.mdx 'Learning Targets' (lines 13-16) mirror this. None names the section's actual distinctive construct: verification from the recipient's environment (the incognito/signed-out test, requirement-to-testable-row translation), which is precisely what the body teaches (07.mdx lines 9, 36, 84). This defeats the constructive-alignment check and is the volume-not-novelty risk.",
+  "proposed_change": "Rewrite LO1 to be section-specific and add a verification-focused objective, e.g. 'Translate each literal assignment requirement into a testable checklist row and verify it from the recipient's environment (e.g., loading links in a signed-out window).' Keep one cross-cutting objective (bounded AI move) but differentiate the rest so at least 2 of 4 are unique to recipient-position verification. Mirror the edits in 07.mdx 'Learning Targets' (lines 13-16).",
+  "where_to_apply": "07.meta.json field learning_objectives (lines 8-13) + mirror in 07.mdx 'Learning Targets' heading (lines 13-16)",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/08/07",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Three of the four learning objectives (LO2 'Distinguish artifact polish from evidence-based revision', LO3 'Document a bounded AI/software support move with accepted and rejected suggestions', LO4 'Use feedback...to improve the artifact before sharing') are the cross-section boilerplate template, and the body prose does not actually teach two of them. The body is entirely about goal-setting (measurable/dated/sequenced goals); polish-vs-revision and the AI accepted/rejected log are asserted in the Final Check and Adaptive Support but never developed in the Core Concept, Worked Example, or Decision Rule. This is the LO-templating no-op flagged in the known-issues list, and it breaks constructive alignment for this specific section.",
+  "proposed_change": "Rewrite LO1 to be section-specific and at least one of LO2-LO4 to match what is actually taught. Suggested: LO1 'Convert a vague learning intention into a measurable, dated goal tied to a named proof artifact.' LO2 'Sequence learning goals by prerequisite so each goal builds on a verified earlier skill.' Keep LO3 (AI boundary) and LO4 (revision) only if the body is also extended to teach them (see the AI-boundary scaffolding item). Update both 08.mdx 'Learning Targets' list and 08.meta.json 'learning_objectives' to match.",
+  "where_to_apply": "08.meta.json field 'learning_objectives' (lines 8-13) AND 08.mdx '## Learning Targets' list (lines 13-16). Verified file paths: C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\08\\08.meta.json and 08.mdx.",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/08/08",
+  "op_index": 0
+ }
+]

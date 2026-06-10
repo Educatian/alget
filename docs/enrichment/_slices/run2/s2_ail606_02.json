@@ -1,0 +1,94 @@
+[
+ {
+  "type": "assessment_align",
+  "gap": "The meta learning_objectives and description are the templated chapter-level stock strings keyed to 'storyboard frame sequence with narration, signaling, and reader-action notes.' They never name this section's actual constructs (affordance, soft/hard constraint, signifier, action-to-affordance map), even though every practice item, misconception, inline-check, and worked example is about affordance mapping. The constructive-alignment chain (LO -> body -> practice) is broken at the LO node.",
+  "proposed_change": "Rewrite the 4 learning_objectives to be section-specific, e.g.: (1) Distinguish a platform feature from an affordance/constraint relative to a named learner action; (2) Build an action-to-affordance map that classifies responses as affordance, soft constraint, or hard constraint and re-runs the classification across learner variability; (3) Choose among redesign-the-action, retool, or keep-the-constraint-on-purpose when hitting a hard constraint, with a stated learning reason; (4) Verify an affordance against the live tool rather than assuming it from a feature name. Mirror the same wording into 02.mdx Learning Targets and update the meta description to name affordances/constraints/signifier instead of the storyboard stock string.",
+  "needs_research": false,
+  "where_to_apply": "02.meta.json -- learning_objectives[] and description; 02.mdx -- ## Learning Targets (keep in sync)",
+  "priority": "high",
+  "search_terms": [],
+  "section_key": "ail606/02/02",
+  "op_index": 4
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The Core Concept names THREE failure modes (split attention, seductive detail, interaction-cost asymmetry/equity) and the Decision Rule makes Equity test #4 ('Can a keyboard or screen-reader learner perform the same operation at comparable cost?'). But the misconceptions file has only 3 entries and NONE covers the equity/cost-asymmetry failure mode. No practice item assesses it either. The most pedagogically distinctive of the three failure modes (and the one tied to the project's flagged a11y gate) is taught in prose but never assessed.",
+  "proposed_change": "Add a fourth misconception, e.g. id ...interaction_cost_asymmetry, pattern 'ignoring_interaction_cost_equity', description 'Treating an interaction as universally usable when its cost (precise dragging, rotation, hover) is trivial for some learners but a barrier for keyboard/screen-reader/motor-impaired learners', trigger 'learner adopts a drag-precise or pointer-only pattern with no equivalent path', feedback tying to UDL multiple-means-of-action and WCAG 2.2, rail_action 'represent'. Then convert one practice item (or add a 5th) to test it: a pattern that passes operation-fit but fails equity, asking what is still wrong.",
+  "needs_research": false,
+  "where_to_apply": "03.misconceptions.json (add 4th misconception object) and 03.practice.json (add or repurpose an item to map to it)",
+  "priority": "high",
+  "section_key": "ail606/02/03",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "learning_objectives in 03.meta.json are the templated stock strings keyed to the generic storyboard artifact ('Analyze how the storyboard frame sequence ... shows a defensible decision'). They do not mention interaction-cognition fit, the three failure modes, the closed-loop test, or equity, which are the actual taught constructs. The constructive-alignment between LOs and the (strong) MDB/practice is therefore weak.",
+  "proposed_change": "Rewrite LOs to be section-specific, e.g.: (1) 'Match a cognitive operation (compare/sequence/decide/observe) to the interaction pattern whose structure enacts it (interaction-cognition fit).' (2) 'Diagnose an interaction for split attention, seductive detail, or interaction-cost asymmetry.' (3) 'Verify an interaction closes its loop with a visible consequence and is equitable for keyboard/screen-reader learners.' (4) 'Defend a pattern choice with behavioral evidence and a named rejected alternative rather than production value.' Mirror in Learning Targets in MDX.",
+  "needs_research": false,
+  "where_to_apply": "03.meta.json learning_objectives array and description; mirror in 03.mdx 'Learning Targets' (lines 13-16)",
+  "priority": "high",
+  "section_key": "ail606/02/03",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "LO #1 in both 04.mdx Learning Targets (line 13) and 04.meta.json learning_objectives[0] reads 'Analyze how the storyboard frame sequence... shows a defensible decision' — a templated chapter-level string that does not describe this section's actual learning (analyzing feedback content/timing and calibrating learner control). The remaining LOs (#2-4) are also generic ALGET stock strings; none names feedback, timing, or learner control, so the constructive-alignment between the four practice items and the stated LOs is loose.",
+  "proposed_change": "Rewrite section-specific LOs, e.g.: (1) 'Diagnose whether a practice loop feeds forward using Hattie and Timperley's three questions and rewrite a bare verdict into actionable feedback'; (2) 'Choose a feedback-reveal timing (immediate vs brief-delay) justified by task type and learner expertise'; (3) 'Design calibrated learner control that preserves autonomy while naming the cost of skipping'; (4) 'Tie each loop revision to a behavioral signal (repeat-error rate, skip rate, retry uptake).' Mirror in 04.meta.json learning_objectives and consider adding an lo_practice_map linking artifact_signal->LO1, annotation_signal/control->LO3, ai_boundary->LO2, calibration->LO4.",
+  "needs_research": false,
+  "where_to_apply": "04.mdx Learning Targets (lines 13-16); 04.meta.json learning_objectives array (lines 5-10)",
+  "priority": "high",
+  "search_terms": [],
+  "section_key": "ail606/02/04",
+  "op_index": 5
+ },
+ {
+  "type": "assessment_align",
+  "gap": "All four learning_objectives (in both 06.meta.json and the MDX 'Learning Targets' heading) are the templated chapter-level stock strings keyed to 'storyboard frame sequence with narration, signaling, and reader-action notes.' This section is not about storyboarding at all; its substantive content is critically triaging an LXD optimizer report (proxy vs learning goal, goal-aligned/neutral/opposed taxonomy, Goodhart's law, accessibility undervaluation by usage metrics). LO1 in particular asserts the section teaches storyboard-frame analysis, which it does not. The validator is a no-op on plain-string LOs, so this mismatch is invisible to CI but real to a reader, and it breaks constructive alignment with the practice items (which DO test optimizer triage).",
+  "proposed_change": "Rewrite the four LOs to match the actual content. Suggested: (1) 'Classify an optimizer suggestion as goal-aligned, goal-neutral, or goal-opposed by reading its mechanism before its predicted-gain magnitude.' (2) 'Explain why engagement proxies (completion, time-on-page, efficiency) cannot, on their own, certify that learning occurred, using Goodhart's law.' (3) 'Defend an accessibility provision against an efficiency edit on UDL learner-variability grounds the usage metric cannot see.' (4) 'Produce a triaged optimizer report with per-row verdict, mechanism, at least one reasoned rejection, and a before/after transfer check on the accepted edit.' Apply identical text to 06.meta.json learning_objectives and the MDX 'Learning Targets' bullets.",
+  "needs_research": false,
+  "where_to_apply": "06.meta.json field learning_objectives (all 4) AND 06.mdx '## Learning Targets' bullets",
+  "priority": "high",
+  "section_key": "ail606/02/06",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The artifact-studio tag and the entire Artifact Studio / Adaptive Support / Final Check apparatus is mis-labeled with the generic 'storyboard frame sequence with narration, signaling, and reader-action notes' artifact. This is the exact mis-label pattern flagged in known issues (03.03/04.06 also wrongly embed the storyboard artifact). For this optimizer-triage section the correct signature artifact is a 'triaged optimizer report' (named explicitly in the MDX 'Stronger Artifact Standard' as 'every suggestion classified as goal-aligned, goal-neutral, or goal-opposed, each with a one-line mechanism and verdict, plus at least one reasoned rejection'). The mis-label means the studio packet, the before/after trace prompt, the Adaptive Support 'compare a weak and strong version of the storyboard frame sequence' bullet, and the Final Check all instruct the learner to revise the wrong artifact.",
+  "proposed_change": "Change the artifact-studio component artifact attribute from 'storyboard frame sequence with narration, signaling, and reader-action notes' to 'triaged optimizer report' (or 'LXD optimizer triage log'). Update the download-packet link text, the Adaptive Support bullets, the dynamic-scenario prompt, and the Final Check sentence to name the triaged optimizer report. The Final Check fields should read: records proxy named, mechanism, category verdict per suggestion, at least one reasoned rejection, accessibility check, and a before/after transfer measure on the accepted edit (these are already the section's own decision rule).",
+  "needs_research": false,
+  "where_to_apply": "06.mdx '## Artifact Studio' (artifact-studio attribute + packet link), '## Adaptive Support' bullets + dynamic-scenario prompt, '## Final Check' sentence",
+  "priority": "high",
+  "section_key": "ail606/02/06",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "All four learning_objectives (meta.json + MDX Learning Targets) are the templated stock strings keyed to the chapter signature artifact ('storyboard frame sequence...'). LO1 literally asks learners to analyze how a storyboard shows a defensible decision, but the section never teaches storyboards; it teaches comparative auditing with gates. The LOs do not name the actual high-value skills (deriving criteria from the task, distinguishing gates from weights, applying gates before totals, stating a context-bounded recommendation with a re-entry condition).",
+  "proposed_change": "Rewrite the four LOs to be section-specific: (1) 'Build a comparative audit matrix that scores every candidate tool on the same task-derived criteria.' (2) 'Distinguish a pass-or-fail gate from a weighted dimension and apply gates before reading totals.' (3) 'State a recommendation bounded by its named context (learners, budget, constraints) plus the re-entry condition that would change the winner.' (4) 'Document a bounded AI/software support move with an accepted and a rejected suggestion, e.g., using BigAL to attack the criteria rather than rank the tools.' Mirror the same edits in the MDX Learning Targets list (lines 13-16). This also makes practice items artifact_signal/annotation_signal/calibration map cleanly to stated objectives.",
+  "needs_research": false,
+  "where_to_apply": "07.meta.json learning_objectives array; 07.mdx Learning Targets (lines 13-16)",
+  "priority": "high",
+  "section_key": "ail606/02/07",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The strongest practice item (calibration, the gate-vs-weight question) and the section's central concept (gate is categorical, not tradeable) point at a misconception that is NOT in the misconceptions file. The calibration problem is tagged to misconception 'context_free_winner', but it is really about treating a non-negotiable gate as one weighted criterion among many. The misconceptions.json has only three patterns (feature_count, no_shared_criteria, context_free_winner); the most important misconception the section attacks (gate-as-weight) is missing, so the deterministic rail cannot fire the correct remediation.",
+  "proposed_change": "Add a fourth misconception 'gate_treated_as_weight' (pattern: gate_compensated_by_other_scores; description: 'Averaging a non-negotiable requirement such as accessibility into the weighted total so a strength elsewhere can buy back a fatal failure'; trigger: 'learner lets a high total or large feature lead override a 0 on a gated criterion'; feedback: 'A gate is pass-or-fail and is applied before totals. No strength can offset a gate failure; the tool is removed from contention.'; rail_action: 'represent'). Then retarget the calibration practice item's misconception_id (07.practice.json line 73) from '...context_free_winner' to the new '...gate_treated_as_weight'.",
+  "needs_research": false,
+  "where_to_apply": "07.misconceptions.json (add 4th entry); 07.practice.json calibration item misconception_id (line 73)",
+  "priority": "high",
+  "section_key": "ail606/02/07",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Practice item 'artifact_signal' (line 7) and item 'annotation_signal' (line 25) are near-duplicates of the inline-check (line 39) and Opening Case (line 20): all four test the same single idea (activity-log vs argument / BLUF / named audience). Three of four practice items and the inline-check probe one objective; LO2 (distinguish polish from evidence-based revision) and LO3 (bounded AI accept/reject) are under-assessed. Only the 'calibration' item touches evidence-linking; nothing assesses the AI accept/reject judgment that the section's gate and Final Check require.",
+  "proposed_change": "Repurpose the 'ai_boundary' item (currently another BLUF item, line 45) to actually test the AI accept/reject judgment gate: e.g. BigAL suggests adding the narration-timing finding to strengthen the memo; the learner should REJECT it because it does not bear on the Tool A vs B decision, and document why. This maps to LO3 and the documented accept-AND-reject requirement. Add or revise one item to test LO2 (polish vs evidence-based revision) directly.",
+  "needs_research": false,
+  "where_to_apply": "practice.json ai_boundary item (currently a BLUF duplicate); ensure misconception mapping updated",
+  "priority": "high",
+  "section_key": "ail606/02/08",
+  "op_index": 2
+ }
+]

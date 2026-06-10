@@ -4,12 +4,12 @@
   "section": "02",
   "chapter_title": "AI Conversations as a Teacher",
   "title": "Scenario-Based AI Dialogue",
-  "description": "CAT 100 textbook section connecting scenario-based ai dialogue to AI critique log showing accepted, modified, and rejected suggestions, reader notes, support moments, and revision evidence.",
+  "description": "CAT 100 textbook section connecting scenario-based AI dialogue to a labeled three-move dialogue transcript (SET CONTEXT, NARROW, STRESS-TEST) with an embedded accept/reject note, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the AI critique log showing accepted, modified, and rejected suggestions shows a defensible decision in CAT 100.",
+    "Plan and label a three-move scenario dialogue (SET CONTEXT, NARROW, STRESS-TEST) so each turn changes exactly one thing.",
     "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    "Log at least one accepted and one rejected AI suggestion inside the labeled dialogue transcript.",
+    "Attribute each change in the AI's output to the labeled turn that caused it."
   ],
   "concept_ids": [
     "cat100_supplement_ai_conversations_as_a_teacher",

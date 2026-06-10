@@ -3,10 +3,10 @@
   "title": "Telemetry and Privacy Boundaries",
   "description": "AIL 606 textbook section connecting telemetry and privacy boundaries to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the storyboard frame sequence with narration, signaling, and reader-action notes shows a defensible decision in AIL 606.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    "Apply data minimization: derive the logging plan from a stated question rather than from technical capability.",
+    "Distinguish direct identifiers, indirect identifiers, and pseudonymous keys, and explain how combinations enable re-identification.",
+    "Set purpose limitation and a retention window that match the consent learners actually gave.",
+    "Reject \"collect now, decide later\" requests and state the harm they create."
   ],
   "concept_ids": [
     "ail606_supplement_research_translation_for_learning_design",

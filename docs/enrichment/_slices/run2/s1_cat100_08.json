@@ -1,0 +1,166 @@
+[
+ {
+  "type": "evidence_add",
+  "gap": "Two citable empirical facts are asserted but ungrounded: (1) 'automated bots scrape new commits for exactly these strings within minutes' (line 22) — true and documented but uncited; (2) the section never references the documented scale of the problem (GitHub push protection blocked ~4.4M secrets in 2024; millions of live keys leak to public repos). This course values evidence-grounding, and a real source strengthens the 'this actually happens' claim that motivates the whole checklist.",
+  "proposed_change": "Cite the 'within minutes' claim to Meli et al. (2019) NDSS (honeytoken AWS keys exploited in ~30 minutes average; 100k+ repos affected) and/or GitGuardian State of Secrets Sprawl; cite GitHub's 39M-detected / 4.4M-blocked 2024 figures and the GitHub changelog for push-protection default-on. Place as inline links in the Opening Case (line 21) or the new Recent Evidence callout. Replace the vestigial Tufte reference with these privacy-relevant sources in References.",
+  "where_to_apply": "01.mdx — Opening Case (line 21) or new callout; References section (lines 154-159)",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Meli, McNiece et al. (2019) How Bad Can It Git? Characterizing Secret Leakage in Public GitHub Repositories, NDSS Symposium",
+    "url_or_doi": "https://doi.org/10.14722/ndss.2019.23418",
+    "finding": "First large-scale longitudinal study of GitHub secret leakage: secrets affect 100,000+ repositories with thousands of new unique secrets leaking daily; honeytoken AWS keys posted publicly were exploited in ~30 minutes on average with an 83% chance of use — direct empirical grounding for the 'scraped within minutes' claim."
+   },
+   {
+    "cite": "GitGuardian — The State of Secrets Sprawl 2025 (2024 data)",
+    "url_or_doi": "https://blog.gitguardian.com/the-state-of-secrets-sprawl-2025/",
+    "finding": "23.8 million new secrets were leaked on public GitHub in 2024 (25% YoY increase); 70% of secrets leaked in 2022 remained active years later — grounds the scale-of-problem claim and reinforces why rotation (not deletion) is non-negotiable."
+   },
+   {
+    "cite": "GitHub Blog — GitHub found 39M secret leaks in 2024",
+    "url_or_doi": "https://github.blog/security/application-security/next-evolution-github-advanced-security/",
+    "finding": "39 million secret leaks detected platform-wide in 2024; ~4.4 million blocked by push protection before reaching repos — the citable scale figure for the Recent Evidence callout."
+   }
+  ],
+  "section_key": "cat100/08/01",
+  "op_index": 4
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The body invokes 'the data-ink principle' and 'one number per slide' as load-bearing rules (Core Concept, Decision Rule) but the only support is a bare Tufte book URL in References with no inline anchor; the storytelling/'lead with the claim' claim has no citation. This course explicitly values evidence-grounding.",
+  "proposed_change": "Add an inline parenthetical at the 'This connects to the data-ink principle' sentence (Core Concept, line ~30): cite Tufte's data-ink ratio explicitly — '(Tufte's data-ink ratio: maximize the ink that shows the data, erase the rest; Tufte, The Visual Display of Quantitative Information)'. Optionally anchor the 'one claim / one assertion per slide' guidance to the assertion-evidence slide-design line of work (Alley; Garner et al., 2020 found assertion-evidence slides improve comprehension and recall of complex concepts). Keep prose clean: one parenthetical for data-ink, optionally one for assertion-evidence, and add the citation to References (line ~151).",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\08\\02.mdx, 'Core Concept' data-ink sentence (line ~30) and 'References' (line ~151)",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "Edward R. Tufte, The Visual Display of Quantitative Information (data-ink ratio)",
+    "url_or_doi": "https://www.edwardtufte.com/tufte/books_vdqi",
+    "finding": "Data-ink ratio = proportion of a graphic's ink devoted to the non-redundant display of data; the governing principle is 'above all else show the data,' maximize data-ink and erase non-data-ink — directly supports the section's 'plan the evidence first and the styling last / one number per slide' rule."
+   },
+   {
+    "cite": "Garner, J., Alley, M., Wolfe, K., Zappe, S., & Sawarynski, L. E. (2020). Assertion-Evidence Slides Appear to Lead to Better Comprehension and Recall of More Complex Concepts.",
+    "url_or_doi": "https://doi.org/10.18260/1-2--17510",
+    "finding": "Empirical (ASEE) finding that assertion-evidence slide design (a sentence-headline CLAIM supported by visual EVIDENCE, not bullet lists) improves comprehension and recall of complex concepts — grounds the section's 'lead with the claim, one assertion per slide, evidence beside it' guidance."
+   },
+   {
+    "cite": "Alley, M. (2020). Rethinking the Design of Presentation Slides (assertion-evidence approach).",
+    "url_or_doi": "https://doi.org/10.18260/1-2--11436",
+    "finding": "Originating source for the assertion-evidence slide structure: each slide states a single concise assertion as its headline, supported by visual evidence rather than topic-phrase bullets — supports 'one claim, one piece of evidence, one slide.'"
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/08/02",
+  "op_index": 2
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The section's intellectual core is the near-transfer / far-transfer distinction (Core Concept, line ~40), presented as settled fact with no citation, including the claim that far transfer 'requires understanding why the procedure works.' A reader/instructor cannot trace the source.",
+  "proposed_change": "Add one anchoring citation for the near/far transfer distinction in 'Core Concept' (line ~40) or References (line ~152). Use Barnett & Ceci (2002), the canonical far-transfer taxonomy, e.g. a brief source line: 'The near/far transfer distinction follows Barnett & Ceci (2002), whose taxonomy specifies the dimensions along which a learned skill must travel to a new context.' One line is sufficient.",
+  "where_to_apply": "03.mdx — 'Core Concept' paragraph on near/far transfer (line ~40) and/or 'References' list (line ~152).",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Barnett, S. M., & Ceci, S. J. (2002). When and where do we apply what we learn?: A taxonomy for far transfer. Psychological Bulletin, 128(4), 612-637.",
+    "url_or_doi": "https://doi.org/10.1037/0033-2909.128.4.612",
+    "finding": "Peer-reviewed in Psychological Bulletin, ~1,900+ citations (OpenAlex). The canonical taxonomy distinguishing near from far transfer along content and context dimensions; directly grounds the section's near/far framing and the claim that far transfer depends on understanding underlying structure rather than surface keystrokes."
+   }
+  ],
+  "section_key": "cat100/08/03",
+  "op_index": 3
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The section's central pedagogical claim, that rejecting bad feedback with a reason is harder and more skill-revealing than accepting good feedback (mdx lines 30, 77, 89), and that selective uptake/triage of feedback distinguishes skilled revisers, is asserted without any citation. In a course that explicitly values evidence-grounding, this is a place where one feedback-literacy / feedback-uptake source would strengthen the argument.",
+  "proposed_change": "Add a brief 'Recent Evidence' callout citing Carless and Boud's (2018) student feedback literacy framework, whose four core features include 'making judgments' and 'taking action / managing affect' and explicitly frame learners as needing to evaluate and selectively act on feedback (its very title is 'enabling uptake of feedback'). This grounds the claim that judging and selectively acting on feedback, including rejecting it with a reason, is a recognized competency rather than a course invention. Optionally pair with Schemmer et al. (2023) on appropriate reliance for the AI-specific reject case. Keep it to one sentence plus a reference link, and add the Carless and Boud reference to the 'References' list (line 137).",
+  "where_to_apply": "C:/Users/jewoo/Projects/alget/frontend/content/cat100-supplement/08/05.mdx new 'Recent Evidence' callout near 'Common Misreadings' (line 73) or 'Core Concept'; add reference to 05.mdx 'References' (line 137)",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "Carless, D., & Boud, D. (2018) The development of student feedback literacy: enabling uptake of feedback. Assessment & Evaluation in Higher Education, 43(8), 1315-1325",
+    "url_or_doi": "https://doi.org/10.1080/02602938.2018.1463354",
+    "finding": "The canonical student feedback literacy framework (~2,000 citations). Defines four interrelated features, including 'making judgments' (evaluating the quality of work and of feedback) and 'taking action' (using feedback to improve work). Directly supports the claim that judging and selectively acting on feedback, rather than accepting all of it, is a recognized competency."
+   },
+   {
+    "cite": "Molloy, E., Boud, D., & Henderson, M. (2019) Developing a learning-centred framework for feedback literacy. Assessment & Evaluation in Higher Education, 45(4), 527-540",
+    "url_or_doi": "https://doi.org/10.1080/02602938.2019.1667955",
+    "finding": "Empirically derived feedback-literacy framework (480+ citations) confirming that evaluating and acting on feedback are learnable competencies, useful as a supporting/secondary citation for the same claim."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/08/05",
+  "op_index": 3
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The central claim, that under time pressure people default to satisfying, visible, low-impact work and that pre-committing a triage/priority order improves outcomes, is asserted but not evidence-grounded, in a course whose through-line is evidence-grounding. The existing References (NACE, ISTE, Tufte, WCAG) do not support the triage-under-constraint behavioral claim.",
+  "proposed_change": "Add a short 'Recent Evidence' note near 'Common Misreadings' (line 89) and a References entry. Use Ballard, Vancouver & Neal (2018, J. Applied Psychology) to ground how people allocate scarce time across competing goals under deadlines, and a software-defect-triage source (Catolino et al. 2019, JSS; or CaPBug, Ahmed et al. 2021) to ground severity-first triage under limited resources, framing why correctness-first ordering beats reacting to the most visible item.",
+  "where_to_apply": "06.mdx 'References' (line 153) and a one-line callout near 'Common Misreadings' (line 89)",
+  "priority": "low",
+  "sources": [
+   {
+    "cite": "Ballard, T., Vancouver, J. B., & Neal, A. (2018). On the pursuit of multiple goals with different deadlines. Journal of Applied Psychology.",
+    "url_or_doi": "https://doi.org/10.1037/apl0000304",
+    "finding": "Peer-reviewed (J. Applied Psychology), 57 citations: a computational theory + 4 experiments of how people prioritize time when pursuing goals with different deadlines under time pressure; expected-utility valence best explains allocation. Grounds the claim that time/budget allocation across competing fixes is a structured, modelable decision rather than ad hoc reaction."
+   },
+   {
+    "cite": "Catolino, G. et al. (2019). Not all bugs are the same. Journal of Systems and Software.",
+    "url_or_doi": "https://doi.org/10.1016/j.jss.2019.03.002",
+    "finding": "Well-cited (128): bugs/defects differ in type and severity and must be triaged accordingly, supporting the tier-1-correctness-first ordering and the 'impact, not visible activity, sets the order' claim. CaPBug (Ahmed et al. 2021, IEEE Access, https://doi.org/10.1109/access.2021.3069248, 56 cites) corroborates categorize-then-prioritize-by-severity under limited triage capacity."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/08/06",
+  "op_index": 4
+ },
+ {
+  "type": "new_callout",
+  "gap": "07.mdx relies on GitHub Pages as the canonical 'link loads for me but 404s for the grader' case (Opening Case line 20, Core Concept line 36, Worked Example line 47) but does not name the current second cause of grader-side 404s: Pages build/propagation delay and Actions-based deploys. A learner who just pushed may run the incognito test too early, see a 404, and wrongly conclude the link is private — or pass the test before the new build is live. Research confirms this failure mode is real and current.",
+  "proposed_change": "Add a short 'Recent note' callout near the incognito test: 'A signed-out 404 can also mean the GitHub Pages build has not finished yet (Pages can publish via a GitHub Actions workflow and can lag a minute or two after a push). Wait for the build to report success in the repo's Actions/Pages settings, then re-run the incognito test; the live URL is the source of truth.'",
+  "where_to_apply": "07.mdx 'Core Concept' after the inline-check (after line 38), or 'Common Misreadings' first paragraph (line 78)",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "GitHub Docs — Configuring a publishing source for your GitHub Pages site (2026)",
+    "url_or_doi": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site",
+    "finding": "GitHub Pages can publish either by deploying from a branch or via a GitHub Actions workflow (actions/deploy-pages), and you confirm a deployment by reviewing the repository's workflow runs — grounding the callout's 'wait for the build to report success in Actions/Pages settings' guidance."
+   },
+   {
+    "cite": "GitHub community Discussion #61073 — Guide: Troubleshooting 404 errors for GitHub Pages sites; Discussion #49074 — Pages build and deployment queued",
+    "url_or_doi": "https://github.com/orgs/community/discussions/61073",
+    "finding": "GitHub Pages deployment involves a build/propagation delay and queued Actions runs; a freshly pushed site can return 404 until the build/deploy completes, confirming that a signed-out 404 can reflect an unfinished build rather than a private link."
+   }
+  ],
+  "section_key": "cat100/08/07",
+  "op_index": 4
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The section's central claims -- that measurable, deliverable-tied goals outperform vague intentions, and that prerequisite sequencing aids skill acquisition -- are presented as self-evident with no citation (see Core Concept line 33: 'The intellectual core is two ideas from goal-setting and skill-building' with no source). This is a course that explicitly values evidence-grounding, and the goal-setting and sequencing literature provide strong, citable support that would let the section model the very evidence-based standard it asks of students.",
+  "proposed_change": "Add a short 'Recent Evidence' callout grounding (a) the measurable-goal claim in Locke & Latham goal-setting theory (specific, difficult goals beat 'do your best'), (b) the goal-plus-concrete-plan claim in Gollwitzer implementation intentions (an if-then 'when/where' plan raises goal attainment), and (c) the sequencing claim in van Merrienboer & Sweller's 4C/ID instructional-design/sequencing work. One sentence each with a real citation, mirrored into the References list (08.mdx lines 145-148).",
+  "where_to_apply": "08.mdx -- new 'Recent Evidence' callout near '## Core Concept' (line 33) and add citations to '## References' (lines 145-148).",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "Locke & Latham (2002) Building a practically useful theory of goal setting and task motivation: A 35-year odyssey. American Psychologist, 57(9), 705-717",
+    "url_or_doi": "https://doi.org/10.1037/0003-066X.57.9.705",
+    "finding": "Specific, difficult goals consistently produce higher performance than vague 'do your best' goals; goals direct attention and effort and provide a clear standard against which progress is checked -- directly grounding the 'measurable beats vague' claim."
+   },
+   {
+    "cite": "Gollwitzer (1999) Implementation intentions: Strong effects of simple plans. American Psychologist, 54(7), 493-503",
+    "url_or_doi": "https://doi.org/10.1037/0003-066X.54.7.493",
+    "finding": "Pairing a goal intention with a concrete if-then plan specifying when, where, and how to act substantially increases the rate of goal attainment -- grounds the section's insistence on a target date and a named proof artifact (the 'when/what' commitment)."
+   },
+   {
+    "cite": "van Merrienboer, Kirschner & Kester (2003) Taking the load off a learner's mind: Instructional design for complex learning. Educational Psychologist, 38(1), 5-13",
+    "url_or_doi": "https://doi.org/10.1207/S15326985EP3801_2",
+    "finding": "Complex-skill acquisition is supported by sequencing tasks so prerequisite knowledge is established before more demanding tasks, managing cognitive load -- grounds the 'order by prerequisite' claim (e.g., spreadsheet before database query)."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/08/08",
+  "op_index": 2
+ }
+]

@@ -3,10 +3,10 @@
   "title": "Peer Review of Storyboards",
   "description": "AIL 606 textbook section connecting peer review of storyboards to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the storyboard frame sequence with narration, signaling, and reader-action notes shows a defensible decision in AIL 606.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    "Diagnose why a storyboard peer comment fails by identifying which of the three properties (anchored, actionable, authorship-preserving) is missing.",
+    "Rewrite a praise or taste comment into a three-part review (observation, anchor, option) that cites a Mayer principle or the frame objective.",
+    "Explain why the author's documented accept-or-reject response, not the comment itself, is the design evidence, and why a principled rejection can be stronger than an acceptance.",
+    "Maintain anchored, authorship-preserving review across a power gradient, as in the senior-to-junior transfer case."
   ],
   "concept_ids": [
     "ail606_supplement_multimedia_storyboarding_and_ai_asset_generation",

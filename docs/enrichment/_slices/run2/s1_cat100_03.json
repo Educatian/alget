@@ -1,0 +1,183 @@
+[
+ {
+  "type": "evidence_add",
+  "gap": "The section introduces 'tidy data' as a named rule ('one variable per column, one observation (record) per row, and exactly one value in each cell', 01.mdx line 9) but cites no source. This concept has a canonical, citable origin (Hadley Wickham, 'Tidy Data', Journal of Statistical Software, 2014) and the References list (lines 149-154) omits it while including Tufte. In an evidence-valuing course, the load-bearing structural concept of the section should be grounded.",
+  "proposed_change": "Add the tidy-data citation to the References list and a brief inline attribution where 'tidy data' is first defined (line 9), e.g. 'a structure popularized as tidy data (Wickham, 2014)'. Confirmed exact citation: Wickham, H. (2014). Tidy Data. Journal of Statistical Software, 59(10). https://doi.org/10.18637/jss.v059.i10",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\03\\01.mdx line 9 (inline) and '## References' (lines 149-154)",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "Wickham, H. (2014). Tidy Data. Journal of Statistical Software, 59(10).",
+    "url_or_doi": "https://doi.org/10.18637/jss.v059.i10",
+    "finding": "OpenAlex confirms the canonical paper: title 'Tidy Data', author Hadley Wickham, year 2014, Journal of Statistical Software, volume 59, issue 10, DOI 10.18637/jss.v059.i10 — matching the proposed citation exactly."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/03/01",
+  "op_index": 2
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The Tufte reference (02.mdx line 149) is a bare top-level books URL on data-ink/visual evidence, only loosely relevant to a formulas/references section (Tufte is a charting anchor more apt for the later visualization sections). Meanwhile the two load-bearing factual claims of THIS section — relative/absolute/mixed reference behavior with the $ lock, and AVERAGE-ignores-blanks-but-counts-zero — have no Microsoft documentation link. Both claims were verified against primary Microsoft Support docs.",
+  "proposed_change": "In '## References' (lines 145-150), add the authoritative Microsoft Support docs for (a) 'Switch between relative, absolute, and mixed references' and (b) the AVERAGE function (which documents ignoring empty cells but including zeros). Drop or relocate the Tufte line to the later visualization section. This grounds the section's two core factual claims in primary documentation.",
+  "where_to_apply": "02.mdx '## References' (lines 145-150) — add the two Microsoft Support links; drop/relocate the Tufte line (line 149)",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Microsoft Support — Switch between relative, absolute, and mixed references",
+    "url_or_doi": "https://support.microsoft.com/en-us/office/switch-between-relative-absolute-and-mixed-references-dfec08cd-ae65-4f56-839e-5f0d8d0baca9",
+    "finding": "Confirms: a default reference is relative and changes when a copied formula moves; preceding column and/or row with $ makes it absolute or mixed, fixing that part; F4 cycles reference types. Grounds the section's $-lock claim."
+   },
+   {
+    "cite": "Microsoft Support — AVERAGE function",
+    "url_or_doi": "https://support.microsoft.com/en-us/office/average-function-047bac88-d466-426c-a32b-8f33eb960cf6",
+    "finding": "Confirms verbatim: 'If a range or cell reference argument contains text, logical values, or empty cells, those values are ignored; however, cells with the value zero are included.' Directly grounds the AVERAGE-skips-blanks-but-counts-zero claim in line 38 and practice item ai_boundary."
+   }
+  ],
+  "section_key": "cat100/03/02",
+  "op_index": 5
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The section makes a strong, repeated perceptual claim ('the eye reads bar length far more accurately than slice angle,' lines 35 and 82) and bases its whole pie-chart caution on it, but cites no source. This course explicitly values evidence-grounding, and this is one of the most citable findings in data visualization. The Tufte reference (line 149) is also a bare URL rather than a proper citation, and there is no source for the 'lie factor' / truncated-axis exaggeration claim.",
+  "proposed_change": "Add a 'Recent Evidence' / source note in Core Concept (line 35) grounding the length-vs-angle claim in Cleveland & McGill's graphical-perception ranking: in their controlled experiments, position and length judgments (bars) were more accurately decoded than angle and area judgments (pie slices), establishing the ordered list of 'elementary perceptual tasks' that underlies the bars-over-pies guidance. Note Heer & Bostock (2010) replicated this ranking via crowdsourcing. Tie the zero-baseline / truncated-axis 'lie factor' claim to Tufte's The Visual Display of Quantitative Information, and convert the bare Tufte URL in References (line 149) into a proper citation (Tufte, E. R., The Visual Display of Quantitative Information).",
+  "where_to_apply": "03.mdx Core Concept (line 35) as an inline 'Recent Evidence' note; References block (lines 145-150) — add Cleveland & McGill (1984) and fix the Tufte entry.",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Cleveland, W. S., & McGill, R. (1984). Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods. Journal of the American Statistical Association, 79(387), 531-554.",
+    "url_or_doi": "https://doi.org/10.1080/01621459.1984.10478080",
+    "finding": "Controlled experiments ranked 'elementary perceptual tasks' by decoding accuracy: position along a common scale and length (the encodings used by bar/column charts) are judged more accurately than angle and area (the encodings used by pie charts), directly supporting 'the eye reads bar length far more accurately than slice angle.' ~1,573 citations; the canonical, well-cited foundation for this claim."
+   },
+   {
+    "cite": "Heer, J., & Bostock, M. (2010). Crowdsourcing graphical perception: using Mechanical Turk to assess visualization design. Proceedings of the SIGCHI Conference on Human Factors in Computing Systems (CHI '10).",
+    "url_or_doi": "https://doi.org/10.1145/1753326.1753357",
+    "finding": "Large-scale crowdsourced replication that reproduced Cleveland & McGill's ordering of perceptual tasks, confirming that length/position judgments outperform angle/area judgments. Provides a modern, ~813-citation corroboration."
+   },
+   {
+    "cite": "Tufte, E. R. (1983/2001). The Visual Display of Quantitative Information. Graphics Press.",
+    "url_or_doi": "https://www.edwardtufte.com/tufte/books_vdqi",
+    "finding": "Source of the 'lie factor' concept (size of effect shown in the graphic / size of effect in the data) and the data-ink principle; grounds the section's claim that a truncated value axis visually exaggerates a real gap. The existing References entry is only a bare URL and should be cited properly."
+   }
+  ],
+  "section_key": "cat100/03/03",
+  "op_index": 1
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The opening claim 'AI is a fast assistant that is sometimes confidently wrong' (line 7) and the 'fluent but wrong formula' framing (practice explanation, line 58) are stated as common sense with no grounding, in a course that values evidence. Credible 2022-2024 scholarship on LLM hallucination and poor confidence calibration would let this section model the evidence-grounding it preaches rather than asserting the risk.",
+  "proposed_change": "Add a brief 'Recent Evidence' callout near the intro or 'Decision Rule' citing one credible source on LLM overconfidence/incorrectness, to substantiate 'confidently wrong' and motivate the known-answer-row gate. Keep to one sentence plus a link in References.",
+  "where_to_apply": "05.mdx, new short callout near the intro (after line 7) or 'Decision Rule' (after line 70); add citation to 'References' (lines 147-152)",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "Zhang, Y. et al. (2023) Siren's Song in the AI Ocean: A Survey on Hallucination in Large Language Models",
+    "url_or_doi": "https://doi.org/10.48550/arXiv.2309.01219",
+    "finding": "Peer-reviewed survey documenting that LLMs systematically produce fluent, confident output that is factually unfaithful or fabricated ('hallucination'), directly substantiating 'confidently wrong' and the need to verify AI output. Well-cited (200+ citations)."
+   },
+   {
+    "cite": "Srivastava, A. et al. (2022) Beyond the Imitation Game (BIG-bench)",
+    "url_or_doi": "https://doi.org/10.48550/arXiv.2206.04615",
+    "finding": "Large multi-task benchmark finding that model calibration 'is poor in absolute terms' even as scale grows, i.e., models' stated confidence is a weak signal of correctness, grounding the 'confidence is not correctness' verification rule. Highly cited (500+)."
+   },
+   {
+    "cite": "Augenstein, I. et al. (2024) Factuality challenges in the era of large language models, Nature Machine Intelligence",
+    "url_or_doi": "https://doi.org/10.1038/s42256-024-00881-z",
+    "finding": "Peer-reviewed Nature MI article establishing factuality/reliability as a recognized open challenge for LLMs and motivating systematic verification of LLM output, supporting the section's verify-before-trust gate."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/03/05",
+  "op_index": 5
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The section works with student/peer data (club surveys, class polls, internship cohorts, tutoring clients) but never names FERPA or any institutional data-use expectation. The course's known-issue list flags that data-use is framed generically with no concrete institutional policy named.",
+  "proposed_change": "Add a 1-2 sentence callout after '## Decision Rule' (line 77) or within '## Transfer Case' (line 119) noting that when small datasets involve other students' records, FERPA and the institution's data/privacy policy apply, framed as 'why the screen is not optional.' Note that under FERPA, personally identifiable information includes not just direct identifiers but also indirect identifiers and 'other information that, alone or in combination, is linkable to a specific student' (i.e., the quasi-identifier risk this section teaches is the federal standard). Link the ed.gov Protecting Student Privacy PII page in '## References'. VERIFIED: ed.gov defines PII to include indirect identifiers and information linkable through combination, and de-identification requires a 'reasonable determination' the student is not identifiable taking into account other reasonably available information.",
+  "where_to_apply": "06.mdx after '## Decision Rule' (line 77) or in '## Transfer Case' (line 119); add reference link at line 150.",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "U.S. Department of Education, Protecting Student Privacy. Personally Identifiable Information for Education Records.",
+    "url_or_doi": "https://studentprivacy.ed.gov/content/personally-identifiable-information-education-records",
+    "finding": "FERPA PII includes direct identifiers, indirect identifiers (e.g., date of birth), and 'other information that, alone or in combination, is linkable to a specific student that would allow a reasonable person in the school community to identify the student with reasonable certainty.'"
+   },
+   {
+    "cite": "U.S. Department of Education, Protecting Student Privacy. Data De-identification: An Overview of Basic Terms.",
+    "url_or_doi": "https://studentprivacy.ed.gov/sites/default/files/resource_document/file/data_deidentification_terms_0.pdf",
+    "finding": "De-identification requires removing/obscuring PII such that a reasonable determination can be made that a student's identity is not identifiable, taking into account other reasonably available information; consent is not required to disclose properly de-identified records."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/03/06",
+  "op_index": 1
+ },
+ {
+  "type": "scaffolding",
+  "gap": "The Core Concept table (line 33) and worked example (line 57) tell learners to 'suppress or merge thin categories' but never give a concrete heuristic for HOW MUCH to generalize. The Decision Rule group-of-one check (line 76) is the natural place for the standard practitioner threshold, the missing intermediate step that makes the principle an actionable spreadsheet decision.",
+  "proposed_change": "Extend Decision Rule point 2 'Group-of-one check' (line 76) with one sentence: 'A common rule of thumb is to suppress or merge any subgroup smaller than about 5 (some agencies use a stricter threshold); in a 7-row table that means almost everything must be reported in aggregate.' Note it is a guideline, not a hard law, and scales with how sensitive the attribute is. VERIFIED: NCES education-reporting guidance treats subgroups with fewer than 5 persons as requiring masking/suppression; CMS uses a stricter cell-size threshold of 11, confirming 'guideline, varies by sensitivity/agency.'",
+  "where_to_apply": "06.mdx '## Decision Rule' point 2 'Group-of-one check' (line 76).",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "U.S. Dept. of Education / NCES. Best Practices for Determining Subgroup Size in Accountability Systems (NCES 2017-147).",
+    "url_or_doi": "https://nces.ed.gov/pubs2017/2017147.pdf",
+    "finding": "Education-statistics disclosure-avoidance practice treats subgroups with fewer than five persons as requiring masking/suppression; the minimum n-size is the lowest statistically defensible reportable subgroup."
+   },
+   {
+    "cite": "CMS Cell Suppression Policy (HHS Guidance).",
+    "url_or_doi": "https://www.hhs.gov/guidance/document/cms-cell-suppression-policy",
+    "finding": "CMS requires suppression of any cell representing fewer than 11 beneficiaries, showing the exact threshold is a policy guideline that varies by data sensitivity and agency (commonly 5, stricter where data are sensitive)."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/03/06",
+  "op_index": 5
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The Core Concept (07.mdx line 33) asserts 'readers anchor on it' (the percentage) as the rationale for stating percent correctly: 'Stating the percent correctly matters because readers anchor on it.' This is a real, citable cognitive phenomenon (anchoring / anchoring-and-adjustment), and this course explicitly values evidence-grounding. Right now it reads as an unsupported intuition.",
+  "proposed_change": "Add a short 'Why this matters' grounding for the anchoring claim, citing the anchoring-and-adjustment heuristic from Tversky & Kahneman (1974), the classic source in which initial numeric values bias subsequent estimates. One sentence in Core Concept plus a reference line. Confirmed via OpenAlex: the canonical 1974 Science paper exists and is foundational (27,927 citations), directly supporting the claim that a stated number anchors a reader's judgment.",
+  "where_to_apply": "07.mdx '## Core Concept' anchoring sentence (line 33) and '## References' list (lines 147-152)",
+  "priority": "low",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Tversky, A., & Kahneman, D. (1974). Judgment under Uncertainty: Heuristics and Biases. Science, 185(4157), 1124-1131.",
+    "url_or_doi": "https://doi.org/10.1126/science.185.4157.1124",
+    "finding": "Introduces anchoring-and-adjustment: people make estimates by starting from an initial value (anchor) and adjusting insufficiently, so different starting numbers yield different final estimates. Grounds the section's 'readers anchor on it' claim. 27,927 OpenAlex citations confirm canonical status."
+   }
+  ],
+  "section_key": "cat100/03/07",
+  "op_index": 3
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The Decision Rule and audit path assert a strong, generalizable claim (08.mdx lines 34, 101-107: forcing three independent representations of the same fact to agree is what makes a data story checkable, and reconciliation catches integration errors single stages miss). This is the section's central intellectual move but rests on assertion alone. The body cites Tufte for visual evidence but nothing supports the reconciliation/cross-check/trace-back principle. Research confirms an established literature grounds it: spreadsheet-error and reproducibility scholarship documents that finished-looking workbooks routinely hide errors and that tracing reported figures back to source/recomputation is the established control.",
+  "proposed_change": "Add a brief 'Recent Evidence' callout or a footnote after 'Decision Rule' grounding the reconcile-across-representations / trace-back principle in spreadsheet-error or reproducible-analysis literature. One sentence + citation is enough; do not pad. e.g., cite Panko on spreadsheet error/control frameworks or Christensen et al. on reproducibility-via-traceability.",
+  "where_to_apply": "cat100-supplement/03/08.mdx -> after 'Decision Rule' or in 'References' (add a callout + reference)",
+  "priority": "low",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Panko, R. R. (2006) 'Spreadsheets and Sarbanes-Oxley: Regulations, Risks, and Control Frameworks'",
+    "url_or_doi": "https://doi.org/10.17705/1cais.01729",
+    "finding": "Documents that spreadsheets used for financial reporting carry substantial undetected error risk and require explicit control/verification frameworks rather than trust in a finished-looking sheet, grounding the section's claim that a polished artifact can still be wrong and must be reconciled."
+   },
+   {
+    "cite": "Barowy, D. W., et al. (2018) 'ExceLint: automatically finding spreadsheet formula errors' (OOPSLA/PACMPL)",
+    "url_or_doi": "https://doi.org/10.1145/3276518",
+    "finding": "Demonstrates that spreadsheet formula errors are common and hard to spot by eye, motivating systematic cross-checking of derived values, the same rationale as forcing headline = pivot cell = bar to agree."
+   },
+   {
+    "cite": "Christensen, G., & Miguel, E. (2018) 'Transparency, Reproducibility, and the Credibility of Economics Research' (Journal of Economic Literature)",
+    "url_or_doi": "https://doi.org/10.1257/jel.20171350",
+    "finding": "Reviews how credibility of reported results depends on the ability to trace and re-derive figures from source data and analysis (data sharing, recomputation), grounding the section's trace-back / audit-path principle that any published number should be walkable back to the raw rows."
+   }
+  ],
+  "section_key": "cat100/03/08",
+  "op_index": 4
+ }
+]

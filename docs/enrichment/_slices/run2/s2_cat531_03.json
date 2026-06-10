@@ -1,0 +1,24 @@
+[
+ {
+  "type": "assessment_align",
+  "gap": "Constructive-alignment weakness: learning_objectives 1, 3, 4 in 02.meta.json (lines 9, 11, 12) are template-stamped CAT531 boilerplate referencing the generic Design Tension Studio artifact pipeline, not this section's content (process vs product evidence, detector bias, allowed-use boundary). Only objective 2 ('Distinguish artifact polish from evidence-based revision') maps to the section. The four practice items and four misconceptions test detector-as-proof, allowed-use boundary, process-evidence design, and fluency-vs-comprehension - none named in objectives 1/3/4.",
+  "proposed_change": "Rewrite objectives 1, 3, 4 to align with the section's real learning and its practice/misconception items: e.g., 'Distinguish product evidence from process evidence and explain why generative AI weakened product evidence'; 'Apply an allowed-use boundary to judge whether a student did the reserved work rather than whether AI touched the document'; 'Critique AI-detector scores as probabilistic, equity-biased hypotheses rather than integrity evidence.'",
+  "where_to_apply": "02.meta.json - learning_objectives array (lines 8-13)",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat531/03/02",
+  "op_index": 3
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The learning_objectives (meta.json lines 8-13) are the template-stamped set: objectives 2-4 are generic artifact/annotation/revision boilerplate identical across all 64 sections, and only objective 1 is customized (by inserting the DTS artifact name). None names the section's actual content — bias mechanisms, disaggregation, proxy variables, or stakes-proportional proof — so constructive alignment with the rich content and practice items is weak.",
+  "proposed_change": "Rewrite one or two objectives to name the section's real targets, e.g., 'Identify training-data bias, proxy variables, and aggregate masking in an educational AI tool' and 'Match the standard of proof for an AI decision to the stakes of its errors using disaggregated subgroup performance.' This aligns objectives with the strong Core Concept, Worked Example, and practice items.",
+  "where_to_apply": "03.meta.json — learning_objectives (lines 8-13)",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat531/03/03",
+  "op_index": 6
+ }
+]

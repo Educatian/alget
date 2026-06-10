@@ -1,0 +1,68 @@
+[
+ {
+  "type": "assessment_align",
+  "gap": "LO2/LO3/LO4 are verbatim boilerplate shared across all 64 sections, and LO1 is the fill-in-the-blank frame ('Analyze how the [artifact] shows a defensible decision in CAT 100'). None encode this section's actual teaching target: deriving deck scope and slide-level evidence from a named audience's time budget, prior knowledge, and the decision they own. Confirmed in 01.meta.json learning_objectives (lines 8-13) and the identical '## Learning Targets' bullets in 01.mdx (lines 13-16).",
+  "proposed_change": "Rewrite LO1 section-specific and verb-precise: 'Derive a presentation's slide count and slide-level evidence from a named audience's time budget, prior knowledge, and the decision they own.' Rewrite LO2 to bind polish-vs-revision to THIS artifact: 'Justify each slide by the audience question it answers, and identify at least one slide cut because it served no audience question.' Keep LO3/LO4 but specialize LO3 to presentations: 'Document which AI suggestion (e.g., add a metric, add a slide) you accepted vs. rejected against the audience time budget.' Update the identical '## Learning Targets' bullets in 01.mdx to stay in sync. The body already operationalizes these (slide/question table lines 46-50; the cut as evidence of judgment line 52, 60; AI accept/reject note line 105), so the rewrite aligns LOs to existing instruction.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\05\\01.meta.json field 'learning_objectives' (all four, lines 8-13); and C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\05\\01.mdx '## Learning Targets' bullet list (lines 13-16) — must stay in sync",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat100/05/01",
+  "op_index": 0
+ },
+ {
+  "type": "accessibility",
+  "gap": "Section is about slide design and cites WCAG 2.2 in References, yet never connects to slide accessibility, which Chapter 5 covers. The 'strip all styling, black text on white' test (line 31) is a legibility/contrast teaching moment and a11y is a project gate; there is a missed bridge between meaning-by-decoration and accessibility risk (low contrast, meaning-by-color-alone, decorative images without alt text).",
+  "proposed_change": "Add a short 'Accessibility connection' callout near the Decision Rule (line 82) or Transfer Case (line 119): 'The plain-black-on-white test also previews accessibility: if a slide needs its color or animation to make sense, it will fail readers using high-contrast mode, screen readers, or printed grayscale handouts. WCAG 2.2 expects sufficient text contrast and that meaning never rely on color alone, so an assertion headline that survives in plain text is already more accessible.' Link to the existing WCAG 2.2 reference.",
+  "where_to_apply": "02.mdx — new callout after Decision Rule (line 82) or within Transfer Case (line 119)",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/05/02",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Body prose names two 'Common Misreadings' (line 86: 'fewer words always wins'; line 88: AI/template redesign that demotes the headline to a caption while centering a beautiful image), but misconceptions.json contains neither. The three existing entries cover decorate-first, bullet-dump, and polish-means-structured but miss these two named-in-text traps, weakening prose-to-remediation alignment.",
+  "proposed_change": "Add two entries to the misconceptions array. (1) id 'cat100_supplement_5_2_slide_structure_before_decoration_minimalism_means_structure', pattern 'minimalism_means_structure', description 'Equating fewer words with a structured slide', trigger 'learner cuts a title to a 3-word topic word and calls it an assertion', feedback 'A short title is not the goal; a claim is. \"Results\" is shorter than the assertion but states no point.', rail_action 'represent'. (2) id 'cat100_supplement_5_2_slide_structure_before_decoration_beautiful_redesign_loses_claim', pattern 'beautiful_redesign_loses_claim', description 'Accepting an AI/template redesign that demotes the headline to a caption', trigger 'learner accepts a redesign that centers an image and shrinks the assertion', feedback 'Check whether the redesign preserved the claim in the title bar; a polished layout that hides the assertion traded the message for the look.', rail_action 'ask'. Match the existing id-prefix convention shown in the file.",
+  "where_to_apply": "02.misconceptions.json — add two entries to the misconceptions array",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/05/02",
+  "op_index": 4
+ },
+ {
+  "type": "assessment_align",
+  "gap": "LO1 in 05.meta.json and the mdx 'Learning Targets' is the boilerplate fill-in-the-blank frame and is grammatically broken ('Analyze how the AI critique log showing accepted, modified, and rejected suggestions shows a defensible decision in CAT 100'). LO2-LO4 are near-identical to the cross-section template, and none of the four objectives names the section's distinctive constructs: process metrics as gameable proxies, one-change-per-take, and human-in-the-loop confirmation.",
+  "proposed_change": "Rewrite LO1 to be section-specific and grammatical: 'Interpret AI speech-coaching metrics (pace, filler count, clarity) as gameable proxies for the listener's experience, not as goals.' Repoint one objective to 'Apply one-change-per-take, single-variable practice and confirm each metric gain with a human listener.' Keep one objective on documenting accepted/modified/rejected coach suggestions in the critique log. Mirror identical wording in both 05.meta.json learning_objectives (items 1,3,4) and the mdx 'Learning Targets' bullets.",
+  "where_to_apply": "05.meta.json 'learning_objectives' (items 1,3,4) and 05.mdx 'Learning Targets' bullets",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/05/05",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Three of four learning objectives (LO2 polish-vs-revision, LO3 bounded AI move, LO4 feedback/revision loop) are verbatim boilerplate shared across all 64 sections, and LO1 is the fill-in-the-blank '...the [artifact] shows a defensible decision in CAT 100' frame. None name this section's hard content: the four-question attribution model (source / license / verification / disclosure), the citation-vs-disclosure distinction, the public-domain-vs-CC license distinction, or the 'wrong page' verification near-miss.",
+  "proposed_change": "Differentiate LO1 and one other objective to this section. LO1: 'Distinguish the four attribution obligations (trace the source, check the license, verify the exact figure/quote location, disclose AI authorship) and apply them to a borrowed chart, a quotation, and an AI-generated asset.' Add: 'Distinguish citation (making a borrowed fact/asset checkable) from AI-use disclosure (making your own slide's authorship honest), and distinguish public-domain government works from CC-licensed third-party assets.' Keep wording parallel across 06.mdx Learning Targets and 06.meta.json learning_objectives.",
+  "where_to_apply": "06.meta.json learning_objectives (4 strings) and 06.mdx Learning Targets (lines 13-16) — keep both files in sync.",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/05/06",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Three of four learning objectives (LO2 polish-vs-revision, LO3 bounded AI move, LO4 feedback/revision) are verbatim boilerplate shared across all 64 sections, and LO1 is the fill-in-the-blank frame. For a capstone/studio section the distinctive cognitive demand is INTEGRATION across the six dependent layers and ORDERING (running them as a dependency chain), which the body teaches heavily but no objective names. This defeats constructive-alignment and under-describes what 05.08 uniquely assesses.",
+  "proposed_change": "Differentiate LO1 (and ideally add a capstone-specific objective) to name the integration/ordering competency, e.g., 'Sequence and integrate the six presentation layers (purpose, structure, media, narration, citation, accessibility) in dependency order, justifying why each check must precede or follow another.' Keep one shared objective if desired, but make at least two objectives reflect the capstone-integration and dependency-ordering work the section teaches and tests (the sequence-builder, the order-rationale inline-check, and practice item _artifact_signal all assess this).",
+  "where_to_apply": "08.meta.json — learning_objectives array (LO1); mirror in 08.mdx — Learning Targets list (line 13)",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat100/05/08",
+  "op_index": 1
+ }
+]

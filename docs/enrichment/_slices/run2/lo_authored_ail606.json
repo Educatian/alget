@@ -1,0 +1,119 @@
+{
+  "ail606/02/02": {
+    "los": [
+      "Distinguish a platform feature from an affordance or constraint relative to a named learner action.",
+      "Build an action-to-affordance map that classifies each platform response as affordance, soft constraint, or hard constraint, and re-run the classification across learner variability.",
+      "Choose among redesigning the action, changing the tool, or keeping the constraint on purpose when an action hits a hard constraint, with a stated learning reason.",
+      "Verify an affordance against the live tool rather than assuming it from a feature name or marketing copy."
+    ],
+    "description": "AIL 606 textbook section on platform affordances and constraints: building an action-to-affordance map, distinguishing soft from hard constraints, reading signifiers, and verifying affordances against the live tool, with reader notes, support moments, and revision evidence."
+  },
+  "ail606/02/03": {
+    "los": [
+      "Match a cognitive operation (compare, sequence, decide, observe) to the interaction pattern whose structure enacts it (interaction-cognition fit).",
+      "Diagnose an interaction for split attention, seductive detail, or interaction-cost asymmetry.",
+      "Verify that an interaction closes its loop with a visible consequence and stays equitable for keyboard and screen-reader learners.",
+      "Defend a pattern choice with behavioral evidence and a named rejected alternative rather than production value."
+    ]
+  },
+  "ail606/02/04": {
+    "los": [
+      "Diagnose whether a practice loop feeds forward using Hattie and Timperley's three questions, and rewrite a bare verdict into actionable feedback.",
+      "Choose a feedback-reveal timing (immediate versus brief delay) justified by task type and learner expertise.",
+      "Design calibrated learner control that preserves autonomy while naming the cost of skipping.",
+      "Tie each loop revision to a behavioral signal such as repeat-error rate, skip rate, or retry uptake."
+    ]
+  },
+  "ail606/02/06": {
+    "los": [
+      "Classify an optimizer suggestion as goal-aligned, goal-neutral, or goal-opposed by reading its mechanism before its predicted-gain magnitude.",
+      "Explain why engagement proxies (completion, time-on-page, efficiency) cannot on their own certify that learning occurred, using Goodhart's law.",
+      "Defend an accessibility provision against an efficiency edit on UDL learner-variability grounds the usage metric cannot see.",
+      "Produce a triaged optimizer report with a per-row verdict and mechanism, at least one reasoned rejection, and a before-after transfer check on the accepted edit."
+    ]
+  },
+  "ail606/02/07": {
+    "los": [
+      "Build a comparative audit matrix that scores every candidate tool on the same task-derived criteria.",
+      "Distinguish a pass-or-fail gate from a weighted dimension and apply gates before reading totals.",
+      "State a recommendation bounded by its named context (learners, budget, constraints) plus the re-entry condition that would change the winner.",
+      "Document a bounded AI/software support move with an accepted and a rejected suggestion, such as using BigAL to attack the criteria rather than rank the tools."
+    ]
+  },
+  "ail606/03/01": {
+    "los": [
+      "Convert a descriptive storyboard caption into a four-slot frame claim: prior state, predicted action with a learner verb, warrant tying a feature to a Mayer or cognitive-load principle, and disconfirming evidence.",
+      "Apply the three falsifiability tests (action, warrant, disconfirmation) to diagnose a frame claim.",
+      "Verify claim-chaining so that frame N's predicted action becomes frame N+1's prior state.",
+      "Judge an AI suggestion against the warrant standard, accepting or rejecting it with a stated reason."
+    ]
+  },
+  "ail606/03/02": {
+    "los": [
+      "Apply the scarcity and contrast law of signaling: justify cuing exactly one element on a frame and name the cues withheld.",
+      "Run the seam test to place a learner-controlled segmentation break at a conceptual boundary, distinguishing segmenting from pagination and from auto-advance.",
+      "Treat a signaling cue as a cognitive-load expenditure and judge an AI-proposed cue against its processing cost for a named learner.",
+      "Tie cue count and segment count to learner expertise (novice versus near-expert, expertise reversal) and document calibration as restraint in the storyboard trace."
+    ]
+  },
+  "ail606/03/03": {
+    "los": [
+      "State the representational function of an instructional image in one sentence before prompting.",
+      "Apply the function, coherence, and accuracy three-gate screen to a generated image and reject at the first failed gate.",
+      "Verify generated image content (labels, counts, proportions, and social representation) against an authoritative source, documenting an accepted and a rejected AI suggestion.",
+      "Distinguish prompt-craft polish from a function-first, verified image decision."
+    ]
+  },
+  "ail606/03/07": {
+    "los": [
+      "Diagnose why a storyboard peer comment fails by identifying which of the three properties (anchored, actionable, authorship-preserving) is missing.",
+      "Rewrite a praise or taste comment into a three-part review (observation, anchor, option) that cites a Mayer principle or the frame objective.",
+      "Explain why the author's documented accept-or-reject response, not the comment itself, is the design evidence, and why a principled rejection can be stronger than an acceptance.",
+      "Maintain anchored, authorship-preserving review across a power gradient, as in the senior-to-junior transfer case."
+    ]
+  },
+  "ail606/06/04": {
+    "lo1_only": "Conduct an analytic, criterion-referenced prototype quality review that scores severity independently of quality and orders revisions by severity, not by lowest score."
+  },
+  "ail606/06/06": {
+    "los": [
+      "Convert praise or preference into criterion-anchored, actionable peer critique using the element-problem-criterion frame.",
+      "Respond to each critique point with a reasoned disposition (accept, modify, or reject), including at least one reasoned rejection.",
+      "Verify an AI-drafted critique against the actual artifact before adopting any of its points.",
+      "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    ]
+  },
+  "ail606/06/08": {
+    "los": [
+      "Treat a six-component capstone package as one argument and list every cross-component claim it makes.",
+      "Reconcile contradictory claims by correcting the inaccurate component toward the recorded evidence, not by inflating the log.",
+      "Verify any AI-assembled package summary against each underlying artifact before submitting.",
+      "Write a reflective synthesis naming how your design judgment changed across the module."
+    ]
+  },
+  "ail606/08/03": {
+    "los": [
+      "Diagnose why a rubric descriptor produces inter-rater disagreement by distinguishing adjective descriptors from observable, countable anchors.",
+      "Reconcile a rater split by tracing it to a feature of the work rather than averaging the scores.",
+      "Rewrite a level descriptor into a countable observation and verify the gain by re-scoring drafts and re-checking exact agreement.",
+      "Apply the new-rater test to judge whether reported agreement is calibration or convergence by habit."
+    ]
+  },
+  "ail606/08/04": {
+    "los": [
+      "Contrast deterrence and transparency models of academic integrity and explain why generative AI makes deterrence unenforceable.",
+      "Write an AI-use clause with a bounded permission, a one-line disclosure format with a worked example, and an accessibility carve-out.",
+      "Apply the distinguishability, disclosure-cost, and accessibility checks to evaluate a draft AI-use policy.",
+      "Predict the behavioral effect (concealment, exclusion, or transparency) a policy clause will produce."
+    ]
+  },
+  "ail606/08/05": {
+    "los": [
+      "Map each element of a prototype screen to a named WCAG 2.2 success criterion (1.1.1, 1.4.1, 1.4.3, 2.1.1, 2.2.1) rather than judging by appearance.",
+      "Prioritize accessibility fixes by depth of exclusion, fixing full lock-outs before strain.",
+      "Add redundant cues (color plus label plus icon) consistent with UDL learner variability without raising load for other learners.",
+      "Judge an AI-drafted alt text against WCAG 1.1.1 (does it name what the image shows and why it matters) before accepting it."
+    ],
+    "description": "AIL 606 textbook section on running a WCAG-anchored accessibility review of a prototype: mapping elements to WCAG 2.2 success criteria, prioritizing fixes by depth of exclusion, and adding redundant cues for learner variability, with reader notes, support moments, and revision evidence."
+  }
+}

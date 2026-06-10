@@ -3,10 +3,10 @@
   "title": "Participant Profiles and Sampling",
   "description": "AIL 606 textbook section connecting participant profiles and sampling to moderated usability test script with observation-to-revision trace, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the moderated usability test script with observation-to-revision trace shows a defensible decision in AIL 606.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    "Define a target population by the trait that drives the design's usability risk, not by convenience.",
+    "Build a screener that recruits for that trait and excludes participants who would mask the problem.",
+    "Use small-sample logic to choose a defensible number of participants per relevant subgroup.",
+    "Span the range of learner variability so a finding is not an artifact of one narrow cluster."
   ],
   "concept_ids": [
     "ail606_supplement_usability_testing_and_learning_evidence",

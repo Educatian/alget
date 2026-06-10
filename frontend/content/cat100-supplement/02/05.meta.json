@@ -6,10 +6,10 @@
   "title": "AI Feedback You Should Reject",
   "description": "CAT 100 textbook section connecting ai feedback you should reject to AI critique log showing accepted, modified, and rejected suggestions, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the AI critique log showing accepted, modified, and rejected suggestions shows a defensible decision in CAT 100.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    "Apply the defensibility test to decide whether to keep or reject an AI resume suggestion.",
+    "Classify a failed AI suggestion as fabrication, inflation, keyword stuffing, or identity guessing.",
+    "Audit a whole-document AI rewrite line by line and log each rejection with its reason in the critique log.",
+    "Explain the asymmetric-cost rule: default to leaving out a flattering claim you could not defend."
   ],
   "concept_ids": [
     "cat100_supplement_resume_branding_and_ai_brainstorming",

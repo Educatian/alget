@@ -6,10 +6,10 @@
   "title": "Starter HTML and CSS",
   "description": "CAT 100 textbook section on starter HTML and CSS, centered on an accessibility revision pass, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the starter HTML and CSS accessibility pass shows a defensible decision in CAT 100.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    "Construct a minimal valid HTML document, placing metadata (title, charset, stylesheet link) in <head> and visible content in <body>.",
+    "Write descriptive alt text for informative images and justify empty alt for decorative ones against WCAG 2.2 SC 1.1.1.",
+    "Predict which CSS rule wins when selectors conflict, using specificity first and source order as the tiebreaker.",
+    "Document a bounded AI/software support move with accepted and rejected suggestions."
   ],
   "concept_ids": [
     "cat100_supplement_github_pages_personal_website",
@@ -30,4 +30,3 @@
     "cat100_supplement_6_2_starter_html_and_css_calibration"
   ]
 }
-

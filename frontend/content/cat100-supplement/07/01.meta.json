@@ -6,10 +6,10 @@
   "title": "File Organization for Coursework",
   "description": "CAT 100 textbook section connecting file organization for coursework to coursework file organization plan, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the coursework file organization plan shows a defensible decision in CAT 100.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    "Build a course/module/task folder tree so all files for one assignment travel together.",
+    "Apply a `date_course_task_version` naming pattern that makes the newest file obvious at a glance.",
+    "Keep a second synced copy so a single device failure never destroys the only version of your work.",
+    "Justify each filing decision by the question it answers for a future reader: which file, which version, where."
   ],
   "concept_ids": [
     "cat100_supplement_productivity_and_workflow_automation",
@@ -30,4 +30,3 @@
     "cat100_supplement_7_1_file_organization_for_coursework_calibration"
   ]
 }
-

@@ -1,0 +1,227 @@
+[
+ {
+  "type": "accessibility",
+  "gap": "The two code-block folder trees (Before, lines 47-56; After, lines 62-70) convey hierarchy through indentation only. For screen-reader users a deeply indented code block of folder names does not reliably communicate parent/child structure, and the Before tree has no adjacent prose restatement (the After tree already has the 1-3 bullets at lines 74-76). The hero image alt text (line 3) is generic ('File Organization for Coursework textbook visual'). The course flags a11y as a gate.",
+  "proposed_change": "Add a one-line prose restatement of the Before tree's hierarchy after its code block (e.g., 'In words: everything sits loose at the Desktop top level (three near-identical final files, an image, a syllabus PDF), with one stray document inside Downloads, and no per-course grouping.'). Rewrite the line-3 image alt text to describe the visual's content (e.g., what the figure actually depicts) rather than restating the section title. The WCAG citation (line 169, WCAG22) is current and should remain.",
+  "where_to_apply": "01.mdx, line 3 image alt text and '## Worked Example' Before code block (after line 56)",
+  "priority": "low",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "W3C, Web Content Accessibility Guidelines (WCAG) 2.2",
+    "url_or_doi": "https://www.w3.org/TR/WCAG22/",
+    "finding": "WCAG 2.2 is a W3C Recommendation published 12 December 2024 and is the current stable version (not deprecated/superseded; a future major version is still multi-year work). Confirms the existing WCAG22 citation is current and should stay."
+   }
+  ],
+  "section_key": "cat100/07/01",
+  "op_index": 7
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The opening hook (line 7, '## Why This Section Matters') makes a strong empirical-sounding claim with no source: 'Most missed deadlines are not caused by forgetting a date. They are caused by confusing a due time with a work time.' This is the section's central premise and the course values evidence-grounding, but it is presented as folk wisdom. The 'reserve a work block' move (lines 14, 31) is precisely the implementation-intentions / if-then planning construct, which has a strong research base, and the underestimation of how long work takes is the planning fallacy.",
+  "proposed_change": "Soften 'Most missed deadlines...' to a hedged framing ('A common pattern behind missed deadlines is...') since no specific statistic was located. Add a short 'Recent Evidence' callout grounding the work-block move in implementation-intentions research: forming a specific if-then 'when/where I will do it' plan reliably improves goal attainment (Gollwitzer & Sheeran 2006 meta-analysis of 94 studies, medium-to-large effect, d~0.65). Optionally cite Koole & van't Spijker (2000), which shows implementation intentions reduce the planning-fallacy gap between predicted and actual task-completion times -- a direct fit for the due-time-vs-work-time distinction. Add both to '## References'.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\07\\02.mdx -> '## Why This Section Matters' opening paragraph (line 7); a new short callout after '## Core Concept'; and '## References' (lines 154-159)",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Gollwitzer, P. M., & Sheeran, P. (2006). Implementation Intentions and Goal Achievement: A Meta-analysis of Effects and Processes. Advances in Experimental Social Psychology, 38, 69-119.",
+    "url_or_doi": "https://doi.org/10.1016/s0065-2601(06)38002-1",
+    "finding": "Meta-analysis of 94 independent tests found implementation intentions (specific if-then 'when/where I will act' plans) have a medium-to-large positive effect on goal attainment. This grounds the 'reserve a work block / specify when the work happens' move; 3,217+ citations."
+   },
+   {
+    "cite": "Koole, S., & van 't Spijker, M. (2000). Overcoming the planning fallacy through willpower: effects of implementation intentions on actual and predicted task-completion times. European Journal of Social Psychology, 30(6), 873-888.",
+    "url_or_doi": "https://doi.org/10.1002/1099-0992(200011/12)30:6<873::aid-ejsp22>3.0.co;2-u",
+    "finding": "People systematically underestimate task-completion time (planning fallacy); forming implementation intentions about when/where to work narrows the gap between predicted and actual completion. Directly supports the section's premise that confusing a due time with the work time it requires drives missed deadlines."
+   }
+  ],
+  "section_key": "cat100/07/02",
+  "op_index": 3
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The References list (mdx lines 156-161) cites NACE, ISTE, Tufte, and WCAG 2.2, none of which support the section's actual technical claims about spreadsheet references, $-locking, =SUM formulas, or the master-template mechanic. The core teaching has no authoritative primary source.",
+  "proposed_change": "Add two Microsoft Support references so the central mechanics are grounded in a primary, verifiable source: (1) 'Switch between relative, absolute, and mixed references' for the reference-type teaching, and (2) 'Save a workbook as a template' (.xltx) for the master-template mechanic. URLs and titles confirmed current below.",
+  "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\07\\03.mdx -- 'References' section (lines 156-161)",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Microsoft Support, 'Switch between relative, absolute, and mixed references' (Excel)",
+    "url_or_doi": "https://support.microsoft.com/en-us/office/switch-between-relative-absolute-and-mixed-references-dfec08cd-ae65-4f56-839e-5f0d8d0baca9",
+    "finding": "Primary Microsoft source for the section's central claim: relative references shift when copied (D4 =B4*C4 becomes D5 =B5*C5), $ makes a reference absolute (locked), mixed references lock column or row ($B4 / C$4), and F4 toggles. Confirms title and live URL."
+   },
+   {
+    "cite": "Microsoft Support, 'Save a workbook as a template' (Excel)",
+    "url_or_doi": "https://support.microsoft.com/en-us/office/save-a-workbook-as-a-template-58c6625a-2c0b-4446-9689-ad8baec39e1e",
+    "finding": "Primary Microsoft source for the master-vs-working-copy mechanic: File > Save As, choose Excel Template in 'Save as type' (.xltx), reuse via File > New > Personal so the master stays blank. Confirms title and live URL."
+   }
+  ],
+  "section_key": "cat100/07/03",
+  "op_index": 5
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The section's load-bearing empirical claim — AI tools 'generate text that is statistically likely, not necessarily true' and 'will confidently produce a name or date that sounds right but is wrong' (lines 7, 30) — is the entire rationale for the verification pass but is asserted with no citation, in a course that values evidence-grounding.",
+  "proposed_change": "Add a brief 'Recent Evidence' callout in '## Core Concept' under the 'Verify' paragraph: one sentence noting that large language models predict fluent continuations and can state false names/dates with high confidence, which is why a survey of the LLM-hallucination literature treats this as a structural property rather than an occasional bug — so verification is structural, not optional. Add the citation to References (replacing the removed Tufte bullet).",
+  "where_to_apply": "04.mdx -> small callout under the 'Verify.' paragraph in '## Core Concept' (after line 30), plus a '## References' entry (line ~162)",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "Huang, L. et al. (2024) 'A Survey on Hallucination in Large Language Models: Principles, Taxonomy, Challenges, and Open Questions', ACM Computing Surveys",
+    "url_or_doi": "https://doi.org/10.1145/3703155",
+    "finding": "Peer-reviewed survey (ACM Computing Surveys, 1,459 citations) defines and taxonomizes LLM hallucination, establishing that LLMs can produce fluent, confident text that is factually unfaithful or fabricated — directly grounding the 'statistically likely, not necessarily true' claim."
+   },
+   {
+    "cite": "Zhang, Y. et al. (2025) \"Siren's Song in the AI Ocean: A Survey on Hallucination in Large Language Models\", Computational Linguistics",
+    "url_or_doi": "https://doi.org/10.1162/coli.a.16",
+    "finding": "Published survey corroborating that hallucination — confidently generated content not grounded in fact — is a pervasive, well-documented LLM failure mode, supporting the section's verification-is-structural argument."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/07/04",
+  "op_index": 3
+ },
+ {
+  "type": "new_callout",
+  "gap": "The section's automation-safety frame predates the 2026 reality of AI agents that take real actions (file ops, email send, calendar/browser tasks). Chapter 7 is workflow automation and the course through-line is bounded, disclosed AI use, yet the only AI tie-in here is the generic Adaptive Support menu. The highest-value current automation-safety risk is an AI agent executing an irreversible bulk action on the learner's behalf.",
+  "proposed_change": "Add a 'Recent Evidence' / transfer callout: when an AI agent or assistant proposes a bulk action (delete, move, send, overwrite), the same three checks apply, plus a human-in-the-loop confirmation gate. Require the agent to show what it WOULD do (a dry run / preview) before it acts, and never grant an agent irreversible permissions without a backup. Connect to the course's accepted/modified/rejected AI-suggestion log: the rejected case = 'the agent wanted to run it live; I required a preview first.' Cite the 2026 industry consensus that irreversible agent actions need explicit pre-action confirmation, and note the EU AI Act Article 14 human-oversight obligation for high-risk systems (enforceable Aug 2, 2026).",
+  "where_to_apply": "05.mdx, new callout after 'Transfer Case' (after line 130) or appended to 'Stronger Artifact Standard' (after line 126).",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Aport.io - Best AI Agent Guardrails 2026: Pre-Action Authorization Compared",
+    "url_or_doi": "https://aport.io/blog/best-ai-agent-guardrails-2026-pre-action-authorization-compared/",
+    "finding": "2026 guardrail practice holds that any irreversible agent action (sending a message, modifying a record, making a payment) must require explicit pre-action confirmation, and recommends replacing a bare 'Approve?' with a checklist of intent, permissions, expected blast radius, and rollback plan, mirroring this section's dry-run/backup checks."
+   },
+   {
+    "cite": "DigitalApplied - Human-in-the-Loop Escalation Design for AI Agents 2026",
+    "url_or_doi": "https://www.digitalapplied.com/blog/human-in-the-loop-escalation-design-ai-agents-2026",
+    "finding": "Describes the action layer as the enforcement point that must refuse or pause an irreversible action in real time before it executes, and notes the EU AI Act Article 14 human-oversight mandate for high-risk AI becomes enforceable August 2, 2026."
+   },
+   {
+    "cite": "Alon-Barkat & Busuioc (2022), Human-AI Interactions in Public Sector Decision Making: Automation Bias and Selective Adherence to Algorithmic Advice, JPART",
+    "url_or_doi": "https://doi.org/10.1093/jopart/muac007",
+    "finding": "Peer-reviewed experimental evidence of automation bias: humans tend to over-rely on algorithmic recommendations, supporting the section's premise that a human confirmation gate (not blind trust) is the safeguard when an automated/agentic system proposes an action."
+   }
+  ],
+  "section_key": "cat100/07/05",
+  "op_index": 4
+ },
+ {
+  "type": "evidence_add",
+  "gap": "Two load-bearing factual claims are asserted without any source: (1) 'Many bulk tools bypass the recycle bin or offer no undo at all' (Common Misreadings, line 97), and (2) the recovery claim that cloud 'version history' restores a prior file state (lines 30, 67, 88). The course values evidence-grounding and these are exactly the claims a skeptical reader would check; the current References list supports neither.",
+  "proposed_change": "Add one primary citation for the recycle-bin-bypass claim (Microsoft Support 'How to bypass the Recycle Bin when deleting files' / Shift+Delete is a permanent, non-recoverable delete) and one for version-history recovery (Microsoft OneDrive restore-previous-version and/or Google Drive manage-versions support docs), so each safety claim cites a primary source instead of assertion.",
+  "where_to_apply": "05.mdx, 'Common Misreadings' paragraph 2 (line 97) and the 'References' list (lines 163-166).",
+  "priority": "med",
+  "verified": "confirmed",
+  "sources": [
+   {
+    "cite": "Microsoft Support - How to bypass the Recycle Bin when deleting files",
+    "url_or_doi": "https://support.microsoft.com/en-us/topic/how-to-bypass-the-recycle-bin-when-deleting-files-36aa9c63-c12a-988f-43c4-e4347e2b2825",
+    "finding": "Holding SHIFT while pressing DELETE removes a file directly without sending it to the Recycle Bin; once deleted this way the file cannot be undeleted or recovered through the Recycle Bin, grounding the claim that bulk/permanent deletes bypass the recycle bin and offer no undo."
+   },
+   {
+    "cite": "Microsoft Support - Restore a previous version of a file stored in OneDrive",
+    "url_or_doi": "https://support.microsoft.com/en-us/office/restore-a-previous-version-of-a-file-stored-in-onedrive-159cad6d-d76e-4981-88ef-de6e96c93893",
+    "finding": "OneDrive's Version History feature lets a user select a file, open Version history, and restore an earlier saved state, confirming that cloud version history restores a prior file state (a real undo path)."
+   },
+   {
+    "cite": "Google Drive Help - Manage versions / Restore files in bulk",
+    "url_or_doi": "https://support.google.com/drive/answer/16482799?hl=en",
+    "finding": "Google Drive retains file revisions (up to 30 days / 100 revisions) and lets users restore a previous version, a second primary source for the version-history recovery claim."
+   }
+  ],
+  "section_key": "cat100/07/05",
+  "op_index": 5
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The load-bearing opening claim, 'Group work fails far more often from missing norms than from missing effort' (line 7), and the framing that shared-document failures are predictable structural outcomes (not personality problems) is asserted with no citation. This is the course's evidence-grounding value: the References list (lines 154-157) carries NACE/ISTE/Tufte/WCAG but none supports the coordination-vs-effort claim.",
+  "proposed_change": "Add a citation supporting that coordination/process structure (not member effort) drives group/team outcomes, referenced inline at the 'Why This Section Matters' claim (line 7) and added to the References list (lines 154-157). Strongest fit is Steiner's process-loss framework (actual productivity = potential productivity minus process losses from coordination) operationalized via Malone & Crowston's coordination-as-dependency-management. Tie to the NACE Teamwork competency already cited. Use only the verifiable sources below; do not cite Steiner's 1972 monograph as a live URL unless retrieved.",
+  "where_to_apply": "C:/Users/jewoo/Projects/alget/frontend/content/cat100-supplement/07/06.mdx — 'Why This Section Matters' opening claim (line 7) and References list (lines 154-157)",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "Malone, T. W., & Crowston, K. (1994). The interdisciplinary study of coordination. ACM Computing Surveys.",
+    "url_or_doi": "https://doi.org/10.1145/174666.174668",
+    "finding": "Foundational, heavily cited (>3,400) work defining coordination as 'managing dependencies among activities'; supports that group performance hinges on coordination mechanisms/structure rather than individual effort — the structural framing of the section's opening claim."
+   },
+   {
+    "cite": "Goodman, P. S., & Leyden, D. P. (1991). Familiarity and group productivity. Journal of Applied Psychology, 76(4), 578.",
+    "url_or_doi": "https://doi.org/10.1037/0021-9010.76.4.578",
+    "finding": "Empirical study (coal-mining crews) showing group productivity drops with lower member familiarity/coordination, holding effort roughly constant — evidence that coordination factors, not effort, drive group output."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/07/06",
+  "op_index": 3
+ },
+ {
+  "type": "new_callout",
+  "gap": "The section names 'suggesting mode' and 'version history' (line 32) as the recovery mechanism but never connects to the bounded-AI / disclosure through-line that the rest of CAT 100 emphasizes, even though LO3 and the Adaptive Support section (lines 131-138) invoke documenting accepted vs rejected support moves. AI writing assistants now propose collaborative edits/comments inside shared docs (Gemini in Google Docs; Copilot in Word), so an AI-suggested edit is still an edit that must pass the same visibility norm and disclosure.",
+  "proposed_change": "Add a short 'Recent Evidence'/transfer callout after the Transfer Case (line 121) or within Adaptive Support: when an AI assistant (Copilot in Word, Gemini in Google Docs) proposes changes to a shared group file, the same norms apply — route AI edits through suggesting mode / Track Changes / comments so teammates can accept or reject, and disclose AI-generated contributions in the group's AI-use note. Connects the section to the course's accepted/modified/rejected AI-critique log and reinforces LO3 without manufacturing new content. Verified current behavior: Gemini's suggested edits in Docs stay visible only to the author until approved; Copilot in Word makes live in-document edits — both are reviewable change streams that fit the visibility norm.",
+  "where_to_apply": "C:/Users/jewoo/Projects/alget/frontend/content/cat100-supplement/07/06.mdx — after Transfer Case (line 121) or as a callout in Adaptive Support (lines 131-140); reinforces LO3 and the AI-disclosure through-line",
+  "priority": "low",
+  "sources": [
+   {
+    "cite": "Google Docs Editors Help / Google Workspace Updates (Apr 2026), 'Collaborate with Gemini in Google Docs'",
+    "url_or_doi": "https://support.google.com/docs/answer/14206696",
+    "finding": "Gemini in Docs makes edits across a document via 'Help me write,' and 'Gemini's suggested edits [are] only visible to you until you approve them' — confirms AI edits surface as approvable suggestions, fitting the section's visibility/accept-reject norm."
+   },
+   {
+    "cite": "MSN / cross-platform AI workflows coverage (2026): Microsoft Copilot in Word",
+    "url_or_doi": "https://www.msn.com/en-us/news/other/microsoft-copilot-and-google-gemini-expand-cross-platform-ai-workflows/gm-GMA4B79D48",
+    "finding": "As of 2026 Copilot in Word is an active in-document editor that makes live edits and generates/rewrites content directly in the file — so AI contributions are real edits that must route through the same change-visibility and disclosure norm."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/07/06",
+  "op_index": 4
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The section's strongest empirical claim, that people systematically misjudge where their time goes and underweight small frequent tasks ('memory systematically underweights small frequent tasks', MDX lines 34, 90), is asserted as fact several times but never cited, in a course that explicitly values evidence-grounding. A well-known research base exists (planning fallacy / time-estimation bias; self-report vs logged time-use accuracy).",
+  "proposed_change": "Add a 'Recent Evidence' anchor: one in-text sentence in 'Why This Section Matters' or 'Common Misreadings' citing Buehler, Griffin & Ross (1994) on the planning fallacy / systematic underestimation of task times, plus a References entry. Optionally add the time-use measurement-accuracy finding (self-report underestimates vs device/logged measures) to ground 'measure, do not estimate.'",
+  "where_to_apply": "07.mdx References section (lines 154-157) + a one-line in-text anchor in 'Why This Section Matters' (line 7) or 'Common Misreadings' (lines 90-92)",
+  "priority": "med",
+  "sources": [
+   {
+    "cite": "Buehler, Griffin & Ross (1994) Exploring the 'planning fallacy': Why people underestimate their task completion times. Journal of Personality and Social Psychology, 67(3), 366-381.",
+    "url_or_doi": "https://doi.org/10.1037/0022-3514.67.3.366",
+    "finding": "Foundational, highly-cited work showing people systematically underestimate how long their own tasks will take because they focus on plan-based scenarios rather than relevant past experience. Grounds the section's premise that intuition/memory misjudges time costs."
+   },
+   {
+    "cite": "Prince et al. (2020) A comparison of self-reported and device measured sedentary behaviour in adults: a systematic review and meta-analysis. Int J Behav Nutr Phys Act, 17:31.",
+    "url_or_doi": "https://doi.org/10.1186/s12966-020-00938-3",
+    "finding": "Meta-analysis of 185 studies: self-reported time underestimated measured (device) time by ~1.74 hours/day. Supports the 'log real time, do not estimate from memory' claim that recall systematically misstates time use."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/07/07",
+  "op_index": 4
+ },
+ {
+  "type": "evidence_add",
+  "gap": "The central technical claim that a web server serves index.html as the directory/root default is stated as 'a convention, not a choice' (line 28) but is not grounded in any authoritative source, even though the course prizes evidence-grounding and the section carries a References block. A learner cannot trace the index.html convention to a primary source.",
+  "proposed_change": "Add one or two authoritative references for the index-document default to the References block and cite inline at the Core Concept 'The homepage name' paragraph (line 28): GitHub Pages docs (states it looks for index.html/index.md/README.md as the entry file) and/or the Apache DirectoryIndex directive (default DirectoryIndex index.html). This makes the index.html rule traceable rather than asserted.",
+  "where_to_apply": "08.mdx -> References block (lines 167-172) and inline at Core Concept 'The homepage name' paragraph (line 28)",
+  "priority": "low",
+  "sources": [
+   {
+    "cite": "GitHub Docs, 'Creating a GitHub Pages site' (accessed 2026-06)",
+    "url_or_doi": "https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site",
+    "finding": "Official docs state GitHub Pages 'will look for an index.html, index.md, or README.md file as the entry file for your site,' grounding the index.html-at-root convention in a primary source."
+   },
+   {
+    "cite": "Apache HTTP Server Documentation, mod_dir 'DirectoryIndex' directive (current, accessed 2026-06)",
+    "url_or_doi": "https://httpd.apache.org/docs/current/mod/mod_dir.html",
+    "finding": "The DirectoryIndex directive's default value is 'index.html'; a request for a directory (e.g. /docs/) returns /docs/index.html if it exists, establishing index.html as the cross-server default document convention, not a GitHub-only choice."
+   }
+  ],
+  "verified": "confirmed",
+  "section_key": "cat100/07/08",
+  "op_index": 5
+ }
+]

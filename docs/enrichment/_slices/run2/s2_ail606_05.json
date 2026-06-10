@@ -1,0 +1,94 @@
+[
+ {
+  "type": "assessment_align",
+  "gap": "The meta.json learning_objectives are the generic templated stock strings (all four reference 'the moderated usability test script with observation-to-revision trace' and AI accept/reject, but none capture THIS section's actual teaching: converting a rationale into a falsifiable hypothesis with mechanism/observable-outcome/direction/threshold). The MDX 'Learning Targets' (lines 13-16) are excellent and section-specific. The meta LOs and the MDX targets are out of alignment, and the constructive-alignment validator is a no-op because LOs are plain strings. The practice items and misconceptions actually map to the MDX targets (falsifiability, direction/threshold, mechanism), not to the meta LOs.",
+  "proposed_change": "Replace the four templated learning_objectives in 01.meta.json with the four section-specific targets already authored in the MDX (lines 13-16): (1) convert a design rationale into a falsifiable directional hypothesis with an observable outcome and stated threshold; (2) distinguish a disconfirmable prediction from a goal that only restates itself; (3) ground each hypothesis in a named mechanism (e.g., extraneous-load reduction) so the test checks a theory not a preference; (4) decide when a result revises the design vs. revises the rationale. Optionally add an lo_practice_map linking artifact_signal->LO1/2, annotation_signal->LO1, ai_boundary->LO2, calibration->LO1/4.",
+  "needs_research": false,
+  "where_to_apply": "01.meta.json -> learning_objectives array (and optional new lo_practice_map field)",
+  "priority": "high",
+  "section_key": "ail606/05/01",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "meta.json description is the templated stock string ('connecting from rationale to testable hypotheses to moderated usability test script ... reader notes, support moments, and revision evidence') and does not describe what the section actually teaches. This is the meta-layer templating flagged in the known issues.",
+  "proposed_change": "Rewrite description to be section-specific, e.g.: 'Convert a design rationale into a falsifiable usability hypothesis with four parts (named mechanism, observable outcome, direction, and a threshold a small sample could plausibly miss), calibrate that threshold against sample size, and decide whether a result revises the prototype or the rationale.'",
+  "needs_research": false,
+  "where_to_apply": "01.meta.json -> description field",
+  "priority": "high",
+  "section_key": "ail606/05/01",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The four learning_objectives in 02.meta.json are the templated, course-wide ALGET stock strings (mentioning only the generic signature artifact, 'artifact polish vs evidence-based revision', and 'bounded AI/software support move'). They do not name the actual content this section teaches: defining a target population by the risk-driving trait, building a screener that excludes maskers, applying small-sample discovery logic to set per-subgroup counts, and spanning UDL learner variability. The constructive-alignment validator is a no-op on plain-string LOs, so nothing currently forces alignment between these LOs and the strong MDX body or the four practice items.",
+  "proposed_change": "Rewrite learning_objectives to section-specific, measurable statements that mirror the MDX 'Learning Targets' and the four practice items, e.g.: (1) 'Define a target population by the trait that drives the design's usability risk rather than by participant availability.' (2) 'Write a screener question that recruits for the risk-driving trait and excludes participants whose expertise would mask the problem.' (3) 'Apply small-sample discovery logic (roughly five users per homogeneous group) to justify a defensible participant count per relevant subgroup.' (4) 'Span the range of learner variability so a usability finding is not an artifact of one narrow cluster, and bound any claim to the segments actually observed.' Keep one LO tying to the AI-boundary item (synthetic personas scaffold the screener but cannot substitute for observed behavior from real users).",
+  "needs_research": false,
+  "where_to_apply": "02.meta.json -> learning_objectives array (all four entries)",
+  "priority": "high",
+  "section_key": "ail606/05/02",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The vocabulary-leak failure mode is one of the most heavily emphasized ideas in the section: it appears in the Core Concept table ('Hidden vocabulary'), is the correct answer to the inline-check ('It leaks the interface vocabulary and the route'), drives Common Misreadings and the Textbook Walkthrough, and defines the Stronger Artifact Standard. But there is no misconception entry for it. The three misconceptions cover leading-steps, goal-vs-instruction, and missing-success-condition — none captures the subtler vocabulary leak (reusing an interface label like 'Template Library' or 'Filter').",
+  "proposed_change": "Add a fourth misconception, e.g. id 'ail606_supplement_5_3_vocabulary_leak', pattern 'task_reuses_interface_vocabulary', describing the learner copying an interface label into the task wording; trigger = task contains an interface noun the participant could not know on their own; feedback = use the user's words not the interface's, since the leaked label hands over the search term findability was meant to test; rail_action 'represent'. Optionally retag the annotation_signal practice item (the gradebook rewrite) or add a practice item targeting this misconception so the new misconception has an assessment hook.",
+  "needs_research": false,
+  "search_terms": [],
+  "where_to_apply": "03.misconceptions.json — add new misconception object; optionally link from 03.practice.json",
+  "priority": "high",
+  "section_key": "ail606/05/03",
+  "op_index": 3
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The meta learning_objectives are the generic stock strings (analyze how the artifact shows a defensible decision; distinguish polish from evidence-based revision; document an accepted/rejected AI move; use annotations to decide next help) and do not describe what this section actually teaches: writing goal-based / realistic / scorable task scenarios and detecting embedded solutions and vocabulary leaks. The MDX 'Learning Targets' block is excellent and section-specific, but the meta LOs (which the constructive-alignment layer reads) are templated and do not align with the practice items or misconceptions.",
+  "proposed_change": "Rewrite the four learning_objectives in 03.meta.json to mirror the MDX Learning Targets: (1) Write goal-based task scenarios that state an end-state and realistic context, not a click path; (2) Detect and remove embedded solutions and interface-vocabulary leaks; (3) Define an observable, prompt-free success condition a moderator can score consistently; (4) Calibrate task difficulty so the design can fail without the task being impossible. This aligns the meta layer with the four practice items (artifact_signal/annotation_signal/ai_boundary/calibration) and the misconception set.",
+  "needs_research": false,
+  "search_terms": [],
+  "where_to_apply": "03.meta.json — learning_objectives field",
+  "priority": "high",
+  "section_key": "ail606/05/03",
+  "op_index": 4
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The four learning_objectives in 04.meta.json are the templated stock strings ('Analyze how the moderated usability test script... shows a defensible decision', 'Distinguish artifact polish from evidence-based revision', etc.). They do not name the actual load-bearing constructs this section teaches: construct validity in measurement, the usability-vs-learning family distinction, satisfaction as an attitude proxy, transfer/delayed measures, and subgroup disaggregation. The MDX 'Learning Targets' section (lines 13-16) already states four precise, section-specific objectives that the meta layer should mirror so the constructive-alignment check is meaningful.",
+  "proposed_change": "Replace the four generic LOs in 04.meta.json learning_objectives with section-specific ones aligned to the MDX Learning Targets and practice items, e.g.: (1) 'Classify a metric as usability (operability) or learning (capability gain) by the construct it measures.' (2) 'Pair each design claim with a metric that has the validity to support it and never let satisfaction or completion proxy for a learning outcome.' (3) 'Read satisfaction as an attitude signal that correlates weakly with learning, distinguishing extraneous from germane load.' (4) 'Disaggregate outcomes by prior-knowledge subgroup so a flattering mean cannot conceal a stranded group; and reject collapsing distinct constructs into a single blended score.' These map 1:1 onto the four practice items (artifact_signal=satisfaction-as-learning, annotation_signal=claim-metric match, ai_boundary=blended-score, calibration=immediate-recall).",
+  "needs_research": false,
+  "where_to_apply": "04.meta.json -> learning_objectives array (all four entries)",
+  "priority": "high",
+  "section_key": "ail606/05/04",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The meta.json learning_objectives are the generic stock strings (signature-artifact-keyed), but the MDX 'Learning Targets' are excellent and section-specific: scale claim strength to sample/evidence, replace evaluative language with counts, separate frequency from severity, name the verification step. The constructive-alignment validator is a no-op precisely because the meta LOs are templated and do not match the actual taught content or the four practice items.",
+  "proposed_change": "Rewrite meta.json learning_objectives to mirror the MDX Learning Targets so they map 1:1 to the practice items: (1) Scale claim strength to sample size and evidence type, distinguishing a candidate issue from a confirmed defect [maps artifact_signal/calibration]; (2) Replace evaluative language (hate, fails, proves) with counts of observed behavior [annotation_signal]; (3) Separate frequency from severity and name who is affected [Textbook Walkthrough/UDL]; (4) Set claim strength from observed counts, not an AI tool's asserted confidence [ai_boundary]; (5) State the verification step a finding needs before a costly design change.",
+  "needs_research": false,
+  "where_to_apply": "06.meta.json field learning_objectives (all 4 entries)",
+  "priority": "high",
+  "section_key": "ail606/05/06",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The meta.json learning_objectives are the generic chapter-templated stock strings (\"Analyze how the storyboard frame sequence... shows a defensible decision\", \"Distinguish artifact polish from evidence-based revision\", \"Document a bounded AI/software support move...\", \"Use annotations... to decide what help...\"). They do not describe what this section actually teaches. The MDX Learning Targets are far better and section-specific: rank by severity and reach against the goal (not ease), treat accessibility as a non-negotiable floor, build an inspectable triage table, and defend an iteration order by tracing each item to the goal. The validator is a no-op on plain strings, so this mismatch is silent.",
+  "proposed_change": "Replace the four templated LOs with section-specific ones mirroring the MDX Learning Targets, e.g.: (1) Rank usability issues by severity x reach against the learning goal rather than by ease of fix; (2) Treat accessibility barriers as a non-negotiable floor that cannot be traded down on raw reach; (3) Construct an inspectable triage table that makes the ordering arguable; (4) Defend an iteration backlog by tracing each item's position to cited severity/reach evidence, including one accepted and one rejected AI ranking suggestion.",
+  "needs_research": false,
+  "where_to_apply": "07.meta.json field learning_objectives (all 4 entries)",
+  "priority": "high",
+  "section_key": "ail606/05/07",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The meta.json learning_objectives are the stock templated AIL606 strings (artifact polish vs evidence-based revision; document accepted/rejected AI suggestion; use annotations to decide help) and do NOT describe what this section actually teaches: auditing a full usability plan for internal coherence across the hypothesis-metric-sample-task-observation-decision chain. The MDX 'Learning Targets' (audit for alignment, trace each component to one goal, locate the contradicting seam, revise so every part risks the same hypothesis) are specific and excellent; the meta LOs ignore them. The constructive-alignment validator is a no-op on these strings, and the practice items (hypothesis-metric mismatch, parts-don't-align, generated-plan audit, decision-rule disconnected) map to the MDX targets, not to the meta LOs.",
+  "proposed_change": "Replace the four generic learning_objectives in 08.meta.json with section-specific, measurable LOs lifted from the MDX Learning Targets, e.g.: (1) 'Audit a complete usability plan for alignment across hypothesis, sample, task, metric, observation, and decision rule.' (2) 'Trace each plan component back to the single learning goal it exists to serve.' (3) 'Locate the seam where two individually well-formed parts contradict each other.' (4) 'Revise a plan so every component puts the same falsifiable hypothesis at risk.' Keep one AI-boundary LO that matches the ai_boundary practice item (audit a generated plan for internal coherence before adopting it).",
+  "needs_research": false,
+  "where_to_apply": "08.meta.json -> learning_objectives array (all four entries)",
+  "priority": "high",
+  "section_key": "ail606/05/08",
+  "op_index": 0
+ }
+]

@@ -1,0 +1,113 @@
+[
+ {
+  "type": "assessment_align",
+  "gap": "The meta.json learning_objectives are the generic templated stock strings ('Analyze how the storyboard frame sequence... shows a defensible decision', 'Distinguish artifact polish from evidence-based revision', 'Document a bounded AI/software support move', 'Use annotations... to decide what help should come next') and do NOT match the genuinely section-specific Learning Targets written in the MDX body (preference-vs-hypothesis via manipulation/measure/comparison test; rewrite a vague storyboard note into a study question with named IV/DV/baseline; choose a single primary measure and justify exclusion; predict in advance which result sends you back to revise). The metadata objectives are the no-op stock LOs flagged in CONTENT_MODEL.md, so the constructive-alignment validator cannot confirm the practice items target the actual skill the section teaches.",
+  "proposed_change": "Replace the four templated learning_objectives in 01.meta.json with the four concrete Learning Targets from the MDX body (lines 13-16): (1) Distinguish a design preference from a design hypothesis using the manipulation/measure/comparison test; (2) Rewrite a vague storyboard note as a study question with a named independent variable, observable dependent variable, and baseline; (3) Choose a single primary measure and justify excluding plausible-but-irrelevant outcomes; (4) Predict in advance which result would send you back to revise the frame. This makes the meta LOs align with the four practice items (artifact_signal=write a study question, annotation_signal=spot the testable annotation, ai_boundary=bounded AI use, calibration=fix an unfalsifiable question).",
+  "needs_research": false,
+  "where_to_apply": "01.meta.json field learning_objectives (lines 5-10)",
+  "priority": "high",
+  "section_key": "ail606/07/01",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The meta.json learning_objectives are the known templated stock strings (artifact-polish/annotation/AI-boundary/calibration) and do NOT describe ECD at all, while the MDX 'Learning Targets' are excellent and section-specific (state the three ECD layers; audit a row for the two classic failures; rewrite an internal-state evidence cell as scorable behavior; reject claim-irrelevant task features). Because the meta LOs are what the constructive-alignment layer keys on, the assessment/LO mapping is misaligned with the actual content and the strong practice items map to generic LOs rather than the real ECD targets.",
+  "proposed_change": "Replace the four templated learning_objectives in 02.meta.json with the four section-specific Learning Targets already authored in the MDX (lines 13-16): (1) State the three ECD layers (claim/evidence/task); (2) Audit a traceability-matrix row for the two classic failures (unobservable evidence cell; task that cannot elicit the named observable); (3) Rewrite an internal-state evidence cell as a scorable behavior; (4) Reject task features that produce data unrelated to the claim. These map cleanly onto the existing four practice items (artifact_signal=LO1, annotation_signal=LO2, ai_boundary=bounded-AI, calibration=LO4).",
+  "needs_research": false,
+  "search_terms": [],
+  "where_to_apply": "02.meta.json -> learning_objectives array (replace all four)",
+  "priority": "high",
+  "section_key": "ail606/07/02",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The meta description and all four learning_objectives are the templated stock strings keyed to 'storyboard frame sequence with narration, signaling, and reader-action notes' -- an artifact that has nothing to do with this section. The MDX body is entirely about telemetry/privacy logging plans (data minimization, identifiers, purpose limitation, retention). The metadata therefore mislabels the section's actual content and the constructive-alignment objectives do not map to the MDX learning targets or the four practice items.",
+  "proposed_change": "Rewrite description to: 'AIL 606 section on designing learner-telemetry logging plans within privacy boundaries: deriving the logging plan from a stated design question (data minimization), distinguishing direct/indirect/pseudonymous identifiers, and binding retention and use to consent (purpose limitation).' Replace the four learning_objectives with the section's own four Learning Targets from the MDX (lines 13-16): (1) Apply data minimization -- derive logging plan from a stated question; (2) Distinguish direct, indirect, and pseudonymous identifiers and explain combination-based re-identification; (3) Set purpose limitation and retention window matching consent; (4) Reject collect-now-decide-later requests and state the harm.",
+  "needs_research": false,
+  "where_to_apply": "03.meta.json -- 'description' field and 'learning_objectives' array",
+  "priority": "high",
+  "section_key": "ail606/07/03",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Misconception-to-practice mapping is broken. The calibration practice item (ail606_supplement_7_4..._calibration) tests single-of-five overgeneralization and its correct/incorrect options exactly match the dedicated misconception 'single_observation_overgeneralized' (id ..._one_voice_overgeneralized), but the item's misconception_id field points to '..._observation_without_action' (the observation-without-revision pattern, which is a different error). Conversely, the well-crafted '..._one_voice_overgeneralized' misconception is referenced by NO practice item, so a real misconception in the file is never exercised and the calibration item is mislabeled.",
+  "proposed_change": "In 04.practice.json, change the calibration item's misconception_id from 'ail606_supplement_7_4_small_n_testing_and_design_claims_observation_without_action' to 'ail606_supplement_7_4_small_n_testing_and_design_claims_one_voice_overgeneralized' so the diagnostic rail fires the correct feedback ('Record low-frequency signals as uncertain and watch for recurrence...'). This aligns the hardest item with its true misconception and gives every misconception in the file at least one practice probe.",
+  "needs_research": false,
+  "where_to_apply": "04.practice.json, problem id ail606_supplement_7_4_small_n_testing_and_design_claims_calibration, field misconception_id (also cross-check 04.misconceptions.json which already defines _one_voice_overgeneralized)",
+  "priority": "high",
+  "section_key": "ail606/07/04",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The meta-layer learning_objectives are the generic templated stock strings ('Analyze how the [artifact] shows a defensible decision...', 'Distinguish artifact polish from evidence-based revision...') and do not match the section's own excellent, specific 'Learning Targets' (scope claims to method, convert efficacy claims to problem-and-revision claims, use observation frequency to prioritize, reject outcome language without baseline/control). The constructive-alignment validator is a no-op on these strings, so the mismatch is invisible to CI but real for learners and reviewers.",
+  "proposed_change": "Replace the four templated learning_objectives in 04.meta.json with the four section-specific targets already authored in the MDX 'Learning Targets' block, e.g. (1) 'Explain why small-N moderated testing surfaces most usability problems but cannot license outcome claims'; (2) 'Convert an overreaching efficacy claim into a scoped observation-frequency-revision-recheck claim'; (3) 'Use observation frequency (e.g., 4-of-5 vs 1-of-5) to prioritize revisions vs watch-items'; (4) 'Reject comparative/outcome language when no baseline or control exists.' This makes the meta LOs map to the practice items and misconceptions.",
+  "needs_research": false,
+  "where_to_apply": "04.meta.json, learning_objectives array (mirror MDX 'Learning Targets', lines 13-16)",
+  "priority": "high",
+  "section_key": "ail606/07/04",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The meta learning_objectives are templated stock strings keyed to 'storyboard frame sequence' and do not describe what this section actually teaches. The MDX Learning Targets (distinguish global impression from analytic excerpt; apply a defined code and link to a decision; keep the inference modest / perceived not measured; reject coding that reads competence into a reaction) are far more specific and are the real assessed constructs, but the meta layer (used by the constructive-alignment validator) names none of them.",
+  "proposed_change": "Rewrite meta learning_objectives to mirror the MDX Learning Targets verbatim-in-spirit: (1) Distinguish an uncodeable global impression from an analytic excerpt that names a feature and a learner action; (2) Apply a defined code with a reproducible inclusion rule and link it to one recheckable design decision; (3) Bound the inference to perceived experience and pair it with a planned objective check; (4) Reject over-coding that reads demonstrated competence into a self-reported reaction. Also update meta 'description' (currently storyboard-keyed) to describe reflection-as-data coding.",
+  "needs_research": false,
+  "where_to_apply": "05.meta.json — learning_objectives array and description field",
+  "priority": "high",
+  "section_key": "ail606/07/05",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The misconceptions file defines three patterns (polish_equals_ready, no_provenance, no_manifest), but the no_manifest misconception is never referenced by any practice item. The 'calibration' practice item (id ...calibration), whose stem is literally about a reviewer who cannot tell which file is canonical or how to run the prototype, points to misconception_id polish_equals_ready instead of the exactly-matching no_manifest misconception. So the hardest item is mis-linked and one defined misconception has zero assessment coverage.",
+  "proposed_change": "In 06.practice.json, change the misconception_id of the calibration item (ail606_supplement_7_6_publication_ready_artifact_packaging_calibration) from ...polish_equals_ready to ...no_manifest, since its stem ('cannot tell which file is the final storyboard or how to run the prototype') maps precisely to the no_manifest pattern (no_manifest_or_run_steps). This gives all three defined misconceptions practice coverage.",
+  "needs_research": false,
+  "where_to_apply": "06.practice.json, problem id ail606_supplement_7_6_publication_ready_artifact_packaging_calibration, field misconception_id",
+  "priority": "high",
+  "section_key": "ail606/07/06",
+  "op_index": 0
+ },
+ {
+  "type": "assessment_align",
+  "gap": "meta.json learning_objectives are the generic templated stock strings (storyboard-keyed, 'shows a defensible decision', 'distinguish polish from evidence-based revision') and do not reflect the four excellent, section-specific Learning Targets already written in the MDX (reuse test; build README+canonical+provenance+LICENSE+CHANGELOG; record asset provenance; decide what to include vs summarize). The constructive-alignment layer therefore does not describe this section.",
+  "proposed_change": "Replace the four templated learning_objectives in meta.json with the MDX Learning Targets, phrased as measurable LOs: (1) Apply the reuse test to judge whether a competent stranger could find the canonical artifact and reproduce its use from the package alone; (2) Assemble a package with a README (intent + decision log), a single dated canonical file, per-asset provenance, an explicit license, and a changelog; (3) Record asset source and license rather than silently reusing media; (4) Decide what to include vs summarize (e.g., disclose AI assistance in the README instead of dumping a full chat log).",
+  "needs_research": false,
+  "where_to_apply": "06.meta.json, learning_objectives array (lines 5-10)",
+  "priority": "high",
+  "section_key": "ail606/07/06",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The 'Final Check' instructs the learner to confirm the artifact 'records cognitive-load diagnosis, support request, accepted revision, rejected suggestion, and confidence change.' This is the generic chapter-stock checklist and is mislabeled for this artifact: an AI-USE disclosure excerpt has no cognitive-load diagnosis. It contradicts the section's own 'Stronger Artifact Standard' (scope, contribution, accept/reject calls, verification, accountability).",
+  "proposed_change": "Rewrite the Final Check to match this section's actual artifact criteria: confirm the disclosure records the bounded scope (which decision), the concrete AI contribution, the accept/reject/rewrite calls with reasons, the verification step, and an explicit accountability statement — with no objectivity/credentialing language. Mirror the four-element framework and 'Stronger Artifact Standard' wording.",
+  "needs_research": false,
+  "where_to_apply": "07.mdx — 'Final Check' section (line ~123).",
+  "priority": "high",
+  "section_key": "ail606/07/07",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Meta learning_objectives are the templated stock strings ('Analyze how the AI-USE disclosure excerpt ... shows a defensible decision', 'Distinguish artifact polish from evidence-based revision', etc.) and do not match the four section-specific Learning Targets in the MDX (distinguish vague vs bounded disclosure; reject accountability-shedding language; document accept/reject calls; choose disclosure granularity). The constructive-alignment validator is a no-op on stock LOs.",
+  "proposed_change": "Replace the four templated learning_objectives in 07.meta.json with the section's real Learning Targets, lightly normalized to objective form: (1) Distinguish a vague disclosure from a bounded one naming decision, AI contribution, and verification; (2) Reject accountability-shedding language and keep responsibility with the human; (3) Document accept/reject calls on AI suggestions with reasons; (4) Choose the right disclosure granularity for a reviewer to judge provenance without a full transcript. This makes the practice items and misconceptions tightly map to stated objectives.",
+  "needs_research": false,
+  "where_to_apply": "07.meta.json — 'learning_objectives' array.",
+  "priority": "high",
+  "section_key": "ail606/07/07",
+  "op_index": 2
+ },
+ {
+  "type": "assessment_align",
+  "gap": "The four learning_objectives in 08.meta.json are the templated stock strings keyed to the generic 'storyboard frame sequence with narration, signaling, and reader-action notes' artifact name. They do not describe what this section actually teaches. The MDX Learning Targets are specific and excellent (assemble a complete translation chain; locate the broken link; reject decorative citations; show backward-to-source and forward-to-evidence traces), but the meta LOs never mention chains, broken links, back/forward breaks, or decorative citations. The constructive-alignment between meta LOs, MDX targets, practice items, and misconceptions is broken at the meta layer.",
+  "proposed_change": "Rewrite learning_objectives in 08.meta.json to mirror the MDX Learning Targets and the actual assessed constructs: (1) 'Assemble a complete research-translation chain from finding to principle to design decision to evidence to disclosed revision.' (2) 'Diagnose a back break (a finding cited but altering no decision) and a forward break (a decision made but never tested) in a design argument.' (3) 'Reject decorative citations that change no design choice, and bound AI assistance to a checkable trace-audit you repair yourself.' (4) 'Spot-check that any single decision traces backward to a source and forward to scoped small-N evidence.' These map 1:1 onto the four practice items (artifact_signal=chain order, annotation_signal=back break, ai_boundary=bounded trace-audit, calibration=intent-without-evidence/forward break).",
+  "needs_research": false,
+  "where_to_apply": "08.meta.json -> learning_objectives array (all 4 strings)",
+  "priority": "high",
+  "section_key": "ail606/07/08",
+  "op_index": 0
+ }
+]

@@ -1,0 +1,35 @@
+[
+ {
+  "type": "assessment_align",
+  "gap": "The four learning_objectives in 03.meta.json are template-stamped: objectives 2-4 are byte-identical generic ALGET boilerplate and only objective 1 varies by artifact name. They do not name the section's actual content (three distinct checks / three populations / badge-mismatch trap / failure-to-condition conversion), which the MDX 'Learning Targets' (lines 13-16) state crisply. Constructive alignment is weak: the strong section-specific targets live only in prose, not in the assessed objectives.",
+  "proposed_change": "Replace the generic meta.json learning_objectives (lines 8-13) with the four section-specific Learning Targets already written in the MDX (define usability/accessibility/equity as three checks with three populations; run each as its own test; recognize a compliance badge that does not match the core task; document a decision naming which check failed, for whom, under what condition). This aligns meta objectives, the practice items (which already test exactly these), and the misconceptions. Also de-template the formulaic 'description' field (line 4).",
+  "where_to_apply": "03.meta.json — learning_objectives array (lines 8-13) and description (line 4)",
+  "priority": "high",
+  "verified": "unverified",
+  "sources": [],
+  "section_key": "cat531/05/03",
+  "op_index": 5
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Artifact mismatch. The section's actual work-product is an evaluation/fit matrix (gates vs scored criteria), which maps onto the course's 'equity-oriented edtech evaluation matrix' artifact. But meta.json (learning_objectives[0], description), the Worked Example (lines 52-58), Artifact Studio (line 126), download link (line 124), Adaptive Support (lines 135-137), and dynamic-scenario (line 139) all assign the generic 'Design Tension Studio map naming a classroom value conflict and negotiated decision.' A DTS value-conflict map is not an evaluation matrix; producing a DTS map for a section whose entire skill is building a gated scoring matrix breaks constructive alignment. The Worked Example awkwardly grafts a DTS-map revision onto a section that never discusses value-conflict mapping.",
+  "proposed_change": "Reassign the section artifact to the 'equity-oriented edtech evaluation matrix' across meta.json learning_objectives[0] and description, the <artifact-studio artifact=...> tag, the download link, Adaptive Support bullets, the dynamic-scenario prompt, and the Worked Example before/after claim. The before/after trace becomes a first-pass matrix that averages a must-have, revised into one with gates applied above scored rows and eliminated tools recorded, which is exactly what the section teaches.",
+  "where_to_apply": "05.meta.json (learning_objectives[0], description); 05.mdx artifact-studio tag (line 126), download link (line 124), Worked Example (lines 52-58), Adaptive Support bullets (lines 135-137), dynamic-scenario (line 139)",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat531/05/05",
+  "op_index": 1
+ },
+ {
+  "type": "assessment_align",
+  "gap": "Three of four practice items and the misconceptions are tightly aligned, but no item exercises the section's most distinctive skill: detecting the construct mismatch / proposing the closing evidence. The artifact_signal item tests a blank privacy criterion (gap), the others test preference, AI-forwarding, and confidence. The signature move ('total volume cannot show equitable participation; ask for a per-student distribution') is heavily taught but never directly assessed, and no item asks the learner to PROPOSE the missing measure, which Learning Target 3 requires.",
+  "proposed_change": "Revise one item (or add a 'closure' variant) so the learner must select the specific missing evidence that closes a named construct mismatch (correct answer = 'a per-student distribution of posts'), with distractors that add more aggregate volume or restate the conclusion. Aligns assessment to Learning Target 3 and the Closure check in the Decision Rule.",
+  "where_to_apply": "07.practice.json — revise the calibration item (lines 65-84) or add a closure-check item; map to a new misconception in 07.misconceptions.json",
+  "priority": "high",
+  "sources": [],
+  "verified": "unverified",
+  "section_key": "cat531/05/07",
+  "op_index": 4
+ }
+]
