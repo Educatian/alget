@@ -75,6 +75,25 @@
       "concept_ids": [
         "evidence_based_revision"
       ]
+    },
+    {
+      "id": "ail606_supplement_1_2_mayer_principles_as_design_constraints_conflict_ranking",
+      "type": "multiple_choice",
+      "concept_id": "mayer_principles",
+      "stem": "On the pump slide for novices on a system-paced presentation, the redundancy principle says delete the duplicated on-screen text, but a stakeholder insists on captions for accessibility. Which move honors both constraints for this learner?",
+      "options": [
+        "Add the captions for all learners, since accessibility always outranks redundancy.",
+        "Delete all text and refuse captions, since redundancy is a hard rule.",
+        "Offer a captions-on toggle so the text is opt-in, separating the accessibility need from the forced duplication redundancy forbids.",
+        "Apply signaling and personalization too, so the extra principles offset the redundancy cost."
+      ],
+      "correct_index": 2,
+      "explanation": "Conflicts between principles are resolved by ranking them for the stated learner, not by picking one absolutely. A learner-controlled toggle gives text access to those who need it without forcing duplication on novices, which honors both the redundancy constraint and the accessibility requirement. Piling on unrelated principles addresses neither.",
+      "misconception_id": "ail606_supplement_1_2_mayer_more_principles_better",
+      "difficulty": "hard",
+      "concept_ids": [
+        "mayer_principles"
+      ]
     }
   ]
 }

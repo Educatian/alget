@@ -24,6 +24,14 @@
       "trigger": "learner's task is 'explore' or 'tell us what you think' with no defined completion state",
       "feedback": "Define what counts as completing the task so the session yields evidence about a specific workflow, not just impressions.",
       "rail_action": "ask"
+    },
+    {
+      "id": "ail606_supplement_5_3_vocabulary_leak",
+      "pattern": "task_reuses_interface_vocabulary",
+      "description": "Copying an interface label into the task wording (the interface says 'Template Library' and the task says 'open the template library'), which hands the participant the exact search term findability was meant to test.",
+      "trigger": "task contains an interface noun the participant could not have known on their own",
+      "feedback": "Use the user's words, not the interface's. If the task names the label or the route, the participant only follows directions and the findability question is answered for them in the prompt. State the destination, never the route, and rewrite any task that leaks an interface noun.",
+      "rail_action": "represent"
     }
   ]
 }

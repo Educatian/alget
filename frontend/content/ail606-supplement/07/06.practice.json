@@ -79,7 +79,7 @@
       ],
       "correct_index": 1,
       "explanation": "If a competent outsider cannot identify the canonical artifact and reproduce its use, the package is not publication-ready regardless of how complete it feels to the author.",
-      "misconception_id": "ail606_supplement_7_6_publication_ready_artifact_packaging_polish_equals_ready",
+      "misconception_id": "ail606_supplement_7_6_publication_ready_artifact_packaging_no_manifest",
       "difficulty": "hard",
       "concept_ids": [
         "ail606_supplement_research_translation_for_learning_design",

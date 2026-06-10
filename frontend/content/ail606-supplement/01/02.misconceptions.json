@@ -24,6 +24,14 @@
       "trigger": "learner applies a principle without naming the target learner or conditions",
       "feedback": "State the principle as a constraint with boundary conditions. Name the target learner, prior knowledge, and pacing before applying it, since some effects reverse for experts.",
       "rail_action": "represent"
+    },
+    {
+      "id": "ail606_supplement_1_2_mayer_more_principles_better",
+      "pattern": "principle_over_application",
+      "description": "Believing that applying more Mayer principles to a frame produces a better design, regardless of which problem the frame actually has.",
+      "trigger": "learner applies personalization, signaling, and segmenting to a frame whose only diagnosed issue was redundancy",
+      "feedback": "Each principle targets a specific processing problem. Applying principles a frame does not need adds design work and can introduce new costs. Diagnose the frame first, then apply only the principle that addresses the diagnosed issue, ranked for the stated learner.",
+      "rail_action": "ask"
     }
   ]
 }
