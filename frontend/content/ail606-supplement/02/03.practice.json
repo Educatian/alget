@@ -75,6 +75,25 @@
       "concept_ids": [
         "evidence_based_revision"
       ]
+    },
+    {
+      "id": "ail606_supplement_2_3_interaction_patterns_for_learning_software_equity_cost",
+      "type": "multiple_choice",
+      "concept_id": "ail606_supplement_interaction_patterns_for_learning_software",
+      "stem": "A sorting activity asks learners to drag eight molecule cards into three bins. Each drop snaps in place and shows immediate right/wrong feedback, and the drag pattern is familiar from earlier modules. The operation fits the cognitive work (categorizing). What is still wrong with this interaction?",
+      "options": [
+        "Nothing; it passes operation fit, familiarity, and closed-loop feedback.",
+        "It fails the equity test: a keyboard or screen-reader learner has no equivalent way to perform the same categorization at comparable cost.",
+        "Drag-and-drop is always wrong for categorization tasks.",
+        "The feedback should be delayed to the end so learners are not interrupted."
+      ],
+      "correct_index": 1,
+      "explanation": "Operation fit, familiarity, and a closed loop are necessary but not sufficient. The fourth test is equity: precise pointer dragging is trivial for some learners and a barrier for keyboard, screen-reader, or motor-impaired learners. Add an equivalent select-then-place path so the same operation is available at comparable cost.",
+      "misconception_id": "ail606_supplement_2_3_interaction_patterns_for_learning_software_interaction_cost_asymmetry",
+      "difficulty": "hard",
+      "concept_ids": [
+        "ail606_supplement_interaction_patterns_for_learning_software"
+      ]
     }
   ]
 }

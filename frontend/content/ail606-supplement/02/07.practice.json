@@ -70,7 +70,7 @@
       ],
       "correct_index": 1,
       "explanation": "Some criteria are gates, not weights. A defensible audit lets a non-negotiable failure override a high total when the context requires it.",
-      "misconception_id": "ail606_supplement_2_7_comparative_software_audit_context_free_winner",
+      "misconception_id": "ail606_supplement_2_7_comparative_software_audit_gate_treated_as_weight",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

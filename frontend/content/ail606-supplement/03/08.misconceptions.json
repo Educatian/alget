@@ -32,6 +32,14 @@
       "trigger": "learner submits the polished storyboard alone with no decision log",
       "feedback": "The capstone needs its evidence trail: key decisions, what was rejected, and the principle or learner data behind each choice.",
       "rail_action": "practice"
+    },
+    {
+      "id": "ail606_supplement_3_8_ai_suggestion_accepted_uncritically",
+      "pattern": "ai_suggestion_kept_because_plausible",
+      "description": "Accepting an AI-suggested addition (such as a bonus frame) because it looks good or enriches the content, rather than because it serves the storyboard's single objective.",
+      "trigger": "learner keeps an AI-suggested frame that introduces a second objective into the sequence",
+      "feedback": "Run the objective trace on every AI suggestion: a frame that does not serve the one stated objective dilutes the sequence, however polished it is. Integration is mostly subtraction; cut the addition and record the rejection with its reason in the decision record.",
+      "rail_action": "represent"
     }
   ]
 }

@@ -1,12 +1,12 @@
 {
   "chapter_title": "Refined Prototype and Capstone Defense",
   "title": "Persona-Based Simulation Checks",
-  "description": "AIL 606 textbook section connecting persona-based simulation checks to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence.",
+  "description": "AIL 606 textbook section on persona-based simulation checks: building constraint-driven personas (goal, constraint, context), driving them off the happy path until the prototype fails, verifying AI role-play findings, and converting failures into screen revisions.",
   "learning_objectives": [
-    "Analyze how the storyboard frame sequence with narration, signaling, and reader-action notes shows a defensible decision in AIL 606.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    "Construct a persona from goal, constraint, and context, with no demographic filler.",
+    "Predict which screen a given constraint will stress and drive the persona off the happy path until something fails.",
+    "Treat AI persona role-play as hypotheses to verify against real settings or users, not as user data.",
+    "Convert each observed failure into a specific screen revision or a justified decision to accept it."
   ],
   "concept_ids": [
     "ail606_supplement_refined_prototype_and_capstone_defense",

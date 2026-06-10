@@ -75,6 +75,25 @@
       "concept_ids": [
         "ail606_supplement_module_3_storyboard_studio"
       ]
+    },
+    {
+      "id": "ail606_supplement_3_8_module_3_storyboard_studio_ai_reject",
+      "type": "multiple_choice",
+      "concept_id": "ai_supported_learning",
+      "stem": "Your capstone objective is 'the learner can predict the next stage of the water cycle.' An AI tool suggests a sixth bonus frame on cloud types, and it is genuinely well designed. What is the defensible move?",
+      "options": [
+        "Accept it; a well-designed frame always strengthens the sequence.",
+        "Accept it but place it last so it cannot interrupt the chain.",
+        "Reject it and record the reason in the decision record: it serves a second objective (cloud types), not the prediction objective, so it dilutes the sequence.",
+        "Reject it without documentation, since rejected suggestions do not belong in the package."
+      ],
+      "correct_index": 2,
+      "explanation": "The objective trace governs AI suggestions just like your own ideas: every frame must serve the single stated objective. A polished frame serving a different goal is exactly the seam that makes a capstone an assembly rather than an integration. The bounded AI move is to reject it and preserve the rejection, with its reason, in the decision record a reviewer can audit.",
+      "misconception_id": "ail606_supplement_3_8_ai_suggestion_accepted_uncritically",
+      "difficulty": "medium",
+      "concept_ids": [
+        "ai_supported_learning"
+      ]
     }
   ]
 }

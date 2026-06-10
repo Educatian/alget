@@ -24,6 +24,14 @@
       "trigger": "learner plans to add options later only for students who ask",
       "feedback": "UDL designs for the margins from the start. Build flexible options into the design proactively rather than retrofitting them for individuals.",
       "rail_action": "ask"
+    },
+    {
+      "id": "ail606_supplement_1_5_udl_surface_variety_not_access",
+      "pattern": "variety_without_accessibility",
+      "description": "Treating multiple formats that share the same access barrier (a PDF, a scanned image of the PDF, a screenshot of the PDF) as multiple means of representation.",
+      "trigger": "learner offers several copies of the same content that are all unreachable by a screen reader or adjustable text and calls it representation flexibility",
+      "feedback": "Real representation flexibility provides genuinely different, accessible access paths, such as tagged HTML with adjustable text or a narrated diagram. Three inaccessible copies of the same format add clutter, not access; count access paths, not file formats.",
+      "rail_action": "explain"
     }
   ]
 }

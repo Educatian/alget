@@ -75,6 +75,25 @@
       "concept_ids": [
         "ail606_supplement_cognitive_architecture_for_multimedia_learning"
       ]
+    },
+    {
+      "id": "ail606_supplement_1_1_cognitive_architecture_for_multimedia_learning_germane_casualty",
+      "type": "multiple_choice",
+      "concept_id": "ail606_supplement_cognitive_architecture_for_multimedia_learning",
+      "stem": "A teammate revises a storyboard frame: they cut the decorative stock photo, shorten the redundant printed paragraph, and also delete the 'predict what happens next' prompt because it 'slows learners down.' Load ratings drop and the teammate calls it a win. What did the revision get wrong?",
+      "options": [
+        "Nothing; any change that lowers reported load is an improvement.",
+        "It removed germane processing: the prediction prompt was productive difficulty that builds the schema, not extraneous load to strip.",
+        "It should have kept the stock photo, because images always aid learning.",
+        "It lowered intrinsic load, which designers must never touch."
+      ],
+      "correct_index": 1,
+      "explanation": "The photo and redundant paragraph were extraneous load, so cutting them was right. But the prediction prompt provoked germane processing, the selecting, organizing, and integrating that builds the mental model. Deleting it trades away learning to lower felt effort: a germane-load casualty.",
+      "misconception_id": "ail606_supplement_1_1_cma_germane_load_is_removable",
+      "difficulty": "hard",
+      "concept_ids": [
+        "ail606_supplement_cognitive_architecture_for_multimedia_learning"
+      ]
     }
   ]
 }

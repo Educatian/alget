@@ -24,6 +24,14 @@
       "trigger": "learner builds a drag-and-drop or selection step that shows no result, hint, or change after the action",
       "feedback": "Every learning interaction needs a visible consequence. Specify what the learner sees or can do differently after acting, or the pattern is decorative.",
       "rail_action": "represent"
+    },
+    {
+      "id": "ail606_supplement_2_3_interaction_patterns_for_learning_software_interaction_cost_asymmetry",
+      "pattern": "ignoring_interaction_cost_equity",
+      "description": "Treating an interaction as universally usable when its physical cost (precise dragging, rotation, hover-only reveals) is trivial for some learners but a barrier for keyboard, screen-reader, or motor-impaired learners",
+      "trigger": "learner adopts a drag-precise or pointer-only pattern with no equivalent keyboard or screen-reader path",
+      "feedback": "Run the equity test: can a keyboard or screen-reader learner perform the same operation at comparable cost? UDL's multiple means of action and WCAG 2.2 expect an equivalent path (such as select-then-place) so the interaction's cost does not fall asymmetrically on some learners.",
+      "rail_action": "represent"
     }
   ]
 }

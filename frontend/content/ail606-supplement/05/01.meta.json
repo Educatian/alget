@@ -1,7 +1,7 @@
 {
   "chapter_title": "Usability Testing and Learning Evidence",
   "title": "From Rationale to Testable Hypotheses",
-  "description": "AIL 606 textbook section connecting from rationale to testable hypotheses to moderated usability test script with observation-to-revision trace, reader notes, support moments, and revision evidence.",
+  "description": "AIL 606 textbook section on converting a design rationale into a falsifiable usability hypothesis with four parts (named mechanism, observable outcome, direction, and a threshold a small sample could plausibly miss), calibrating the threshold against sample size, and deciding whether a result revises the prototype or the rationale.",
   "learning_objectives": [
     "Convert a design rationale into a falsifiable, directional hypothesis with an observable outcome and a stated threshold.",
     "Distinguish a prediction the session can disconfirm from a goal it can only restate.",

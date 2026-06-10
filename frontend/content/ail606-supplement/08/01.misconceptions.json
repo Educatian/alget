@@ -24,6 +24,14 @@
       "trigger": "stuck-note points to the entire artifact rather than one frame and one unresolved decision",
       "feedback": "Pin the stuck-note to one frame and the exact decision you cannot resolve so the reply targets that frame.",
       "rail_action": "ask"
+    },
+    {
+      "id": "ail606_supplement_8_1_async_volume_equals_facilitation",
+      "pattern": "reminder_volume_as_facilitation",
+      "description": "Believing that more announcements, reminders, and nudges facilitate an asynchronous cohort, when volume raises transactional pressure without lowering transactional distance.",
+      "trigger": "learner proposes adding reminders or automated check-in emails instead of observation points",
+      "feedback": "A reminder raises pressure; it does not change what the facilitator can see or when. Lower transactional distance by tuning structure: spaced checkpoints, a stuck-note channel, and public process create observation points where contingent help can land. Add a checkpoint, not more nudges.",
+      "rail_action": "explain"
     }
   ]
 }

@@ -42,16 +42,16 @@
       "id": "ail606_supplement_2_8_module_2_design_memo_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_module_2_design_memo",
-      "stem": "A reviewer cannot find the recommendation until the last paragraph of a one-page memo. What revision principle applies?",
+      "stem": "Your memo recommends Tool A over Tool B. BigAL suggests strengthening it by adding your narration-timing finding from an earlier section, which you are proud of. What is the defensible move?",
       "options": [
-        "Move the recommendation to the front as a bottom-line-up-front statement, then let the background support it.",
-        "Keep the recommendation last so it lands as a strong finish.",
-        "Add a summary paragraph that repeats the entire memo.",
-        "Remove the background entirely so only the recommendation remains."
+        "Accept it; more evidence always makes a memo more persuasive.",
+        "Reject it and document why: the narration-timing finding does not bear on the Tool A versus Tool B decision, so including it dilutes the argument.",
+        "Accept it but move it to an appendix so it is technically present.",
+        "Reject it because AI suggestions should never be used in a memo."
       ],
-      "correct_index": 0,
-      "explanation": "Bottom line up front lets a busy reader act immediately. Background should support the recommendation, not delay it.",
-      "misconception_id": "ail606_supplement_2_8_module_2_design_memo_recommendation_buried",
+      "correct_index": 1,
+      "explanation": "Claim-to-evidence discipline means using only the evidence that bears on the decision. The accessibility gate and the pilot's low-vision result bear on the tool choice; the narration-timing finding, however good, does not. The bounded AI move is to reject the suggestion and record the reason, which is exactly the documented accept-and-reject trail the memo's AI-use note requires.",
+      "misconception_id": "ail606_supplement_2_8_module_2_design_memo_evidence_not_linked",
       "difficulty": "medium",
       "concept_ids": [
         "ail606_supplement_module_2_design_memo"
@@ -72,6 +72,25 @@
       "explanation": "Unlinked evidence is decoration. Connecting each data point to the claim it backs turns attachments into the memo's actual argument.",
       "misconception_id": "ail606_supplement_2_8_module_2_design_memo_evidence_not_linked",
       "difficulty": "hard",
+      "concept_ids": [
+        "evidence_based_revision"
+      ]
+    },
+    {
+      "id": "ail606_supplement_2_8_module_2_design_memo_polish_vs_revision",
+      "type": "multiple_choice",
+      "concept_id": "evidence_based_revision",
+      "stem": "Two teammates revise the same weak memo. One swaps in a cleaner template, tightens the prose, and adds a professional header. The other moves the recommendation to the first sentence and attaches the audit score and pilot result to the specific claims they support. Which revision is evidence-based, and why?",
+      "options": [
+        "The first, because stakeholders judge memos by their presentation quality.",
+        "The second, because it changes how the reader can act on the argument: the recommendation is findable and each claim is now checkable against its evidence.",
+        "Both equally; any change made after feedback counts as evidence-based revision.",
+        "Neither; a memo can only be improved by collecting new pilot data."
+      ],
+      "correct_index": 1,
+      "explanation": "Polish changes how the memo looks; evidence-based revision changes how the argument works. Restructuring to BLUF and linking claims to their evidence are revisions a reviewer can trace to the memo's job as a decision instrument. The cleaner template is fine but does not address why the memo was failing.",
+      "misconception_id": "ail606_supplement_2_8_module_2_design_memo_memo_is_summary",
+      "difficulty": "medium",
       "concept_ids": [
         "evidence_based_revision"
       ]

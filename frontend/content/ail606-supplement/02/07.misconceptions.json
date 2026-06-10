@@ -24,6 +24,14 @@
       "trigger": "learner declares a universal winner without naming the context the recommendation holds for",
       "feedback": "There is no context-free best tool. State the learners, setting, and constraints your recommendation assumes, so a reader can tell when it would change.",
       "rail_action": "ask"
+    },
+    {
+      "id": "ail606_supplement_2_7_comparative_software_audit_gate_treated_as_weight",
+      "pattern": "gate_compensated_by_other_scores",
+      "description": "Averaging a non-negotiable requirement such as accessibility into the weighted total so a strength elsewhere can buy back a fatal failure",
+      "trigger": "learner lets a high weighted total or a large feature lead override a zero on a gated criterion",
+      "feedback": "A gate is pass-or-fail and is applied before any totals are read. No strength on another dimension can offset a gate failure; a tool that fails a gate is removed from contention, however high its weighted score.",
+      "rail_action": "represent"
     }
   ]
 }

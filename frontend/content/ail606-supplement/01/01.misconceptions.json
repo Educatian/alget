@@ -24,6 +24,14 @@
       "trigger": "learner justifies a screen only by saying it shows both pictures and words",
       "feedback": "Dual presentation is necessary but not sufficient. Show how the design prompts the learner to select, organize, and integrate the material into a coherent model.",
       "rail_action": "ask"
+    },
+    {
+      "id": "ail606_supplement_1_1_cma_germane_load_is_removable",
+      "pattern": "germane_load_treated_as_clutter",
+      "description": "Treating productive difficulty as removable clutter: seeing a prediction prompt or self-explanation step as extraneous load and deleting it to 'reduce load.'",
+      "trigger": "learner strips a prediction or self-explanation prompt during a load-reduction revision and reports the frame as improved",
+      "feedback": "Germane processing is difficulty you protect, not noise you remove. Cutting the prediction prompt lowers the felt effort but removes the schema-building work the frame existed to provoke. Reduce extraneous load (redundant text, decoration), and keep the prompts that make the learner select, organize, and integrate.",
+      "rail_action": "explain"
     }
   ]
 }

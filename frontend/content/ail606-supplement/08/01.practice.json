@@ -42,16 +42,16 @@
       "id": "ail606_supplement_8_1_facilitating_asynchronous_design_work_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "Two storyboards stall by Day 4. What is the strongest asynchronous facilitation move?",
+      "stem": "An LXD optimizer reviewing your asynchronous studio suggests two automations: (a) auto-send a daily check-in email to all 14 students, and (b) an AI-drafted 'stuck note' template that lets a learner tag one frame with the specific unresolved decision. What is the defensible bounded-AI move?",
       "options": [
-        "Call an emergency synchronous session that all four time zones must join.",
-        "Reply asynchronously to each stalled student's tagged frame with one targeted prompt within 24 hours.",
-        "Wait until the Day 10 deadline to see if they recover on their own.",
-        "Lower the requirements so the stalled storyboards still pass."
+        "Accept both; automation always scales facilitation.",
+        "Reject both; AI tools have no place in facilitation.",
+        "Accept the stuck-note template and reject the daily emails, documenting that reminders raise transactional pressure without adding an observation point, while the template creates a signal the facilitator can act on.",
+        "Accept the daily emails and reject the template, since contact volume is what lowers transactional distance."
       ],
-      "correct_index": 1,
-      "explanation": "Asynchronous facilitation relies on visible artifacts and targeted async support, not a synchronous fallback that excludes off-hours learners.",
-      "misconception_id": "ail606_supplement_8_1_async_synchronous_default",
+      "correct_index": 2,
+      "explanation": "Transactional distance is lowered by structure that creates observation points and contingent dialogue, not by message volume. The stuck-note template manufactures the need signal that co-presence used to supply; daily nudges only raise pressure. Recording one accepted and one rejected suggestion, each with its reason, is the bounded AI-support move the artifact requires.",
+      "misconception_id": "ail606_supplement_8_1_async_volume_equals_facilitation",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"

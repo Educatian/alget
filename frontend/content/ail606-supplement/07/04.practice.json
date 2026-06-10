@@ -79,7 +79,7 @@
       ],
       "correct_index": 1,
       "explanation": "A single occurrence is weak evidence in small-N testing. The disciplined move is to record it, mark uncertainty, and watch for recurrence rather than over- or under-reacting.",
-      "misconception_id": "ail606_supplement_7_4_small_n_testing_and_design_claims_observation_without_action",
+      "misconception_id": "ail606_supplement_7_4_small_n_testing_and_design_claims_one_voice_overgeneralized",
       "difficulty": "hard",
       "concept_ids": [
         "ail606_supplement_research_translation_for_learning_design",

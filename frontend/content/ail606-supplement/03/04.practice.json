@@ -75,6 +75,24 @@
       "concept_ids": [
         "ail606_supplement_narration_and_modality_decisions"
       ]
+    },
+    {
+      "id": "ail606_supplement_3_4_narration_and_modality_decisions_adaptive_signal",
+      "type": "multiple_choice",
+      "concept_id": "evidence_based_revision",
+      "stem": "A learner leaves a 'confusion' annotation with low confidence on a frame that swapped narration for printed text. Their revision changed only the font and text size. Which combination of signals should drive the next adaptive move?",
+      "options": [
+        "The completion status: the frame was finished, so advance to the next section.",
+        "The note type plus the revision quality: a confusion annotation with low confidence and a cosmetic-only revision shows the modality logic was never addressed, so the system should explain or re-represent the principle.",
+        "The font choice: better typography would have resolved the confusion.",
+        "The confidence score alone: low confidence always means more practice items."
+      ],
+      "correct_index": 1,
+      "explanation": "Adaptive support reads the combination of the annotation type, the artifact evidence, confidence, and revision quality. Here the confusion note plus a polish-only revision (font and size, not the narration-versus-text decision) signals the learner has not engaged the modality principle itself, so the right move targets the reasoning, not the styling.",
+      "difficulty": "medium",
+      "concept_ids": [
+        "evidence_based_revision"
+      ]
     }
   ]
 }
