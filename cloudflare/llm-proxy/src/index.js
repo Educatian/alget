@@ -17,7 +17,7 @@
 //   STATIC_API_BASE   (default the Pages /api origin)
 //   BACKEND_API_BASE  (unset; only set to re-enable a proxy escape hatch)
 
-const DEFAULT_MODEL = 'google/gemini-2.0-flash-001'
+const DEFAULT_MODEL = 'google/gemini-2.5-flash'
 // Static content (Pages) the Worker reads for deterministic grading/graphs.
 const DEFAULT_STATIC_BASE = 'https://alget.pages.dev/api'
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
