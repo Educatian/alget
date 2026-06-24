@@ -15,7 +15,7 @@ main = "src/index.js"
 compatibility_date = "2025-05-01"
 
 [vars]
-OPENROUTER_MODEL = "google/gemini-2.0-flash-001"
+OPENROUTER_MODEL = "google/gemini-2.5-flash"
 
 # Internal binding to the adaptive-policy Worker (reliable worker-to-worker;
 # avoids the same-account public *.workers.dev subrequest restriction).
