@@ -26,9 +26,9 @@ export const PARAGRAPH_SPACING_OPTIONS = [
 ]
 
 export const READING_WIDTH_OPTIONS = [
-    { value: 'narrow', label: 'Narrow', width: '74ch' },
-    { value: 'standard', label: 'Standard', width: '92ch' },
-    { value: 'wide', label: 'Wide', width: '118ch' }
+    { value: 'narrow', label: 'Narrow', width: '60ch' },
+    { value: 'standard', label: 'Standard', width: '72ch' },
+    { value: 'wide', label: 'Wide', width: '92ch' }
 ]
 
 export const DYSLEXIA_FONT_OPTIONS = [

@@ -85,11 +85,14 @@
      The reading surface (.reading-narrative) CONSUMES them below. */
   --reading-font-scale: 1;
   --reading-line-height: 1.78;
-  /* Comfortable body-text measure. The UDL reading-width preference
-     (readingPrefs.js) overrides this live; defaults to the "Standard" option.
+  /* Comfortable body-text measure. ~66-72ch is the long-form reading sweet
+     spot (a modern intelligent-book measure); wide figures/tables/sims break
+     out past it via --reading-breakout so they are never boxed into the column.
+     The UDL reading-width preference (readingPrefs.js) overrides this live;
+     defaults to the "Standard" option.
      Block-level visuals (tables, figures, worked examples) break out wider via
      --reading-breakout so textbook content is not boxed into the text column. */
-  --reading-width: 92ch;
+  --reading-width: 72ch;
   --reading-breakout: 74rem;
   /* Reading shell must be wider than --reading-breakout (+ gutters) so wide
      visuals never overflow the centered column into an overflow-hidden shell
@@ -827,11 +830,11 @@ h6,
 }
 
 .reading-narrative {
-  max-width: min(var(--reading-width, 92ch), 100%);
+  max-width: min(var(--reading-width, 72ch), 100%);
   margin-right: auto;
   margin-left: auto;
   color: var(--ath-text);
-  font-size: calc(1.0625rem * var(--reading-font-scale, 1));
+  font-size: calc(1.125rem * var(--reading-font-scale, 1));
   font-family: var(--reading-font-family, 'IBM Plex Sans', 'Inter', 'Segoe UI', sans-serif);
   letter-spacing: var(--reading-letter-spacing, 0em);
   word-spacing: var(--reading-word-spacing, 0em);
@@ -910,7 +913,7 @@ h6,
   font-family: 'Fraunces', Georgia, serif;
   font-weight: 650;
   line-height: 1.12;
-  letter-spacing: 0;
+  letter-spacing: -0.015em;
   scroll-margin-top: 8rem;
 }
 
@@ -944,7 +947,7 @@ h6,
 .reading-narrative p {
   margin: var(--reading-paragraph-spacing, 1.35rem) 0;
   color: var(--ath-text);
-  font-size: calc(1.0625rem * var(--reading-font-scale, 1));
+  font-size: calc(1.125rem * var(--reading-font-scale, 1));
   line-height: var(--reading-line-height, 1.78);
 }
 
