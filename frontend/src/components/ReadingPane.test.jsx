@@ -1,6 +1,7 @@
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import ReadingPane from './ReadingPane'
+import { logEvent } from '../lib/loggingService'
 
 afterEach(() => {
     cleanup()
@@ -9,6 +10,8 @@ afterEach(() => {
 
 vi.mock('../lib/loggingService', () => ({
     logInteraction: vi.fn(),
+    logEvent: vi.fn(),
+    logEvaluationArtifact: vi.fn(),
 }))
 
 vi.mock('./ReadingNarrative', () => ({
@@ -184,5 +187,112 @@ describe('ReadingPane continuity cues', () => {
         )
 
         expect(screen.queryByText('Learning Objectives')).not.toBeInTheDocument()
+    })
+})
+
+describe('ReadingPane embedded labs', () => {
+    const baseProps = {
+        loading: false,
+        isBookmarked: false,
+        toggleBookmark: vi.fn(),
+        isCompleted: false,
+        markCompleted: vi.fn(),
+        previousSection: null,
+        nextSection: null,
+        recentSection: null,
+    }
+
+    it('embeds the GeckoGrip Lab on the dry-adhesion section (bio-inspired/04/01)', () => {
+        render(
+            <ReadingPane
+                {...baseProps}
+                sectionData={{
+                    meta: { course: 'bio-inspired', chapter: '04', section: '01', title: 'Gecko-Inspired Dry Adhesion' },
+                    content: '# Gecko-Inspired Dry Adhesion',
+                    practice: [],
+                }}
+            />,
+        )
+        const frame = screen.getByTitle(/GeckoGrip Lab/i)
+        expect(frame).toBeInTheDocument()
+        expect(frame.getAttribute('src')).toContain('geckogrip-lab.pages.dev')
+    })
+
+    it('embeds the Nacre Lab on bio-inspired/01/02', () => {
+        render(
+            <ReadingPane
+                {...baseProps}
+                sectionData={{ meta: { course: 'bio-inspired', chapter: '01', section: '02', title: 'Hierarchical Structures' }, content: '# x', practice: [] }}
+            />,
+        )
+        const frame = screen.getByTitle(/Nacre Lab/i)
+        expect(frame.getAttribute('src')).toContain('nacre-lab.pages.dev')
+    })
+
+    it('embeds the Riblet Lab on bio-inspired/02/01', () => {
+        render(
+            <ReadingPane
+                {...baseProps}
+                sectionData={{ meta: { course: 'bio-inspired', chapter: '02', section: '01', title: 'Fluid Dynamics' }, content: '# x', practice: [] }}
+            />,
+        )
+        const frame = screen.getByTitle(/Riblet Lab/i)
+        expect(frame.getAttribute('src')).toContain('riblet-lab.pages.dev')
+    })
+
+    it('embeds the serration optimizer on bio-inspired/03/01', () => {
+        render(
+            <ReadingPane
+                {...baseProps}
+                sectionData={{ meta: { course: 'bio-inspired', chapter: '03', section: '01', title: 'Aeroacoustics' }, content: '# x', practice: [] }}
+            />,
+        )
+        expect(screen.getByText(/Quiet-Blade Serration Optimizer/i)).toBeInTheDocument()
+    })
+
+    it('embeds the stack-effect designer on bio-inspired/06/01', () => {
+        render(
+            <ReadingPane
+                {...baseProps}
+                sectionData={{ meta: { course: 'bio-inspired', chapter: '06', section: '01', title: 'Thermal Regulation' }, content: '# x', practice: [] }}
+            />,
+        )
+        expect(screen.getByText(/Stack-Effect Ventilation Designer/i)).toBeInTheDocument()
+    })
+
+    it.each([
+        ['01', '01', /Relative-Density Trade-Off Explorer/i],
+        ['01', '03', /Peel-Angle Switch/i],
+        ['05', '01', /Structural-Color Multilayer Designer/i],
+        ['07', '01', /Self-Healing Capsule Designer/i],
+        ['08', '01', /Swarm Flocking Lab/i],
+    ])('embeds a sim on bio-inspired/%s/%s', (chapter, section, re) => {
+        render(
+            <ReadingPane
+                {...baseProps}
+                sectionData={{ meta: { course: 'bio-inspired', chapter, section, title: 'Section' }, content: '# x', practice: [] }}
+            />,
+        )
+        expect(screen.getByText(re)).toBeInTheDocument()
+    })
+
+    it('fires research telemetry (sim_open) when a sim mounts', () => {
+        logEvent.mockClear()
+        render(
+            <ReadingPane
+                {...baseProps}
+                sectionData={{ meta: { course: 'bio-inspired', chapter: '06', section: '01', title: 'Thermal' }, content: '# x', practice: [] }}
+            />,
+        )
+        const opened = logEvent.mock.calls.some(
+            (c) => c[0] === 'sim_open' && c[3] === 'bio-inspired/06/01',
+        )
+        expect(opened).toBe(true)
+    })
+
+    it('does not embed any lab on unrelated sections', () => {
+        render(<ReadingPane {...baseProps} sectionData={sectionData} />)
+        expect(screen.queryByTitle(/GeckoGrip Lab/i)).not.toBeInTheDocument()
+        expect(screen.queryByText(/Serration Optimizer|Stack-Effect/i)).not.toBeInTheDocument()
     })
 })

@@ -3,6 +3,30 @@ import { CheckCircle2, ChevronDown, ListChecks, NotebookPen } from 'lucide-react
 import { logInteraction } from '../lib/loggingService'
 import { EXIT_TICKET_MIN_CHARS, getExitTicketStorageKey, readExitTicket, writeExitTicket } from '../lib/exitTickets'
 import PeerPulse from './PeerPulse'
+import GeckoGripLab from './GeckoGripLab'
+import NacreLab from './NacreLab'
+import RibletLab from './RibletLab'
+import SerrationOptimizer from './SerrationOptimizer'
+import StackEffectDesigner from './StackEffectDesigner'
+import RelativeDensityExplorer from './RelativeDensityExplorer'
+import PeelAsymmetryExplorer from './PeelAsymmetryExplorer'
+import BraggColorDesigner from './BraggColorDesigner'
+import CapsuleHealingExplorer from './CapsuleHealingExplorer'
+import SwarmFlockingLab from './SwarmFlockingLab'
+
+// Sections that embed a dedicated interactive lab below the reading narrative.
+const EMBEDDED_LABS = {
+    'bio-inspired/01/01': RelativeDensityExplorer,
+    'bio-inspired/01/02': NacreLab,
+    'bio-inspired/01/03': PeelAsymmetryExplorer,
+    'bio-inspired/02/01': RibletLab,
+    'bio-inspired/03/01': SerrationOptimizer,
+    'bio-inspired/04/01': GeckoGripLab,
+    'bio-inspired/05/01': BraggColorDesigner,
+    'bio-inspired/06/01': StackEffectDesigner,
+    'bio-inspired/07/01': CapsuleHealingExplorer,
+    'bio-inspired/08/01': SwarmFlockingLab
+}
 
 const ReadingNarrative = lazy(() => import('./ReadingNarrative'))
 const PracticeBlock = lazy(() => import('./PracticeBlock'))
@@ -345,6 +369,11 @@ function ReadingPane({
                     />
                 </Suspense>
             </section>
+
+            {EMBEDDED_LABS[sectionId] && (() => {
+                const EmbeddedLab = EMBEDDED_LABS[sectionId]
+                return <EmbeddedLab />
+            })()}
 
             {peerPulse && (
                 <PeerPulse
