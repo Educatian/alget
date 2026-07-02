@@ -202,7 +202,9 @@ describe('ReadingPane embedded labs', () => {
         recentSection: null,
     }
 
-    it('embeds the GeckoGrip Lab on the dry-adhesion section (bio-inspired/04/01)', () => {
+    // The embedded labs are lazy() now (code-split), so they mount asynchronously
+    // behind Suspense — use findBy* (which waits) instead of the synchronous getBy*.
+    it('embeds the GeckoGrip Lab on the dry-adhesion section (bio-inspired/04/01)', async () => {
         render(
             <ReadingPane
                 {...baseProps}
@@ -213,51 +215,51 @@ describe('ReadingPane embedded labs', () => {
                 }}
             />,
         )
-        const frame = screen.getByTitle(/GeckoGrip Lab/i)
+        const frame = await screen.findByTitle(/GeckoGrip Lab/i)
         expect(frame).toBeInTheDocument()
         expect(frame.getAttribute('src')).toContain('geckogrip-lab.pages.dev')
     })
 
-    it('embeds the Nacre Lab on bio-inspired/01/02', () => {
+    it('embeds the Nacre Lab on bio-inspired/01/02', async () => {
         render(
             <ReadingPane
                 {...baseProps}
                 sectionData={{ meta: { course: 'bio-inspired', chapter: '01', section: '02', title: 'Hierarchical Structures' }, content: '# x', practice: [] }}
             />,
         )
-        const frame = screen.getByTitle(/Nacre Lab/i)
+        const frame = await screen.findByTitle(/Nacre Lab/i)
         expect(frame.getAttribute('src')).toContain('nacre-lab.pages.dev')
     })
 
-    it('embeds the Riblet Lab on bio-inspired/02/01', () => {
+    it('embeds the Riblet Lab on bio-inspired/02/01', async () => {
         render(
             <ReadingPane
                 {...baseProps}
                 sectionData={{ meta: { course: 'bio-inspired', chapter: '02', section: '01', title: 'Fluid Dynamics' }, content: '# x', practice: [] }}
             />,
         )
-        const frame = screen.getByTitle(/Riblet Lab/i)
+        const frame = await screen.findByTitle(/Riblet Lab/i)
         expect(frame.getAttribute('src')).toContain('riblet-lab.pages.dev')
     })
 
-    it('embeds the serration optimizer on bio-inspired/03/01', () => {
+    it('embeds the serration optimizer on bio-inspired/03/01', async () => {
         render(
             <ReadingPane
                 {...baseProps}
                 sectionData={{ meta: { course: 'bio-inspired', chapter: '03', section: '01', title: 'Aeroacoustics' }, content: '# x', practice: [] }}
             />,
         )
-        expect(screen.getByText(/Quiet-Blade Serration Optimizer/i)).toBeInTheDocument()
+        expect(await screen.findByText(/Quiet-Blade Serration Optimizer/i)).toBeInTheDocument()
     })
 
-    it('embeds the stack-effect designer on bio-inspired/06/01', () => {
+    it('embeds the stack-effect designer on bio-inspired/06/01', async () => {
         render(
             <ReadingPane
                 {...baseProps}
                 sectionData={{ meta: { course: 'bio-inspired', chapter: '06', section: '01', title: 'Thermal Regulation' }, content: '# x', practice: [] }}
             />,
         )
-        expect(screen.getByText(/Stack-Effect Ventilation Designer/i)).toBeInTheDocument()
+        expect(await screen.findByText(/Stack-Effect Ventilation Designer/i)).toBeInTheDocument()
     })
 
     it.each([
@@ -266,17 +268,17 @@ describe('ReadingPane embedded labs', () => {
         ['05', '01', /Structural-Color Multilayer Designer/i],
         ['07', '01', /Self-Healing Capsule Designer/i],
         ['08', '01', /Swarm Flocking Lab/i],
-    ])('embeds a sim on bio-inspired/%s/%s', (chapter, section, re) => {
+    ])('embeds a sim on bio-inspired/%s/%s', async (chapter, section, re) => {
         render(
             <ReadingPane
                 {...baseProps}
                 sectionData={{ meta: { course: 'bio-inspired', chapter, section, title: 'Section' }, content: '# x', practice: [] }}
             />,
         )
-        expect(screen.getByText(re)).toBeInTheDocument()
+        expect(await screen.findByText(re)).toBeInTheDocument()
     })
 
-    it('fires research telemetry (sim_open) when a sim mounts', () => {
+    it('fires research telemetry (sim_open) when a sim mounts', async () => {
         logEvent.mockClear()
         render(
             <ReadingPane
@@ -284,6 +286,8 @@ describe('ReadingPane embedded labs', () => {
                 sectionData={{ meta: { course: 'bio-inspired', chapter: '06', section: '01', title: 'Thermal' }, content: '# x', practice: [] }}
             />,
         )
+        // Lazy lab — wait for it to mount before asserting its mount telemetry.
+        await screen.findByText(/Stack-Effect Ventilation Designer/i)
         const opened = logEvent.mock.calls.some(
             (c) => c[0] === 'sim_open' && c[3] === 'bio-inspired/06/01',
         )

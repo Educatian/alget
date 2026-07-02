@@ -3,16 +3,21 @@ import { CheckCircle2, ChevronDown, ListChecks, NotebookPen } from 'lucide-react
 import { logInteraction } from '../lib/loggingService'
 import { EXIT_TICKET_MIN_CHARS, getExitTicketStorageKey, readExitTicket, writeExitTicket } from '../lib/exitTickets'
 import PeerPulse from './PeerPulse'
-import GeckoGripLab from './GeckoGripLab'
-import NacreLab from './NacreLab'
-import RibletLab from './RibletLab'
-import SerrationOptimizer from './SerrationOptimizer'
-import StackEffectDesigner from './StackEffectDesigner'
-import RelativeDensityExplorer from './RelativeDensityExplorer'
-import PeelAsymmetryExplorer from './PeelAsymmetryExplorer'
-import BraggColorDesigner from './BraggColorDesigner'
-import CapsuleHealingExplorer from './CapsuleHealingExplorer'
-import SwarmFlockingLab from './SwarmFlockingLab'
+import BlockErrorBoundary from './BlockErrorBoundary'
+
+// Embedded labs are lazy-loaded so their code (and the model-viewer runtime they
+// pull) stays out of the ReadingPane chunk that every one of the 256 sections
+// loads — only the ~10 bio-inspired sections that actually use a lab pay for it.
+const GeckoGripLab = lazy(() => import('./GeckoGripLab'))
+const NacreLab = lazy(() => import('./NacreLab'))
+const RibletLab = lazy(() => import('./RibletLab'))
+const SerrationOptimizer = lazy(() => import('./SerrationOptimizer'))
+const StackEffectDesigner = lazy(() => import('./StackEffectDesigner'))
+const RelativeDensityExplorer = lazy(() => import('./RelativeDensityExplorer'))
+const PeelAsymmetryExplorer = lazy(() => import('./PeelAsymmetryExplorer'))
+const BraggColorDesigner = lazy(() => import('./BraggColorDesigner'))
+const CapsuleHealingExplorer = lazy(() => import('./CapsuleHealingExplorer'))
+const SwarmFlockingLab = lazy(() => import('./SwarmFlockingLab'))
 
 // Sections that embed a dedicated interactive lab below the reading narrative.
 const EMBEDDED_LABS = {
@@ -372,7 +377,16 @@ function ReadingPane({
 
             {EMBEDDED_LABS[sectionId] && (() => {
                 const EmbeddedLab = EMBEDDED_LABS[sectionId]
-                return <EmbeddedLab />
+                // Isolate the lab: a crash inside it (WebGL/model-viewer/iframe/math
+                // edge case) must degrade to a block-level fallback, not escalate to
+                // the app-root boundary and blank the whole reader.
+                return (
+                    <BlockErrorBoundary>
+                        <Suspense fallback={null}>
+                            <EmbeddedLab />
+                        </Suspense>
+                    </BlockErrorBoundary>
+                )
             })()}
 
             {peerPulse && (
