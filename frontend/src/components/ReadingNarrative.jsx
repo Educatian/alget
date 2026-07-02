@@ -23,12 +23,15 @@ import ConceptRef from './ConceptRef'
 // line length). index.css consumes --reading-width on .reading-narrative; the
 // preference layer (readingPrefs.js) historically set a different variable name,
 // so the choice did nothing. We bridge it here by setting --reading-width
-// directly from the live preference. Wider defaults than the legacy 76ch let a
-// textbook use more of the viewport at >=1280px while keeping a sane measure.
+// directly from the live preference. These measures target the long-form
+// reading sweet spot (~66-72ch for the default) — wide figures/tables/sims
+// still break out past the text column via --reading-breakout, so a narrower
+// prose measure never boxes in the textbook's rich media. Keep these values in
+// sync with READING_WIDTH_OPTIONS in readingPrefs.js.
 const READING_WIDTH_MEASURE = {
-    narrow: '74ch',
-    standard: '92ch',
-    wide: '118ch',
+    narrow: '60ch',
+    standard: '72ch',
+    wide: '92ch',
 }
 const DEFAULT_READING_MEASURE = READING_WIDTH_MEASURE.standard
 
@@ -505,7 +508,7 @@ function ReadingNarrative({
                     max-width: min(var(--reading-column-max, 74rem), 100%);
                 }
                 .reading-narrative-fluid > :where(p, ul, ol, blockquote, h1, h2, h3, h4, .reading-readaloud) {
-                    max-width: min(var(--reading-width, 78ch), 100%);
+                    max-width: min(var(--reading-width, 72ch), 100%);
                     margin-right: auto;
                     margin-left: auto;
                 }
