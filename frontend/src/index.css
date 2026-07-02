@@ -264,7 +264,9 @@ h6,
   color: var(--ath-text);
   font-family: 'Fraunces', Georgia, serif;
   font-weight: 700;
-  letter-spacing: 0;
+  /* Match the reading-narrative headings' modern display-serif tracking so the
+     section title and the in-body headings read as one type system. */
+  letter-spacing: -0.015em;
 }
 
 [data-theme="dark"] .editorial-title {

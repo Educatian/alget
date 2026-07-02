@@ -280,7 +280,7 @@ function ReadingPane({
                             {meta?.title || 'Section Title'}
                         </h1>
                         {meta?.description && (
-                            <p className="mt-3 max-w-4xl text-base italic leading-7 text-[var(--ath-muted)] sm:mt-4 sm:text-lg sm:leading-8">
+                            <p className="mt-3 max-w-3xl text-base italic leading-7 text-[var(--ath-muted)] sm:mt-4 sm:text-lg sm:leading-8">
                                 {meta.description}
                             </p>
                         )}
