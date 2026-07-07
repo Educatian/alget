@@ -150,7 +150,7 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                                 </button>
                             )}
                             <button
-                                onClick={() => navigate(user ? '/analytics' : '/')}
+                                onClick={() => navigate('/analytics')}
                                 className="editorial-button-secondary px-7 py-4 text-base"
                             >
                                 Explore researcher view
