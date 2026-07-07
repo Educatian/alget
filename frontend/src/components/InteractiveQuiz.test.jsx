@@ -47,6 +47,8 @@ describe('InteractiveQuiz radiogroup interaction', () => {
 
     afterEach(() => {
         cleanup()
+        window.localStorage.clear()
+        window.sessionStorage.clear()
         vi.clearAllMocks()
         vi.restoreAllMocks()
     })
@@ -84,18 +86,37 @@ describe('InteractiveQuiz radiogroup interaction', () => {
         )
     })
 
-    it('grades a correct answer, records the signal and updates mastery', () => {
+    it('keeps the verdict hidden until a confidence level is tapped', () => {
         renderQuiz()
 
         fireEvent.click(screen.getByRole('radio', { name: OPTIONS[1].text }))
-        fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }))
+
+        // Picking an answer alone must not grade - the confidence tap submits.
+        expect(screen.queryByRole('status')).not.toBeInTheDocument()
+        expect(logProblemAttempt).not.toHaveBeenCalled()
+        expect(screen.getByRole('button', { name: /Fairly sure - submit answer/i })).toBeEnabled()
+    })
+
+    it('disables the confidence buttons until an answer is selected', () => {
+        renderQuiz()
+
+        expect(screen.getByRole('button', { name: /Certain - submit answer/i })).toBeDisabled()
+        fireEvent.click(screen.getByRole('radio', { name: OPTIONS[1].text }))
+        expect(screen.getByRole('button', { name: /Certain - submit answer/i })).toBeEnabled()
+    })
+
+    it('grades a correct answer on confidence tap, records the signal and updates mastery', () => {
+        renderQuiz()
+
+        fireEvent.click(screen.getByRole('radio', { name: OPTIONS[1].text }))
+        fireEvent.click(screen.getByRole('button', { name: /Fairly sure - submit answer/i }))
 
         // The polite status region announces the correct verdict.
         expect(screen.getByRole('status')).toHaveTextContent(/Correct!/i)
         expect(recordAdaptiveSignal).toHaveBeenCalledWith(
             'ail606-supplement/01/01',
             'inline_quiz_correct',
-            expect.objectContaining({ conceptId: 'cognitive_load' }),
+            expect.objectContaining({ conceptId: 'cognitive_load', confidence: 0.75 }),
         )
         expect(logProblemAttempt).toHaveBeenCalledWith(
             expect.stringMatching(/^inline_quiz:cognitive_load:/),
@@ -106,8 +127,15 @@ describe('InteractiveQuiz radiogroup interaction', () => {
             expect.objectContaining({
                 source: 'inline_quiz',
                 concept_id: 'cognitive_load',
+                confidence: 0.75,
                 selected_option_index: 1,
             }),
+        )
+        expect(logEvent).toHaveBeenCalledWith(
+            'confidence_report',
+            expect.stringMatching(/^inline_quiz:cognitive_load:/),
+            expect.objectContaining({ source: 'inline_quiz', value: 0.75, is_correct: true }),
+            'ail606-supplement/01/01',
         )
         expect(updateMastery).toHaveBeenCalledWith(
             { cognitive_load: 1.0 },
@@ -120,20 +148,21 @@ describe('InteractiveQuiz radiogroup interaction', () => {
         renderQuiz()
 
         fireEvent.click(screen.getByRole('radio', { name: OPTIONS[0].text }))
-        fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }))
+        fireEvent.click(screen.getByRole('button', { name: /Just guessing - submit answer/i }))
 
         expect(screen.getByRole('status')).toHaveTextContent(/Not Quite Right/i)
         expect(recordAdaptiveSignal).toHaveBeenCalledWith(
             'ail606-supplement/01/01',
             'inline_quiz_incorrect',
-            expect.objectContaining({ conceptId: 'cognitive_load' }),
+            expect.objectContaining({ conceptId: 'cognitive_load', confidence: 0.25 }),
         )
 
         fireEvent.click(screen.getByRole('button', { name: /Try Again/i }))
-        // After retry the radios are interactive again and unchecked.
+        // After retry the radios are interactive again and unchecked, and the
+        // confidence buttons re-lock until a fresh answer is chosen.
         const radios = screen.getAllByRole('radio')
         radios.forEach((radio) => expect(radio).toHaveAttribute('aria-checked', 'false'))
-        expect(screen.getByRole('button', { name: /Check Answer/i })).toBeDisabled()
+        expect(screen.getByRole('button', { name: /Just guessing - submit answer/i })).toBeDisabled()
     })
 
     it('renders an error panel when the options JSON cannot be parsed', () => {

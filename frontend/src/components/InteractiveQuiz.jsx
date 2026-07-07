@@ -2,18 +2,17 @@ import React, { useEffect, useId, useRef, useState } from 'react';
 import { Check, X, Lightbulb } from 'lucide-react';
 import { recordAdaptiveSignal, updateMastery } from '../lib/knowledgeService';
 import { logEvent, logProblemAttempt } from '../lib/loggingService';
+import { recordCalibrationSample, takeCalibrationNudge } from '../lib/calibration';
 import { useReducedMotion, motionClasses } from '../lib/motion';
 import QuizOption from './QuizOption';
+import ConfidencePrompt, { CalibrationNudge } from './ConfidencePrompt';
 
-// Confidence levels offered before grading. The learner taps one to register
-// how sure they are; this is folded into the adaptive signal so the engine can
+// Confidence elicitation (JOL): the learner picks an answer, then commits by
+// tapping a one-tap confidence level - the confidence buttons ARE the submit.
+// The judgment is folded into the adaptive signal so the engine can
 // distinguish a confident-correct answer from a lucky guess (and a confident
-// wrong answer, the classic misconception flag).
-const CONFIDENCE_LEVELS = [
-    { value: 'low', label: 'Not sure' },
-    { value: 'medium', label: 'Fairly sure' },
-    { value: 'high', label: 'Confident' },
-];
+// wrong answer, the classic misconception flag), and it feeds the client-side
+// calibration record (see lib/calibration.js).
 
 const nowMs = () => performance.now();
 
@@ -36,7 +35,7 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [feedbackSaved, setFeedbackSaved] = useState(false);
     const [hintShown, setHintShown] = useState(false);
-    const [confidence, setConfidence] = useState(null);
+    const [nudge, setNudge] = useState(null);
 
     useEffect(() => {
         attemptStartedAtRef.current = nowMs();
@@ -103,8 +102,9 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
         }
     };
 
-    const handleSubmit = () => {
-        if (selectedOption === null) return;
+    // Tapping a confidence level IS the submit (JOL before feedback).
+    const handleSubmit = (confidenceValue) => {
+        if (selectedOption === null || isSubmitted) return;
         setIsSubmitted(true);
 
         const resolvedConceptId = conceptId || defaultConceptId || null;
@@ -115,19 +115,38 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
         logProblemAttempt(problemId, wasCorrect, timeSpentMs, hintShown, sectionId, {
             source: 'inline_quiz',
             concept_id: resolvedConceptId,
-            confidence,
+            confidence: confidenceValue,
             selected_option_index: selectedOption,
             option_count: parsedOptions.length,
             question_length: String(question || '').length,
         });
+        logEvent('confidence_report', problemId, {
+            source: 'inline_quiz',
+            concept_id: resolvedConceptId,
+            value: confidenceValue,
+            is_correct: wasCorrect,
+        }, sectionId);
 
         if (sectionId) {
             recordAdaptiveSignal(sectionId, wasCorrect ? 'inline_quiz_correct' : 'inline_quiz_incorrect', {
                 conceptId: resolvedConceptId,
                 question,
-                confidence,
+                confidence: confidenceValue,
                 hintUsed: hintShown,
             });
+        }
+
+        recordCalibrationSample(sectionId, confidenceValue, wasCorrect);
+        const calibrationNudge = takeCalibrationNudge(sectionId);
+        if (calibrationNudge) {
+            setNudge(calibrationNudge);
+            logEvent('calibration_nudge', problemId, {
+                source: 'inline_quiz',
+                direction: calibrationNudge.direction,
+                confidence_pct: calibrationNudge.confidencePct,
+                accuracy_pct: calibrationNudge.accuracyPct,
+                sample_count: calibrationNudge.sampleCount,
+            }, sectionId);
         }
 
         if (resolvedConceptId) {
@@ -144,7 +163,7 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
         setIsSubmitted(false);
         setFeedbackSaved(false);
         setHintShown(false);
-        setConfidence(null);
+        setNudge(null);
         attemptStartedAtRef.current = nowMs();
         logEvent('quiz_retry', stableQuestionId(question, conceptId || defaultConceptId || null), {
             source: 'inline_quiz',
@@ -159,18 +178,6 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
             logEvent('hint_request', stableQuestionId(question, conceptId || defaultConceptId || null), {
                 source: 'inline_quiz',
                 concept_id: conceptId || defaultConceptId || null,
-            }, sectionId);
-        }
-    };
-
-    const handleConfidenceChange = (value) => {
-        const nextConfidence = confidence === value ? null : value;
-        setConfidence(nextConfidence);
-        if (nextConfidence) {
-            logEvent('confidence_report', stableQuestionId(question, conceptId || defaultConceptId || null), {
-                source: 'inline_quiz',
-                concept_id: conceptId || defaultConceptId || null,
-                value: nextConfidence,
             }, sectionId);
         }
     };
@@ -247,45 +254,15 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
                     })}
                 </div>
 
-                {!isSubmitted && (
-                    <fieldset className="mb-6 rounded-lg border border-[var(--ath-line)] bg-[var(--ath-panel-muted)] px-4 py-3">
-                        <legend className="px-1 text-xs font-semibold uppercase tracking-wide text-[var(--ath-secondary)]">
-                            How confident are you?
-                        </legend>
-                        <div className="mt-2 flex flex-wrap gap-2" role="group" aria-label="Confidence level">
-                            {CONFIDENCE_LEVELS.map((level) => {
-                                const active = confidence === level.value;
-                                return (
-                                    <button
-                                        key={level.value}
-                                        type="button"
-                                        aria-pressed={active}
-                                        onClick={() => handleConfidenceChange(level.value)}
-                                        className={`rounded-full border px-3 py-1 text-xs font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)] ${motionClasses(['transition'], reducedMotion)} ${
-                                            active
-                                                ? 'border-[var(--ath-primary)] bg-[var(--ath-primary)] text-[var(--ath-background)]'
-                                                : 'border-[var(--ath-line-strong)] bg-[var(--ath-surface-strong)] text-[var(--ath-muted)] hover:border-[var(--ath-primary)] hover:bg-[var(--ath-panel)]'
-                                        }`}
-                                    >
-                                        {level.label}
-                                    </button>
-                                );
-                            })}
-                        </div>
-                    </fieldset>
-                )}
-
                 {!isSubmitted ? (
-                    <button
-                        onClick={handleSubmit}
+                    <ConfidencePrompt
+                        promptId={`${baseId}-confidence`}
                         disabled={selectedOption === null}
-                        className={`w-full rounded-lg py-3 font-bold ${motionClasses(['transition'], reducedMotion)}
-                            ${selectedOption !== null
-                                ? 'bg-[var(--ath-primary)] text-[var(--ath-background)] shadow-md hover:bg-[var(--ath-primary-deep)] hover:shadow-lg'
-                                : 'cursor-not-allowed bg-[var(--ath-panel-muted)] text-[var(--ath-muted)]'}`}
-                    >
-                        Check Answer
-                    </button>
+                        prompt={selectedOption === null
+                            ? 'Pick an answer, then tap how sure you are to submit.'
+                            : 'How sure are you? Tapping a level submits your answer.'}
+                        onSelect={(value) => handleSubmit(value)}
+                    />
                 ) : (
                     <div
                         role="status"
@@ -313,6 +290,7 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
                                 </p>
                             </div>
                         </div>
+                        <CalibrationNudge nudge={nudge} />
                         {feedbackSaved && (
                             <p className="text-xs font-medium text-[var(--ath-secondary)]">
                                 This response has been folded into your learner model.
