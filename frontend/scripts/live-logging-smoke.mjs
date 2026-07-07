@@ -202,7 +202,8 @@ async function exerciseLearnerFlow(page, appUrl, cohort) {
   }
 
   await page.getByRole('radio', { name: /It asks you to name a decision/i }).click({ timeout: 20_000 })
-  await page.getByRole('button', { name: /Check Answer/i }).click({ timeout: 20_000 })
+  // JOL flow: the confidence tap IS the submit (no separate Check Answer button).
+  await page.getByRole('button', { name: /Fairly sure - submit answer/i }).click({ timeout: 20_000 })
   await expect(page.getByRole('status').filter({ hasText: /Correct|Not Quite/i })).toBeVisible({ timeout: 20_000 })
 
   await page.getByRole('button', { name: /Open the AI help panel/i }).click()

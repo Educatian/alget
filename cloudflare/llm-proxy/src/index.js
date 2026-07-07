@@ -400,11 +400,23 @@ export default {
       }
 
       // --- BigAL chat ---
+      // Pedagogical guardrail policy (tutor chat ONLY; the rail/assessment
+      // routes above and below are untouched). Evidence: scaffold-not-answer
+      // prompt design outperforms unguided AI help (Kestin et al. 2025, Sci
+      // Reports RCT) and guardrailed tutoring beats free-form GPT-4
+      // (Chowdhury et al. 2024, L@S).
       if (path === '/orchestrate') {
         if (!key) return json({ intent: 'legacy', text: noKeyMsg })
         const ctx = body.current_content ? `\n\nSection context (excerpt):\n${String(body.current_content).slice(0, 2000)}` : ''
+        const pedagogyPolicy = `
+
+Tutoring pedagogy policy — follow it on every turn:
+(a) Diagnose first: before helping, briefly infer from the learner's message (and the recent conversation) what they most likely misunderstand or are missing, and name it in one sentence.
+(b) Hint ladder: respond with the smallest useful step — first a guiding question, then a conceptual cue, then a worked micro-step (one step, not the whole solution). Escalate one rung at a time, and only when the learner is still stuck after trying.
+(c) Never state the complete final answer to a practice or quiz problem the learner is currently working on. Guide them to produce it themselves; you may confirm or correct the steps of their own attempt.
+(d) End every turn with one short check question that tests whether the learner can take the next step on their own.`
         const messages = [
-          { role: 'system', content: `You are BigAL, a friendly, rigorous tutor embedded in an interactive textbook (course: ${body.course || 'general'}). Answer the learner's question clearly and concisely, grounded in the section context when relevant. Use Markdown. If the learner highlighted a passage, explain it.${ctx}` },
+          { role: 'system', content: `You are BigAL, a friendly, rigorous tutor embedded in an interactive textbook (course: ${body.course || 'general'}). Answer the learner's question clearly and concisely, grounded in the section context when relevant. Use Markdown. If the learner highlighted a passage, explain it.${pedagogyPolicy}${ctx}` },
           ...historyToMessages(body.history),
           { role: 'user', content: String(body.query || '') },
         ]

@@ -2,7 +2,9 @@ import { useId, useRef, useState } from 'react'
 import { Check, X } from 'lucide-react'
 import { logEvent } from '../lib/loggingService'
 import { recordAdaptiveSignal } from '../lib/knowledgeService'
+import { recordCalibrationSample, takeCalibrationNudge } from '../lib/calibration'
 import { useReducedMotion, motionClasses } from '../lib/motion'
+import ConfidencePrompt, { CalibrationNudge } from './ConfidencePrompt'
 
 /**
  * InlineCheck - zyBooks-style embedded comprehension check.
@@ -14,10 +16,16 @@ import { useReducedMotion, motionClasses } from '../lib/motion'
  * attempt outcome to the adaptive signal store so the engine sees the
  * learner's running comprehension, not just end-of-section practice.
  *
+ * JOL elicitation: picking an option no longer grades it directly. The learner
+ * commits by tapping a one-tap confidence level (the confidence buttons ARE
+ * the submit), then correctness is revealed as before. Each judgment feeds
+ * the client-side calibration record, which may surface one gentle
+ * judgment-vs-performance nudge per section per session.
+ *
  * Accessibility: the options form an ARIA radiogroup with roving tabindex and
- * arrow-key navigation; selection grades immediately and the verdict is
- * announced through a polite live region. Correctness is conveyed with an icon
- * and text label, never color alone.
+ * arrow-key navigation; the verdict is announced through a polite live
+ * region. Correctness is conveyed with an icon and text label, never color
+ * alone.
  */
 export default function InlineCheck({
     question,
@@ -31,27 +39,53 @@ export default function InlineCheck({
     const parsedOptions = typeof options === 'string' ? safeParse(options) : options || []
     const [selectedIndex, setSelectedIndex] = useState(null)
     const [revealed, setRevealed] = useState(false)
+    const [nudge, setNudge] = useState(null)
     const optionRefs = useRef([])
 
     const optionIsCorrect = (option) => Boolean(option?.correct || option?.isCorrect)
 
-    const grade = (index) => {
+    const selectOption = (index) => {
         if (revealed) return
         setSelectedIndex(index)
+    }
+
+    // Tapping a confidence level IS the submit: grade the currently selected
+    // option, log the judgment alongside the outcome, and update calibration.
+    const grade = (confidenceValue) => {
+        if (revealed || selectedIndex === null) return
         setRevealed(true)
-        const option = parsedOptions[index] || {}
+        const option = parsedOptions[selectedIndex] || {}
         const isCorrect = optionIsCorrect(option)
         logEvent(
             'inline_check_attempt',
             sectionId,
-            { is_correct: isCorrect, option_index: index, concept_id: conceptId },
+            { is_correct: isCorrect, option_index: selectedIndex, concept_id: conceptId, confidence: confidenceValue },
             sectionId
         )
+        logEvent('confidence_report', sectionId, {
+            source: 'inline_check',
+            concept_id: conceptId,
+            value: confidenceValue,
+            is_correct: isCorrect,
+        }, sectionId)
         if (conceptId) {
             recordAdaptiveSignal(sectionId, isCorrect ? 'inline_check_correct' : 'inline_check_incorrect', {
                 conceptId,
-                optionIndex: index,
+                optionIndex: selectedIndex,
+                confidence: confidenceValue,
             })
+        }
+        recordCalibrationSample(sectionId, confidenceValue, isCorrect)
+        const calibrationNudge = takeCalibrationNudge(sectionId)
+        if (calibrationNudge) {
+            setNudge(calibrationNudge)
+            logEvent('calibration_nudge', sectionId, {
+                source: 'inline_check',
+                direction: calibrationNudge.direction,
+                confidence_pct: calibrationNudge.confidencePct,
+                accuracy_pct: calibrationNudge.accuracyPct,
+                sample_count: calibrationNudge.sampleCount,
+            }, sectionId)
         }
     }
 
@@ -67,7 +101,7 @@ export default function InlineCheck({
             nextIndex = ((selectedIndex ?? index) - 1 + total) % total
         } else if (event.key === ' ' || event.key === 'Enter') {
             event.preventDefault()
-            grade(index)
+            selectOption(index)
             return
         }
 
@@ -108,7 +142,9 @@ export default function InlineCheck({
                     const baseClass = 'flex items-start gap-2 rounded-xl border px-3 py-2 text-left text-sm leading-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)]'
                     const motion = motionClasses(['transition', revealed ? '' : 'lift', revealed ? '' : 'press'], reducedMotion)
                     const stateClass = !revealed
-                        ? 'border-[var(--ath-line)] bg-white hover:border-[var(--ath-primary)] hover:bg-[var(--ath-panel)] hover:shadow-sm'
+                        ? (isSelected
+                            ? 'border-[var(--ath-primary)] bg-[var(--ath-panel)] shadow-sm'
+                            : 'border-[var(--ath-line)] bg-white hover:border-[var(--ath-primary)] hover:bg-[var(--ath-panel)] hover:shadow-sm')
                         : showSelectedState && isCorrect
                             ? 'border-emerald-300 bg-emerald-50 text-emerald-900'
                             : showSelectedState && !isCorrect
@@ -132,7 +168,7 @@ export default function InlineCheck({
                             role="radio"
                             aria-checked={isSelected}
                             tabIndex={revealed ? -1 : (isFocusable ? 0 : -1)}
-                            onClick={() => grade(index)}
+                            onClick={() => selectOption(index)}
                             onKeyDown={(event) => handleKeyDown(event, index)}
                             className={`${baseClass} ${motion} ${stateClass}`}
                             disabled={revealed}
@@ -152,6 +188,11 @@ export default function InlineCheck({
                     )
                 })}
             </div>
+            {!revealed && selectedIndex !== null && (
+                <div className={`mt-3 ${motionClasses(['fadeIn'], reducedMotion)}`}>
+                    <ConfidencePrompt promptId={`${baseId}-confidence`} onSelect={(value) => grade(value)} />
+                </div>
+            )}
             {revealed && (
                 <div
                     id={feedbackId}
@@ -177,6 +218,7 @@ export default function InlineCheck({
                     </span>
                 </div>
             )}
+            {revealed && <CalibrationNudge nudge={nudge} />}
         </div>
     )
 }
