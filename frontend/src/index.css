@@ -169,6 +169,10 @@ body {
   font-family: 'IBM Plex Sans', 'Inter', system-ui, sans-serif;
   letter-spacing: 0;
   text-rendering: optimizeLegibility;
+  /* Assert kerning/ligatures and Fraunces' opsz axis explicitly rather than
+     relying on browser defaults, so display serif renders at optical size. */
+  font-feature-settings: 'kern', 'liga', 'calt';
+  font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -203,7 +207,9 @@ h6,
 .newsreader,
 .serif-text {
   font-family: 'Fraunces', Georgia, serif;
-  letter-spacing: 0;
+  /* Mild negative tracking tightens Fraunces display type at heading sizes;
+     the reading surface refines this further to -0.015em. */
+  letter-spacing: -0.01em;
 }
 
 #root {
@@ -244,7 +250,7 @@ h6,
 
 .editorial-kicker {
   font-family: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -267,6 +273,7 @@ h6,
   /* Match the reading-narrative headings' modern display-serif tracking so the
      section title and the in-body headings read as one type system. */
   letter-spacing: -0.015em;
+  text-wrap: balance;
 }
 
 [data-theme="dark"] .editorial-title {
@@ -728,12 +735,20 @@ h6,
 
 .prose {
   color: var(--ath-text);
+  /* Cap the secondary markdown surface at the same reading measure as
+     .reading-narrative; without this, tutor/markdown prose runs the full
+     container width. */
+  max-width: min(var(--reading-width, 72ch), 100%);
+  overflow-wrap: break-word;
 }
 
 .prose p,
 .prose li {
   color: var(--ath-text);
-  line-height: 1.95;
+  /* Align with the tuned reading-narrative rhythm (1.78) instead of the
+     looser 1.95 so both prose surfaces read as one system. */
+  line-height: 1.75;
+  text-wrap: pretty;
 }
 
 .prose h1,
@@ -742,6 +757,27 @@ h6,
 .prose h4 {
   color: var(--ath-text);
   font-family: 'Fraunces', Georgia, serif;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+/* Explicit size ramp: .prose headings previously inherited default sizing,
+   leaving the secondary markdown surface with flat hierarchy. */
+.prose h1 {
+  font-size: var(--ath-text-2xl);
+}
+
+.prose h2 {
+  font-size: var(--ath-text-xl);
+}
+
+.prose h3 {
+  font-size: 1.25rem; /* between --ath-text-lg and -xl; lg equals body size */
+}
+
+.prose h4 {
+  font-size: var(--ath-text-lg);
 }
 
 .prose a {
@@ -840,6 +876,9 @@ h6,
   font-family: var(--reading-font-family, 'IBM Plex Sans', 'Inter', 'Segoe UI', sans-serif);
   letter-spacing: var(--reading-letter-spacing, 0em);
   word-spacing: var(--reading-word-spacing, 0em);
+  /* Long unbroken tokens (URLs, identifiers) must wrap inside the narrow
+     60-72ch column instead of overflowing it on small screens. */
+  overflow-wrap: break-word;
 }
 
 .reading-narrative .markdown-content-wrapper {
@@ -916,6 +955,7 @@ h6,
   font-weight: 650;
   line-height: 1.12;
   letter-spacing: -0.015em;
+  text-wrap: balance;
   scroll-margin-top: 8rem;
 }
 
@@ -951,6 +991,8 @@ h6,
   color: var(--ath-text);
   font-size: calc(1.125rem * var(--reading-font-scale, 1));
   line-height: var(--reading-line-height, 1.78);
+  /* Avoid single-word last lines in long-form reading. */
+  text-wrap: pretty;
 }
 
 .reading-narrative ul,
