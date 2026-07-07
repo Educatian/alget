@@ -48,6 +48,7 @@ function seedCalibration(samples) {
             sectionId: SECTION,
             confidence,
             correct: correct ? 1 : 0,
+            optionCount: 2,
         }))),
     )
 }
@@ -82,30 +83,62 @@ describe('InlineCheck confidence-first flow', () => {
         renderCheck()
 
         fireEvent.click(screen.getByRole('radio', { name: /Option A/i }))
+        // Two options -> chance-anchored scale 0.5/0.65/0.8/0.95; Fairly sure = 0.8.
         fireEvent.click(screen.getByRole('button', { name: /Fairly sure - submit answer/i }))
 
         expect(screen.getByRole('status')).toHaveTextContent(/Correct/i)
         expect(logEvent).toHaveBeenCalledWith(
             'inline_check_attempt',
             SECTION,
-            expect.objectContaining({ is_correct: true, option_index: 0, confidence: 0.75 }),
+            expect.objectContaining({ is_correct: true, option_index: 0, confidence: 0.8 }),
             SECTION,
         )
         expect(logEvent).toHaveBeenCalledWith(
             'confidence_report',
             SECTION,
-            expect.objectContaining({ source: 'inline_check', value: 0.75, is_correct: true }),
+            expect.objectContaining({ source: 'inline_check', value: 0.8, is_correct: true }),
             SECTION,
         )
         expect(recordAdaptiveSignal).toHaveBeenCalledWith(
             SECTION,
             'inline_check_correct',
-            expect.objectContaining({ conceptId: 'normal_stress', confidence: 0.75 }),
+            expect.objectContaining({ conceptId: 'normal_stress', confidence: 0.8 }),
         )
         // The judgment is persisted to the rolling calibration record.
         const stored = JSON.parse(window.localStorage.getItem(CALIBRATION_STORAGE_KEY))
         expect(stored).toHaveLength(1)
-        expect(stored[0]).toMatchObject({ confidence: 0.75, correct: 1 })
+        expect(stored[0]).toMatchObject({ confidence: 0.8, correct: 1, optionCount: 2 })
+    })
+
+    it('echoes the tapped judgment in the reveal without a miss tag when correct', () => {
+        renderCheck()
+
+        fireEvent.click(screen.getByRole('radio', { name: /Option A/i }))
+        fireEvent.click(screen.getByRole('button', { name: /Fairly sure - submit answer/i }))
+
+        expect(screen.getByText(/You said: Fairly sure/i)).toBeInTheDocument()
+        expect(screen.queryByText(/High-confidence miss/i)).not.toBeInTheDocument()
+    })
+
+    it('tags a wrong high-confidence answer as a high-confidence miss', () => {
+        renderCheck()
+
+        fireEvent.click(screen.getByRole('radio', { name: /Option B/i }))
+        fireEvent.click(screen.getByRole('button', { name: /Certain - submit answer/i }))
+
+        expect(screen.getByText(/You said: Certain/i)).toBeInTheDocument()
+        expect(screen.getByText(/High-confidence miss — worth re-reading this passage/i)).toBeInTheDocument()
+    })
+
+    it('does not tag a wrong low-confidence answer', () => {
+        renderCheck()
+
+        fireEvent.click(screen.getByRole('radio', { name: /Option B/i }))
+        // 0.5 on the two-option scale is below the 0.7 high-confidence line.
+        fireEvent.click(screen.getByRole('button', { name: /Just guessing - submit answer/i }))
+
+        expect(screen.getByText(/You said: Just guessing/i)).toBeInTheDocument()
+        expect(screen.queryByText(/High-confidence miss/i)).not.toBeInTheDocument()
     })
 
     it('supports keyboard selection (Enter picks, confidence still gates the reveal)', () => {
@@ -120,21 +153,27 @@ describe('InlineCheck confidence-first flow', () => {
         expect(screen.getByRole('button', { name: /Certain - submit answer/i })).toBeInTheDocument()
     })
 
-    it('shows one overconfidence nudge after >=6 records with a >=0.25 gap, then never again this session', () => {
-        // Five prior overconfident-but-wrong judgments in this course.
-        seedCalibration(Array.from({ length: 5 }, () => [1, false]))
+    it('shows one overconfidence nudge after >=10 records with a >=0.25 gap, then never again this session', () => {
+        // Nine prior high-confidence-but-wrong judgments in this course.
+        seedCalibration(Array.from({ length: 9 }, () => [0.95, false]))
 
         renderCheck()
         fireEvent.click(screen.getByRole('radio', { name: /Option B/i }))
         fireEvent.click(screen.getByRole('button', { name: /Certain - submit answer/i }))
 
-        // 6 records: mean confidence 1.0, mean accuracy 0 -> overconfident.
+        // 10 records: mean confidence 0.95, mean accuracy 0 -> overconfident.
+        // Copy cites window counts, never percentages, and this is the very
+        // first nudge ever, so the normalizing sentence is appended.
         const note = screen.getByRole('note', { name: /Calibration check/i })
-        expect(note).toHaveTextContent(/confidence \(100%\) is running ahead of your accuracy \(0%\)/i)
+        expect(note).toHaveTextContent(
+            /on your last 10 checks you tapped 'Fairly sure' or 'Certain' on 10 — 10 of those were wrong/i,
+        )
+        expect(note).toHaveTextContent(/noticing the gap is itself a skill/i)
+        expect(note).not.toHaveTextContent(/%/)
         expect(logEvent).toHaveBeenCalledWith(
             'calibration_nudge',
             SECTION,
-            expect.objectContaining({ direction: 'overconfident', confidence_pct: 100, accuracy_pct: 0 }),
+            expect.objectContaining({ direction: 'overconfident', confidence_pct: 95, accuracy_pct: 0 }),
             SECTION,
         )
 
@@ -146,8 +185,8 @@ describe('InlineCheck confidence-first flow', () => {
         expect(screen.queryByRole('note', { name: /Calibration check/i })).not.toBeInTheDocument()
     })
 
-    it('stays quiet with fewer than 6 records', () => {
-        seedCalibration(Array.from({ length: 3 }, () => [1, false]))
+    it('stays quiet with fewer than 10 records', () => {
+        seedCalibration(Array.from({ length: 8 }, () => [0.95, false]))
 
         renderCheck()
         fireEvent.click(screen.getByRole('radio', { name: /Option B/i }))

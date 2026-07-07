@@ -5,7 +5,7 @@ import { logEvent, logProblemAttempt } from '../lib/loggingService';
 import { recordCalibrationSample, takeCalibrationNudge } from '../lib/calibration';
 import { useReducedMotion, motionClasses } from '../lib/motion';
 import QuizOption from './QuizOption';
-import ConfidencePrompt, { CalibrationNudge } from './ConfidencePrompt';
+import ConfidencePrompt, { CalibrationNudge, ConfidenceReveal } from './ConfidencePrompt';
 
 // Confidence elicitation (JOL): the learner picks an answer, then commits by
 // tapping a one-tap confidence level - the confidence buttons ARE the submit.
@@ -36,6 +36,8 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
     const [feedbackSaved, setFeedbackSaved] = useState(false);
     const [hintShown, setHintShown] = useState(false);
     const [nudge, setNudge] = useState(null);
+    // The tapped JOL, kept so the reveal can echo it next to the verdict.
+    const [judgment, setJudgment] = useState(null);
 
     useEffect(() => {
         attemptStartedAtRef.current = nowMs();
@@ -103,9 +105,10 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
     };
 
     // Tapping a confidence level IS the submit (JOL before feedback).
-    const handleSubmit = (confidenceValue) => {
+    const handleSubmit = (confidenceValue, confidenceLabel) => {
         if (selectedOption === null || isSubmitted) return;
         setIsSubmitted(true);
+        setJudgment({ value: confidenceValue, label: confidenceLabel });
 
         const resolvedConceptId = conceptId || defaultConceptId || null;
         const wasCorrect = Boolean(parsedOptions[selectedOption]?.isCorrect);
@@ -136,7 +139,7 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
             });
         }
 
-        recordCalibrationSample(sectionId, confidenceValue, wasCorrect);
+        recordCalibrationSample(sectionId, confidenceValue, wasCorrect, parsedOptions.length);
         const calibrationNudge = takeCalibrationNudge(sectionId);
         if (calibrationNudge) {
             setNudge(calibrationNudge);
@@ -164,6 +167,7 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
         setFeedbackSaved(false);
         setHintShown(false);
         setNudge(null);
+        setJudgment(null);
         attemptStartedAtRef.current = nowMs();
         logEvent('quiz_retry', stableQuestionId(question, conceptId || defaultConceptId || null), {
             source: 'inline_quiz',
@@ -257,11 +261,12 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
                 {!isSubmitted ? (
                     <ConfidencePrompt
                         promptId={`${baseId}-confidence`}
+                        optionCount={parsedOptions.length}
                         disabled={selectedOption === null}
                         prompt={selectedOption === null
                             ? 'Pick an answer, then tap how sure you are to submit.'
                             : 'How sure are you? Tapping a level submits your answer.'}
-                        onSelect={(value) => handleSubmit(value)}
+                        onSelect={(value, label) => handleSubmit(value, label)}
                     />
                 ) : (
                     <div
@@ -288,6 +293,7 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
                                 <p className="text-sm text-[var(--ath-muted)]">
                                     {explanation}
                                 </p>
+                                <ConfidenceReveal label={judgment?.label} confidence={judgment?.value} correct={isCorrectChoice} />
                             </div>
                         </div>
                         <CalibrationNudge nudge={nudge} />

@@ -109,14 +109,18 @@ describe('InteractiveQuiz radiogroup interaction', () => {
         renderQuiz()
 
         fireEvent.click(screen.getByRole('radio', { name: OPTIONS[1].text }))
+        // Three options -> chance-anchored scale 0.33/0.54/0.74/0.95; Fairly sure = 0.74.
         fireEvent.click(screen.getByRole('button', { name: /Fairly sure - submit answer/i }))
 
         // The polite status region announces the correct verdict.
         expect(screen.getByRole('status')).toHaveTextContent(/Correct!/i)
+        // The reveal echoes the learner's judgment; no miss tag on a correct answer.
+        expect(screen.getByText(/You said: Fairly sure/i)).toBeInTheDocument()
+        expect(screen.queryByText(/High-confidence miss/i)).not.toBeInTheDocument()
         expect(recordAdaptiveSignal).toHaveBeenCalledWith(
             'ail606-supplement/01/01',
             'inline_quiz_correct',
-            expect.objectContaining({ conceptId: 'cognitive_load', confidence: 0.75 }),
+            expect.objectContaining({ conceptId: 'cognitive_load', confidence: 0.74 }),
         )
         expect(logProblemAttempt).toHaveBeenCalledWith(
             expect.stringMatching(/^inline_quiz:cognitive_load:/),
@@ -127,14 +131,14 @@ describe('InteractiveQuiz radiogroup interaction', () => {
             expect.objectContaining({
                 source: 'inline_quiz',
                 concept_id: 'cognitive_load',
-                confidence: 0.75,
+                confidence: 0.74,
                 selected_option_index: 1,
             }),
         )
         expect(logEvent).toHaveBeenCalledWith(
             'confidence_report',
             expect.stringMatching(/^inline_quiz:cognitive_load:/),
-            expect.objectContaining({ source: 'inline_quiz', value: 0.75, is_correct: true }),
+            expect.objectContaining({ source: 'inline_quiz', value: 0.74, is_correct: true }),
             'ail606-supplement/01/01',
         )
         expect(updateMastery).toHaveBeenCalledWith(
@@ -154,8 +158,11 @@ describe('InteractiveQuiz radiogroup interaction', () => {
         expect(recordAdaptiveSignal).toHaveBeenCalledWith(
             'ail606-supplement/01/01',
             'inline_quiz_incorrect',
-            expect.objectContaining({ conceptId: 'cognitive_load', confidence: 0.25 }),
+            expect.objectContaining({ conceptId: 'cognitive_load', confidence: 0.33 }),
         )
+        // Low-confidence miss: judgment is echoed but not flagged.
+        expect(screen.getByText(/You said: Just guessing/i)).toBeInTheDocument()
+        expect(screen.queryByText(/High-confidence miss/i)).not.toBeInTheDocument()
 
         fireEvent.click(screen.getByRole('button', { name: /Try Again/i }))
         // After retry the radios are interactive again and unchecked, and the
@@ -163,6 +170,16 @@ describe('InteractiveQuiz radiogroup interaction', () => {
         const radios = screen.getAllByRole('radio')
         radios.forEach((radio) => expect(radio).toHaveAttribute('aria-checked', 'false'))
         expect(screen.getByRole('button', { name: /Just guessing - submit answer/i })).toBeDisabled()
+    })
+
+    it('tags a wrong high-confidence answer as a high-confidence miss', () => {
+        renderQuiz()
+
+        fireEvent.click(screen.getByRole('radio', { name: OPTIONS[0].text }))
+        fireEvent.click(screen.getByRole('button', { name: /Certain - submit answer/i }))
+
+        expect(screen.getByText(/You said: Certain/i)).toBeInTheDocument()
+        expect(screen.getByText(/High-confidence miss — worth re-reading this passage/i)).toBeInTheDocument()
     })
 
     it('renders an error panel when the options JSON cannot be parsed', () => {

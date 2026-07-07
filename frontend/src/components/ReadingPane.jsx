@@ -4,6 +4,7 @@ import { logInteraction } from '../lib/loggingService'
 import { EXIT_TICKET_MIN_CHARS, getExitTicketStorageKey, readExitTicket, writeExitTicket } from '../lib/exitTickets'
 import PeerPulse from './PeerPulse'
 import BlockErrorBoundary from './BlockErrorBoundary'
+import CalibrationPanel from './CalibrationPanel'
 
 // Embedded labs are lazy-loaded so their code (and the model-viewer runtime they
 // pull) stays out of the ReadingPane chunk that every one of the 256 sections
@@ -604,6 +605,7 @@ function ReadingPane({
                         className="mt-3 w-full resize-y rounded-xl border border-[var(--ath-line)] bg-white px-4 py-3 text-sm leading-6 text-[var(--ath-text)] shadow-inner outline-none transition-colors placeholder:text-[var(--ath-muted)] focus:border-[var(--ath-primary)] focus:ring-2 focus:ring-[rgba(15,81,103,0.16)]"
                     />
                 </div>
+                <CalibrationPanel sectionId={sectionId} />
             </section>
 
             <div className="mb-4 grid gap-3 border-t border-[var(--ath-line)] pt-6 md:grid-cols-2">

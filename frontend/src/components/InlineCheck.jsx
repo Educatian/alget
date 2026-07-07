@@ -4,7 +4,7 @@ import { logEvent } from '../lib/loggingService'
 import { recordAdaptiveSignal } from '../lib/knowledgeService'
 import { recordCalibrationSample, takeCalibrationNudge } from '../lib/calibration'
 import { useReducedMotion, motionClasses } from '../lib/motion'
-import ConfidencePrompt, { CalibrationNudge } from './ConfidencePrompt'
+import ConfidencePrompt, { CalibrationNudge, ConfidenceReveal } from './ConfidencePrompt'
 
 /**
  * InlineCheck - zyBooks-style embedded comprehension check.
@@ -40,6 +40,8 @@ export default function InlineCheck({
     const [selectedIndex, setSelectedIndex] = useState(null)
     const [revealed, setRevealed] = useState(false)
     const [nudge, setNudge] = useState(null)
+    // The tapped JOL, kept so the reveal can echo it next to the verdict.
+    const [judgment, setJudgment] = useState(null)
     const optionRefs = useRef([])
 
     const optionIsCorrect = (option) => Boolean(option?.correct || option?.isCorrect)
@@ -51,9 +53,10 @@ export default function InlineCheck({
 
     // Tapping a confidence level IS the submit: grade the currently selected
     // option, log the judgment alongside the outcome, and update calibration.
-    const grade = (confidenceValue) => {
+    const grade = (confidenceValue, confidenceLabel) => {
         if (revealed || selectedIndex === null) return
         setRevealed(true)
+        setJudgment({ value: confidenceValue, label: confidenceLabel })
         const option = parsedOptions[selectedIndex] || {}
         const isCorrect = optionIsCorrect(option)
         logEvent(
@@ -75,7 +78,7 @@ export default function InlineCheck({
                 confidence: confidenceValue,
             })
         }
-        recordCalibrationSample(sectionId, confidenceValue, isCorrect)
+        recordCalibrationSample(sectionId, confidenceValue, isCorrect, parsedOptions.length)
         const calibrationNudge = takeCalibrationNudge(sectionId)
         if (calibrationNudge) {
             setNudge(calibrationNudge)
@@ -190,7 +193,7 @@ export default function InlineCheck({
             </div>
             {!revealed && selectedIndex !== null && (
                 <div className={`mt-3 ${motionClasses(['fadeIn'], reducedMotion)}`}>
-                    <ConfidencePrompt promptId={`${baseId}-confidence`} onSelect={(value) => grade(value)} />
+                    <ConfidencePrompt promptId={`${baseId}-confidence`} optionCount={parsedOptions.length} onSelect={(value, label) => grade(value, label)} />
                 </div>
             )}
             {revealed && (
@@ -215,6 +218,7 @@ export default function InlineCheck({
                     <span>
                         <span className="font-semibold">{selectedCorrect ? 'Correct. ' : 'Not quite. '}</span>
                         {resolvedExplanation}
+                        <ConfidenceReveal label={judgment?.label} confidence={judgment?.value} correct={selectedCorrect} />
                     </span>
                 </div>
             )}
