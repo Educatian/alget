@@ -553,6 +553,52 @@ export const fuseTelemetry = async (conceptId, interactionType, intensity = 1.0)
     }
 };
 
+// --- Adaptive recommendation backoff -------------------------------------
+// The adaptive endpoint is called from reader-side effects (IntelRail,
+// ArtifactStudio), so when the worker is down (503) the old behavior was a
+// tight retry loop that spammed the console on every render/interaction.
+// Failures now open an exponential backoff window (1s -> 4s -> 15s); after
+// the ladder is exhausted the circuit opens for the rest of the session with
+// a single console.info. A later success closes everything again.
+const ADAPTIVE_BACKOFF_STEPS_MS = [1000, 4000, 15000];
+const adaptiveBackoffState = {
+    failureCount: 0,
+    notBefore: 0,
+    circuitOpen: false,
+    circuitAnnounced: false,
+};
+
+function adaptiveBackoffAllows(now = Date.now()) {
+    if (adaptiveBackoffState.circuitOpen) return false;
+    return now >= adaptiveBackoffState.notBefore;
+}
+
+function noteAdaptiveSuccess() {
+    adaptiveBackoffState.failureCount = 0;
+    adaptiveBackoffState.notBefore = 0;
+    adaptiveBackoffState.circuitOpen = false;
+    adaptiveBackoffState.circuitAnnounced = false;
+}
+
+function noteAdaptiveFailure(now = Date.now()) {
+    adaptiveBackoffState.failureCount += 1;
+    const stepIndex = adaptiveBackoffState.failureCount - 1;
+    if (stepIndex >= ADAPTIVE_BACKOFF_STEPS_MS.length) {
+        adaptiveBackoffState.circuitOpen = true;
+        if (!adaptiveBackoffState.circuitAnnounced) {
+            adaptiveBackoffState.circuitAnnounced = true;
+            console.info('[knowledgeService] Adaptive recommendations are unavailable; pausing further attempts for this session.');
+        }
+        return;
+    }
+    adaptiveBackoffState.notBefore = now + ADAPTIVE_BACKOFF_STEPS_MS[stepIndex];
+}
+
+/** Test hook: reset the module-level adaptive backoff state. */
+export function _resetAdaptiveBackoffForTests() {
+    noteAdaptiveSuccess();
+}
+
 export const getAdaptiveRecommendation = async ({
     sectionId,
     sectionTitle = '',
@@ -561,6 +607,9 @@ export const getAdaptiveRecommendation = async ({
     stuckReason = null,
     context = {}
 }) => {
+    // Backoff / circuit guard: skip the network entirely (and stay silent —
+    // no console spam) while a previous failure's cooldown is active.
+    if (!adaptiveBackoffAllows()) return null;
     try {
         let mastery = [];
         const { data: { session } } = await supabase.auth.getSession();
@@ -615,6 +664,7 @@ export const getAdaptiveRecommendation = async ({
         }
 
         const data = await response.json();
+        noteAdaptiveSuccess();
         const trace = startInterventionTrace({
             sectionId,
             sectionTitle,
@@ -630,7 +680,10 @@ export const getAdaptiveRecommendation = async ({
             client_trace_id: trace.trace_id
         };
     } catch (error) {
-        console.error('Error getting adaptive recommendation:', error);
+        noteAdaptiveFailure();
+        if (!adaptiveBackoffState.circuitOpen) {
+            console.warn('Error getting adaptive recommendation (will back off before retrying):', error);
+        }
         return null;
     }
 };

@@ -7,6 +7,7 @@ import {
     confidenceLevelsFor,
     getCalibrationNudge,
     getCalibrationSummary,
+    getLocalTroubleSpots,
     recordCalibrationSample,
     takeCalibrationNudge,
 } from './calibration'
@@ -237,5 +238,57 @@ describe('getCalibrationSummary (section-end debriefing table)', () => {
     it('excludes other courses', () => {
         seed(Array.from({ length: 12 }, () => [0.95, true]))
         expect(getCalibrationSummary(OTHER_COURSE_SECTION)).toBeNull()
+    })
+})
+
+describe('getLocalTroubleSpots (local-evidence dashboard fallback)', () => {
+    beforeEach(() => {
+        window.localStorage.clear()
+        window.sessionStorage.clear()
+    })
+
+    it('returns [] with no records', () => {
+        expect(getLocalTroubleSpots()).toEqual([])
+    })
+
+    it('ignores sections with fewer than the minimum attempts', () => {
+        seed([[0.95, false], [0.95, false]], SECTION)
+        expect(getLocalTroubleSpots()).toEqual([])
+    })
+
+    it('surfaces low-accuracy sections, lowest accuracy first, with counts', () => {
+        seed(Array.from({ length: 6 }, () => [0.95, false]), SECTION)
+        seed([[0.95, false], [0.95, true], [0.95, true], [0.95, false]], OTHER_SECTION_SAME_COURSE)
+        const spots = getLocalTroubleSpots({ course: 'inst-design' })
+        expect(spots.map((s) => s.sectionId)).toEqual([SECTION, OTHER_SECTION_SAME_COURSE])
+        expect(spots[0]).toMatchObject({ attempts: 6, correct: 0, accuracy: 0, course: 'inst-design' })
+        expect(spots[1]).toMatchObject({ attempts: 4, correct: 2, accuracy: 0.5 })
+    })
+
+    it('never labels a high-accuracy section a trouble spot', () => {
+        seed(Array.from({ length: 8 }, () => [0.95, true]), SECTION)
+        expect(getLocalTroubleSpots({ course: 'inst-design' })).toEqual([])
+    })
+
+    it('scopes to the requested course but includes all courses when unscoped', () => {
+        seed(Array.from({ length: 4 }, () => [0.95, false]), SECTION)
+        seed(Array.from({ length: 4 }, () => [0.95, false]), OTHER_COURSE_SECTION)
+        expect(getLocalTroubleSpots({ course: 'bio-inspired' }).map((s) => s.sectionId)).toEqual([OTHER_COURSE_SECTION])
+        expect(getLocalTroubleSpots().length).toBe(2)
+    })
+
+    it('caps the list at the limit', () => {
+        seed(Array.from({ length: 4 }, () => [0.95, false]), 'inst-design/01/01')
+        seed(Array.from({ length: 4 }, () => [0.95, false]), 'inst-design/01/02')
+        seed(Array.from({ length: 4 }, () => [0.95, false]), 'inst-design/01/03')
+        seed(Array.from({ length: 4 }, () => [0.95, false]), 'inst-design/01/04')
+        expect(getLocalTroubleSpots({ course: 'inst-design' }).length).toBe(3)
+    })
+
+    it('only counts the most recent window per section so old mistakes age out', () => {
+        // 10 old misses followed by 10 recent hits -> recent window is all hits.
+        seed(Array.from({ length: 10 }, () => [0.95, false]), SECTION)
+        seed(Array.from({ length: 10 }, () => [0.95, true]), SECTION)
+        expect(getLocalTroubleSpots({ course: 'inst-design' })).toEqual([])
     })
 })

@@ -103,7 +103,8 @@ export default function SelfExplain({
 
                 <fieldset className="mt-3" disabled={phase !== 'predict'}>
                     <legend className="text-xs font-semibold text-[var(--ath-secondary)]">
-                        How confident are you?
+                        How confident are you?{' '}
+                        <span className="font-normal text-[var(--ath-muted)]">(reflection only — doesn&apos;t affect your calibration profile)</span>
                     </legend>
                     <div role="radiogroup" aria-label="Confidence" className="mt-1 flex flex-wrap gap-2">
                         {CONFIDENCE_LEVELS.map((level) => {
@@ -195,10 +196,15 @@ export default function SelfExplain({
     )
 }
 
+// Wording follows the standard calibration scale family (lib/calibration.js
+// CONFIDENCE_LABELS: Just guessing / Not sure / Fairly sure / Certain) so the
+// three confidence UIs read as one voice. Deliberately 3 levels and string
+// values: this rating is a local reflection aid only and never feeds the
+// calibration store (recordCalibrationSample is not called here).
 const CONFIDENCE_LEVELS = [
     { value: 'low', label: 'Not sure' },
-    { value: 'medium', label: 'Somewhat sure' },
-    { value: 'high', label: 'Very sure' },
+    { value: 'medium', label: 'Fairly sure' },
+    { value: 'high', label: 'Certain' },
 ]
 
 const ASSESSMENT_OPTIONS = [

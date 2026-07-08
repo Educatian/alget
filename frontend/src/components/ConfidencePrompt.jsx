@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react'
 import { useReducedMotion, motionClasses } from '../lib/motion'
 import { confidenceLevelsFor, HIGH_CONFIDENCE_MIN } from '../lib/calibration'
+import { safeLocalStorageGet, safeLocalStorageSet } from '../lib/browserStorage'
 
 /**
  * ConfidencePrompt - one-tap judgment-of-learning (JOL) elicitation that IS
@@ -29,9 +31,32 @@ export const CONFIDENCE_LEVELS = [
     { value: 1, label: 'Certain' },
 ]
 
+// One-time framing caption: tells the learner these taps feed their
+// calibration profile (unlike e.g. the SelfExplain reflection rating).
+// Dismissal persists in localStorage so it truly shows once per browser.
+export const CONFIDENCE_CAPTION_DISMISSED_KEY = 'alget_confidence_caption_dismissed_v1'
+// Several prompts can be mounted on one page (inline checks + quiz items);
+// dismissing the caption anywhere hides it everywhere via this window event.
+const CAPTION_DISMISS_EVENT = 'alget:confidence-caption-dismissed'
+
 export default function ConfidencePrompt({ onSelect, disabled = false, promptId, optionCount = null, prompt = 'How sure are you? Tapping a level submits your answer.' }) {
     const reducedMotion = useReducedMotion()
     const levels = confidenceLevelsFor(optionCount)
+    const [captionDismissed, setCaptionDismissed] = useState(
+        () => safeLocalStorageGet(CONFIDENCE_CAPTION_DISMISSED_KEY) === 'true'
+    )
+
+    useEffect(() => {
+        const hide = () => setCaptionDismissed(true)
+        window.addEventListener(CAPTION_DISMISS_EVENT, hide)
+        return () => window.removeEventListener(CAPTION_DISMISS_EVENT, hide)
+    }, [])
+
+    const dismissCaption = () => {
+        setCaptionDismissed(true)
+        safeLocalStorageSet(CONFIDENCE_CAPTION_DISMISSED_KEY, 'true')
+        window.dispatchEvent(new Event(CAPTION_DISMISS_EVENT))
+    }
 
     return (
         <div className="rounded-xl border border-[var(--ath-line)] bg-[var(--ath-panel-muted)] px-4 py-3">
@@ -56,6 +81,19 @@ export default function ConfidencePrompt({ onSelect, disabled = false, promptId,
                     </button>
                 ))}
             </div>
+            {!captionDismissed && (
+                <p className="mt-2 flex items-center gap-2 text-[11px] text-[var(--ath-muted)]">
+                    <span>Counts toward your calibration profile.</span>
+                    <button
+                        type="button"
+                        onClick={dismissCaption}
+                        aria-label="Dismiss calibration note"
+                        className="font-semibold underline-offset-2 hover:text-[var(--ath-text)] hover:underline"
+                    >
+                        Got it
+                    </button>
+                </p>
+            )}
         </div>
     )
 }

@@ -265,3 +265,58 @@ export function getCalibrationSummary(sectionId) {
 export function getCalibrationRecordCount(sectionId) {
     return courseRecords(sectionId).length
 }
+
+// Trouble-spot defaults: a section needs at least MIN_TROUBLE_SPOT_ATTEMPTS
+// recent local attempts before its accuracy is trusted as a signal, only the
+// most recent TROUBLE_SPOT_WINDOW attempts per section count (so old mistakes
+// age out), and sections at or above TROUBLE_SPOT_ACCURACY_CEILING are never
+// labelled "trouble" (a 100%-accuracy section is not a trouble spot even if it
+// is the learner's "lowest").
+export const MIN_TROUBLE_SPOT_ATTEMPTS = 3
+const TROUBLE_SPOT_WINDOW = 10
+const TROUBLE_SPOT_ACCURACY_CEILING = 0.7
+
+/**
+ * Local-evidence trouble spots: group this browser's calibration records by
+ * sectionId (optionally scoped to one course), compute recent accuracy per
+ * section over the last TROUBLE_SPOT_WINDOW attempts, and return the sections
+ * with the LOWEST recent accuracy (at most `limit`, each backed by at least
+ * `minAttempts` attempts and below the accuracy ceiling).
+ *
+ * This is deliberately labelled local evidence in the UI: it reflects only
+ * what happened in this browser, not the synced learner model. It exists so
+ * the dashboard's weakest-concepts view cannot claim "all strong" while the
+ * calibration store holds fresh contrary evidence (offline/degraded mode).
+ */
+export function getLocalTroubleSpots({ course = null, minAttempts = MIN_TROUBLE_SPOT_ATTEMPTS, limit = 3 } = {}) {
+    const bySection = new Map()
+    readRecords().forEach((record) => {
+        const sectionId = record?.sectionId
+        if (!sectionId) return
+        if (course && courseOf(sectionId) !== course) return
+        const list = bySection.get(sectionId) || []
+        list.push(record)
+        bySection.set(sectionId, list)
+    })
+
+    const spots = []
+    bySection.forEach((list, sectionId) => {
+        const recent = list.slice(-TROUBLE_SPOT_WINDOW)
+        if (recent.length < minAttempts) return
+        const correct = recent.filter((record) => record.correct).length
+        const accuracy = correct / recent.length
+        if (accuracy >= TROUBLE_SPOT_ACCURACY_CEILING) return
+        spots.push({
+            sectionId,
+            course: courseOf(sectionId),
+            attempts: recent.length,
+            correct,
+            accuracy,
+            lastTs: recent[recent.length - 1]?.ts ?? null,
+        })
+    })
+
+    return spots
+        .sort((a, b) => (a.accuracy - b.accuracy) || (b.attempts - a.attempts) || (b.lastTs ?? 0) - (a.lastTs ?? 0))
+        .slice(0, limit)
+}
