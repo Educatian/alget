@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Minus, Plus, RotateCcw } from 'lucide-react'
 import { supabase } from '../lib/supabase'
-import { LLM_API_BASE } from '../lib/apiConfig'
+import API_BASE, { LLM_API_BASE } from '../lib/apiConfig'
 import { getLocalMasteryMap } from '../lib/knowledgeService'
 
 const VIEW_W = 540
@@ -127,6 +127,45 @@ function buildLayout(nodes, links = []) {
     })
 
     return { nodes: positioned, width: VIEW_W, height: VIEW_H }
+}
+
+// Mirror of the backend's _build_graph_status thresholds (backend/server.py)
+// so the static-snapshot fallback colors nodes the same way the live endpoint
+// would.
+function statusForMastery(pKnown) {
+    if (pKnown >= 0.8) return 'mastered'
+    if (pKnown >= 0.5) return 'emerging'
+    return 'novice'
+}
+
+/**
+ * Decorate the static /api/mastery-graph/<course> snapshot (plain curriculum
+ * nodes+links with no learner state) into the same shape the live
+ * POST /mastery_graph endpoint returns: scoped to the focus chapter, with
+ * p_known / status derived from the local mastery map and is_current flags.
+ */
+function decorateSnapshotGraph(data, { masteryMap = {}, currentSectionId = null, currentConcepts = [] } = {}) {
+    let nodes = Array.isArray(data?.nodes) ? data.nodes : []
+    const focusChapter = currentSectionId ? String(currentSectionId).split('/')[1] : null
+    if (focusChapter && nodes.some((node) => node.chapter === focusChapter)) {
+        nodes = nodes.filter((node) => node.chapter === focusChapter)
+    }
+    const keptIds = new Set(nodes.map((node) => node.id))
+    const links = (Array.isArray(data?.links) ? data.links : [])
+        .filter((link) => keptIds.has(link.source) && keptIds.has(link.target))
+
+    nodes = nodes.map((node) => {
+        const raw = Number(masteryMap[node.id])
+        const pKnown = Number.isFinite(raw) ? Math.max(0, Math.min(1, raw)) : 0.1
+        return {
+            ...node,
+            p_known: Math.round(pKnown * 100) / 100,
+            status: statusForMastery(pKnown),
+            is_current: node.section_id === currentSectionId || currentConcepts.includes(node.id),
+        }
+    })
+
+    return { nodes, links }
 }
 
 function describeNodeStatus(node) {
@@ -255,23 +294,40 @@ export default function KnowledgeGraph({
                     }
                 }
 
-                const response = await fetch(`${LLM_API_BASE}/mastery_graph`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        mastery_data: masteryMap,
-                        course,
-                        current_section_id: currentSectionId,
-                        current_concepts: currentConcepts,
-                    }),
-                })
-
-                if (!response.ok) {
-                    const errText = await response.text()
-                    throw new Error(`Failed to load graph data: ${response.status} ${errText}`)
+                // Primary source: the live mastery-graph endpoint (learner-aware).
+                // Fallback: the static per-course snapshot served from
+                // /api/mastery-graph/<course>, decorated with the local mastery
+                // map, so the concept map still renders when the LLM worker is
+                // down or offline. Only if BOTH fail does the error state show.
+                let data = null
+                try {
+                    const response = await fetch(`${LLM_API_BASE}/mastery_graph`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            mastery_data: masteryMap,
+                            course,
+                            current_section_id: currentSectionId,
+                            current_concepts: currentConcepts,
+                        }),
+                    })
+                    if (!response.ok) {
+                        throw new Error(`Live mastery graph unavailable: ${response.status}`)
+                    }
+                    data = await response.json()
+                } catch (primaryError) {
+                    console.info('[KnowledgeGraph] live mastery graph unavailable; using static snapshot:', primaryError?.message || primaryError)
+                    const fallbackResponse = await fetch(`${API_BASE}/mastery-graph/${encodeURIComponent(course)}`)
+                    if (!fallbackResponse.ok) {
+                        throw new Error(`Static mastery-graph snapshot unavailable: ${fallbackResponse.status}`)
+                    }
+                    data = decorateSnapshotGraph(await fallbackResponse.json(), {
+                        masteryMap,
+                        currentSectionId,
+                        currentConcepts,
+                    })
                 }
 
-                const data = await response.json()
                 const layout = buildLayout(data.nodes || [], data.links || [])
 
                 if (!isCancelled) {
@@ -303,7 +359,7 @@ export default function KnowledgeGraph({
     }
 
     if (error) {
-        return <div className="text-center p-6 text-xs" style={{ color: 'var(--ath-danger)' }}>Failed to load brain network.</div>
+        return <div className="text-center p-6 text-xs" style={{ color: 'var(--ath-muted)' }}>The concept map is unavailable right now. It will come back with your connection.</div>
     }
 
     if (!graphData || graphData.nodes.length === 0) {

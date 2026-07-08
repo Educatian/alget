@@ -50,6 +50,9 @@ export default function DiagnosticAssessment() {
     const phase = searchParams.get('phase') || 'pre'
 
     const [currentQuestion, setCurrentQuestion] = useState(0)
+    // Framing intro shown before question 1 on the placement (pre) phase only:
+    // post/retention checks are launched from explicit, already-framed CTAs.
+    const [showIntro, setShowIntro] = useState(phase === 'pre')
     const [answers, setAnswers] = useState({})
     const [showResults, setShowResults] = useState(false)
     const [results, setResults] = useState(null)
@@ -222,6 +225,38 @@ export default function DiagnosticAssessment() {
                         <div className="mt-8 flex justify-center">
                             <button className="editorial-button px-6 py-3 text-sm" onClick={handleSkip}>
                                 Continue to the course
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+    if (showIntro && !showResults) {
+        return (
+            <div className="editorial-shell min-h-screen px-6 py-12 md:px-10">
+                <div className="mx-auto flex max-w-3xl items-center justify-center">
+                    <div className="editorial-panel w-full max-w-2xl p-10 text-center">
+                        <p className="editorial-kicker">{courseLabel} · {phaseMeta.subtitle}</p>
+                        <h1 className="editorial-title mt-4 text-4xl">Quick placement check</h1>
+                        <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-[var(--ath-muted)]">
+                            {totalQuestions} quick questions help place you in this course — answer honestly, it is not graded.
+                        </p>
+                        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+                            <button
+                                type="button"
+                                className="editorial-button px-6 py-3 text-sm"
+                                onClick={() => setShowIntro(false)}
+                            >
+                                Start
+                            </button>
+                            <button
+                                type="button"
+                                className="editorial-button-secondary px-6 py-3 text-sm"
+                                onClick={handleSkip}
+                            >
+                                Skip for now
                             </button>
                         </div>
                     </div>

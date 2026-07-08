@@ -7,6 +7,7 @@ import { getResearchDashboardSnapshot, getEvaluationStatus } from '../lib/resear
 import { ALL_COURSE_IDS } from '../lib/courseCatalog'
 import { useCourseProgress } from '../hooks/useCourseProgress'
 import { getStreak } from '../lib/streak'
+import { getLocalTroubleSpots } from '../lib/calibration'
 import { getExitTicketCue, listExitTickets } from '../lib/exitTickets'
 import CohortLiveMap from '../components/CohortLiveMap'
 import KindredReaders from '../components/KindredReaders'
@@ -94,6 +95,21 @@ export default function StudentDashboard({ user }) {
 
     const recentMisconceptions = snapshot.learnerMetrics?.dominantMisconceptions?.slice(0, 5) || []
     const latestExitTicket = exitTickets[0] || null
+
+    // Honesty guard: masteryRows only holds data when the synced learner model
+    // actually answered (signed-in user + successful fetch + non-empty rows).
+    // Without it, an empty weak-concepts list means "no synced evidence", NOT
+    // "all concepts strong" — the empty-state copy must not claim mastery.
+    const hasSyncedMastery = masteryRows.length > 0
+
+    // Local-evidence fallback: recent trouble spots computed from this
+    // browser's calibration records (scoped to the current course when one is
+    // known). Subordinate to the server view — rendered below it, and clearly
+    // labelled as local.
+    const troubleSpots = useMemo(
+        () => getLocalTroubleSpots({ course: recentSection?.course || null }),
+        [recentSection?.course]
+    )
 
     const handleConceptOpen = async (conceptId) => {
         // Best-effort navigation: ask backend which section first introduces
@@ -367,13 +383,23 @@ export default function StudentDashboard({ user }) {
                     <div className="content-card p-5">
                         <h2 className="font-headline text-[var(--ath-text-xl)] font-semibold text-[var(--ath-text)]">Weakest concepts</h2>
                         {weakConcepts.length === 0 ? (
-                            <EmptyState
-                                className="mt-4"
-                                icon={<Target className="h-6 w-6" />}
-                                title="No weak concepts"
-                                body="All concepts are at 60% mastery or higher. Keep your retention checks current to hold the line."
-                                action={{ label: 'Open a course', onClick: () => navigate('/learn') }}
-                            />
+                            hasSyncedMastery ? (
+                                <EmptyState
+                                    className="mt-4"
+                                    icon={<Target className="h-6 w-6" />}
+                                    title="No weak concepts"
+                                    body="All concepts are at 60% mastery or higher. Keep your retention checks current to hold the line."
+                                    action={{ label: 'Open a course', onClick: () => navigate('/learn') }}
+                                />
+                            ) : (
+                                <EmptyState
+                                    className="mt-4"
+                                    icon={<Target className="h-6 w-6" />}
+                                    title="Not enough synced evidence yet"
+                                    body="Keep answering checks. Your synced learner model has no mastery evidence to show here yet, so this view cannot judge which concepts are weak or strong."
+                                    action={{ label: 'Open a course', onClick: () => navigate('/learn') }}
+                                />
+                            )
                         ) : (
                             <ul className="mt-4 space-y-2">
                                 {weakConcepts.map((row) => {
@@ -400,6 +426,45 @@ export default function StudentDashboard({ user }) {
                                     )
                                 })}
                             </ul>
+                        )}
+
+                        {troubleSpots.length > 0 && (
+                            <div className="mt-4 rounded-[var(--ath-radius)] border border-dashed border-[var(--ath-line-strong)] bg-[var(--ath-surface)] p-3">
+                                <p className="text-[var(--ath-text-2xs)] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">
+                                    Recent trouble spots (this browser)
+                                </p>
+                                <p className="mt-1 text-[var(--ath-text-xs)] text-[var(--ath-muted)]">
+                                    Based on your recent check answers stored locally on this device — not yet part of your synced learner model.
+                                </p>
+                                <ul className="mt-2 space-y-2">
+                                    {troubleSpots.map((spot) => {
+                                        const [spotCourse, spotChapter, spotSection] = String(spot.sectionId).split('/')
+                                        const label = spotChapter && spotSection
+                                            ? `${prettify(spotCourse)} ${spotChapter}.${spotSection}`
+                                            : prettify(spot.sectionId)
+                                        return (
+                                            <li
+                                                key={spot.sectionId}
+                                                className="flex items-center justify-between gap-3 rounded-[var(--ath-radius)] border border-[var(--ath-line)] bg-[var(--ath-panel)] px-3 py-2"
+                                            >
+                                                <div className="min-w-0">
+                                                    <p className="truncate text-[var(--ath-text-sm)] font-semibold text-[var(--ath-text)]">{label}</p>
+                                                    <p className="text-[var(--ath-text-xs)] text-[var(--ath-muted)]">
+                                                        <span className="ath-stat">{spot.correct}</span>/<span className="ath-stat">{spot.attempts}</span> correct on recent checks
+                                                    </p>
+                                                </div>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => navigate(`/book/${spot.sectionId}`)}
+                                                    className="editorial-button shrink-0 px-3 py-1 text-[var(--ath-text-xs)]"
+                                                >
+                                                    Review
+                                                </button>
+                                            </li>
+                                        )
+                                    })}
+                                </ul>
+                            </div>
                         )}
                     </div>
 
