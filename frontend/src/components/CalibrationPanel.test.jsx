@@ -25,10 +25,24 @@ describe('CalibrationPanel', () => {
         window.localStorage.clear()
     })
 
-    it('renders nothing below 10 course records', () => {
+    it('renders nothing at 0 course records (no table, no teaser)', () => {
+        render(<CalibrationPanel sectionId={SECTION} />)
+        expect(screen.queryByTestId('calibration-panel')).not.toBeInTheDocument()
+        expect(screen.queryByTestId('calibration-teaser')).not.toBeInTheDocument()
+    })
+
+    it('shows the unlock teaser (not the table) with 1..9 course records', () => {
         seed(Array.from({ length: 9 }, () => [0.95, true]))
         render(<CalibrationPanel sectionId={SECTION} />)
         expect(screen.queryByTestId('calibration-panel')).not.toBeInTheDocument()
+        expect(screen.getByTestId('calibration-teaser')).toBeInTheDocument()
+        expect(screen.getByText(/Answer 1 more check to unlock/i)).toBeInTheDocument()
+    })
+
+    it('pluralizes the teaser count', () => {
+        seed(Array.from({ length: 3 }, () => [0.5, true]))
+        render(<CalibrationPanel sectionId={SECTION} />)
+        expect(screen.getByText(/Answer 7 more checks to unlock/i)).toBeInTheDocument()
     })
 
     it('renders one row per used label with times used and % correct', () => {
@@ -48,5 +62,7 @@ describe('CalibrationPanel', () => {
         // Never-used labels stay hidden.
         expect(screen.queryByText('Not sure')).not.toBeInTheDocument()
         expect(screen.queryByText('Fairly sure')).not.toBeInTheDocument()
+        // The teaser only exists below the threshold.
+        expect(screen.queryByTestId('calibration-teaser')).not.toBeInTheDocument()
     })
 })

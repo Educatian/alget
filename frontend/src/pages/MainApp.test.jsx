@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
-import MainApp from './MainApp'
+import MainApp, { UNLOCKED_TRACK_STORAGE_KEY } from './MainApp'
 import { buildCohortLearnerProfile, persistCohortLearner } from '../lib/cohortLearner'
 
 vi.mock('../components/SettingsModal', () => ({
@@ -73,6 +73,49 @@ describe('MainApp', () => {
         expect(screen.getByText('CAT 531: Technology and Teaching Supplement')).toBeInTheDocument()
         expect(screen.getByText('CAT 100: Computer Concepts Supplement')).toBeInTheDocument()
         expect(screen.getByText('5 available')).toBeInTheDocument()
+    })
+
+    it('persists the unlocked track so a revisit skips the access screen', async () => {
+        const { unmount } = render(
+            <MemoryRouter>
+                <MainApp user={{ email: 'test@example.com' }} onLogout={vi.fn()} />
+            </MemoryRouter>
+        )
+
+        fireEvent.change(screen.getByLabelText(/^track$/i), { target: { value: 'education' } })
+        fireEvent.change(screen.getByLabelText(/access code/i), { target: { value: 'edu123' } })
+        fireEvent.click(screen.getByRole('button', { name: /unlock/i }))
+
+        expect(await screen.findByText('AI and Ethics')).toBeInTheDocument()
+        expect(window.localStorage.getItem(UNLOCKED_TRACK_STORAGE_KEY)).toBe('education')
+
+        // Simulate a fresh visit: remount with the persisted track in place.
+        unmount()
+        render(
+            <MemoryRouter>
+                <MainApp user={{ email: 'test@example.com' }} onLogout={vi.fn()} />
+            </MemoryRouter>
+        )
+
+        expect(screen.queryByText(/Open your cohort track/i)).not.toBeInTheDocument()
+        expect(screen.getByText('AI and Ethics')).toBeInTheDocument()
+    })
+
+    it('forgets the persisted track when the learner changes track', async () => {
+        window.localStorage.setItem(UNLOCKED_TRACK_STORAGE_KEY, 'engineering')
+
+        render(
+            <MemoryRouter>
+                <MainApp user={{ email: 'test@example.com' }} onLogout={vi.fn()} />
+            </MemoryRouter>
+        )
+
+        expect(screen.getByText('Engineering Statics')).toBeInTheDocument()
+
+        fireEvent.click(screen.getByRole('button', { name: /change track/i }))
+
+        expect(screen.getByText(/Open your cohort track/i)).toBeInTheDocument()
+        expect(window.localStorage.getItem(UNLOCKED_TRACK_STORAGE_KEY)).toBeNull()
     })
 
     it('opens the named CAT 100 cohort directly to its course only', () => {

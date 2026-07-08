@@ -256,3 +256,12 @@ export function getCalibrationSummary(sectionId) {
         })).filter((row) => row.timesUsed > 0),
     }
 }
+
+/**
+ * How many same-course confidence judgments exist so far. Lets the UI show a
+ * discovery teaser ("Answer N more checks to unlock your calibration
+ * profile") before the summary threshold (MIN_RECORDS_FOR_NUDGE) is reached.
+ */
+export function getCalibrationRecordCount(sectionId) {
+    return courseRecords(sectionId).length
+}

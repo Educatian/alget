@@ -46,7 +46,7 @@ export default function ConfidencePrompt({ onSelect, disabled = false, promptId,
                         disabled={disabled}
                         onClick={() => onSelect(level.value, level.label)}
                         aria-label={`${level.label} - submit answer`}
-                        className={`rounded-full border px-3 py-1.5 text-xs font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)] ${motionClasses(['transition'], reducedMotion)} ${
+                        className={`min-h-11 sm:min-h-0 rounded-full border px-3 py-1.5 text-xs font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)] ${motionClasses(['transition'], reducedMotion)} ${
                             disabled
                                 ? 'cursor-not-allowed border-[var(--ath-line)] bg-[var(--ath-surface-strong)] text-[var(--ath-muted)] opacity-60'
                                 : 'border-[var(--ath-line-strong)] bg-[var(--ath-surface-strong)] text-[var(--ath-text)] hover:border-[var(--ath-primary)] hover:bg-[var(--ath-panel)]'

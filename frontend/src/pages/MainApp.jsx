@@ -20,6 +20,7 @@ import { BioInspiredIllustration, StaticsIllustration } from '../components/Cour
 import ThemeToggle from '../components/ThemeToggle'
 import { useCourseProgress } from '../hooks/useCourseProgress'
 import API_BASE from '../lib/apiConfig'
+import { safeLocalStorageGet, safeLocalStorageRemove, safeLocalStorageSet } from '../lib/browserStorage'
 import { formatUserLabel, readCohortLearner } from '../lib/cohortLearner'
 import { getEvaluationStatus } from '../lib/researchService'
 import '../index.css'
@@ -159,6 +160,16 @@ const capabilityCards = [
     }
 ]
 
+// Server-validated unlock persists across visits: the code proves cohort
+// membership once, it is not a per-session password.
+export const UNLOCKED_TRACK_STORAGE_KEY = 'alget_unlocked_track_v1'
+const VALID_TRACKS = new Set(['engineering', 'education'])
+
+function readStoredUnlockedTrack() {
+    const value = safeLocalStorageGet(UNLOCKED_TRACK_STORAGE_KEY)
+    return VALID_TRACKS.has(value) ? value : null
+}
+
 function formatPathwayLabel(value) {
     return String(value || '')
         .split('-')
@@ -172,14 +183,21 @@ export default function MainApp({ user, onLogout }) {
     const cohortLearner = readCohortLearner()
     const userLabel = user?.displayLabel || formatUserLabel(user)
 
-    const [unlockedMode, setUnlockedMode] = useState(() => cohortLearner?.track || null)
-    const [selectedMode, setSelectedMode] = useState(() => cohortLearner?.track || 'engineering')
+    const [unlockedMode, setUnlockedMode] = useState(() => cohortLearner?.track || readStoredUnlockedTrack())
+    const [selectedMode, setSelectedMode] = useState(() => cohortLearner?.track || readStoredUnlockedTrack() || 'engineering')
     const [passcode, setPasscode] = useState('')
     const [error, setError] = useState('')
     const [unlocking, setUnlocking] = useState(false)
 
     const handleCourseSelect = (courseId) => {
         navigate(`/diagnostic/${courseId}`)
+    }
+
+    // Explicitly returning to pathway selection also forgets the persisted
+    // unlock, otherwise a reload would snap back to the old track.
+    const relockTracks = () => {
+        setUnlockedMode(null)
+        safeLocalStorageRemove(UNLOCKED_TRACK_STORAGE_KEY)
     }
 
     const handleUnlock = async (event) => {
@@ -209,6 +227,7 @@ export default function MainApp({ user, onLogout }) {
             }
 
             setUnlockedMode(selectedMode)
+            safeLocalStorageSet(UNLOCKED_TRACK_STORAGE_KEY, selectedMode)
             setPasscode('')
         } catch (err) {
             console.error(err)
@@ -245,7 +264,7 @@ export default function MainApp({ user, onLogout }) {
                 <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
                     <button
                         type="button"
-                        onClick={() => setUnlockedMode(null)}
+                        onClick={relockTracks}
                         aria-label="Back to pathway selection"
                         className="flex items-center gap-4 rounded-2xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
                     >
@@ -388,7 +407,7 @@ export default function MainApp({ user, onLogout }) {
                                 ) : (
                                     <button
                                         onClick={() => {
-                                            setUnlockedMode(null)
+                                            relockTracks()
                                             setPasscode('')
                                         }}
                                         className="ml-auto text-xs font-medium text-[var(--ath-muted)] underline-offset-4 hover:text-[var(--ath-text)] hover:underline"

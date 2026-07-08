@@ -152,6 +152,26 @@ function createAnchorId(prefix, value) {
     return `${prefix}-${slug || 'section'}`
 }
 
+// Defensive guard against malformed custom-tag markup (e.g. a `\"` inside a
+// double-quoted attribute value breaks HTML parsing, so the whole tag lands in
+// the output as literal TEXT — leaking expert answers/explanations to the
+// learner). If a rendered text node still contains one of these opening tags,
+// the tag was NOT parsed, so we swap the leaked source for a neutral
+// placeholder instead of showing raw markup.
+const UNPARSED_INTERACTIVE_RE = /<(self-explain|inline-check|step-reveal)[\s/>]/i
+
+function UnparsedInteractiveFallback() {
+    return (
+        <div
+            className="not-prose reading-breakout my-6 rounded-2xl border border-dashed border-[var(--ath-line)] bg-[var(--ath-panel-muted)] px-4 py-3 text-sm text-[var(--ath-muted)]"
+            data-testid="interactive-unavailable"
+            role="note"
+        >
+            Interactive unavailable
+        </div>
+    )
+}
+
 function normalizeMarkdownSource(source) {
     const lines = String(source || '').replace(/\r\n/g, '\n').split('\n')
     const nonEmptyLines = lines.filter((line) => line.trim().length > 0)
@@ -259,6 +279,13 @@ function ReadingNarrative({
             }
 
             const text = extractNodeText(children)
+
+            // Unparsed interactive markup leaking through as raw text: never
+            // show it (it contains expert answers) — render a placeholder.
+            if (UNPARSED_INTERACTIVE_RE.test(text)) {
+                return <UnparsedInteractiveFallback />
+            }
+
             return (
                 <p
                     data-reading-anchor={text.toLowerCase()}

@@ -3,6 +3,7 @@ import { supabase } from '../lib/supabase'
 import { logChatMessage } from '../lib/loggingService'
 import { fuseTelemetry, recordAdaptiveSignal } from '../lib/knowledgeService'
 import { LLM_API_BASE } from '../lib/apiConfig'
+import { getCourseTitle } from '../lib/courseCatalog'
 import { LearnIntentCard, EvaluateIntentCard, BrainstormIntentCard, ScaffoldingIntentCard, IllustrateIntentCard, SimulateIntentCard, ErrorIntentCard } from './IntentCards'
 
 // Stable per-message id so React keys and the read-aloud "which bubble is
@@ -27,6 +28,10 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
     const wasOpenRef = useRef(false)
 
     const speechSupported = typeof window !== 'undefined' && 'speechSynthesis' in window
+
+    // Persona follows the ACTUAL course being read (previously a hardcoded
+    // ternary labeled every non-inst-design course "Bio-Inspired Engineering").
+    const courseTitle = getCourseTitle(context?.course)
 
     // Read-aloud (UDL multiple means of representation). Browser-native, no backend.
     const speakText = (text, id) => {
@@ -218,6 +223,15 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                     api_key: apiKey
                 })
             })
+            if (!res.ok) {
+                // Backend down (e.g. 503 {"detail":"Service Unavailable"}):
+                // never render the error body as if BigAL said it.
+                setMessages([...newMessages, withMsgId({
+                    role: 'assistant',
+                    content: 'BigAL is offline right now — your reading, checks, and notes all still work. Try again in a bit.'
+                })])
+                return
+            }
             const data = await res.json()
 
             // The new API returns an intent object, not just a text string
@@ -321,7 +335,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                             <div>
                                 <h3 className="text-lg font-bold leading-tight tracking-tight text-[var(--ath-text)]">BigAL Tutor</h3>
                                 <p className="text-xs font-medium tracking-wide text-[var(--ath-muted)]">
-                                    {context?.course === 'inst-design' ? 'Instructional Design' : 'Bio-Inspired Engineering'}
+                                    {courseTitle}
                                 </p>
                             </div>
                         </div>
@@ -363,7 +377,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                                 </div>
                                 <h4 className="mb-2 text-lg font-bold text-[var(--ath-text)]">How can I help you today?</h4>
                                 <p className="text-sm leading-relaxed text-[var(--ath-muted)]">
-                                    {context?.course === 'inst-design' ? 'Ask me about creating effective learning experiences.' : 'Ask me about bridging biological mechanisms into engineering design.'}
+                                    {`Ask me about the ideas in this section of ${courseTitle}.`}
                                 </p>
                             </div>
                         )}
