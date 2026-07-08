@@ -40,6 +40,23 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Pre-paint the landing hero before the React bundle boots: the SPA's
+      // first paint (even its loading spinner) waited ~3s on script execution,
+      // so LCP was the React-rendered H1. This static copy of the hero paints
+      // as soon as CSS arrives and React replaces it with the identical
+      // hydrated hero. Landing route only — deep links keep the empty root.
+      if (location.pathname === '/') {
+        document.getElementById('root').innerHTML =
+          '<div class="editorial-shell" style="min-height:100vh">' +
+          '<main><section class="mx-auto grid max-w-7xl gap-14 px-6 pb-20 pt-16 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:pt-24" style="margin-top:72px">' +
+          '<div class="flex flex-col justify-center">' +
+          '<p class="mt-8 editorial-kicker">University learning platform</p>' +
+          '<h1 class="editorial-title mt-3 max-w-4xl text-5xl leading-[0.95] md:text-7xl">Alabama Generative Intelligent Textbook</h1>' +
+          '<p class="mt-6 max-w-2xl text-lg leading-8 text-[var(--ath-muted)]">Adaptive reading, tutor support, peer signals, and learner-model visibility for university pathways.</p>' +
+          '</div></section></main></div>';
+      }
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
