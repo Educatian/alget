@@ -29,6 +29,14 @@ function prettyConcept(conceptId) {
     return conceptId.replace(/_/g, ' ')
 }
 
+// The pedagogical-audit scorecard ("x/5 — blocked — Severity ...") is a
+// research/QA instrument. Learners should see the assist content (or an
+// honest offline line), never the internal rubric. No researcher-mode flag
+// exists in the frontend, so gate it to dev builds.
+const SHOW_SUPPORT_AUDIT = import.meta.env.DEV
+
+const SUPPORT_OFFLINE_MESSAGE = 'Support is offline or unavailable right now. Your reading, checks, and notes all still work — try again in a bit.'
+
 export default function IntelRail({ context, stuckEvent, sectionInfo, onClose }) {
     const [activeTab, setActiveTab] = useState('explain')
     const [loading, setLoading] = useState(false)
@@ -139,7 +147,13 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                     api_key: apiKey
                 })
             })
+            if (!res.ok) throw new Error(`assist_explain_${res.status}`)
             const data = await res.json()
+            // A 503/error body ({"detail": ...}) has no explanation string —
+            // treat it as offline instead of auditing empty content.
+            if (typeof data.explanation !== 'string' || !data.explanation.trim()) {
+                throw new Error('assist_explain_empty')
+            }
             setExplanation(data.explanation)
             setSupportAudit(
                 evaluateSupportContent({
@@ -152,7 +166,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
             )
         } catch (error) {
             console.error(error)
-            setExplanation('Unable to generate explanation. Please try again.')
+            setExplanation(SUPPORT_OFFLINE_MESSAGE)
         } finally {
             setLoading(false)
         }
@@ -189,7 +203,11 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                     api_key: apiKey
                 })
             })
+            if (!res.ok) throw new Error(`assist_represent_${res.status}`)
             const data = await res.json()
+            if (typeof data.content !== 'string' || !data.content.trim()) {
+                throw new Error('assist_represent_empty')
+            }
             setRepresentation(data.content)
             setSupportAudit(
                 evaluateSupportContent({
@@ -202,7 +220,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
             )
         } catch (error) {
             console.error(error)
-            setRepresentation('Unable to generate representation.')
+            setRepresentation(SUPPORT_OFFLINE_MESSAGE)
         } finally {
             setLoading(false)
         }
@@ -610,7 +628,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                     </div>
                 )}
 
-                {supportAudit && (
+                {SHOW_SUPPORT_AUDIT && supportAudit && (
                     <div className="mt-5 rounded-[1.2rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.72)] p-4">
                         <div className="flex items-center justify-between gap-3">
                             <p className="editorial-label">Pedagogical audit</p>

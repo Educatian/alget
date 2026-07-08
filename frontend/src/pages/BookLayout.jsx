@@ -14,6 +14,7 @@ import {
     PanelRightClose,
     PanelRightOpen,
     Search,
+    Settings,
     LayoutDashboard
 } from 'lucide-react'
 import { getStreak } from '../lib/streak'
@@ -36,6 +37,7 @@ const ChatWidget = lazy(() => import('../components/ChatWidget'))
 const HighlightableContent = lazy(() => import('../components/HighlightableContent'))
 const SocialPresencePanel = lazy(() => import('../components/SocialPresencePanel'))
 const KnowledgeGraph = lazy(() => import('../components/KnowledgeGraph'))
+const SettingsModal = lazy(() => import('../components/SettingsModal'))
 
 function formatCourseLabel(course) {
     return course
@@ -145,6 +147,7 @@ export default function BookLayout({ user, onLogout }) {
     const [highlightQuestion, setHighlightQuestion] = useState(null)
     const [transitionDirection, setTransitionDirection] = useState('forward')
     const [activeHeading, setActiveHeading] = useState('')
+    const [settingsOpen, setSettingsOpen] = useState(false)
     const chatWidgetRef = useRef(null)
     const mainScrollRef = useRef(null)
     const loading = loadedSectionPath !== sectionPath
@@ -656,6 +659,16 @@ export default function BookLayout({ user, onLogout }) {
 
                         <ThemeToggle />
 
+                        <button
+                            type="button"
+                            onClick={() => setSettingsOpen(true)}
+                            className="flex h-11 w-11 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[rgba(255,255,255,0.6)] text-[var(--ath-secondary)] shadow-sm transition-all hover:bg-[rgba(200,226,236,0.35)] hover:text-[var(--ath-primary)] md:h-9 md:w-9"
+                            title="Reading settings"
+                            aria-label="Open reading settings (text size, width, dyslexia-friendly font)"
+                        >
+                            <Settings className="h-4 w-4" aria-hidden="true" />
+                        </button>
+
                         <Popover.Root>
                             <Popover.Trigger asChild>
                                 <button
@@ -814,9 +827,12 @@ export default function BookLayout({ user, onLogout }) {
 
                 <div className="group/nav relative min-h-0 flex-1 overflow-hidden">
                     <main ref={mainScrollRef} id="main-content" tabIndex={-1} className="h-full min-h-0 overflow-y-auto">
+                        {/* xl:pb-24 reserves space at the end of the content for the
+                            floating section pager (xl-only, absolute bottom-4) so it never
+                            sits on the confidence prompt / exit-ticket textarea. */}
                         <div
                             key={sectionPath}
-                            className={`mx-auto min-h-full w-full max-w-[var(--ath-container-reading)] px-[var(--ath-gutter)] ${transitionDirection === 'backward' ? 'animate-section-backward' : 'animate-section-forward'}`}
+                            className={`mx-auto min-h-full w-full max-w-[var(--ath-container-reading)] px-[var(--ath-gutter)] xl:pb-24 ${transitionDirection === 'backward' ? 'animate-section-backward' : 'animate-section-forward'}`}
                         >
                             <Suspense fallback={<div className="mx-auto max-w-4xl px-8 py-12 xl:max-w-5xl"><SurfaceFallback label="Loading reading surface..." /></div>}>
                                 <HighlightableContent
@@ -950,6 +966,12 @@ export default function BookLayout({ user, onLogout }) {
                     }}
                 />
             </Suspense>
+
+            {settingsOpen && (
+                <Suspense fallback={null}>
+                    <SettingsModal isOpen={settingsOpen} onClose={() => setSettingsOpen(false)} />
+                </Suspense>
+            )}
         </div>
     )
 }

@@ -1,4 +1,8 @@
-import { getCalibrationSummary } from '../lib/calibration'
+import {
+    getCalibrationRecordCount,
+    getCalibrationSummary,
+    MIN_RECORDS_FOR_NUDGE,
+} from '../lib/calibration'
 
 /**
  * CalibrationPanel - cumulative per-label calibration table shown at the end
@@ -10,7 +14,26 @@ import { getCalibrationSummary } from '../lib/calibration'
  */
 export default function CalibrationPanel({ sectionId }) {
     const summary = getCalibrationSummary(sectionId)
-    if (!summary || summary.rows.length === 0) return null
+    if (!summary || summary.rows.length === 0) {
+        // Discovery teaser: with 1..9 records the profile exists but is not
+        // yet stable enough to show — tell the learner how to unlock it.
+        // Stays hidden at 0 records (nothing to tease yet).
+        const recordCount = getCalibrationRecordCount(sectionId)
+        if (recordCount < 1 || recordCount >= MIN_RECORDS_FOR_NUDGE) return null
+        const remaining = MIN_RECORDS_FOR_NUDGE - recordCount
+        return (
+            <div
+                className="mt-5 rounded-2xl border border-dashed border-[var(--ath-line)] bg-[var(--ath-panel)] p-4"
+                data-testid="calibration-teaser"
+            >
+                <p className="text-sm font-semibold text-[var(--ath-text)]">Calibration profile</p>
+                <p className="mt-1 text-xs leading-5 text-[var(--ath-muted)]">
+                    Answer {remaining} more {remaining === 1 ? 'check' : 'checks'} to unlock your calibration
+                    profile — how often you were right at each confidence level.
+                </p>
+            </div>
+        )
+    }
 
     return (
         <div className="mt-5 rounded-2xl border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4" data-testid="calibration-panel">
