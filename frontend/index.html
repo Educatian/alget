@@ -5,9 +5,14 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UA Intelligent Textbook</title>
+    <meta name="description" content="ALGET — Alabama Generative Intelligent Textbook. Adaptive reading, tutor support, peer signals, and learner-model visibility for university pathways." />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Main typography (Fraunces display serif + IBM Plex) as a non-blocking
+         <link>: previously pulled via @import at the top of index.css, which
+         chained CSS->CSS->font and delayed first render/LCP. -->
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- UDL 3.0 (Representation): dyslexia-friendly + hyperlegible reading fonts.
          Atkinson Hyperlegible (high letter-disambiguation) loads from Google Fonts.
          OpenDyslexic is loaded via @font-face from a CDN with a CSS-only fallback
