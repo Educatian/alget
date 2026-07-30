@@ -39,7 +39,7 @@ function Status({ children }) {
 
 export default function AdminControlPlane({ cohortContent, onBack, onResearcher }) {
     const [view, setView] = useState('overview')
-    const [state, setState] = useState({ instructors: [], courses: [], ingestionJobs: [], agentRuns: [], auditEvents: [], adaptationPolicies: [], adaptationControls: {} })
+    const [state, setState] = useState({ instructors: [], courses: [], ingestionJobs: [], agentRuns: [], workflows: [], auditEvents: [], adaptationPolicies: [], adaptationControls: {} })
     const [persistence, setPersistence] = useState('local')
     const [loading, setLoading] = useState(true)
     const [busy, setBusy] = useState('')
@@ -77,7 +77,9 @@ export default function AdminControlPlane({ cohortContent, onBack, onResearcher 
         instructors: state.instructors.length,
         courses: state.courses.length,
         review: state.ingestionJobs.filter((item) => item.status === 'needs_review').length,
-        approvals: state.agentRuns.filter((item) => item.status === 'awaiting_approval').length,
+        approvals: state.agentRuns.filter((item) => item.status === 'awaiting_approval').length
+            + (state.workflows || []).filter((item) => item.status === 'awaiting_approval').length,
+        activeWorkflows: (state.workflows || []).filter((item) => item.status === 'active').length,
     }), [state])
 
     return (
@@ -276,6 +278,12 @@ function Agents({ state, busy, runAction, persistence }) {
     return (
         <>
             <SectionHeader kicker="GOVERNANCE" title="Agent control" description="Plan first, approve explicitly, execute one stage at a time, and preserve a human release gate." />
+            <div className="mb-5 grid gap-3 border-y border-[var(--ath-line)] py-3 sm:grid-cols-3">
+                <RuntimeMetric label="Durable workflows" value={(state.workflows || []).length} />
+                <RuntimeMetric label="Awaiting approval" value={(state.workflows || []).filter((item) => item.status === 'awaiting_approval').length} />
+                <RuntimeMetric label="Active" value={(state.workflows || []).filter((item) => item.status === 'active').length} />
+                <p className="text-xs text-[var(--ath-muted)] sm:col-span-3">Default deny · messaging, publishing, enrollment changes, and final grades remain unavailable to autonomous execution.</p>
+            </div>
             <div className="grid gap-3 border-b border-[var(--ath-line)] pb-5 md:grid-cols-[minmax(0,1fr)_auto]">
                 <select value={courseId} onChange={(e) => setCourseId(e.target.value)} className="editorial-input" aria-label="Agent run course">
                     <option value="">Select course</option>
@@ -304,7 +312,32 @@ function Agents({ state, busy, runAction, persistence }) {
                     </div>
                 ))}
             </div>
+            {(state.workflows || []).length > 0 && (
+                <div className="mt-6">
+                    <p className="editorial-label">Recent learner and instructor workflows</p>
+                    <div className="mt-2 divide-y divide-[var(--ath-line)] border-y border-[var(--ath-line)]">
+                        {state.workflows.slice(0, 8).map((workflow) => (
+                            <div key={workflow.id} className="flex flex-wrap items-center gap-3 py-3">
+                                <div className="min-w-0 flex-1">
+                                    <p className="truncate text-sm font-semibold text-[var(--ath-text)]">{workflow.goal || workflow.workflow_type}</p>
+                                    <p className="text-xs text-[var(--ath-muted)]">{String(workflow.workflow_type).replaceAll('_', ' ')} · {workflow.risk_level || 'low'} risk</p>
+                                </div>
+                                <Status>{workflow.status}</Status>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
         </>
+    )
+}
+
+function RuntimeMetric({ label, value }) {
+    return (
+        <div className="border-l-2 border-[var(--ath-primary-soft)] pl-3">
+            <p className="text-xl font-semibold text-[var(--ath-text)]">{value}</p>
+            <p className="text-xs text-[var(--ath-secondary)]">{label}</p>
+        </div>
     )
 }
 

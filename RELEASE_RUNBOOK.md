@@ -6,10 +6,12 @@ A release candidate is ready to deploy only when GitHub CI is green and the prod
 
 ## Deploy order
 
-1. Deploy `cloudflare/llm-proxy` so new APIs exist before the UI references them.
-2. Deploy `frontend/dist` to Cloudflare Pages.
-3. Verify `/health`, the Pages security headers, the learner reading route, and the administrator route.
-4. Confirm the GitHub commit deployed to both production surfaces.
+1. Apply the reviewed Supabase migrations, including the admin control plane and agentic LMS runtime.
+2. Deploy `cloudflare/llm-proxy` so new APIs exist before the UI references them.
+3. Deploy `frontend/dist` to Cloudflare Pages.
+4. Verify `/health`, the Pages security headers, the learner reading route, and the administrator route.
+5. Draft and cancel one learner plan; draft and reject one instructor intervention. Confirm both decisions create workflow events and neither triggers delivery or grading.
+6. Confirm the GitHub commit deployed to both production surfaces.
 
 ## Adaptation incident response
 
