@@ -7,7 +7,7 @@ try:
     from google import genai
     from google.genai import types
 except ImportError:
-    import google.generativeai as legacy_genai
+    legacy_genai = None
     genai = None
 
 from .config import get as get_config
@@ -50,9 +50,12 @@ class AssessmentAgent:
         if genai:
             self.client = genai.Client(api_key=self.api_key)
             self.model_id = "gemini-2.5-flash"
-        else:
+        elif legacy_genai:
             legacy_genai.configure(api_key=self.api_key)
             self.model = legacy_genai.GenerativeModel('gemini-2.0-flash')
+        else:
+            self.client = None
+            self.model = None
 
     def generate_assessment(self, bio_context: str, eng_context: str, section_title: str, learning_objectives: list[str] = None, concept_ids: list[str] = None, retrieved_context: list[dict] = None) -> dict:
         """Generates a 3-question assessment (2 MCQs, 1 Summary)."""
