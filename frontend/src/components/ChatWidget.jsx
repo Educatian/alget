@@ -1,10 +1,11 @@
 import { useState, useRef, useEffect, forwardRef, useImperativeHandle, useEffectEvent } from 'react'
 import { supabase } from '../lib/supabase'
-import { logChatMessage } from '../lib/loggingService'
+import { logChatMessage, logGenerationTrace } from '../lib/loggingService'
 import { fuseTelemetry, recordAdaptiveSignal } from '../lib/knowledgeService'
 import { LLM_API_BASE } from '../lib/apiConfig'
 import { getCourseTitle } from '../lib/courseCatalog'
 import { LearnIntentCard, EvaluateIntentCard, BrainstormIntentCard, ScaffoldingIntentCard, IllustrateIntentCard, SimulateIntentCard, ErrorIntentCard } from './IntentCards'
+import GenerationTrace from './GenerationTrace'
 
 // Stable per-message id so React keys and the read-aloud "which bubble is
 // speaking" state survive list mutations (history load replacing optimistic
@@ -217,6 +218,9 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                 body: JSON.stringify({
                     query: userMessage,
                     course: context?.course || "bio-inspired",
+                    section_id: context?.sectionId || '',
+                    section_title: context?.sectionTitle || '',
+                    content_version: context?.contentVersion || null,
                     current_content: context?.pageContent ? context.pageContent.substring(0, 2000) : "",
                     history: messages.slice(-10), // Send more history for better context
                     is_highlight: isHighlight,
@@ -233,6 +237,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                 return
             }
             const data = await res.json()
+            logGenerationTrace(data.generation_trace, 'bigal_chat', context?.sectionId)
 
             // The new API returns an intent object, not just a text string
             const assistantMessage = withMsgId({ role: 'assistant', content: data })
@@ -414,6 +419,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                                              {(!['learn', 'evaluate', 'brainstorm', 'help', 'illustrate', 'simulate', 'error'].includes(data.intent)) && (
                                                  <p className="whitespace-pre-wrap break-words">{data.error || data.text || data.summary || JSON.stringify(data)}</p>
                                              )}
+                                            <GenerationTrace trace={data.generation_trace} compact />
                                             {speechSupported && spokenText.trim() && (
                                                 <div className="mt-2 flex justify-end">
                                                     <button

@@ -26,6 +26,67 @@ const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
 const MAX_PDF_BYTES = 25 * 1024 * 1024
 const MAX_PDF_PAGES = 500
 const RELEASE_SCHEMA_VERSION = '2026-07-30'
+const GENERATION_TRACE_SCHEMA_VERSION = 'generation-trace-v1'
+
+function cleanExcerpt(value, limit = 280) {
+  return String(value || '').replace(/\s+/g, ' ').trim().slice(0, limit)
+}
+
+function normalizeContentVersion(value) {
+  if (!value) return null
+  if (typeof value === 'string') return value
+  return value.content_version || value.hash || null
+}
+
+async function buildGenerationTrace({
+  body = {},
+  output = '',
+  model = DEFAULT_MODEL,
+  promptVersion,
+  sourceKind = 'course_section',
+  sourceText = '',
+  sourceTitle = '',
+  sourceLocator = '',
+  reviewStatus = 'not_human_reviewed',
+}) {
+  const normalizedOutput = typeof output === 'string' ? output : JSON.stringify(output)
+  const outputHash = await sha256Hex(new TextEncoder().encode(normalizedOutput))
+  const excerpt = cleanExcerpt(sourceText || body.current_content || body.page_content)
+  const sectionId = body.section_id || null
+  const locator = sourceLocator || sectionId || null
+  const sources = excerpt || locator
+    ? [{
+        source_id: sectionId || `${sourceKind}:provided-context`,
+        kind: sourceKind,
+        title: sourceTitle || body.section_title || sectionId || 'Provided generation context',
+        locator,
+        excerpt: excerpt || null,
+        verification_status: 'context_attached',
+      }]
+    : []
+
+  return {
+    schema_version: GENERATION_TRACE_SCHEMA_VERSION,
+    trace_id: crypto.randomUUID(),
+    generated_at: new Date().toISOString(),
+    provider: 'openrouter',
+    model,
+    prompt_version: promptVersion,
+    output_hash: outputHash,
+    section_id: sectionId,
+    content_version: normalizeContentVersion(body.content_version),
+    source_status: sources.length ? 'context_attached' : 'no_source_context',
+    sources,
+    verification: {
+      status: sources.length ? 'context_attached' : 'unverified',
+      claim_level_citations: false,
+    },
+    review: { status: reviewStatus },
+    limitations: sources.length
+      ? ['The current section context was supplied, but individual claims were not independently citation-verified.']
+      : ['No source context was attached. Treat this output as an unverified AI draft.'],
+  }
+}
 
 const DEFAULT_ADAPTATION_POLICY = {
   mastery_support_threshold: 0.58,
@@ -704,7 +765,13 @@ export default {
           { role: 'system', content: 'You are BigAL, a warm, concise tutor inside an interactive textbook. Explain clearly for a struggling learner using an everyday analogy and a concrete example. Keep it under 200 words. Markdown allowed. Explain the actual topic given by its TITLE — do not reinterpret it from a URL slug or assume a different subject.' },
           { role: 'user', content: `Section title: "${topic}" (id: ${body.section_id || 'n/a'}). Problem: ${body.problem_id || 'general concept'}. The student is stuck (reason: ${body.stuck_reason || 'unknown'}). Give a simpler, step-by-step explanation of THIS topic.` },
         ], { model, temperature: 0.7, maxTokens: 500 })
-        return json({ explanation })
+        const generation_trace = await buildGenerationTrace({
+          body,
+          output: explanation,
+          model,
+          promptVersion: 'assist-explain-v2',
+        })
+        return json({ explanation, generation_trace })
       }
 
       // --- Rail: alternate representation ---
@@ -722,7 +789,13 @@ export default {
           { role: 'system', content: 'You produce concise alternate representations of textbook concepts. Be specific to the actual topic given by its TITLE; do not reinterpret it from a URL slug, and never assume statics/equilibrium. Markdown allowed.' },
           { role: 'user', content: `For the section titled "${topic}" (id: ${body.section_id || 'n/a'}), produce ${guide}.` },
         ], { model, temperature: 0.6, maxTokens: 600 })
-        return json({ content, type })
+        const generation_trace = await buildGenerationTrace({
+          body,
+          output: content,
+          model,
+          promptVersion: `assist-represent-${type}-v2`,
+        })
+        return json({ content, type, generation_trace })
       }
 
       // --- BigAL chat ---
@@ -750,7 +823,13 @@ Tutoring pedagogy policy — follow it on every turn:
         // No recognized `intent` -> ChatWidget renders `text` via its generic
         // <p> branch. (intent:'learn' would route to LearnIntentCard, which
         // expects structured fields and would drop a plain answer.)
-        return json({ intent: 'answer', text })
+        const generation_trace = await buildGenerationTrace({
+          body,
+          output: text,
+          model,
+          promptVersion: 'bigal-tutor-hint-ladder-v2',
+        })
+        return json({ intent: 'answer', text, generation_trace })
       }
 
       // --- Mastery update (Bayesian Knowledge Tracing) — deterministic math ---
@@ -777,7 +856,16 @@ Return EXACTLY this JSON shape, fitting THIS section's actual topic:
 {"mcq_questions":[{"question":"...","options":[{"id":"A","text":"..."},{"id":"B","text":"..."},{"id":"C","text":"..."},{"id":"D","text":"..."}],"correct_option_id":"A","explanation":"why correct & others wrong","concept_id":"..."}],"summary_question":{"question":"a generative short-answer prompt","concept_id":"...","rubric":"key points expected"}}
 Exactly 2 items in mcq_questions and exactly 1 summary_question.` },
         ], { model, temperature: 0.5, maxTokens: 1500 })
-        return json({ assessment, summary: 'Assessment generated successfully.' })
+        const generation_trace = await buildGenerationTrace({
+          body,
+          output: assessment,
+          model,
+          promptVersion: 'formative-assessment-objective-aligned-v2',
+          sourceKind: 'assessment_context',
+          sourceText: `${body.biology_context || ''}\n${body.engineering_context || ''}`,
+          sourceTitle: body.section_title || 'Assessment generation context',
+        })
+        return json({ assessment, summary: 'Assessment generated successfully.', generation_trace })
       }
 
       // --- Knowledge Check: grade a short-answer/summary against a rubric ---
@@ -791,7 +879,17 @@ Student answer: ${body.student_answer || ''}
 
 Return EXACTLY: {"content_score":0.0-1.0,"wording_score":0.0-1.0,"sub_scores":{"<dimension>":0.0-1.0},"feedback":"2-3 sentences, praise first then what's missing","is_passing":true if content_score>=0.7 else false}` },
         ], { model, temperature: 0.3, maxTokens: 700 })
-        return json(out)
+        const generation_trace = await buildGenerationTrace({
+          body,
+          output: out,
+          model,
+          promptVersion: 'summary-rubric-grader-v2',
+          sourceKind: 'rubric',
+          sourceText: body.rubric || '',
+          sourceTitle: 'Instructor-provided scoring rubric',
+          sourceLocator: 'request.rubric',
+        })
+        return json({ ...out, generation_trace })
       }
 
       // Image generation has been removed. If anything still calls it, return a

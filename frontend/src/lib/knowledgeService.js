@@ -303,7 +303,7 @@ export function summarizeAdaptiveSignals(sectionId) {
 /**
  * Generates a formative assessment based on current context.
  */
-export const generateAssessment = async (sectionTitle, bioContext, engContext, learningObjectives, conceptIds) => {
+export const generateAssessment = async (sectionTitle, bioContext, engContext, learningObjectives, conceptIds, options = {}) => {
     try {
         const apiKey = localStorage.getItem('gemini_api_key') || '';
         const response = await fetch(`${LLM_API_BASE}/generate_assessment`, {
@@ -317,6 +317,8 @@ export const generateAssessment = async (sectionTitle, bioContext, engContext, l
                 engineering_context: engContext,
                 learning_objectives: learningObjectives,
                 concept_ids: conceptIds,
+                section_id: options.sectionId || '',
+                content_version: options.contentVersion || null,
                 api_key: apiKey
             })
         });
@@ -326,7 +328,7 @@ export const generateAssessment = async (sectionTitle, bioContext, engContext, l
         }
 
         const data = await response.json();
-        return data.assessment || null;
+        return data.assessment ? { ...data.assessment, generation_trace: data.generation_trace || null } : null;
     } catch (error) {
         console.error('Error generating assessment:', error);
         return [];
@@ -336,7 +338,7 @@ export const generateAssessment = async (sectionTitle, bioContext, engContext, l
 /**
  * Grades a short-answer or summary response using the LLM rubric.
  */
-export const gradeSummary = async (question, studentAnswer, rubric) => {
+export const gradeSummary = async (question, studentAnswer, rubric, options = {}) => {
     try {
         const apiKey = localStorage.getItem('gemini_api_key') || '';
         const response = await fetch(`${LLM_API_BASE}/grade_summary`, {
@@ -348,6 +350,8 @@ export const gradeSummary = async (question, studentAnswer, rubric) => {
                 question: question,
                 student_answer: studentAnswer,
                 rubric: rubric,
+                section_id: options.sectionId || '',
+                section_title: options.sectionTitle || '',
                 api_key: apiKey
             })
         });

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { LLM_API_BASE } from '../lib/apiConfig'
 import { getAdaptiveRecommendation, recordAdaptiveSignal } from '../lib/knowledgeService'
-import { logEvent } from '../lib/loggingService'
+import { logEvent, logGenerationTrace } from '../lib/loggingService'
 import {
     appendInterventionTrace,
     evaluateSupportContent,
@@ -9,6 +9,7 @@ import {
 } from '../lib/researchService'
 import WhySupportNow from './WhySupportNow'
 import BigALCompanion from './BigALCompanion'
+import GenerationTrace from './GenerationTrace'
 
 const ACTION_TO_TAB = {
     explain: 'explain',
@@ -46,6 +47,8 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
     const [recommendation, setRecommendation] = useState(null)
     const [explanation, setExplanation] = useState(null)
     const [representation, setRepresentation] = useState(null)
+    const [explanationTrace, setExplanationTrace] = useState(null)
+    const [representationTrace, setRepresentationTrace] = useState(null)
     const [supportAudit, setSupportAudit] = useState(null)
     const [activeTraceId, setActiveTraceId] = useState(null)
 
@@ -147,6 +150,8 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                     section_title: resolvedSectionTitle,
                     problem_id: context?.problemId,
                     stuck_reason: resolvedStuckReason,
+                    page_content: sectionInfo?.pageContent?.substring(0, 2000) || '',
+                    content_version: sectionInfo?.contentVersion || null,
                     api_key: apiKey
                 })
             })
@@ -158,6 +163,8 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                 throw new Error('assist_explain_empty')
             }
             setExplanation(data.explanation)
+            setExplanationTrace(data.generation_trace || null)
+            logGenerationTrace(data.generation_trace, 'intel_rail_explain', resolvedSectionId)
             setSupportAudit(
                 evaluateSupportContent({
                     sectionId: resolvedSectionId,
@@ -203,6 +210,8 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                     section_id: resolvedSectionId,
                     section_title: resolvedSectionTitle,
                     representation_type: type,
+                    page_content: sectionInfo?.pageContent?.substring(0, 2000) || '',
+                    content_version: sectionInfo?.contentVersion || null,
                     api_key: apiKey
                 })
             })
@@ -212,6 +221,8 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                 throw new Error('assist_represent_empty')
             }
             setRepresentation(data.content)
+            setRepresentationTrace(data.generation_trace || null)
+            logGenerationTrace(data.generation_trace, `intel_rail_represent_${type}`, resolvedSectionId)
             setSupportAudit(
                 evaluateSupportContent({
                     sectionId: resolvedSectionId,
@@ -551,6 +562,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                             <div className="rounded-[1.2rem] border border-[rgba(15,81,103,0.12)] bg-[rgba(200,226,236,0.28)] p-4" role="status" aria-live="polite">
                                 <h4 className="mb-2 font-semibold text-[var(--ath-primary-deep)]">Simplified explanation</h4>
                                 <p className="whitespace-pre-wrap text-sm leading-6 text-[var(--ath-text)]">{explanation}</p>
+                                <GenerationTrace trace={explanationTrace} compact />
                             </div>
                         )}
                     </div>
@@ -579,6 +591,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                         {representation && (
                             <div className="mt-4 rounded-[1.2rem] border border-[rgba(199,137,67,0.18)] bg-[rgba(255,221,187,0.38)] p-4" role="status" aria-live="polite">
                                 <p className="whitespace-pre-wrap text-sm leading-6 text-[var(--ath-text)]">{representation}</p>
+                                <GenerationTrace trace={representationTrace} compact />
                             </div>
                         )}
                     </div>

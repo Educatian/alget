@@ -511,6 +511,7 @@ function ReadingPane({
                                 engContext={meta?.description}
                                 sectionId={sectionId}
                                 sectionTitle={meta?.title}
+                                contentVersion={sectionData?.content_version || null}
                                 learningObjectives={meta?.learning_objectives}
                                 conceptIds={meta?.concept_ids}
                                 onNeedsReview={onNeedsReview}
@@ -526,6 +527,7 @@ function ReadingPane({
                             engContext={meta?.description}
                             sectionId={sectionId}
                             sectionTitle={meta?.title}
+                            contentVersion={sectionData?.content_version || null}
                             learningObjectives={meta?.learning_objectives}
                             conceptIds={meta?.concept_ids}
                             onNeedsReview={onNeedsReview}

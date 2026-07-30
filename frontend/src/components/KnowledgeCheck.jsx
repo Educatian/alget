@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { generateAssessment, updateMastery, gradeSummary, recordAdaptiveSignal } from '../lib/knowledgeService'
-import { logEvent, logProblemAttempt } from '../lib/loggingService'
+import { logEvent, logGenerationTrace, logProblemAttempt } from '../lib/loggingService'
 import { annotateMisconceptionSignal, resolveInterventionOutcome, updateLearnerModel } from '../lib/researchService'
 import ConfidenceFeedback from './ConfidenceFeedback'
 import RubricFeedback from './RubricFeedback'
+import GenerationTrace from './GenerationTrace'
 
 const nowMs = () => performance.now()
 
@@ -23,6 +24,7 @@ export default function KnowledgeCheck({
     engContext,
     sectionId,
     sectionTitle,
+    contentVersion,
     learningObjectives,
     conceptIds,
     onNeedsReview
@@ -35,6 +37,7 @@ export default function KnowledgeCheck({
     const [results, setResults] = useState([])
     const [summaryText, setSummaryText] = useState('')
     const [summaryFeedback, setSummaryFeedback] = useState(null)
+    const [assessmentTrace, setAssessmentTrace] = useState(null)
     const [isGrading, setIsGrading] = useState(false)
     const [confidence, setConfidence] = useState(3)
     const [misconceptionType, setMisconceptionType] = useState('unknown')
@@ -60,7 +63,7 @@ export default function KnowledgeCheck({
             const engTrim = engContext ? engContext.substring(0, 1000) : 'Engineering statics and equilibrium'
             const titleTrim = sectionTitle || 'Statics 1.1: Equilibrium'
 
-            const generated = await generateAssessment(titleTrim, bioTrim, engTrim, learningObjectives, conceptIds)
+            const generated = await generateAssessment(titleTrim, bioTrim, engTrim, learningObjectives, conceptIds, { sectionId, contentVersion })
             if (!generated || (!generated.mcq_questions?.length && !generated.summary_question)) {
                 setStatus('error')
                 return
@@ -72,6 +75,8 @@ export default function KnowledgeCheck({
             ]
 
             setQuestions(combined)
+            setAssessmentTrace(generated.generation_trace || null)
+            logGenerationTrace(generated.generation_trace, 'knowledge_check_generation', sectionId)
             setStatus('active')
             logEvent('assessment_generate_success', 'knowledge_check', {
                 source: 'knowledge_check',
@@ -148,10 +153,12 @@ export default function KnowledgeCheck({
             const data = await gradeSummary(
                 currentQuestion.question,
                 summaryText,
-                currentQuestion.rubric
+                currentQuestion.rubric,
+                { sectionId, sectionTitle }
             )
 
             setSummaryFeedback(data)
+            logGenerationTrace(data.generation_trace, 'knowledge_check_grading', sectionId)
             setIsAnswered(true)
             setResults([...results, { isCorrect: data.is_passing, conceptId: currentQuestion.concept_id, type: 'summary' }])
             const problemId = currentQuestion.id || currentQuestion.concept_id || `knowledge-summary-${currentQuestionIndex + 1}`
@@ -370,6 +377,7 @@ export default function KnowledgeCheck({
                 <h3 className="text-2xl font-semibold leading-relaxed text-[var(--ath-text)]">
                     {currentQuestion?.question}
                 </h3>
+                <GenerationTrace trace={assessmentTrace} compact />
 
                 <div className="mt-6 rounded-[1.25rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4">
                     <p className="editorial-label" id={`confidence-label-${currentQuestionIndex}`}>How confident are you in this answer?</p>
@@ -562,6 +570,7 @@ export default function KnowledgeCheck({
                                     wordingScore={summaryFeedback.wording_score}
                                     feedback={null}
                                 />
+                                <GenerationTrace trace={summaryFeedback.generation_trace} compact />
 
                                 {!summaryFeedback.is_passing && (
                                     <div className="mt-4 space-y-3">
