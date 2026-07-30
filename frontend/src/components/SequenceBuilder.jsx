@@ -1,4 +1,5 @@
 import { useId, useMemo, useRef, useState } from 'react'
+import { Check, ChevronDown, ChevronUp, X } from 'lucide-react'
 
 /**
  * SequenceBuilder - a drag-to-order / match activity for process content.
@@ -114,7 +115,7 @@ function OrderActivity({ correct, baseId }) {
 
     return (
         <section
-            className="my-5 rounded-2xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.85)] p-4 shadow-sm motion-safe:transition-shadow"
+            className="my-6 border-y border-[var(--ath-line)] py-4"
             aria-labelledby={labelId}
         >
             <p className="editorial-kicker">Put the steps in order</p>
@@ -148,12 +149,12 @@ function OrderActivity({ correct, baseId }) {
                                         move(index, index + 1)
                                     }
                                 }}
-                                className={`flex items-center gap-3 rounded-xl border px-3 py-2 text-sm leading-6 outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)] motion-safe:transition-colors ${
+                                className={`flex items-center gap-3 rounded-[var(--ath-radius)] border px-3 py-2 text-sm leading-6 outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)] motion-safe:transition-colors ${
                                     isRight
                                         ? 'border-emerald-300 bg-emerald-50 text-emerald-900'
                                         : isWrong
                                             ? 'border-rose-300 bg-rose-50 text-rose-900'
-                                            : 'border-[var(--ath-line)] bg-white'
+                                            : 'border-[var(--ath-line)] bg-[var(--ath-surface-strong)]'
                                 }`}
                             >
                                 <span className="font-mono text-xs text-[var(--ath-muted)]" aria-hidden="true">
@@ -162,28 +163,28 @@ function OrderActivity({ correct, baseId }) {
                                 <span className="flex-1">{item.label}</span>
                                 {checked && (
                                     <span className="text-xs font-semibold">
-                                        <span aria-hidden="true">{isRight ? '✓ ' : '✗ '}</span>
+                                        {isRight ? <Check className="mr-1 inline h-3.5 w-3.5" aria-hidden="true" /> : <X className="mr-1 inline h-3.5 w-3.5" aria-hidden="true" />}
                                         {isRight ? 'Correct position' : 'Move me'}
                                     </span>
                                 )}
-                                <span className="flex flex-col">
+                                <span className="flex shrink-0 gap-1">
                                     <button
                                         type="button"
                                         onClick={() => move(index, index - 1)}
                                         disabled={index === 0}
                                         aria-label={`Move ${item.label} up`}
-                                        className="rounded px-1 text-xs text-[var(--ath-text)] hover:bg-[var(--ath-panel)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)] disabled:cursor-not-allowed disabled:opacity-40"
+                                        className="inline-flex h-11 w-11 items-center justify-center rounded-[var(--ath-radius)] text-[var(--ath-text)] hover:bg-[var(--ath-panel)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)] disabled:cursor-not-allowed disabled:opacity-40"
                                     >
-                                        <span aria-hidden="true">{'▲'}</span>
+                                        <ChevronUp className="h-4 w-4" aria-hidden="true" />
                                     </button>
                                     <button
                                         type="button"
                                         onClick={() => move(index, index + 1)}
                                         disabled={index === order.length - 1}
                                         aria-label={`Move ${item.label} down`}
-                                        className="rounded px-1 text-xs text-[var(--ath-text)] hover:bg-[var(--ath-panel)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)] disabled:cursor-not-allowed disabled:opacity-40"
+                                        className="inline-flex h-11 w-11 items-center justify-center rounded-[var(--ath-radius)] text-[var(--ath-text)] hover:bg-[var(--ath-panel)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)] disabled:cursor-not-allowed disabled:opacity-40"
                                     >
-                                        <span aria-hidden="true">{'▼'}</span>
+                                        <ChevronDown className="h-4 w-4" aria-hidden="true" />
                                     </button>
                                 </span>
                             </div>
@@ -196,14 +197,14 @@ function OrderActivity({ correct, baseId }) {
                 <button
                     type="button"
                     onClick={handleCheck}
-                    className="rounded-full border border-[var(--ath-line)] bg-[var(--ath-primary)] px-4 py-1.5 text-xs font-semibold text-white hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)]"
+                    className="editorial-button min-h-11 px-4 text-xs"
                 >
                     Check
                 </button>
                 <button
                     type="button"
                     onClick={handleReset}
-                    className="rounded-full border border-[var(--ath-line)] bg-white px-4 py-1.5 text-xs font-semibold text-[var(--ath-text)] hover:bg-[var(--ath-panel)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)]"
+                    className="editorial-button-secondary min-h-11 px-4 text-xs"
                 >
                     Reshuffle
                 </button>
@@ -273,7 +274,7 @@ function MatchActivity({ correct, baseId }) {
 
     return (
         <section
-            className="my-5 rounded-2xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.85)] p-4 shadow-sm"
+            className="my-6 border-y border-[var(--ath-line)] py-4"
             aria-labelledby={labelId}
         >
             <p className="editorial-kicker">Match each term to its definition</p>
@@ -294,7 +295,7 @@ function MatchActivity({ correct, baseId }) {
                                     ? 'border-emerald-300 bg-emerald-50'
                                     : isWrong
                                         ? 'border-rose-300 bg-rose-50'
-                                        : 'border-[var(--ath-line)] bg-white'
+                                        : 'border-[var(--ath-line)] bg-[var(--ath-surface-strong)]'
                             }`}
                         >
                             <label htmlFor={selectId} className="block text-sm font-semibold text-[var(--ath-text)]">
@@ -304,7 +305,7 @@ function MatchActivity({ correct, baseId }) {
                                 id={selectId}
                                 value={assignments[index]}
                                 onChange={handleSelect(index)}
-                                className="mt-1 w-full rounded-lg border border-[var(--ath-line)] bg-white px-2 py-1.5 text-sm text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)]"
+                                className="mt-1 min-h-11 w-full rounded-[var(--ath-radius)] border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] px-3 py-2 text-sm text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)]"
                             >
                                 <option value="">Select a definition</option>
                                 {definitions.map((def) => (
@@ -315,7 +316,7 @@ function MatchActivity({ correct, baseId }) {
                             </select>
                             {checked && (
                                 <p className={`mt-1 text-xs font-semibold ${isRight ? 'text-emerald-900' : 'text-rose-900'}`}>
-                                    <span aria-hidden="true">{isRight ? '✓ ' : '✗ '}</span>
+                                    {isRight ? <Check className="mr-1 inline h-3.5 w-3.5" aria-hidden="true" /> : <X className="mr-1 inline h-3.5 w-3.5" aria-hidden="true" />}
                                     {isRight ? 'Correct match' : 'Not the right definition'}
                                 </p>
                             )}
@@ -328,14 +329,14 @@ function MatchActivity({ correct, baseId }) {
                 <button
                     type="button"
                     onClick={handleCheck}
-                    className="rounded-full border border-[var(--ath-line)] bg-[var(--ath-primary)] px-4 py-1.5 text-xs font-semibold text-white hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)]"
+                    className="editorial-button min-h-11 px-4 text-xs"
                 >
                     Check
                 </button>
                 <button
                     type="button"
                     onClick={handleReset}
-                    className="rounded-full border border-[var(--ath-line)] bg-white px-4 py-1.5 text-xs font-semibold text-[var(--ath-text)] hover:bg-[var(--ath-panel)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)]"
+                    className="editorial-button-secondary min-h-11 px-4 text-xs"
                 >
                     Clear
                 </button>

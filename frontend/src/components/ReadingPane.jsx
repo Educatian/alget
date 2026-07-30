@@ -330,17 +330,17 @@ function ReadingPane({
                             </button>
                         )}
                     </div>
-                    <ol className="mt-1.5 flex gap-1 overflow-x-auto text-[10px] font-semibold uppercase tracking-[0.08em] text-[var(--ath-secondary)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:grid sm:grid-cols-5 sm:overflow-visible">
+                    <ol className="mt-1.5 grid grid-cols-5 gap-px text-[9px] font-semibold uppercase tracking-[0.06em] text-[var(--ath-secondary)] sm:text-[10px] sm:tracking-[0.08em]">
                         {SECTION_PATH_STEPS.map((step, index) => (
-                            <li key={step.id} className="min-w-[6.5rem] sm:min-w-0">
+                            <li key={step.id} className="min-w-0">
                                 <button
                                     type="button"
                                     onClick={() => jumpToStage(step.id)}
-                                    className="flex min-h-8 w-full items-center gap-1.5 px-1 py-1 text-left transition-colors hover:text-[var(--ath-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
+                                    className="flex min-h-11 w-full flex-col items-center justify-center gap-0.5 px-0.5 py-1 text-center transition-colors hover:text-[var(--ath-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_36%,transparent)] sm:flex-row sm:gap-1.5 sm:px-1 sm:text-left"
                                     aria-label={`Jump to ${step.label}`}
                                 >
                                     <span className="shrink-0 font-mono text-[9px] text-[var(--ath-primary)]">0{index + 1}</span>
-                                    <span className="truncate text-[var(--ath-text)]">{step.label}</span>
+                                    <span className="w-full truncate text-[var(--ath-text)] sm:w-auto">{step.label}</span>
                                 </button>
                             </li>
                         ))}

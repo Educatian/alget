@@ -270,10 +270,10 @@ export default function KnowledgeCheck({
 
     if (status === 'idle') {
         return (
-            <div className="mt-12 overflow-hidden rounded-[2rem] border border-[var(--ath-line)] bg-[linear-gradient(180deg,rgba(200,226,236,0.18),rgba(255,255,255,0.88))] shadow-[0_24px_60px_rgba(15,23,42,0.06)]">
+            <div className="mt-12 overflow-hidden border-y border-[var(--ath-line)] bg-[color-mix(in_srgb,var(--ath-primary-soft)_28%,transparent)]">
                 <div className="h-1 w-full bg-[linear-gradient(90deg,var(--ath-primary),#4a7382)]" />
-                <div className="p-8 text-center md:p-10">
-                    <div className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full border border-[rgba(15,81,103,0.12)] bg-white/75 px-4 py-2 text-[0.72rem] font-bold uppercase tracking-[0.2em] text-[var(--ath-primary)]">
+                <div className="px-4 py-8 text-center md:px-8">
+                    <div className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full bg-[var(--ath-panel)] px-4 py-2 text-[0.72rem] font-bold uppercase tracking-[0.2em] text-[var(--ath-primary)]">
                         Knowledge Check
                     </div>
                     <h3 className="text-3xl font-semibold text-[var(--ath-text)]">Stress-Test Your Understanding</h3>
@@ -293,7 +293,7 @@ export default function KnowledgeCheck({
 
     if (status === 'loading') {
         return (
-            <div className="mt-12 rounded-[2rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.84)] p-10 text-center shadow-[0_24px_60px_rgba(15,23,42,0.05)]">
+            <div className="mt-12 border-y border-[var(--ath-line)] bg-[var(--ath-panel)] px-4 py-8 text-center md:px-8">
                 <p className="editorial-kicker">Knowledge Check</p>
                 <div className="mx-auto my-5 h-12 w-12 animate-spin rounded-full border-4 border-[var(--ath-panel-muted)] border-t-[var(--ath-primary)]" />
                 <h3 className="text-2xl font-semibold text-[var(--ath-text)]">Synthesizing Questions</h3>
@@ -306,10 +306,10 @@ export default function KnowledgeCheck({
 
     if (status === 'error') {
         return (
-            <div className="mt-12 rounded-[2rem] border border-[rgba(186,26,26,0.12)] bg-[rgba(255,248,247,0.92)] p-8 text-center shadow-sm">
-                <p className="editorial-kicker text-[#8c1d1d]">Knowledge Check</p>
-                <p className="mt-4 text-sm font-medium text-[#8c1d1d]">We could not generate the assessment right now.</p>
-                <button onClick={() => setStatus('idle')} className="mt-5 text-sm font-semibold text-[var(--ath-primary)]">
+            <div className="mt-12 border-y border-[color-mix(in_srgb,var(--ath-danger)_24%,transparent)] bg-[color-mix(in_srgb,var(--ath-danger)_8%,var(--ath-panel))] px-4 py-8 text-center md:px-8">
+                <p className="editorial-kicker text-[var(--ath-danger)]">Knowledge Check</p>
+                <p className="mt-4 text-sm font-medium text-[var(--ath-danger)]">We could not generate the assessment right now.</p>
+                <button onClick={() => setStatus('idle')} className="mt-5 min-h-11 px-3 text-sm font-semibold text-[var(--ath-primary)]">
                     Try Again
                 </button>
             </div>
@@ -321,7 +321,7 @@ export default function KnowledgeCheck({
         const missedConcepts = results.filter((result) => !result.isCorrect)
 
         return (
-            <div className="mt-12 rounded-[2rem] border border-[var(--ath-line)] bg-[linear-gradient(180deg,rgba(255,255,255,0.9),rgba(232,245,239,0.85))] p-8 text-center shadow-[0_24px_60px_rgba(15,23,42,0.05)]">
+            <div className="mt-12 border-y border-[var(--ath-line)] bg-[color-mix(in_srgb,var(--ath-primary-soft)_26%,var(--ath-panel))] px-4 py-8 text-center md:px-8">
                 <p className="editorial-kicker">Knowledge Check Complete</p>
                 <h3 className="mt-3 text-3xl font-semibold text-[var(--ath-text)]">Assessment Complete</h3>
                 <p className="mt-3 text-sm leading-7 text-[var(--ath-muted)]">
@@ -334,7 +334,7 @@ export default function KnowledgeCheck({
                             key={`${result.conceptId || 'item'}-${index}`}
                             role="img"
                             aria-label={`Item ${index + 1}: ${result.isCorrect ? 'correct' : 'missed'}`}
-                            className={`h-3 w-3 rounded-full ${result.isCorrect ? 'bg-emerald-500' : 'bg-[#9E1B32]'}`}
+                            className={`h-3 w-3 rounded-full ${result.isCorrect ? 'bg-emerald-500' : 'bg-[var(--ath-danger)]'}`}
                         />
                     ))}
                 </ul>
@@ -358,7 +358,7 @@ export default function KnowledgeCheck({
     }
 
     return (
-        <div className="mt-12 overflow-hidden rounded-[1.9rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.84)] shadow-[0_20px_50px_rgba(15,23,42,0.06)]">
+        <div className="mt-12 overflow-hidden border-y border-[var(--ath-line)] bg-[var(--ath-surface)]">
             <div className="h-1 w-full bg-[var(--ath-panel-muted)]">
                 <div
                     className="h-full bg-[linear-gradient(90deg,var(--ath-primary),#4a7382)] transition-all duration-500"
@@ -366,7 +366,7 @@ export default function KnowledgeCheck({
                 />
             </div>
 
-            <div className="p-6 md:p-8">
+            <div className="px-4 py-6 md:px-6">
                 <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
                     <span className="editorial-kicker">
                         Question {currentQuestionIndex + 1} of {questions.length} / {currentQuestion?.type === 'summary' ? 'Short Response' : 'Multiple Choice'}
@@ -379,7 +379,7 @@ export default function KnowledgeCheck({
                 </h3>
                 <GenerationTrace trace={assessmentTrace} compact />
 
-                <div className="mt-6 rounded-[1.25rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4">
+                <div className="mt-6 border-l-2 border-[var(--ath-line-strong)] bg-[var(--ath-panel)] px-4 py-3">
                     <p className="editorial-label" id={`confidence-label-${currentQuestionIndex}`}>How confident are you in this answer?</p>
                     <div
                         className="mt-3 flex flex-wrap gap-2"
@@ -404,7 +404,7 @@ export default function KnowledgeCheck({
                                         setConfidence(value === 1 ? 5 : value - 1)
                                     }
                                 }}
-                                className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-all ${
+                                className={`min-h-11 rounded-full px-4 text-xs font-semibold transition-all ${
                                     confidence === value
                                         ? 'bg-[var(--ath-primary)] text-white'
                                         : 'border border-[var(--ath-line)] bg-white/80 text-[var(--ath-secondary)]'
@@ -437,7 +437,7 @@ export default function KnowledgeCheck({
                                 if (isCorrect) {
                                     optionClasses = 'border-emerald-300 bg-emerald-50 text-emerald-800'
                                 } else if (isSelected) {
-                                    optionClasses = 'border-[rgba(186,26,26,0.18)] bg-[rgba(255,218,214,0.72)] text-[#8c1d1d]'
+                                    optionClasses = 'border-[color-mix(in_srgb,var(--ath-danger)_30%,transparent)] bg-[color-mix(in_srgb,var(--ath-danger)_11%,var(--ath-panel))] text-[var(--ath-danger)]'
                                 } else {
                                     optionClasses = 'border-[var(--ath-line)] bg-white/70 text-[var(--ath-muted)] opacity-70'
                                 }
@@ -455,7 +455,7 @@ export default function KnowledgeCheck({
                                     tabIndex={isAnswered ? -1 : (isFocusable ? 0 : -1)}
                                     disabled={isAnswered}
                                     onClick={() => handleOptionClick(optionId)}
-                                    className={`flex w-full items-center gap-3 rounded-[1.25rem] border px-4 py-4 text-left transition-all ${optionClasses}`}
+                                    className={`flex min-h-14 w-full items-center gap-3 rounded-[var(--ath-radius)] border px-4 py-3 text-left transition-all ${optionClasses}`}
                                 >
                                     <span aria-hidden="true" className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[var(--ath-line)] bg-[var(--ath-panel)] text-xs font-bold text-[var(--ath-secondary)]">{optionId}</span>
                                     <span className="flex-1 text-sm leading-7">{optionText}</span>
@@ -464,8 +464,8 @@ export default function KnowledgeCheck({
                         })}
 
                         {isAnswered && (
-                            <div role="status" aria-live="polite" className="animate-fade-in mt-5 rounded-[1.3rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-5">
-                                <p className={`text-sm font-semibold ${selectedOptionId === currentQuestion.correct_option_id ? 'text-emerald-700' : 'text-[#8c1d1d]'}`}>
+                            <div role="status" aria-live="polite" className="animate-fade-in mt-5 border-l-2 border-[var(--ath-line-strong)] bg-[var(--ath-panel)] px-4 py-4">
+                                <p className={`text-sm font-semibold ${selectedOptionId === currentQuestion.correct_option_id ? 'text-emerald-700' : 'text-[var(--ath-danger)]'}`}>
                                     {selectedOptionId === currentQuestion.correct_option_id ? 'Correct' : 'Needs Another Pass'}
                                 </p>
                                 <p className="mt-3 text-sm leading-7 text-[var(--ath-muted)]">{currentQuestion.explanation}</p>
@@ -550,9 +550,9 @@ export default function KnowledgeCheck({
                         )}
 
                         {isAnswered && summaryFeedback && (
-                            <div role="status" aria-live="polite" className="animate-fade-in rounded-[1.3rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-5">
+                            <div role="status" aria-live="polite" className="animate-fade-in border-l-2 border-[var(--ath-line-strong)] bg-[var(--ath-panel)] px-4 py-4">
                                 <div className="flex flex-wrap items-start justify-between gap-3">
-                                    <p className={`text-sm font-semibold ${summaryFeedback.is_passing ? 'text-emerald-700' : 'text-[#8c1d1d]'}`}>
+                                    <p className={`text-sm font-semibold ${summaryFeedback.is_passing ? 'text-emerald-700' : 'text-[var(--ath-danger)]'}`}>
                                         {summaryFeedback.is_passing ? 'Passing Response' : 'Needs More Specificity'}
                                     </p>
                                     <div className="flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--ath-secondary)]">

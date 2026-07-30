@@ -225,6 +225,38 @@ h6,
   min-height: 100vh;
 }
 
+/* Learner dashboards are information flows, not card galleries. Keep a light
+   rule for grouping while removing nested boxes and decorative elevation. */
+.student-dashboard .card-actionable {
+  border: 0;
+  border-left: 1px solid var(--ath-line-strong);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.student-dashboard .content-card {
+  border: 0;
+  border-top: 1px solid var(--ath-line-strong);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.student-dashboard .card-surface {
+  border-right: 0;
+  border-left: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+@media (max-width: 767px) {
+  .student-dashboard .card-actionable {
+    border-top: 1px solid var(--ath-line-strong);
+    border-left: 0;
+  }
+}
+
 .glass,
 .glass-panel,
 .premium-surface,

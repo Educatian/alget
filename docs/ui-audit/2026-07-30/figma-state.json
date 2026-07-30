@@ -1,0 +1,67 @@
+{
+  "runId": "alget-ui-2026-07-30",
+  "fileKey": "A7fzj3TaoyDNZzMK4dy3GD",
+  "fileUrl": "https://www.figma.com/design/A7fzj3TaoyDNZzMK4dy3GD",
+  "previewUrl": "https://significant-upgrade.alget.pages.dev",
+  "phase": "complete",
+  "step": "browser-validated-qa",
+  "entities": {
+    "collections": {
+      "primitives": "VariableCollectionId:2:3",
+      "color": "VariableCollectionId:2:4",
+      "spacing": "VariableCollectionId:2:5",
+      "radius": "VariableCollectionId:2:6",
+      "typography": "VariableCollectionId:2:7"
+    },
+    "variables": {
+      "onPrimary": "on-primary"
+    },
+    "pages": {
+      "cover": "0:1",
+      "audit": "2:108",
+      "foundations": "2:109",
+      "componentsDivider": "2:110",
+      "components": "2:111",
+      "reader": "2:112",
+      "dashboards": "2:113",
+      "qaDivider": "2:114",
+      "qa": "2:115"
+    },
+    "components": {
+      "buttonSet": "3:15",
+      "workflowStepSet": "5:12"
+    },
+    "screens": {
+      "readerDesktop": "4:2",
+      "readerMobile": "4:64",
+      "audit": "5:18",
+      "qa": "5:61"
+    }
+  },
+  "metrics": {
+    "variables": 89,
+    "textStyles": 10,
+    "effectStyles": 2,
+    "brokenAliases": 0,
+    "missingCodeSyntax": 0,
+    "mobileWorkflowVisible": "5/5 at 390px",
+    "pageHorizontalOverflow": false,
+    "modelViewerRendered": true,
+    "previewAccessGate": "pass: engineering, education, and researcher unlock flows verified in live Preview UI"
+  },
+  "pendingValidations": ["authorized-role inner dashboards"],
+  "completedSteps": [
+    "phase0",
+    "phase1/collections",
+    "phase1/primitives",
+    "phase1/semantics",
+    "phase1/styles",
+    "phase1/validation",
+    "phase2/pages",
+    "phase2/foundations",
+    "phase3/components",
+    "phase4/reader",
+    "phase5/qa",
+    "phase6/in-app-browser"
+  ]
+}
