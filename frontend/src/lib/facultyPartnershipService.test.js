@@ -1,9 +1,17 @@
-import { beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
+vi.mock('./supabase', () => ({
+    isSupabaseConfigured: false,
+    supabase: { auth: { getSession: vi.fn() } },
+}))
 import {
     buildEvidenceBrief,
     buildImpactReport,
     impactReportToMarkdown,
     loadFacultyWorkspace,
+    loadPublishedCourseSection,
+    publishFacultyPilot,
+    saveEvidenceBrief,
     saveShadowPilot,
 } from './facultyPartnershipService'
 
@@ -37,6 +45,24 @@ describe('facultyPartnershipService', () => {
         expect(workspace.pilots[0]).toMatchObject({ status: 'shadow', settings: { student_visible: false, automatic_grading: false } })
     })
 
+    it('publishes an approved generated draft into the learner reader format', async () => {
+        const pilot = await saveShadowPilot({
+            courseId: 'ail-606',
+            title: 'Faculty evidence partnership',
+            moduleName: 'Evaluating AI evidence',
+            sourceName: 'course.doc',
+            learningObjectives: ['Evaluate a claim'],
+            generationDraft: { sections: [{ title: 'Evidence evaluation', reading: { content: 'Inspect the source.', estimated_minutes: 6 } }] },
+        })
+        const result = await publishFacultyPilot(pilot, 'local')
+        const route = `${result.published.id}-1`
+        const section = await loadPublishedCourseSection('ail-606', route)
+
+        expect(result.pilot.status).toBe('active')
+        expect(section.meta).toMatchObject({ chapter: 'published', title: 'Evidence evaluation' })
+        expect(section.content).toBe('Inspect the source.')
+    })
+
     it('exports an evidence-limited course improvement report', () => {
         const brief = buildEvidenceBrief({ courseId: 'ail-606' })
         const report = buildImpactReport({ courseId: 'ail-606', pilot: null, brief })
@@ -44,5 +70,16 @@ describe('facultyPartnershipService', () => {
 
         expect(markdown).toContain('does not make a causal claim')
         expect(report.safeguards.deidentified_export).toBe(true)
+    })
+
+    it('never writes learner identifiers or names to browser fallback storage', async () => {
+        const brief = buildEvidenceBrief({
+            courseId: 'ail-606',
+            strugglers: [{ user_id: 'student-1', displayName: 'Student A', average: 0.2, conceptCount: 4 }],
+        })
+        await saveEvidenceBrief(brief, 'local')
+
+        expect(localStorage.getItem('alget_faculty_partnership_v1')).not.toContain('student-1')
+        expect(localStorage.getItem('alget_faculty_partnership_v1')).not.toContain('Student A')
     })
 })

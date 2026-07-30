@@ -26,6 +26,7 @@ import { recordAdaptiveSignal } from '../lib/knowledgeService'
 import { useCourseProgress } from '../hooks/useCourseProgress'
 import { useSocialPresence } from '../hooks/useSocialPresence'
 import API_BASE from '../lib/apiConfig'
+import { listPublishedCourseModules, loadPublishedCourseSection, mergePublishedModulesIntoToc } from '../lib/facultyPartnershipService'
 import '../index.css'
 
 const ReadingPane = lazy(() => import('../components/ReadingPane'))
@@ -265,9 +266,15 @@ export default function BookLayout({ user, onLogout }) {
                 if (!res.ok) throw new Error(`TOC ${res.status}`)
                 return res.json()
             })
-            .then((data) => {
+            .then(async (data) => {
                 if (cancelled) return
-                setToc(data)
+                try {
+                    const published = await listPublishedCourseModules(course)
+                    if (!cancelled) setToc(mergePublishedModulesIntoToc(data, published))
+                } catch (error) {
+                    console.warn('[BookLayout] published module list unavailable:', error)
+                    if (!cancelled) setToc(data)
+                }
                 setTocError(null)
             })
             .catch((error) => {
@@ -287,14 +294,17 @@ export default function BookLayout({ user, onLogout }) {
         logPageView(sectionPath)
         recordAdaptiveSignal(sectionPath, 'page_view')
 
-        fetch(`${API_BASE}/book/${course}/${chapter}/${section}`)
-            .then((res) => {
+        const request = chapter === 'published'
+            ? loadPublishedCourseSection(course, section)
+            : fetch(`${API_BASE}/book/${course}/${chapter}/${section}`).then((res) => {
                 // Distinguish a transient network/server failure from a genuinely
                 // missing section: 404 is "not found", anything else thrown is a
                 // load error that gets a retry affordance (not a dead "Not Found").
                 if (!res.ok) throw new Error(res.status === 404 ? 'not-found' : `Section ${res.status}`)
                 return res.json()
             })
+
+        request
             .then((data) => {
                 if (cancelled) return
                 setSectionData(data)

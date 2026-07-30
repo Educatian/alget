@@ -6,6 +6,8 @@ import {
     impactReportToMarkdown,
     importGoogleDocCourseDraft,
     loadFacultyWorkspace,
+    publishFacultyPilot,
+    publishedSectionRoute,
     saveEvidenceBrief,
     saveImpactReport,
     saveShadowPilot,
@@ -20,7 +22,7 @@ const VIEWS = [
 
 export default function FacultyPartnershipWorkspace({ courseId, hotSpots = [], strugglers = [], rct = {} }) {
     const [view, setView] = useState('brief')
-    const [workspace, setWorkspace] = useState({ pilots: [], briefs: [], reports: [], persistence: 'local' })
+    const [workspace, setWorkspace] = useState({ pilots: [], briefs: [], reports: [], published: [], persistence: 'local' })
     const [busy, setBusy] = useState('')
     const [message, setMessage] = useState('')
     const [form, setForm] = useState({
@@ -50,8 +52,24 @@ export default function FacultyPartnershipWorkspace({ courseId, hotSpots = [], s
 
     useEffect(() => {
         let cancelled = false
+        setGenerationDraft(null)
         loadFacultyWorkspace(courseId)
-            .then((result) => { if (!cancelled) setWorkspace(result) })
+            .then((result) => {
+                if (cancelled) return
+                setWorkspace(result)
+                const pilot = result.pilots?.[0]
+                if (pilot?.generation_draft?.sections?.length) {
+                    setGenerationDraft(pilot.generation_draft)
+                    setForm((current) => ({
+                        ...current,
+                        title: pilot.title || current.title,
+                        moduleName: pilot.module_name || '',
+                        sourceName: pilot.source_name || '',
+                        googleDocUrl: pilot.source_url || '',
+                        learningObjectives: (pilot.learning_objectives || pilot.generation_draft.learning_objectives || []).join('\n'),
+                    }))
+                }
+            })
             .catch((error) => { if (!cancelled) setMessage(error.message) })
         return () => { cancelled = true }
     }, [courseId])
@@ -131,6 +149,25 @@ export default function FacultyPartnershipWorkspace({ courseId, hotSpots = [], s
             setMessage('Pilot is ready for instructor approval. Student visibility remains off.')
         } catch (error) {
             setMessage(error.message || 'Could not update the pilot.')
+        } finally {
+            setBusy('')
+        }
+    }
+
+    const publishPilot = async () => {
+        if (!activePilot) return
+        setBusy('publish')
+        setMessage('')
+        try {
+            const result = await publishFacultyPilot(activePilot, workspace.persistence)
+            setWorkspace((current) => ({
+                ...current,
+                pilots: current.pilots.map((item) => item.id === result.pilot.id ? result.pilot : item),
+                published: [result.published, ...current.published.filter((item) => item.id !== result.published.id)],
+            }))
+            setMessage('Published to the learner reader. The approved module is now course-visible.')
+        } catch (error) {
+            setMessage(error.message || 'Could not publish the pilot.')
         } finally {
             setBusy('')
         }
@@ -279,6 +316,8 @@ export default function FacultyPartnershipWorkspace({ courseId, hotSpots = [], s
                                 <p className="mt-1 text-sm text-[var(--ath-text)]">{activePilot.module_name}</p>
                                 <p className="mt-1 text-[11px] uppercase tracking-[0.13em] text-[var(--ath-primary)]">{activePilot.status}</p>
                                 {activePilot.status === 'shadow' && <button type="button" onClick={markReady} disabled={Boolean(busy)} className="editorial-button-secondary mt-3 px-3 py-2 text-xs"><Check className="mr-1 inline h-3.5 w-3.5" />Mark ready for review</button>}
+                                {activePilot.status === 'ready' && <button type="button" onClick={publishPilot} disabled={Boolean(busy)} className="editorial-button mt-3 px-3 py-2 text-xs"><Check className="mr-1 inline h-3.5 w-3.5" />{busy === 'publish' ? 'Publishing…' : 'Approve & publish'}</button>}
+                                {activePilot.status === 'active' && workspace.published[0]?.generation_draft?.sections?.length > 0 && <a href={`/book/${courseId}/published/${publishedSectionRoute(workspace.published[0].id, 0)}`} className="mt-3 inline-block text-xs font-semibold text-[var(--ath-primary)] underline-offset-4 hover:underline">Open in learner reader →</a>}
                             </div>
                         )}
                     </aside>

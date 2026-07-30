@@ -1,7 +1,7 @@
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import FacultyPartnershipWorkspace from './FacultyPartnershipWorkspace'
-import { importGoogleDocCourseDraft, loadFacultyWorkspace, saveShadowPilot } from '../lib/facultyPartnershipService'
+import { importGoogleDocCourseDraft, loadFacultyWorkspace, publishFacultyPilot, saveShadowPilot } from '../lib/facultyPartnershipService'
 
 vi.mock('../lib/facultyPartnershipService', async (importOriginal) => {
     const actual = await importOriginal()
@@ -12,13 +12,14 @@ vi.mock('../lib/facultyPartnershipService', async (importOriginal) => {
         saveShadowPilot: vi.fn(),
         saveEvidenceBrief: vi.fn(async (brief) => ({ id: 'brief-1', summary: brief })),
         saveImpactReport: vi.fn(async (report) => ({ id: 'report-1', report })),
+        publishFacultyPilot: vi.fn(),
         setPilotStatus: vi.fn(),
     }
 })
 
 describe('FacultyPartnershipWorkspace', () => {
     beforeEach(() => {
-        loadFacultyWorkspace.mockResolvedValue({ pilots: [], briefs: [], reports: [], persistence: 'local' })
+        loadFacultyWorkspace.mockResolvedValue({ pilots: [], briefs: [], reports: [], published: [], persistence: 'local' })
         saveShadowPilot.mockResolvedValue({ id: 'pilot-1', module_name: 'AI evidence', status: 'shadow' })
         importGoogleDocCourseDraft.mockResolvedValue({
             source: { title: 'AI Literacy Module', sha256: 'abc123' },
@@ -75,5 +76,22 @@ describe('FacultyPartnershipWorkspace', () => {
         }))
         expect(await screen.findByText('Evidence evaluation')).toBeInTheDocument()
         expect(screen.getByText(/Reading · 8 min/i)).toBeInTheDocument()
+    })
+
+    it('restores a saved generated draft after reload and publishes only after approval', async () => {
+        const pilot = {
+            id: 'pilot-1', course_id: 'ail-606', title: 'AI evidence', module_name: 'Evidence evaluation',
+            status: 'ready', learning_objectives: ['Evaluate claims'],
+            generation_draft: { sections: [{ section_id: 'draft-01', title: 'Restored reading', reading: { estimated_minutes: 5 } }] },
+        }
+        loadFacultyWorkspace.mockResolvedValue({ pilots: [pilot], briefs: [], reports: [], published: [], persistence: 'local' })
+        publishFacultyPilot.mockResolvedValue({ pilot: { ...pilot, status: 'active' }, published: { id: 'published-1', generation_draft: pilot.generation_draft } })
+        render(<FacultyPartnershipWorkspace courseId="ail-606" rct={{}} />)
+
+        fireEvent.click(screen.getByRole('button', { name: 'Shadow pilot' }))
+        expect(await screen.findByText('Restored reading')).toBeInTheDocument()
+        fireEvent.click(screen.getByRole('button', { name: 'Approve & publish' }))
+        await waitFor(() => expect(publishFacultyPilot).toHaveBeenCalledWith(pilot, 'local'))
+        expect(await screen.findByText(/Published to the learner reader/i)).toBeInTheDocument()
     })
 })

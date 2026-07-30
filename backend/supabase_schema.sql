@@ -234,12 +234,19 @@ CREATE POLICY "Users can insert own stuck_events" ON stuck_events
     FOR INSERT WITH CHECK (auth.uid() = user_id);
 
 DROP POLICY IF EXISTS "Users can view own mastery" ON mastery;
-CREATE POLICY "Users can view own mastery" ON mastery
-    FOR SELECT USING (auth.uid() = user_id OR auth.uid() IS NULL);
-
 DROP POLICY IF EXISTS "Users can update own mastery" ON mastery;
-CREATE POLICY "Users can update own mastery" ON mastery
-    FOR ALL USING (auth.uid() = user_id OR auth.uid() IS NULL);
+DROP POLICY IF EXISTS "users read own mastery" ON mastery;
+DROP POLICY IF EXISTS "users insert own mastery" ON mastery;
+DROP POLICY IF EXISTS "users update own mastery" ON mastery;
+CREATE POLICY "users read own mastery" ON mastery
+    FOR SELECT TO authenticated USING ((SELECT auth.uid()) = user_id);
+CREATE POLICY "users insert own mastery" ON mastery
+    FOR INSERT TO authenticated WITH CHECK ((SELECT auth.uid()) = user_id);
+CREATE POLICY "users update own mastery" ON mastery
+    FOR UPDATE TO authenticated USING ((SELECT auth.uid()) = user_id)
+    WITH CHECK ((SELECT auth.uid()) = user_id);
+REVOKE ALL ON TABLE mastery FROM anon;
+GRANT SELECT, INSERT, UPDATE ON TABLE mastery TO authenticated;
 
 DROP POLICY IF EXISTS "Users can manage own sessions" ON learning_sessions;
 CREATE POLICY "Users can manage own sessions" ON learning_sessions
@@ -269,7 +276,7 @@ CREATE POLICY "Public read problem_steps" ON problem_steps FOR SELECT TO authent
 
 -- User progress per section
 DROP VIEW IF EXISTS user_section_progress;
-CREATE OR REPLACE VIEW user_section_progress AS
+CREATE OR REPLACE VIEW user_section_progress WITH (security_invoker = true) AS
 SELECT
     s.user_id,
     sec.id AS section_id,
@@ -292,7 +299,7 @@ GROUP BY s.user_id, sec.id, sec.course, sec.chapter, sec.section, sec.title;
 
 -- Concept mastery summary
 DROP VIEW IF EXISTS concept_mastery_summary;
-CREATE OR REPLACE VIEW concept_mastery_summary AS
+CREATE OR REPLACE VIEW concept_mastery_summary WITH (security_invoker = true) AS
 SELECT
     c.id AS concept_id,
     c.name,
@@ -339,7 +346,7 @@ CREATE POLICY "Authenticated users can read all highlights" ON highlights
 -- POPULAR HIGHLIGHTS VIEW (AGGREGATED SOCIAL HIGHLIGHTS)
 -- =============================================================================
 DROP VIEW IF EXISTS popular_highlights;
-CREATE OR REPLACE VIEW popular_highlights AS
+CREATE OR REPLACE VIEW popular_highlights WITH (security_invoker = true) AS
 SELECT
     section_id,
     text_content,
@@ -351,4 +358,5 @@ FROM highlights
 GROUP BY section_id, text_content
 HAVING COUNT(DISTINCT user_id) >= 2;  -- At least two learners highlighted the same text
 
-GRANT SELECT ON popular_highlights TO authenticated;
+REVOKE ALL ON user_section_progress, concept_mastery_summary, popular_highlights FROM anon;
+GRANT SELECT ON user_section_progress, concept_mastery_summary, popular_highlights TO authenticated;

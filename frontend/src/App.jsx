@@ -5,6 +5,7 @@ import { initSession, endSession } from './lib/loggingService'
 import { replayPendingResearchPersists, clearResearchCaches } from './lib/researchService'
 import { clearLocalLearnerCaches } from './lib/knowledgeService'
 import { clearStreak } from './lib/streak'
+import { clearFacultyPartnershipCache } from './lib/facultyPartnershipService'
 import { safeSessionStorageGet, safeLocalStorageGet, safeLocalStorageRemove } from './lib/browserStorage'
 import { DEMO_SESSION_KEY } from './lib/demoSession'
 import { clearCohortLearner, formatUserLabel, readCohortLearner } from './lib/cohortLearner'
@@ -102,10 +103,8 @@ function RouteFallback() {
 
 function hasInstructorAccess(user) {
   const role = user?.app_metadata?.role
-  return user?.id === 'e2e-user'
+  return (E2E_USER && user?.id === E2E_USER.id)
     || ['admin', 'course_admin', 'instructor'].includes(role)
-    || safeSessionStorageGet('alget_instructor_access') === 'granted'
-    || safeSessionStorageGet('alget_researcher_access') === 'granted'
 }
 
 function hasCourseAdminAccess(user) {
@@ -184,6 +183,7 @@ export default function App() {
     // inherit them; they rebuild from the cloud.
     clearLocalLearnerCaches()
     clearResearchCaches()
+    clearFacultyPartnershipCache()
     clearStreak()
     setUser(user)
     initSession(user)
@@ -198,6 +198,7 @@ export default function App() {
       clearCohortLearner()
       clearLocalLearnerCaches()
       clearResearchCaches()
+      clearFacultyPartnershipCache()
       clearStreak()
       setUser(null)
     }

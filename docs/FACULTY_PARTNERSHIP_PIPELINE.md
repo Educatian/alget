@@ -12,8 +12,9 @@ ALGET lets an instructor connect one Google Doc, inspect a generated course expe
    - claim-evidence-revision activities and their evidence fields;
    - proposed parameter-exploration simulations with prediction, observation, and explanation traces.
 4. The draft is stored with its source revision hash. Student visibility, automatic publishing, messaging, and grading remain disabled.
-5. The instructor reviews the generated experience, marks the pilot ready, and separately approves any intervention or release action.
-6. Weekly evidence briefs and course impact reports reuse the same governed faculty workspace.
+5. The instructor reviews the generated experience and marks the pilot ready. This state remains learner-invisible.
+6. A separate **Approve & publish** action writes an RLS-protected `published_course_modules` record and activates the pilot. The module then appears under **Instructor-published modules** in that course's reader.
+7. Weekly evidence briefs and course impact reports reuse the same governed faculty workspace.
 
 ## Runtime contract
 
@@ -25,7 +26,9 @@ ALGET lets an instructor connect one Google Doc, inspect a generated course expe
 
 ## Persistence
 
-Migration `20260730110000_faculty_evidence_partnership.sql` adds RLS-protected faculty pilots, evidence briefs, and impact reports. Each pilot records the canonical source URL, source hash, generated draft, objectives, and governance settings.
+Migration `20260730110000_faculty_evidence_partnership.sql` adds RLS-protected faculty pilots, evidence briefs, and impact reports. Migration `20260730220826_harden_instructor_course_access.sql` adds the instructor-approved publishing terminus and course-assignment policies. Each pilot records the canonical source URL, source hash, generated draft, objectives, and governance settings. Only assigned instructors can manage a publication; only learners enrolled in that course can read it.
+
+Configured Supabase failures are surfaced to the instructor and never silently fall back to browser storage. Demo-only local evidence copies remove learner IDs and display names before persistence.
 
 ## Next integration boundary
 

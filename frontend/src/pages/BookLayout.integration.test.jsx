@@ -4,6 +4,12 @@ import { cleanup, render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router'
 import BookLayout from './BookLayout'
 
+vi.mock('../lib/facultyPartnershipService', () => ({
+    listPublishedCourseModules: vi.fn().mockResolvedValue([]),
+    loadPublishedCourseSection: vi.fn(),
+    mergePublishedModulesIntoToc: (toc) => toc,
+}))
+
 vi.mock('../hooks/useCourseProgress', () => ({
     useCourseProgress: () => ({
         completedSections: [],
