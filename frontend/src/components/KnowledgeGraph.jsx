@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import { Minus, Plus, RotateCcw } from 'lucide-react'
 import { supabase } from '../lib/supabase'
 import API_BASE, { LLM_API_BASE } from '../lib/apiConfig'

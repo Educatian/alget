@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import { ArrowRight, Brain, GraduationCap, Layers3, Microscope, ShieldCheck, Sparkles } from 'lucide-react'
 import AuthModal from '../components/AuthModal'
 import ThemeToggle from '../components/ThemeToggle'

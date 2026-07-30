@@ -1,7 +1,7 @@
 import { forwardRef } from 'react'
 import { describe, expect, it, beforeEach, afterEach, vi } from 'vitest'
 import { cleanup, render, screen, waitFor } from '@testing-library/react'
-import { MemoryRouter, Route, Routes } from 'react-router-dom'
+import { MemoryRouter, Route, Routes } from 'react-router'
 import BookLayout from './BookLayout'
 
 vi.mock('../hooks/useCourseProgress', () => ({

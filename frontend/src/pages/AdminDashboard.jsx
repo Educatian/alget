@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import AdminControlPlane from '../components/AdminControlPlane'
 
 export default function AdminDashboard() {

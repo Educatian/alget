@@ -4,6 +4,7 @@ import {
     activateAdaptationPolicy,
     rollbackAdaptationPolicy,
     saveAdaptationPolicy,
+    setAdaptationEmergencyPause,
 } from '../lib/adminControlService'
 
 const SIGNAL_CONTROLS = [
@@ -55,6 +56,8 @@ export default function AdaptationDesignStudio({ state, busy, runAction, persist
         .filter((item) => !selectedCourse || item.course_id === selectedCourse.course_key)
         .sort((a, b) => Number(b.version) - Number(a.version)), [selectedCourse, state.adaptationPolicies])
     const active = policies.find((item) => item.status === 'active')
+    const control = selectedCourse ? state.adaptationControls?.[selectedCourse.course_key] : null
+    const emergencyPaused = control?.enabled === false
     const preview = useMemo(() => LEARNER_PREVIEWS.map((profile) => ({ profile, decision: previewDecision(profile, form.policy) })), [form.policy])
     const setPolicy = (key, value) => setForm((current) => ({ ...current, policy: { ...current.policy, [key]: value } }))
     const loadPolicy = (record) => setForm({ name: record.name, notes: `Based on v${record.version}`, policy: { ...DEFAULT_ADAPTATION_POLICY, ...record.policy } })
@@ -92,7 +95,35 @@ export default function AdaptationDesignStudio({ state, busy, runAction, persist
                         <Metric label="Active version" value={active ? `v${active.version}` : 'None'} />
                         <Metric label="Cooldown" value={`${form.policy.cooldown_minutes} min`} />
                         <Metric label="Session ceiling" value={`${form.policy.max_interventions_per_session} supports`} />
-                        <Metric label="Release gate" value="Human approval" />
+                        <Metric label="Runtime" value={emergencyPaused ? 'Paused' : 'Enabled'} />
+                    </div>
+
+                    <div role="status" className={`mb-5 flex flex-wrap items-center justify-between gap-3 border-l-2 px-4 py-3 ${emergencyPaused ? 'border-rose-500 bg-rose-500/5' : 'border-emerald-500 bg-emerald-500/5'}`}>
+                        <div>
+                            <p className="text-sm font-semibold text-[var(--ath-text)]">{emergencyPaused ? 'Adaptive interventions are paused' : 'Adaptive interventions are live'}</p>
+                            <p className="mt-0.5 text-xs leading-5 text-[var(--ath-muted)]">
+                                {emergencyPaused ? `${control.reason || 'Emergency pause'} Core reading and practice remain available.` : 'The active policy may offer or withhold support within the approved limits.'}
+                            </p>
+                        </div>
+                        <button
+                            type="button"
+                            disabled={busy === 'adaptation-emergency-control'}
+                            onClick={() => {
+                                const prompt = emergencyPaused
+                                    ? 'Resume adaptive interventions for this course?'
+                                    : 'Pause all adaptive interventions for this course? Reading and practice will remain available.'
+                                if (window.confirm(prompt)) {
+                                    runAction(
+                                        'adaptation-emergency-control',
+                                        () => setAdaptationEmergencyPause(selectedCourse, !emergencyPaused, persistence),
+                                        emergencyPaused ? 'Adaptive interventions resumed.' : 'Adaptive interventions paused immediately.',
+                                    )
+                                }
+                            }}
+                            className={emergencyPaused ? 'editorial-button px-4 py-2 text-xs' : 'border border-rose-500 px-4 py-2 text-xs font-semibold text-rose-700'}
+                        >
+                            {busy === 'adaptation-emergency-control' ? 'Updating…' : emergencyPaused ? 'Resume interventions' : 'Emergency pause'}
+                        </button>
                     </div>
 
                     <form onSubmit={save} className="grid gap-7 xl:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.65fr)]">

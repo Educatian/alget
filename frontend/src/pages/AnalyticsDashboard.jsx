@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import { Activity, ArrowRight, Brain, Flame, Users } from 'lucide-react'
 import API_BASE from '../lib/apiConfig'
 import { safeSessionStorageGet, safeSessionStorageRemove, safeSessionStorageSet } from '../lib/browserStorage'

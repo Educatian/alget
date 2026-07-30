@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import { ArrowRight, BookOpen, Flame, NotebookPen, Target } from 'lucide-react'
 import { LLM_API_BASE } from '../lib/apiConfig'
 import { supabase } from '../lib/supabase'

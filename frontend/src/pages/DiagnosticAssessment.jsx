@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router'
 import API_BASE from '../lib/apiConfig'
 import { recordCalibrationMastery } from '../lib/knowledgeService'
 import { getEvaluationStatus, recordEvaluationResult } from '../lib/researchService'

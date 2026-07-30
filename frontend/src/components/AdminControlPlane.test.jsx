@@ -27,6 +27,7 @@ vi.mock('../lib/adminControlService', () => ({
     saveAdaptationPolicy: vi.fn(async () => ({})),
     activateAdaptationPolicy: vi.fn(async () => ({})),
     rollbackAdaptationPolicy: vi.fn(async () => ({})),
+    setAdaptationEmergencyPause: vi.fn(async () => ({})),
 }))
 
 describe('AdminControlPlane', () => {
@@ -76,6 +77,7 @@ describe('AdminControlPlane', () => {
             persistence: 'local',
             state: {
                 instructors: [], ingestionJobs: [], agentRuns: [], auditEvents: [], adaptationPolicies: [],
+                adaptationControls: {},
                 courses: [{ id: 'course-1', course_key: 'ail606-supplement', title: 'AIL 606' }],
             },
         })
@@ -88,5 +90,28 @@ describe('AdminControlPlane', () => {
         expect(screen.getByLabelText('Cooldown (min)')).toHaveValue(8)
         expect(screen.getByText('Struggling, engaged')).toBeInTheDocument()
         expect(screen.getByRole('button', { name: 'Save policy draft' })).toBeInTheDocument()
+        expect(screen.getByRole('button', { name: 'Emergency pause' })).toBeInTheDocument()
+        expect(screen.getByText('Adaptive interventions are live')).toBeInTheDocument()
+    })
+
+    it('shows the release-safe paused state for adaptive interventions', async () => {
+        loadAdminState.mockResolvedValueOnce({
+            persistence: 'local',
+            state: {
+                instructors: [], ingestionJobs: [], agentRuns: [], auditEvents: [], adaptationPolicies: [],
+                courses: [{ id: 'course-1', course_key: 'ail606-supplement', title: 'AIL 606' }],
+                adaptationControls: {
+                    'ail606-supplement': { enabled: false, reason: 'Incident review' },
+                },
+            },
+        })
+        render(<AdminControlPlane cohortContent={<p>Cohort view</p>} />)
+        await screen.findByText('One accountable course pipeline')
+
+        fireEvent.click(screen.getByRole('button', { name: 'Adaptation' }))
+
+        expect(screen.getByText('Adaptive interventions are paused')).toBeInTheDocument()
+        expect(screen.getByText(/Incident review/)).toBeInTheDocument()
+        expect(screen.getByRole('button', { name: 'Resume interventions' })).toBeInTheDocument()
     })
 })

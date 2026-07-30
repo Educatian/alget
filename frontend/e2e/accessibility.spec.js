@@ -6,6 +6,7 @@ const ACCESSIBILITY_ROUTES = [
     { route: '/book/ail606-supplement/01/01', label: 'book work product flow' },
     { route: '/diagnostic/ail606-supplement?phase=pre', label: 'diagnostic assessment' },
     { route: '/analytics', label: 'research analytics' },
+    { route: '/admin', label: 'administrator control plane' },
 ]
 
 test.describe('ALGET accessibility gate', () => {

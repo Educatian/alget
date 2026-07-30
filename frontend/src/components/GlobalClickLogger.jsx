@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router'
 import { logClick, logPointerPath, logScroll } from '../lib/loggingService'
 
 const POINTER_SAMPLE_INTERVAL_MS = 50

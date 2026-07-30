@@ -33,6 +33,7 @@ const EMPTY_STATE = {
     agentRuns: [],
     auditEvents: [],
     adaptationPolicies: [],
+    adaptationControls: {},
 }
 
 function readLocalState() {
@@ -79,7 +80,9 @@ async function loadRemoteState() {
     const policyResponse = await fetch(`${LLM_API_BASE}/admin/adaptation/policies`, {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
     })
-    state.adaptationPolicies = policyResponse.ok ? (await policyResponse.json()).policies || [] : []
+    const policyPayload = policyResponse.ok ? await policyResponse.json() : {}
+    state.adaptationPolicies = policyPayload.policies || []
+    state.adaptationControls = policyPayload.controls || {}
     return state
 }
 
@@ -149,6 +152,40 @@ export async function rollbackAdaptationPolicy(record, persistence = 'local') {
     return saveAdaptationPolicy({ course_key: record.course_id }, {
         name: `${record.name} rollback`, notes: `Rollback draft from v${record.version}`, policy: record.policy,
     }, 'local')
+}
+
+export async function setAdaptationEmergencyPause(course, paused, persistence = 'local') {
+    const reason = paused ? 'Emergency pause by course administrator' : ''
+    if (persistence === 'supabase') {
+        const action = paused ? 'pause' : 'resume'
+        const result = await adaptationRequest(`/admin/adaptation/courses/${course.course_key}/${action}`, { reason })
+        await appendRemoteAudit(
+            paused ? 'adaptation_policy.emergency_paused' : 'adaptation_policy.emergency_resumed',
+            'adaptation_policy_control',
+            course.course_key,
+            { course_id: course.id, reason },
+        )
+        return result.control
+    }
+
+    const state = readLocalState()
+    const control = {
+        course_id: course.course_key,
+        enabled: !paused,
+        reason,
+        updated_at: new Date().toISOString(),
+        updated_by: 'local-operator',
+    }
+    state.adaptationControls = { ...(state.adaptationControls || {}), [course.course_key]: control }
+    state.auditEvents.unshift({
+        id: localId('audit'),
+        action: paused ? 'adaptation_policy.emergency_paused' : 'adaptation_policy.emergency_resumed',
+        entity_type: 'adaptation_policy_control',
+        entity_id: course.course_key,
+        created_at: control.updated_at,
+    })
+    writeLocalState(state)
+    return control
 }
 
 export async function loadAdminState() {
