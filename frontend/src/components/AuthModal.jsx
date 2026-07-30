@@ -133,7 +133,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
         // this presentational overlay would be redundant.
         // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
         <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(15,23,42,0.42)] px-4 backdrop-blur-md"
+            className="ath-auth-overlay fixed inset-0 z-50 flex items-center justify-center bg-[rgba(15,23,42,0.42)] px-4 backdrop-blur-md"
             onClick={(event) => {
                 if (event.target === event.currentTarget) onClose()
             }}
@@ -143,7 +143,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="auth-modal-title"
-                className="w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-[var(--ath-radius-lg)] border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] shadow-[0_24px_64px_rgba(15,23,42,0.2)]"
+                className="ath-auth-dialog w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-[var(--ath-radius-lg)] border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] shadow-[0_24px_64px_rgba(15,23,42,0.2)]"
             >
                 <div className="border-b border-[var(--ath-line)] bg-[var(--ath-panel-muted)] px-6 py-5">
                     <div className="flex items-start justify-between gap-4">

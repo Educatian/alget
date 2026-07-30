@@ -249,7 +249,7 @@ export default function MainApp({ user, onLogout }) {
     }
 
     return (
-        <div className="editorial-shell ath-open-layout ath-density-compact min-h-screen">
+        <div className="ath-pathway-shell editorial-shell ath-open-layout ath-density-compact min-h-screen">
             <a href="#main-content" className="skip-to-content-link">Skip to main content</a>
 
             <header className="sticky top-0 z-50 border-b border-[var(--ath-line)] bg-[rgba(248,246,241,0.84)] backdrop-blur-2xl">

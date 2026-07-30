@@ -758,6 +758,123 @@ h6,
   box-shadow: none;
 }
 
+/* Figma-aligned entry surfaces: keep the landing page's dark product preview,
+   but give its shell, auth dialog, and pathway gate the same quiet density as
+   the learner/instructor/admin frames. */
+.ath-landing-shell {
+  background: #f7f5f0;
+}
+
+.ath-landing-shell .ath-topbar {
+  border-bottom: 0;
+  background: #fff;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.ath-landing-shell .ath-brand-mark {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 0;
+  border-radius: 9999px;
+  background: #5c4afa;
+  padding: 0;
+  font-size: 0.68rem;
+  box-shadow: none;
+}
+
+.ath-landing-shell .ath-hero-title {
+  font-family: 'Inter', 'IBM Plex Sans', 'Segoe UI', sans-serif;
+  font-size: clamp(2.75rem, 5vw, 4.25rem);
+  line-height: 1.03;
+  letter-spacing: -0.045em;
+}
+
+.ath-landing-shell .ath-hero-dek {
+  max-width: 38rem;
+  font-size: 1rem;
+  line-height: 1.55;
+  letter-spacing: -0.008em;
+}
+
+.ath-landing-shell .editorial-button,
+.ath-landing-shell .editorial-button-secondary {
+  min-height: 2.75rem;
+  border-radius: 0.5rem;
+}
+
+.ath-auth-overlay {
+  background: rgba(28, 26, 41, 0.38);
+}
+
+.ath-auth-dialog {
+  max-width: 35rem;
+  border: 0;
+  border-radius: 0.875rem;
+  background: #fff;
+  box-shadow: 0 24px 64px rgba(28, 26, 41, 0.2);
+}
+
+.ath-auth-dialog > div:first-child {
+  background: #fbfaf7;
+  border-bottom-color: rgba(28, 26, 41, 0.08);
+  padding: 1.5rem;
+}
+
+.ath-auth-dialog > div:first-child h2 {
+  font-family: 'Inter', 'IBM Plex Sans', 'Segoe UI', sans-serif;
+  font-size: 1.75rem;
+  letter-spacing: -0.03em;
+}
+
+.ath-auth-dialog > div:last-child {
+  padding: 1.5rem;
+}
+
+.ath-auth-dialog .editorial-input {
+  min-height: 2.75rem;
+  border-radius: 0.5rem;
+  border-color: rgba(28, 26, 41, 0.1);
+  background: #fff;
+}
+
+.ath-pathway-shell > header {
+  min-height: 3.5rem;
+  border-bottom: 0;
+  background: #fff;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.ath-pathway-shell > header > div {
+  max-width: 80rem;
+  min-height: 3.5rem;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.ath-pathway-shell > header button > div:first-child {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  background: #5c4afa;
+}
+
+.ath-pathway-shell main {
+  max-width: 80rem;
+}
+
+.ath-pathway-shell main > div:not(.sr-only) {
+  border-color: transparent;
+}
+
+.ath-pathway-shell .editorial-input {
+  min-height: 2.75rem;
+  border-radius: 0.5rem;
+  border-color: rgba(28, 26, 41, 0.1);
+  background: #fff;
+}
+
 @media (max-width: 64rem) {
   .ath-learner-shell > .ath-container {
     padding-left: 1rem;
@@ -1964,6 +2081,31 @@ h6,
 [data-theme="light"] [class*="bg-[rgba(248,246,241"],
 [data-theme="light"] [class*="bg-[rgba(255,255,255"] {
   background: rgba(255, 255, 252, 0.82) !important;
+}
+
+/* Final entry-surface overrides sit after the legacy editorial finishing
+   rules so the Figma compact type ramp wins in light mode as well. */
+.ath-landing-shell .ath-hero-title,
+.ath-pathway-shell h1,
+.ath-pathway-shell h2,
+.ath-auth-dialog h2 {
+  font-family: 'Inter', 'IBM Plex Sans', 'Segoe UI', sans-serif;
+}
+
+.ath-landing-shell .ath-hero-title {
+  max-width: 16ch;
+  font-size: clamp(2.75rem, 5vw, 4.25rem);
+  line-height: 1.03;
+  letter-spacing: -0.045em;
+}
+
+.ath-pathway-shell h1 {
+  font-size: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.ath-pathway-shell h2 {
+  letter-spacing: -0.035em;
 }
 
 [data-theme="light"] [class*="bg-\\[rgba\\(248\\,246\\,241"],
