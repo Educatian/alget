@@ -6,10 +6,22 @@
   "title": "Prompting With Verification",
   "description": "CAT 100 textbook section connecting prompting with verification to AI critique log showing accepted, modified, and rejected suggestions, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Write a prompt specific enough to produce checkable claims, and ask the model to flag uncertainty.",
-    "Separate the model's output into individual factual claims you can verify one at a time.",
-    "Confirm, correct, or remove each claim against an official source, and log the result.",
-    "Recognize a hallucination: a confident, specific claim with no source behind it."
+    {
+      "id": "cat100-supplement-01-04-lo-01",
+      "statement": "Write a prompt specific enough to produce checkable claims, and ask the model to flag uncertainty"
+    },
+    {
+      "id": "cat100-supplement-01-04-lo-02",
+      "statement": "Separate the model's output into individual factual claims you can verify one at a time"
+    },
+    {
+      "id": "cat100-supplement-01-04-lo-03",
+      "statement": "Confirm, correct, or remove each claim against an official source, and log the result"
+    },
+    {
+      "id": "cat100-supplement-01-04-lo-04",
+      "statement": "Recognize a hallucination: a confident, specific claim with no source behind it"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_digital_citizenship_and_ai_readiness",
@@ -28,5 +40,21 @@
     "cat100_supplement_1_4_prompting_with_verification_annotation_signal",
     "cat100_supplement_1_4_prompting_with_verification_ai_boundary",
     "cat100_supplement_1_4_prompting_with_verification_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-01-04-lo-01": [
+      "cat100_supplement_1_4_prompting_with_verification_annotation_signal"
+    ],
+    "cat100-supplement-01-04-lo-02": [
+      "cat100_supplement_1_4_prompting_with_verification_annotation_signal",
+      "cat100_supplement_1_4_prompting_with_verification_calibration"
+    ],
+    "cat100-supplement-01-04-lo-03": [
+      "cat100_supplement_1_4_prompting_with_verification_ai_boundary"
+    ],
+    "cat100-supplement-01-04-lo-04": [
+      "cat100_supplement_1_4_prompting_with_verification_artifact_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

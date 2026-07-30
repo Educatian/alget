@@ -18,7 +18,10 @@
       "correct_index": 0,
       "explanation": "Choosing Deploy from a branch with main and the root folder tells GitHub Pages to build the live site from the files already committed on that branch.",
       "misconception_id": "cat100_supplement_6_4_pages_source_unnecessary",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-06-04-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_6_4_publishing_with_github_pages_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 0,
       "explanation": "A leading-slash path points at the domain root, not the /portfolio subpath, so the CSS 404s online. A relative path resolves correctly under the project site.",
       "misconception_id": "cat100_supplement_6_4_root_paths_always_work",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-06-04-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_6_4_publishing_with_github_pages_ai_boundary",
@@ -57,7 +63,11 @@
       "correct_index": 1,
       "explanation": "Stale live pages are usually a build delay or a cached browser copy, not a broken repo. Verify the build finished and clear the cache before any destructive AI-suggested fix.",
       "misconception_id": "cat100_supplement_6_4_publish_is_instant",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-06-04-lo-03",
+        "cat100-supplement-06-04-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_6_4_publishing_with_github_pages_calibration",
@@ -77,7 +87,10 @@
       "correct_index": 1,
       "explanation": "Local previews hide path and caching problems. Loading the live URL in a fresh private window on another device tests what a real visitor receives.",
       "misconception_id": "cat100_supplement_6_4_local_preview_equals_live",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-06-04-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_6_4_publishing_with_github_pages_a11y_privacy",
@@ -97,7 +110,10 @@
       "correct_index": 1,
       "explanation": "A live page can load perfectly and still fail its visitors: missing alt text excludes screen-reader users, low contrast fails WCAG 2.2 (SC 1.4.3), and a public Pages repo exposes every committed file and its history, so private data must never be committed at all.",
       "misconception_id": "cat100_supplement_6_4_public_repo_hides_source",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-06-04-lo-01"
+      ]
     }
   ]
 }

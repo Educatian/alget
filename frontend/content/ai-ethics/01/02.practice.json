@@ -19,7 +19,10 @@
       ],
       "correct_index": 1,
       "explanation": "Aggregation hides distribution. Deontology and care ethics each resist sacrificing individuals or vulnerable subgroups for aggregate gain.",
-      "misconception_id": "consequentialism_alone_suffices"
+      "misconception_id": "consequentialism_alone_suffices",
+      "learning_objective_ids": [
+        "ai-ethics-01-02-lo-01"
+      ]
     },
     {
       "id": "ethics_virtue_question",
@@ -38,7 +41,10 @@
       ],
       "correct_index": 2,
       "explanation": "Virtue ethics evaluates technologies by their effect on user character and habits over time, not by per-action outcomes or rule compliance.",
-      "misconception_id": "virtue_ethics_is_just_kindness"
+      "misconception_id": "virtue_ethics_is_just_kindness",
+      "learning_objective_ids": [
+        "ai-ethics-01-02-lo-02"
+      ]
     },
     {
       "id": "ethics_care_focus",
@@ -57,7 +63,10 @@
       ],
       "correct_index": 1,
       "explanation": "Care ethics centers the vulnerable and their relationships, where the other three frameworks treat power asymmetry as background.",
-      "misconception_id": "care_is_paternalism"
+      "misconception_id": "care_is_paternalism",
+      "learning_objective_ids": [
+        "ai-ethics-01-02-lo-01"
+      ]
     },
     {
       "id": "ethics_triangulation_value",
@@ -76,7 +85,12 @@
       ],
       "correct_index": 1,
       "explanation": "Triangulation exposes blind spots and locates the actual decision. Convergence is permission to proceed; disagreement is the live choice that must be argued, not hidden.",
-      "misconception_id": "one_framework_settles_everything"
+      "misconception_id": "one_framework_settles_everything",
+      "learning_objective_ids": [
+        "ai-ethics-01-02-lo-02",
+        "ai-ethics-01-02-lo-03",
+        "ai-ethics-01-02-lo-04"
+      ]
     }
   ]
 }

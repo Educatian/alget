@@ -16,7 +16,10 @@
       "concept_ids": [
         "work"
       ],
-      "misconception_id": "perpendicular_force_work"
+      "misconception_id": "perpendicular_force_work",
+      "learning_objective_ids": [
+        "dynamics-02-02-lo-01"
+      ]
     },
     {
       "id": "kinetic_energy_numeric",
@@ -30,6 +33,9 @@
       "difficulty": "easy",
       "concept_ids": [
         "kinetic_energy"
+      ],
+      "learning_objective_ids": [
+        "dynamics-02-02-lo-04"
       ]
     },
     {
@@ -44,6 +50,9 @@
       "difficulty": "medium",
       "concept_ids": [
         "work"
+      ],
+      "learning_objective_ids": [
+        "dynamics-02-02-lo-01"
       ]
     },
     {
@@ -59,6 +68,9 @@
       "concept_ids": [
         "work",
         "kinetic_energy"
+      ],
+      "learning_objective_ids": [
+        "dynamics-02-02-lo-02"
       ]
     },
     {
@@ -99,6 +111,9 @@
         "potential_energy",
         "kinetic_energy",
         "work"
+      ],
+      "learning_objective_ids": [
+        "dynamics-02-02-lo-04"
       ]
     },
     {
@@ -117,6 +132,9 @@
       "concept_ids": [
         "potential_energy",
         "conservation_of_energy"
+      ],
+      "learning_objective_ids": [
+        "dynamics-02-02-lo-03"
       ]
     }
   ]

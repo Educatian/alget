@@ -1,31 +1,53 @@
 {
-    "course": "inst-design",
-    "chapter": "02",
-    "section": "05",
-    "chapter_title": "ID Process Models",
-    "title": "Module 5: Writing Learning Objectives (Bloom + ABCD)",
-    "description": "Translate vague stakeholder wishes into testable performances using Bloom's revised taxonomy for cognitive level and Mager's ABCD format for performance specificity.",
-    "learning_objectives": [
-        "Use Bloom's revised taxonomy to name the cognitive demand of a planned learning task.",
-        "Convert a goal into an ABCD-format objective with audience, behavior, condition, and degree.",
-        "Audit objectives, assessments, and activities for constructive alignment."
+  "course": "inst-design",
+  "chapter": "02",
+  "section": "05",
+  "chapter_title": "ID Process Models",
+  "title": "Module 5: Writing Learning Objectives (Bloom + ABCD)",
+  "description": "Translate vague stakeholder wishes into testable performances using Bloom's revised taxonomy for cognitive level and Mager's ABCD format for performance specificity.",
+  "learning_objectives": [
+    {
+      "id": "inst-design-02-05-lo-01",
+      "statement": "Use Bloom's revised taxonomy to name the cognitive demand of a planned learning task"
+    },
+    {
+      "id": "inst-design-02-05-lo-02",
+      "statement": "Convert a goal into an ABCD-format objective with audience, behavior, condition, and degree"
+    },
+    {
+      "id": "inst-design-02-05-lo-03",
+      "statement": "Audit objectives, assessments, and activities for constructive alignment"
+    }
+  ],
+  "concept_ids": [
+    "learning_objectives",
+    "blooms_revised_taxonomy",
+    "mager_abcd",
+    "constructive_alignment",
+    "performance_objective"
+  ],
+  "prereq_section_ids": [
+    "inst-design/02/01"
+  ],
+  "practice_ids": [
+    "objectives_strongest",
+    "objectives_bloom_match",
+    "objectives_stacking",
+    "objectives_constructive_alignment"
+  ],
+  "estimated_time_minutes": 12,
+  "order": 5,
+  "lo_practice_map": {
+    "inst-design-02-05-lo-01": [
+      "objectives_bloom_match",
+      "objectives_stacking"
     ],
-    "concept_ids": [
-        "learning_objectives",
-        "blooms_revised_taxonomy",
-        "mager_abcd",
-        "constructive_alignment",
-        "performance_objective"
+    "inst-design-02-05-lo-02": [
+      "objectives_strongest"
     ],
-    "prereq_section_ids": [
-        "inst-design/02/01"
-    ],
-    "practice_ids": [
-        "objectives_strongest",
-        "objectives_bloom_match",
-        "objectives_stacking",
-        "objectives_constructive_alignment"
-    ],
-    "estimated_time_minutes": 12,
-    "order": 5
+    "inst-design-02-05-lo-03": [
+      "objectives_constructive_alignment"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

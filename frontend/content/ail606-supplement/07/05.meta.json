@@ -3,10 +3,22 @@
   "title": "Reflection as Data",
   "description": "AIL 606 textbook section connecting reflection as data to the reflection codebook with coded excerpts and decision-linkage trace, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Distinguish a global impression (uncodeable) from an analytic excerpt that names a feature and a learner action.",
-    "Apply a defined code to an excerpt and link the code to a specific design decision.",
-    "Keep the inference modest: treat reflection as evidence of perceived experience, not as a measured learning gain, and pair it with a planned check.",
-    "Reject coding that reads competence into a reaction."
+    {
+      "id": "ail606-supplement-07-05-lo-01",
+      "statement": "Distinguish a global impression (uncodeable) from an analytic excerpt that names a feature and a learner action"
+    },
+    {
+      "id": "ail606-supplement-07-05-lo-02",
+      "statement": "Apply a defined code to an excerpt and link the code to a specific design decision"
+    },
+    {
+      "id": "ail606-supplement-07-05-lo-03",
+      "statement": "Keep the inference modest: treat reflection as evidence of perceived experience, not as a measured learning gain, and pair it with a planned check"
+    },
+    {
+      "id": "ail606-supplement-07-05-lo-04",
+      "statement": "Reject coding that reads competence into a reaction"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_research_translation_for_learning_design",
@@ -28,5 +40,21 @@
     "ail606_supplement_7_5_reflection_as_data_annotation_signal",
     "ail606_supplement_7_5_reflection_as_data_ai_boundary",
     "ail606_supplement_7_5_reflection_as_data_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-07-05-lo-01": [
+      "ail606_supplement_7_5_reflection_as_data_artifact_signal"
+    ],
+    "ail606-supplement-07-05-lo-02": [
+      "ail606_supplement_7_5_reflection_as_data_artifact_signal"
+    ],
+    "ail606-supplement-07-05-lo-03": [
+      "ail606_supplement_7_5_reflection_as_data_calibration",
+      "ail606_supplement_7_5_reflection_as_data_ai_boundary"
+    ],
+    "ail606-supplement-07-05-lo-04": [
+      "ail606_supplement_7_5_reflection_as_data_annotation_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

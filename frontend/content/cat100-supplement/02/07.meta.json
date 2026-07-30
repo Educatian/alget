@@ -1,4 +1,4 @@
-﻿{
+{
   "course": "cat100-supplement",
   "chapter": "02",
   "section": "07",
@@ -6,10 +6,22 @@
   "title": "Peer Review for Professional Materials",
   "description": "CAT 100 textbook section connecting peer review for professional materials to peer review feedback log, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Produce located, actionable peer feedback (location + problem + question) that preserves the writer's ownership.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Apply the professional-materials privacy boundary: strip a peer's identifying data before any third-party tool use, or review it yourself.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    {
+      "id": "cat100-supplement-02-07-lo-01",
+      "statement": "Produce located, actionable peer feedback (location + problem + question) that preserves the writer's ownership"
+    },
+    {
+      "id": "cat100-supplement-02-07-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "cat100-supplement-02-07-lo-03",
+      "statement": "Apply the professional-materials privacy boundary: strip a peer's identifying data before any third-party tool use, or review it yourself"
+    },
+    {
+      "id": "cat100-supplement-02-07-lo-04",
+      "statement": "Use feedback, support requests, and revision notes to improve the artifact before sharing it"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_resume_branding_and_ai_brainstorming",
@@ -28,5 +40,20 @@
     "cat100_supplement_2_7_peer_review_for_professional_materials_annotation_signal",
     "cat100_supplement_2_7_peer_review_for_professional_materials_ai_boundary",
     "cat100_supplement_2_7_peer_review_for_professional_materials_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-02-07-lo-01": [
+      "cat100_supplement_2_7_peer_review_for_professional_materials_artifact_signal"
+    ],
+    "cat100-supplement-02-07-lo-02": [
+      "cat100_supplement_2_7_peer_review_for_professional_materials_annotation_signal"
+    ],
+    "cat100-supplement-02-07-lo-03": [
+      "cat100_supplement_2_7_peer_review_for_professional_materials_ai_boundary"
+    ],
+    "cat100-supplement-02-07-lo-04": [
+      "cat100_supplement_2_7_peer_review_for_professional_materials_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

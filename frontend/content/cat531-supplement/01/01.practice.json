@@ -20,6 +20,10 @@
         "cat531_supplement_cbi_as_pedagogical_judgment",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-01-01-lo-01",
+        "cat531-supplement-01-01-lo-02"
       ]
     },
     {
@@ -40,6 +44,9 @@
       "concept_ids": [
         "cat531_supplement_cbi_as_pedagogical_judgment",
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-01-01-lo-02"
       ]
     },
     {
@@ -60,6 +67,9 @@
       "concept_ids": [
         "ai_supported_learning",
         "cat531_supplement_cbi_as_pedagogical_judgment"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-01-01-lo-01"
       ]
     },
     {
@@ -80,6 +90,10 @@
       "concept_ids": [
         "evidence_based_revision",
         "cat531_supplement_cbi_as_pedagogical_judgment"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-01-01-lo-03",
+        "cat531-supplement-01-01-lo-04"
       ]
     }
   ]

@@ -3,10 +3,22 @@
   "title": "LXD Optimizer Critical Use",
   "description": "AIL 606 textbook section connecting lxd optimizer critical use to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Classify an optimizer suggestion as goal-aligned, goal-neutral, or goal-opposed by reading its mechanism before its predicted-gain magnitude.",
-    "Explain why engagement proxies (completion, time-on-page, efficiency) cannot on their own certify that learning occurred, using Goodhart's law.",
-    "Defend an accessibility provision against an efficiency edit on UDL learner-variability grounds the usage metric cannot see.",
-    "Produce a triaged optimizer report with a per-row verdict and mechanism, at least one reasoned rejection, and a before-after transfer check on the accepted edit."
+    {
+      "id": "ail606-supplement-02-06-lo-01",
+      "statement": "Classify an optimizer suggestion as goal-aligned, goal-neutral, or goal-opposed by reading its mechanism before its predicted-gain magnitude"
+    },
+    {
+      "id": "ail606-supplement-02-06-lo-02",
+      "statement": "Explain why engagement proxies (completion, time-on-page, efficiency) cannot on their own certify that learning occurred, using Goodhart's law"
+    },
+    {
+      "id": "ail606-supplement-02-06-lo-03",
+      "statement": "Defend an accessibility provision against an efficiency edit on UDL learner-variability grounds the usage metric cannot see"
+    },
+    {
+      "id": "ail606-supplement-02-06-lo-04",
+      "statement": "Produce a triaged optimizer report with a per-row verdict and mechanism, at least one reasoned rejection, and a before-after transfer check on the accepted edit"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_learning_experience_design_and_software_technology",
@@ -28,5 +40,21 @@
     "ail606_supplement_2_6_lxd_optimizer_critical_use_annotation_signal",
     "ail606_supplement_2_6_lxd_optimizer_critical_use_ai_boundary",
     "ail606_supplement_2_6_lxd_optimizer_critical_use_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-02-06-lo-01": [
+      "ail606_supplement_2_6_lxd_optimizer_critical_use_calibration"
+    ],
+    "ail606-supplement-02-06-lo-02": [
+      "ail606_supplement_2_6_lxd_optimizer_critical_use_artifact_signal",
+      "ail606_supplement_2_6_lxd_optimizer_critical_use_annotation_signal"
+    ],
+    "ail606-supplement-02-06-lo-03": [
+      "ail606_supplement_2_6_lxd_optimizer_critical_use_ai_boundary"
+    ],
+    "ail606-supplement-02-06-lo-04": [
+      "ail606_supplement_2_6_lxd_optimizer_critical_use_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

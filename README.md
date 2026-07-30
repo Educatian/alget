@@ -5,7 +5,7 @@
 <p align="center">
   <img src="assets/hero.png" alt="ALGET — Alabama Generative Intelligent Textbook system architecture" width="100%">
 </p>
-<p align="center"><em>System architecture at a glance — an open textbook on the desk feeds five course slabs (Statics · Dynamics · Bio-Inspired · Instructional Design · AI Ethics), which feed a multi-agent knowledge graph above. The crimson trace is one learner's active path.</em></p>
+<p align="center"><em>System architecture at a glance — the core textbook pathways and course supplements feed a multi-agent knowledge graph above. The crimson trace is one learner's active path.</em></p>
 
 ALGET pairs canonical engineering and instructional-design content with a learning environment that responds to each learner — pace, confusions, strong concepts, weak ones — while staying grounded in source material through a debate loop of specialist agents and a peer-review validator. It is the reference implementation for the system paper currently being prepared (`paper_draft.md`).
 
@@ -25,7 +25,7 @@ ALGET pairs canonical engineering and instructional-design content with a learni
 ## Table of contents
 
 1. [What ALGET is](#1-what-alget-is)
-2. [Five courses](#2-five-courses)
+2. [Eight courses](#2-eight-courses)
 3. [A tour of the surfaces](#3-a-tour-of-the-surfaces)
 4. [Architecture](#4-architecture)
 5. [Multi-agent system](#5-multi-agent-system)
@@ -54,17 +54,20 @@ This repository contains: the running app, the content corpus, the multi-agent b
 
 ---
 
-## 2. Five courses
+## 2. Eight courses
 
 | Course | Anchor textbook / framework | Sections |
 |---|---|---|
-| **Engineering Statics** | Hibbeler, *Engineering Mechanics: Statics* | 4 parts |
-| **Engineering Dynamics** | Beer, Johnston et al., *Vector Mechanics for Engineers* | 10 chapters |
-| **Bio-Inspired Design** | Benyus's *Biomimicry*; Vincent, Bhushan | 7 chapters |
-| **Foundations of Instructional Design** | Smith & Ragan; Gagné, Briggs & Wager; Reiser & Dempsey | 8 chapters |
-| **AI & Ethics** | NIST AI RMF + EU AI Act + Anthropic / NIST RMF crosswalk | seeded |
+| **Engineering Statics** | Hibbeler, *Engineering Mechanics: Statics* | 6 chapters / 14 sections |
+| **Engineering Dynamics** | Beer, Johnston et al., *Vector Mechanics for Engineers* | 3 chapters / 11 sections |
+| **Bio-Inspired Design** | Benyus's *Biomimicry*; Vincent, Bhushan | 8 chapters / 10 sections |
+| **Foundations of Instructional Design** | Smith & Ragan; Gagné, Briggs & Wager; Reiser & Dempsey | 8 chapters / 17 sections |
+| **AI & Ethics** | NIST AI RMF + EU AI Act crosswalk | 6 chapters / 12 sections |
+| **AIL 606 Supplement** | Multimedia learning, LXD, AI-assisted authoring | 8 chapters / 64 sections |
+| **CAT 531 Supplement** | Technology and teaching, policy, equity, evaluation | 8 chapters / 64 sections |
+| **CAT 100 Supplement** | Digital citizenship, Excel, presentations, portfolios | 8 chapters / 64 sections |
 
-All section narratives ship as MDX with sidecar JSON for learning objectives, misconceptions, and practice items. Total ~60+ sections, ~14.5 hours of paced learning per the content guide.
+All section narratives ship as MDX with sidecar JSON for stable learning objectives, misconceptions, and aligned practice items. The canonical corpus contains 256 sections; app catalog counts are generated from the same source files at build time.
 
 ```
 frontend/content/<course>/<chapter>/<section>/

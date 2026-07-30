@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "It describes the behavior to work on instead of labeling the child's character.",
       "misconception_id": "cat100_supplement_4_5_label_the_person",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-04-05-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_4_5_tone_bias_and_audience_annotation_signal",
@@ -37,7 +40,11 @@
       "correct_index": 1,
       "explanation": "You can observe the score, not the cause. Replace the assumed cause with the observable fact.",
       "misconception_id": "cat100_supplement_4_5_assumed_cause",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-04-05-lo-01",
+        "cat100-supplement-04-05-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_4_5_tone_bias_and_audience_ai_boundary",
@@ -57,7 +64,10 @@
       "correct_index": 1,
       "explanation": "Rejecting against a privacy and audience constraint, and logging the reason, is the evidence trace.",
       "misconception_id": "cat100_supplement_4_5_tone_ignores_audience",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-04-05-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_4_5_tone_bias_and_audience_calibration",
@@ -77,7 +87,21 @@
       "correct_index": 1,
       "explanation": "A two-week window matches a partnership tone with parents; the others keep or increase the pressure.",
       "misconception_id": "cat100_supplement_4_5_tone_ignores_audience",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-04-05-lo-04"
+      ]
+    },
+    {
+      "id": "cat100-supplement_04_05_lo_03_direct_check",
+      "type": "conceptual",
+      "stem": "Provide a concise response that demonstrates this learning objective: Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "expected_answer": "The response accurately demonstrates the section objective: Document a bounded AI/software support move with accepted and rejected suggestions, using relevant section concepts, evidence, or calculations.",
+      "explanation": "This direct-evidence item is used when no closed-response item adequately samples the objective. Score it with the section concepts and worked examples as the rubric.",
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-04-05-lo-03"
+      ]
     }
   ]
 }

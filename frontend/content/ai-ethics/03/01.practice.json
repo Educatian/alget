@@ -18,7 +18,10 @@
       ],
       "correct_index": 1,
       "explanation": "Interpretable models can be read directly. Explainable systems offer a generated rationale that may sit on top of an opaque model. The two properties can be present independently.",
-      "misconception_id": "interp_explain_same"
+      "misconception_id": "interp_explain_same",
+      "learning_objective_ids": [
+        "ai-ethics-03-01-lo-01"
+      ]
     },
     {
       "id": "explain_counterfactual_value",
@@ -38,7 +41,12 @@
       ],
       "correct_index": 1,
       "explanation": "Wachter, Mittelstadt, and Russell argue counterfactuals satisfy the spirit of meaningful explanation: faithful, actionable, and avoiding inappropriate surfacing of proxies.",
-      "misconception_id": "shap_is_always_meaningful"
+      "misconception_id": "shap_is_always_meaningful",
+      "learning_objective_ids": [
+        "ai-ethics-03-01-lo-02",
+        "ai-ethics-03-01-lo-03",
+        "ai-ethics-03-01-lo-04"
+      ]
     },
     {
       "id": "explain_post_hoc_limit",
@@ -57,7 +65,10 @@
       ],
       "correct_index": 1,
       "explanation": "Post-hoc explanations approximate, not reveal. Faithful and satisfying are different properties; both matter and they can come apart.",
-      "misconception_id": "post_hoc_is_truth"
+      "misconception_id": "post_hoc_is_truth",
+      "learning_objective_ids": [
+        "ai-ethics-03-01-lo-03"
+      ]
     },
     {
       "id": "explain_high_stakes_choice",
@@ -76,7 +87,10 @@
       ],
       "correct_index": 1,
       "explanation": "Rudin (Nature Machine Intelligence, 2019) argues for interpretable-first design in high-stakes settings, against the assumption that accuracy requires opacity.",
-      "misconception_id": "blackbox_always_more_accurate"
+      "misconception_id": "blackbox_always_more_accurate",
+      "learning_objective_ids": [
+        "ai-ethics-03-01-lo-01"
+      ]
     }
   ]
 }

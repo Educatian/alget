@@ -1,30 +1,53 @@
 {
-    "course": "inst-design",
-    "chapter": "02",
-    "section": "02",
-    "chapter_title": "The ADDIE Framework",
-    "title": "Module 2: Development & Implementation Phases",
-    "description": "Show how design plans become instructional assets and how those assets are launched, facilitated, and supported during implementation.",
-    "learning_objectives": [
-        "Describe the transition from storyboards (Design) to tangible assets (Development).",
-        "Outline the key logistical and pedagogical steps in the Implementation phase.",
-        "Evaluate how development choices affect fidelity, usability, and rollout quality."
+  "course": "inst-design",
+  "chapter": "02",
+  "section": "02",
+  "chapter_title": "The ADDIE Framework",
+  "title": "Module 2: Development & Implementation Phases",
+  "description": "Show how design plans become instructional assets and how those assets are launched, facilitated, and supported during implementation.",
+  "learning_objectives": [
+    {
+      "id": "inst-design-02-02-lo-01",
+      "statement": "Describe the transition from storyboards (Design) to tangible assets (Development)"
+    },
+    {
+      "id": "inst-design-02-02-lo-02",
+      "statement": "Outline the key logistical and pedagogical steps in the Implementation phase"
+    },
+    {
+      "id": "inst-design-02-02-lo-03",
+      "statement": "Evaluate how development choices affect fidelity, usability, and rollout quality"
+    }
+  ],
+  "concept_ids": [
+    "development_phase",
+    "implementation_phase",
+    "storyboarding",
+    "instructional_assets",
+    "facilitation_logistics"
+  ],
+  "prereq_section_ids": [
+    "inst-design/02/01"
+  ],
+  "practice_ids": [
+    "development_phase_scope",
+    "implementation_phase_focus",
+    "sam_iteration_logic",
+    "qa_in_id"
+  ],
+  "estimated_time_minutes": 11,
+  "lo_practice_map": {
+    "inst-design-02-02-lo-01": [
+      "development_phase_scope",
+      "qa_in_id"
     ],
-    "concept_ids": [
-        "development_phase",
-        "implementation_phase",
-        "storyboarding",
-        "instructional_assets",
-        "facilitation_logistics"
+    "inst-design-02-02-lo-02": [
+      "implementation_phase_focus"
     ],
-    "prereq_section_ids": [
-        "inst-design/02/01"
-    ],
-    "practice_ids": [
-        "development_phase_scope",
-        "implementation_phase_focus",
-        "sam_iteration_logic",
-        "qa_in_id"
-    ],
-    "estimated_time_minutes": 11
+    "inst-design-02-02-lo-03": [
+      "development_phase_scope",
+      "sam_iteration_logic"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

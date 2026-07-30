@@ -19,7 +19,20 @@
     "top_tier_hardened": { "type": "boolean" },
     "learning_objectives": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": {
+        "anyOf": [
+          { "type": "string", "minLength": 1 },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "statement"],
+            "properties": {
+              "id": { "type": "string", "minLength": 1 },
+              "statement": { "type": "string", "minLength": 1 }
+            }
+          }
+        ]
+      }
     },
     "concept_ids": {
       "type": "array",
@@ -28,6 +41,15 @@
     "practice_ids": {
       "type": "array",
       "items": { "type": "string" }
-    }
+    },
+    "lo_practice_map": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "minItems": 1,
+        "items": { "type": "string" }
+      }
+    },
+    "alignment_method": { "type": "string" }
   }
 }

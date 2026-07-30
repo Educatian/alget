@@ -20,6 +20,10 @@
         "cat531_supplement_risk_mitigation_and_family_communication",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-06-05-lo-03",
+        "cat531-supplement-06-05-lo-04"
       ]
     },
     {
@@ -40,6 +44,9 @@
       "concept_ids": [
         "cat531_supplement_risk_mitigation_and_family_communication",
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-06-05-lo-02"
       ]
     },
     {
@@ -59,6 +66,9 @@
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-06-05-lo-01"
       ]
     },
     {
@@ -79,6 +89,9 @@
       "concept_ids": [
         "cat531_supplement_risk_mitigation_and_family_communication",
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-06-05-lo-01"
       ]
     }
   ]

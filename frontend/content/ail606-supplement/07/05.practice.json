@@ -20,6 +20,10 @@
         "learner_reflection",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-07-05-lo-01",
+        "ail606-supplement-07-05-lo-02"
       ]
     },
     {
@@ -42,6 +46,9 @@
         "learner_reflection",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-07-05-lo-04"
       ]
     },
     {
@@ -64,6 +71,9 @@
         "learner_reflection",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-07-05-lo-03"
       ]
     },
     {
@@ -86,6 +96,9 @@
         "learner_reflection",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-07-05-lo-03"
       ]
     }
   ]

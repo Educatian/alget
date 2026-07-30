@@ -3,10 +3,22 @@
   "title": "Alt Text and Accessibility",
   "description": "AIL 606 textbook section on alt text and accessibility: classifying images as decorative or meaningful, writing functional alt text that carries the instructional point, moving dense data to adjacent tables, and auditing color-only coding per WCAG 2.2.",
   "learning_objectives": [
-    "Classify an instructional image as decorative, informative, or functional and assign the correct alt treatment.",
-    "Write functional alt text that carries an image's instructional meaning, and move dense data to an adjacent table or long description.",
-    "Audit a visual for color-only coding and add a redundant cue per WCAG 2.2 SC 1.4.1.",
-    "Apply the cover test and reject over-long AI-generated alt text with reasons."
+    {
+      "id": "ail606-supplement-03-05-lo-01",
+      "statement": "Classify an instructional image as decorative, informative, or functional and assign the correct alt treatment"
+    },
+    {
+      "id": "ail606-supplement-03-05-lo-02",
+      "statement": "Write functional alt text that carries an image's instructional meaning, and move dense data to an adjacent table or long description"
+    },
+    {
+      "id": "ail606-supplement-03-05-lo-03",
+      "statement": "Audit a visual for color-only coding and add a redundant cue per WCAG 2.2 SC 1.4.1"
+    },
+    {
+      "id": "ail606-supplement-03-05-lo-04",
+      "statement": "Apply the cover test and reject over-long AI-generated alt text with reasons"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_multimedia_storyboarding_and_ai_asset_generation",
@@ -28,5 +40,21 @@
     "ail606_supplement_3_5_alt_text_and_accessibility_annotation_signal",
     "ail606_supplement_3_5_alt_text_and_accessibility_ai_boundary",
     "ail606_supplement_3_5_alt_text_and_accessibility_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-03-05-lo-01": [
+      "ail606_supplement_3_5_alt_text_and_accessibility_artifact_signal"
+    ],
+    "ail606-supplement-03-05-lo-02": [
+      "ail606_supplement_3_5_alt_text_and_accessibility_calibration",
+      "ail606_supplement_3_5_alt_text_and_accessibility_annotation_signal"
+    ],
+    "ail606-supplement-03-05-lo-03": [
+      "ail606_supplement_3_5_alt_text_and_accessibility_ai_boundary"
+    ],
+    "ail606-supplement-03-05-lo-04": [
+      "ail606_supplement_3_5_alt_text_and_accessibility_ai_boundary"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

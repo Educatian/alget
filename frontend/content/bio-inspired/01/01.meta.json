@@ -1,26 +1,50 @@
 {
-    "course": "bio-inspired",
-    "chapter": "01",
-    "section": "01",
-    "title": "Cellular Solids",
-    "chapter_title": "Structural Biomimicry",
-    "learning_objectives": [
-        "Understand the principles of structural efficiency in natural forms.",
-        "Analyze the physical properties of cellular solids like honeycomb and cancellous bone.",
-        "Apply volume and mass reduction techniques to engineering design."
+  "course": "bio-inspired",
+  "chapter": "01",
+  "section": "01",
+  "title": "Cellular Solids",
+  "chapter_title": "Structural Biomimicry",
+  "learning_objectives": [
+    {
+      "id": "bio-inspired-01-01-lo-01",
+      "statement": "Understand the principles of structural efficiency in natural forms"
+    },
+    {
+      "id": "bio-inspired-01-01-lo-02",
+      "statement": "Analyze the physical properties of cellular solids like honeycomb and cancellous bone"
+    },
+    {
+      "id": "bio-inspired-01-01-lo-03",
+      "statement": "Apply volume and mass reduction techniques to engineering design"
+    }
+  ],
+  "concept_ids": [
+    "cellular_solids",
+    "porosity",
+    "strength_to_weight"
+  ],
+  "prereq_section_ids": [],
+  "practice_ids": [
+    "bio_cellular_solids_core_logic",
+    "bio_porosity_tradeoff",
+    "bio_strength_to_weight_application",
+    "bio_cellular_design_choice",
+    "bio_function_first_search",
+    "bio_principle_not_shape"
+  ],
+  "lo_practice_map": {
+    "bio-inspired-01-01-lo-01": [
+      "bio_strength_to_weight_application"
     ],
-    "concept_ids": [
-        "cellular_solids",
-        "porosity",
-        "strength_to_weight"
+    "bio-inspired-01-01-lo-02": [
+      "bio_cellular_solids_core_logic",
+      "bio_porosity_tradeoff",
+      "bio_cellular_design_choice",
+      "bio_principle_not_shape"
     ],
-    "prereq_section_ids": [],
-    "practice_ids": [
-        "bio_cellular_solids_core_logic",
-        "bio_porosity_tradeoff",
-        "bio_strength_to_weight_application",
-        "bio_cellular_design_choice",
-        "bio_function_first_search",
-        "bio_principle_not_shape"
+    "bio-inspired-01-01-lo-03": [
+      "bio_function_first_search"
     ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

@@ -1,29 +1,52 @@
 {
-    "course": "bio-inspired",
-    "chapter": "01",
-    "section": "03",
-    "title": "Directional Adhesion",
-    "chapter_title": "Structural Biomimicry",
-    "description": "Understand how gecko-inspired microstructures create strong shear grip, easy peel release, and new classes of reversible dry adhesives.",
-    "learning_objectives": [
-        "Understand the physics of intermolecular forces (van der Waals) in biological systems.",
-        "Examine surface area manipulation in setal structures.",
-        "Apply directional adhesion principles to dry adhesive engineering."
+  "course": "bio-inspired",
+  "chapter": "01",
+  "section": "03",
+  "title": "Directional Adhesion",
+  "chapter_title": "Structural Biomimicry",
+  "description": "Understand how gecko-inspired microstructures create strong shear grip, easy peel release, and new classes of reversible dry adhesives.",
+  "learning_objectives": [
+    {
+      "id": "bio-inspired-01-03-lo-01",
+      "statement": "Understand the physics of intermolecular forces (van der Waals) in biological systems"
+    },
+    {
+      "id": "bio-inspired-01-03-lo-02",
+      "statement": "Examine surface area manipulation in setal structures"
+    },
+    {
+      "id": "bio-inspired-01-03-lo-03",
+      "statement": "Apply directional adhesion principles to dry adhesive engineering"
+    }
+  ],
+  "concept_ids": [
+    "directional_adhesion",
+    "gecko",
+    "van_der_waals",
+    "spatial_geometry"
+  ],
+  "estimated_time_minutes": 12,
+  "prereq_section_ids": [
+    "bio-inspired/01/02"
+  ],
+  "practice_ids": [
+    "bio_directional_adhesion_shear",
+    "bio_vdw_area",
+    "bio_dry_adhesive_use_case",
+    "bio_spatial_geometry_contact"
+  ],
+  "lo_practice_map": {
+    "bio-inspired-01-03-lo-01": [
+      "bio_vdw_area"
     ],
-    "concept_ids": [
-        "directional_adhesion",
-        "gecko",
-        "van_der_waals",
-        "spatial_geometry"
+    "bio-inspired-01-03-lo-02": [
+      "bio_vdw_area",
+      "bio_dry_adhesive_use_case"
     ],
-    "estimated_time_minutes": 12,
-    "prereq_section_ids": [
-        "bio-inspired/01/02"
-    ],
-    "practice_ids": [
-        "bio_directional_adhesion_shear",
-        "bio_vdw_area",
-        "bio_dry_adhesive_use_case",
-        "bio_spatial_geometry_contact"
+    "bio-inspired-01-03-lo-03": [
+      "bio_directional_adhesion_shear",
+      "bio_spatial_geometry_contact"
     ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

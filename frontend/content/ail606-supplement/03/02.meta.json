@@ -3,10 +3,22 @@
   "title": "Signaling and Segmenting in Practice",
   "description": "AIL 606 textbook section connecting signaling and segmenting in practice to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Apply the scarcity and contrast law of signaling: justify cuing exactly one element on a frame and name the cues withheld.",
-    "Run the seam test to place a learner-controlled segmentation break at a conceptual boundary, distinguishing segmenting from pagination and from auto-advance.",
-    "Treat a signaling cue as a cognitive-load expenditure and judge an AI-proposed cue against its processing cost for a named learner.",
-    "Tie cue count and segment count to learner expertise (novice versus near-expert, expertise reversal) and document calibration as restraint in the storyboard trace."
+    {
+      "id": "ail606-supplement-03-02-lo-01",
+      "statement": "Apply the scarcity and contrast law of signaling: justify cuing exactly one element on a frame and name the cues withheld"
+    },
+    {
+      "id": "ail606-supplement-03-02-lo-02",
+      "statement": "Run the seam test to place a learner-controlled segmentation break at a conceptual boundary, distinguishing segmenting from pagination and from auto-advance"
+    },
+    {
+      "id": "ail606-supplement-03-02-lo-03",
+      "statement": "Treat a signaling cue as a cognitive-load expenditure and judge an AI-proposed cue against its processing cost for a named learner"
+    },
+    {
+      "id": "ail606-supplement-03-02-lo-04",
+      "statement": "Tie cue count and segment count to learner expertise (novice versus near-expert, expertise reversal) and document calibration as restraint in the storyboard trace"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_multimedia_storyboarding_and_ai_asset_generation",
@@ -28,5 +40,20 @@
     "ail606_supplement_3_2_signaling_and_segmenting_in_practice_annotation_signal",
     "ail606_supplement_3_2_signaling_and_segmenting_in_practice_ai_boundary",
     "ail606_supplement_3_2_signaling_and_segmenting_in_practice_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-03-02-lo-01": [
+      "ail606_supplement_3_2_signaling_and_segmenting_in_practice_artifact_signal"
+    ],
+    "ail606-supplement-03-02-lo-02": [
+      "ail606_supplement_3_2_signaling_and_segmenting_in_practice_calibration"
+    ],
+    "ail606-supplement-03-02-lo-03": [
+      "ail606_supplement_3_2_signaling_and_segmenting_in_practice_ai_boundary"
+    ],
+    "ail606-supplement-03-02-lo-04": [
+      "ail606_supplement_3_2_signaling_and_segmenting_in_practice_annotation_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

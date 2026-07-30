@@ -3,10 +3,22 @@
   "title": "AI Policy Language for Students",
   "description": "AIL 606 textbook section connecting ai policy language for students to AI-USE disclosure excerpt tied to one bounded design-support decision, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Contrast deterrence and transparency models of academic integrity and explain why generative AI makes deterrence unenforceable.",
-    "Write an AI-use clause with a bounded permission, a one-line disclosure format with a worked example, and an accessibility carve-out.",
-    "Apply the distinguishability, disclosure-cost, and accessibility checks to evaluate a draft AI-use policy.",
-    "Predict the behavioral effect (concealment, exclusion, or transparency) a policy clause will produce."
+    {
+      "id": "ail606-supplement-08-04-lo-01",
+      "statement": "Contrast deterrence and transparency models of academic integrity and explain why generative AI makes deterrence unenforceable"
+    },
+    {
+      "id": "ail606-supplement-08-04-lo-02",
+      "statement": "Write an AI-use clause with a bounded permission, a one-line disclosure format with a worked example, and an accessibility carve-out"
+    },
+    {
+      "id": "ail606-supplement-08-04-lo-03",
+      "statement": "Apply the distinguishability, disclosure-cost, and accessibility checks to evaluate a draft AI-use policy"
+    },
+    {
+      "id": "ail606-supplement-08-04-lo-04",
+      "statement": "Predict the behavioral effect (concealment, exclusion, or transparency) a policy clause will produce"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_instructor_implementation_toolkit",
@@ -28,5 +40,21 @@
     "ail606_supplement_8_4_ai_policy_language_for_students_annotation_signal",
     "ail606_supplement_8_4_ai_policy_language_for_students_ai_boundary",
     "ail606_supplement_8_4_ai_policy_language_for_students_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-08-04-lo-01": [
+      "ail606_supplement_8_4_ai_policy_language_for_students_calibration"
+    ],
+    "ail606-supplement-08-04-lo-02": [
+      "ail606_supplement_8_4_ai_policy_language_for_students_artifact_signal"
+    ],
+    "ail606-supplement-08-04-lo-03": [
+      "ail606_supplement_8_4_ai_policy_language_for_students_annotation_signal",
+      "ail606_supplement_8_4_ai_policy_language_for_students_ai_boundary"
+    ],
+    "ail606-supplement-08-04-lo-04": [
+      "ail606_supplement_8_4_ai_policy_language_for_students_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

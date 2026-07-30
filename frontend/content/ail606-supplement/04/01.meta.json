@@ -3,10 +3,22 @@
   "title": "Problem Statement and Learner Profile",
   "description": "AIL 606 textbook section connecting problem statement and learner profile to a cover panel that names a located performance gap, its conditions, a measurable target, and the decision-bearing learner-profile attributes, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Write a problem statement that names a located performance gap, its conditions, and a measurable target.",
-    "Build a learner profile in which every attribute changes at least one storyboard decision.",
-    "Separate design-driving attributes (prior knowledge, context of use, language) from flattering adjectives (motivated, smart).",
-    "Document how a revised problem statement changes which evidence would count as success."
+    {
+      "id": "ail606-supplement-04-01-lo-01",
+      "statement": "Write a problem statement that names a located performance gap, its conditions, and a measurable target"
+    },
+    {
+      "id": "ail606-supplement-04-01-lo-02",
+      "statement": "Build a learner profile in which every attribute changes at least one storyboard decision"
+    },
+    {
+      "id": "ail606-supplement-04-01-lo-03",
+      "statement": "Separate design-driving attributes (prior knowledge, context of use, language) from flattering adjectives (motivated, smart)"
+    },
+    {
+      "id": "ail606-supplement-04-01-lo-04",
+      "statement": "Document how a revised problem statement changes which evidence would count as success"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_design_draft_and_theory_to_prototype_alignment",
@@ -28,5 +40,22 @@
     "ail606_supplement_4_1_problem_statement_and_learner_profile_annotation_signal",
     "ail606_supplement_4_1_problem_statement_and_learner_profile_ai_boundary",
     "ail606_supplement_4_1_problem_statement_and_learner_profile_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-04-01-lo-01": [
+      "ail606_supplement_4_1_problem_statement_and_learner_profile_annotation_signal"
+    ],
+    "ail606-supplement-04-01-lo-02": [
+      "ail606_supplement_4_1_problem_statement_and_learner_profile_annotation_signal",
+      "ail606_supplement_4_1_problem_statement_and_learner_profile_artifact_signal",
+      "ail606_supplement_4_1_problem_statement_and_learner_profile_ai_boundary"
+    ],
+    "ail606-supplement-04-01-lo-03": [
+      "ail606_supplement_4_1_problem_statement_and_learner_profile_annotation_signal"
+    ],
+    "ail606-supplement-04-01-lo-04": [
+      "ail606_supplement_4_1_problem_statement_and_learner_profile_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

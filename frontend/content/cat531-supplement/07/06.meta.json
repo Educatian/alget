@@ -6,10 +6,22 @@
   "chapter": "07",
   "section": "06",
   "learning_objectives": [
-    "Read field evidence to isolate which component of a plan failed, rather than defending or scrapping the whole.",
-    "Distinguish a design flaw from a context mismatch (laziness versus an access barrier).",
-    "Document a bounded AI/software support move, including an AI reframing you rejected because it ignored the real cause.",
-    "Show evidence-based revision: original plan, prompting data, targeted change, and follow-up data."
+    {
+      "id": "cat531-supplement-07-06-lo-01",
+      "statement": "Read field evidence to isolate which component of a plan failed, rather than defending or scrapping the whole"
+    },
+    {
+      "id": "cat531-supplement-07-06-lo-02",
+      "statement": "Distinguish a design flaw from a context mismatch (laziness versus an access barrier)"
+    },
+    {
+      "id": "cat531-supplement-07-06-lo-03",
+      "statement": "Document a bounded AI/software support move, including an AI reframing you rejected because it ignored the real cause"
+    },
+    {
+      "id": "cat531-supplement-07-06-lo-04",
+      "statement": "Show evidence-based revision: original plan, prompting data, targeted change, and follow-up data"
+    }
   ],
   "concept_ids": [
     "cat531_supplement_field_based_transfer_and_coaching",
@@ -28,5 +40,20 @@
   ],
   "estimated_time_minutes": 14,
   "order": 6,
-  "top_tier_hardened": false
+  "top_tier_hardened": false,
+  "lo_practice_map": {
+    "cat531-supplement-07-06-lo-01": [
+      "cat531_supplement_7_6_revising_plans_after_field_evidence_annotation_signal"
+    ],
+    "cat531-supplement-07-06-lo-02": [
+      "cat531_supplement_7_6_revising_plans_after_field_evidence_artifact_signal"
+    ],
+    "cat531-supplement-07-06-lo-03": [
+      "cat531_supplement_7_6_revising_plans_after_field_evidence_ai_boundary"
+    ],
+    "cat531-supplement-07-06-lo-04": [
+      "cat531_supplement_7_6_revising_plans_after_field_evidence_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

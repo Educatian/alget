@@ -1915,7 +1915,11 @@ def _build_dynamic_diagnostic_questions(course_id: str, max_questions: int = 12)
     for section in _collect_course_meta_sections(course_id):
         concept_ids = [concept for concept in section.get("concept_ids", []) if concept]
         objectives = section.get("learning_objectives") or []
-        objective = objectives[0] if objectives else section.get("description") or section.get("title")
+        raw_objective = objectives[0] if objectives else None
+        if isinstance(raw_objective, dict):
+            objective = raw_objective.get("statement") or section.get("description") or section.get("title")
+        else:
+            objective = raw_objective or section.get("description") or section.get("title")
 
         for concept_index, concept_id in enumerate(concept_ids):
             if concept_id in seen_concepts:

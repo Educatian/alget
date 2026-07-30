@@ -20,6 +20,9 @@
         "cat531_supplement_teachgen_i_scenario_setup",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-02-02-lo-01"
       ]
     },
     {
@@ -40,6 +43,9 @@
       "concept_ids": [
         "cat531_supplement_teachgen_i_scenario_setup",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-02-02-lo-01"
       ]
     },
     {
@@ -60,6 +66,9 @@
       "concept_ids": [
         "cat531_supplement_teachgen_i_scenario_setup",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-02-02-lo-01"
       ]
     },
     {
@@ -80,6 +89,12 @@
       "concept_ids": [
         "cat531_supplement_teachgen_i_scenario_setup",
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-02-02-lo-01",
+        "cat531-supplement-02-02-lo-02",
+        "cat531-supplement-02-02-lo-03",
+        "cat531-supplement-02-02-lo-04"
       ]
     }
   ]

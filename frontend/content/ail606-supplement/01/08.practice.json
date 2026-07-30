@@ -17,6 +17,9 @@
       "difficulty": "medium",
       "concept_ids": [
         "ail606_supplement_module_1_synthesis_studio"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-01-08-lo-01"
       ]
     },
     {
@@ -36,6 +39,10 @@
       "difficulty": "hard",
       "concept_ids": [
         "ail606_supplement_module_1_synthesis_studio"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-01-08-lo-02",
+        "ail606-supplement-01-08-lo-04"
       ]
     },
     {
@@ -55,6 +62,9 @@
       "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_module_1_synthesis_studio"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-01-08-lo-01"
       ]
     },
     {
@@ -74,6 +84,9 @@
       "difficulty": "medium",
       "concept_ids": [
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-01-08-lo-03"
       ]
     }
   ]

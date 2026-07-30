@@ -17,6 +17,9 @@
       "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_signaling_and_segmenting_in_practice"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-03-02-lo-01"
       ]
     },
     {
@@ -36,6 +39,9 @@
       "difficulty": "medium",
       "concept_ids": [
         "ail606_supplement_signaling_and_segmenting_in_practice"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-03-02-lo-04"
       ]
     },
     {
@@ -55,6 +61,9 @@
       "difficulty": "medium",
       "concept_ids": [
         "ail606_supplement_signaling_and_segmenting_in_practice"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-03-02-lo-03"
       ]
     },
     {
@@ -74,6 +83,9 @@
       "difficulty": "hard",
       "concept_ids": [
         "ail606_supplement_signaling_and_segmenting_in_practice"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-03-02-lo-02"
       ]
     }
   ]

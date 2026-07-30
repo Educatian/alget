@@ -55,7 +55,12 @@ class AssessmentAgent:
     def generate_assessment(self, bio_context: str, eng_context: str, section_title: str, learning_objectives: list[str] = None, concept_ids: list[str] = None) -> dict:
         """Generates a 3-question assessment (2 MCQs, 1 Summary)."""
         
-        objs_text = "\n".join([f"- {obj}" for obj in learning_objectives]) if learning_objectives else "None specified"
+        objective_statements = [
+            obj.get("statement", "") if isinstance(obj, dict) else str(obj)
+            for obj in (learning_objectives or [])
+        ]
+        objective_statements = [obj.strip() for obj in objective_statements if obj and obj.strip()]
+        objs_text = "\n".join([f"- {obj}" for obj in objective_statements]) if objective_statements else "None specified"
         concepts_text = ", ".join(concept_ids) if concept_ids else "infer from context"
 
         prompt = f"""

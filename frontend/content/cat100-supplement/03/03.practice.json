@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "A line chart maps a value against an ordered axis like time, so the rise and fall across months is easy to read. Pie charts show parts of a whole at one moment, not change over time.",
       "misconception_id": "cat100_supplement_3_3_charts_that_answer_questions_pie_for_trend",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-03-03-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_3_3_charts_that_answer_questions_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "A truncated axis exaggerates small differences. For bar and column charts, starting the value axis at 0 keeps the heights proportional to the data so the reader is not misled.",
       "misconception_id": "cat100_supplement_3_3_charts_that_answer_questions_truncated_axis",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-03-03-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_3_3_charts_that_answer_questions_ai_boundary",
@@ -57,7 +63,10 @@
       "correct_index": 1,
       "explanation": "A claim-first title tells the reader the finding, not just the topic. The chart then becomes the evidence for that one stated point.",
       "misconception_id": "cat100_supplement_3_3_charts_that_answer_questions_topic_not_claim_title",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-03-03-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_3_3_charts_that_answer_questions_calibration",
@@ -77,7 +86,21 @@
       "correct_index": 1,
       "explanation": "A bar chart compares discrete categories like separate stores by bar height. A line chart implies a connected sequence, which the five unrelated stores do not form.",
       "misconception_id": "cat100_supplement_3_3_charts_that_answer_questions_line_for_categories",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-03-03-lo-01"
+      ]
+    },
+    {
+      "id": "cat100-supplement_03_03_lo_04_direct_check",
+      "type": "conceptual",
+      "stem": "Provide a concise response that demonstrates this learning objective: Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "expected_answer": "The response accurately demonstrates the section objective: Document a bounded AI/software support move with accepted and rejected suggestions, using relevant section concepts, evidence, or calculations.",
+      "explanation": "This direct-evidence item is used when no closed-response item adequately samples the objective. Score it with the section concepts and worked examples as the rubric.",
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-03-03-lo-04"
+      ]
     }
   ]
 }

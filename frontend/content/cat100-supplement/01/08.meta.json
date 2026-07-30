@@ -1,4 +1,4 @@
-﻿{
+{
   "course": "cat100-supplement",
   "chapter": "01",
   "section": "08",
@@ -6,10 +6,22 @@
   "title": "Module 1 Readiness Studio",
   "description": "CAT 100 textbook section connecting module 1 readiness studio to module 1 readiness map, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Audit a single artifact against all four Module 1 skills at once.",
-    "Mark each skill honestly as pass or gap based on what the artifact actually shows.",
-    "Resist the urge to check every box; flag real gaps instead of hiding them.",
-    "Convert each gap into a specific, targeted practice step."
+    {
+      "id": "cat100-supplement-01-08-lo-01",
+      "statement": "Audit a single artifact against all four Module 1 skills at once"
+    },
+    {
+      "id": "cat100-supplement-01-08-lo-02",
+      "statement": "Mark each skill honestly as pass or gap based on what the artifact actually shows"
+    },
+    {
+      "id": "cat100-supplement-01-08-lo-03",
+      "statement": "Resist the urge to check every box; flag real gaps instead of hiding them"
+    },
+    {
+      "id": "cat100-supplement-01-08-lo-04",
+      "statement": "Convert each gap into a specific, targeted practice step"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_digital_citizenship_and_ai_readiness",
@@ -29,5 +41,21 @@
     "cat100_supplement_1_8_module_1_readiness_studio_ai_boundary",
     "cat100_supplement_1_8_module_1_readiness_studio_calibration",
     "cat100_supplement_1_8_module_1_readiness_studio_recheck"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-01-08-lo-01": [
+      "cat100_supplement_1_8_module_1_readiness_studio_annotation_signal",
+      "cat100_supplement_1_8_module_1_readiness_studio_ai_boundary"
+    ],
+    "cat100-supplement-01-08-lo-02": [
+      "cat100_supplement_1_8_module_1_readiness_studio_recheck"
+    ],
+    "cat100-supplement-01-08-lo-03": [
+      "cat100_supplement_1_8_module_1_readiness_studio_artifact_signal"
+    ],
+    "cat100-supplement-01-08-lo-04": [
+      "cat100_supplement_1_8_module_1_readiness_studio_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

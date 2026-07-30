@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "Give the team the least access they need. Public edit invites strangers; four separate copies fragment the work.",
       "misconception_id": "cat100_supplement_7_6_anyone_with_link_edit",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-07-06-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_7_6_collaboration_norms_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "Suggestions and comments preserve the original and show what changed, instead of silently overwriting a teammate.",
       "misconception_id": "cat100_supplement_7_6_overwrite_teammate",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-07-06-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_7_6_collaboration_norms_ai_boundary",
@@ -56,7 +62,10 @@
       "correct_index": 1,
       "explanation": "Dividing ownership stops two people writing over each other in the same paragraph.",
       "misconception_id": "cat100_supplement_7_6_no_section_owners",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-07-06-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_7_6_collaboration_norms_calibration",
@@ -75,7 +84,10 @@
       "correct_index": 1,
       "explanation": "An earlier internal deadline builds in review time so the whole group is not gambling at 11:55 PM.",
       "misconception_id": "cat100_supplement_7_6_no_deadline_norm",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-07-06-lo-04"
+      ]
     }
   ]
 }

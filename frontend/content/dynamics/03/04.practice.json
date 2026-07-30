@@ -18,6 +18,9 @@
       "concept_ids": [
         "conservation_of_angular_momentum",
         "angular_impulse_momentum"
+      ],
+      "learning_objective_ids": [
+        "dynamics-03-04-lo-03"
       ]
     },
     {
@@ -38,6 +41,9 @@
       "concept_ids": [
         "conservation_of_angular_momentum",
         "angular_impulse_momentum"
+      ],
+      "learning_objective_ids": [
+        "dynamics-03-04-lo-02"
       ]
     },
     {
@@ -58,6 +64,10 @@
       "concept_ids": [
         "coefficient_of_restitution",
         "eccentric_impact"
+      ],
+      "learning_objective_ids": [
+        "dynamics-03-04-lo-01",
+        "dynamics-03-04-lo-04"
       ]
     },
     {
@@ -78,6 +88,9 @@
       "concept_ids": [
         "impulse_momentum",
         "angular_impulse_momentum"
+      ],
+      "learning_objective_ids": [
+        "dynamics-03-04-lo-02"
       ]
     },
     {
@@ -97,8 +110,14 @@
         "unit": "rad/s",
         "tolerance": 0.02
       },
-      "concept_ids": ["conservation_of_angular_momentum", "angular_impulse_momentum"],
-      "hint": "Conserve angular momentum about the pin: m*v*d = I_O*omega, where I_O = (1/3)*M*L^2 + m*d^2."
+      "concept_ids": [
+        "conservation_of_angular_momentum",
+        "angular_impulse_momentum"
+      ],
+      "hint": "Conserve angular momentum about the pin: m*v*d = I_O*omega, where I_O = (1/3)*M*L^2 + m*d^2.",
+      "learning_objective_ids": [
+        "dynamics-03-04-lo-02"
+      ]
     }
   ]
 }

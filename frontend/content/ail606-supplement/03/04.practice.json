@@ -17,6 +17,9 @@
       "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_narration_and_modality_decisions"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-03-04-lo-01"
       ]
     },
     {
@@ -36,6 +39,9 @@
       "difficulty": "medium",
       "concept_ids": [
         "ail606_supplement_narration_and_modality_decisions"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-03-04-lo-01"
       ]
     },
     {
@@ -55,6 +61,9 @@
       "difficulty": "medium",
       "concept_ids": [
         "ail606_supplement_narration_and_modality_decisions"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-03-04-lo-01"
       ]
     },
     {
@@ -74,6 +83,9 @@
       "difficulty": "hard",
       "concept_ids": [
         "ail606_supplement_narration_and_modality_decisions"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-03-04-lo-01"
       ]
     },
     {
@@ -92,6 +104,11 @@
       "difficulty": "medium",
       "concept_ids": [
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-03-04-lo-02",
+        "ail606-supplement-03-04-lo-03",
+        "ail606-supplement-03-04-lo-04"
       ]
     }
   ]

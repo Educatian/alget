@@ -1,34 +1,63 @@
 {
-    "course": "dynamics",
-    "chapter": "03",
-    "section": "04",
-    "chapter_title": "Planar Rigid Body Dynamics",
-    "title": "Module 4: Rigid Body Impulse and Angular Momentum",
-    "description": "Apply linear and angular impulse-momentum principles to rigid bodies, use conservation of angular momentum about a fixed point, and analyze eccentric impact with the coefficient of restitution at the contact point.",
-    "learning_objectives": [
-        "Apply linear impulse-momentum to the center of mass of a rigid body.",
-        "Apply angular impulse-momentum about the center of mass and about a fixed point, choosing the correct moment of inertia.",
-        "Identify when linear or angular momentum is conserved during an impact, recognizing impulsive constraint reactions.",
-        "Solve eccentric-impact problems using contact-point velocities and the coefficient of restitution along the impact line."
+  "course": "dynamics",
+  "chapter": "03",
+  "section": "04",
+  "chapter_title": "Planar Rigid Body Dynamics",
+  "title": "Module 4: Rigid Body Impulse and Angular Momentum",
+  "description": "Apply linear and angular impulse-momentum principles to rigid bodies, use conservation of angular momentum about a fixed point, and analyze eccentric impact with the coefficient of restitution at the contact point.",
+  "learning_objectives": [
+    {
+      "id": "dynamics-03-04-lo-01",
+      "statement": "Apply linear impulse-momentum to the center of mass of a rigid body"
+    },
+    {
+      "id": "dynamics-03-04-lo-02",
+      "statement": "Apply angular impulse-momentum about the center of mass and about a fixed point, choosing the correct moment of inertia"
+    },
+    {
+      "id": "dynamics-03-04-lo-03",
+      "statement": "Identify when linear or angular momentum is conserved during an impact, recognizing impulsive constraint reactions"
+    },
+    {
+      "id": "dynamics-03-04-lo-04",
+      "statement": "Solve eccentric-impact problems using contact-point velocities and the coefficient of restitution along the impact line"
+    }
+  ],
+  "concept_ids": [
+    "impulse_momentum",
+    "angular_impulse_momentum",
+    "conservation_of_angular_momentum",
+    "eccentric_impact",
+    "coefficient_of_restitution"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 4,
+  "prereq_section_ids": [
+    "dynamics/03/02",
+    "dynamics/02/03"
+  ],
+  "practice_ids": [
+    "rbim_pin_conservation",
+    "rbim_skater",
+    "rbim_contact_point",
+    "rbim_axis_choice",
+    "rbim_pinned_rod_numeric"
+  ],
+  "lo_practice_map": {
+    "dynamics-03-04-lo-01": [
+      "rbim_contact_point"
     ],
-    "concept_ids": [
-        "impulse_momentum",
-        "angular_impulse_momentum",
-        "conservation_of_angular_momentum",
-        "eccentric_impact",
-        "coefficient_of_restitution"
+    "dynamics-03-04-lo-02": [
+      "rbim_axis_choice",
+      "rbim_skater",
+      "rbim_pinned_rod_numeric"
     ],
-    "estimated_time_minutes": 14,
-    "order": 4,
-    "prereq_section_ids": [
-        "dynamics/03/02",
-        "dynamics/02/03"
+    "dynamics-03-04-lo-03": [
+      "rbim_pin_conservation"
     ],
-    "practice_ids": [
-        "rbim_pin_conservation",
-        "rbim_skater",
-        "rbim_contact_point",
-        "rbim_axis_choice",
-        "rbim_pinned_rod_numeric"
+    "dynamics-03-04-lo-04": [
+      "rbim_contact_point"
     ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

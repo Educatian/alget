@@ -17,6 +17,9 @@
       "difficulty": "medium",
       "concept_ids": [
         "rubric_design"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-08-03-lo-01"
       ]
     },
     {
@@ -36,6 +39,9 @@
       "difficulty": "easy",
       "concept_ids": [
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-08-03-lo-02"
       ]
     },
     {
@@ -55,6 +61,11 @@
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-08-03-lo-01",
+        "ail606-supplement-08-03-lo-03",
+        "ail606-supplement-08-03-lo-04"
       ]
     },
     {
@@ -74,6 +85,9 @@
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-08-03-lo-01"
       ]
     }
   ]

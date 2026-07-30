@@ -18,7 +18,10 @@
       "correct_index": 0,
       "explanation": "Stuffing a buzzword to game a filter does not match real skills and looks like spam to the human who reads it next. Use keywords that reflect skills you actually have and that the posting names.",
       "misconception_id": "cat100_supplement_2_5_keyword_stuffing",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-02-05-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_2_5_ai_feedback_you_should_reject_annotation_signal",
@@ -38,7 +41,10 @@
       "correct_index": 1,
       "explanation": "When AI feedback conflicts with the assignment's actual requirements, the requirements win. An unbacked \"best candidate ever\" claim is exactly the unsupported assertion the posting is steering you away from.",
       "misconception_id": "cat100_supplement_2_5_feedback_overrides_requirements",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-02-05-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_2_5_ai_feedback_you_should_reject_ai_boundary",
@@ -58,7 +64,10 @@
       "correct_index": 1,
       "explanation": "Removing an outdated, space-wasting line is a legitimate, truthful improvement. The other three ask you to fabricate awards, grades, or skills, which you must reject.",
       "misconception_id": "cat100_supplement_2_5_reject_all_ai",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-02-05-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_2_5_ai_feedback_you_should_reject_calibration",
@@ -78,7 +87,11 @@
       "correct_index": 2,
       "explanation": "The defensibility test, \"could I stand behind this if asked?\", separates real improvements from edits that add length, jargon, or false confidence.",
       "misconception_id": "cat100_supplement_2_5_confidence_signals_quality",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-02-05-lo-01",
+        "cat100-supplement-02-05-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_2_5_ai_feedback_you_should_reject_identity_guessing",
@@ -98,7 +111,10 @@
       "correct_index": 2,
       "explanation": "An AI cannot know your language fluency or family history; inferring them from your name is a documented algorithmic-bias failure. Both additions are invented facts about you, so both fail the defensibility test regardless of how plausible they sound.",
       "misconception_id": "cat100_supplement_2_5_identity_guessing",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-02-05-lo-01"
+      ]
     }
   ]
 }

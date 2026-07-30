@@ -6,10 +6,22 @@
   "title": "Data Ethics in Small Datasets",
   "description": "CAT 100 textbook section connecting data ethics in small datasets to Excel pivot-table finding with unit labels, source note, and claim-first chart title, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Identify when a small dataset is re-identifiable through a combination of quasi-identifiers even after direct identifiers are removed.",
-    "Apply a three-point ethics screen (re-identification, group-of-one, honest magnitude) to decide how to report a small-n finding.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    {
+      "id": "cat100-supplement-03-06-lo-01",
+      "statement": "Identify when a small dataset is re-identifiable through a combination of quasi-identifiers even after direct identifiers are removed"
+    },
+    {
+      "id": "cat100-supplement-03-06-lo-02",
+      "statement": "Apply a three-point ethics screen (re-identification, group-of-one, honest magnitude) to decide how to report a small-n finding"
+    },
+    {
+      "id": "cat100-supplement-03-06-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat100-supplement-03-06-lo-04",
+      "statement": "Use feedback, support requests, and revision notes to improve the artifact before sharing it"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_data_storytelling_with_excel",
@@ -27,6 +39,23 @@
     "cat100_supplement_3_6_data_ethics_in_small_datasets_artifact_signal",
     "cat100_supplement_3_6_data_ethics_in_small_datasets_annotation_signal",
     "cat100_supplement_3_6_data_ethics_in_small_datasets_ai_boundary",
-    "cat100_supplement_3_6_data_ethics_in_small_datasets_calibration"
-  ]
+    "cat100_supplement_3_6_data_ethics_in_small_datasets_calibration",
+    "cat100-supplement_03_06_lo_03_direct_check"
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-03-06-lo-01": [
+      "cat100_supplement_3_6_data_ethics_in_small_datasets_artifact_signal"
+    ],
+    "cat100-supplement-03-06-lo-02": [
+      "cat100_supplement_3_6_data_ethics_in_small_datasets_annotation_signal",
+      "cat100_supplement_3_6_data_ethics_in_small_datasets_calibration"
+    ],
+    "cat100-supplement-03-06-lo-03": [
+      "cat100-supplement_03_06_lo_03_direct_check"
+    ],
+    "cat100-supplement-03-06-lo-04": [
+      "cat100_supplement_3_6_data_ethics_in_small_datasets_ai_boundary"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

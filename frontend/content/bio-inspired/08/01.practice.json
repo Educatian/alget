@@ -17,7 +17,10 @@
       "concept_ids": [
         "swarm_intelligence"
       ],
-      "misconception_id": "swarm_means_chaos"
+      "misconception_id": "swarm_means_chaos",
+      "learning_objective_ids": [
+        "bio-inspired-08-01-lo-05"
+      ]
     },
     {
       "id": "bio_stigmergy_logic",
@@ -36,7 +39,10 @@
       "concept_ids": [
         "stigmergy"
       ],
-      "misconception_id": "stigmergy_is_direct_chat"
+      "misconception_id": "stigmergy_is_direct_chat",
+      "learning_objective_ids": [
+        "bio-inspired-08-01-lo-03"
+      ]
     },
     {
       "id": "bio_local_rules_reynolds",
@@ -55,7 +61,10 @@
       "concept_ids": [
         "local_rules"
       ],
-      "misconception_id": "swarm_means_chaos"
+      "misconception_id": "swarm_means_chaos",
+      "learning_objective_ids": [
+        "bio-inspired-08-01-lo-02"
+      ]
     },
     {
       "id": "bio_autonomous_robotics_tradeoff",
@@ -74,7 +83,10 @@
       "concept_ids": [
         "autonomous_robotics"
       ],
-      "misconception_id": "more_agents_equals_better_always"
+      "misconception_id": "more_agents_equals_better_always",
+      "learning_objective_ids": [
+        "bio-inspired-08-01-lo-01"
+      ]
     },
     {
       "id": "bio_swarm_analogical_transfer",
@@ -93,7 +105,10 @@
       "concept_ids": [
         "analogical_transfer"
       ],
-      "misconception_id": "copy_the_animal_not_the_rule"
+      "misconception_id": "copy_the_animal_not_the_rule",
+      "learning_objective_ids": [
+        "bio-inspired-08-01-lo-04"
+      ]
     },
     {
       "id": "bio_fixation_avoidance",
@@ -112,7 +127,10 @@
       "concept_ids": [
         "design_fixation"
       ],
-      "misconception_id": "first_analogy_is_best"
+      "misconception_id": "first_analogy_is_best",
+      "learning_objective_ids": [
+        "bio-inspired-08-01-lo-04"
+      ]
     }
   ]
 }

@@ -3,10 +3,22 @@
   "title": "Prompt Logs as Design Evidence",
   "description": "AIL 606 textbook section on curating prompt logs as design evidence: turning a raw AI chat transcript into a curated argument for the final asset, with intent, outcome, and disposition per entry, preserved rejections with reasons, and a verification step.",
   "learning_objectives": [
-    "Curate a raw AI chat history into a prompt log that argues for the final asset, with each kept entry carrying intent, outcome, and disposition.",
-    "Distinguish a passive transcript from a curated design log that explains failures, not just successes.",
-    "Preserve at least one informative rejection, with its reason, tied to the learning function the asset must serve.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    {
+      "id": "ail606-supplement-03-06-lo-01",
+      "statement": "Curate a raw AI chat history into a prompt log that argues for the final asset, with each kept entry carrying intent, outcome, and disposition"
+    },
+    {
+      "id": "ail606-supplement-03-06-lo-02",
+      "statement": "Distinguish a passive transcript from a curated design log that explains failures, not just successes"
+    },
+    {
+      "id": "ail606-supplement-03-06-lo-03",
+      "statement": "Preserve at least one informative rejection, with its reason, tied to the learning function the asset must serve"
+    },
+    {
+      "id": "ail606-supplement-03-06-lo-04",
+      "statement": "Use annotations, support requests, and revision notes to decide what help or design change should come next"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_multimedia_storyboarding_and_ai_asset_generation",
@@ -28,5 +40,21 @@
     "ail606_supplement_3_6_prompt_logs_as_design_evidence_annotation_signal",
     "ail606_supplement_3_6_prompt_logs_as_design_evidence_ai_boundary",
     "ail606_supplement_3_6_prompt_logs_as_design_evidence_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-03-06-lo-01": [
+      "ail606_supplement_3_6_prompt_logs_as_design_evidence_artifact_signal",
+      "ail606_supplement_3_6_prompt_logs_as_design_evidence_ai_boundary"
+    ],
+    "ail606-supplement-03-06-lo-02": [
+      "ail606_supplement_3_6_prompt_logs_as_design_evidence_artifact_signal"
+    ],
+    "ail606-supplement-03-06-lo-03": [
+      "ail606_supplement_3_6_prompt_logs_as_design_evidence_annotation_signal"
+    ],
+    "ail606-supplement-03-06-lo-04": [
+      "ail606_supplement_3_6_prompt_logs_as_design_evidence_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

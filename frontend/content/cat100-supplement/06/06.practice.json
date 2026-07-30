@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "A strong bullet names the artifact, the skill, and a measurable result a reader can picture and verify. Vague duty statements carry no evidence.",
       "misconception_id": "cat100_supplement_6_6_duties_count_as_evidence",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-06-06-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_6_6_portfolio_evidence_and_reflection_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "Truthful framing states the actual scope (intro course, a concrete script) so a reader is not misled. Overclaiming expertise fails the first technical question.",
       "misconception_id": "cat100_supplement_6_6_overclaiming_skills",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-06-06-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_6_6_portfolio_evidence_and_reflection_ai_boundary",
@@ -57,7 +63,10 @@
       "correct_index": 1,
       "explanation": "AI will happily fabricate accomplishments. You stay accountable for truthfulness: remove invented claims and disclose that AI helped with wording, not facts.",
       "misconception_id": "cat100_supplement_6_6_ai_fabrication_accepted",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-06-06-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_6_6_portfolio_evidence_and_reflection_calibration",
@@ -77,7 +86,10 @@
       "correct_index": 1,
       "explanation": "Role fit means surfacing the evidence the specific posting asks for. Promoting the relevant bullets and trimming the rest signals fit better than length or decoration.",
       "misconception_id": "cat100_supplement_6_6_one_resume_fits_all",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-06-06-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_6_6_resume_and_reflection_page_live_evidence",
@@ -96,6 +108,12 @@
       "difficulty": "medium",
       "concept_ids": [
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat100-supplement-06-06-lo-01",
+        "cat100-supplement-06-06-lo-02",
+        "cat100-supplement-06-06-lo-03",
+        "cat100-supplement-06-06-lo-04"
       ]
     }
   ]

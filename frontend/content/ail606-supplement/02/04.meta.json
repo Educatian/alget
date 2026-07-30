@@ -3,10 +3,22 @@
   "title": "Feedback Loops and Learner Control",
   "description": "AIL 606 textbook section connecting feedback loops and learner control to a feedback-loop specification (feed-forward text, reveal-timing rule, calibrated control, behavioral signal), reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Diagnose whether a practice loop feeds forward using Hattie and Timperley's three questions, and rewrite a bare verdict into actionable feedback.",
-    "Choose a feedback-reveal timing (immediate versus brief delay) justified by task type and learner expertise.",
-    "Design calibrated learner control that preserves autonomy while naming the cost of skipping.",
-    "Tie each loop revision to a behavioral signal such as repeat-error rate, skip rate, or retry uptake."
+    {
+      "id": "ail606-supplement-02-04-lo-01",
+      "statement": "Diagnose whether a practice loop feeds forward using Hattie and Timperley's three questions, and rewrite a bare verdict into actionable feedback"
+    },
+    {
+      "id": "ail606-supplement-02-04-lo-02",
+      "statement": "Choose a feedback-reveal timing (immediate versus brief delay) justified by task type and learner expertise"
+    },
+    {
+      "id": "ail606-supplement-02-04-lo-03",
+      "statement": "Design calibrated learner control that preserves autonomy while naming the cost of skipping"
+    },
+    {
+      "id": "ail606-supplement-02-04-lo-04",
+      "statement": "Tie each loop revision to a behavioral signal such as repeat-error rate, skip rate, or retry uptake"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_learning_experience_design_and_software_technology",
@@ -28,5 +40,21 @@
     "ail606_supplement_2_4_feedback_loops_and_learner_control_annotation_signal",
     "ail606_supplement_2_4_feedback_loops_and_learner_control_ai_boundary",
     "ail606_supplement_2_4_feedback_loops_and_learner_control_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-02-04-lo-01": [
+      "ail606_supplement_2_4_feedback_loops_and_learner_control_calibration",
+      "ail606_supplement_2_4_feedback_loops_and_learner_control_artifact_signal"
+    ],
+    "ail606-supplement-02-04-lo-02": [
+      "ail606_supplement_2_4_feedback_loops_and_learner_control_ai_boundary"
+    ],
+    "ail606-supplement-02-04-lo-03": [
+      "ail606_supplement_2_4_feedback_loops_and_learner_control_annotation_signal"
+    ],
+    "ail606-supplement-02-04-lo-04": [
+      "ail606_supplement_2_4_feedback_loops_and_learner_control_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

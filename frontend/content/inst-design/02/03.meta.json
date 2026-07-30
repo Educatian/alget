@@ -1,30 +1,53 @@
 {
-    "course": "inst-design",
-    "chapter": "02",
-    "section": "03",
-    "chapter_title": "The ADDIE Framework",
-    "title": "Module 3: The Evaluation Phase",
-    "description": "Use formative and summative evidence to judge whether instruction is working, and interpret Kirkpatrick's model as a layered evaluation framework.",
-    "learning_objectives": [
-        "Distinguish between Formative and Summative evaluation.",
-        "Apply Kirkpatrick's four levels of evaluation.",
-        "Design evidence-collection plans that align evaluation questions with instructional goals."
+  "course": "inst-design",
+  "chapter": "02",
+  "section": "03",
+  "chapter_title": "The ADDIE Framework",
+  "title": "Module 3: The Evaluation Phase",
+  "description": "Use formative and summative evidence to judge whether instruction is working, and interpret Kirkpatrick's model as a layered evaluation framework.",
+  "learning_objectives": [
+    {
+      "id": "inst-design-02-03-lo-01",
+      "statement": "Distinguish between Formative and Summative evaluation"
+    },
+    {
+      "id": "inst-design-02-03-lo-02",
+      "statement": "Apply Kirkpatrick's four levels of evaluation"
+    },
+    {
+      "id": "inst-design-02-03-lo-03",
+      "statement": "Design evidence-collection plans that align evaluation questions with instructional goals"
+    }
+  ],
+  "concept_ids": [
+    "evaluation_phase",
+    "formative_evaluation",
+    "summative_evaluation",
+    "kirkpatrick_model",
+    "evidence_collection"
+  ],
+  "prereq_section_ids": [
+    "inst-design/02/02"
+  ],
+  "practice_ids": [
+    "formative_vs_summative",
+    "kirkpatrick_learning",
+    "reaction_not_learning",
+    "evaluation_evidence_choice"
+  ],
+  "estimated_time_minutes": 10,
+  "lo_practice_map": {
+    "inst-design-02-03-lo-01": [
+      "formative_vs_summative"
     ],
-    "concept_ids": [
-        "evaluation_phase",
-        "formative_evaluation",
-        "summative_evaluation",
-        "kirkpatrick_model",
-        "evidence_collection"
+    "inst-design-02-03-lo-02": [
+      "evaluation_evidence_choice"
     ],
-    "prereq_section_ids": [
-        "inst-design/02/02"
-    ],
-    "practice_ids": [
-        "formative_vs_summative",
-        "kirkpatrick_learning",
-        "reaction_not_learning",
-        "evaluation_evidence_choice"
-    ],
-    "estimated_time_minutes": 10
+    "inst-design-02-03-lo-03": [
+      "evaluation_evidence_choice",
+      "kirkpatrick_learning",
+      "reaction_not_learning"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

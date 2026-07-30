@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "A small dry run on copies catches a bad pattern before it corrupts all 200 files.",
       "misconception_id": "cat100_supplement_7_5_no_dry_run",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-07-05-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_7_5_automation_safety_checks_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "Deleting filtered rows can affect more than what you see. Preserving the kept rows first makes the delete reviewable.",
       "misconception_id": "cat100_supplement_7_5_filter_then_delete_all",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-07-05-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_7_5_automation_safety_checks_ai_boundary",
@@ -56,7 +62,10 @@
       "correct_index": 1,
       "explanation": "An overbroad rule silently buries needed mail. Narrow the match and review the destination folder.",
       "misconception_id": "cat100_supplement_7_5_inbox_rule_too_broad",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-07-05-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_7_5_automation_safety_checks_calibration",
@@ -75,7 +84,22 @@
       "correct_index": 1,
       "explanation": "Irreversible automations need a recovery path. A backup plus version history means a bad run is not permanent.",
       "misconception_id": "cat100_supplement_7_5_no_undo_check",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-07-05-lo-01"
+      ]
+    },
+    {
+      "id": "cat100-supplement_07_05_lo_02_direct_check",
+      "type": "conceptual",
+      "stem": "Provide a concise response that demonstrates this learning objective: Distinguish artifact polish from evidence-based revision.",
+      "expected_answer": "The response accurately demonstrates the section objective: Distinguish artifact polish from evidence-based revision, using relevant section concepts, evidence, or calculations.",
+      "explanation": "This direct-evidence item is used when no closed-response item adequately samples the objective. Score it with the section concepts and worked examples as the rubric.",
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-07-05-lo-02",
+        "cat100-supplement-07-05-lo-04"
+      ]
     }
   ]
 }

@@ -20,6 +20,9 @@
         "cat531_supplement_classroom_fit_matrix",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-05-05-lo-04"
       ]
     },
     {
@@ -40,6 +43,9 @@
       "concept_ids": [
         "cat531_supplement_educational_technology_evaluation",
         "cat531_supplement_classroom_fit_matrix"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-05-05-lo-01"
       ]
     },
     {
@@ -60,6 +66,9 @@
       "concept_ids": [
         "ai_supported_learning",
         "cat531_supplement_classroom_fit_matrix"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-05-05-lo-03"
       ]
     },
     {
@@ -80,6 +89,9 @@
       "concept_ids": [
         "evidence_based_revision",
         "cat531_supplement_classroom_fit_matrix"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-05-05-lo-02"
       ]
     }
   ]

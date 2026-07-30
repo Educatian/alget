@@ -5,7 +5,10 @@
       "type": "multiple_choice",
       "difficulty": "hard",
       "concept_id": "shear_moment_diagram",
-      "concept_ids": ["shear_moment_diagram", "bending_moment"],
+      "concept_ids": [
+        "shear_moment_diagram",
+        "bending_moment"
+      ],
       "stem": "On a simply supported beam with a single mid-span point load P, where does maximum bending moment occur, and what is its value?",
       "options": [
         "At the supports, M_max = PL/2.",
@@ -15,14 +18,20 @@
       ],
       "correct_index": 1,
       "explanation": "Because dM/dx = V, maximum M occurs where V crosses zero — at midspan for this load case. The value is M_max = PL/4.",
-      "misconception_id": "max_moment_at_supports"
+      "misconception_id": "max_moment_at_supports",
+      "learning_objective_ids": [
+        "statics-04-01-lo-04"
+      ]
     },
     {
       "id": "internal_load_shear_relation",
       "type": "multiple_choice",
       "difficulty": "medium",
       "concept_id": "beam_loading",
-      "concept_ids": ["beam_loading", "shear_force"],
+      "concept_ids": [
+        "beam_loading",
+        "shear_force"
+      ],
       "stem": "What is the relationship between distributed load w(x) and shear V(x) along a beam?",
       "options": [
         "dV/dx = +w (positive slope equals load).",
@@ -32,14 +41,20 @@
       ],
       "correct_index": 1,
       "explanation": "With w taken positive downward, dV/dx = -w. This is the workhorse relation for sketching shear diagrams from loading.",
-      "misconception_id": "load_equals_shear"
+      "misconception_id": "load_equals_shear",
+      "learning_objective_ids": [
+        "statics-04-01-lo-03"
+      ]
     },
     {
       "id": "internal_section_consistency",
       "type": "multiple_choice",
       "difficulty": "medium",
       "concept_id": "section_method",
-      "concept_ids": ["method_of_sections", "internal_forces"],
+      "concept_ids": [
+        "method_of_sections",
+        "internal_forces"
+      ],
       "stem": "When computing internal forces at a cross section, why must the answer agree whether you analyze the left or the right portion of the beam?",
       "options": [
         "Because of Newton's third law: the internal forces on the two cut faces are equal and opposite.",
@@ -49,14 +64,21 @@
       ],
       "correct_index": 0,
       "explanation": "Newton's third law guarantees that internal force-pairs on the two faces of a cut are equal and opposite. With consistent sign convention, both free bodies yield the same N, V, M values.",
-      "misconception_id": "left_right_asymmetric"
+      "misconception_id": "left_right_asymmetric",
+      "learning_objective_ids": [
+        "statics-04-01-lo-01",
+        "statics-04-01-lo-02"
+      ]
     },
     {
       "id": "internal_point_load_jump",
       "type": "multiple_choice",
       "difficulty": "medium",
       "concept_id": "shear_force",
-      "concept_ids": ["shear_force", "beam_loading"],
+      "concept_ids": [
+        "shear_force",
+        "beam_loading"
+      ],
       "stem": "What does a concentrated transverse point load P (downward) produce in the shear diagram at the load's location?",
       "options": [
         "A smooth slope only.",
@@ -66,7 +88,10 @@
       ],
       "correct_index": 1,
       "explanation": "Concentrated transverse loads produce step discontinuities in V. A point couple (moment) produces a step in M. Continuous w gives smooth slopes only.",
-      "misconception_id": "shear_is_continuous_under_point_load"
+      "misconception_id": "shear_is_continuous_under_point_load",
+      "learning_objective_ids": [
+        "statics-04-01-lo-03"
+      ]
     },
     {
       "id": "internal_cantilever_udl_moment",
@@ -82,8 +107,15 @@
         "unit": "kN·m",
         "tolerance": 0.1
       },
-      "concept_ids": ["shear_moment_diagram", "bending_moment", "beam_loading"],
-      "hint": "For a cantilever under a full-length UDL, the maximum moment magnitude at the wall is w*L^2/2."
+      "concept_ids": [
+        "shear_moment_diagram",
+        "bending_moment",
+        "beam_loading"
+      ],
+      "hint": "For a cantilever under a full-length UDL, the maximum moment magnitude at the wall is w*L^2/2.",
+      "learning_objective_ids": [
+        "statics-04-01-lo-04"
+      ]
     }
   ]
 }

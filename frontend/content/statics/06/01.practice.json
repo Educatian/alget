@@ -5,7 +5,9 @@
       "type": "multiple_choice",
       "difficulty": "easy",
       "concept_id": "statics_truss_basics",
-      "concept_ids": ["truss_analysis"],
+      "concept_ids": [
+        "truss_analysis"
+      ],
       "stem": "Why are triangular units used so heavily in truss structures?",
       "options": [
         "Because triangles are geometrically stable when member lengths are fixed",
@@ -15,14 +17,19 @@
       ],
       "correct_index": 0,
       "explanation": "Triangles resist shape change without changing member lengths, which is why they are the fundamental stable unit in trusses.",
-      "misconception_id": "triangles_only_visual_choice"
+      "misconception_id": "triangles_only_visual_choice",
+      "learning_objective_ids": [
+        "statics-06-01-lo-02"
+      ]
     },
     {
       "id": "statics_truss_intro_two_force",
       "type": "multiple_choice",
       "difficulty": "easy",
       "concept_id": "statics_truss_basics",
-      "concept_ids": ["truss_analysis"],
+      "concept_ids": [
+        "truss_analysis"
+      ],
       "stem": "Under the ideal truss assumptions, how does a typical member carry load?",
       "options": [
         "Through axial tension or compression only",
@@ -31,14 +38,19 @@
         "Through no internal force at all"
       ],
       "correct_index": 0,
-      "explanation": "Ideal truss members are treated as two-force members, so the internal force acts along the member axis as tension or compression."
+      "explanation": "Ideal truss members are treated as two-force members, so the internal force acts along the member axis as tension or compression.",
+      "learning_objective_ids": [
+        "statics-06-01-lo-02"
+      ]
     },
     {
       "id": "statics_truss_intro_joint_method",
       "type": "multiple_choice",
       "difficulty": "medium",
       "concept_id": "statics_method_of_joints",
-      "concept_ids": ["method_of_joints"],
+      "concept_ids": [
+        "method_of_joints"
+      ],
       "stem": "Why should the method of joints usually start at a joint with two or fewer unknown member forces?",
       "options": [
         "Because each planar joint provides only two equilibrium equations",
@@ -47,14 +59,20 @@
         "Because trusses cannot be analyzed from the supports"
       ],
       "correct_index": 0,
-      "explanation": "Each planar joint gives sum Fx = 0 and sum Fy = 0, so more than two unknown member forces cannot be solved directly at that step."
+      "explanation": "Each planar joint gives sum Fx = 0 and sum Fy = 0, so more than two unknown member forces cannot be solved directly at that step.",
+      "learning_objective_ids": [
+        "statics-06-01-lo-03"
+      ]
     },
     {
       "id": "statics_truss_intro_sign",
       "type": "multiple_choice",
       "difficulty": "medium",
       "concept_id": "statics_method_of_joints",
-      "concept_ids": ["method_of_joints", "member_force"],
+      "concept_ids": [
+        "method_of_joints",
+        "member_force"
+      ],
       "stem": "A member force is assumed to be tensile during a method-of-joints solution, but the computed value is negative. What does that mean?",
       "options": [
         "The truss is impossible to solve",
@@ -64,7 +82,10 @@
       ],
       "correct_index": 1,
       "explanation": "A negative result means the actual force direction is opposite the assumed tensile direction, so the member is in compression.",
-      "misconception_id": "negative_member_force_invalid"
+      "misconception_id": "negative_member_force_invalid",
+      "learning_objective_ids": [
+        "statics-06-01-lo-03"
+      ]
     },
     {
       "id": "statics_truss_intro_diagonal_force",
@@ -81,8 +102,14 @@
         "unit": "kN",
         "tolerance": 0.05
       },
-      "concept_ids": ["truss_analysis", "method_of_joints"],
-      "hint": "At joint A, vertical equilibrium gives F_AC * sin(theta) + A_y = 0 with sin(theta) = 4/5. The magnitude is 6 / 0.8; the negative sign indicates compression."
+      "concept_ids": [
+        "truss_analysis",
+        "method_of_joints"
+      ],
+      "hint": "At joint A, vertical equilibrium gives F_AC * sin(theta) + A_y = 0 with sin(theta) = 4/5. The magnitude is 6 / 0.8; the negative sign indicates compression.",
+      "learning_objective_ids": [
+        "statics-06-01-lo-01"
+      ]
     }
   ]
 }

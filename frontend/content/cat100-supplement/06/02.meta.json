@@ -1,4 +1,4 @@
-﻿{
+{
   "course": "cat100-supplement",
   "chapter": "06",
   "section": "02",
@@ -6,10 +6,22 @@
   "title": "Starter HTML and CSS",
   "description": "CAT 100 textbook section on starter HTML and CSS, centered on an accessibility revision pass, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Construct a minimal valid HTML document, placing metadata (title, charset, stylesheet link) in <head> and visible content in <body>.",
-    "Write descriptive alt text for informative images and justify empty alt for decorative ones against WCAG 2.2 SC 1.1.1.",
-    "Predict which CSS rule wins when selectors conflict, using specificity first and source order as the tiebreaker.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions."
+    {
+      "id": "cat100-supplement-06-02-lo-01",
+      "statement": "Construct a minimal valid HTML document, placing metadata (title, charset, stylesheet link) in <head> and visible content in <body>"
+    },
+    {
+      "id": "cat100-supplement-06-02-lo-02",
+      "statement": "Write descriptive alt text for informative images and justify empty alt for decorative ones against WCAG 2.2 SC 1.1.1"
+    },
+    {
+      "id": "cat100-supplement-06-02-lo-03",
+      "statement": "Predict which CSS rule wins when selectors conflict, using specificity first and source order as the tiebreaker"
+    },
+    {
+      "id": "cat100-supplement-06-02-lo-04",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_github_pages_personal_website",
@@ -27,6 +39,23 @@
     "cat100_supplement_6_2_starter_html_and_css_artifact_signal",
     "cat100_supplement_6_2_starter_html_and_css_annotation_signal",
     "cat100_supplement_6_2_starter_html_and_css_ai_boundary",
-    "cat100_supplement_6_2_starter_html_and_css_calibration"
-  ]
+    "cat100_supplement_6_2_starter_html_and_css_calibration",
+    "cat100-supplement_06_02_lo_04_direct_check"
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-06-02-lo-01": [
+      "cat100_supplement_6_2_starter_html_and_css_artifact_signal"
+    ],
+    "cat100-supplement-06-02-lo-02": [
+      "cat100_supplement_6_2_starter_html_and_css_calibration"
+    ],
+    "cat100-supplement-06-02-lo-03": [
+      "cat100_supplement_6_2_starter_html_and_css_annotation_signal",
+      "cat100_supplement_6_2_starter_html_and_css_ai_boundary"
+    ],
+    "cat100-supplement-06-02-lo-04": [
+      "cat100-supplement_06_02_lo_04_direct_check"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

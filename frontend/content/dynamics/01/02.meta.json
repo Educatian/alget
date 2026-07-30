@@ -1,30 +1,57 @@
 {
-    "chapter": "01",
-    "section": "02",
-    "title": "Rigid Body Mechanics in Motion",
-    "course": "dynamics",
-    "description": "Model translation and rotation together, interpret torque, and connect moment-arm geometry to engineering design decisions.",
-    "learning_objectives": [
-        "Calculate torque at rotational joints",
-        "Understand moment arms and angular velocity",
-        "Apply standard kinematic formulas to complex bodies"
+  "chapter": "01",
+  "section": "02",
+  "title": "Rigid Body Mechanics in Motion",
+  "course": "dynamics",
+  "description": "Model translation and rotation together, interpret torque, and connect moment-arm geometry to engineering design decisions.",
+  "learning_objectives": [
+    {
+      "id": "dynamics-01-02-lo-01",
+      "statement": "Calculate torque at rotational joints"
+    },
+    {
+      "id": "dynamics-01-02-lo-02",
+      "statement": "Understand moment arms and angular velocity"
+    },
+    {
+      "id": "dynamics-01-02-lo-03",
+      "statement": "Apply standard kinematic formulas to complex bodies"
+    }
+  ],
+  "concept_ids": [
+    "rigid_body",
+    "torque",
+    "angular_velocity",
+    "kinematics",
+    "joints"
+  ],
+  "estimated_time_minutes": 14,
+  "prereq_section_ids": [
+    "dynamics/01/01"
+  ],
+  "practice_ids": [
+    "curvilinear_concept_1",
+    "curvilinear_concept_2",
+    "curvilinear_numeric_1",
+    "curvilinear_numeric_2",
+    "curvilinear_circular",
+    "dynamics_01_02_lo_01_direct_check",
+    "dynamics_01_02_lo_03_direct_check"
+  ],
+  "lo_practice_map": {
+    "dynamics-01-02-lo-01": [
+      "dynamics_01_02_lo_01_direct_check"
     ],
-    "concept_ids": [
-        "rigid_body",
-        "torque",
-        "angular_velocity",
-        "kinematics",
-        "joints"
+    "dynamics-01-02-lo-02": [
+      "curvilinear_circular",
+      "curvilinear_concept_1",
+      "curvilinear_concept_2",
+      "curvilinear_numeric_1",
+      "curvilinear_numeric_2"
     ],
-    "estimated_time_minutes": 14,
-    "prereq_section_ids": [
-        "dynamics/01/01"
-    ],
-    "practice_ids": [
-        "curvilinear_concept_1",
-        "curvilinear_concept_2",
-        "curvilinear_numeric_1",
-        "curvilinear_numeric_2",
-        "curvilinear_circular"
+    "dynamics-01-02-lo-03": [
+      "dynamics_01_02_lo_03_direct_check"
     ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

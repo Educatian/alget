@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "A strong data narration leads with the finding and its implication. It states the comparison (40% higher) and what the reader should do with it, rather than describing the process.",
       "misconception_id": "cat100_supplement_3_7_narrating_a_data_finding_process_not_finding",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-03-07-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_3_7_narrating_a_data_finding_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "Two things happening in sequence does not prove one caused the other. An honest narration notes the change is correlated and names what else could explain it.",
       "misconception_id": "cat100_supplement_3_7_narrating_a_data_finding_correlation_as_cause",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-03-07-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_3_7_narrating_a_data_finding_ai_boundary",
@@ -57,7 +63,12 @@
       "correct_index": 1,
       "explanation": "A 6% rise is not 'skyrocketing.' The narration must stay faithful to the magnitude in the data. Reject AI wording that overstates the finding.",
       "misconception_id": "cat100_supplement_3_7_narrating_a_data_finding_overstating_magnitude",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-03-07-lo-01",
+        "cat100-supplement-03-07-lo-03",
+        "cat100-supplement-03-07-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_3_7_narrating_a_data_finding_calibration",
@@ -77,7 +88,10 @@
       "correct_index": 1,
       "explanation": "Claim first, then evidence. After the headline finding, the reader needs the supporting numbers, the data source, and the period covered so they can trust the claim.",
       "misconception_id": "cat100_supplement_3_7_narrating_a_data_finding_process_not_finding",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-03-07-lo-04"
+      ]
     }
   ]
 }

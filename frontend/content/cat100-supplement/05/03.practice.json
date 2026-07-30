@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "The labeled three-stage diagram carries the meaning; removing it would lose the explanation, so it is explanatory not decorative.",
       "difficulty": "easy",
-      "misconception_id": "cat100_supplement_5_3_image_generation_for_explaining_ideas_decorative_image"
+      "misconception_id": "cat100_supplement_5_3_image_generation_for_explaining_ideas_decorative_image",
+      "learning_objective_ids": [
+        "cat100-supplement-05-03-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_5_3_image_generation_for_explaining_ideas_annotation_signal",
@@ -37,7 +40,11 @@
       "correct_index": 1,
       "explanation": "The note names a specific accuracy fault (reversed stages) so feedback can target the prompt revision.",
       "difficulty": "medium",
-      "misconception_id": "cat100_supplement_5_3_image_generation_for_explaining_ideas_vague_prompt"
+      "misconception_id": "cat100_supplement_5_3_image_generation_for_explaining_ideas_vague_prompt",
+      "learning_objective_ids": [
+        "cat100-supplement-05-03-lo-02",
+        "cat100-supplement-05-03-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_5_3_image_generation_for_explaining_ideas_ai_boundary",
@@ -56,7 +63,10 @@
       "correct_index": 1,
       "explanation": "The generated diagram is a draft you must verify against the real artifact before it counts as an explanation.",
       "difficulty": "hard",
-      "misconception_id": "cat100_supplement_5_3_image_generation_for_explaining_ideas_trust_generated_facts"
+      "misconception_id": "cat100_supplement_5_3_image_generation_for_explaining_ideas_trust_generated_facts",
+      "learning_objective_ids": [
+        "cat100-supplement-05-03-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_5_3_image_generation_for_explaining_ideas_calibration",
@@ -74,7 +84,22 @@
       ],
       "correct_index": 1,
       "explanation": "A precise prompt naming the parts, labels, and relationship is far more likely to produce an explanatory image.",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-05-03-lo-02"
+      ]
+    },
+    {
+      "id": "cat100-supplement_05_03_lo_03_direct_check",
+      "type": "conceptual",
+      "stem": "Provide a concise response that demonstrates this learning objective: Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "expected_answer": "The response accurately demonstrates the section objective: Document a bounded AI/software support move with accepted and rejected suggestions, using relevant section concepts, evidence, or calculations.",
+      "explanation": "This direct-evidence item is used when no closed-response item adequately samples the objective. Score it with the section concepts and worked examples as the rubric.",
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-05-03-lo-01",
+        "cat100-supplement-05-03-lo-03"
+      ]
     }
   ]
 }

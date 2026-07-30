@@ -1,34 +1,62 @@
 {
-    "course": "ai-ethics",
-    "chapter": "06",
-    "section": "01",
-    "chapter_title": "AI in Education Ethics",
-    "title": "Module 1: Educational Data, FERPA, COPPA, and IDEA",
-    "description": "Map the three legal frameworks that govern AI deployments in education (FERPA, COPPA, IDEA) and the four ethical concerns the law only partly addresses (surveillance, equity, dark patterns, teacher de-skilling).",
-    "learning_objectives": [
-        "Identify the FERPA, COPPA, and IDEA obligations that apply to a learner-facing AI deployment.",
-        "Distinguish what is legal under each framework from what is ethical, and name the gap.",
-        "Recognize four ethical concerns (surveillance, equity, dark patterns, teacher authority) that extend beyond the legal floor.",
-        "Apply a seven-step pre-deployment workflow to a proposed educational AI system."
+  "course": "ai-ethics",
+  "chapter": "06",
+  "section": "01",
+  "chapter_title": "AI in Education Ethics",
+  "title": "Module 1: Educational Data, FERPA, COPPA, and IDEA",
+  "description": "Map the three legal frameworks that govern AI deployments in education (FERPA, COPPA, IDEA) and the four ethical concerns the law only partly addresses (surveillance, equity, dark patterns, teacher de-skilling).",
+  "learning_objectives": [
+    {
+      "id": "ai-ethics-06-01-lo-01",
+      "statement": "Identify the FERPA, COPPA, and IDEA obligations that apply to a learner-facing AI deployment"
+    },
+    {
+      "id": "ai-ethics-06-01-lo-02",
+      "statement": "Distinguish what is legal under each framework from what is ethical, and name the gap"
+    },
+    {
+      "id": "ai-ethics-06-01-lo-03",
+      "statement": "Recognize four ethical concerns (surveillance, equity, dark patterns, teacher authority) that extend beyond the legal floor"
+    },
+    {
+      "id": "ai-ethics-06-01-lo-04",
+      "statement": "Apply a seven-step pre-deployment workflow to a proposed educational AI system"
+    }
+  ],
+  "concept_ids": [
+    "education_ai_ethics",
+    "ferpa",
+    "coppa",
+    "idea_act",
+    "educational_surveillance",
+    "ai_equity_in_education",
+    "dark_patterns_in_education"
+  ],
+  "prereq_section_ids": [
+    "ai-ethics/05/02"
+  ],
+  "practice_ids": [
+    "edu_ferpa_scope",
+    "edu_idea_due_process",
+    "edu_equity_question",
+    "edu_coppa_age"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 1,
+  "lo_practice_map": {
+    "ai-ethics-06-01-lo-01": [
+      "edu_idea_due_process"
     ],
-    "concept_ids": [
-        "education_ai_ethics",
-        "ferpa",
-        "coppa",
-        "idea_act",
-        "educational_surveillance",
-        "ai_equity_in_education",
-        "dark_patterns_in_education"
+    "ai-ethics-06-01-lo-02": [
+      "edu_coppa_age"
     ],
-    "prereq_section_ids": [
-        "ai-ethics/05/02"
+    "ai-ethics-06-01-lo-03": [
+      "edu_coppa_age",
+      "edu_equity_question"
     ],
-    "practice_ids": [
-        "edu_ferpa_scope",
-        "edu_idea_due_process",
-        "edu_equity_question",
-        "edu_coppa_age"
-    ],
-    "estimated_time_minutes": 14,
-    "order": 1
+    "ai-ethics-06-01-lo-04": [
+      "edu_ferpa_scope"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

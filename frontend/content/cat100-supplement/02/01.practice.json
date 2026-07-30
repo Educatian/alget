@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "A verifiable claim names a concrete action, a number, and a scope. \"Coordinated weekly intake, 12 volunteers, 80 students, two semesters\" lets a reader check the scale and the role, unlike adjective-only or vague phrasing.",
       "misconception_id": "cat100_supplement_2_1_adjectives_as_evidence",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-02-01-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_2_1_resume_claims_and_evidence_annotation_signal",
@@ -38,7 +41,10 @@
       "correct_index": 2,
       "explanation": "Claiming credit for the whole site or a 300% gain you cannot trace is overstatement. Naming exactly your contribution (copy for five pages, launched on time) is both truthful and specific.",
       "misconception_id": "cat100_supplement_2_1_inflating_scope",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-02-01-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_2_1_resume_claims_and_evidence_ai_boundary",
@@ -58,7 +64,10 @@
       "correct_index": 2,
       "explanation": "An AI suggestion is a proposal, not a fact. A claim you cannot defend in an interview is fabrication even if the percentage is softened. Reject it, write a truthful bullet, and record the rejection.",
       "misconception_id": "cat100_supplement_2_1_ai_invents_metrics",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-02-01-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_2_1_resume_claims_and_evidence_calibration",
@@ -78,7 +87,10 @@
       "correct_index": 1,
       "explanation": "A strong revision moves from a vague responsibility to a specific action plus a measurable outcome (4 posts/week, 210 to 540 followers, 10 weeks). The other options just restate the duty in different words.",
       "misconception_id": "cat100_supplement_2_1_reword_not_revise",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-02-01-lo-02"
+      ]
     }
   ]
 }

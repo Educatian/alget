@@ -17,6 +17,9 @@
       "difficulty": "medium",
       "concept_ids": [
         "ail606_supplement_capstone_presentation_narrative"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-06-07-lo-01"
       ]
     },
     {
@@ -36,6 +39,9 @@
       "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_capstone_presentation_narrative"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-06-07-lo-01"
       ]
     },
     {
@@ -55,6 +61,9 @@
       "difficulty": "hard",
       "concept_ids": [
         "ail606_supplement_ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-06-07-lo-01"
       ]
     },
     {
@@ -74,6 +83,21 @@
       "difficulty": "medium",
       "concept_ids": [
         "ail606_supplement_evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-06-07-lo-02",
+        "ail606-supplement-06-07-lo-04"
+      ]
+    },
+    {
+      "id": "ail606-supplement_06_07_lo_03_direct_check",
+      "type": "conceptual",
+      "stem": "Provide a concise response that demonstrates this learning objective: Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "expected_answer": "The response accurately demonstrates the section objective: Document a bounded AI/software support move with accepted and rejected suggestions, using relevant section concepts, evidence, or calculations.",
+      "explanation": "This direct-evidence item is used when no closed-response item adequately samples the objective. Score it with the section concepts and worked examples as the rubric.",
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "ail606-supplement-06-07-lo-03"
       ]
     }
   ]

@@ -6,10 +6,22 @@
   "title": "Module 5 Presentation Studio",
   "description": "CAT 100 textbook section connecting module 5 presentation studio to presentation storyboard with audience constraint and slide-level evidence, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Sequence and integrate the six presentation layers (purpose, structure, media, narration, citation, accessibility) in dependency order, justifying why each check must precede or follow another.",
-    "Distinguish artifact polish from evidence-based revision when running the layered checks on a finished deck.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    {
+      "id": "cat100-supplement-05-08-lo-01",
+      "statement": "Sequence and integrate the six presentation layers (purpose, structure, media, narration, citation, accessibility) in dependency order, justifying why each check must precede or follow another"
+    },
+    {
+      "id": "cat100-supplement-05-08-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision when running the layered checks on a finished deck"
+    },
+    {
+      "id": "cat100-supplement-05-08-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat100-supplement-05-08-lo-04",
+      "statement": "Use feedback, support requests, and revision notes to improve the artifact before sharing it"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_ai_enhanced_presentation_development",
@@ -28,5 +40,21 @@
     "cat100_supplement_5_8_module_5_presentation_studio_annotation_signal",
     "cat100_supplement_5_8_module_5_presentation_studio_ai_boundary",
     "cat100_supplement_5_8_module_5_presentation_studio_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-05-08-lo-01": [
+      "cat100_supplement_5_8_module_5_presentation_studio_artifact_signal"
+    ],
+    "cat100-supplement-05-08-lo-02": [
+      "cat100_supplement_5_8_module_5_presentation_studio_annotation_signal",
+      "cat100_supplement_5_8_module_5_presentation_studio_ai_boundary"
+    ],
+    "cat100-supplement-05-08-lo-03": [
+      "cat100_supplement_5_8_module_5_presentation_studio_calibration"
+    ],
+    "cat100-supplement-05-08-lo-04": [
+      "cat100_supplement_5_8_module_5_presentation_studio_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

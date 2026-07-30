@@ -20,6 +20,10 @@
         "cat531_supplement_mentor_teacher_conversation_guides",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-07-02-lo-03",
+        "cat531-supplement-07-02-lo-04"
       ]
     },
     {
@@ -39,6 +43,9 @@
       "difficulty": "medium",
       "concept_ids": [
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-07-02-lo-02"
       ]
     },
     {
@@ -58,6 +65,9 @@
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-07-02-lo-01"
       ]
     },
     {
@@ -77,6 +87,10 @@
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-07-02-lo-01",
+        "cat531-supplement-07-02-lo-02"
       ]
     }
   ]

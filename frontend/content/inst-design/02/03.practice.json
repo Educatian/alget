@@ -18,7 +18,10 @@
         "To measure ROI after six months of implementation"
       ],
       "correct_index": 1,
-      "explanation": "Formative evaluation happens during design and development so teams can improve the instruction before launch."
+      "explanation": "Formative evaluation happens during design and development so teams can improve the instruction before launch.",
+      "learning_objective_ids": [
+        "inst-design-02-03-lo-01"
+      ]
     },
     {
       "id": "kirkpatrick_learning",
@@ -37,7 +40,10 @@
         "Level 4: Results"
       ],
       "correct_index": 1,
-      "explanation": "Level 2 focuses on whether learning occurred, typically through tests, demonstrations, or performance evidence."
+      "explanation": "Level 2 focuses on whether learning occurred, typically through tests, demonstrations, or performance evidence.",
+      "learning_objective_ids": [
+        "inst-design-02-03-lo-03"
+      ]
     },
     {
       "id": "reaction_not_learning",
@@ -57,7 +63,10 @@
         "Because only psychometricians can collect learner feedback"
       ],
       "correct_index": 0,
-      "explanation": "Learners may enjoy a course without learning much. Reaction data is useful, but it does not prove performance improvement by itself."
+      "explanation": "Learners may enjoy a course without learning much. Reaction data is useful, but it does not prove performance improvement by itself.",
+      "learning_objective_ids": [
+        "inst-design-02-03-lo-03"
+      ]
     },
     {
       "id": "evaluation_evidence_choice",
@@ -76,7 +85,11 @@
         "A brand-style review of the course visuals"
       ],
       "correct_index": 2,
-      "explanation": "Level 3 asks whether the learner changed behavior in practice, not just whether they liked the course or passed a quiz."
+      "explanation": "Level 3 asks whether the learner changed behavior in practice, not just whether they liked the course or passed a quiz.",
+      "learning_objective_ids": [
+        "inst-design-02-03-lo-02",
+        "inst-design-02-03-lo-03"
+      ]
     }
   ]
 }

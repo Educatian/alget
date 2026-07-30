@@ -3,10 +3,22 @@
   "title": "Task Scenarios for Prototype Testing",
   "description": "AIL 606 textbook section connecting task scenarios for prototype testing to moderated usability test script with observation-to-revision trace, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Write goal-based scenarios that state a desired end-state and a realistic context, never a click path.",
-    "Detect and remove embedded solutions, vocabulary leaks, and other cues that hand the participant the answer.",
-    "Define an observable, promptable-free success condition the moderator can score consistently.",
-    "Calibrate task difficulty so the design can fail without the task being impossible."
+    {
+      "id": "ail606-supplement-05-03-lo-01",
+      "statement": "Write goal-based scenarios that state a desired end-state and a realistic context, never a click path"
+    },
+    {
+      "id": "ail606-supplement-05-03-lo-02",
+      "statement": "Detect and remove embedded solutions, vocabulary leaks, and other cues that hand the participant the answer"
+    },
+    {
+      "id": "ail606-supplement-05-03-lo-03",
+      "statement": "Define an observable, promptable-free success condition the moderator can score consistently"
+    },
+    {
+      "id": "ail606-supplement-05-03-lo-04",
+      "statement": "Calibrate task difficulty so the design can fail without the task being impossible"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_usability_testing_and_learning_evidence",
@@ -28,5 +40,21 @@
     "ail606_supplement_5_3_task_scenarios_for_prototype_testing_annotation_signal",
     "ail606_supplement_5_3_task_scenarios_for_prototype_testing_ai_boundary",
     "ail606_supplement_5_3_task_scenarios_for_prototype_testing_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-05-03-lo-01": [
+      "ail606_supplement_5_3_task_scenarios_for_prototype_testing_annotation_signal"
+    ],
+    "ail606-supplement-05-03-lo-02": [
+      "ail606_supplement_5_3_task_scenarios_for_prototype_testing_artifact_signal"
+    ],
+    "ail606-supplement-05-03-lo-03": [
+      "ail606_supplement_5_3_task_scenarios_for_prototype_testing_ai_boundary",
+      "ail606_supplement_5_3_task_scenarios_for_prototype_testing_calibration"
+    ],
+    "ail606-supplement-05-03-lo-04": [
+      "ail606_supplement_5_3_task_scenarios_for_prototype_testing_annotation_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

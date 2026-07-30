@@ -12,6 +12,9 @@
       "difficulty": "easy",
       "concept_ids": [
         "linear_momentum"
+      ],
+      "learning_objective_ids": [
+        "dynamics-02-03-lo-01"
       ]
     },
     {
@@ -26,6 +29,9 @@
       "difficulty": "easy",
       "concept_ids": [
         "impulse_momentum"
+      ],
+      "learning_objective_ids": [
+        "dynamics-02-03-lo-02"
       ]
     },
     {
@@ -41,6 +47,9 @@
       "concept_ids": [
         "conservation_of_momentum",
         "collision"
+      ],
+      "learning_objective_ids": [
+        "dynamics-02-03-lo-03"
       ]
     },
     {
@@ -79,6 +88,9 @@
       "concept_ids": [
         "impulse_momentum",
         "linear_momentum"
+      ],
+      "learning_objective_ids": [
+        "dynamics-02-03-lo-01"
       ]
     },
     {
@@ -97,7 +109,10 @@
       "concept_ids": [
         "collision"
       ],
-      "misconception_id": "ke_always_conserved"
+      "misconception_id": "ke_always_conserved",
+      "learning_objective_ids": [
+        "dynamics-02-03-lo-04"
+      ]
     },
     {
       "id": "system_boundary_concept",
@@ -115,7 +130,10 @@
       "concept_ids": [
         "conservation_of_momentum"
       ],
-      "misconception_id": "external_impulse_ignored"
+      "misconception_id": "external_impulse_ignored",
+      "learning_objective_ids": [
+        "dynamics-02-03-lo-01"
+      ]
     }
   ]
 }

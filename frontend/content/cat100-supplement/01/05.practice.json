@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "A breach on one site exposes every account that reuses the password. Strength does not help once the password is leaked; uniqueness does.",
       "misconception_id": "cat100_supplement_1_5_privacy_and_account_safety_reused_password_safe",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-01-05-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_1_5_privacy_and_account_safety_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "Two-factor authentication blocks essentially all automated takeover attempts and the large majority of targeted ones, because the attacker would also need the second factor, not just the password.",
       "misconception_id": "cat100_supplement_1_5_privacy_and_account_safety_2fa_unnecessary",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-01-05-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_1_5_privacy_and_account_safety_ai_boundary",
@@ -57,7 +63,10 @@
       "correct_index": 1,
       "explanation": "Redact identifiers and other people's private data before using an AI tool. Share only what is needed for the task. Retention also depends on the tool: consumer chatbots may keep and train on pasted text unless you opt out, while school-provided education or enterprise tiers typically do not train on input by default, so prefer the managed tool for anything sensitive.",
       "misconception_id": "cat100_supplement_1_5_privacy_and_account_safety_overshare_with_ai",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-01-05-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_1_5_privacy_and_account_safety_calibration",
@@ -76,7 +85,10 @@
       "correct_index": 1,
       "explanation": "Urgency and shortened links are phishing signals. Never click; reach the real site directly and verify there.",
       "misconception_id": "cat100_supplement_1_5_privacy_and_account_safety_urgent_email_trusted",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-01-05-lo-03"
+      ]
     }
   ]
 }

@@ -1,4 +1,4 @@
-﻿{
+{
   "course": "cat100-supplement",
   "chapter": "08",
   "section": "08",
@@ -6,10 +6,22 @@
   "title": "Future Learning Plan",
   "description": "CAT 100 textbook section on future learning planning, centered on a future learning plan, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Convert a vague learning intention into a measurable, dated goal tied to a named proof artifact.",
-    "Sequence learning goals by prerequisite so each goal builds on a verified earlier skill.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    {
+      "id": "cat100-supplement-08-08-lo-01",
+      "statement": "Convert a vague learning intention into a measurable, dated goal tied to a named proof artifact"
+    },
+    {
+      "id": "cat100-supplement-08-08-lo-02",
+      "statement": "Sequence learning goals by prerequisite so each goal builds on a verified earlier skill"
+    },
+    {
+      "id": "cat100-supplement-08-08-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat100-supplement-08-08-lo-04",
+      "statement": "Use feedback, support requests, and revision notes to improve the artifact before sharing it"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_course_completion_and_transfer",
@@ -28,5 +40,22 @@
     "cat100_supplement_8_8_future_learning_plan_annotation_signal",
     "cat100_supplement_8_8_future_learning_plan_ai_boundary",
     "cat100_supplement_8_8_future_learning_plan_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-08-08-lo-01": [
+      "cat100_supplement_8_8_future_learning_plan_calibration",
+      "cat100_supplement_8_8_future_learning_plan_artifact_signal"
+    ],
+    "cat100-supplement-08-08-lo-02": [
+      "cat100_supplement_8_8_future_learning_plan_calibration",
+      "cat100_supplement_8_8_future_learning_plan_ai_boundary"
+    ],
+    "cat100-supplement-08-08-lo-03": [
+      "cat100_supplement_8_8_future_learning_plan_annotation_signal"
+    ],
+    "cat100-supplement-08-08-lo-04": [
+      "cat100_supplement_8_8_future_learning_plan_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

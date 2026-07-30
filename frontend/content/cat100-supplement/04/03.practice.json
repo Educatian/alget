@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "No locatable source means the precise number is fabricated; specificity is not evidence.",
       "misconception_id": "cat100_supplement_4_3_precise_number_trust",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-04-03-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_4_3_checking_ai_pedagogical_advice_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "A real author named for a claim he did not make is a misattribution, a common AI error.",
       "misconception_id": "cat100_supplement_4_3_citation_means_true",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-04-03-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_4_3_checking_ai_pedagogical_advice_ai_boundary",
@@ -57,7 +63,11 @@
       "correct_index": 2,
       "explanation": "Per-claim rows let you keep what is supported and reject what is not; one verdict for a mixed reply hides the truth.",
       "misconception_id": "cat100_supplement_4_3_whole_reply_one_verdict",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-04-03-lo-01",
+        "cat100-supplement-04-03-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_4_3_checking_ai_pedagogical_advice_calibration",
@@ -77,7 +87,11 @@
       "correct_index": 1,
       "explanation": "Separating claims surfaces mixed reliability and makes the check inspectable.",
       "misconception_id": "cat100_supplement_4_3_whole_reply_one_verdict",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-04-03-lo-02",
+        "cat100-supplement-04-03-lo-04"
+      ]
     }
   ]
 }

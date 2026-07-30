@@ -1,29 +1,51 @@
 {
-    "course": "bio-inspired",
-    "chapter": "01",
-    "section": "02",
-    "title": "Hierarchical Structures",
-    "chapter_title": "Structural Biomimicry",
-    "description": "See how multiscale biological architectures like nacre and collagen use interfaces to increase toughness and inspire composite design.",
-    "learning_objectives": [
-        "Understand the concept of multiscale hierarchical organization in biological materials.",
-        "Examine how nano-to-macro scale design enhances toughness.",
-        "Translate multiscale material principles to composite engineering."
+  "course": "bio-inspired",
+  "chapter": "01",
+  "section": "02",
+  "title": "Hierarchical Structures",
+  "chapter_title": "Structural Biomimicry",
+  "description": "See how multiscale biological architectures like nacre and collagen use interfaces to increase toughness and inspire composite design.",
+  "learning_objectives": [
+    {
+      "id": "bio-inspired-01-02-lo-01",
+      "statement": "Understand the concept of multiscale hierarchical organization in biological materials"
+    },
+    {
+      "id": "bio-inspired-01-02-lo-02",
+      "statement": "Examine how nano-to-macro scale design enhances toughness"
+    },
+    {
+      "id": "bio-inspired-01-02-lo-03",
+      "statement": "Translate multiscale material principles to composite engineering"
+    }
+  ],
+  "concept_ids": [
+    "hierarchical_structures",
+    "nacre",
+    "collagen",
+    "multiscale"
+  ],
+  "estimated_time_minutes": 13,
+  "prereq_section_ids": [
+    "bio-inspired/01/01"
+  ],
+  "practice_ids": [
+    "bio_hierarchical_multiscale",
+    "bio_nacre_toughness",
+    "bio_collagen_scales",
+    "bio_multiscale_engineering_transfer"
+  ],
+  "lo_practice_map": {
+    "bio-inspired-01-02-lo-01": [
+      "bio_hierarchical_multiscale"
     ],
-    "concept_ids": [
-        "hierarchical_structures",
-        "nacre",
-        "collagen",
-        "multiscale"
+    "bio-inspired-01-02-lo-02": [
+      "bio_collagen_scales",
+      "bio_nacre_toughness"
     ],
-    "estimated_time_minutes": 13,
-    "prereq_section_ids": [
-        "bio-inspired/01/01"
-    ],
-    "practice_ids": [
-        "bio_hierarchical_multiscale",
-        "bio_nacre_toughness",
-        "bio_collagen_scales",
-        "bio_multiscale_engineering_transfer"
+    "bio-inspired-01-02-lo-03": [
+      "bio_multiscale_engineering_transfer"
     ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

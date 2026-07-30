@@ -1,30 +1,53 @@
 {
-    "course": "bio-inspired",
-    "chapter": "07",
-    "section": "01",
-    "title": "Module 7: Self-Healing Materials",
-    "description": "Examine how biology-inspired repair strategies inform polymer, composite, and infrastructure materials that can respond to microscopic damage.",
-    "order": 7,
-    "chapter_title": "Resilience and Material Repair",
-    "learning_objectives": [
-        "Explain how capsule-based self-healing materials work.",
-        "Compare biological repair logic with engineering repair strategies.",
-        "Evaluate when self-healing materials are worth the added cost and complexity."
+  "course": "bio-inspired",
+  "chapter": "07",
+  "section": "01",
+  "title": "Module 7: Self-Healing Materials",
+  "description": "Examine how biology-inspired repair strategies inform polymer, composite, and infrastructure materials that can respond to microscopic damage.",
+  "order": 7,
+  "chapter_title": "Resilience and Material Repair",
+  "learning_objectives": [
+    {
+      "id": "bio-inspired-07-01-lo-01",
+      "statement": "Explain how capsule-based self-healing materials work"
+    },
+    {
+      "id": "bio-inspired-07-01-lo-02",
+      "statement": "Compare biological repair logic with engineering repair strategies"
+    },
+    {
+      "id": "bio-inspired-07-01-lo-03",
+      "statement": "Evaluate when self-healing materials are worth the added cost and complexity"
+    }
+  ],
+  "concept_ids": [
+    "fatigue_failure",
+    "self_healing_materials",
+    "microvascular_repair",
+    "resilient_design"
+  ],
+  "estimated_time_minutes": 12,
+  "prereq_section_ids": [
+    "bio-inspired/06/01"
+  ],
+  "practice_ids": [
+    "bio_self_healing_capsules",
+    "bio_fatigue_failure_value",
+    "bio_microvascular_logic",
+    "bio_resilience_tradeoff"
+  ],
+  "lo_practice_map": {
+    "bio-inspired-07-01-lo-01": [
+      "bio_self_healing_capsules"
     ],
-    "concept_ids": [
-        "fatigue_failure",
-        "self_healing_materials",
-        "microvascular_repair",
-        "resilient_design"
+    "bio-inspired-07-01-lo-02": [
+      "bio_resilience_tradeoff"
     ],
-    "estimated_time_minutes": 12,
-    "prereq_section_ids": [
-        "bio-inspired/06/01"
-    ],
-    "practice_ids": [
-        "bio_self_healing_capsules",
-        "bio_fatigue_failure_value",
-        "bio_microvascular_logic",
-        "bio_resilience_tradeoff"
+    "bio-inspired-07-01-lo-03": [
+      "bio_self_healing_capsules",
+      "bio_fatigue_failure_value",
+      "bio_microvascular_logic"
     ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

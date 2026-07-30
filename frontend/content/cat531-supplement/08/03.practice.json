@@ -20,6 +20,10 @@
         "cat531_supplement_ethobot_setup_and_debrief",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-08-03-lo-01",
+        "cat531-supplement-08-03-lo-02"
       ]
     },
     {
@@ -40,6 +44,9 @@
       "concept_ids": [
         "cat531_supplement_ethobot_setup_and_debrief",
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-08-03-lo-01"
       ]
     },
     {
@@ -60,6 +67,9 @@
       "concept_ids": [
         "cat531_supplement_ethobot_setup_and_debrief",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-08-03-lo-04"
       ]
     },
     {
@@ -80,6 +90,9 @@
       "concept_ids": [
         "cat531_supplement_ethobot_setup_and_debrief",
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-08-03-lo-03"
       ]
     }
   ]
