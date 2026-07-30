@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import BigALCompanion from './BigALCompanion'
+import AdaptationDesignStudio from './AdaptationDesignStudio'
 import {
     AGENT_MANIFEST,
     approveAgentRun,
@@ -16,6 +17,7 @@ const VIEWS = [
     ['courses', 'Courses'],
     ['ingestion', 'PDF ingestion'],
     ['agents', 'Agent control'],
+    ['adaptation', 'Adaptation'],
     ['cohort', 'Cohort'],
 ]
 
@@ -37,7 +39,7 @@ function Status({ children }) {
 
 export default function AdminControlPlane({ cohortContent, onBack, onResearcher }) {
     const [view, setView] = useState('overview')
-    const [state, setState] = useState({ instructors: [], courses: [], ingestionJobs: [], agentRuns: [], auditEvents: [] })
+    const [state, setState] = useState({ instructors: [], courses: [], ingestionJobs: [], agentRuns: [], auditEvents: [], adaptationPolicies: [] })
     const [persistence, setPersistence] = useState('local')
     const [loading, setLoading] = useState(true)
     const [busy, setBusy] = useState('')
@@ -123,6 +125,7 @@ export default function AdminControlPlane({ cohortContent, onBack, onResearcher 
                             {view === 'courses' && <Courses state={state} busy={busy} runAction={runAction} persistence={persistence} />}
                             {view === 'ingestion' && <Ingestion state={state} busy={busy} runAction={runAction} persistence={persistence} />}
                             {view === 'agents' && <Agents state={state} busy={busy} runAction={runAction} persistence={persistence} />}
+                            {view === 'adaptation' && <AdaptationDesignStudio state={state} busy={busy} runAction={runAction} persistence={persistence} />}
                             {view === 'cohort' && cohortContent}
                         </>
                     )}
