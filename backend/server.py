@@ -1603,6 +1603,12 @@ def validate_access_passcode(scope: Literal["engineering", "education", "researc
         "researcher": "RESEARCHER_ACCESS_CODE",
     }
     raw_configured = os.environ.get(env_key_by_scope[scope], "")
+    if not raw_configured and os.environ.get("ALGET_DEMO_MODE", "").strip().lower() in {"1", "true", "yes"}:
+        raw_configured = {
+            "engineering": "eng123",
+            "education": "edu123",
+            "researcher": "research123",
+        }[scope]
     malformed = any(ord(character) < 32 or ord(character) == 127 for character in raw_configured)
     configured = raw_configured.strip()
     if not configured or malformed:
@@ -2278,6 +2284,15 @@ async def fuse_telemetry(request: TelemetryFusionRequest):
 @app.post("/api/access/validate")
 async def validate_access(request: AccessValidationRequest):
     """Validate track or dashboard access without exposing passcodes in the client bundle."""
+    configured_key = {
+        "engineering": "ENGINEERING_ACCESS_CODE",
+        "education": "EDUCATION_ACCESS_CODE",
+        "researcher": "RESEARCHER_ACCESS_CODE",
+    }[request.scope]
+    configured = os.environ.get(configured_key, "")
+    demo_enabled = os.environ.get("ALGET_DEMO_MODE", "").strip().lower() in {"1", "true", "yes"}
+    if not configured and not demo_enabled:
+        return {"valid": False, "scope": request.scope, "error": "access_code_not_configured"}
     is_valid = validate_access_passcode(request.scope, request.passcode)
     return {"valid": is_valid, "scope": request.scope}
 

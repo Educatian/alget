@@ -207,11 +207,23 @@ export default function MainApp({ user, onLogout }) {
                 })
             })
 
+            if (response.status === 503) {
+                setError('This pathway is not configured yet. Ask your instructor for a valid code.')
+                setPasscode('')
+                return
+            }
+
             if (!response.ok) {
                 throw new Error(`Access validation failed: ${response.status}`)
             }
 
             const data = await response.json()
+            if (data.error === 'access_code_not_configured') {
+                setError('This pathway is not configured yet. Ask your instructor for a valid code.')
+                setPasscode('')
+                return
+            }
+
             if (!data.valid) {
                 setError('Invalid access code')
                 setPasscode('')
@@ -310,13 +322,13 @@ export default function MainApp({ user, onLogout }) {
                         <h2 className="mt-6 text-center text-3xl font-semibold tracking-tight text-[var(--ath-text)]">
                             Open your cohort track
                         </h2>
-                        <p className="mt-2 text-center text-sm text-[var(--ath-muted)]">
-                            Pick a track + enter the code your instructor sent.
+                        <p className="mt-2 text-center text-base leading-6 text-[var(--ath-muted)]">
+                            Choose your course track, then enter the access code from your instructor.
                         </p>
 
                         <form onSubmit={handleUnlock} className="mt-6 space-y-4 border-y border-[var(--ath-line)] py-5">
                             <div>
-                                <label htmlFor="pathway-track" className="text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Track</label>
+                                <label htmlFor="pathway-track" className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--ath-secondary)]">Track</label>
                                 <select
                                     id="pathway-track"
                                     value={selectedMode}
@@ -329,23 +341,27 @@ export default function MainApp({ user, onLogout }) {
                             </div>
 
                             <div>
-                                <label htmlFor="pathway-passcode" className="text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Access code</label>
+                                <label htmlFor="pathway-passcode" className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--ath-secondary)]">Access code</label>
                                 <input
                                     id="pathway-passcode"
                                     type="password"
                                     value={passcode}
                                     onChange={(event) => setPasscode(event.target.value)}
                                     placeholder="••••••"
+                                    autoComplete="one-time-code"
+                                    aria-describedby="pathway-code-help"
                                     className="editorial-input mt-1.5 tracking-[0.2em]"
                                 />
-                                <p className="mt-1.5 text-[11px] text-[var(--ath-secondary)]">
-                                    Demo code for <span className="font-semibold">{selectedMode === 'engineering' ? 'Engineering' : 'Education'}</span>:
-                                    <span className="ml-1 rounded bg-[var(--ath-panel-muted)] px-1.5 py-0.5 font-mono font-semibold tracking-normal text-[var(--ath-text)]">{selectedMode === 'engineering' ? 'eng123' : 'edu123'}</span>
+                                <p id="pathway-code-help" className="mt-1.5 text-sm leading-5 text-[var(--ath-secondary)]">
+                                    Your instructor or cohort coordinator provides this code.
+                                    {import.meta.env.DEV && (
+                                        <span className="ml-1">Local demo: <code className="rounded bg-[var(--ath-panel-muted)] px-1.5 py-0.5 font-mono font-semibold tracking-normal text-[var(--ath-text)]">{selectedMode === 'engineering' ? 'eng123' : 'edu123'}</code></span>
+                                    )}
                                 </p>
                             </div>
 
                             {error && (
-                                <div className="rounded-xl border border-[color-mix(in_srgb,var(--ath-danger)_32%,transparent)] bg-[color-mix(in_srgb,var(--ath-danger)_12%,var(--ath-panel))] px-3 py-2 text-xs font-medium text-[var(--ath-danger)]">
+                                <div role="alert" aria-live="assertive" className="rounded-xl border border-[color-mix(in_srgb,var(--ath-danger)_32%,transparent)] bg-[color-mix(in_srgb,var(--ath-danger)_12%,var(--ath-panel))] px-3 py-2 text-sm leading-5 font-medium text-[var(--ath-danger)]">
                                     {error}
                                 </div>
                             )}
@@ -360,7 +376,7 @@ export default function MainApp({ user, onLogout }) {
                             </button>
                         </form>
 
-                        <p className="mt-3 flex items-center justify-center gap-1 text-[10px] text-[var(--ath-secondary)]">
+                        <p className="mt-3 flex items-center justify-center gap-1 text-xs text-[var(--ath-secondary)]">
                             <LockKeyhole className="h-3 w-3" />
                             Server-validated / no client-side bypass
                         </p>

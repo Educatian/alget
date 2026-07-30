@@ -20,6 +20,13 @@ def test_validate_access_passcode_prefers_env_codes(monkeypatch):
     assert validate_access_passcode("education", "synthetic-unconfigured-code") is False
 
 
+def test_validate_access_passcode_supports_explicit_local_demo_mode(monkeypatch):
+    monkeypatch.delenv("ENGINEERING_ACCESS_CODE", raising=False)
+    monkeypatch.setenv("ALGET_DEMO_MODE", "true")
+    assert validate_access_passcode("engineering", "eng123") is True
+    assert validate_access_passcode("education", "edu123") is True
+
+
 def test_validate_access_passcode_rejects_blank_or_malformed_configuration(monkeypatch):
     monkeypatch.setenv("RESEARCHER_ACCESS_CODE", "   ")
     assert validate_access_passcode("researcher", "synthetic-research-code-2026") is False
