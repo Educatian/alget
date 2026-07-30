@@ -8,6 +8,7 @@ import {
     incrementConceptInterventionCount
 } from '../lib/researchService'
 import WhySupportNow from './WhySupportNow'
+import BigALCompanion from './BigALCompanion'
 
 const ACTION_TO_TAB = {
     explain: 'explain',
@@ -21,6 +22,7 @@ const TABS = [
     { id: 'explain', label: 'Explain' },
     { id: 'represent', label: 'Reframe' },
     { id: 'practice', label: 'Practice' },
+    { id: 'teach', label: 'Teach' },
     { id: 'ask', label: 'Ask' }
 ]
 
@@ -51,6 +53,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
     // launcher input here (Ask tab), so we no longer track messages or
     // chat-loading state in this component.
     const [inputValue, setInputValue] = useState('')
+    const [teachBack, setTeachBack] = useState('')
 
     const resolvedSectionId = context?.sectionId || sectionInfo?.sectionId || 'general'
     const resolvedSectionTitle = sectionInfo?.sectionTitle || resolvedSectionId
@@ -275,6 +278,35 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
     const actionScores = Object.entries(reasoning?.action_scores || {})
         .sort((left, right) => right[1] - left[1])
         .slice(0, 5)
+    const bigALState = activeTab === 'teach'
+        ? 'teach'
+        : recommendationLoading || loading
+            ? 'notice'
+            : activeTab === 'represent'
+                ? 'mirror'
+                : resolvedStuckReason
+                    ? 'nudge'
+                    : 'rest'
+
+    const submitTeachBack = () => {
+        const explanation = teachBack.trim()
+        if (!explanation) return
+        const focusConcept = prettyConcept(primaryRecommendation?.focus_concepts?.[0])
+        const message = `I am teaching you ${focusConcept}. Reconstruct my explanation, cite the claims you used from it, and ask me to correct one possible misunderstanding:\n\n${explanation}`
+
+        recordAdaptiveSignal(resolvedSectionId, 'teach_back_submitted', {
+            messageLength: explanation.length,
+            concept: primaryRecommendation?.focus_concepts?.[0] || null
+        })
+        logEvent('support_request', 'intel_rail', {
+            support_type: 'teach_back',
+            message_length: explanation.length,
+            trace_id: activeTraceId,
+            surface: 'rail-teach-back'
+        }, resolvedSectionId)
+        window.dispatchEvent(new CustomEvent('open-chat', { detail: { message } }))
+        setTeachBack('')
+    }
 
     // Wires the WhySupportNow contest/accept control to the SAME explicit
     // accepted/declined signal path that Phase 1 added. The learner's judgment of
@@ -320,12 +352,15 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
 
     return (
         <div className="flex h-full flex-col">
-            <div className="border-b border-[var(--ath-line)] bg-[linear-gradient(180deg,rgba(248,246,241,0.98),rgba(240,237,230,0.92))] p-5">
-                <div className="mb-2 flex items-start justify-between gap-4">
-                    <div>
-                        <p className="editorial-kicker">Reading Panel</p>
-                        <h2 className="mt-2 text-2xl font-semibold text-[var(--ath-primary-deep)]">BigAL Support Rail</h2>
-                        <p className="mt-1 text-sm text-[var(--ath-muted)]">{resolvedSectionTitle}</p>
+            <div className="border-b border-[var(--ath-line)] bg-[var(--ath-surface-strong)] p-3">
+                <div className="mb-1.5 flex items-start justify-between gap-4">
+                    <div className="flex min-w-0 items-center gap-2.5">
+                        <BigALCompanion state={bigALState} size={38} className="shrink-0" />
+                        <div className="min-w-0">
+                            <p className="editorial-kicker">BigAL · {bigALState}</p>
+                            <h2 className="mt-0.5 text-base font-semibold text-[var(--ath-primary-deep)]">Learning pulse</h2>
+                            <p className="truncate text-xs text-[var(--ath-muted)]">{resolvedSectionTitle}</p>
+                        </div>
                     </div>
                     <button
                         onClick={handleClose}
@@ -335,12 +370,12 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                     </button>
                 </div>
                 {resolvedStuckReason && (
-                    <div className="rounded-[1rem] border border-[rgba(15,81,103,0.12)] bg-[rgba(200,226,236,0.34)] px-3 py-2 text-sm text-[var(--ath-primary-deep)]">
+                    <div className="border-l-2 border-[var(--ath-primary)] px-2 py-1 text-xs leading-5 text-[var(--ath-primary-deep)]">
                         <span className="font-semibold">Detected:</span> {resolvedStuckReason}
                     </div>
                 )}
                 {context?.question && (
-                    <div className="mt-3 rounded-[1rem] border border-[var(--ath-line)] bg-white/70 px-3 py-3 text-sm leading-6 text-[var(--ath-muted)]">
+                    <div className="mt-3 border-l-2 border-[var(--ath-line-strong)] px-3 py-1.5 text-sm leading-6 text-[var(--ath-muted)]">
                         <span className="font-semibold text-[var(--ath-text)]">Focus prompt:</span> {context.question}
                     </div>
                 )}
@@ -361,7 +396,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                                 trace_id: activeTraceId
                             }, resolvedSectionId)
                         }}
-                        className={`flex-1 py-3 text-xs font-semibold uppercase tracking-[0.16em] transition-colors ${activeTab === tab.id
+                        className={`flex-1 py-2.5 text-[10px] font-semibold uppercase tracking-[0.14em] transition-colors ${activeTab === tab.id
                             ? 'border-b-2 border-[var(--ath-primary)] bg-[rgba(255,255,255,0.74)] text-[var(--ath-primary)]'
                             : 'text-[var(--ath-secondary)] hover:text-[var(--ath-text)]'
                             }`}
@@ -371,12 +406,12 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                 ))}
             </div>
 
-            <div className="flex-1 overflow-y-auto p-4" role="tabpanel" id="intelrail-tabpanel" aria-labelledby={`intelrail-tab-${activeTab}`}>
-                <div className="mb-4 rounded-[1.5rem] border border-[var(--ath-line)] bg-[linear-gradient(180deg,rgba(255,255,255,0.9),rgba(240,237,230,0.64))] p-4 shadow-sm">
+            <div className="flex-1 overflow-y-auto p-3" role="tabpanel" id="intelrail-tabpanel" aria-labelledby={`intelrail-tab-${activeTab}`}>
+                <div className="mb-3 border-l-2 border-[var(--ath-primary)] px-3 py-2">
                     <div className="mb-3 flex items-center justify-between gap-3">
                         <div>
                             <p className="editorial-label">Recommended next step</p>
-                            <h3 className="mt-2 text-lg font-semibold text-[var(--ath-text)]">
+                                <h3 className="mt-1.5 text-base font-semibold text-[var(--ath-text)]">
                                 {recommendationLoading
                                     ? 'Building a recommendation...'
                                     : primaryRecommendation?.title || 'We are gathering enough evidence to guide the next move.'}
@@ -413,7 +448,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                             )}
 
                             {primaryRecommendation?.evidence?.length > 0 && (
-                                <div className="mt-3 space-y-2">
+                                <div className="hidden">
                                     {primaryRecommendation.evidence.map((item, index) => (
                                         <p key={`${item}-${index}`} className="text-xs leading-relaxed text-[var(--ath-secondary)]">
                                             {item}
@@ -423,7 +458,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                             )}
 
                             {reasoning && (
-                                <details className="mt-3 rounded-lg border border-[var(--ath-line)] bg-white/75 px-3 py-2 text-xs text-[var(--ath-muted)] [&[open]>summary>span:last-child]:rotate-90">
+                                <details className="hidden">
                                     <summary className="flex cursor-pointer list-none items-center justify-between gap-2 text-[var(--ath-secondary)]">
                                         <span className="font-semibold">Why this | {Math.round((reasoning.confidence || 0) * 100)}% confidence</span>
                                         <span className="transition-transform">&gt;</span>
@@ -487,10 +522,16 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                             </div>
 
                             {primaryRecommendation && (
-                                <WhySupportNow
-                                    decision={recommendation}
-                                    onResolve={resolveSupportJudgment}
-                                />
+                                <details className="group mt-3 border-t border-[var(--ath-line)] pt-2">
+                                    <summary className="flex cursor-pointer list-none items-center justify-between text-xs font-semibold text-[var(--ath-secondary)]">
+                                        <span>Why this support · {Math.round((reasoning?.confidence || 0) * 100)}% confidence</span>
+                                        <span className="transition-transform group-open:rotate-90" aria-hidden="true">›</span>
+                                    </summary>
+                                    <WhySupportNow
+                                        decision={recommendation}
+                                        onResolve={resolveSupportJudgment}
+                                    />
+                                </details>
                             )}
                         </>
                     )}
@@ -673,8 +714,11 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                 )}
 
                 {(learnerState || learnerProfile) && (
-                    <div className="mt-5 rounded-[1.2rem] border border-[var(--ath-line)] bg-[rgba(240,237,230,0.56)] p-4">
-                        <p className="editorial-label">Learner-model snapshot</p>
+                    <details className="group mt-4 border-t border-[var(--ath-line)] pt-3">
+                        <summary className="flex cursor-pointer list-none items-center justify-between text-xs font-semibold text-[var(--ath-secondary)]">
+                            <span>Learner-model details</span>
+                            <span className="transition-transform group-open:rotate-90" aria-hidden="true">›</span>
+                        </summary>
                         <div className="mt-3 grid grid-cols-2 gap-3 text-xs text-[var(--ath-muted)]">
                             <div className="rounded-xl bg-white/75 px-3 py-2">
                                 <p className="font-semibold text-[var(--ath-text)]">Forgetting risk</p>
@@ -709,6 +753,38 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                                 <p className="mt-1">{Math.round(((learnerProfile?.misconception_pressure ?? reasoning?.evidence_snapshot?.misconception_pressure ?? 0) * 100))}%</p>
                             </div>
                         </div>
+                    </details>
+                )}
+
+                {activeTab === 'teach' && (
+                    <div className="space-y-3">
+                        <div>
+                            <p className="editorial-label">Teach BigAL</p>
+                            <h4 className="mt-1 text-base font-semibold text-[var(--ath-text)]">
+                                Explain {prettyConcept(primaryRecommendation?.focus_concepts?.[0])} in your own words.
+                            </h4>
+                            <p className="mt-1 text-xs leading-5 text-[var(--ath-muted)]">
+                                BigAL will reconstruct your reasoning and ask you to correct one possible misunderstanding.
+                            </p>
+                        </div>
+                        <textarea
+                            value={teachBack}
+                            onChange={(event) => setTeachBack(event.target.value)}
+                            rows={6}
+                            placeholder="Start with: I think this works because..."
+                            className="editorial-input w-full resize-y text-sm leading-6"
+                            aria-label="Your explanation for BigAL"
+                        />
+                        <button
+                            onClick={submitTeachBack}
+                            disabled={!teachBack.trim()}
+                            className="editorial-button w-full py-2.5 text-sm disabled:cursor-not-allowed disabled:opacity-45"
+                        >
+                            Let BigAL reconstruct it
+                        </button>
+                        <p className="text-xs leading-5 text-[var(--ath-secondary)]">
+                            Your explanation stays editable. BigAL may be wrong; you make the final correction.
+                        </p>
                     </div>
                 )}
             </div>

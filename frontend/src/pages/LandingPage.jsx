@@ -2,54 +2,53 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArrowRight, Brain, GraduationCap, Layers3, Microscope, ShieldCheck, Sparkles } from 'lucide-react'
 import AuthModal from '../components/AuthModal'
-import GenerativeIllustration from '../components/GenerativeIllustration'
 import ThemeToggle from '../components/ThemeToggle'
 import { formatUserLabel } from '../lib/cohortLearner'
 
 const platformSignals = [
-    { value: 'Adaptive', label: 'pathway-aware reading' },
-    { value: 'Live', label: 'quiet peer signals' },
-    { value: 'Measured', label: 'visible learner models' }
+    { value: '8', label: 'active pathways' },
+    { value: '256', label: 'guided sections' },
+    { value: '1', label: 'explainable learner model' }
 ]
 
 const featureCards = [
     {
         icon: Brain,
-        title: 'Adaptive tutoring surfaces',
-        description: 'Reading, support, and practice respond to mastery and friction signals.'
+        title: 'Know what to learn next',
+        description: 'Mastery and recent friction shape one clear next action without interrupting the learning flow.'
     },
     {
         icon: Microscope,
-        title: 'Interactive concept work',
-        description: 'Explanation, simulation, generation, and checks stay in the textbook.'
+        title: 'Practice inside the reading',
+        description: 'Explanation, simulation, generation, and checks remain beside the concept that prompted them.'
     },
     {
         icon: Layers3,
-        title: 'Research-grade instrumentation',
-        description: 'Progress, support, and cohort patterns remain inspectable.'
+        title: 'See why support appears',
+        description: 'Learners can inspect the evidence behind a recommendation and choose whether to follow it.'
     },
     {
         icon: ShieldCheck,
-        title: 'Institution-ready control',
-        description: 'Cohort access, synced progress, and deployment controls are built in.'
+        title: 'Keep evidence inspectable',
+        description: 'Progress, confidence, support, and cohort signals stay visible to authorized educators and researchers.'
     }
 ]
 
 const workflowSteps = [
     {
         step: '01',
-        title: 'Enter the right learning mode',
-        description: 'Engineering and education pathways open by cohort.'
+        title: 'Set the learning goal',
+        description: 'Enter the right pathway and return to the most useful next section.'
     },
     {
         step: '02',
         title: 'Read, ask, and practice in one place',
-        description: 'Text, diagrams, checks, help, and generation stay with the section.'
+        description: 'Text, diagrams, checks, guided help, and generation stay with the concept.'
     },
     {
         step: '03',
-        title: 'Review the learner model',
-        description: 'Mastery, momentum, and friction become visible.'
+        title: 'Understand the recommendation',
+        description: 'Review the evidence, choose the support, and continue with a clear next step.'
     }
 ]
 
@@ -66,15 +65,15 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                 <div className="glow-orb-dark bottom-[-8rem] left-[18%] h-96 w-96 bg-[color-mix(in_srgb,var(--ath-primary)_16%,transparent)]"></div>
             </div>
 
-            <nav className="sticky top-0 z-50 border-b border-[var(--ath-line)] bg-[rgba(248,246,241,0.82)] backdrop-blur-2xl">
-                <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-6 py-4 lg:px-8">
+            <nav className="ath-topbar sticky top-0 z-50">
+                <div className="ath-container ath-container-marketing flex flex-wrap items-center justify-between gap-3 py-3.5">
                     <button
                         type="button"
                         onClick={() => navigate('/')}
                         aria-label="Go to ALGET home"
                         className="flex min-w-0 items-center gap-3 rounded-2xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_30%,transparent)]"
                     >
-                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[var(--ath-radius-xl)] border border-[color-mix(in_srgb,var(--ath-primary)_14%,transparent)] bg-[var(--ath-primary)] text-sm font-bold text-white shadow-[0_12px_24px_color-mix(in_srgb,var(--ath-primary-deep)_22%,transparent)]">
+                        <div className="ath-brand-mark">
                             AL
                         </div>
                         <div className="min-w-0 leading-tight">
@@ -115,7 +114,7 @@ export default function LandingPage({ onLogin, user, onLogout }) {
             </nav>
 
             <main className="relative z-10 flex-1">
-                <section className="mx-auto grid max-w-7xl gap-14 px-6 pb-20 pt-16 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:pt-24">
+                <section className="ath-container ath-container-marketing grid gap-10 pb-16 pt-12 lg:grid-cols-[1.08fr_0.92fr] lg:gap-14 lg:pt-20">
                     <div className="flex flex-col justify-center">
                         <div className="editorial-pill w-fit">
                             <Sparkles className="h-3.5 w-3.5" />
@@ -123,12 +122,12 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                         </div>
 
                         <p className="mt-8 editorial-kicker">University learning platform</p>
-                        <h1 className="editorial-title mt-3 max-w-4xl text-5xl leading-[0.95] md:text-7xl">
+                        <h1 className="editorial-title ath-hero-title mt-3 max-w-4xl">
                             Alabama Generative Intelligent Textbook
                         </h1>
 
-                        <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--ath-muted)]">
-                            Adaptive reading, tutor support, peer signals, and learner-model visibility for university pathways.
+                        <p className="ath-hero-dek mt-6 max-w-2xl">
+                            Know what to learn next, practice without leaving the reading, and understand why adaptive support appears.
                         </p>
 
                         <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -145,7 +144,7 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                                     onClick={() => setAuthOpen(true)}
                                     className="editorial-button px-7 py-4 text-base"
                                 >
-                                    Sign in to start
+                                    Start as a learner
                                     <ArrowRight className="h-5 w-5" />
                                 </button>
                             )}
@@ -153,15 +152,15 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                                 onClick={() => navigate('/analytics')}
                                 className="editorial-button-secondary px-7 py-4 text-base"
                             >
-                                Explore researcher view
+                                Explore evidence dashboard
                             </button>
                         </div>
 
-                        <div className="mt-10 grid gap-3 sm:grid-cols-3">
+                        <div className="ath-proof-strip mt-8 grid grid-cols-3">
                             {platformSignals.map((item) => (
-                                <div key={item.label} className="editorial-surface p-5">
-                                    <p className="editorial-label">{item.value}</p>
-                                    <p className="mt-3 text-[length:var(--ath-text-lg)] font-semibold leading-7 text-[var(--ath-text)]">{item.label}</p>
+                                <div key={item.label} className="ath-proof-card">
+                                    <p className="ath-proof-value">{item.value}</p>
+                                    <p className="ath-proof-label">{item.label}</p>
                                 </div>
                             ))}
                         </div>
@@ -169,34 +168,65 @@ export default function LandingPage({ onLogin, user, onLogout }) {
 
                     <div className="relative">
                         <div className="absolute -inset-6 rounded-[2.7rem] bg-[radial-gradient(circle_at_top_right,_color-mix(in_srgb,var(--ath-primary-soft)_85%,transparent),_transparent_42%),radial-gradient(circle_at_bottom_left,_color-mix(in_srgb,var(--ath-accent)_14%,transparent),_transparent_36%)] blur-2xl"></div>
-                        <div className="relative overflow-hidden rounded-[2.7rem] border border-[color-mix(in_srgb,var(--ath-primary)_14%,transparent)] bg-[linear-gradient(180deg,_rgba(18,41,51,0.98),_rgba(10,28,36,0.95))] p-6 shadow-[0_30px_80px_rgba(15,23,42,0.24)]">
+                        <div className="ath-product-preview relative overflow-hidden p-6">
                             <div className="mb-3 flex items-center gap-2">
                                 <span className="inline-flex h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]" aria-hidden />
                                 <span className="text-[length:var(--ath-text-2xs)] font-bold uppercase tracking-[0.22em] text-white/55">Live preview</span>
                             </div>
-                            <div className="rounded-[2rem] border border-white/10 bg-white/5 p-4">
-                                <GenerativeIllustration />
+                            <div className="ath-learning-preview">
+                                <div className="flex flex-wrap items-center justify-between gap-3">
+                                    <span className="ath-preview-chip">ME 201 · Momentum</span>
+                                    <span className="text-xs font-semibold text-emerald-300">68% mastery</span>
+                                </div>
+
+                                <div className="mt-8">
+                                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/50">Recommended next</p>
+                                    <h2 className="mt-3 max-w-md text-3xl font-semibold leading-tight text-white">Practice impulse–momentum transfer</h2>
+                                    <p className="mt-4 max-w-lg text-sm leading-6 text-white/65">
+                                        Your confidence is high, but one applied example is still missing from the evidence trail.
+                                    </p>
+                                </div>
+
+                                <div className="ath-preview-progress mt-7" aria-label="Mastery progress: 68 percent">
+                                    <span style={{ width: '68%' }} />
+                                </div>
+
+                                <div className="mt-7 grid gap-3 sm:grid-cols-2">
+                                    <div className="ath-preview-action ath-preview-action-primary">
+                                        <Brain className="h-5 w-5" />
+                                        <span>Open guided practice</span>
+                                    </div>
+                                    <div className="ath-preview-action">
+                                        <Sparkles className="h-5 w-5" />
+                                        <span>Why this step?</span>
+                                    </div>
+                                </div>
+
+                                <div className="mt-7 flex items-center gap-3 border-t border-white/10 pt-5 text-xs text-white/50">
+                                    <span className="inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                                    Based on mastery, confidence, and recent practice evidence
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <section className="border-y border-[var(--ath-line)] bg-[rgba(255,255,255,0.45)] py-20 backdrop-blur-xl">
-                    <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <section className="ath-section-band py-16">
+                    <div className="ath-container ath-container-marketing">
                         <div className="max-w-2xl">
                             <p className="editorial-kicker">Core product capabilities</p>
                             <h2 className="editorial-title mt-3 text-3xl md:text-4xl">
-                                Institutional by design
+                                Learning outcomes by design
                             </h2>
                         </div>
 
-                        <div className="mt-10 grid gap-6 md:grid-cols-2">
+                        <div className="mt-8 grid gap-x-10 gap-y-2 md:grid-cols-2">
                             {featureCards.map((feature) => {
                                 const Icon = feature.icon
                                 return (
                                     <div
                                         key={feature.title}
-                                        className="editorial-surface group p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(15,23,42,0.08)]"
+                                        className="ath-feature-card group px-0 py-7"
                                     >
                                         <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[color-mix(in_srgb,var(--ath-primary)_8%,transparent)] text-[var(--ath-primary)]">
                                             <Icon className="h-6 w-6" />
@@ -210,19 +240,19 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                     </div>
                 </section>
 
-                <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+                <section className="ath-container ath-container-marketing py-16">
                     <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
                         <div>
                             <p className="editorial-kicker">Workflow</p>
                             <h2 className="editorial-title mt-3 text-3xl md:text-4xl">
-                                A textbook with memory
+                                A transparent learning loop
                             </h2>
                             <p className="mt-4 max-w-xl text-[15px] leading-7 text-[var(--ath-muted)]">
-                                One surface for reading, support, evidence, and review.
+                                Every recommendation connects a learner action to visible evidence and a clear next step.
                             </p>
                         </div>
 
-                        <div className="editorial-surface p-8">
+                        <div className="ath-workflow-card py-2 lg:px-4">
                             <div className="space-y-8">
                                 {workflowSteps.map((item) => (
                                     <div key={item.step} className="flex gap-5">
@@ -239,7 +269,7 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                 </section>
             </main>
 
-            <footer className="border-t border-[var(--ath-line)] bg-[rgba(255,255,255,0.52)] py-8 backdrop-blur-xl">
+            <footer className="ath-footer py-7 backdrop-blur-xl">
                 <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 text-sm font-medium text-[var(--ath-muted)] lg:flex-row lg:items-center lg:justify-between lg:px-8">
                     <div className="flex items-center gap-2">
                         <GraduationCap className="h-4 w-4" />

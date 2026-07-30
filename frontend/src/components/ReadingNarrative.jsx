@@ -542,6 +542,8 @@ function ReadingNarrative({
                 .reading-narrative-fluid .reading-breakout {
                     width: 100%;
                     max-width: 100%;
+                    margin-right: auto;
+                    margin-left: auto;
                 }
                 .reading-narrative-fluid .reading-table-scroll {
                     overflow-x: auto;
@@ -554,7 +556,7 @@ function ReadingNarrative({
             `}</style>
             {speechSupported && (
                 <div
-                    className="reading-readaloud not-prose mb-6 flex flex-wrap items-center gap-2 rounded-2xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.7)] px-4 py-2.5 shadow-sm"
+                    className="reading-readaloud not-prose mb-3 flex flex-wrap items-center gap-3 border-b border-[var(--ath-line)] px-0 py-2"
                     role="group"
                     aria-label="Read this section aloud"
                 >
@@ -571,23 +573,24 @@ function ReadingNarrative({
                                     ? 'Resume reading this section aloud'
                                     : 'Read this section aloud'
                         }
-                        className="inline-flex items-center gap-1.5 rounded-full border border-[var(--ath-line)] bg-white px-3 py-1 text-xs font-semibold text-[var(--ath-text)] transition-colors hover:bg-[var(--ath-panel)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)]"
+                        className="inline-flex items-center gap-1.5 px-1 py-1 text-xs font-semibold text-[var(--ath-text)] transition-colors hover:text-[var(--ath-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)]"
                     >
                         <span aria-hidden="true">{speechState === 'speaking' ? '⏸' : '▶'}</span>
                         <span>
                             {speechState === 'speaking' ? 'Pause' : speechState === 'paused' ? 'Resume' : 'Play'}
                         </span>
                     </button>
-                    <button
-                        type="button"
-                        onClick={handleStopSpeech}
-                        disabled={speechState === 'idle'}
-                        aria-label="Stop reading this section aloud"
-                        className="inline-flex items-center gap-1.5 rounded-full border border-[var(--ath-line)] bg-white px-3 py-1 text-xs font-semibold text-[var(--ath-text)] transition-colors hover:bg-[var(--ath-panel)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)] disabled:cursor-not-allowed disabled:opacity-50"
-                    >
-                        <span aria-hidden="true">⏹</span>
-                        <span>Stop</span>
-                    </button>
+                    {speechState !== 'idle' && (
+                        <button
+                            type="button"
+                            onClick={handleStopSpeech}
+                            aria-label="Stop reading this section aloud"
+                            className="inline-flex items-center gap-1.5 px-1 py-1 text-xs font-semibold text-[var(--ath-muted)] transition-colors hover:text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)]"
+                        >
+                            <span aria-hidden="true">⏹</span>
+                            <span>Stop</span>
+                        </button>
+                    )}
                     <span className="sr-only" role="status" aria-live="polite">
                         {speechState === 'speaking'
                             ? 'Reading section aloud'

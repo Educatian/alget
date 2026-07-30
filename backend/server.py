@@ -10,7 +10,7 @@ FastAPI server providing:
 
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, HTTPException
+from fastapi import Depends, FastAPI, File, Form, Header, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
@@ -22,6 +22,8 @@ import math
 import re
 import logging
 import uuid
+import secrets
+import httpx
 
 logger = logging.getLogger(__name__)
 
@@ -89,6 +91,7 @@ from content_service import (
 from grading_service import grade_problem
 from rag_service import rag_service
 from agents.assessment_agent import AssessmentAgent
+from admin_control import AGENT_MANIFEST, MAX_PDF_BYTES, build_governed_course_plan, convert_pdf_bytes
 from knowledge_tracing import (
     BayesianKnowledgeTracing,
     select_support_move,
@@ -216,6 +219,17 @@ class StuckEventRequest(BaseModel):
 class AccessValidationRequest(BaseModel):
     scope: Literal["engineering", "education", "researcher"]
     passcode: str
+
+
+class AdminCoursePlanRequest(BaseModel):
+    course_id: str = Field(min_length=2, max_length=80, pattern=r"^[a-z0-9][a-z0-9-]*$")
+    source_id: str = Field(min_length=2, max_length=128)
+
+
+class AdminInstructorInviteRequest(BaseModel):
+    email: str = Field(min_length=5, max_length=320)
+    display_name: str = Field(min_length=2, max_length=120)
+    redirect_url: Optional[str] = Field(default=None, max_length=500)
 
 class CurriculumGenerateRequest(BaseModel):
     biology_context: str
@@ -1510,17 +1524,13 @@ def validate_access_passcode(scope: Literal["engineering", "education", "researc
         "education": "EDUCATION_ACCESS_CODE",
         "researcher": "RESEARCHER_ACCESS_CODE",
     }
-    fallback_by_scope = {
-        "engineering": "eng123",
-        "education": "edu123",
-        "researcher": "immersivebama",
-    }
-
-    configured = os.environ.get(env_key_by_scope[scope], "").strip()
-    allow_fallback = os.environ.get("ALLOW_FALLBACK_ACCESS_CODES", "").lower() == "true"
-    expected_value = configured or (fallback_by_scope[scope] if allow_fallback else "")
+    raw_configured = os.environ.get(env_key_by_scope[scope], "")
+    malformed = any(ord(character) < 32 or ord(character) == 127 for character in raw_configured)
+    configured = raw_configured.strip()
+    if not configured or malformed:
+        return False
     candidate = passcode.strip()
-    return bool(expected_value) and candidate.lower() == expected_value.lower()
+    return candidate.lower() == configured.lower()
 
 
 ARTIFACT_RUBRIC_KEYS = [
@@ -2147,6 +2157,156 @@ async def validate_access(request: AccessValidationRequest):
     """Validate track or dashboard access without exposing passcodes in the client bundle."""
     is_valid = validate_access_passcode(request.scope, request.passcode)
     return {"valid": is_valid, "scope": request.scope}
+
+
+async def require_admin_access(
+    request: Request,
+    x_alget_admin_token: Optional[str] = Header(default=None),
+):
+    """Authorize the control plane without shipping a privileged key to the browser."""
+    configured_token = os.environ.get("ALGET_ADMIN_TOKEN", "").strip()
+    if configured_token and x_alget_admin_token and secrets.compare_digest(configured_token, x_alget_admin_token.strip()):
+        return {"role": "admin", "subject": "server-token"}
+
+    auth_header = request.headers.get("authorization", "")
+    bearer = auth_header[7:].strip() if auth_header.lower().startswith("bearer ") else ""
+    supabase_url = os.environ.get("SUPABASE_URL", "").rstrip("/")
+    supabase_anon_key = os.environ.get("SUPABASE_ANON_KEY", "").strip()
+    if not bearer or not supabase_url or not supabase_anon_key:
+        raise HTTPException(status_code=503, detail="Admin authentication is not configured")
+
+    try:
+        async with httpx.AsyncClient(timeout=8.0) as client:
+            response = await client.get(
+                f"{supabase_url}/auth/v1/user",
+                headers={"apikey": supabase_anon_key, "Authorization": f"Bearer {bearer}"},
+            )
+    except httpx.HTTPError as exc:
+        raise HTTPException(status_code=503, detail="Identity provider unavailable") from exc
+    if response.status_code != 200:
+        raise HTTPException(status_code=401, detail="Invalid or expired administrator session")
+
+    user = response.json()
+    role = (user.get("app_metadata") or {}).get("role")
+    if role not in {"admin", "course_admin"}:
+        raise HTTPException(status_code=403, detail="Course administrator role required")
+    return {"role": role, "subject": user.get("id")}
+
+
+async def require_course_admin(operator=Depends(require_admin_access)):
+    """Restrict identity and lifecycle mutations to accountable administrators."""
+    return operator
+
+
+@app.get("/api/admin/system/summary")
+async def admin_system_summary(operator=Depends(require_admin_access)):
+    return {
+        "status": "ready",
+        "operator": operator,
+        "agent_count": len(AGENT_MANIFEST),
+        "pdf_limit_bytes": MAX_PDF_BYTES,
+        "release_policy": "human_approval_required",
+    }
+
+
+@app.get("/api/admin/agents")
+async def admin_agents(_operator=Depends(require_admin_access)):
+    return {"agents": AGENT_MANIFEST, "release_policy": "human_approval_required"}
+
+
+@app.post("/api/admin/instructors/invite")
+async def admin_invite_instructor(
+    payload: AdminInstructorInviteRequest,
+    operator=Depends(require_course_admin),
+):
+    """Invite an instructor without exposing the Supabase service role to the client."""
+    supabase_url = os.environ.get("SUPABASE_URL", "").rstrip("/")
+    service_role_key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "").strip()
+    if not supabase_url or not service_role_key:
+        raise HTTPException(status_code=503, detail="Instructor invitations are not configured")
+
+    request_body = {
+        "email": payload.email.strip().lower(),
+        "data": {
+            "display_name": payload.display_name.strip(),
+            "role": "instructor",
+            "invited_by": operator.get("subject"),
+        },
+    }
+    if payload.redirect_url:
+        request_body["redirect_to"] = payload.redirect_url
+
+    try:
+        async with httpx.AsyncClient(timeout=12.0) as client:
+            response = await client.post(
+                f"{supabase_url}/auth/v1/invite",
+                headers={
+                    "apikey": service_role_key,
+                    "Authorization": f"Bearer {service_role_key}",
+                    "Content-Type": "application/json",
+                },
+                json=request_body,
+            )
+    except httpx.HTTPError as exc:
+        raise HTTPException(status_code=503, detail="Identity provider unavailable") from exc
+
+    if response.status_code not in {200, 201}:
+        detail = "Instructor invitation failed"
+        try:
+            detail = response.json().get("msg") or response.json().get("message") or detail
+        except ValueError:
+            pass
+        raise HTTPException(status_code=response.status_code, detail=detail)
+
+    invited_user = response.json()
+    invited_user_id = invited_user.get("id")
+    if not invited_user_id:
+        raise HTTPException(status_code=502, detail="Identity provider returned no instructor id")
+
+    try:
+        async with httpx.AsyncClient(timeout=12.0) as client:
+            metadata_response = await client.put(
+                f"{supabase_url}/auth/v1/admin/users/{invited_user_id}",
+                headers={
+                    "apikey": service_role_key,
+                    "Authorization": f"Bearer {service_role_key}",
+                    "Content-Type": "application/json",
+                },
+                json={"app_metadata": {"role": "instructor"}},
+            )
+    except httpx.HTTPError as exc:
+        raise HTTPException(status_code=503, detail="Instructor role assignment unavailable") from exc
+    if metadata_response.status_code not in {200, 201}:
+        raise HTTPException(status_code=502, detail="Instructor was invited but role assignment failed")
+
+    return {
+        "id": invited_user_id,
+        "email": invited_user.get("email", payload.email.strip().lower()),
+        "status": "invited",
+    }
+
+
+@app.post("/api/admin/course-plan")
+async def admin_course_plan(payload: AdminCoursePlanRequest, _operator=Depends(require_admin_access)):
+    return build_governed_course_plan(payload.course_id, payload.source_id)
+
+
+@app.post("/api/admin/pdf/convert")
+async def admin_convert_pdf(
+    file: UploadFile = File(...),
+    course_id: str = Form(..., min_length=2, max_length=80),
+    _operator=Depends(require_admin_access),
+):
+    if file.content_type not in {"application/pdf", "application/x-pdf", "application/octet-stream"}:
+        raise HTTPException(status_code=415, detail="Only PDF files are accepted")
+    payload = await file.read(MAX_PDF_BYTES + 1)
+    try:
+        result = convert_pdf_bytes(payload, file.filename or "course-source.pdf")
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    result["course_id"] = course_id
+    result["source_id"] = f"pdf:{result['sha256'][:16]}"
+    return result
 
 
 class AdaptiveDecisionOutcomeRequest(BaseModel):

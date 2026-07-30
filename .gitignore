@@ -1,4 +1,5 @@
 ﻿backend/.env
+.env
 temp.json
 temp2.json
 
@@ -27,3 +28,11 @@ screenshots/wired*/
 screenshots/wired_*.png
 screenshots/design_audit/
 screenshots/sweep/
+frontend/.playwright-cli/
+frontend/output/
+.debug-journal.md
+.fablize/
+probe/
+probe_live.py
+screencast.py
+screencast_video/

@@ -24,6 +24,7 @@ const GenerativeLab = lazy(() => import('./pages/GenerativeLab'))
 const AnalyticsDashboard = lazy(() => import('./pages/AnalyticsDashboard'))
 const StudentDashboard = lazy(() => import('./pages/StudentDashboard'))
 const InstructorDashboard = lazy(() => import('./pages/InstructorDashboard'))
+const AdminDashboard = lazy(() => import('./pages/AdminDashboard'))
 
 const E2E_USER = import.meta.env.VITE_E2E_AUTH_BYPASS === 'true'
   ? { id: 'e2e-user', email: 'e2e@alget.test' }
@@ -96,6 +97,19 @@ function RouteFallback() {
       </div>
     </div>
   )
+}
+
+function hasInstructorAccess(user) {
+  const role = user?.app_metadata?.role
+  return user?.id === 'e2e-user'
+    || ['admin', 'course_admin', 'instructor'].includes(role)
+    || safeSessionStorageGet('alget_instructor_access') === 'granted'
+    || safeSessionStorageGet('alget_researcher_access') === 'granted'
+}
+
+function hasCourseAdminAccess(user) {
+  const role = user?.app_metadata?.role
+  return user?.id === 'e2e-user' || ['admin', 'course_admin'].includes(role)
 }
 
 export default function App() {
@@ -275,11 +289,24 @@ export default function App() {
                 path="/instructor"
                 element={
                   user ? (
-                    safeSessionStorageGet('alget_instructor_access') === 'granted' ||
-                    safeSessionStorageGet('alget_researcher_access') === 'granted' ? (
+                    hasInstructorAccess(user) ? (
                       <InstructorDashboard user={user} />
                     ) : (
                       <Navigate to="/analytics?return=instructor" replace />
+                    )
+                  ) : (
+                    <Navigate to="/" replace />
+                  )
+                }
+              />
+              <Route
+                path="/admin"
+                element={
+                  user ? (
+                    hasCourseAdminAccess(user) ? (
+                      <AdminDashboard />
+                    ) : (
+                      <Navigate to="/analytics?return=admin" replace />
                     )
                   ) : (
                     <Navigate to="/" replace />

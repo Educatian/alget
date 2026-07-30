@@ -1,33 +1,12 @@
 # Equilibrium Conditions
 
-> **"The art of engineering is to make the right approximation, and equilibrium is the first and most fundamental."**  
-> - J.P. Den Hartog, *Mechanics*
+## Start Here: Force Balance
 
----
+A suspended light, a cable-supported sensor, and a wall bracket are different systems with the same first test: **do all external forces balance?** Equilibrium analysis turns that physical question into a reliable model.
 
-## Learning Objectives
+**In this section:** define particle equilibrium, apply $\sum \vec{F}=0$, construct free body diagrams, and solve for basic tension and reaction forces.
 
-By the end of this section, you will be able to:
-
-1. **Define** equilibrium for a particle and explain its physical meaning
-2. **Apply** the condition $\sum \vec{F} = 0$ to solve for unknown forces
-3. **Construct** accurate free body diagrams for particle systems
-4. **Calculate** tension, normal, and other reaction forces in equilibrium problems
-
----
-
-## Opening: Why Equilibrium Matters
-
-On November 7, 1940, the Tacoma Narrows Bridge collapsed spectacularly - not because engineers forgot equilibrium, but because equilibrium alone was not enough to capture the full dynamic behavior. That historical failure still teaches the same lesson: **before engineers can analyze motion, vibration, or instability, they must first understand how forces balance.**
-
-Everyday structures remain safe only because the forces acting on them are in equilibrium. A suspended light fixture, a cable-supported sensor, and a bracket bolted to a wall all survive because the net force on the idealized system is zero.
-
-> **The Big Picture:** Mastering equilibrium analysis gives you the first reliable test for whether a load path is plausible, whether a support reaction makes sense, and whether a structural model is physically self-consistent.
-
-> **Bio-Inspired Link: Anchoring in Chaos**  
-> Mangrove trees offer a useful mental model. Instead of relying on one deep root to resist waves and storm surge, they spread load through a network of prop roots. The lesson for engineering is simple: stability often comes from distributing force through multiple paths rather than concentrating it in one brittle element.
-
----
+> **Load-path check:** A balanced equation is meaningful only when every force in the model has a physical source and a defensible direction.
 
 ## What Is Equilibrium?
 
@@ -262,9 +241,9 @@ $$
 T_A = 0.577(849.4) = \boxed{490.1 \text{ N}}
 $$
 
-This result is physically informative. The shallower cable carries the larger force because it contributes less vertical support per unit tension.
+This result is physically informative. In this geometry, the steeper cable carries the larger force: $T_B = 849.4\,\text{N}$ while the shallower cable carries $T_A = 490.1\,\text{N}$.
 
-<step-reveal title="Reconstruct the two-cable solution step by step" steps='[{"prompt":"Horizontal equilibrium gives T_A cos30 = T_B cos60. Solving for T_A in terms of T_B, which relation is correct?","predictType":"choice","choices":["T_A = 1.732 T_B","T_A = 0.577 T_B","T_A = T_B","T_A = 0.5 T_B"],"answerIndex":1,"reveal":"T_A = T_B (cos60 / cos30) = T_B (0.5 / 0.866) = 0.577 T_B. The shallower cable A must carry more force, so its coefficient relative to T_B will end up larger after the vertical equation closes."},{"prompt":"Vertical equilibrium reads T_A sin30 + T_B sin60 = W, with W = (100)(9.81) = 981 N. After substituting T_A = 0.577 T_B, what single equation in T_B results?","predictType":"choice","choices":["1.155 T_B = 981","0.866 T_B = 981","1.366 T_B = 981","0.577 T_B = 981"],"answerIndex":0,"reveal":"(0.577 T_B)(0.5) + T_B(0.866) = 0.289 T_B + 0.866 T_B = 1.155 T_B = 981."},{"prompt":"Solve for T_B.","predictType":"choice","choices":["490.1 N","981 N","849.4 N","566.2 N"],"answerIndex":2,"reveal":"T_B = 981 / 1.155 = 849.4 N. This is the steeper (60 degree) cable."},{"reveal":"Back-substitute: T_A = 0.577 (849.4) = 490.1 N. The shallower 30 degree cable carries LESS force here because it sits closer to the load line, contradicting a common intuition. The closed form T_A = W cos(beta)/sin(alpha+beta) confirms both numbers."}]'></step-reveal>
+<step-reveal title="Reconstruct the two-cable solution step by step" steps='[{"prompt":"Horizontal equilibrium gives T_A cos30 = T_B cos60. Solving for T_A in terms of T_B, which relation is correct?","predictType":"choice","choices":["T_A = 1.732 T_B","T_A = 0.577 T_B","T_A = T_B","T_A = 0.5 T_B"],"answerIndex":1,"reveal":"T_A = T_B (cos60 / cos30) = T_B (0.5 / 0.866) = 0.577 T_B. Therefore cable A carries less tension than cable B for this geometry."},{"prompt":"Vertical equilibrium reads T_A sin30 + T_B sin60 = W, with W = (100)(9.81) = 981 N. After substituting T_A = 0.577 T_B, what single equation in T_B results?","predictType":"choice","choices":["1.155 T_B = 981","0.866 T_B = 981","1.366 T_B = 981","0.577 T_B = 981"],"answerIndex":0,"reveal":"(0.577 T_B)(0.5) + T_B(0.866) = 0.289 T_B + 0.866 T_B = 1.155 T_B = 981."},{"prompt":"Solve for T_B.","predictType":"choice","choices":["490.1 N","981 N","849.4 N","566.2 N"],"answerIndex":2,"reveal":"T_B = 981 / 1.155 = 849.4 N. This is the steeper (60 degree) cable."},{"reveal":"Back-substitute: T_A = 0.577 (849.4) = 490.1 N. The shallower 30 degree cable carries LESS force here because it sits closer to the load line, contradicting a common intuition. The closed form T_A = W cos(beta)/sin(alpha+beta) confirms both numbers."}]'></step-reveal>
 
 **Quick generalization.** For two cables at angles $\alpha$ and $\beta$ measured from the horizontal on opposite sides of a weight $W$, the same two equations solve in closed form:
 

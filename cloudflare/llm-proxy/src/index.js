@@ -15,7 +15,7 @@
 // Optional [vars]:
 //   OPENROUTER_MODEL  (default google/gemini-2.0-flash-001)
 //   STATIC_API_BASE   (default the Pages /api origin)
-//   BACKEND_API_BASE  (unset; only set to re-enable a proxy escape hatch)
+//   BACKEND_API_BASE  (FastAPI base including /api; required for admin control)
 
 const DEFAULT_MODEL = 'google/gemini-2.5-flash'
 // Static content (Pages) the Worker reads for deterministic grading/graphs.
@@ -25,7 +25,7 @@ const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
 const CORS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'POST,GET,OPTIONS',
-  'Access-Control-Allow-Headers': 'content-type',
+  'Access-Control-Allow-Headers': 'content-type, authorization, x-alget-admin-token',
 }
 
 function json(obj, status = 200) {
@@ -358,6 +358,25 @@ export default {
     if (path === '/warmup') {
       if (env.BACKEND_API_BASE) ctx.waitUntil(fetch(`${String(env.BACKEND_API_BASE).replace(/\/$/, '')}/book/inst-design/toc`).catch(() => {}))
       return json({ ok: true })
+    }
+
+    // Admin operations live on the stateful FastAPI control plane. Forward the
+    // original stream so multipart PDFs and administrator authorization survive
+    // intact; never parse or reconstruct privileged requests in this Worker.
+    if (path.startsWith('/admin/')) {
+      if (!env.BACKEND_API_BASE) return json({ error: 'Admin control plane is not configured' }, 503)
+      const target = `${String(env.BACKEND_API_BASE).replace(/\/$/, '')}${path}${url.search}`
+      const headers = new Headers(request.headers)
+      headers.delete('host')
+      const proxied = await fetch(target, {
+        method: request.method,
+        headers,
+        body: ['GET', 'HEAD'].includes(request.method) ? undefined : request.body,
+        redirect: 'manual',
+      })
+      const responseHeaders = new Headers(proxied.headers)
+      Object.entries(CORS).forEach(([name, value]) => responseHeaders.set(name, value))
+      return new Response(proxied.body, { status: proxied.status, headers: responseHeaders })
     }
 
     let body = {}

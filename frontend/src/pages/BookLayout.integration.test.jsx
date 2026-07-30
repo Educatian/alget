@@ -131,7 +131,7 @@ describe('BookLayout integration', () => {
         await waitFor(() => {
             expect(screen.getByTestId('reading-pane')).toHaveTextContent('inst-design Section 01')
         })
-        expect(screen.getByText('Cloud sync on')).toBeInTheDocument()
+        expect(screen.getByText('Saved')).toBeInTheDocument()
     })
 
     it.each([

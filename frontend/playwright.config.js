@@ -26,7 +26,6 @@ export default defineConfig({
             cwd: '..',
             env: {
                 ...process.env,
-                ALLOW_FALLBACK_ACCESS_CODES: 'true',
             },
             url: 'http://127.0.0.1:8000/api/book/inst-design/toc',
             reuseExistingServer: true,
@@ -37,7 +36,6 @@ export default defineConfig({
             env: {
                 ...process.env,
                 VITE_E2E_AUTH_BYPASS: 'true',
-                ALLOW_FALLBACK_ACCESS_CODES: 'true',
             },
             url: 'http://127.0.0.1:5179',
             reuseExistingServer: true,

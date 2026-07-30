@@ -107,8 +107,6 @@ function ReadingPane({
     onRetrySection,
     onStuckEvent,
     onNeedsReview,
-    isBookmarked,
-    toggleBookmark,
     isCompleted,
     markCompleted,
     onHeadingChange,
@@ -257,7 +255,8 @@ function ReadingPane({
 
     const { meta, content, simulation, illustration, practice } = sectionData
     const workProduct = inferWorkProduct(meta)
-    const contentHasLearningTargets = /(^|\n)##\s+Learning Targets\b/.test(content || '')
+    const contentHasLearningTargets = /(^|\n)##\s+Learning (?:Targets|Objectives)\b/.test(content || '')
+    const contentHasEmbeddedCheck = /<(?:inline-check|interactive-quiz)\b/i.test(content || '')
     const canResumeRecent = recentSection?.sectionId
         && recentSection.sectionId !== sectionId
         && recentSection.course === meta?.course
@@ -267,9 +266,9 @@ function ReadingPane({
     const completionReady = readyCount === READY_CHECK_ITEMS.length && exitTicketReady
 
     return (
-        <div className="mx-auto w-full max-w-[min(78rem,100%)] px-4 py-8 sm:px-8 sm:py-10">
-            <header className="mb-8 sm:mb-10">
-                <div className="mb-3 flex items-center justify-between gap-3">
+        <div className="mx-auto w-full max-w-[min(78rem,100%)] px-4 py-4 sm:px-7 sm:py-5">
+            <header className="mb-4">
+                <div className="mb-2 flex items-center justify-between gap-3">
                     <p className="editorial-kicker">
                         Chapter {meta?.chapter} / Section {meta?.section}
                     </p>
@@ -278,50 +277,41 @@ function ReadingPane({
                     )}
                 </div>
 
-                <div className="editorial-divider mb-5"></div>
-
-                <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                <div>
                     <div>
-                        <h1 className="editorial-title text-3xl leading-tight text-[var(--ath-text)] sm:text-4xl">
+                        <h1 className="editorial-title text-2xl leading-tight text-[var(--ath-text)] sm:text-3xl">
                             {meta?.title || 'Section Title'}
                         </h1>
                         {meta?.description && (
-                            <p className="mt-3 max-w-3xl text-base italic leading-7 text-[var(--ath-muted)] sm:mt-4 sm:text-lg sm:leading-8">
+                            <p className="mt-2 max-w-3xl text-sm leading-6 text-[var(--ath-muted)] sm:text-base">
                                 {meta.description}
                             </p>
                         )}
                     </div>
-                    <div className="flex flex-wrap gap-3">
-                        <button
-                            onClick={toggleBookmark}
-                            className={`px-4 py-2 text-sm ${isBookmarked ? 'editorial-button' : 'editorial-button-secondary'}`}
-                        >
-                            {isBookmarked ? 'Saved for Review' : 'Save for Later'}
-                        </button>
-                    </div>
                 </div>
 
                 {meta?.learning_objectives?.length > 0 && !contentHasLearningTargets && (
-                    <div className="mt-8 rounded-[1.8rem] border-l-4 border-[var(--ath-primary)] bg-[linear-gradient(90deg,rgba(200,226,236,0.42),rgba(255,255,255,0.72))] p-6 shadow-sm">
-                        <p className="editorial-kicker">Learning Objectives</p>
-                        <ul className="mt-4 space-y-3">
+                    <details className="group mt-3 border-b border-[var(--ath-line)] px-1 py-2">
+                        <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-xs font-semibold text-[var(--ath-secondary)]">
+                            <span>Learning objectives · {meta.learning_objectives.length}</span>
+                            <span className="transition-transform group-open:rotate-90" aria-hidden="true">›</span>
+                        </summary>
+                        <ul className="mt-2 space-y-1.5">
                             {meta.learning_objectives.map((obj, i) => (
-                                <li key={i} className="flex items-start gap-3 text-[1.02rem] leading-7 text-[var(--ath-text)]">
+                                <li key={i} className="flex items-start gap-2.5 text-sm leading-6 text-[var(--ath-text)]">
                                     <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[var(--ath-primary)]" aria-hidden="true" />
                                     <span>{obj}</span>
                                 </li>
                             ))}
                         </ul>
-                    </div>
+                    </details>
                 )}
 
-                <div className="mt-8 rounded-2xl border border-[var(--ath-line)] bg-white p-4 shadow-sm">
-                    <div className="flex flex-wrap items-center gap-3">
-                        <p
-                            className="mr-auto min-w-0 truncate text-sm font-semibold text-[var(--ath-text)]"
-                            title={workProduct}
-                        >
-                            {workProduct}
+                <div className="mt-3 border-b border-[var(--ath-line)] pb-2">
+                    <div className="flex flex-wrap items-center gap-2">
+                        <p className="mr-auto min-w-0 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--ath-secondary)]" title={workProduct}>
+                            Section workflow
+                            <span className="sr-only">{workProduct}</span>
                         </p>
                         <span className={`rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.18em] ${isCompleted
                             ? 'bg-emerald-50 text-emerald-700'
@@ -340,20 +330,17 @@ function ReadingPane({
                             </button>
                         )}
                     </div>
-                    <ol className="mt-3 flex gap-2 overflow-x-auto pb-1 text-[11px] font-semibold text-[var(--ath-secondary)] sm:grid sm:grid-cols-5 sm:overflow-visible sm:pb-0">
+                    <ol className="mt-1.5 flex gap-1 overflow-x-auto text-[10px] font-semibold uppercase tracking-[0.08em] text-[var(--ath-secondary)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:grid sm:grid-cols-5 sm:overflow-visible">
                         {SECTION_PATH_STEPS.map((step, index) => (
-                            <li key={step.id} className="min-w-[9rem] sm:min-w-0">
+                            <li key={step.id} className="min-w-[6.5rem] sm:min-w-0">
                                 <button
                                     type="button"
                                     onClick={() => jumpToStage(step.id)}
-                                    className="flex min-h-16 w-full items-center gap-2 rounded-xl border border-[var(--ath-line)] bg-[var(--ath-panel)] px-2.5 py-2 text-left transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
+                                    className="flex min-h-8 w-full items-center gap-1.5 px-1 py-1 text-left transition-colors hover:text-[var(--ath-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
                                     aria-label={`Jump to ${step.label}`}
                                 >
-                                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white text-[10px] font-bold text-[var(--ath-text)] shadow-sm">{index + 1}</span>
-                                    <span className="min-w-0">
-                                        <span className="block truncate text-[var(--ath-text)]">{step.label}</span>
-                                        <span className="block truncate text-[10px] font-medium text-[var(--ath-muted)]">{step.detail}</span>
-                                    </span>
+                                    <span className="shrink-0 font-mono text-[9px] text-[var(--ath-primary)]">0{index + 1}</span>
+                                    <span className="truncate text-[var(--ath-text)]">{step.label}</span>
                                 </button>
                             </li>
                         ))}
@@ -487,54 +474,84 @@ function ReadingPane({
                 </div>
             )}
 
-            <section id="section-reflect" className="scroll-mt-28">
-                <Suspense fallback={<PanelFallback label="Loading Reflection Tools..." />}>
-                    <AffectiveReaction
-                        sectionId={sectionId}
-                        conceptIds={meta?.concept_ids}
-                    />
-                </Suspense>
+            <details id="section-reflect" className="group my-7 scroll-mt-28 border-y border-[var(--ath-line)]">
+                <summary className="flex cursor-pointer list-none items-center justify-between py-3 text-sm font-semibold text-[var(--ath-text)]">
+                    <span><span className="mr-2 font-mono text-[10px] text-[var(--ath-primary)]">02</span>Reflect and discuss</span>
+                    <span className="text-xs font-medium text-[var(--ath-muted)]">Optional · opens here <span className="ml-2 inline-block transition-transform group-open:rotate-90">›</span></span>
+                </summary>
+                <div className="pb-4">
+                    <Suspense fallback={<PanelFallback label="Loading Reflection Tools..." />}>
+                        <AffectiveReaction
+                            sectionId={sectionId}
+                            conceptIds={meta?.concept_ids}
+                        />
+                    </Suspense>
 
-                <Suspense fallback={<PanelFallback label="Loading Social Annotation..." />}>
-                    <PerusallLayer
-                        key={sectionId}
-                        sectionId={sectionId}
-                        sectionTitle={meta?.title || ''}
-                        conceptIds={meta?.concept_ids || []}
-                    />
-                </Suspense>
-            </section>
+                    <Suspense fallback={<PanelFallback label="Loading Social Annotation..." />}>
+                        <PerusallLayer
+                            key={sectionId}
+                            sectionId={sectionId}
+                            sectionTitle={meta?.title || ''}
+                            conceptIds={meta?.concept_ids || []}
+                        />
+                    </Suspense>
+                </div>
+            </details>
 
-            <div className="editorial-divider my-10"></div>
+            {contentHasEmbeddedCheck ? (
+                <details id="section-check" className="group my-7 scroll-mt-28 border-y border-[var(--ath-line)]">
+                    <summary className="flex cursor-pointer list-none items-center justify-between py-3 text-sm font-semibold text-[var(--ath-text)]">
+                        <span><span className="mr-2 font-mono text-[10px] text-[var(--ath-primary)]">03</span>Additional knowledge check</span>
+                        <span className="text-xs font-medium text-[var(--ath-muted)]">Optional · section checks already included <span className="ml-2 inline-block transition-transform group-open:rotate-90">›</span></span>
+                    </summary>
+                    <div className="pb-4">
+                        <Suspense fallback={<PanelFallback label="Loading Knowledge Check..." />}>
+                            <KnowledgeCheck
+                                bioContext={content}
+                                engContext={meta?.description}
+                                sectionId={sectionId}
+                                sectionTitle={meta?.title}
+                                learningObjectives={meta?.learning_objectives}
+                                conceptIds={meta?.concept_ids}
+                                onNeedsReview={onNeedsReview}
+                            />
+                        </Suspense>
+                    </div>
+                </details>
+            ) : (
+                <section id="section-check" className="scroll-mt-28">
+                    <Suspense fallback={<PanelFallback label="Loading Knowledge Check..." />}>
+                        <KnowledgeCheck
+                            bioContext={content}
+                            engContext={meta?.description}
+                            sectionId={sectionId}
+                            sectionTitle={meta?.title}
+                            learningObjectives={meta?.learning_objectives}
+                            conceptIds={meta?.concept_ids}
+                            onNeedsReview={onNeedsReview}
+                        />
+                    </Suspense>
+                </section>
+            )}
 
-            <section id="section-check" className="scroll-mt-28">
-                <Suspense fallback={<PanelFallback label="Loading Knowledge Check..." />}>
-                    <KnowledgeCheck
-                        bioContext={content}
-                        engContext={meta?.description}
-                        sectionId={sectionId}
-                        sectionTitle={meta?.title}
-                        learningObjectives={meta?.learning_objectives}
-                        conceptIds={meta?.concept_ids}
-                        onNeedsReview={onNeedsReview}
-                    />
-                </Suspense>
-            </section>
+            <details id="section-practice" className="group my-7 scroll-mt-28 border-y border-[var(--ath-line)]">
+                <summary className="flex cursor-pointer list-none items-center justify-between py-3 text-sm font-semibold text-[var(--ath-text)]">
+                    <span><span className="mr-2 font-mono text-[10px] text-[var(--ath-primary)]">04</span>Additional practice</span>
+                    <span className="text-xs font-medium text-[var(--ath-muted)]">Open when you need another attempt <span className="ml-2 inline-block transition-transform group-open:rotate-90">›</span></span>
+                </summary>
+                <div className="pb-4">
+                    <Suspense fallback={<PanelFallback label="Loading Practice..." />}>
+                        <PracticeBlock
+                            practice={practice}
+                            sectionId={`${meta?.course}/${meta?.chapter}/${meta?.section}`}
+                            onStuckEvent={onStuckEvent}
+                            onNeedsReview={onNeedsReview}
+                        />
+                    </Suspense>
+                </div>
+            </details>
 
-            <div className="editorial-divider my-10"></div>
-
-            <section id="section-practice" className="scroll-mt-28">
-                <Suspense fallback={<PanelFallback label="Loading Practice..." />}>
-                    <PracticeBlock
-                        practice={practice}
-                        sectionId={`${meta?.course}/${meta?.chapter}/${meta?.section}`}
-                        onStuckEvent={onStuckEvent}
-                        onNeedsReview={onNeedsReview}
-                    />
-                </Suspense>
-            </section>
-
-            <section id="section-finish" className="mb-8 mt-12 scroll-mt-28 rounded-[1.5rem] border border-[var(--ath-line)] bg-white p-5 shadow-sm">
+            <section id="section-finish" className="mb-8 mt-9 scroll-mt-28 border-t border-[var(--ath-line)] pt-5">
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                     <div>
                         <div className="flex items-center gap-2 text-[var(--ath-primary)]">
@@ -558,15 +575,15 @@ function ReadingPane({
                         {isCompleted ? 'Section Completed' : completionReady ? 'Complete Section' : 'Mark as Complete'}
                     </button>
                 </div>
-                <div className="mt-5 grid gap-3 md:grid-cols-3">
+                <div className="mt-4 grid md:grid-cols-3 md:divide-x md:divide-[var(--ath-line)]">
                     {READY_CHECK_ITEMS.map(([key, title, description]) => {
                         const inputId = `ready-check-${key}`
                         return (
                         <div
                             key={key}
-                            className={`flex min-h-24 cursor-pointer gap-3 rounded-2xl border p-4 transition-colors ${readyChecks[key]
-                                ? 'border-emerald-200 bg-emerald-50'
-                                : 'border-[var(--ath-line)] bg-[var(--ath-panel)] hover:bg-white'
+                            className={`flex min-h-20 cursor-pointer gap-3 border-b border-[var(--ath-line)] px-3 py-3 transition-colors md:border-b-0 ${readyChecks[key]
+                                ? 'bg-[color-mix(in_srgb,var(--ath-success-soft)_55%,transparent)]'
+                                : 'hover:bg-[color-mix(in_srgb,var(--ath-panel)_55%,transparent)]'
                                 }`}
                         >
                             <input
@@ -583,7 +600,7 @@ function ReadingPane({
                         </div>
                     )})}
                 </div>
-                <div className="mt-5 rounded-2xl border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4">
+                <div className="mt-5 border-t border-[var(--ath-line)] pt-4">
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                         <div className="flex items-center gap-2">
                             <NotebookPen className="h-4 w-4 text-[var(--ath-primary)]" aria-hidden="true" />
@@ -602,20 +619,20 @@ function ReadingPane({
                         onBlur={handleExitTicketBlur}
                         rows={4}
                         placeholder="Claim + evidence + next move..."
-                        className="mt-3 w-full resize-y rounded-xl border border-[var(--ath-line)] bg-white px-4 py-3 text-sm leading-6 text-[var(--ath-text)] shadow-inner outline-none transition-colors placeholder:text-[var(--ath-muted)] focus:border-[var(--ath-primary)] focus:ring-2 focus:ring-[rgba(15,81,103,0.16)]"
+                        className="mt-3 w-full resize-y border border-[var(--ath-line)] bg-transparent px-3 py-2.5 text-sm leading-6 text-[var(--ath-text)] outline-none transition-colors placeholder:text-[var(--ath-muted)] focus:border-[var(--ath-primary)] focus:ring-2 focus:ring-[rgba(15,81,103,0.12)]"
                     />
                 </div>
                 <CalibrationPanel sectionId={sectionId} />
             </section>
 
-            <div className="mb-4 grid gap-3 border-t border-[var(--ath-line)] pt-6 md:grid-cols-2">
+            <div className="mb-4 grid border-t border-[var(--ath-line)] pt-4 md:grid-cols-2 md:divide-x md:divide-[var(--ath-line)]">
                 <button
                     type="button"
                     disabled={!previousSection}
                     onClick={() => previousSection && onNavigate?.(previousSection.chapter, previousSection.section, 'backward')}
-                    className={`rounded-2xl border px-4 py-3 text-left transition-colors ${previousSection
-                        ? 'border-[var(--ath-line)] bg-white text-[var(--ath-text)] hover:bg-[var(--ath-panel)]'
-                        : 'cursor-not-allowed border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-muted)] opacity-60'
+                    className={`px-3 py-3 text-left transition-colors ${previousSection
+                        ? 'text-[var(--ath-text)] hover:bg-[var(--ath-panel)]'
+                        : 'cursor-not-allowed text-[var(--ath-muted)] opacity-60'
                         }`}
                 >
                     <span className="block text-xs font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Previous</span>
@@ -625,9 +642,9 @@ function ReadingPane({
                     type="button"
                     disabled={!nextSection}
                     onClick={() => nextSection && onNavigate?.(nextSection.chapter, nextSection.section, 'forward')}
-                    className={`rounded-2xl border px-4 py-3 text-right transition-colors ${nextSection
-                        ? 'border-[var(--ath-line)] bg-white text-[var(--ath-text)] hover:bg-[var(--ath-panel)]'
-                        : 'cursor-not-allowed border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-muted)] opacity-60'
+                    className={`px-3 py-3 text-right transition-colors ${nextSection
+                        ? 'text-[var(--ath-text)] hover:bg-[var(--ath-panel)]'
+                        : 'cursor-not-allowed text-[var(--ath-muted)] opacity-60'
                         }`}
                 >
                     <span className="block text-xs font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Next</span>

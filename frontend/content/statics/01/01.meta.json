@@ -4,10 +4,12 @@
     "course": "statics",
     "chapter": "01",
     "section": "01",
+    "estimated_time_minutes": 28,
     "learning_objectives": [
         "Define equilibrium for a particle",
         "Apply the condition ΣF = 0 to solve for unknown forces",
-        "Construct and interpret free body diagrams"
+        "Construct and interpret free body diagrams",
+        "Calculate tension and reaction forces in particle-equilibrium problems"
     ],
     "concept_ids": [
         "equilibrium",

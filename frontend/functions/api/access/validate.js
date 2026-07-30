@@ -1,17 +1,11 @@
 // Cloudflare Pages Function: server-side cohort access-code validation for the
 // static deploy (mirrors the FastAPI /api/access/validate). Codes live here /
 // in Pages env vars, NEVER in the client bundle. Set ENGINEERING_ACCESS_CODE /
-// EDUCATION_ACCESS_CODE / RESEARCHER_ACCESS_CODE in the Pages project to override
-// the fallbacks below.
+// EDUCATION_ACCESS_CODE / RESEARCHER_ACCESS_CODE in the Pages project.
 const ENV_KEY = {
   engineering: 'ENGINEERING_ACCESS_CODE',
   education: 'EDUCATION_ACCESS_CODE',
   researcher: 'RESEARCHER_ACCESS_CODE',
-}
-const FALLBACK = {
-  engineering: 'eng123',
-  education: 'edu123',
-  researcher: 'immersivebama',
 }
 const CORS = {
   'Access-Control-Allow-Origin': '*',
@@ -33,16 +27,18 @@ export async function onRequestPost(context) {
     return Response.json({ valid: false, scope: scope ?? null }, { headers: CORS })
   }
   const configured = context.env && context.env[envKey]
-  const allowFallback = String((context.env && context.env.ALLOW_FALLBACK_ACCESS_CODES) || '').toLowerCase() === 'true'
-  const expected = String(configured || (allowFallback ? FALLBACK[scope] : '') || '').trim()
-  if (!expected) {
+  const malformed = typeof configured !== 'string' || [...configured].some(
+    (character) => character.charCodeAt(0) < 32 || character.charCodeAt(0) === 127,
+  )
+  const expected = malformed ? '' : configured.trim()
+  if (!expected || malformed) {
     return Response.json(
       { valid: false, scope, error: 'access_code_not_configured' },
       { status: 503, headers: CORS },
     )
   }
   // Case-insensitive + trimmed compare so "EDU123"/" edu123 " also pass.
-  const valid = Boolean(expected) && String(passcode || '').trim().toLowerCase() === expected.toLowerCase()
+  const valid = typeof passcode === 'string' && passcode.trim().toLowerCase() === expected.toLowerCase()
   return Response.json({ valid, scope }, { headers: CORS })
 }
 

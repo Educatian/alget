@@ -88,12 +88,12 @@ export default function SettingsModal({ isOpen, onClose }) {
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="settings-modal-title"
-                className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-xl border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] shadow-2xl sm:max-w-lg"
+                className="flex max-h-[90vh] w-full max-w-md flex-col overflow-y-auto rounded-xl border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] shadow-2xl sm:max-w-lg"
             >
                 <div className="flex items-center justify-between border-b border-[var(--ath-line)] px-6 py-4">
                     <h3 id="settings-modal-title" className="flex items-center gap-2 text-lg font-semibold text-[var(--ath-text)]">
-                        <Key className="h-5 w-5 text-[var(--ath-primary)]" />
-                        Settings
+                        <BookOpen className="h-5 w-5 text-[var(--ath-primary)]" />
+                        Reading settings
                     </h3>
                     <button
                         type="button"
@@ -105,7 +105,12 @@ export default function SettingsModal({ isOpen, onClose }) {
                     </button>
                 </div>
 
-                <div className="p-6">
+                <details className="group order-2 border-t border-[var(--ath-line)]">
+                    <summary className="flex cursor-pointer list-none items-center justify-between px-5 py-3 text-sm font-semibold text-[var(--ath-secondary)]">
+                        <span className="flex items-center gap-2"><Key className="h-4 w-4" aria-hidden="true" />Advanced AI settings</span>
+                        <span className="transition-transform group-open:rotate-90" aria-hidden="true">›</span>
+                    </summary>
+                <div className="px-5 pb-5">
                     <label htmlFor="gemini-api-key" className="mb-2 block text-sm font-medium text-[var(--ath-text)]">
                         Google Gemini API Key
                     </label>
@@ -132,8 +137,9 @@ export default function SettingsModal({ isOpen, onClose }) {
                         </button>
                     </div>
                 </div>
+                </details>
 
-                <div className="border-t border-[var(--ath-line)] p-6">
+                <div className="order-1 p-5">
                     <div className="mb-4 flex items-center justify-between gap-3">
                         <h4 className="flex items-center gap-2 text-sm font-semibold text-[var(--ath-text)]">
                             <BookOpen className="h-4 w-4 text-[var(--ath-primary)]" aria-hidden="true" />
@@ -201,7 +207,7 @@ export default function SettingsModal({ isOpen, onClose }) {
                     </div>
                 </div>
 
-                <div className="sticky bottom-0 flex items-center justify-end gap-3 border-t border-[var(--ath-line)] bg-[var(--ath-panel-muted)] px-6 py-4">
+                <div className="sticky bottom-0 order-3 flex items-center justify-end gap-3 border-t border-[var(--ath-line)] bg-[var(--ath-panel-muted)] px-6 py-4">
                     <button
                         type="button"
                         onClick={onClose}

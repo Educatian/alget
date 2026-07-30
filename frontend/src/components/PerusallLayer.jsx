@@ -287,14 +287,14 @@ export default function PerusallLayer({ sectionId, conceptIds = [] }) {
     )
 
     return (
-        <section className="my-6">
+        <section className="my-6 border-y border-[var(--ath-line)] py-3">
             {/* Collapsed bar — single row that respects the reading flow */}
-            <div className="flex flex-wrap items-center gap-2 rounded-full border border-[var(--ath-line)] bg-white/70 px-3 py-1.5 text-xs font-semibold text-[var(--ath-muted)] shadow-sm">
+            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[var(--ath-muted)]">
                 <button
                     type="button"
                     onClick={() => setExpanded((value) => !value)}
                     aria-expanded={expanded}
-                    className="flex items-center gap-2 text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)] rounded-full px-1"
+                    className="flex items-center gap-2 rounded-md px-1 text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
                 >
                     <ChevronDown className={`h-3.5 w-3.5 transition-transform ${expanded ? '' : '-rotate-90'}`} aria-hidden />
                     <span>Annotations</span>
@@ -304,7 +304,7 @@ export default function PerusallLayer({ sectionId, conceptIds = [] }) {
                 <button
                     type="button"
                     onClick={() => startCompose()}
-                    className="ml-auto inline-flex items-center gap-1.5 rounded-full bg-[var(--ath-primary)] px-2.5 py-1 text-[11px] font-semibold text-white shadow-sm hover:brightness-105"
+                    className="ml-auto inline-flex items-center gap-1.5 rounded-md bg-[var(--ath-primary)] px-2.5 py-1.5 text-[11px] font-semibold text-white hover:brightness-105"
                 >
                     <MessageSquarePlus className="h-3.5 w-3.5" />
                     Add note
@@ -312,7 +312,7 @@ export default function PerusallLayer({ sectionId, conceptIds = [] }) {
             </div>
 
             {expanded && (
-                <div className="mt-3 rounded-2xl border border-[var(--ath-line)] bg-white/80 p-4 shadow-sm">
+                <div className="mt-3 border-t border-[var(--ath-line)] pt-3">
                     {/* Inline filter pills */}
                     <div className="flex flex-wrap items-center gap-1.5 text-[11px] font-semibold">
                         <button
@@ -339,7 +339,7 @@ export default function PerusallLayer({ sectionId, conceptIds = [] }) {
 
                     {/* Compose form (only when learner taps "Add note") */}
                     {composing && (
-                        <div className="mt-4 rounded-xl border border-[var(--ath-line)] bg-[var(--ath-panel)] p-3">
+                        <div className="mt-4 border-y border-[var(--ath-line)] bg-[var(--ath-panel)] px-3 py-3">
                             <div className="flex flex-wrap items-center gap-1.5 text-[10px] font-semibold">
                                 {TAGS.map((item) => (
                                     <button
@@ -399,13 +399,13 @@ export default function PerusallLayer({ sectionId, conceptIds = [] }) {
                     )}
 
                     {/* List */}
-                    <div className="mt-4 space-y-2">
+                    <div className="mt-4 divide-y divide-[var(--ath-line)]">
                         {filteredAnnotations.length === 0 ? (
                             <p className="rounded-xl border border-dashed border-[var(--ath-line)] px-3 py-4 text-center text-xs text-[var(--ath-muted)]">
                                 {composing ? 'Your note will appear here.' : 'No notes yet — Add note above to start.'}
                             </p>
                         ) : filteredAnnotations.map((annotation) => (
-                            <article key={annotation.id} className="rounded-xl border border-[var(--ath-line)] bg-white/85 p-3">
+                            <article key={annotation.id} className="py-3 first:pt-0 last:pb-0">
                                 <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[var(--ath-secondary)]">
                                     <span className="rounded-full bg-[var(--ath-panel)] px-2 py-0.5 text-[var(--ath-primary)]">
                                         {TAGS.find((item) => item.id === annotation.tag)?.label || annotation.tag}

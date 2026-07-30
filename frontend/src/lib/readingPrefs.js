@@ -14,21 +14,21 @@ export const FONT_SCALE_OPTIONS = [
 ]
 
 export const LINE_HEIGHT_OPTIONS = [
-    { value: 'compact', label: 'Compact', multiplier: 1.4 },
-    { value: 'standard', label: 'Standard', multiplier: 1.7 },
-    { value: 'relaxed', label: 'Relaxed', multiplier: 2 }
+    { value: 'compact', label: 'Compact', multiplier: 1.42 },
+    { value: 'standard', label: 'Standard', multiplier: 1.58 },
+    { value: 'relaxed', label: 'Relaxed', multiplier: 1.75 }
 ]
 
 export const PARAGRAPH_SPACING_OPTIONS = [
-    { value: 'tight', label: 'Tight', spacing: '0.75em' },
-    { value: 'standard', label: 'Standard', spacing: '1.2em' },
-    { value: 'airy', label: 'Airy', spacing: '1.8em' }
+    { value: 'tight', label: 'Tight', spacing: '0.55em' },
+    { value: 'standard', label: 'Standard', spacing: '0.85em' },
+    { value: 'airy', label: 'Airy', spacing: '1.25em' }
 ]
 
 export const READING_WIDTH_OPTIONS = [
     { value: 'narrow', label: 'Narrow', width: '60ch' },
-    { value: 'standard', label: 'Standard', width: '72ch' },
-    { value: 'wide', label: 'Wide', width: '92ch' }
+    { value: 'standard', label: 'Standard', width: '68ch' },
+    { value: 'wide', label: 'Wide', width: '82ch' }
 ]
 
 export const DYSLEXIA_FONT_OPTIONS = [

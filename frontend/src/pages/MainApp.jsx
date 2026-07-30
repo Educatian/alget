@@ -21,7 +21,7 @@ import ThemeToggle from '../components/ThemeToggle'
 import { useCourseProgress } from '../hooks/useCourseProgress'
 import API_BASE from '../lib/apiConfig'
 import { safeLocalStorageGet, safeLocalStorageRemove, safeLocalStorageSet } from '../lib/browserStorage'
-import { formatUserLabel, readCohortLearner } from '../lib/cohortLearner'
+import { readCohortLearner } from '../lib/cohortLearner'
 import { getEvaluationStatus } from '../lib/researchService'
 import '../index.css'
 
@@ -181,7 +181,6 @@ export default function MainApp({ user, onLogout }) {
     const navigate = useNavigate()
     const { recentSection, bookmarks } = useCourseProgress(user)
     const cohortLearner = readCohortLearner()
-    const userLabel = user?.displayLabel || formatUserLabel(user)
 
     const [unlockedMode, setUnlockedMode] = useState(() => cohortLearner?.track || readStoredUnlockedTrack())
     const [selectedMode, setSelectedMode] = useState(() => cohortLearner?.track || readStoredUnlockedTrack() || 'engineering')
@@ -257,33 +256,27 @@ export default function MainApp({ user, onLogout }) {
     }
 
     return (
-        <div className="editorial-shell min-h-screen">
+        <div className="editorial-shell ath-open-layout ath-density-compact min-h-screen">
             <a href="#main-content" className="skip-to-content-link">Skip to main content</a>
 
             <header className="sticky top-0 z-50 border-b border-[var(--ath-line)] bg-[rgba(248,246,241,0.84)] backdrop-blur-2xl">
-                <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+                <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2.5 sm:px-6 lg:px-8">
                     <button
                         type="button"
                         onClick={relockTracks}
                         aria-label="Back to pathway selection"
-                        className="flex items-center gap-4 rounded-2xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
+                        className="flex items-center gap-2.5 rounded-xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
                     >
-                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[rgba(15,81,103,0.12)] bg-[var(--ath-primary)] text-xl font-bold text-white shadow-[0_16px_32px_rgba(9,56,72,0.18)]">
+                        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--ath-primary)] text-sm font-bold text-white">
                             AL
                         </div>
                         <div>
-                            <p className="editorial-kicker">ALGET</p>
-                            <h1 className="mt-1 text-xl font-semibold tracking-tight text-[var(--ath-primary-deep)]">Learning Pathways</h1>
+                            <p className="sr-only">ALGET</p>
+                            <h1 className="text-base font-semibold tracking-tight text-[var(--ath-primary-deep)]">Learning Pathways</h1>
                         </div>
                     </button>
 
-                    <div className="flex items-center gap-3">
-                        <div className="hidden items-center gap-2 rounded-full border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] px-3 py-1.5 shadow-sm sm:flex">
-                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--ath-panel-muted)] text-sm font-medium text-[var(--ath-muted)]">
-                                {userLabel ? userLabel.charAt(0).toUpperCase() : 'U'}
-                            </div>
-                            <span className="text-sm font-medium text-[var(--ath-muted)]">{userLabel}</span>
-                        </div>
+                    <div className="flex items-center gap-2">
                         <ThemeToggle className="h-10 w-10 rounded-xl" />
 
                         <button
@@ -314,7 +307,7 @@ export default function MainApp({ user, onLogout }) {
                 </div>
             </header>
 
-            <main id="main-content" tabIndex={-1} className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+            <main id="main-content" tabIndex={-1} className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
                 {!unlockedMode ? (
                     <div className="animate-fade-in mx-auto flex min-h-[60vh] max-w-md flex-col justify-center">
                         <div className="editorial-pill mx-auto w-fit">
@@ -328,7 +321,7 @@ export default function MainApp({ user, onLogout }) {
                             Pick a track + enter the code your instructor sent.
                         </p>
 
-                        <form onSubmit={handleUnlock} className="mt-8 space-y-4 rounded-2xl border border-[var(--ath-line)] bg-white/85 p-6 shadow-sm">
+                        <form onSubmit={handleUnlock} className="mt-6 space-y-4 border-y border-[var(--ath-line)] py-5">
                             <div>
                                 <label htmlFor="pathway-track" className="text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Track</label>
                                 <select
@@ -381,7 +374,7 @@ export default function MainApp({ user, onLogout }) {
                     </div>
                 ) : (
                     <>
-                        <section className="rounded-2xl border border-[var(--ath-line)] bg-white/85 px-5 py-3 shadow-sm">
+                        <section className="ath-open-strip px-1">
                             <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[var(--ath-secondary)]">
                                 <span className="text-[var(--ath-text)] uppercase tracking-[0.18em]">
                                     {unlockedMode === 'engineering' ? 'Engineering' : 'Education'} pathways
@@ -430,7 +423,7 @@ export default function MainApp({ user, onLogout }) {
                                         navigate('/lab')
                                     }
                                 }}
-                                className="group relative mt-10 cursor-pointer overflow-hidden rounded-[2.7rem] border border-[rgba(15,81,103,0.12)] bg-[linear-gradient(135deg,_rgba(17,39,49,0.98),_rgba(10,28,36,0.94))] p-8 shadow-[0_24px_60px_rgba(15,23,42,0.14)] transition-all hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(15,23,42,0.16)]"
+                                className="group relative mt-6 cursor-pointer overflow-hidden rounded-[1.6rem] bg-[linear-gradient(135deg,_rgba(17,39,49,0.98),_rgba(10,28,36,0.94))] p-6 shadow-[0_16px_40px_rgba(15,23,42,0.12)] transition-all hover:-translate-y-0.5 hover:shadow-[0_20px_50px_rgba(15,23,42,0.14)]"
                             >
                                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(200,226,236,0.14),_transparent_36%),radial-gradient(circle_at_bottom_left,_rgba(199,137,67,0.12),_transparent_32%)]"></div>
                                 <div className="relative z-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
@@ -451,7 +444,7 @@ export default function MainApp({ user, onLogout }) {
                         )}
 
                         {(visibleRecentSection || visibleBookmarks.length > 0) && (
-                            <section className="mt-10 grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
+                            <section className="mt-6 grid gap-4 xl:grid-cols-[1.1fr_0.9fr]">
                                 {visibleRecentSection && (
                                     <button
                                         type="button"

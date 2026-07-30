@@ -136,14 +136,14 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="auth-modal-title"
-                className="w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-[2rem] border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] shadow-[0_32px_80px_rgba(15,23,42,0.22)]"
+                className="w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-[var(--ath-radius-lg)] border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] shadow-[0_24px_64px_rgba(15,23,42,0.2)]"
             >
-                <div className="border-b border-[var(--ath-line)] bg-[var(--ath-panel-muted)] px-8 py-7">
+                <div className="border-b border-[var(--ath-line)] bg-[var(--ath-panel-muted)] px-6 py-5">
                     <div className="flex items-start justify-between gap-4">
                         <div>
                             <p className="editorial-kicker">The Scholarly Editorial</p>
-                            <h2 id="auth-modal-title" className="mt-3 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">{copy[mode].title}</h2>
-                            <p className="mt-2 text-sm leading-7 text-[var(--ath-muted)]">{copy[mode].subtitle}</p>
+                            <h2 id="auth-modal-title" className="mt-2 text-2xl font-semibold tracking-tight text-[var(--ath-text)]">{copy[mode].title}</h2>
+                            <p className="mt-1.5 text-sm leading-6 text-[var(--ath-muted)]">{copy[mode].subtitle}</p>
                         </div>
                         <button
                             onClick={onClose}
@@ -155,14 +155,14 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
                     </div>
                 </div>
 
-                <div className="px-8 py-7">
+                <div className="px-6 py-5">
                     {!isSupabaseConfigured && (
-                        <div className="mb-5 rounded-[1.3rem] border border-[var(--ath-line)] bg-[var(--ath-panel-muted)] px-4 py-4 text-sm leading-7 text-[var(--ath-primary-deep)]">
+                        <div className="mb-4 border-l-2 border-[var(--ath-primary)] bg-[var(--ath-panel-muted)] px-3 py-2.5 text-sm leading-6 text-[var(--ath-primary-deep)]">
                             Local demo mode is active. Cloud authentication is not configured in this environment, so the fastest path is to continue with a sample learner.
                         </div>
                     )}
 
-                    <form onSubmit={handleStudentEntry} className="mb-6 rounded-[1.4rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4">
+                    <form onSubmit={handleStudentEntry} className="mb-5 border-b border-[var(--ath-line)] pb-5">
                         <p className="editorial-label">Current students</p>
                         <p className="mt-2 text-sm leading-6 text-[var(--ath-muted)]">
                             CAT 531 and CAT 100 summer students can enter with their name so progress is tied to the right learner.
@@ -289,7 +289,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
                         </button>
                     </form>
 
-                    <div className="mt-6 rounded-[1.4rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4">
+                    <div className="mt-5 border-t border-[var(--ath-line)] pt-4">
                         <p className="editorial-label">Testing and demo</p>
                         <div className="mt-3 flex flex-wrap gap-3">
                             <button

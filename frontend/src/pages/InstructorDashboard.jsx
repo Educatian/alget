@@ -12,7 +12,7 @@ import { fetchRctSnapshot } from '../lib/researchService'
  * Gated behind 'alget_instructor_access' or 'alget_researcher_access' session
  * flag. Falls back to /analytics for unlock.
  */
-export default function InstructorDashboard() {
+export default function InstructorDashboard({ user }) {
     const navigate = useNavigate()
     const [masteryHeatmap, setMasteryHeatmap] = useState([])
     const [strugglers, setStrugglers] = useState([])
@@ -79,7 +79,7 @@ export default function InstructorDashboard() {
     }
 
     return (
-        <div className="editorial-shell min-h-screen p-6 md:p-8">
+        <div className="editorial-shell ath-open-layout ath-density-compact min-h-screen p-4 md:p-6">
             <header className="mx-auto max-w-5xl">
                 <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[var(--ath-secondary)]">
                     <button
@@ -94,10 +94,19 @@ export default function InstructorDashboard() {
                     <span className="text-[var(--ath-text)] uppercase tracking-[0.18em]">Instructor</span>
                     <span className="text-[var(--ath-line-strong)]">/</span>
                     <span>Cohort heatmap</span>
+                    {['admin', 'course_admin'].includes(user?.app_metadata?.role) && (
+                        <button
+                            type="button"
+                            onClick={() => navigate('/admin')}
+                            className="ml-auto text-xs font-medium text-[var(--ath-primary)] underline-offset-4 hover:underline"
+                        >
+                            Course operations
+                        </button>
+                    )}
                     <button
                         type="button"
                         onClick={() => navigate('/analytics')}
-                        className="ml-auto text-xs font-medium text-[var(--ath-muted)] underline-offset-4 hover:text-[var(--ath-text)] hover:underline"
+                        className="text-xs font-medium text-[var(--ath-muted)] underline-offset-4 hover:text-[var(--ath-text)] hover:underline"
                     >
                         Researcher view
                     </button>
@@ -105,21 +114,21 @@ export default function InstructorDashboard() {
             </header>
 
             <section className="mx-auto mt-4 grid max-w-5xl gap-3 md:grid-cols-3">
-                <div className="rounded-2xl border border-[var(--ath-line)] bg-white/85 p-4 shadow-sm">
+                <div className="border-l-2 border-[var(--ath-primary-soft)] px-4 py-2">
                     <p className="text-2xl font-semibold text-[var(--ath-text)]">{cohortInterventionRate}%</p>
                     <p className="text-[11px] uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Intervention success</p>
                 </div>
-                <div className="rounded-2xl border border-[var(--ath-line)] bg-white/85 p-4 shadow-sm">
+                <div className="border-l-2 border-[var(--ath-primary-soft)] px-4 py-2">
                     <p className="text-2xl font-semibold text-[var(--ath-text)]">{strugglers.length}</p>
                     <p className="text-[11px] uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Learners &lt; 50%</p>
                 </div>
-                <div className="rounded-2xl border border-[var(--ath-line)] bg-white/85 p-4 shadow-sm">
+                <div className="border-l-2 border-[var(--ath-primary-soft)] px-4 py-2">
                     <p className="text-2xl font-semibold text-[var(--ath-text)]">{lowMasteryConcepts.length}</p>
                     <p className="text-[11px] uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Hot-spot concepts</p>
                 </div>
             </section>
 
-            <section className="mx-auto mt-4 max-w-5xl rounded-2xl border border-[var(--ath-line)] bg-white/85 p-5">
+            <section className="mx-auto mt-5 max-w-5xl border-t border-[var(--ath-line)] pt-4">
                 <h2 className="text-sm font-semibold text-[var(--ath-text)]">Concept hot-spots / re-teach next session</h2>
                 {lowMasteryConcepts.length === 0 ? (
                     <p className="mt-3 text-xs text-[var(--ath-muted)]">No cohort-wide low mastery - class on track.</p>
@@ -128,7 +137,7 @@ export default function InstructorDashboard() {
                         {lowMasteryConcepts.map((entry) => (
                             <li
                                 key={entry.concept_id}
-                                className="flex items-center justify-between rounded-xl border border-[var(--ath-line)] bg-white/70 px-3 py-2"
+                                className="flex items-center justify-between border-b border-[var(--ath-line)] px-1 py-2.5 last:border-b-0"
                             >
                                 <div>
                                     <p className="text-sm font-semibold text-[var(--ath-text)]">{prettify(entry.concept_id)}</p>
@@ -147,7 +156,7 @@ export default function InstructorDashboard() {
                 )}
             </section>
 
-            <section className="mx-auto mt-4 max-w-5xl rounded-2xl border border-[var(--ath-line)] bg-white/85 p-5">
+            <section className="mx-auto mt-5 max-w-5xl border-t border-[var(--ath-line)] pt-4">
                 <div className="flex items-baseline justify-between">
                     <h2 className="text-sm font-semibold text-[var(--ath-text)]">Learners &lt; 50% average</h2>
                     <span className="text-[10px] text-[var(--ath-secondary)]" title="Named CAT cohort rows come from the current-student entry form.">named when available</span>
@@ -157,7 +166,7 @@ export default function InstructorDashboard() {
                 ) : (
                     <ul className="mt-3 space-y-1 text-xs text-[var(--ath-muted)]">
                         {strugglers.slice(0, 12).map((s) => (
-                            <li key={s.user_id} className="flex justify-between rounded-lg bg-white/70 px-2.5 py-1.5">
+                            <li key={s.user_id} className="flex justify-between border-b border-[var(--ath-line)] px-1 py-2 last:border-b-0">
                                 <span>
                                     <span className="font-semibold text-[var(--ath-text)]">{s.displayName || `${s.user_id.slice(0, 8)}...`}</span>
                                     {s.cohortLabel && <span className="ml-2 text-[10px] uppercase tracking-[0.14em] text-[var(--ath-secondary)]">{s.cohortLabel}</span>}

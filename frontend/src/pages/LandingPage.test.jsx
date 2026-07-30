@@ -20,6 +20,6 @@ describe('LandingPage', () => {
         )
 
         expect(screen.getAllByText(/Generative Intelligent Textbook/i).length).toBeGreaterThan(0)
-        expect(screen.getByRole('button', { name: /sign in to start/i })).toBeInTheDocument()
+        expect(screen.getByRole('button', { name: /start as a learner/i })).toBeInTheDocument()
     })
 })

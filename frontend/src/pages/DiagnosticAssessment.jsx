@@ -197,7 +197,7 @@ export default function DiagnosticAssessment() {
 
     if (loading) {
         return (
-            <div className="editorial-shell min-h-screen px-6 py-12 md:px-10">
+            <div className="editorial-shell ath-open-layout ath-density-compact min-h-screen px-4 py-7 sm:px-6">
                 <div className="mx-auto flex max-w-3xl items-center justify-center">
                     <div className="editorial-panel w-full max-w-2xl p-10 text-center">
                         <p className="editorial-kicker">Diagnostic Session</p>
@@ -214,7 +214,7 @@ export default function DiagnosticAssessment() {
 
     if (errorMsg || questions.length === 0) {
         return (
-            <div className="editorial-shell min-h-screen px-6 py-12 md:px-10">
+            <div className="editorial-shell ath-open-layout ath-density-compact min-h-screen px-4 py-7 sm:px-6">
                 <div className="mx-auto flex max-w-3xl items-center justify-center">
                     <div className="editorial-panel w-full max-w-xl p-10 text-center">
                         <p className="editorial-kicker">Diagnostic Session</p>
@@ -235,7 +235,7 @@ export default function DiagnosticAssessment() {
 
     if (showIntro && !showResults) {
         return (
-            <div className="editorial-shell min-h-screen px-6 py-12 md:px-10">
+            <div className="editorial-shell ath-open-layout ath-density-compact min-h-screen px-4 py-7 sm:px-6">
                 <div className="mx-auto flex max-w-3xl items-center justify-center">
                     <div className="editorial-panel w-full max-w-2xl p-10 text-center">
                         <p className="editorial-kicker">{courseLabel} · {phaseMeta.subtitle}</p>
@@ -274,7 +274,7 @@ export default function DiagnosticAssessment() {
                     : 'border-[rgba(186,26,26,0.12)] bg-[rgba(255,218,214,0.72)] text-[#8c1d1d]'
 
         return (
-            <div className="editorial-shell min-h-screen px-6 py-12 md:px-10">
+            <div className="editorial-shell ath-open-layout ath-density-compact min-h-screen px-4 py-7 sm:px-6">
                 <div className="mx-auto max-w-4xl">
                     <div className="editorial-panel p-6 md:p-8">
                         <div className="flex flex-wrap items-start justify-between gap-4">
@@ -293,7 +293,7 @@ export default function DiagnosticAssessment() {
                         <div className="editorial-divider my-8" />
 
                         <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-                            <section className="rounded-[1.7rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.82)] p-7 shadow-sm">
+                            <section className="border-t border-[var(--ath-line)] pt-5">
                                 <div className="flex flex-wrap items-center justify-between gap-4">
                                     <div>
                                         <p className="editorial-label">Performance Snapshot</p>
@@ -307,7 +307,7 @@ export default function DiagnosticAssessment() {
                                     </div>
                                 </div>
 
-                                <div className="mt-8 grid gap-5 md:grid-cols-2">
+                                <div className="mt-5 grid gap-4 md:grid-cols-2">
                                     <div>
                                         <p className="editorial-label">Areas To Focus On</p>
                                         <div className="mt-3 flex flex-wrap gap-2">
@@ -338,7 +338,7 @@ export default function DiagnosticAssessment() {
                                 </div>
                             </section>
 
-                            <aside className="rounded-[1.7rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-7 shadow-sm">
+                            <aside className="border-l-2 border-[var(--ath-primary-soft)] px-5 py-2">
                                 <p className="editorial-label">{phaseMeta.summaryLabel}</p>
                                 <h3 className="mt-3 text-2xl font-semibold text-[var(--ath-text)]">
                                     {phase === 'pre' ? `Begin at Section ${results.recommendedStart.replace('/', '.')}` : phaseMeta.title}
@@ -351,7 +351,7 @@ export default function DiagnosticAssessment() {
                                             : 'This delayed probe estimates what stayed stable after time away and what needs another pass before the next block.'}
                                 </p>
 
-                                <div className="mt-6 rounded-[1.2rem] border border-[var(--ath-line)] bg-white/75 p-4">
+                                <div className="mt-5 border-t border-[var(--ath-line)] pt-4">
                                     <p className="editorial-label">Recommended Sections</p>
                                     <div className="mt-3 flex flex-wrap gap-2">
                                         {(results.recommendedSections?.length ? results.recommendedSections : [results.recommendedStart]).map((section) => (
@@ -401,7 +401,7 @@ export default function DiagnosticAssessment() {
     const progress = Math.round(((currentQuestion + 1) / totalQuestions) * 100)
 
     return (
-        <div className="editorial-shell min-h-screen px-6 py-8 md:px-10">
+        <div className="editorial-shell ath-open-layout ath-density-compact min-h-screen px-4 py-6 sm:px-6">
             <div className="mx-auto max-w-3xl">
                 <header className="mb-6">
                     <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[var(--ath-secondary)]">
@@ -427,7 +427,7 @@ export default function DiagnosticAssessment() {
                 </header>
 
                 <main>
-                    <section className="rounded-2xl border border-[var(--ath-line)] bg-white/85 p-6 shadow-sm md:p-8">
+                    <section className="border-t border-[var(--ath-line)] pt-5">
                         <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">
                             <span>Concept</span>
                             <span className="text-[var(--ath-line-strong)]">/</span>
