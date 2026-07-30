@@ -24,3 +24,7 @@ SUPABASE_PUBLISHABLE_KEY = "sb_publishable_mMb65EEINC5Zd7tG45OgCQ_8Qo4TL9_"
 [[services]]
 binding = "ADAPTIVE"
 service = "alget-adaptive-recommendation"
+
+[[kv_namespaces]]
+binding = "ADAPTATION_POLICIES"
+id = "8776b772bd554f7382a0cbf799a96150"

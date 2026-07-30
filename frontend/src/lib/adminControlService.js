@@ -3,6 +3,19 @@ import { isSupabaseConfigured, supabase } from './supabase'
 
 const STORAGE_KEY = 'alget_admin_control_v1'
 
+export const DEFAULT_ADAPTATION_POLICY = {
+    mastery_support_threshold: 0.58,
+    friction_support_threshold: 0.35,
+    calibration_support_threshold: 0.25,
+    forgetting_risk_threshold: 0.55,
+    cooldown_minutes: 8,
+    max_interventions_per_session: 4,
+    fade_mastery_threshold: 0.8,
+    fade_stability_threshold: 0.7,
+    show_why_now: true,
+    require_human_approval: true,
+}
+
 export const AGENT_MANIFEST = [
     { id: 'extraction', name: 'Document Extraction', stage: 'Ingestion', approval: 'automatic' },
     { id: 'curriculum', name: 'Curriculum', stage: 'Structure', approval: 'required' },
@@ -19,6 +32,7 @@ const EMPTY_STATE = {
     ingestionJobs: [],
     agentRuns: [],
     auditEvents: [],
+    adaptationPolicies: [],
 }
 
 function readLocalState() {
@@ -60,7 +74,81 @@ async function loadRemoteState() {
     if (responses.some((response) => response.error)) {
         throw new Error(responses.find((response) => response.error)?.error?.message || 'Admin tables unavailable')
     }
-    return Object.fromEntries(tables.map(([key], index) => [key, responses[index].data || []]))
+    const state = Object.fromEntries(tables.map(([key], index) => [key, responses[index].data || []]))
+    const token = await getAccessToken()
+    const policyResponse = await fetch(`${LLM_API_BASE}/admin/adaptation/policies`, {
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+    })
+    state.adaptationPolicies = policyResponse.ok ? (await policyResponse.json()).policies || [] : []
+    return state
+}
+
+async function adaptationRequest(path, payload) {
+    const token = await getAccessToken()
+    const response = await fetch(`${LLM_API_BASE}${path}`, {
+        method: payload ? 'POST' : 'GET',
+        headers: {
+            ...(payload ? { 'Content-Type': 'application/json' } : {}),
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+        ...(payload ? { body: JSON.stringify(payload) } : {}),
+    })
+    if (!response.ok) {
+        const detail = await response.json().catch(() => ({}))
+        throw new Error(detail.detail || `Adaptation policy request failed (${response.status})`)
+    }
+    return response.json()
+}
+
+export async function saveAdaptationPolicy(course, payload, persistence = 'local') {
+    if (persistence === 'supabase') {
+        const result = await adaptationRequest('/admin/adaptation/policies', {
+            course_id: course.course_key,
+            name: payload.name,
+            notes: payload.notes,
+            policy: payload.policy,
+        })
+        await appendRemoteAudit('adaptation_policy.drafted', 'adaptation_policy', result.policy.id, { course_id: course.id, version: result.policy.version })
+        return result.policy
+    }
+    const state = readLocalState()
+    const coursePolicies = state.adaptationPolicies.filter((item) => item.course_id === course.course_key)
+    const record = {
+        id: localId('policy'), course_id: course.course_key,
+        version: Math.max(0, ...coursePolicies.map((item) => Number(item.version) || 0)) + 1,
+        name: payload.name.trim(), notes: payload.notes.trim(), policy: payload.policy,
+        status: 'draft', created_at: new Date().toISOString(),
+    }
+    state.adaptationPolicies.unshift(record)
+    state.auditEvents.unshift({ id: localId('audit'), action: 'adaptation_policy.drafted', entity_type: 'adaptation_policy', entity_id: record.id, created_at: record.created_at })
+    writeLocalState(state)
+    return record
+}
+
+export async function activateAdaptationPolicy(record, persistence = 'local') {
+    if (persistence === 'supabase') {
+        const result = await adaptationRequest(`/admin/adaptation/policies/${record.id}/activate`, { course_id: record.course_id })
+        await appendRemoteAudit('adaptation_policy.activated', 'adaptation_policy', record.id, { course_id: record.course_id, version: record.version })
+        return result.policy
+    }
+    const state = readLocalState()
+    state.adaptationPolicies = state.adaptationPolicies.map((item) => item.course_id !== record.course_id ? item : item.id === record.id
+        ? { ...item, status: 'active', activated_at: new Date().toISOString() }
+        : item.status === 'active' ? { ...item, status: 'retired' } : item)
+    state.auditEvents.unshift({ id: localId('audit'), action: 'adaptation_policy.activated', entity_type: 'adaptation_policy', entity_id: record.id, created_at: new Date().toISOString() })
+    writeLocalState(state)
+    return state.adaptationPolicies.find((item) => item.id === record.id)
+}
+
+export async function rollbackAdaptationPolicy(record, persistence = 'local') {
+    if (persistence === 'supabase') {
+        const result = await adaptationRequest(`/admin/adaptation/policies/${record.id}/rollback`, { course_id: record.course_id })
+        await appendRemoteAudit('adaptation_policy.rollback_drafted', 'adaptation_policy', result.policy.id, { rollback_of: record.id, version: result.policy.version })
+        return result.policy
+    }
+    return saveAdaptationPolicy({ course_key: record.course_id }, {
+        name: `${record.name} rollback`, notes: `Rollback draft from v${record.version}`, policy: record.policy,
+    }, 'local')
 }
 
 export async function loadAdminState() {

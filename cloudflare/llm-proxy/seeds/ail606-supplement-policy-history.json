@@ -1,0 +1,26 @@
+[
+  {
+    "id": "seed-ail606-adaptation-v1",
+    "course_id": "ail606-supplement",
+    "version": 1,
+    "name": "Evidence-responsive support",
+    "status": "active",
+    "notes": "Initial production policy with bounded support and intentional fading.",
+    "policy": {
+      "mastery_support_threshold": 0.58,
+      "friction_support_threshold": 0.35,
+      "calibration_support_threshold": 0.25,
+      "forgetting_risk_threshold": 0.55,
+      "cooldown_minutes": 8,
+      "max_interventions_per_session": 4,
+      "fade_mastery_threshold": 0.8,
+      "fade_stability_threshold": 0.7,
+      "show_why_now": true,
+      "require_human_approval": true
+    },
+    "created_by": "system-seed",
+    "created_at": "2026-07-30T09:15:00.000Z",
+    "activated_by": "system-seed",
+    "activated_at": "2026-07-30T09:15:00.000Z"
+  }
+]

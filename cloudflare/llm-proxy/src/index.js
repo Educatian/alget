@@ -26,6 +26,19 @@ const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
 const MAX_PDF_BYTES = 25 * 1024 * 1024
 const MAX_PDF_PAGES = 500
 
+const DEFAULT_ADAPTATION_POLICY = {
+  mastery_support_threshold: 0.58,
+  friction_support_threshold: 0.35,
+  calibration_support_threshold: 0.25,
+  forgetting_risk_threshold: 0.55,
+  cooldown_minutes: 8,
+  max_interventions_per_session: 4,
+  fade_mastery_threshold: 0.8,
+  fade_stability_threshold: 0.7,
+  show_why_now: true,
+  require_human_approval: true,
+}
+
 const ADMIN_AGENTS = [
   { id: 'curriculum', name: 'Curriculum Agent', stage: 'structure', approval: 'required', can_publish: false },
   { id: 'extraction', name: 'Document Extraction Agent', stage: 'ingestion', approval: 'automatic', can_publish: false },
@@ -197,6 +210,65 @@ async function handleAdminRequest(request, env, path) {
   if (path === '/admin/agents' && request.method === 'GET') {
     return json({ agents: ADMIN_AGENTS, release_policy: 'human_approval_required' })
   }
+  if (path === '/admin/adaptation/policies' && request.method === 'GET') {
+    if (!env.ADAPTATION_POLICIES) return json({ detail: 'Adaptation policy storage is unavailable' }, 503)
+    const courseId = new URL(request.url).searchParams.get('course_id')
+    if (courseId) {
+      const policies = await env.ADAPTATION_POLICIES.get(`policy:${courseId}:history`, 'json') || []
+      return json({ policies })
+    }
+    const listed = await env.ADAPTATION_POLICIES.list({ prefix: 'policy:' })
+    const historyKeys = listed.keys.filter((item) => item.name.endsWith(':history')).slice(0, 100)
+    const histories = await Promise.all(historyKeys.map((item) => env.ADAPTATION_POLICIES.get(item.name, 'json')))
+    return json({ policies: histories.flatMap((items) => Array.isArray(items) ? items : []) })
+  }
+  if (path === '/admin/adaptation/policies' && request.method === 'POST') {
+    if (!env.ADAPTATION_POLICIES) return json({ detail: 'Adaptation policy storage is unavailable' }, 503)
+    const payload = await request.json().catch(() => ({}))
+    const courseId = String(payload.course_id || '').trim()
+    if (!/^[a-z0-9][a-z0-9-]{1,79}$/.test(courseId)) return json({ detail: 'A valid course identifier is required' }, 422)
+    const policy = validateAdaptationPolicy(payload.policy)
+    if (!policy) return json({ detail: 'Adaptation policy values are invalid' }, 422)
+    const historyKey = `policy:${courseId}:history`
+    const history = await env.ADAPTATION_POLICIES.get(historyKey, 'json') || []
+    const record = {
+      id: crypto.randomUUID(), course_id: courseId, version: Math.max(0, ...history.map((item) => Number(item.version) || 0)) + 1,
+      name: String(payload.name || 'Course adaptation policy').trim().slice(0, 120), status: 'draft', policy,
+      notes: String(payload.notes || '').trim().slice(0, 500), created_by: auth.operator.subject, created_at: new Date().toISOString(),
+    }
+    const nextHistory = [record, ...history].slice(0, 30)
+    await env.ADAPTATION_POLICIES.put(historyKey, JSON.stringify(nextHistory))
+    return json({ policy: record }, 201)
+  }
+  const adaptationAction = path.match(/^\/admin\/adaptation\/policies\/([^/]+)\/(activate|rollback)$/)
+  if (adaptationAction && request.method === 'POST') {
+    if (!env.ADAPTATION_POLICIES) return json({ detail: 'Adaptation policy storage is unavailable' }, 503)
+    const payload = await request.json().catch(() => ({}))
+    const courseId = String(payload.course_id || '').trim()
+    const historyKey = `policy:${courseId}:history`
+    const history = await env.ADAPTATION_POLICIES.get(historyKey, 'json') || []
+    const source = history.find((item) => item.id === adaptationAction[1])
+    if (!source) return json({ detail: 'Policy version not found' }, 404)
+    if (adaptationAction[2] === 'rollback') {
+      const record = {
+        ...source, id: crypto.randomUUID(), version: Math.max(0, ...history.map((item) => Number(item.version) || 0)) + 1,
+        name: `${source.name} rollback`, status: 'draft', rollback_of: source.id, created_by: auth.operator.subject,
+        created_at: new Date().toISOString(), activated_at: null, activated_by: null,
+      }
+      await env.ADAPTATION_POLICIES.put(historyKey, JSON.stringify([record, ...history].slice(0, 30)))
+      return json({ policy: record }, 201)
+    }
+    const activatedAt = new Date().toISOString()
+    const nextHistory = history.map((item) => item.id === source.id
+      ? { ...item, status: 'active', activated_at: activatedAt, activated_by: auth.operator.subject }
+      : item.status === 'active' ? { ...item, status: 'retired' } : item)
+    const active = nextHistory.find((item) => item.id === source.id)
+    await Promise.all([
+      env.ADAPTATION_POLICIES.put(historyKey, JSON.stringify(nextHistory.slice(0, 30))),
+      env.ADAPTATION_POLICIES.put(`policy:${courseId}:active`, JSON.stringify(active)),
+    ])
+    return json({ policy: active })
+  }
   if (path === '/admin/course-plan' && request.method === 'POST') {
     const payload = await request.json().catch(() => ({}))
     const courseId = String(payload.course_id || '')
@@ -217,6 +289,23 @@ async function handleAdminRequest(request, env, path) {
     return new Response(proxied.body, { status: proxied.status, headers: { ...CORS, 'content-type': proxied.headers.get('content-type') || 'application/json' } })
   }
   return json({ detail: `Unknown admin endpoint: ${path}` }, 404)
+}
+
+function validateAdaptationPolicy(input) {
+  const source = input && typeof input === 'object' ? input : {}
+  const ratioKeys = ['mastery_support_threshold', 'friction_support_threshold', 'calibration_support_threshold', 'forgetting_risk_threshold', 'fade_mastery_threshold', 'fade_stability_threshold']
+  const policy = { ...DEFAULT_ADAPTATION_POLICY, ...source }
+  for (const key of ratioKeys) {
+    const value = Number(policy[key])
+    if (!Number.isFinite(value) || value < 0 || value > 1) return null
+    policy[key] = Math.round(value * 100) / 100
+  }
+  policy.cooldown_minutes = Math.round(Number(policy.cooldown_minutes))
+  policy.max_interventions_per_session = Math.round(Number(policy.max_interventions_per_session))
+  if (policy.cooldown_minutes < 0 || policy.cooldown_minutes > 120 || policy.max_interventions_per_session < 1 || policy.max_interventions_per_session > 20) return null
+  policy.show_why_now = policy.show_why_now !== false
+  policy.require_human_approval = policy.require_human_approval !== false
+  return policy
 }
 
 async function openrouter(key, messages, { model, temperature = 0.7, maxTokens = 600 } = {}) {
@@ -485,6 +574,10 @@ function buildCard(action, title, rationale, evidence, focusConcepts, coachPromp
   return { action, title, rationale, evidence: (evidence || []).filter(Boolean).slice(0, 4), focus_concepts: (focusConcepts || []).filter(Boolean).slice(0, 3), coach_prompt: coachPrompt }
 }
 const _ADAPT_REASON_PROSE = {
+  policy_session_limit: 'Support is paused because this session reached the instructor-set intervention limit.',
+  policy_cooldown: 'Support is held back during the instructor-set cooldown so the learner can work independently.',
+  policy_faded_for_independence: 'High mastery and stable performance triggered intentional support fading.',
+  policy_insufficient_support_signal: 'Current evidence does not cross the instructor-set threshold for an intervention.',
   unit_mismatch: 'A unit mismatch is present, which strongly favors direct conceptual repair.',
   idle_reengagement: 'The learner paused long enough that a lighter re-entry move is justified.',
   low_mastery: 'Average mastery is still below the stability band for fluent application.',
@@ -852,8 +945,28 @@ Return EXACTLY: {"content_score":0.0-1.0,"wording_score":0.0-1.0,"sub_scores":{"
         if (!decision || !decision.action_scores) return json({ error: 'policy unavailable' }, 502)
 
         const actionScores = decision.action_scores
-        const primaryAction = decision.selected_action
+        let primaryAction = decision.selected_action
         const policyMode = decision.policy_mode
+        const courseKey = String(body.course || body.section_id || '').split('/')[0]
+        let activePolicy = null
+        if (courseKey && env.ADAPTATION_POLICIES) {
+          try { activePolicy = await env.ADAPTATION_POLICIES.get(`policy:${courseKey}:active`, 'json') } catch { activePolicy = null }
+        }
+        const policyConfig = activePolicy?.policy ? { ...DEFAULT_ADAPTATION_POLICY, ...activePolicy.policy } : null
+        let interventionAllowed = true
+        let suppressionReason = null
+        if (policyConfig) {
+          const recentInterventions = Math.max(0, Number(lp.recent_interventions) || 0)
+          const rawMinutesSinceLast = Number(lp.minutes_since_last_intervention)
+          const minutesSinceLast = Number.isFinite(rawMinutesSinceLast) ? Math.max(0, rawMinutesSinceLast) : Number.POSITIVE_INFINITY
+          const supportSignal = averageMastery < policyConfig.mastery_support_threshold || frictionSignal >= policyConfig.friction_support_threshold || calibrationDrift >= policyConfig.calibration_support_threshold || forgettingRisk >= policyConfig.forgetting_risk_threshold
+          if (recentInterventions >= policyConfig.max_interventions_per_session) suppressionReason = 'session_limit'
+          else if (recentInterventions > 0 && minutesSinceLast < policyConfig.cooldown_minutes) suppressionReason = 'cooldown'
+          else if (averageMastery >= policyConfig.fade_mastery_threshold && stabilityIndex >= policyConfig.fade_stability_threshold) suppressionReason = 'faded_for_independence'
+          else if (!supportSignal) suppressionReason = 'insufficient_support_signal'
+          interventionAllowed = !suppressionReason
+          if (!interventionAllowed) primaryAction = readiness === 'advance' ? 'advance' : 'practice'
+        }
         let ranked = Object.entries(actionScores).sort((a, b) => b[1] - a[1])
         if (ranked[0][0] !== primaryAction) ranked = Object.entries(actionScores).sort((a, b) => (a[0] !== primaryAction) - (b[0] !== primaryAction) || b[1] - a[1])
         const secondBest = ranked.length > 1 ? ranked[1][1] : ranked[0][1]
@@ -871,6 +984,7 @@ Return EXACTLY: {"content_score":0.0-1.0,"wording_score":0.0-1.0,"sub_scores":{"
         if (predNextCorrect) evidence.push(`Predicted next-attempt success is ${pct(predNextCorrect)}.`)
 
         const reasonCodes = (decision.reason_codes || []).slice(0, 5)
+        if (suppressionReason) reasonCodes.unshift(`policy_${suppressionReason}`)
         const recommendedBecause = reasonCodes.filter((c) => _ADAPT_REASON_PROSE[c]).map((c) => _ADAPT_REASON_PROSE[c]).slice(0, 4)
         const notRecommended = []
         for (const [alt, score] of ranked.slice(1, 3)) {
@@ -900,6 +1014,14 @@ Return EXACTLY: {"content_score":0.0-1.0,"wording_score":0.0-1.0,"sub_scores":{"
           section_id: body.section_id,
           decision_id: decision.decision_id,
           policy_mode: policyMode,
+          policy_version: activePolicy ? `${courseKey}-v${activePolicy.version}` : 'heuristic-bandit-v2',
+          adaptation_policy: activePolicy ? {
+            id: activePolicy.id,
+            version: activePolicy.version,
+            intervention_allowed: interventionAllowed,
+            suppression_reason: suppressionReason,
+            show_why_now: policyConfig.show_why_now,
+          } : null,
           content_version: contentVersion,
           content_version_algorithm: contentVersionAlgorithm,
           learner_state: { average_mastery: Math.round(averageMastery * 1000) / 1000, lowest_mastery_concept: lowestConcept, readiness, frustration_index: frustration, confidence_signal: confidenceSignal, forgetting_risk: Math.round(forgettingRisk * 1000) / 1000, calibration_drift: Math.round(calibrationDrift * 1000) / 1000, transfer_readiness: Math.round(transferReadiness * 1000) / 1000, dominant_misconception: dominantMiscon },
