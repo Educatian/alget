@@ -257,6 +257,7 @@ function buildGoogleDocCourseDraft(text, documentId, title = '') {
       social_dynamics: {
         cues: ['peer_presence', 'same_concept_peers', 'share_one_evidence_based_revision'],
         prompts: [`Compare your interpretation of ${heading} with one peer and name the evidence that changed your view.`],
+        rounds: [{ type: 'evidence_compare', min_peers: 1, prompt: `Peer round: compare one evidence-based revision about ${heading}.` }],
         privacy: 'pseudonymous-cohort-aggregate',
       },
     }
@@ -356,6 +357,9 @@ async function convertPdfAtEdge(request) {
   })
   const extractablePages = pages.filter((page) => page.characters >= 24).length
   const filename = String(file.name || 'course-source.pdf').split(/[\\/]/).pop()
+  const markdown = pages.map((page) => `## Page ${page.page}\n\n${page.text || '[No extractable text]'}`).join('\n\n')
+  let runtimeDraft = null
+  try { runtimeDraft = buildGoogleDocCourseDraft(markdown, `pdf:${hash.slice(0, 24)}`, filename) } catch { /* extraction remains usable; faculty can review before generation */ }
   return json({
     status: warnings.length ? 'needs_review' : 'converted',
     filename,
@@ -364,7 +368,8 @@ async function convertPdfAtEdge(request) {
     total_characters: pages.reduce((sum, page) => sum + page.characters, 0),
     metadata: {},
     pages,
-    markdown: pages.map((page) => `## Page ${page.page}\n\n${page.text || '[No extractable text]'}`).join('\n\n'),
+    markdown,
+    runtime_draft: runtimeDraft,
     warnings,
     quality: {
       extractable_page_ratio: Number((extractablePages / pages.length).toFixed(4)),

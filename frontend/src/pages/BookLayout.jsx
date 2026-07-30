@@ -586,6 +586,7 @@ export default function BookLayout({ user, onLogout }) {
                                             signalSummary={socialState.signalSummary}
                                             liveFeed={socialState.liveFeed}
                                             onReaction={socialState.sendReaction}
+                                            onStartRound={() => recordAdaptiveSignal(sectionPath, 'social_round_started', { type: 'evidence_compare' })}
                                             sectionTitle={sectionData?.meta?.title || sectionData?.title || ''}
                                             socialDynamics={sectionData?.social_dynamics || null}
                                         />
