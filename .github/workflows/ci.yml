@@ -2,7 +2,7 @@ name: CI
 
 # Blocking quality gate for ALGET. Every job here must pass before a change
 # can merge. The gate guards three things: authored content (schema + lint),
-# the frontend (tests, lint, build), and the backend (the four pinned test
+# the frontend (tests, lint, build), and the backend (the pinned test
 # modules). See CONTRIBUTING.md and ARCHITECTURE.md section 4.
 
 on:
@@ -110,6 +110,7 @@ jobs:
           backend/test_support_policy.py
           backend/test_agent_persona.py
           backend/test_access_validation.py
+          backend/test_admin_control.py
 
   static-snapshot:
     name: Static snapshot integrity
@@ -142,6 +143,9 @@ jobs:
       - name: Install LLM worker dependencies
         working-directory: cloudflare/llm-proxy
         run: npm ci
+      - name: LLM worker tests
+        working-directory: cloudflare/llm-proxy
+        run: npm test
       - name: LLM worker dry run
         working-directory: cloudflare/llm-proxy
         run: npm run dry-run

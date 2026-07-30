@@ -4,7 +4,16 @@ import { LLM_API_BASE } from './apiConfig'
 const STORAGE_KEY = 'alget_faculty_partnership_v1'
 
 function emptyState() {
-    return { pilots: [], briefs: [], reports: [] }
+    return { pilots: [], briefs: [], reports: [], published: [] }
+}
+
+function localFallbackAllowed() {
+    return !isSupabaseConfigured || import.meta.env.VITE_E2E_AUTH_BYPASS === 'true'
+}
+
+function institutionalStorageError(error) {
+    const detail = error?.message || 'Unknown storage error'
+    return new Error(`Institutional storage is unavailable. Nothing was saved locally. ${detail}`)
 }
 
 function readLocalState() {
@@ -111,21 +120,35 @@ export function buildImpactReport({ courseId, pilot, brief, interventionOutcomes
 
 export async function loadFacultyWorkspace(courseId) {
     if (isSupabaseConfigured) {
-        const [pilots, briefs, reports] = await Promise.all([
+        const [pilots, briefs, reports, published] = await Promise.all([
             supabase.from('faculty_pilots').select('*').eq('course_id', courseId).order('updated_at', { ascending: false }).limit(20),
             supabase.from('instructor_evidence_briefs').select('*').eq('course_id', courseId).order('period_end', { ascending: false }).limit(20),
             supabase.from('course_impact_reports').select('*').eq('course_id', courseId).order('created_at', { ascending: false }).limit(20),
+            supabase.from('published_course_modules').select('*').eq('course_id', courseId).order('published_at', { ascending: false }).limit(20),
         ])
-        if (!pilots.error && !briefs.error && !reports.error) {
-            return { pilots: pilots.data || [], briefs: briefs.data || [], reports: reports.data || [], persistence: 'supabase' }
+        const error = pilots.error || briefs.error || reports.error || published.error
+        if (error) {
+            if (!localFallbackAllowed()) throw institutionalStorageError(error)
+        } else {
+            return { pilots: pilots.data || [], briefs: briefs.data || [], reports: reports.data || [], published: published.data || [], persistence: 'supabase' }
         }
     }
+    if (!localFallbackAllowed()) throw institutionalStorageError()
     const state = readLocalState()
     return {
         pilots: state.pilots.filter((item) => item.course_id === courseId),
         briefs: state.briefs.filter((item) => item.course_id === courseId),
         reports: state.reports.filter((item) => item.course_id === courseId),
+        published: state.published.filter((item) => item.course_id === courseId && item.status === 'published'),
         persistence: 'local',
+    }
+}
+
+export function clearFacultyPartnershipCache() {
+    try {
+        localStorage.removeItem(STORAGE_KEY)
+    } catch {
+        // Storage may be unavailable in hardened browser contexts.
     }
 }
 
@@ -195,16 +218,121 @@ export async function setPilotStatus(pilot, status, persistence = 'local') {
 export async function saveEvidenceBrief(brief, persistence = 'local') {
     const record = { course_id: brief.course_id, period_start: brief.period_start, period_end: brief.period_end, status: 'draft', summary: brief }
     if (persistence === 'supabase') {
-        const { data, error } = await supabase.from('instructor_evidence_briefs').upsert(record, { onConflict: 'course_id,period_start,period_end' }).select().single()
+        const { data: sessionData, error: sessionError } = await supabase.auth.getSession()
+        if (sessionError || !sessionData?.session?.user?.id) throw institutionalStorageError(sessionError || new Error('Instructor session is missing.'))
+        record.created_by = sessionData.session.user.id
+        const { data, error } = await supabase.from('instructor_evidence_briefs').upsert(record, { onConflict: 'course_id,created_by,period_start,period_end' }).select().single()
         if (error) throw error
         return data
     }
     const state = readLocalState()
+    // Local/demo persistence keeps only cohort aggregates. Learner identifiers
+    // and display names never enter browser storage.
+    record.summary = {
+        ...brief,
+        attention: {
+            ...brief.attention,
+            learners: [],
+        },
+    }
     const previous = state.briefs.find((item) => item.course_id === brief.course_id && item.period_start === brief.period_start && item.period_end === brief.period_end)
     const localRecord = { ...record, id: previous?.id || localId('brief'), created_at: previous?.created_at || new Date().toISOString() }
     state.briefs = [localRecord, ...state.briefs.filter((item) => item.id !== previous?.id)]
     writeLocalState(state)
     return localRecord
+}
+
+export async function publishFacultyPilot(pilot, persistence = 'local') {
+    const sections = pilot?.generation_draft?.sections
+    if (!pilot?.id || !pilot?.course_id || !Array.isArray(sections) || sections.length === 0) {
+        throw new Error('Review and save at least one generated section before publishing.')
+    }
+    const record = {
+        course_id: pilot.course_id,
+        pilot_id: pilot.id,
+        title: pilot.title,
+        module_name: pilot.module_name,
+        generation_draft: pilot.generation_draft,
+        status: 'published',
+        published_at: new Date().toISOString(),
+    }
+    if (persistence === 'supabase') {
+        const { data: published, error } = await supabase.from('published_course_modules').upsert(record, { onConflict: 'pilot_id' }).select().single()
+        if (error) throw error
+        const updatedPilot = await setPilotStatus(pilot, 'active', persistence)
+        return { published, pilot: updatedPilot }
+    }
+    const state = readLocalState()
+    const previous = state.published.find((item) => item.pilot_id === pilot.id)
+    const published = { ...record, id: previous?.id || localId('published'), updated_at: new Date().toISOString() }
+    state.published = [published, ...state.published.filter((item) => item.pilot_id !== pilot.id)]
+    const target = state.pilots.find((item) => item.id === pilot.id)
+    if (!target) throw new Error('Pilot not found')
+    target.status = 'active'
+    target.updated_at = new Date().toISOString()
+    writeLocalState(state)
+    return { published, pilot: target }
+}
+
+export async function listPublishedCourseModules(courseId) {
+    if (isSupabaseConfigured) {
+        const { data, error } = await supabase
+            .from('published_course_modules')
+            .select('id, course_id, title, module_name, generation_draft, published_at')
+            .eq('course_id', courseId)
+            .eq('status', 'published')
+            .order('published_at', { ascending: true })
+        if (error) throw institutionalStorageError(error)
+        return data || []
+    }
+    return readLocalState().published.filter((item) => item.course_id === courseId && item.status === 'published')
+}
+
+export function publishedSectionRoute(moduleId, sectionIndex) {
+    return `${moduleId}-${sectionIndex + 1}`
+}
+
+export function mergePublishedModulesIntoToc(toc, modules = []) {
+    const sections = modules.flatMap((module) => (module.generation_draft?.sections || []).map((entry, index) => ({
+        id: publishedSectionRoute(module.id, index),
+        title: entry.title || `${module.module_name} ${index + 1}`,
+    })))
+    if (sections.length === 0) return toc
+    const chapters = (toc?.chapters || []).filter((item) => item.id !== 'published')
+    return { ...toc, chapters: [...chapters, { id: 'published', title: 'Instructor-published modules', sections }] }
+}
+
+export async function loadPublishedCourseSection(courseId, routeSectionId) {
+    const match = String(routeSectionId).match(/^([0-9a-f-]{36}|published-[^-]+(?:-[^-]+)*)-(\d+)$/i)
+    if (!match) throw new Error('Published section address is invalid.')
+    const moduleId = match[1]
+    const sectionIndex = Number(match[2]) - 1
+    const modules = await listPublishedCourseModules(courseId)
+    const module = modules.find((item) => item.id === moduleId)
+    const generated = module?.generation_draft?.sections?.[sectionIndex]
+    if (!module || !generated) throw new Error('Published section is unavailable for this course.')
+    const objectives = generated.learning_objectives || module.generation_draft?.learning_objectives || []
+    const reading = generated.reading || {}
+    const content = reading.content || reading.markdown || generated.source_excerpt || ''
+    return {
+        meta: {
+            course: courseId,
+            chapter: 'published',
+            section: routeSectionId,
+            title: generated.title || module.module_name,
+            description: generated.description || `Instructor-published module: ${module.module_name}`,
+            learning_objectives: objectives,
+            concept_ids: generated.concept_ids || [],
+            estimated_time_minutes: reading.estimated_minutes || 8,
+        },
+        title: generated.title || module.module_name,
+        content,
+        raw: content,
+        activity: generated.activity || null,
+        simulation: generated.simulation || null,
+        practice: generated.practice || null,
+        content_version: module.published_at || module.updated_at || null,
+    }
 }
 
 export async function saveImpactReport(report, persistence = 'local') {

@@ -781,12 +781,19 @@ create policy "Users can insert own stuck_events" on stuck_events
     for insert with check (auth.uid() = user_id);
 
 drop policy if exists "Users can view own mastery" on mastery;
-create policy "Users can view own mastery" on mastery
-    for select using (auth.uid() = user_id or auth.uid() is null);
-
 drop policy if exists "Users can update own mastery" on mastery;
-create policy "Users can update own mastery" on mastery
-    for all using (auth.uid() = user_id or auth.uid() is null);
+drop policy if exists "users read own mastery" on mastery;
+drop policy if exists "users insert own mastery" on mastery;
+drop policy if exists "users update own mastery" on mastery;
+create policy "users read own mastery" on mastery
+    for select to authenticated using ((select auth.uid()) = user_id);
+create policy "users insert own mastery" on mastery
+    for insert to authenticated with check ((select auth.uid()) = user_id);
+create policy "users update own mastery" on mastery
+    for update to authenticated using ((select auth.uid()) = user_id)
+    with check ((select auth.uid()) = user_id);
+revoke all on table mastery from anon;
+grant select, insert, update on table mastery to authenticated;
 
 drop policy if exists "Users can manage own sessions" on learning_sessions;
 create policy "Users can manage own sessions" on learning_sessions
@@ -1007,7 +1014,7 @@ create policy "Authenticated users can read rag documents" on rag_documents
 -- ============================================================================
 
 drop view if exists user_section_progress;
-create or replace view user_section_progress as
+create or replace view user_section_progress with (security_invoker = true) as
 select
     s.user_id,
     sec.id as section_id,
@@ -1029,7 +1036,7 @@ left join stuck_events se on se.user_id = s.user_id and se.section_id = sec.id
 group by s.user_id, sec.id, sec.course, sec.chapter, sec.section, sec.title;
 
 drop view if exists concept_mastery_summary;
-create or replace view concept_mastery_summary as
+create or replace view concept_mastery_summary with (security_invoker = true) as
 select
     c.id as concept_id,
     c.name,
@@ -1044,7 +1051,7 @@ from concepts c
 left join mastery m on c.id = m.concept_id;
 
 drop view if exists popular_highlights;
-create or replace view popular_highlights as
+create or replace view popular_highlights with (security_invoker = true) as
 select
     section_id,
     text_content,
@@ -1057,7 +1064,7 @@ group by section_id, text_content
 having count(distinct user_id) >= 2;
 
 drop view if exists session_event_sequence;
-create or replace view session_event_sequence as
+create or replace view session_event_sequence with (security_invoker = true) as
 select
     s.id as session_id,
     s.user_id,
@@ -1076,7 +1083,7 @@ join event_logs e on s.id = e.session_id
 order by s.id, e.sequence_num;
 
 drop view if exists research_trace_summary;
-create or replace view research_trace_summary as
+create or replace view research_trace_summary with (security_invoker = true) as
 select
   traces.user_id,
   traces.trace_id,
@@ -1169,7 +1176,8 @@ join section_annotations a2
  and a1.user_id <> a2.user_id
 group by a1.section_id, a1.user_id, a2.user_id;
 
-grant select on popular_highlights to authenticated;
+revoke all on user_section_progress, concept_mastery_summary, popular_highlights, session_event_sequence, research_trace_summary from anon;
+grant select on user_section_progress, concept_mastery_summary, popular_highlights to authenticated;
 grant select on session_event_sequence to authenticated;
 grant select on research_trace_summary to authenticated;
 grant select on highlight_reaction_summary to authenticated;

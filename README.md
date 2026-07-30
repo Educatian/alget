@@ -214,7 +214,7 @@ flowchart TB
 | `/book/:course` | BookLayout (TOC) | user |
 | `/book/:course/:chapter/:section` | BookLayout (reader + IntelRail + ChatWidget) | user |
 | `/dashboard` | StudentDashboard + learner-owned study planner | user |
-| `/instructor` | Faculty shadow pilot, weekly evidence brief, impact report, intervention approval queue | `alget_instructor_access` |
+| `/instructor` | Course-scoped faculty pilot, approved reader publication, evidence brief, impact report, intervention queue | server-issued `instructor`, `course_admin`, or `admin` role + course-assignment RLS |
 | `/admin` | AdminControlPlane (ingestion, agents, policy, audit) | admin / course admin |
 | `/lab` | GenerativeLab (CurriculumAgent module gen) | researcher |
 | `/analytics` | AnalyticsDashboard (research console) | researcher |

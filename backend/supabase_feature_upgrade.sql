@@ -36,7 +36,7 @@ CREATE POLICY "Authenticated users can read all highlights" ON highlights
 -- 2. POPULAR HIGHLIGHTS VIEW (COLLABORATIVE HIGHLIGHT AGGREGATION)
 -- ============================================================================
 DROP VIEW IF EXISTS popular_highlights;
-CREATE OR REPLACE VIEW popular_highlights AS
+CREATE OR REPLACE VIEW popular_highlights WITH (security_invoker = true) AS
 SELECT
     section_id,
     text_content,
@@ -48,6 +48,7 @@ FROM highlights
 GROUP BY section_id, text_content
 HAVING COUNT(DISTINCT user_id) >= 2;
 
+REVOKE ALL ON popular_highlights FROM anon;
 GRANT SELECT ON popular_highlights TO authenticated;
 
 -- 3. CHAT HISTORY TABLE (CONVERSATION HISTORY)
