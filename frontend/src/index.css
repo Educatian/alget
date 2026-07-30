@@ -642,6 +642,129 @@ h6,
   border-radius: var(--ath-radius-lg);
 }
 
+/* Shared Figma workspace language for dashboards and tools. Every application
+   surface now uses the same warm canvas, quiet white surfaces, 14px radius,
+   and compact type rhythm as the reader reference frames. */
+.ath-density-compact,
+.ath-admin-shell {
+  background: #f7f5f0;
+  color: #1c1a29;
+}
+
+.ath-density-compact .editorial-surface,
+.ath-density-compact .content-card,
+.ath-density-compact .card-surface,
+.ath-admin-shell .editorial-surface,
+.ath-admin-shell .content-card,
+.ath-admin-shell .card-surface {
+  border-color: transparent;
+  border-radius: 0.875rem;
+  background: #fff;
+  box-shadow: none;
+}
+
+.ath-density-compact .editorial-button,
+.ath-density-compact .editorial-button-secondary,
+.ath-admin-shell .editorial-button,
+.ath-admin-shell .editorial-button-secondary {
+  min-height: 2.25rem;
+  border-radius: 0.5rem;
+  letter-spacing: -0.005em;
+}
+
+.ath-learner-shell > .ath-container {
+  max-width: 80rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
+.ath-learner-shell > .ath-container > header {
+  padding-top: 2rem;
+}
+
+.ath-learner-shell .card-surface {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.ath-learner-shell .student-dashboard,
+.ath-learner-shell section {
+  border-color: transparent;
+}
+
+.ath-instructor-shell > header,
+.ath-instructor-shell > section,
+.ath-instructor-shell > p,
+.ath-instructor-shell > form {
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ath-instructor-shell > section {
+  border-color: transparent;
+}
+
+.ath-instructor-shell > section:not(:first-of-type),
+.ath-instructor-shell > form {
+  margin-top: 1.25rem;
+}
+
+.ath-instructor-shell .editorial-input,
+.ath-admin-shell .editorial-input {
+  min-height: 2.5rem;
+  border-radius: 0.5rem;
+  border-color: rgba(28, 26, 41, 0.1);
+  background: #fff;
+}
+
+.ath-admin-shell .ath-topbar {
+  min-height: 4rem;
+  border-bottom: 0;
+  background: #fff;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.ath-admin-shell .ath-topbar > div,
+.ath-admin-shell > div {
+  max-width: 80rem;
+}
+
+.ath-admin-shell > div {
+  gap: 1.5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.ath-admin-shell nav button {
+  border-left-width: 2px;
+  border-radius: 0.25rem;
+  padding: 0.65rem 0.75rem;
+  font-size: 0.8125rem;
+}
+
+.ath-admin-shell main > section,
+.ath-admin-shell main > div {
+  border-color: transparent;
+  border-radius: 0.875rem;
+}
+
+.ath-lab-shell .editorial-surface,
+.ath-lab-shell .content-card {
+  border-color: transparent;
+  border-radius: 0.875rem;
+  background: #fff;
+  box-shadow: none;
+}
+
+@media (max-width: 64rem) {
+  .ath-learner-shell > .ath-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
 .ath-metric-strip > .editorial-surface {
   border: 0;
   border-left: 2px solid var(--ath-primary-soft);

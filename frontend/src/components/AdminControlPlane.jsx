@@ -86,7 +86,7 @@ export default function AdminControlPlane({ cohortContent, onBack, onResearcher 
     }), [state])
 
     return (
-        <div className="editorial-shell ath-open-layout min-h-screen bg-[var(--ath-background)]">
+        <div className="ath-admin-shell editorial-shell ath-open-layout min-h-screen bg-[var(--ath-background)]">
             <header className="ath-topbar sticky top-0 z-20 px-4 py-3 md:px-6">
                 <div className="mx-auto flex max-w-7xl items-center gap-3">
                     <BigALCompanion state={metrics.approvals ? 'nudge' : 'rest'} size={40} />
