@@ -18,7 +18,9 @@ ALGET lets an instructor connect one Google Doc, inspect a generated course expe
 
 ## Account and roster onboarding
 
-- Instructor accounts are created through an administrator invitation. A public user cannot self-assign the `instructor` role.
+- Instructor accounts may be requested through public sign-up by selecting **Instructor**. Supabase creates a `pending_approval` application, but never grants instructor permissions at sign-up.
+- A course administrator reviews applications in Admin → Instructors. Approval changes the profile to `active` and assigns the server-side `instructor` role; rejection assigns `instructor_rejected`. Course creation, source ingestion, roster access, and artifact generation remain unavailable until approval.
+- The existing administrator invitation path remains available for direct onboarding. A public user cannot self-assign the `instructor` role.
 - An active instructor can invite a learner from the course-scoped roster panel. The invitation creates a Supabase Auth account, sends the learner a secure setup email, and records an `invited` roster row for that course.
 - The invitation endpoint verifies the instructor's active profile and course ownership before creating the account. It never grants instructor or administrator metadata to the learner.
 

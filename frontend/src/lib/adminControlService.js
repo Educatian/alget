@@ -251,6 +251,26 @@ export async function registerInstructor(payload, persistence = 'local') {
     return record
 }
 
+export async function reviewInstructorApplication(profile, decision, note = '', persistence = 'local') {
+    if (persistence === 'supabase') {
+        const accessToken = await getAccessToken()
+        const response = await fetch(`${LLM_API_BASE}/admin/instructors/review`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}) },
+            body: JSON.stringify({ profile_id: profile.id, decision, note }),
+        })
+        const payload = await response.json().catch(() => ({}))
+        if (!response.ok) throw new Error(payload.detail || 'Instructor review failed')
+        return { ...profile, status: payload.status }
+    }
+    const state = readLocalState()
+    const status = decision === 'approve' ? 'active' : 'rejected'
+    state.instructors = state.instructors.map((item) => item.id === profile.id ? { ...item, status } : item)
+    state.auditEvents.unshift({ id: localId('audit'), action: `instructor.${decision}d`, entity_type: 'instructor', entity_id: profile.id, created_at: new Date().toISOString() })
+    writeLocalState(state)
+    return state.instructors.find((item) => item.id === profile.id)
+}
+
 export async function createManagedCourse(payload, persistence = 'local') {
     const row = {
         course_key: payload.courseKey.trim().toLowerCase(),
