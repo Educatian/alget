@@ -9,6 +9,7 @@ FastAPI server providing:
 """
 
 from contextlib import asynccontextmanager
+from datetime import date
 
 from fastapi import Depends, FastAPI, File, Form, Header, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -92,6 +93,13 @@ from grading_service import grade_problem
 from rag_service import rag_service
 from agents.assessment_agent import AssessmentAgent
 from admin_control import AGENT_MANIFEST, MAX_PDF_BYTES, build_governed_course_plan, convert_pdf_bytes
+from agentic_runtime import (
+    TOOL_REGISTRY,
+    build_intervention_proposal,
+    build_learner_plan,
+    evaluate_tool_action,
+    validate_transition,
+)
 from generation_trace import build_generation_trace
 from knowledge_tracing import (
     BayesianKnowledgeTracing,
@@ -240,6 +248,42 @@ class AdminInstructorInviteRequest(BaseModel):
     email: str = Field(min_length=5, max_length=320)
     display_name: str = Field(min_length=2, max_length=120)
     redirect_url: Optional[str] = Field(default=None, max_length=500)
+
+
+class AgenticMasteryEvidence(BaseModel):
+    concept_id: str = Field(min_length=1, max_length=160)
+    mastery_score: Optional[float] = Field(default=None, ge=0.0, le=1.0)
+    p_known: Optional[float] = Field(default=None, ge=0.0, le=1.0)
+    attempts_count: int = Field(default=0, ge=0, le=100000)
+
+
+class AgenticLearnerPlanRequest(BaseModel):
+    course_id: str = Field(min_length=2, max_length=80, pattern=r"^[a-z0-9][a-z0-9-]*$")
+    goal_title: str = Field(min_length=3, max_length=240)
+    target_date: date
+    target_mastery: float = Field(default=0.8, ge=0.5, le=1.0)
+    weekly_minutes: int = Field(default=180, ge=60, le=1200)
+    mastery: list[AgenticMasteryEvidence] = Field(default_factory=list, max_length=500)
+
+
+class AgenticInterventionProposalRequest(BaseModel):
+    course_id: str = Field(min_length=2, max_length=80, pattern=r"^[a-z0-9][a-z0-9-]*$")
+    concept_id: str = Field(min_length=1, max_length=160)
+    learner_count: int = Field(ge=1, le=100000)
+    average_mastery: float = Field(ge=0.0, le=1.0)
+    target_user_ids: list[str] = Field(default_factory=list, max_length=500)
+
+
+class AgenticToolDecisionRequest(BaseModel):
+    tool_id: str = Field(min_length=1, max_length=120)
+    actor_role: Literal["learner", "instructor", "course_admin", "admin"]
+    approved: bool = False
+
+
+class AgenticTransitionRequest(BaseModel):
+    current_status: str = Field(min_length=2, max_length=40)
+    target_status: str = Field(min_length=2, max_length=40)
+    approved: bool = False
 
 class CurriculumGenerateRequest(BaseModel):
     biology_context: str
@@ -2261,6 +2305,57 @@ async def admin_system_summary(operator=Depends(require_admin_access)):
 @app.get("/api/admin/agents")
 async def admin_agents(_operator=Depends(require_admin_access)):
     return {"agents": AGENT_MANIFEST, "release_policy": "human_approval_required"}
+
+
+@app.get("/api/agentic/tools")
+async def agentic_tools():
+    """Public policy manifest; contains capabilities, never credentials."""
+    return {
+        "schema_version": "agentic-tool-registry-v1",
+        "tools": TOOL_REGISTRY,
+        "default_policy": "deny",
+    }
+
+
+@app.post("/api/agentic/tools/evaluate")
+async def agentic_tool_decision(payload: AgenticToolDecisionRequest):
+    """Evaluate a proposed action without executing it."""
+    return evaluate_tool_action(payload.tool_id, payload.actor_role, payload.approved)
+
+
+@app.post("/api/agentic/workflows/transition-check")
+async def agentic_transition_check(payload: AgenticTransitionRequest):
+    """Expose the same transition contract used by the durable SQL runtime."""
+    return validate_transition(
+        payload.current_status,
+        payload.target_status,
+        approved=payload.approved,
+    )
+
+
+@app.post("/api/agentic/learner-plan")
+async def agentic_learner_plan(payload: AgenticLearnerPlanRequest):
+    """Generate an evidence-linked plan that remains inactive until learner approval."""
+    try:
+        return build_learner_plan(
+            course_id=payload.course_id,
+            goal_title=payload.goal_title,
+            target_date=payload.target_date,
+            target_mastery=payload.target_mastery,
+            weekly_minutes=payload.weekly_minutes,
+            mastery=[row.model_dump() for row in payload.mastery],
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+
+
+@app.post("/api/agentic/interventions/propose")
+async def agentic_intervention_proposal(payload: AgenticInterventionProposalRequest):
+    """Draft an intervention; delivery and grading are intentionally out of scope."""
+    try:
+        return build_intervention_proposal(**payload.model_dump())
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
 
 
 @app.post("/api/admin/instructors/invite")

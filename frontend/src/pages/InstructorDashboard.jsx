@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { supabase } from '../lib/supabase'
 import { fetchRctSnapshot } from '../lib/researchService'
+import InstructorInterventionQueue from '../components/InstructorInterventionQueue'
 
 /**
  * InstructorDashboard - cohort-level view for instructors. Shows where the
@@ -40,7 +41,7 @@ export default function InstructorDashboard({ user }) {
                 const rows = masteryResponse?.data || []
                 const roster = buildRosterMap(rosterResponse?.data || [])
                 if (!cancelled && rows) {
-                    setMasteryHeatmap(buildHeatmap(rows))
+                    setMasteryHeatmap(buildHeatmap(rows, roster))
                     setStrugglers(buildStrugglers(rows, roster))
                 }
                 const snap = await fetchRctSnapshot()
@@ -69,6 +70,11 @@ export default function InstructorDashboard({ user }) {
         const positive = outcomes.reduce((sum, row) => sum + Number(row.resolved_positive || 0), 0)
         return total > 0 ? Math.round((positive / total) * 100) : 0
     }, [rct])
+
+    const cohortCourseId = useMemo(
+        () => strugglers.find((entry) => entry.courseId)?.courseId || user?.user_metadata?.course_id || 'cohort',
+        [strugglers, user?.user_metadata?.course_id],
+    )
 
     if (loading) {
         return (
@@ -128,33 +134,11 @@ export default function InstructorDashboard({ user }) {
                 </div>
             </section>
 
-            <section className="mx-auto mt-5 max-w-5xl border-t border-[var(--ath-line)] pt-4">
-                <h2 className="text-sm font-semibold text-[var(--ath-text)]">Concept hot-spots / re-teach next session</h2>
-                {lowMasteryConcepts.length === 0 ? (
-                    <p className="mt-3 text-xs text-[var(--ath-muted)]">No cohort-wide low mastery - class on track.</p>
-                ) : (
-                    <ul className="mt-4 space-y-2">
-                        {lowMasteryConcepts.map((entry) => (
-                            <li
-                                key={entry.concept_id}
-                                className="flex items-center justify-between border-b border-[var(--ath-line)] px-1 py-2.5 last:border-b-0"
-                            >
-                                <div>
-                                    <p className="text-sm font-semibold text-[var(--ath-text)]">{prettify(entry.concept_id)}</p>
-                                    <p className="text-xs text-[var(--ath-muted)]">
-                                        {entry.learnerCount} learners / cohort avg {Math.round(entry.average * 100)}%
-                                    </p>
-                                </div>
-                                <span className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                                    entry.average < 0.4 ? 'bg-rose-100 text-rose-800' : 'bg-amber-100 text-amber-800'
-                                }`}>
-                                    {entry.average < 0.4 ? 'urgent' : 'monitor'}
-                                </span>
-                            </li>
-                        ))}
-                    </ul>
-                )}
-            </section>
+            <InstructorInterventionQueue
+                user={user}
+                hotSpots={lowMasteryConcepts}
+                courseId={cohortCourseId}
+            />
 
             <section className="mx-auto mt-5 max-w-5xl border-t border-[var(--ath-line)] pt-4">
                 <div className="flex items-baseline justify-between">
@@ -185,18 +169,22 @@ function buildRosterMap(rows = []) {
     return new Map(rows.map((row) => [row.user_id, row]))
 }
 
-function buildHeatmap(rows) {
+function buildHeatmap(rows, roster = new Map()) {
     const byConcept = new Map()
     rows.forEach((row) => {
         const score = Number(row.mastery_score ?? row.p_known ?? 0)
         const key = row.concept_id
-        if (!byConcept.has(key)) byConcept.set(key, { concept_id: key, scores: [] })
-        byConcept.get(key).scores.push(score)
+        if (!byConcept.has(key)) byConcept.set(key, { concept_id: key, scores: [], userIds: [] })
+        const entry = byConcept.get(key)
+        entry.scores.push(score)
+        if (score < 0.6 && row.user_id) entry.userIds.push(row.user_id)
     })
     return Array.from(byConcept.values()).map((entry) => ({
         concept_id: entry.concept_id,
         average: entry.scores.reduce((a, b) => a + b, 0) / entry.scores.length,
         learnerCount: entry.scores.length,
+        userIds: [...new Set(entry.userIds)],
+        courseId: entry.userIds.map((userId) => roster.get(userId)?.course_id).find(Boolean) || null,
     }))
 }
 
@@ -218,8 +206,4 @@ function buildStrugglers(rows, roster = new Map()) {
         }))
         .filter((entry) => entry.average < 0.5 && entry.conceptCount >= 3)
         .sort((a, b) => a.average - b.average)
-}
-
-function prettify(id) {
-    return String(id || '').replace(/[_-]/g, ' ').replace(/\b\w/g, (m) => m.toUpperCase())
 }

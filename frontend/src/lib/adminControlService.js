@@ -31,6 +31,7 @@ const EMPTY_STATE = {
     courses: [],
     ingestionJobs: [],
     agentRuns: [],
+    workflows: [],
     auditEvents: [],
     adaptationPolicies: [],
     adaptationControls: {},
@@ -69,6 +70,7 @@ async function loadRemoteState() {
         ['courses', 'managed_courses'],
         ['ingestionJobs', 'content_ingestion_jobs'],
         ['agentRuns', 'agent_control_runs'],
+        ['workflows', 'agent_workflows'],
         ['auditEvents', 'admin_audit_events'],
     ]
     const responses = await Promise.all(tables.map(([, table]) => supabase.from(table).select('*').order('created_at', { ascending: false }).limit(100)))

@@ -151,6 +151,11 @@ Real screenshots captured from the running app via Playwright (1280×800 @ 2× D
 | `/api/book/{course}/toc` | GET | Course TOC |
 | `/api/diagnostic/questions/{course_id}` | GET | Pre-test items |
 | `/api/access/validate` | POST | Scope-gated unlock (engineering / education / researcher) |
+| `/api/agentic/tools` | GET | Governed tool registry with risk and approval requirements |
+| `/api/agentic/tools/evaluate` | POST | Default-deny permission and execution policy check |
+| `/api/agentic/workflows/transition-check` | POST | Validate a workflow state transition before persistence |
+| `/api/agentic/learner-plan` | POST | Draft an evidence-linked, learner-approved study plan |
+| `/api/agentic/interventions/propose` | POST | Draft a bounded instructor intervention; never sends or grades |
 | `/api/chat`, `/api/log-events` | POST | BigAL chat + telemetry beacon |
 
 ### 4.2 Frontend routes (React Router 7)
@@ -177,6 +182,8 @@ Six SQL schemas, all RLS-gated:
 - `supabase_logging.sql` — event_logging, user_sessions, grading_log
 - `supabase_social_features.sql` — social_presence, collaboration_groups, highlight_reactions, highlight_replies, kindred-readers view
 - `supabase_all_in_one.sql` — single bundled deploy file
+
+The timestamped migration `supabase/migrations/20260730100000_agentic_lms_runtime.sql` adds durable workflows, workflow events, learner goals/plans, and instructor intervention review queues. Proposals are separated from effects: learner plans and instructor interventions remain `awaiting_approval` until the accountable person acts. Messaging, publishing, enrollment changes, and final-grade execution are not exposed as autonomous actions. See `docs/AGENTIC_LMS_RUNTIME.md`.
 
 The four-way join `experiment_assignments × interaction_events × intervention_traces/recommendation_decisions × evaluation_runs/evaluation_responses` is what makes RCT, off-policy evaluation, item diagnostics, and forgetting-rate estimation tractable directly from production data.
 
@@ -333,9 +340,11 @@ backend/supabase_logging.sql
 backend/supabase_learning_features.sql
 backend/supabase_research_schema.sql
 backend/supabase_social_features.sql
+supabase/migrations/20260730090000_admin_control_plane.sql
+supabase/migrations/20260730100000_agentic_lms_runtime.sql
 ```
 
-Or run `backend/supabase_all_in_one.sql` for a single-shot deploy. This bundle is the complete, idempotent superset of every feature schema (all 37 tables, including the social-annotation, highlight-social, RAG, and artifact-revision-score layers), so you do not need to run the individual files alongside it. Every table is created with `if not exists` guards, has row-level security enabled, and carries owner plus visibility policies (re-running drops and recreates each policy safely). Use the per-file list above only if you want to apply a single layer in isolation.
+The timestamped migrations add the administrative and agentic runtime layers and must be applied after the legacy schema bundle. Every new table is RLS-gated; security-definer RPCs perform identity and role checks before creating or reviewing workflows.
 
 ### 9.5 Demo flow
 

@@ -12,6 +12,7 @@ import { getExitTicketCue, listExitTickets } from '../lib/exitTickets'
 import CohortLiveMap from '../components/CohortLiveMap'
 import KindredReaders from '../components/KindredReaders'
 import EmptyState from '../components/EmptyState'
+import LearnerStudyPlanner from '../components/LearnerStudyPlanner'
 
 /**
  * StudentDashboard - learner-facing mastery view. Shows weak concepts,
@@ -207,6 +208,12 @@ export default function StudentDashboard({ user }) {
                         </div>
                     </section>
                 )}
+
+                <LearnerStudyPlanner
+                    user={user}
+                    mastery={masteryRows}
+                    courseId={recentSection?.course || ''}
+                />
 
                 <section>
                     <div className="flex flex-wrap items-center gap-2 text-[var(--ath-text-2xs)] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">

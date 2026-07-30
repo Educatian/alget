@@ -24,6 +24,7 @@ vi.mock('../hooks/useCourseProgress', () => ({
 const masteryFixture = vi.hoisted(() => ({ rows: [] }))
 
 vi.mock('../lib/supabase', () => ({
+    isSupabaseConfigured: false,
     supabase: {
         from: vi.fn(() => ({
             select: vi.fn().mockReturnThis(),

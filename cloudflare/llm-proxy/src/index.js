@@ -8,7 +8,8 @@ import { extractText, getDocumentProxy } from 'unpdf'
 //   - Deterministic, ported from the Python backend (parity-verified): BKT
 //     grade + telemetry_fusion, practice grade/{id} (reads static practice),
 //     artifact-revision score, research-evaluation validate, concept-origin +
-//     mastery_graph (from baked static indexes), adaptive_recommendation
+//     mastery_graph (from baked static indexes), governed agentic planning,
+//     adaptive_recommendation
 //     (policy via the alget-adaptive-recommendation Worker, service-bound).
 //   - Static content/diagnostic/indexes are served by Cloudflare Pages.
 //
@@ -715,6 +716,102 @@ function historyToMessages(history) {
   }).filter((m) => m.content)
 }
 
+const AGENTIC_TOOLS = [
+  { id: 'course.read', label: 'Read course content', risk: 'low', roles: ['learner', 'instructor', 'course_admin', 'admin'], approval: 'none' },
+  { id: 'mastery.read_own', label: 'Read own mastery evidence', risk: 'low', roles: ['learner'], approval: 'none' },
+  { id: 'study_plan.write_own', label: 'Draft or revise own study plan', risk: 'low', roles: ['learner'], approval: 'learner' },
+  { id: 'cohort.aggregate.read', label: 'Read cohort-level learning signals', risk: 'medium', roles: ['instructor', 'course_admin', 'admin'], approval: 'none' },
+  { id: 'intervention.draft', label: 'Draft a cohort intervention', risk: 'medium', roles: ['instructor', 'course_admin', 'admin'], approval: 'instructor' },
+  { id: 'learner.message', label: 'Send a learner communication', risk: 'high', roles: ['instructor', 'course_admin', 'admin'], approval: 'instructor', executable: false },
+  { id: 'grade.finalize', label: 'Finalize a grade', risk: 'high', roles: ['instructor'], approval: 'instructor', executable: false },
+  { id: 'content.publish', label: 'Publish course content', risk: 'high', roles: ['course_admin', 'admin'], approval: 'course_admin', executable: false },
+]
+
+const AGENTIC_TRANSITIONS = {
+  draft: ['awaiting_approval', 'cancelled'],
+  awaiting_approval: ['active', 'cancelled', 'blocked'],
+  active: ['paused', 'completed', 'blocked', 'cancelled'],
+  paused: ['active', 'cancelled'],
+  blocked: ['awaiting_approval', 'cancelled'],
+  completed: [],
+  cancelled: [],
+}
+
+function evaluateAgenticTool(body) {
+  const tool = AGENTIC_TOOLS.find((entry) => entry.id === body.tool_id)
+  if (!tool) return { allowed: false, reason: 'unknown_tool', tool_id: body.tool_id }
+  if (!tool.roles.includes(body.actor_role)) return { allowed: false, reason: 'role_not_permitted', tool }
+  if (tool.executable === false) return { allowed: false, reason: 'execution_not_implemented', tool }
+  if (tool.approval !== 'none' && body.approved !== true) return { allowed: false, reason: 'approval_required', tool }
+  return { allowed: true, reason: 'policy_passed', tool }
+}
+
+function validateAgenticTransition(body) {
+  const targets = AGENTIC_TRANSITIONS[body.current_status]
+  if (!targets) return { allowed: false, reason: 'unknown_current_status' }
+  if (!targets.includes(body.target_status)) return { allowed: false, reason: 'invalid_transition' }
+  if (body.current_status === 'awaiting_approval' && body.target_status === 'active' && body.approved !== true) {
+    return { allowed: false, reason: 'approval_required' }
+  }
+  return { allowed: true, reason: 'transition_allowed' }
+}
+
+function buildAgenticLearnerPlan(body) {
+  const targetMastery = Number(body.target_mastery ?? 0.8)
+  const weeklyMinutes = Number(body.weekly_minutes ?? 180)
+  const today = new Date(); today.setUTCHours(0, 0, 0, 0)
+  const targetDate = new Date(`${body.target_date}T00:00:00.000Z`)
+  if (!body.course_id || !body.goal_title || !Number.isFinite(targetDate.getTime())) throw new Error('invalid_plan_request')
+  if (targetDate < today) throw new Error('target_date must be today or later')
+  if (targetMastery < 0.5 || targetMastery > 1) throw new Error('target_mastery must be between 0.5 and 1.0')
+  if (weeklyMinutes < 60 || weeklyMinutes > 1200) throw new Error('weekly_minutes must be between 60 and 1200')
+  const mastery = (Array.isArray(body.mastery) ? body.mastery : [])
+    .filter((row) => row?.concept_id)
+    .map((row) => ({ concept_id: String(row.concept_id), mastery: Math.max(0, Math.min(1, Number(row.mastery_score ?? row.p_known ?? 0))), attempts: Math.max(0, Number(row.attempts_count || 0)) }))
+    .sort((left, right) => left.mastery - right.mastery || left.attempts - right.attempts || left.concept_id.localeCompare(right.concept_id))
+  const weak = mastery.filter((row) => row.mastery < targetMastery)
+  const focus = weak.length ? weak : mastery.length ? mastery.slice(0, 3) : [{ concept_id: 'course-foundations', mastery: 0, attempts: 0 }]
+  const sessionCount = Math.max(3, Math.min(7, Math.round(weeklyMinutes / 35)))
+  const sessionMinutes = Math.max(20, Math.min(50, Math.floor(weeklyMinutes / sessionCount)))
+  const daysAvailable = Math.max(1, Math.min(7, Math.floor((targetDate - today) / 86400000) + 1))
+  const modes = ['explain', 'worked-example', 'retrieval-practice', 'teach-back']
+  const sessions = Array.from({ length: sessionCount }, (_, index) => {
+    const concept = focus[index % focus.length]
+    const scheduled = new Date(today); scheduled.setUTCDate(today.getUTCDate() + Math.round(index * Math.max(0, daysAvailable - 1) / Math.max(1, sessionCount - 1)))
+    const mode = modes[index % modes.length]
+    return {
+      id: `session-${index + 1}`, scheduled_for: scheduled.toISOString().slice(0, 10), minutes: sessionMinutes,
+      concept_id: concept.concept_id, mode,
+      actions: ['Review the learning objective and one canonical example', `Complete a ${mode.replaceAll('-', ' ')} activity`, 'Record confidence before checking feedback', 'Finish with one retrieval question'],
+      why_now: `Current mastery evidence is ${Math.round(concept.mastery * 100)}% from ${concept.attempts} recorded attempt(s), below the ${Math.round(targetMastery * 100)}% goal.`,
+    }
+  })
+  return {
+    schema_version: 'agentic-study-plan-v1', course_id: body.course_id, goal: String(body.goal_title).trim(),
+    target_date: body.target_date, target_mastery: targetMastery, weekly_minutes: weeklyMinutes, generated_at: new Date().toISOString(),
+    planning_horizon: { starts_on: today.toISOString().slice(0, 10), days: daysAvailable }, focus_concepts: focus.slice(0, 8), sessions,
+    evidence: { source: 'learner_mastery_snapshot', concept_count: mastery.length, weak_concept_count: weak.length, causal_claim: false },
+    learner_control: { requires_approval: true, can_edit: true, can_pause: true, can_cancel: true, memory_scope: 'learner-owned' },
+  }
+}
+
+function buildAgenticIntervention(body) {
+  const learnerCount = Number(body.learner_count)
+  const average = Math.max(0, Math.min(1, Number(body.average_mastery)))
+  if (!body.course_id || !body.concept_id || !Number.isFinite(learnerCount) || learnerCount < 1 || !Number.isFinite(average)) throw new Error('invalid_intervention_request')
+  return {
+    schema_version: 'agentic-intervention-v1', course_id: body.course_id, concept_id: body.concept_id,
+    title: `Re-teach ${String(body.concept_id).replace(/[_-]/g, ' ')}`,
+    summary: `Prepare a short compare-and-correct activity for ${learnerCount} learner(s); do not send or grade automatically.`,
+    recommended_actions: ['Open with one diagnostic contrast example', 'Ask learners to explain the difference before feedback', 'Assign one low-stakes retrieval check', 'Review the next evidence snapshot before further action'],
+    evidence: { learner_count: learnerCount, average_mastery: Math.round(average * 10000) / 10000, threshold: 0.6, urgency: average < 0.4 ? 'urgent' : 'monitor', causal_claim: false },
+    target_user_ids: Array.isArray(body.target_user_ids) ? body.target_user_ids : [], risk_level: 'medium',
+    delivery: { executed: false, requires_instructor_approval: true }, generated_at: new Date().toISOString(),
+  }
+}
+
+export { evaluateAgenticTool, validateAgenticTransition, buildAgenticLearnerPlan, buildAgenticIntervention }
+
 export default {
   async fetch(request, env, ctx) {
     if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: CORS })
@@ -743,6 +840,10 @@ export default {
       })
     }
 
+    if (path === '/agentic/tools' && request.method === 'GET') {
+      return json({ schema_version: 'agentic-tool-registry-v1', tools: AGENTIC_TOOLS, default_policy: 'deny' })
+    }
+
     if (path.startsWith('/admin/')) {
       return handleAdminRequest(request, env, path)
     }
@@ -757,6 +858,15 @@ export default {
     const noKeyMsg = 'AI support is not configured yet (no OpenRouter key). Add your own key in Settings, or ask your instructor to enable it.'
 
     try {
+      if (path === '/agentic/tools/evaluate') return json(evaluateAgenticTool(body))
+      if (path === '/agentic/workflows/transition-check') return json(validateAgenticTransition(body))
+      if (path === '/agentic/learner-plan') {
+        try { return json(buildAgenticLearnerPlan(body)) } catch (error) { return json({ detail: error.message }, 422) }
+      }
+      if (path === '/agentic/interventions/propose') {
+        try { return json(buildAgenticIntervention(body)) } catch (error) { return json({ detail: error.message }, 422) }
+      }
+
       // --- Rail: simpler explanation ---
       if (path === '/assist/explain') {
         if (!key) return json({ explanation: noKeyMsg })

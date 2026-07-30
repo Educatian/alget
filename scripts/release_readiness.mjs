@@ -36,7 +36,7 @@ const redirects = read('frontend/public/_redirects')
 requireText(redirects, '/*  /index.html  200', 'SPA fallback')
 
 const worker = read('cloudflare/llm-proxy/src/index.js')
-for (const safeguard of ['/health', 'adaptation_emergency_pause', '/(pause|resume)', "suppressionReason = 'emergency_pause'"]) {
+for (const safeguard of ['/health', 'adaptation_emergency_pause', '/(pause|resume)', "suppressionReason = 'emergency_pause'", '/agentic/learner-plan', '/agentic/interventions/propose', 'execution_not_implemented']) {
   requireText(worker, safeguard, 'Worker release safeguard')
 }
 
@@ -45,6 +45,15 @@ for (const table of ['instructor_profiles', 'managed_courses', 'content_ingestio
   requireText(migration, `alter table public.${table} enable row level security`, `RLS for ${table}`)
 }
 requireText(migration, "auth.jwt() -> 'app_metadata'", 'role authorization')
+
+const agenticMigration = read('supabase/migrations/20260730100000_agentic_lms_runtime.sql')
+for (const table of ['agent_workflows', 'agent_workflow_events', 'learner_goals', 'learner_study_plans', 'instructor_intervention_queue']) {
+  requireText(agenticMigration, `alter table public.${table} enable row level security`, `Agentic LMS RLS for ${table}`)
+}
+for (const rpc of ['transition_agent_workflow', 'create_learner_plan_workflow', 'review_learner_plan', 'create_instructor_intervention_workflow', 'review_instructor_intervention']) {
+  requireText(agenticMigration, `function public.${rpc}`, `Agentic LMS RPC ${rpc}`)
+}
+requireText(agenticMigration, 'agent_workflow_events', 'Agentic LMS audit trail')
 
 const contentFiles = filesUnder('frontend/content').filter((file) => file.endsWith('.mdx'))
 const forbiddenCitationIdentifiers = [
@@ -174,4 +183,4 @@ if (failures.length) {
   process.exit(1)
 }
 
-console.log('Release readiness passed: security headers, SPA fallback, emergency pause, health endpoint, RLS declarations, citations, catalog counts, reference-image coverage/integrity, and frontend secret scan are valid.')
+console.log('Release readiness passed: security headers, SPA fallback, emergency pause, health endpoint, admin and agentic RLS/RPC declarations, citations, catalog counts, reference-image coverage/integrity, and frontend secret scan are valid.')
