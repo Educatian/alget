@@ -32,8 +32,15 @@ logger = logging.getLogger(__name__)
 from dotenv import load_dotenv
 load_dotenv()  # only fills in vars that are not already set
 
-from google import genai
-from google.genai import types as genai_types
+try:
+    # Gemini is optional for local content/reading development. The book API,
+    # access validation, and admin read paths must still boot when the AI SDK
+    # is not installed or no model key is configured.
+    from google import genai
+    from google.genai import types as genai_types
+except ImportError:  # pragma: no cover - exercised in minimal local runtimes
+    genai = None
+    genai_types = None
 
 # Load environment variable for API key
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")

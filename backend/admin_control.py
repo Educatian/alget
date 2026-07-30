@@ -9,7 +9,10 @@ from pathlib import Path
 import re
 from typing import Any
 
-from pypdf import PdfReader
+try:
+    from pypdf import PdfReader
+except ImportError:  # PDF ingestion is optional for content-only local runs
+    PdfReader = None
 
 
 MAX_PDF_BYTES = 25 * 1024 * 1024
@@ -62,6 +65,8 @@ def _heading_candidates(text: str) -> list[str]:
 
 def convert_pdf_bytes(data: bytes, filename: str) -> dict[str, Any]:
     """Convert a validated PDF into a reviewable, page-addressable text package."""
+    if PdfReader is None:
+        raise RuntimeError("PDF ingestion requires the optional pypdf dependency.")
     if not data or len(data) > MAX_PDF_BYTES:
         raise ValueError(f"PDF must be between 1 byte and {MAX_PDF_BYTES} bytes")
     if not data.startswith(b"%PDF-"):
