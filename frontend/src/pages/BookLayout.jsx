@@ -1,5 +1,5 @@
 import { Suspense, lazy, useState, useEffect, useRef, useMemo, useCallback } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router'
 import * as Popover from '@radix-ui/react-popover'
 import {
     Bookmark,

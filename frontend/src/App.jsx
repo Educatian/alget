@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect, useState } from 'react'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router'
 import { supabase, isSupabaseConfigured } from './lib/supabase'
 import { initSession, endSession } from './lib/loggingService'
 import { replayPendingResearchPersists, clearResearchCaches } from './lib/researchService'
@@ -13,6 +13,7 @@ import { ThemeProvider } from './lib/theme.jsx'
 import GlobalClickLogger from './components/GlobalClickLogger'
 import AppErrorBoundary from './components/AppErrorBoundary'
 import GlobalSearch from './components/GlobalSearch'
+import NetworkStatusBanner from './components/NetworkStatusBanner'
 import { LLM_API_BASE } from './lib/apiConfig'
 import './index.css'
 
@@ -134,18 +135,23 @@ export default function App() {
     }
 
     // Check for existing session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      const sessionUser = enrichCohortUser(session?.user ?? null)
-      setUser(sessionUser)
-      setLoading(false)
+    supabase.auth.getSession()
+      .then(({ data: { session } }) => {
+        const sessionUser = enrichCohortUser(session?.user ?? null)
+        setUser(sessionUser)
 
-      // Initialize logging session when user is authenticated
-      if (sessionUser) {
-        initSession(sessionUser).then(() => {
-          replayPendingResearchPersists().catch(() => {})
-        })
-      }
-    })
+        // Initialize logging session when user is authenticated
+        if (sessionUser) {
+          initSession(sessionUser).then(() => {
+            replayPendingResearchPersists().catch(() => {})
+          })
+        }
+      })
+      .catch((error) => {
+        console.warn('[ALGET Auth] Session restore failed; showing signed-out recovery state.', error)
+        setUser(null)
+      })
+      .finally(() => setLoading(false))
 
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
@@ -184,14 +190,17 @@ export default function App() {
   }
 
   const handleLogout = async () => {
-    await endSession()
-    safeLocalStorageRemove(DEMO_SESSION_KEY)
-    clearCohortLearner()
-    clearLocalLearnerCaches()
-    clearResearchCaches()
-    clearStreak()
-    await supabase.auth.signOut()
-    setUser(null)
+    try {
+      await endSession()
+      await supabase.auth.signOut()
+    } finally {
+      safeLocalStorageRemove(DEMO_SESSION_KEY)
+      clearCohortLearner()
+      clearLocalLearnerCaches()
+      clearResearchCaches()
+      clearStreak()
+      setUser(null)
+    }
   }
 
   if (loading) {
@@ -207,6 +216,7 @@ export default function App() {
       <ThemeProvider>
         <ToastProvider>
           <AppErrorBoundary>
+            <NetworkStatusBanner />
             <GlobalClickLogger>
               <GlobalSearch />
               <Suspense fallback={<RouteFallback />}>

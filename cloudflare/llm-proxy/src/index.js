@@ -25,6 +25,7 @@ const DEFAULT_STATIC_BASE = 'https://alget.pages.dev/api'
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
 const MAX_PDF_BYTES = 25 * 1024 * 1024
 const MAX_PDF_PAGES = 500
+const RELEASE_SCHEMA_VERSION = '2026-07-30'
 
 const DEFAULT_ADAPTATION_POLICY = {
   mastery_support_threshold: 0.58,
@@ -205,7 +206,16 @@ async function handleAdminRequest(request, env, path) {
   if (auth.error) return auth.error
 
   if (path === '/admin/system/summary' && request.method === 'GET') {
-    return json({ status: 'ready', operator: auth.operator, agent_count: ADMIN_AGENTS.length, pdf_limit_bytes: MAX_PDF_BYTES, release_policy: 'human_approval_required', runtime: 'cloudflare' })
+    return json({
+      status: 'ready', operator: auth.operator, agent_count: ADMIN_AGENTS.length,
+      pdf_limit_bytes: MAX_PDF_BYTES, release_policy: 'human_approval_required', runtime: 'cloudflare',
+      safeguards: {
+        adaptation_emergency_pause: Boolean(env.ADAPTATION_POLICIES),
+        adaptation_runtime: Boolean(env.ADAPTIVE),
+        administrator_identity: Boolean(env.SUPABASE_URL && env.SUPABASE_PUBLISHABLE_KEY),
+      },
+      release_schema_version: RELEASE_SCHEMA_VERSION,
+    })
   }
   if (path === '/admin/agents' && request.method === 'GET') {
     return json({ agents: ADMIN_AGENTS, release_policy: 'human_approval_required' })
@@ -220,7 +230,12 @@ async function handleAdminRequest(request, env, path) {
     const listed = await env.ADAPTATION_POLICIES.list({ prefix: 'policy:' })
     const historyKeys = listed.keys.filter((item) => item.name.endsWith(':history')).slice(0, 100)
     const histories = await Promise.all(historyKeys.map((item) => env.ADAPTATION_POLICIES.get(item.name, 'json')))
-    return json({ policies: histories.flatMap((items) => Array.isArray(items) ? items : []) })
+    const courseIds = historyKeys.map((item) => item.name.replace(/^policy:/, '').replace(/:history$/, ''))
+    const controlEntries = await Promise.all(courseIds.map(async (id) => [id, await env.ADAPTATION_POLICIES.get(`policy:${id}:control`, 'json')]))
+    return json({
+      policies: histories.flatMap((items) => Array.isArray(items) ? items : []),
+      controls: Object.fromEntries(controlEntries.filter(([, control]) => control)),
+    })
   }
   if (path === '/admin/adaptation/policies' && request.method === 'POST') {
     if (!env.ADAPTATION_POLICIES) return json({ detail: 'Adaptation policy storage is unavailable' }, 503)
@@ -268,6 +283,22 @@ async function handleAdminRequest(request, env, path) {
       env.ADAPTATION_POLICIES.put(`policy:${courseId}:active`, JSON.stringify(active)),
     ])
     return json({ policy: active })
+  }
+  const adaptationControl = path.match(/^\/admin\/adaptation\/courses\/([a-z0-9][a-z0-9-]{1,79})\/(pause|resume)$/)
+  if (adaptationControl && request.method === 'POST') {
+    if (!env.ADAPTATION_POLICIES) return json({ detail: 'Adaptation policy storage is unavailable' }, 503)
+    const courseId = adaptationControl[1]
+    const payload = await request.json().catch(() => ({}))
+    const paused = adaptationControl[2] === 'pause'
+    const control = {
+      course_id: courseId,
+      enabled: !paused,
+      reason: paused ? String(payload.reason || 'Emergency pause by course administrator').trim().slice(0, 240) : '',
+      updated_at: new Date().toISOString(),
+      updated_by: auth.operator.subject,
+    }
+    await env.ADAPTATION_POLICIES.put(`policy:${courseId}:control`, JSON.stringify(control))
+    return json({ control })
   }
   if (path === '/admin/course-plan' && request.method === 'POST') {
     const payload = await request.json().catch(() => ({}))
@@ -574,6 +605,7 @@ function buildCard(action, title, rationale, evidence, focusConcepts, coachPromp
   return { action, title, rationale, evidence: (evidence || []).filter(Boolean).slice(0, 4), focus_concepts: (focusConcepts || []).filter(Boolean).slice(0, 3), coach_prompt: coachPrompt }
 }
 const _ADAPT_REASON_PROSE = {
+  policy_emergency_pause: 'Adaptive support is temporarily paused by the course administrator; core reading and practice remain available.',
   policy_session_limit: 'Support is paused because this session reached the instructor-set intervention limit.',
   policy_cooldown: 'Support is held back during the instructor-set cooldown so the learner can work independently.',
   policy_faded_for_independence: 'High mastery and stable performance triggered intentional support fading.',
@@ -634,6 +666,20 @@ export default {
     // ping still gets a 200. Only wakes a backend if one is explicitly configured.
     if (path === '/warmup') {
       return json({ ok: true })
+    }
+
+    if (path === '/health') {
+      return json({
+        status: 'ready',
+        runtime: 'cloudflare-worker',
+        release_schema_version: RELEASE_SCHEMA_VERSION,
+        services: {
+          adaptive_worker: Boolean(env.ADAPTIVE),
+          adaptation_policy_store: Boolean(env.ADAPTATION_POLICIES),
+          administrator_identity: Boolean(env.SUPABASE_URL && env.SUPABASE_PUBLISHABLE_KEY),
+          ai_provider: Boolean(env.OPENROUTER_API_KEY),
+        },
+      })
     }
 
     if (path.startsWith('/admin/')) {
@@ -949,13 +995,26 @@ Return EXACTLY: {"content_score":0.0-1.0,"wording_score":0.0-1.0,"sub_scores":{"
         const policyMode = decision.policy_mode
         const courseKey = String(body.course || body.section_id || '').split('/')[0]
         let activePolicy = null
+        let adaptationControl = null
         if (courseKey && env.ADAPTATION_POLICIES) {
-          try { activePolicy = await env.ADAPTATION_POLICIES.get(`policy:${courseKey}:active`, 'json') } catch { activePolicy = null }
+          try {
+            [activePolicy, adaptationControl] = await Promise.all([
+              env.ADAPTATION_POLICIES.get(`policy:${courseKey}:active`, 'json'),
+              env.ADAPTATION_POLICIES.get(`policy:${courseKey}:control`, 'json'),
+            ])
+          } catch {
+            activePolicy = null
+            adaptationControl = null
+          }
         }
         const policyConfig = activePolicy?.policy ? { ...DEFAULT_ADAPTATION_POLICY, ...activePolicy.policy } : null
         let interventionAllowed = true
         let suppressionReason = null
-        if (policyConfig) {
+        if (adaptationControl?.enabled === false) {
+          suppressionReason = 'emergency_pause'
+          interventionAllowed = false
+          primaryAction = readiness === 'advance' ? 'advance' : 'practice'
+        } else if (policyConfig) {
           const recentInterventions = Math.max(0, Number(lp.recent_interventions) || 0)
           const rawMinutesSinceLast = Number(lp.minutes_since_last_intervention)
           const minutesSinceLast = Number.isFinite(rawMinutesSinceLast) ? Math.max(0, rawMinutesSinceLast) : Number.POSITIVE_INFINITY
@@ -1021,6 +1080,7 @@ Return EXACTLY: {"content_score":0.0-1.0,"wording_score":0.0-1.0,"sub_scores":{"
             intervention_allowed: interventionAllowed,
             suppression_reason: suppressionReason,
             show_why_now: policyConfig.show_why_now,
+            emergency_paused: adaptationControl?.enabled === false,
           } : null,
           content_version: contentVersion,
           content_version_algorithm: contentVersionAlgorithm,

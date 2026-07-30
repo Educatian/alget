@@ -3,6 +3,9 @@ import { defineConfig, devices } from '@playwright/test'
 const devCommand = process.platform === 'win32'
     ? 'npm.cmd run dev -- --host 127.0.0.1 --port 5179'
     : 'npm run dev -- --host 127.0.0.1 --port 5179'
+const backendCommand = process.platform === 'win32'
+    ? 'py -3.11 -m uvicorn backend.server:app --host 127.0.0.1 --port 8000'
+    : 'python -m uvicorn backend.server:app --host 127.0.0.1 --port 8000'
 
 export default defineConfig({
     testDir: './e2e',
@@ -22,7 +25,7 @@ export default defineConfig({
     },
     webServer: [
         {
-            command: 'python -m uvicorn backend.server:app --host 127.0.0.1 --port 8000',
+            command: backendCommand,
             cwd: '..',
             env: {
                 ...process.env,

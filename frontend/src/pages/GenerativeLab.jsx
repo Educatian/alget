@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AlertTriangle, ArrowLeft, BookOpen, FileText, Lightbulb } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { LLM_API_BASE } from '../lib/apiConfig';
 
 import BiologyCard from '../components/BiologyCard';

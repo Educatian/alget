@@ -39,7 +39,7 @@ function Status({ children }) {
 
 export default function AdminControlPlane({ cohortContent, onBack, onResearcher }) {
     const [view, setView] = useState('overview')
-    const [state, setState] = useState({ instructors: [], courses: [], ingestionJobs: [], agentRuns: [], auditEvents: [], adaptationPolicies: [] })
+    const [state, setState] = useState({ instructors: [], courses: [], ingestionJobs: [], agentRuns: [], auditEvents: [], adaptationPolicies: [], adaptationControls: {} })
     const [persistence, setPersistence] = useState('local')
     const [loading, setLoading] = useState(true)
     const [busy, setBusy] = useState('')

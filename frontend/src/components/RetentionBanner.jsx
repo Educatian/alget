@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import { getEvaluationStatus } from '../lib/researchService'
 import { logEvent } from '../lib/loggingService'
 import { ALL_COURSE_IDS } from '../lib/courseCatalog'
