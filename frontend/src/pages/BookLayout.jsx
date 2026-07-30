@@ -502,7 +502,7 @@ export default function BookLayout({ user, onLogout }) {
             <OnboardingTour />
             <RetentionBanner course={course} />
 
-            <header className="sticky top-0 z-50 flex items-center gap-3 border-b border-[var(--ath-line)] bg-[rgba(248,246,241,0.94)] px-3 py-1.5 backdrop-blur-3xl sm:px-4">
+            <header className="ath-reader-header sticky top-0 z-50 flex items-center gap-3 border-b border-[var(--ath-line)] bg-[rgba(248,246,241,0.94)] px-3 py-1.5 backdrop-blur-3xl sm:px-4">
                 <div className="flex shrink-0 items-center gap-2 sm:min-w-0 sm:flex-1 sm:justify-between sm:gap-3">
                     <button
                         type="button"
@@ -708,7 +708,7 @@ export default function BookLayout({ user, onLogout }) {
             </header>
 
             <div className="relative flex min-h-0 flex-1 overflow-hidden">
-                <aside className="hidden min-h-0 shrink-0 overflow-y-auto bg-[rgba(240,237,230,0.5)] backdrop-blur-3xl lg:block lg:w-52">
+                <aside className="ath-reader-rail hidden min-h-0 shrink-0 overflow-y-auto bg-[rgba(240,237,230,0.5)] backdrop-blur-3xl lg:block lg:w-52">
                     {tocError ? (
                         <div className="m-4 rounded-2xl border border-[rgba(220,38,38,0.25)] bg-[rgba(254,242,242,0.85)] p-4 text-sm">
                             <p className="font-semibold text-[var(--ath-text)]">Couldn't load chapter list</p>
@@ -802,7 +802,7 @@ export default function BookLayout({ user, onLogout }) {
                             sits on the confidence prompt / exit-ticket textarea. */}
                         <div
                             key={sectionPath}
-                            className={`mx-auto min-h-full w-full max-w-[var(--ath-container-reading)] px-[var(--ath-gutter)] xl:pb-24 ${transitionDirection === 'backward' ? 'animate-section-backward' : 'animate-section-forward'}`}
+                            className={`ath-reader-main-shell mx-auto min-h-full w-full max-w-[var(--ath-container-reading)] px-[var(--ath-gutter)] xl:pb-24 ${transitionDirection === 'backward' ? 'animate-section-backward' : 'animate-section-forward'}`}
                         >
                             <Suspense fallback={<div className="mx-auto max-w-4xl px-8 py-12 xl:max-w-5xl"><SurfaceFallback label="Loading reading surface..." /></div>}>
                                 <HighlightableContent

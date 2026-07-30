@@ -72,7 +72,7 @@ function BookToc({ toc, currentCourse, currentChapter, currentSection, onNavigat
     const summary = getCourseSummary(toc?.chapters || [])
 
     return (
-        <div className="px-3 pb-5 pt-2">
+        <div className="ath-book-toc px-3 pb-5 pt-2">
             <div className="px-1">
                 <p className="editorial-kicker">Course Navigation</p>
                 <h2 className="mt-1 text-lg font-semibold tracking-tight text-[var(--ath-text)]">

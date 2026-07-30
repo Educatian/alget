@@ -275,7 +275,7 @@ export default function KnowledgeCheck({
 
     if (status === 'idle') {
         return (
-            <div className="mt-8 overflow-hidden border-y border-[var(--ath-line)] bg-[color-mix(in_srgb,var(--ath-primary-soft)_28%,transparent)]">
+            <div className="ath-knowledge-check mt-8 overflow-hidden border-y border-[var(--ath-line)] bg-[color-mix(in_srgb,var(--ath-primary-soft)_28%,transparent)]">
                 <div className="h-1 w-full bg-[linear-gradient(90deg,var(--ath-primary),#4a7382)]" />
                 <div className="px-4 py-6 text-center md:px-8">
                     <div className="mx-auto mb-4 inline-flex items-center gap-2 rounded-full bg-[var(--ath-panel)] px-3 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-[var(--ath-primary)]">
@@ -298,7 +298,7 @@ export default function KnowledgeCheck({
 
     if (status === 'loading') {
         return (
-            <div className="mt-8 border-y border-[var(--ath-line)] bg-[var(--ath-panel)] px-4 py-6 text-center md:px-8">
+            <div className="ath-knowledge-check mt-8 border-y border-[var(--ath-line)] bg-[var(--ath-panel)] px-4 py-6 text-center md:px-8">
                 <p className="editorial-kicker">Knowledge Check</p>
                 <div className="mx-auto my-5 h-12 w-12 animate-spin rounded-full border-4 border-[var(--ath-panel-muted)] border-t-[var(--ath-primary)]" />
                 <h3 className="text-2xl font-semibold text-[var(--ath-text)]">Synthesizing Questions</h3>
@@ -311,7 +311,7 @@ export default function KnowledgeCheck({
 
     if (status === 'error') {
         return (
-            <div className="mt-12 border-y border-[color-mix(in_srgb,var(--ath-danger)_24%,transparent)] bg-[color-mix(in_srgb,var(--ath-danger)_8%,var(--ath-panel))] px-4 py-8 text-center md:px-8">
+            <div className="ath-knowledge-check mt-8 border-y border-[color-mix(in_srgb,var(--ath-danger)_24%,transparent)] bg-[color-mix(in_srgb,var(--ath-danger)_8%,var(--ath-panel))] px-4 py-6 text-center md:px-8">
                 <p className="editorial-kicker text-[var(--ath-danger)]">Knowledge Check</p>
                 <p className="mt-4 text-sm font-medium text-[var(--ath-danger)]">We could not generate the assessment right now.</p>
                 <button onClick={() => setStatus('idle')} className="mt-5 min-h-11 px-3 text-sm font-semibold text-[var(--ath-primary)]">
@@ -326,7 +326,7 @@ export default function KnowledgeCheck({
         const missedConcepts = results.filter((result) => !result.isCorrect)
 
         return (
-            <div className="mt-12 border-y border-[var(--ath-line)] bg-[color-mix(in_srgb,var(--ath-primary-soft)_26%,var(--ath-panel))] px-4 py-8 text-center md:px-8">
+            <div className="ath-knowledge-check mt-8 border-y border-[var(--ath-line)] bg-[color-mix(in_srgb,var(--ath-primary-soft)_26%,var(--ath-panel))] px-4 py-6 text-center md:px-8">
                 <p className="editorial-kicker">Knowledge Check Complete</p>
                 <h3 className="mt-3 text-3xl font-semibold text-[var(--ath-text)]">Assessment Complete</h3>
                 <p className="mt-3 text-sm leading-7 text-[var(--ath-muted)]">
@@ -363,7 +363,7 @@ export default function KnowledgeCheck({
     }
 
     return (
-        <div className="mt-12 overflow-hidden border-y border-[var(--ath-line)] bg-[var(--ath-surface)]">
+        <div className="ath-knowledge-check mt-8 overflow-hidden border-y border-[var(--ath-line)] bg-[var(--ath-surface)]">
             <div className="h-1 w-full bg-[var(--ath-panel-muted)]">
                 <div
                     className="h-full bg-[linear-gradient(90deg,var(--ath-primary),#4a7382)] transition-all duration-500"

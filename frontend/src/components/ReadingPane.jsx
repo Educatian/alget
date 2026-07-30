@@ -279,8 +279,8 @@ function ReadingPane({
     const completionReady = readyCount === READY_CHECK_ITEMS.length && exitTicketReady
 
     return (
-        <div className="mx-auto w-full max-w-[min(78rem,100%)] px-4 py-4 sm:px-7 sm:py-5">
-            <header className="mb-4">
+        <div className="ath-reader-pane mx-auto w-full max-w-[min(78rem,100%)] px-4 py-4 sm:px-7 sm:py-5">
+            <header className="ath-reader-pane-header mb-4">
                 <div className="mb-2 flex items-center justify-between gap-3">
                     <p className="editorial-kicker">
                         Chapter {meta?.chapter} / Section {meta?.section}
