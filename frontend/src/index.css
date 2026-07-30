@@ -406,9 +406,7 @@ h6,
    closer to a focused annotation app. Structural whitespace is retained at
    the shell edges; repeated text gaps and chrome padding are tightened. */
 .ath-reader-density {
-  --reading-line-height: 1.52;
   --reading-letter-spacing: -0.008em;
-  --reading-paragraph-spacing: 0.62rem;
 }
 
 .ath-reader-density > header {
@@ -541,8 +539,8 @@ h6,
 
   .ath-reader-density .ath-reader-pane .reading-narrative p {
     font-family: 'Inter', 'IBM Plex Sans', 'Segoe UI', sans-serif;
-    font-size: 1rem;
-    line-height: 1.5625;
+    font-size: calc(1.0625rem * var(--reading-font-scale, 1));
+    line-height: var(--reading-line-height, 1.58);
     letter-spacing: -0.0075em;
   }
 
@@ -1958,7 +1956,7 @@ h6,
 
   .reading-narrative p {
     font-size: calc(1rem * var(--reading-font-scale, 1));
-    line-height: var(--reading-line-height, 1.56);
+    line-height: var(--reading-line-height, 1.58);
   }
 }
 
