@@ -18,7 +18,10 @@
       "correct_index": 2,
       "explanation": "A name with date, course, task, and version (2026-05-28_cat100_essay_v3.docx) stays readable. 'final' and 'document(2)' lose meaning once a fourth version appears.",
       "misconception_id": "cat100_supplement_7_1_vague_filename",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-07-01-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_7_1_file_organization_for_coursework_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "A course-then-module-then-task tree keeps related files in one place. Desktop dumps and type-based folders scatter a single task.",
       "misconception_id": "cat100_supplement_7_1_desktop_dump",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-07-01-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_7_1_file_organization_for_coursework_ai_boundary",
@@ -56,7 +62,11 @@
       "correct_index": 1,
       "explanation": "A two-copies-two-places rule survives a single drive failure. File format, depth, and a rename do nothing against a dead drive.",
       "misconception_id": "cat100_supplement_7_1_no_backup",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-07-01-lo-02",
+        "cat100-supplement-07-01-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_7_1_file_organization_for_coursework_calibration",
@@ -75,7 +85,10 @@
       "correct_index": 1,
       "explanation": "The lab PDFs and the slides belong to one module, so a task folder keeps them together. Type folders split one assignment across the disk.",
       "misconception_id": "cat100_supplement_7_1_folder_by_filetype",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-07-01-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_7_1_file_organization_for_coursework_bounded_ai_move",
@@ -95,7 +108,10 @@
       "correct_index": 2,
       "explanation": "A bounded move accepts what fits your convention, modifies what is close, and rejects what you cannot verify. Auto-deleting 'duplicates' is the unverifiable step: the AI cannot tell which copy holds the corrected calculations.",
       "misconception_id": "cat100_supplement_7_1_blind_ai_bulk_rename",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-07-01-lo-03"
+      ]
     }
   ]
 }

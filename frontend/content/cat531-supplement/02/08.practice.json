@@ -20,6 +20,9 @@
         "cat531_supplement_module_2_teaching_plan_studio",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-02-08-lo-02"
       ]
     },
     {
@@ -40,6 +43,9 @@
       "concept_ids": [
         "cat531_supplement_module_2_teaching_plan_studio",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-02-08-lo-03"
       ]
     },
     {
@@ -60,6 +66,9 @@
       "concept_ids": [
         "cat531_supplement_module_2_teaching_plan_studio",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-02-08-lo-01"
       ]
     },
     {
@@ -80,6 +89,10 @@
       "concept_ids": [
         "cat531_supplement_module_2_teaching_plan_studio",
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-02-08-lo-01",
+        "cat531-supplement-02-08-lo-04"
       ]
     }
   ]

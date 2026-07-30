@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "A real log shows the steps that quietly eat time. Memory tends to undercount the repetitive ones.",
       "misconception_id": "cat100_supplement_7_7_audit_from_memory",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-07-07-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_7_7_personal_workflow_audit_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "5 min daily is about 25 min a week (5 weekdays), far more than a 40-minute task done once a term (~3 min/week). Frequency times duration points to the rename.",
       "misconception_id": "cat100_supplement_7_7_optimize_rare_step",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-07-07-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_7_7_personal_workflow_audit_ai_boundary",
@@ -56,7 +62,10 @@
       "correct_index": 1,
       "explanation": "Automating a broken process just makes mistakes faster. Clean it up first, then automate.",
       "misconception_id": "cat100_supplement_7_7_automate_broken_process",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-07-07-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_7_7_personal_workflow_audit_calibration",
@@ -75,7 +84,22 @@
       "correct_index": 1,
       "explanation": "A before-and-after measure of time or errors turns 'feels faster' into evidence anyone can check.",
       "misconception_id": "cat100_supplement_7_7_no_baseline_measure",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-07-07-lo-02"
+      ]
+    },
+    {
+      "id": "cat100-supplement_07_07_lo_03_direct_check",
+      "type": "conceptual",
+      "stem": "Provide a concise response that demonstrates this learning objective: Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "expected_answer": "The response accurately demonstrates the section objective: Document a bounded AI/software support move with accepted and rejected suggestions, using relevant section concepts, evidence, or calculations.",
+      "explanation": "This direct-evidence item is used when no closed-response item adequately samples the objective. Score it with the section concepts and worked examples as the rubric.",
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-07-07-lo-03",
+        "cat100-supplement-07-07-lo-04"
+      ]
     }
   ]
 }

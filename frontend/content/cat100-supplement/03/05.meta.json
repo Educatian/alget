@@ -6,10 +6,22 @@
   "title": "AI Help for Excel Debugging",
   "description": "CAT 100 textbook section connecting ai help for excel debugging to Excel pivot-table finding with unit labels, source note, and claim-first chart title, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Read an Excel error code (#DIV/0!, #REF!, #VALUE!, #NAME?, #N/A) to predict the cause before asking for help.",
-    "Write a four-part debugging prompt: the formula, the wrong result, the suspected cause, and the exact desired behavior including the edge case.",
-    "Verify an AI-suggested formula on a known-answer row before copying it down.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions."
+    {
+      "id": "cat100-supplement-03-05-lo-01",
+      "statement": "Read an Excel error code (#DIV/0!, #REF!, #VALUE!, #NAME?, #N/A) to predict the cause before asking for help"
+    },
+    {
+      "id": "cat100-supplement-03-05-lo-02",
+      "statement": "Write a four-part debugging prompt: the formula, the wrong result, the suspected cause, and the exact desired behavior including the edge case"
+    },
+    {
+      "id": "cat100-supplement-03-05-lo-03",
+      "statement": "Verify an AI-suggested formula on a known-answer row before copying it down"
+    },
+    {
+      "id": "cat100-supplement-03-05-lo-04",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_data_storytelling_with_excel",
@@ -28,6 +40,25 @@
     "cat100_supplement_3_5_ai_help_for_excel_debugging_annotation_signal",
     "cat100_supplement_3_5_ai_help_for_excel_debugging_ai_boundary",
     "cat100_supplement_3_5_ai_help_for_excel_debugging_calibration",
-    "cat100_supplement_3_5_ai_help_for_excel_debugging_privacy_boundary"
-  ]
+    "cat100_supplement_3_5_ai_help_for_excel_debugging_privacy_boundary",
+    "cat100-supplement_03_05_lo_04_direct_check"
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-03-05-lo-01": [
+      "cat100_supplement_3_5_ai_help_for_excel_debugging_privacy_boundary",
+      "cat100_supplement_3_5_ai_help_for_excel_debugging_artifact_signal"
+    ],
+    "cat100-supplement-03-05-lo-02": [
+      "cat100_supplement_3_5_ai_help_for_excel_debugging_privacy_boundary",
+      "cat100_supplement_3_5_ai_help_for_excel_debugging_annotation_signal",
+      "cat100_supplement_3_5_ai_help_for_excel_debugging_calibration"
+    ],
+    "cat100-supplement-03-05-lo-03": [
+      "cat100_supplement_3_5_ai_help_for_excel_debugging_ai_boundary"
+    ],
+    "cat100-supplement-03-05-lo-04": [
+      "cat100-supplement_03_05_lo_04_direct_check"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

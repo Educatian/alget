@@ -1,32 +1,61 @@
 {
-    "course": "ai-ethics",
-    "chapter": "01",
-    "section": "02",
-    "chapter_title": "Foundations of AI Ethics",
-    "title": "Module 2: Applying Ethics Frameworks to AI",
-    "description": "Triangulate AI deployment decisions across consequentialism, deontology, virtue ethics, and care ethics; recognize where the frameworks converge (permission to proceed) and where they diverge (the live decision).",
-    "learning_objectives": [
-        "Apply each of four ethical frameworks (consequentialist, deontological, virtue, care) to a deployment decision.",
-        "Identify each framework's diagnostic question, strengths, and characteristic blind spots.",
-        "Distinguish convergence (defensible) from disagreement (where the live ethical choice lives).",
-        "Reject the move of hiding a contested decision behind any single framework's verdict."
+  "course": "ai-ethics",
+  "chapter": "01",
+  "section": "02",
+  "chapter_title": "Foundations of AI Ethics",
+  "title": "Module 2: Applying Ethics Frameworks to AI",
+  "description": "Triangulate AI deployment decisions across consequentialism, deontology, virtue ethics, and care ethics; recognize where the frameworks converge (permission to proceed) and where they diverge (the live decision).",
+  "learning_objectives": [
+    {
+      "id": "ai-ethics-01-02-lo-01",
+      "statement": "Apply each of four ethical frameworks (consequentialist, deontological, virtue, care) to a deployment decision"
+    },
+    {
+      "id": "ai-ethics-01-02-lo-02",
+      "statement": "Identify each framework's diagnostic question, strengths, and characteristic blind spots"
+    },
+    {
+      "id": "ai-ethics-01-02-lo-03",
+      "statement": "Distinguish convergence (defensible) from disagreement (where the live ethical choice lives)"
+    },
+    {
+      "id": "ai-ethics-01-02-lo-04",
+      "statement": "Reject the move of hiding a contested decision behind any single framework's verdict"
+    }
+  ],
+  "concept_ids": [
+    "consequentialism",
+    "deontology",
+    "virtue_ethics",
+    "care_ethics",
+    "ethical_triangulation"
+  ],
+  "prereq_section_ids": [
+    "ai-ethics/01/01"
+  ],
+  "practice_ids": [
+    "ethics_aggregation_blindspot",
+    "ethics_virtue_question",
+    "ethics_care_focus",
+    "ethics_triangulation_value"
+  ],
+  "estimated_time_minutes": 13,
+  "order": 2,
+  "lo_practice_map": {
+    "ai-ethics-01-02-lo-01": [
+      "ethics_aggregation_blindspot",
+      "ethics_care_focus"
     ],
-    "concept_ids": [
-        "consequentialism",
-        "deontology",
-        "virtue_ethics",
-        "care_ethics",
-        "ethical_triangulation"
+    "ai-ethics-01-02-lo-02": [
+      "ethics_triangulation_value",
+      "ethics_virtue_question"
     ],
-    "prereq_section_ids": [
-        "ai-ethics/01/01"
+    "ai-ethics-01-02-lo-03": [
+      "ethics_triangulation_value"
     ],
-    "practice_ids": [
-        "ethics_aggregation_blindspot",
-        "ethics_virtue_question",
-        "ethics_care_focus",
-        "ethics_triangulation_value"
-    ],
-    "estimated_time_minutes": 13,
-    "order": 2
+    "ai-ethics-01-02-lo-04": [
+      "ethics_triangulation_value"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

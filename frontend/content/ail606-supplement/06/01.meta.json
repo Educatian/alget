@@ -3,10 +3,22 @@
   "title": "Evidence-of-Iteration Documentation",
   "description": "AIL 606 textbook section connecting evidence-of-iteration documentation to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the storyboard frame sequence with narration, signaling, and reader-action notes shows a defensible decision in AIL 606.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    {
+      "id": "ail606-supplement-06-01-lo-01",
+      "statement": "Analyze how the storyboard frame sequence with narration, signaling, and reader-action notes shows a defensible decision in AIL 606"
+    },
+    {
+      "id": "ail606-supplement-06-01-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "ail606-supplement-06-01-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "ail606-supplement-06-01-lo-04",
+      "statement": "Use annotations, support requests, and revision notes to decide what help or design change should come next"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_refined_prototype_and_capstone_defense",
@@ -28,5 +40,22 @@
     "ail606_supplement_6_1_evidence_of_iteration_documentation_annotation_signal",
     "ail606_supplement_6_1_evidence_of_iteration_documentation_ai_boundary",
     "ail606_supplement_6_1_evidence_of_iteration_documentation_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-06-01-lo-01": [
+      "ail606_supplement_6_1_evidence_of_iteration_documentation_annotation_signal"
+    ],
+    "ail606-supplement-06-01-lo-02": [
+      "ail606_supplement_6_1_evidence_of_iteration_documentation_annotation_signal"
+    ],
+    "ail606-supplement-06-01-lo-03": [
+      "ail606_supplement_6_1_evidence_of_iteration_documentation_calibration"
+    ],
+    "ail606-supplement-06-01-lo-04": [
+      "ail606_supplement_6_1_evidence_of_iteration_documentation_annotation_signal",
+      "ail606_supplement_6_1_evidence_of_iteration_documentation_artifact_signal",
+      "ail606_supplement_6_1_evidence_of_iteration_documentation_ai_boundary"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

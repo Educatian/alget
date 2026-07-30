@@ -6,10 +6,22 @@
   "title": "Slide Structure Before Decoration",
   "description": "CAT 100 textbook section connecting slide structure before decoration to presentation storyboard with audience constraint and slide-level evidence, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the presentation storyboard with audience constraint and slide-level evidence shows a defensible decision in CAT 100.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    {
+      "id": "cat100-supplement-05-02-lo-01",
+      "statement": "Analyze how the presentation storyboard with audience constraint and slide-level evidence shows a defensible decision in CAT 100"
+    },
+    {
+      "id": "cat100-supplement-05-02-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "cat100-supplement-05-02-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat100-supplement-05-02-lo-04",
+      "statement": "Use feedback, support requests, and revision notes to improve the artifact before sharing it"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_ai_enhanced_presentation_development",
@@ -28,5 +40,22 @@
     "cat100_supplement_5_2_slide_structure_before_decoration_annotation_signal",
     "cat100_supplement_5_2_slide_structure_before_decoration_ai_boundary",
     "cat100_supplement_5_2_slide_structure_before_decoration_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-05-02-lo-01": [
+      "cat100_supplement_5_2_slide_structure_before_decoration_artifact_signal",
+      "cat100_supplement_5_2_slide_structure_before_decoration_ai_boundary"
+    ],
+    "cat100-supplement-05-02-lo-02": [
+      "cat100_supplement_5_2_slide_structure_before_decoration_annotation_signal",
+      "cat100_supplement_5_2_slide_structure_before_decoration_calibration"
+    ],
+    "cat100-supplement-05-02-lo-03": [
+      "cat100_supplement_5_2_slide_structure_before_decoration_artifact_signal"
+    ],
+    "cat100-supplement-05-02-lo-04": [
+      "cat100_supplement_5_2_slide_structure_before_decoration_annotation_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

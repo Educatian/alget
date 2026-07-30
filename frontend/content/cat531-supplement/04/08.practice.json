@@ -18,6 +18,10 @@
       "concept_ids": [
         "cat531_supplement_module_4_ethics_studio",
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-04-08-lo-03",
+        "cat531-supplement-04-08-lo-04"
       ]
     },
     {
@@ -38,6 +42,10 @@
       "concept_ids": [
         "cat531_supplement_module_4_ethics_studio",
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-04-08-lo-01",
+        "cat531-supplement-04-08-lo-02"
       ]
     },
     {
@@ -58,6 +66,9 @@
       "concept_ids": [
         "cat531_supplement_module_4_ethics_studio",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-04-08-lo-01"
       ]
     },
     {
@@ -78,6 +89,9 @@
       "concept_ids": [
         "cat531_supplement_evidence_based_revision",
         "cat531_supplement_module_4_ethics_studio"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-04-08-lo-01"
       ]
     }
   ]

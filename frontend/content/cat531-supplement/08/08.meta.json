@@ -6,10 +6,22 @@
   "chapter": "08",
   "section": "08",
   "learning_objectives": [
-    "Run a readiness review as a go/no-go gate: assign a traceable verdict to each prior artifact, let a single safety, consent, or equity blocker hold the launch, and record a rejected boundary-reversing shortcut.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible."
+    {
+      "id": "cat531-supplement-08-08-lo-01",
+      "statement": "Run a readiness review as a go/no-go gate: assign a traceable verdict to each prior artifact, let a single safety, consent, or equity blocker hold the launch, and record a rejected boundary-reversing shortcut"
+    },
+    {
+      "id": "cat531-supplement-08-08-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "cat531-supplement-08-08-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat531-supplement-08-08-lo-04",
+      "statement": "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible"
+    }
   ],
   "concept_ids": [
     "cat531_supplement_instructor_toolkit_for_cat_531",
@@ -24,9 +36,28 @@
     "cat531_supplement_8_8_readiness_review_artifact_signal",
     "cat531_supplement_8_8_readiness_review_annotation_signal",
     "cat531_supplement_8_8_readiness_review_ai_boundary",
-    "cat531_supplement_8_8_readiness_review_calibration"
+    "cat531_supplement_8_8_readiness_review_calibration",
+    "cat531-supplement_08_08_lo_03_direct_check"
   ],
   "estimated_time_minutes": 14,
   "order": 8,
-  "top_tier_hardened": false
+  "top_tier_hardened": false,
+  "lo_practice_map": {
+    "cat531-supplement-08-08-lo-01": [
+      "cat531_supplement_8_8_readiness_review_calibration",
+      "cat531_supplement_8_8_readiness_review_artifact_signal",
+      "cat531_supplement_8_8_readiness_review_annotation_signal",
+      "cat531_supplement_8_8_readiness_review_ai_boundary"
+    ],
+    "cat531-supplement-08-08-lo-02": [
+      "cat531_supplement_8_8_readiness_review_calibration"
+    ],
+    "cat531-supplement-08-08-lo-03": [
+      "cat531-supplement_08_08_lo_03_direct_check"
+    ],
+    "cat531-supplement-08-08-lo-04": [
+      "cat531-supplement_08_08_lo_03_direct_check"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

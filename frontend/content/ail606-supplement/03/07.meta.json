@@ -3,10 +3,22 @@
   "title": "Peer Review of Storyboards",
   "description": "AIL 606 textbook section connecting peer review of storyboards to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Diagnose why a storyboard peer comment fails by identifying which of the three properties (anchored, actionable, authorship-preserving) is missing.",
-    "Rewrite a praise or taste comment into a three-part review (observation, anchor, option) that cites a Mayer principle or the frame objective.",
-    "Explain why the author's documented accept-or-reject response, not the comment itself, is the design evidence, and why a principled rejection can be stronger than an acceptance.",
-    "Maintain anchored, authorship-preserving review across a power gradient, as in the senior-to-junior transfer case."
+    {
+      "id": "ail606-supplement-03-07-lo-01",
+      "statement": "Diagnose why a storyboard peer comment fails by identifying which of the three properties (anchored, actionable, authorship-preserving) is missing"
+    },
+    {
+      "id": "ail606-supplement-03-07-lo-02",
+      "statement": "Rewrite a praise or taste comment into a three-part review (observation, anchor, option) that cites a Mayer principle or the frame objective"
+    },
+    {
+      "id": "ail606-supplement-03-07-lo-03",
+      "statement": "Explain why the author's documented accept-or-reject response, not the comment itself, is the design evidence, and why a principled rejection can be stronger than an acceptance"
+    },
+    {
+      "id": "ail606-supplement-03-07-lo-04",
+      "statement": "Maintain anchored, authorship-preserving review across a power gradient, as in the senior-to-junior transfer case"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_multimedia_storyboarding_and_ai_asset_generation",
@@ -28,5 +40,22 @@
     "ail606_supplement_3_7_peer_review_of_storyboards_annotation_signal",
     "ail606_supplement_3_7_peer_review_of_storyboards_ai_boundary",
     "ail606_supplement_3_7_peer_review_of_storyboards_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-03-07-lo-01": [
+      "ail606_supplement_3_7_peer_review_of_storyboards_artifact_signal"
+    ],
+    "ail606-supplement-03-07-lo-02": [
+      "ail606_supplement_3_7_peer_review_of_storyboards_artifact_signal",
+      "ail606_supplement_3_7_peer_review_of_storyboards_annotation_signal",
+      "ail606_supplement_3_7_peer_review_of_storyboards_ai_boundary"
+    ],
+    "ail606-supplement-03-07-lo-03": [
+      "ail606_supplement_3_7_peer_review_of_storyboards_calibration"
+    ],
+    "ail606-supplement-03-07-lo-04": [
+      "ail606_supplement_3_7_peer_review_of_storyboards_artifact_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

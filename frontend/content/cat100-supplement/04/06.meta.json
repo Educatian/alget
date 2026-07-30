@@ -1,33 +1,61 @@
-﻿{
-    "course": "cat100-supplement",
-    "chapter": "04",
-    "section": "06",
-    "chapter_title": "AI Conversations as a Teacher",
-    "title": "Reflection on Teacher Judgment",
-    "description": "CAT 100 textbook section connecting reflection on teacher judgment to a decision log, reader notes, support moments, and revision evidence.",
-    "learning_objectives": [
-        "Convert a feelings paragraph into a decision log with one row per AI suggestion (situation, what the AI said, decision, reason).",
-        "Judge whether a reason is defensible by testing if it points to a standard a reader could re-apply, rather than a mood.",
-        "Distinguish ACCEPT, OVERRIDE, and REJECT, and log a rejected unrequested AI addition.",
-        "Read the accept/override ratio as evidence of weighing rather than blanket trust or contrarianism."
+{
+  "course": "cat100-supplement",
+  "chapter": "04",
+  "section": "06",
+  "chapter_title": "AI Conversations as a Teacher",
+  "title": "Reflection on Teacher Judgment",
+  "description": "CAT 100 textbook section connecting reflection on teacher judgment to a decision log, reader notes, support moments, and revision evidence.",
+  "learning_objectives": [
+    {
+      "id": "cat100-supplement-04-06-lo-01",
+      "statement": "Convert a feelings paragraph into a decision log with one row per AI suggestion (situation, what the AI said, decision, reason)"
+    },
+    {
+      "id": "cat100-supplement-04-06-lo-02",
+      "statement": "Judge whether a reason is defensible by testing if it points to a standard a reader could re-apply, rather than a mood"
+    },
+    {
+      "id": "cat100-supplement-04-06-lo-03",
+      "statement": "Distinguish ACCEPT, OVERRIDE, and REJECT, and log a rejected unrequested AI addition"
+    },
+    {
+      "id": "cat100-supplement-04-06-lo-04",
+      "statement": "Read the accept/override ratio as evidence of weighing rather than blanket trust or contrarianism"
+    }
+  ],
+  "concept_ids": [
+    "cat100_supplement_ai_conversations_as_a_teacher",
+    "learner_reflection",
+    "evidence_based_revision",
+    "ai_supported_learning"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 6,
+  "top_tier_hardened": false,
+  "prereq_section_ids": [
+    "cat100-supplement/04/05"
+  ],
+  "practice_ids": [
+    "cat100_supplement_4_6_reflection_on_teacher_judgment_artifact_signal",
+    "cat100_supplement_4_6_reflection_on_teacher_judgment_annotation_signal",
+    "cat100_supplement_4_6_reflection_on_teacher_judgment_ai_boundary",
+    "cat100_supplement_4_6_reflection_on_teacher_judgment_calibration",
+    "cat100_supplement_4_6_reflection_on_teacher_judgment_reject_row"
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-04-06-lo-01": [
+      "cat100_supplement_4_6_reflection_on_teacher_judgment_annotation_signal",
+      "cat100_supplement_4_6_reflection_on_teacher_judgment_artifact_signal"
     ],
-    "concept_ids": [
-        "cat100_supplement_ai_conversations_as_a_teacher",
-        "learner_reflection",
-        "evidence_based_revision",
-        "ai_supported_learning"
+    "cat100-supplement-04-06-lo-02": [
+      "cat100_supplement_4_6_reflection_on_teacher_judgment_ai_boundary"
     ],
-    "estimated_time_minutes": 14,
-    "order": 6,
-    "top_tier_hardened": false,
-    "prereq_section_ids": [
-        "cat100-supplement/04/05"
+    "cat100-supplement-04-06-lo-03": [
+      "cat100_supplement_4_6_reflection_on_teacher_judgment_reject_row"
     ],
-    "practice_ids": [
-        "cat100_supplement_4_6_reflection_on_teacher_judgment_artifact_signal",
-        "cat100_supplement_4_6_reflection_on_teacher_judgment_annotation_signal",
-        "cat100_supplement_4_6_reflection_on_teacher_judgment_ai_boundary",
-        "cat100_supplement_4_6_reflection_on_teacher_judgment_calibration",
-        "cat100_supplement_4_6_reflection_on_teacher_judgment_reject_row"
+    "cat100-supplement-04-06-lo-04": [
+      "cat100_supplement_4_6_reflection_on_teacher_judgment_calibration"
     ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

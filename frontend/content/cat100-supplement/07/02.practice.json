@@ -18,7 +18,12 @@
       "correct_index": 1,
       "explanation": "Fixed-time work (the draft block) belongs on the calendar; the deliverable with a due date and done state belongs in the task list.",
       "misconception_id": "cat100_supplement_7_2_calendar_equals_todo",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-07-02-lo-01",
+        "cat100-supplement-07-02-lo-02",
+        "cat100-supplement-07-02-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_7_2_calendar_and_task_systems_annotation_signal",
@@ -37,7 +42,10 @@
       "correct_index": 1,
       "explanation": "Without due dates the system cannot tell you what is next. Adding a date to each task lets it sort and remind.",
       "misconception_id": "cat100_supplement_7_2_no_due_date",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-07-02-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_7_2_calendar_and_task_systems_ai_boundary",
@@ -56,7 +64,10 @@
       "correct_index": 1,
       "explanation": "The deadline is when it must be done. Scheduling work blocks ahead of it is how the 6 hours actually get spent.",
       "misconception_id": "cat100_supplement_7_2_deadline_as_workblock",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-07-02-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_7_2_calendar_and_task_systems_calibration",
@@ -75,7 +86,10 @@
       "correct_index": 1,
       "explanation": "Reminder lead time should cover what you must do first. A 'class now' alert gives no time to travel or prepare.",
       "misconception_id": "cat100_supplement_7_2_no_reminder_lead",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-07-02-lo-03"
+      ]
     }
   ]
 }

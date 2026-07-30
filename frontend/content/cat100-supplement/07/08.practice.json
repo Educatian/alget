@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "GitHub Pages serves index.html as the default page at the site root. Another name leaves the root URL showing a 404.",
       "misconception_id": "cat100_supplement_7_8_wrong_index_name",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-07-08-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_7_8_workflow_studio_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "A C:/Users path only resolves on your own machine. A relative path to a file inside the repo works for every visitor.",
       "misconception_id": "cat100_supplement_7_8_absolute_local_path",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-07-08-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_7_8_workflow_studio_ai_boundary",
@@ -56,7 +62,10 @@
       "correct_index": 1,
       "explanation": "Pushing files does not enable publishing on its own. Pages must have a source branch and folder set in Settings.",
       "misconception_id": "cat100_supplement_7_8_no_pages_source_set",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-07-08-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_7_8_workflow_studio_calibration",
@@ -75,7 +84,10 @@
       "correct_index": 1,
       "explanation": "Unclosed and mis-nested tags break the layout. Closing each <li> and the <ul> renders a proper bulleted list.",
       "misconception_id": "cat100_supplement_7_8_unclosed_tag",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-07-08-lo-04"
+      ]
     }
   ]
 }

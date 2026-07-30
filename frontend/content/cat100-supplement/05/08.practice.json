@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "The strong capstone integrates every Module 5 layer (purpose, structure, media, narration, citation, accessibility) before polish.",
       "difficulty": "easy",
-      "misconception_id": "cat100_supplement_5_8_module_5_presentation_studio_skip_layers"
+      "misconception_id": "cat100_supplement_5_8_module_5_presentation_studio_skip_layers",
+      "learning_objective_ids": [
+        "cat100-supplement-05-08-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_5_8_module_5_presentation_studio_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "The note names specific pipeline gaps (narration and contrast) and asks for prioritized feedback for the audience.",
       "difficulty": "medium",
-      "misconception_id": "cat100_supplement_5_8_module_5_presentation_studio_no_revision_trail"
+      "misconception_id": "cat100_supplement_5_8_module_5_presentation_studio_no_revision_trail",
+      "learning_objective_ids": [
+        "cat100-supplement-05-08-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_5_8_module_5_presentation_studio_ai_boundary",
@@ -56,7 +62,10 @@
       "correct_index": 1,
       "explanation": "AI assists single bounded moves; the capstone must show your own integrated judgment and a revision trail.",
       "difficulty": "hard",
-      "misconception_id": "cat100_supplement_5_8_module_5_presentation_studio_ai_does_capstone"
+      "misconception_id": "cat100_supplement_5_8_module_5_presentation_studio_ai_does_capstone",
+      "learning_objective_ids": [
+        "cat100-supplement-05-08-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_5_8_module_5_presentation_studio_calibration",
@@ -74,7 +83,11 @@
       ],
       "correct_index": 1,
       "explanation": "A revision trail with a rejected suggestion makes your decisions across the pipeline inspectable.",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-05-08-lo-03",
+        "cat100-supplement-05-08-lo-04"
+      ]
     }
   ]
 }

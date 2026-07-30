@@ -1,46 +1,75 @@
 {
-    "chapter": "02",
-    "section": "02",
-    "title": "Work and Energy",
-    "course": "dynamics",
-    "learning_objectives": [
-        "Calculate work done by forces",
-        "Apply the work-energy theorem",
-        "Distinguish conservative and non-conservative forces",
-        "Use energy conservation to solve problems"
+  "chapter": "02",
+  "section": "02",
+  "title": "Work and Energy",
+  "course": "dynamics",
+  "learning_objectives": [
+    {
+      "id": "dynamics-02-02-lo-01",
+      "statement": "Calculate work done by forces"
+    },
+    {
+      "id": "dynamics-02-02-lo-02",
+      "statement": "Apply the work-energy theorem"
+    },
+    {
+      "id": "dynamics-02-02-lo-03",
+      "statement": "Distinguish conservative and non-conservative forces"
+    },
+    {
+      "id": "dynamics-02-02-lo-04",
+      "statement": "Use energy conservation to solve problems"
+    }
+  ],
+  "concept_ids": [
+    "work",
+    "kinetic_energy",
+    "potential_energy",
+    "conservation_of_energy"
+  ],
+  "physics_prereqs": [
+    "newtons_second_law"
+  ],
+  "math_prereqs": [
+    "integrals"
+  ],
+  "units_focus": [
+    "J",
+    "N",
+    "m"
+  ],
+  "common_errors": [
+    "sign",
+    "reference_point",
+    "conservative_nonconservative"
+  ],
+  "estimated_time_minutes": 55,
+  "prereq_section_ids": [
+    "dynamics/02/01"
+  ],
+  "practice_ids": [
+    "work_zero_concept",
+    "kinetic_energy_numeric",
+    "friction_work_numeric",
+    "work_energy_speed",
+    "incline_energy_steps",
+    "conservative_force_concept"
+  ],
+  "lo_practice_map": {
+    "dynamics-02-02-lo-01": [
+      "friction_work_numeric",
+      "work_zero_concept"
     ],
-    "concept_ids": [
-        "work",
-        "kinetic_energy",
-        "potential_energy",
-        "conservation_of_energy"
+    "dynamics-02-02-lo-02": [
+      "work_energy_speed"
     ],
-    "physics_prereqs": [
-        "newtons_second_law"
+    "dynamics-02-02-lo-03": [
+      "conservative_force_concept"
     ],
-    "math_prereqs": [
-        "integrals"
-    ],
-    "units_focus": [
-        "J",
-        "N",
-        "m"
-    ],
-    "common_errors": [
-        "sign",
-        "reference_point",
-        "conservative_nonconservative"
-    ],
-    "estimated_time_minutes": 55,
-    "prereq_section_ids": [
-        "dynamics/02/01"
-    ],
-    "practice_ids": [
-        "work_zero_concept",
-        "kinetic_energy_numeric",
-        "friction_work_numeric",
-        "work_energy_speed",
-        "incline_energy_steps",
-        "conservative_force_concept"
+    "dynamics-02-02-lo-04": [
+      "incline_energy_steps",
+      "kinetic_energy_numeric"
     ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

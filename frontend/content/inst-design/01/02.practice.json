@@ -18,7 +18,10 @@
         "The load caused only by long-term memory retrieval"
       ],
       "correct_index": 1,
-      "explanation": "Intrinsic load comes from the complexity of the content itself, especially how many interrelated elements must be handled at once."
+      "explanation": "Intrinsic load comes from the complexity of the content itself, especially how many interrelated elements must be handled at once.",
+      "learning_objective_ids": [
+        "inst-design-01-02-lo-01"
+      ]
     },
     {
       "id": "clt_extraneous_load",
@@ -37,7 +40,10 @@
         "Automaticity"
       ],
       "correct_index": 2,
-      "explanation": "This is the split-attention effect, a classic source of extraneous load created by bad presentation rather than the content itself."
+      "explanation": "This is the split-attention effect, a classic source of extraneous load created by bad presentation rather than the content itself.",
+      "learning_objective_ids": [
+        "inst-design-01-02-lo-01"
+      ]
     },
     {
       "id": "clt_germane_load",
@@ -57,7 +63,10 @@
         "Narrating on top of dense, identical on-screen text"
       ],
       "correct_index": 1,
-      "explanation": "Germane load supports schema construction. Asking learners to compare and explain patterns pushes useful cognitive processing."
+      "explanation": "Germane load supports schema construction. Asking learners to compare and explain patterns pushes useful cognitive processing.",
+      "learning_objective_ids": [
+        "inst-design-01-02-lo-01"
+      ]
     },
     {
       "id": "schema_theory_transfer",
@@ -76,7 +85,11 @@
         "They replace the need for sequencing and scaffolding"
       ],
       "correct_index": 1,
-      "explanation": "Schemas are organized mental structures that help learners interpret, store, and retrieve knowledge efficiently."
+      "explanation": "Schemas are organized mental structures that help learners interpret, store, and retrieve knowledge efficiently.",
+      "learning_objective_ids": [
+        "inst-design-01-02-lo-02",
+        "inst-design-01-02-lo-03"
+      ]
     }
   ]
 }

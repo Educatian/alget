@@ -20,6 +20,9 @@
         "cat531_supplement_evidence_claims_and_vendor_claims",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-05-02-lo-04"
       ]
     },
     {
@@ -40,6 +43,9 @@
       "concept_ids": [
         "cat531_supplement_educational_technology_evaluation",
         "cat531_supplement_evidence_claims_and_vendor_claims"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-05-02-lo-01"
       ]
     },
     {
@@ -60,6 +66,9 @@
       "concept_ids": [
         "ai_supported_learning",
         "cat531_supplement_evidence_claims_and_vendor_claims"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-05-02-lo-04"
       ]
     },
     {
@@ -80,6 +89,12 @@
       "concept_ids": [
         "evidence_based_revision",
         "cat531_supplement_evidence_claims_and_vendor_claims"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-05-02-lo-01",
+        "cat531-supplement-05-02-lo-02",
+        "cat531-supplement-05-02-lo-03",
+        "cat531-supplement-05-02-lo-04"
       ]
     }
   ]

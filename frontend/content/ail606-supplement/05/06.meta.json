@@ -3,10 +3,22 @@
   "title": "Analyzing Feedback Without Overclaiming",
   "description": "AIL 606 textbook section connecting analyzing feedback without overclaiming to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Scale claim strength to sample size and evidence type, distinguishing a candidate issue from a confirmed defect.",
-    "Replace evaluative language (hate, fails, proves) with counts of what was actually observed.",
-    "Separate a frequent signal from a severe one, and name which the evidence supports.",
-    "State the verification step a finding needs before it justifies a costly design change."
+    {
+      "id": "ail606-supplement-05-06-lo-01",
+      "statement": "Scale claim strength to sample size and evidence type, distinguishing a candidate issue from a confirmed defect"
+    },
+    {
+      "id": "ail606-supplement-05-06-lo-02",
+      "statement": "Replace evaluative language (hate, fails, proves) with counts of what was actually observed"
+    },
+    {
+      "id": "ail606-supplement-05-06-lo-03",
+      "statement": "Separate a frequent signal from a severe one, and name which the evidence supports"
+    },
+    {
+      "id": "ail606-supplement-05-06-lo-04",
+      "statement": "State the verification step a finding needs before it justifies a costly design change"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_usability_testing_and_learning_evidence",
@@ -28,5 +40,22 @@
     "ail606_supplement_5_6_analyzing_feedback_without_overclaiming_annotation_signal",
     "ail606_supplement_5_6_analyzing_feedback_without_overclaiming_ai_boundary",
     "ail606_supplement_5_6_analyzing_feedback_without_overclaiming_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-05-06-lo-01": [
+      "ail606_supplement_5_6_analyzing_feedback_without_overclaiming_annotation_signal",
+      "ail606_supplement_5_6_analyzing_feedback_without_overclaiming_artifact_signal"
+    ],
+    "ail606-supplement-05-06-lo-02": [
+      "ail606_supplement_5_6_analyzing_feedback_without_overclaiming_ai_boundary"
+    ],
+    "ail606-supplement-05-06-lo-03": [
+      "ail606_supplement_5_6_analyzing_feedback_without_overclaiming_annotation_signal",
+      "ail606_supplement_5_6_analyzing_feedback_without_overclaiming_calibration"
+    ],
+    "ail606-supplement-05-06-lo-04": [
+      "ail606_supplement_5_6_analyzing_feedback_without_overclaiming_annotation_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

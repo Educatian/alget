@@ -1,33 +1,61 @@
 {
-    "course": "ai-ethics",
-    "chapter": "05",
-    "section": "02",
-    "chapter_title": "Safety, Alignment, and Governance",
-    "title": "Module 2: Governance Frameworks — NIST AI RMF, EU AI Act, UNESCO",
-    "description": "Compare the three dominant AI governance frameworks (NIST AI RMF, EU AI Act, UNESCO Recommendation) and ISO/IEC 42001, identify where they overlap and disagree, and apply a practitioner workflow that uses each in combination.",
-    "learning_objectives": [
-        "State the four core functions of the NIST AI RMF (Govern, Map, Measure, Manage) and apply them to a deployment.",
-        "Categorize an AI system under the EU AI Act risk tiers (prohibited, high-risk, limited-risk, minimal-risk, GPAI).",
-        "Identify three principles where UNESCO's Recommendation extends beyond the technical scope of NIST and the EU Act (sustainability, equity, AI literacy).",
-        "Apply a practitioner workflow that picks a primary framework and uses the others as cross-checks."
+  "course": "ai-ethics",
+  "chapter": "05",
+  "section": "02",
+  "chapter_title": "Safety, Alignment, and Governance",
+  "title": "Module 2: Governance Frameworks — NIST AI RMF, EU AI Act, UNESCO",
+  "description": "Compare the three dominant AI governance frameworks (NIST AI RMF, EU AI Act, UNESCO Recommendation) and ISO/IEC 42001, identify where they overlap and disagree, and apply a practitioner workflow that uses each in combination.",
+  "learning_objectives": [
+    {
+      "id": "ai-ethics-05-02-lo-01",
+      "statement": "State the four core functions of the NIST AI RMF (Govern, Map, Measure, Manage) and apply them to a deployment"
+    },
+    {
+      "id": "ai-ethics-05-02-lo-02",
+      "statement": "Categorize an AI system under the EU AI Act risk tiers (prohibited, high-risk, limited-risk, minimal-risk, GPAI)"
+    },
+    {
+      "id": "ai-ethics-05-02-lo-03",
+      "statement": "Identify three principles where UNESCO's Recommendation extends beyond the technical scope of NIST and the EU Act (sustainability, equity, AI literacy)"
+    },
+    {
+      "id": "ai-ethics-05-02-lo-04",
+      "statement": "Apply a practitioner workflow that picks a primary framework and uses the others as cross-checks"
+    }
+  ],
+  "concept_ids": [
+    "nist_ai_rmf",
+    "eu_ai_act",
+    "unesco_ai_ethics",
+    "iso_42001",
+    "ai_governance",
+    "risk_tiered_regulation"
+  ],
+  "prereq_section_ids": [
+    "ai-ethics/05/01"
+  ],
+  "practice_ids": [
+    "gov_nist_functions",
+    "gov_eu_act_education",
+    "gov_unesco_distinct",
+    "gov_iso_42001_role"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 2,
+  "lo_practice_map": {
+    "ai-ethics-05-02-lo-01": [
+      "gov_nist_functions"
     ],
-    "concept_ids": [
-        "nist_ai_rmf",
-        "eu_ai_act",
-        "unesco_ai_ethics",
-        "iso_42001",
-        "ai_governance",
-        "risk_tiered_regulation"
+    "ai-ethics-05-02-lo-02": [
+      "gov_eu_act_education"
     ],
-    "prereq_section_ids": [
-        "ai-ethics/05/01"
+    "ai-ethics-05-02-lo-03": [
+      "gov_unesco_distinct",
+      "gov_iso_42001_role"
     ],
-    "practice_ids": [
-        "gov_nist_functions",
-        "gov_eu_act_education",
-        "gov_unesco_distinct",
-        "gov_iso_42001_role"
-    ],
-    "estimated_time_minutes": 14,
-    "order": 2
+    "ai-ethics-05-02-lo-04": [
+      "gov_nist_functions"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

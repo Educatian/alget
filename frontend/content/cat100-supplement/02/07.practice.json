@@ -18,7 +18,10 @@
       "correct_index": 2,
       "explanation": "Useful peer feedback points to a specific location, names the problem, and suggests a concrete fix. Praise and vague reactions give the writer nothing to act on.",
       "misconception_id": "cat100_supplement_2_7_praise_is_review",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-02-07-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_2_7_peer_review_for_professional_materials_annotation_signal",
@@ -38,7 +41,10 @@
       "correct_index": 2,
       "explanation": "Good peer review raises concerns as questions that keep ownership with the writer, rather than rewriting their work for them or staying silent about a real risk.",
       "misconception_id": "cat100_supplement_2_7_rewriting_for_them",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-02-07-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_2_7_peer_review_for_professional_materials_ai_boundary",
@@ -58,7 +64,10 @@
       "correct_index": 1,
       "explanation": "Peer review carries a duty of care with someone else's data. Pasting a peer's personal contact information into a third-party tool without consent is a privacy violation; strip identifying details first.",
       "misconception_id": "cat100_supplement_2_7_sharing_peer_data",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-02-07-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_2_7_peer_review_for_professional_materials_calibration",
@@ -78,7 +87,10 @@
       "correct_index": 2,
       "explanation": "Using feedback means judging each comment against your goal, acting on the ones that fit, and recording why you declined the rest. Blind acceptance and blanket rejection both skip the judgment.",
       "misconception_id": "cat100_supplement_2_7_apply_all_comments",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-02-07-lo-04"
+      ]
     }
   ]
 }

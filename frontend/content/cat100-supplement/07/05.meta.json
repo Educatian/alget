@@ -1,4 +1,4 @@
-﻿{
+{
   "course": "cat100-supplement",
   "chapter": "07",
   "section": "05",
@@ -6,10 +6,22 @@
   "title": "Automation Safety Checks",
   "description": "CAT 100 textbook section connecting automation safety checks to automation safety record, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the automation safety record shows a defensible decision in CAT 100.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    {
+      "id": "cat100-supplement-07-05-lo-01",
+      "statement": "Analyze how the automation safety record shows a defensible decision in CAT 100"
+    },
+    {
+      "id": "cat100-supplement-07-05-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "cat100-supplement-07-05-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat100-supplement-07-05-lo-04",
+      "statement": "Use feedback, support requests, and revision notes to improve the artifact before sharing it"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_productivity_and_workflow_automation",
@@ -27,7 +39,24 @@
     "cat100_supplement_7_5_automation_safety_checks_artifact_signal",
     "cat100_supplement_7_5_automation_safety_checks_annotation_signal",
     "cat100_supplement_7_5_automation_safety_checks_ai_boundary",
-    "cat100_supplement_7_5_automation_safety_checks_calibration"
-  ]
+    "cat100_supplement_7_5_automation_safety_checks_calibration",
+    "cat100-supplement_07_05_lo_02_direct_check"
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-07-05-lo-01": [
+      "cat100_supplement_7_5_automation_safety_checks_artifact_signal",
+      "cat100_supplement_7_5_automation_safety_checks_annotation_signal",
+      "cat100_supplement_7_5_automation_safety_checks_calibration"
+    ],
+    "cat100-supplement-07-05-lo-02": [
+      "cat100-supplement_07_05_lo_02_direct_check"
+    ],
+    "cat100-supplement-07-05-lo-03": [
+      "cat100_supplement_7_5_automation_safety_checks_ai_boundary"
+    ],
+    "cat100-supplement-07-05-lo-04": [
+      "cat100-supplement_07_05_lo_02_direct_check"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }
-

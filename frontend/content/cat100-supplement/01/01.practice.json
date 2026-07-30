@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "A strong bullet pairs an action verb with a measurable, verifiable result (80 to 240 followers, one semester). The others restate the duty or add adjectives without evidence.",
       "misconception_id": "cat100_supplement_1_1_digital_identity_and_professional_presence_duties_not_results",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-01-01-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_1_1_digital_identity_and_professional_presence_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "Truthful evidence means the claim matches what you can show. Naming the level (familiar) and the source (intro coursework) is defensible; inflating to expert or advanced is not.",
       "misconception_id": "cat100_supplement_1_1_digital_identity_and_professional_presence_inflate_truth",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-01-01-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_1_1_digital_identity_and_professional_presence_ai_boundary",
@@ -56,7 +62,10 @@
       "correct_index": 1,
       "explanation": "AI is a bounded helper. You must reject claims that are untrue, log the decision in the AI-use note, and keep the surviving bullet verifiable.",
       "misconception_id": "cat100_supplement_1_1_digital_identity_and_professional_presence_ai_undisclosed",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-01-01-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_1_1_digital_identity_and_professional_presence_calibration",
@@ -75,7 +84,10 @@
       "correct_index": 1,
       "explanation": "Role fit means ordering and keywords match the posting. Lead with the most relevant verifiable evidence; do not delete real experience or keyword-stuff.",
       "misconception_id": "cat100_supplement_1_1_digital_identity_and_professional_presence_one_resume_fits_all",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-01-01-lo-02"
+      ]
     }
   ]
 }

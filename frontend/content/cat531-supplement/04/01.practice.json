@@ -18,6 +18,9 @@
       "concept_ids": [
         "cat531_supplement_ethical_dialogue_as_learning_activity",
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-04-01-lo-01"
       ]
     },
     {
@@ -38,6 +41,9 @@
       "concept_ids": [
         "cat531_supplement_ethical_dialogue_as_learning_activity",
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-04-01-lo-03"
       ]
     },
     {
@@ -58,6 +64,9 @@
       "concept_ids": [
         "cat531_supplement_ai_supported_learning",
         "cat531_supplement_ethical_dialogue_as_learning_activity"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-04-01-lo-01"
       ]
     },
     {
@@ -78,6 +87,10 @@
       "concept_ids": [
         "cat531_supplement_evidence_based_revision",
         "cat531_supplement_ethical_dialogue_as_learning_activity"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-04-01-lo-02",
+        "cat531-supplement-04-01-lo-04"
       ]
     }
   ]

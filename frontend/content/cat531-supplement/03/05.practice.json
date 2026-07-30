@@ -20,6 +20,9 @@
         "prompting_practice",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-05-lo-02"
       ]
     },
     {
@@ -42,6 +45,10 @@
         "prompting_practice",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-05-lo-02",
+        "cat531-supplement-03-05-lo-03"
       ]
     },
     {
@@ -64,6 +71,9 @@
         "prompting_practice",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-05-lo-02"
       ]
     },
     {
@@ -86,6 +96,10 @@
         "prompting_practice",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-05-lo-01",
+        "cat531-supplement-03-05-lo-04"
       ]
     }
   ]

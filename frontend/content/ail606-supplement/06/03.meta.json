@@ -3,10 +3,22 @@
   "title": "Persona-Based Simulation Checks",
   "description": "AIL 606 textbook section on persona-based simulation checks: building constraint-driven personas (goal, constraint, context), driving them off the happy path until the prototype fails, verifying AI role-play findings, and converting failures into screen revisions.",
   "learning_objectives": [
-    "Construct a persona from goal, constraint, and context, with no demographic filler.",
-    "Predict which screen a given constraint will stress and drive the persona off the happy path until something fails.",
-    "Treat AI persona role-play as hypotheses to verify against real settings or users, not as user data.",
-    "Convert each observed failure into a specific screen revision or a justified decision to accept it."
+    {
+      "id": "ail606-supplement-06-03-lo-01",
+      "statement": "Construct a persona from goal, constraint, and context, with no demographic filler"
+    },
+    {
+      "id": "ail606-supplement-06-03-lo-02",
+      "statement": "Predict which screen a given constraint will stress and drive the persona off the happy path until something fails"
+    },
+    {
+      "id": "ail606-supplement-06-03-lo-03",
+      "statement": "Treat AI persona role-play as hypotheses to verify against real settings or users, not as user data"
+    },
+    {
+      "id": "ail606-supplement-06-03-lo-04",
+      "statement": "Convert each observed failure into a specific screen revision or a justified decision to accept it"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_refined_prototype_and_capstone_defense",
@@ -28,5 +40,20 @@
     "ail606_supplement_6_3_persona_based_simulation_checks_annotation_signal",
     "ail606_supplement_6_3_persona_based_simulation_checks_ai_boundary",
     "ail606_supplement_6_3_persona_based_simulation_checks_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-06-03-lo-01": [
+      "ail606_supplement_6_3_persona_based_simulation_checks_artifact_signal"
+    ],
+    "ail606-supplement-06-03-lo-02": [
+      "ail606_supplement_6_3_persona_based_simulation_checks_annotation_signal"
+    ],
+    "ail606-supplement-06-03-lo-03": [
+      "ail606_supplement_6_3_persona_based_simulation_checks_ai_boundary"
+    ],
+    "ail606-supplement-06-03-lo-04": [
+      "ail606_supplement_6_3_persona_based_simulation_checks_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

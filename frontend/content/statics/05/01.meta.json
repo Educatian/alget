@@ -1,35 +1,63 @@
 {
-    "course": "statics",
-    "chapter": "05",
-    "section": "01",
-    "chapter_title": "Centroids and Moments of Inertia",
-    "title": "Module 1: Centroids, Distributed Loads, and Moments of Inertia",
-    "description": "Compute centroids of composite shapes, replace distributed loads with equivalent point loads, and find area moments of inertia using the parallel-axis theorem and composite-bodies method. Bridge to mass moment of inertia for dynamics.",
-    "learning_objectives": [
-        "Locate the centroid of a composite area using the area-weighted average (with negative areas for cutouts).",
-        "Replace a distributed load along a beam with an equivalent point load at the load's centroid.",
-        "Compute area moments of inertia for composite shapes using the parallel-axis theorem.",
-        "Distinguish area moment of inertia (m⁴, statics bending) from mass moment of inertia (kg·m², dynamics rotation)."
+  "course": "statics",
+  "chapter": "05",
+  "section": "01",
+  "chapter_title": "Centroids and Moments of Inertia",
+  "title": "Module 1: Centroids, Distributed Loads, and Moments of Inertia",
+  "description": "Compute centroids of composite shapes, replace distributed loads with equivalent point loads, and find area moments of inertia using the parallel-axis theorem and composite-bodies method. Bridge to mass moment of inertia for dynamics.",
+  "learning_objectives": [
+    {
+      "id": "statics-05-01-lo-01",
+      "statement": "Locate the centroid of a composite area using the area-weighted average (with negative areas for cutouts)"
+    },
+    {
+      "id": "statics-05-01-lo-02",
+      "statement": "Replace a distributed load along a beam with an equivalent point load at the load's centroid"
+    },
+    {
+      "id": "statics-05-01-lo-03",
+      "statement": "Compute area moments of inertia for composite shapes using the parallel-axis theorem"
+    },
+    {
+      "id": "statics-05-01-lo-04",
+      "statement": "Distinguish area moment of inertia (m⁴, statics bending) from mass moment of inertia (kg·m², dynamics rotation)"
+    }
+  ],
+  "concept_ids": [
+    "centroid",
+    "center_of_mass",
+    "distributed_load",
+    "moment_of_inertia",
+    "parallel_axis_theorem",
+    "composite_bodies"
+  ],
+  "prereq_section_ids": [
+    "statics/04/01",
+    "statics/02/03"
+  ],
+  "practice_ids": [
+    "moi_rectangle_base",
+    "moi_centroid_minimum",
+    "moi_units_distinction",
+    "moi_distributed_to_point",
+    "moi_rectangle_base_numeric"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 1,
+  "lo_practice_map": {
+    "statics-05-01-lo-01": [
+      "moi_centroid_minimum"
     ],
-    "concept_ids": [
-        "centroid",
-        "center_of_mass",
-        "distributed_load",
-        "moment_of_inertia",
-        "parallel_axis_theorem",
-        "composite_bodies"
+    "statics-05-01-lo-02": [
+      "moi_distributed_to_point"
     ],
-    "prereq_section_ids": [
-        "statics/04/01",
-        "statics/02/03"
+    "statics-05-01-lo-03": [
+      "moi_rectangle_base_numeric",
+      "moi_rectangle_base"
     ],
-    "practice_ids": [
-        "moi_rectangle_base",
-        "moi_centroid_minimum",
-        "moi_units_distinction",
-        "moi_distributed_to_point",
-        "moi_rectangle_base_numeric"
-    ],
-    "estimated_time_minutes": 14,
-    "order": 1
+    "statics-05-01-lo-04": [
+      "moi_units_distinction"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

@@ -1,42 +1,71 @@
 {
-    "chapter": "01",
-    "section": "03",
-    "title": "Relative Motion",
-    "course": "dynamics",
-    "description": "Use reference frames correctly, compute relative velocity in one and two dimensions, and connect frame choice to real navigation problems.",
-    "learning_objectives": [
-        "Calculate relative velocity between two moving objects",
-        "Apply the Galilean transformation for velocities",
-        "Analyze relative motion in 2D",
-        "Solve practical problems involving relative motion"
+  "chapter": "01",
+  "section": "03",
+  "title": "Relative Motion",
+  "course": "dynamics",
+  "description": "Use reference frames correctly, compute relative velocity in one and two dimensions, and connect frame choice to real navigation problems.",
+  "learning_objectives": [
+    {
+      "id": "dynamics-01-03-lo-01",
+      "statement": "Calculate relative velocity between two moving objects"
+    },
+    {
+      "id": "dynamics-01-03-lo-02",
+      "statement": "Apply the Galilean transformation for velocities"
+    },
+    {
+      "id": "dynamics-01-03-lo-03",
+      "statement": "Analyze relative motion in 2D"
+    },
+    {
+      "id": "dynamics-01-03-lo-04",
+      "statement": "Solve practical problems involving relative motion"
+    }
+  ],
+  "concept_ids": [
+    "relative_velocity",
+    "reference_frame",
+    "galilean_transform"
+  ],
+  "physics_prereqs": [
+    "rectilinear_motion",
+    "curvilinear_motion"
+  ],
+  "math_prereqs": [
+    "vectors"
+  ],
+  "units_focus": [
+    "m/s"
+  ],
+  "common_errors": [
+    "frame",
+    "direction",
+    "sign"
+  ],
+  "estimated_time_minutes": 15,
+  "prereq_section_ids": [
+    "dynamics/01/01"
+  ],
+  "practice_ids": [
+    "relative_1d",
+    "relative_approach",
+    "relative_2d"
+  ],
+  "lo_practice_map": {
+    "dynamics-01-03-lo-01": [
+      "relative_1d",
+      "relative_approach",
+      "relative_2d"
     ],
-    "concept_ids": [
-        "relative_velocity",
-        "reference_frame",
-        "galilean_transform"
+    "dynamics-01-03-lo-02": [
+      "relative_1d"
     ],
-    "physics_prereqs": [
-        "rectilinear_motion",
-        "curvilinear_motion"
+    "dynamics-01-03-lo-03": [
+      "relative_1d"
     ],
-    "math_prereqs": [
-        "vectors"
-    ],
-    "units_focus": [
-        "m/s"
-    ],
-    "common_errors": [
-        "frame",
-        "direction",
-        "sign"
-    ],
-    "estimated_time_minutes": 15,
-    "prereq_section_ids": [
-        "dynamics/01/01"
-    ],
-    "practice_ids": [
-        "relative_1d",
-        "relative_approach",
-        "relative_2d"
+    "dynamics-01-03-lo-04": [
+      "relative_1d"
     ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

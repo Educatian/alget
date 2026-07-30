@@ -3,10 +3,22 @@
   "title": "Research Translation Studio",
   "description": "AIL 606 textbook section connecting research translation studio to the research-translation argument trace (finding to principle to decision to evidence to disclosed revision), reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Assemble a complete translation chain: finding to principle to design decision to evidence to disclosed revision.",
-    "Locate the broken link in an argument where a finding is cited but never changes a decision, or a decision is made but never tested.",
-    "Reject decorative citations that do not alter any design choice.",
-    "Show that each design decision traces backward to a source and forward to evidence."
+    {
+      "id": "ail606-supplement-07-08-lo-01",
+      "statement": "Assemble a complete translation chain: finding to principle to design decision to evidence to disclosed revision"
+    },
+    {
+      "id": "ail606-supplement-07-08-lo-02",
+      "statement": "Locate the broken link in an argument where a finding is cited but never changes a decision, or a decision is made but never tested"
+    },
+    {
+      "id": "ail606-supplement-07-08-lo-03",
+      "statement": "Reject decorative citations that do not alter any design choice"
+    },
+    {
+      "id": "ail606-supplement-07-08-lo-04",
+      "statement": "Show that each design decision traces backward to a source and forward to evidence"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_research_translation_for_learning_design",
@@ -28,5 +40,20 @@
     "ail606_supplement_7_8_research_translation_studio_annotation_signal",
     "ail606_supplement_7_8_research_translation_studio_ai_boundary",
     "ail606_supplement_7_8_research_translation_studio_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-07-08-lo-01": [
+      "ail606_supplement_7_8_research_translation_studio_artifact_signal"
+    ],
+    "ail606-supplement-07-08-lo-02": [
+      "ail606_supplement_7_8_research_translation_studio_calibration"
+    ],
+    "ail606-supplement-07-08-lo-03": [
+      "ail606_supplement_7_8_research_translation_studio_annotation_signal"
+    ],
+    "ail606-supplement-07-08-lo-04": [
+      "ail606_supplement_7_8_research_translation_studio_ai_boundary"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

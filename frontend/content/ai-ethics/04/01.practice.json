@@ -17,7 +17,10 @@
       ],
       "correct_index": 1,
       "explanation": "Quasi-identifiers compose into unique fingerprints. Re-identification is well-documented; field removal alone does not anonymize.",
-      "misconception_id": "field_removal_anonymizes"
+      "misconception_id": "field_removal_anonymizes",
+      "learning_objective_ids": [
+        "ai-ethics-04-01-lo-02"
+      ]
     },
     {
       "id": "privacy_membership_inference",
@@ -37,7 +40,10 @@
       ],
       "correct_index": 1,
       "explanation": "Shokri et al. (2017) demonstrated that trained models leak membership information. For sensitive datasets (rare diseases, abuse-victim registries), training-set inclusion is itself harmful.",
-      "misconception_id": "models_dont_leak"
+      "misconception_id": "models_dont_leak",
+      "learning_objective_ids": [
+        "ai-ethics-04-01-lo-01"
+      ]
     },
     {
       "id": "privacy_dp_purpose",
@@ -56,7 +62,10 @@
       ],
       "correct_index": 1,
       "explanation": "Differential privacy bounds per-individual leakage. It is the strongest formal privacy guarantee available, with a quantified utility-privacy trade-off.",
-      "misconception_id": "dp_is_perfect"
+      "misconception_id": "dp_is_perfect",
+      "learning_objective_ids": [
+        "ai-ethics-04-01-lo-03"
+      ]
     },
     {
       "id": "privacy_aggregation_threat",
@@ -75,7 +84,10 @@
       ],
       "correct_index": 1,
       "explanation": "Aggregation transforms benign-seeming data into invasive profiles. GDPR's data minimization, purpose limitation, and retention limits are designed to bound exactly this risk.",
-      "misconception_id": "single_record_view"
+      "misconception_id": "single_record_view",
+      "learning_objective_ids": [
+        "ai-ethics-04-01-lo-04"
+      ]
     }
   ]
 }

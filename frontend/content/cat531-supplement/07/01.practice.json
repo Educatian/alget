@@ -20,6 +20,11 @@
         "cat531_supplement_transferring_online_cases_to_field_placements",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-07-01-lo-01",
+        "cat531-supplement-07-01-lo-02",
+        "cat531-supplement-07-01-lo-04"
       ]
     },
     {
@@ -39,6 +44,9 @@
       "difficulty": "medium",
       "concept_ids": [
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-07-01-lo-01"
       ]
     },
     {
@@ -58,6 +66,9 @@
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-07-01-lo-03"
       ]
     },
     {
@@ -77,6 +88,9 @@
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-07-01-lo-01"
       ]
     }
   ]

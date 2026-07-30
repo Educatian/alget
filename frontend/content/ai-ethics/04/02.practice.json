@@ -18,7 +18,10 @@
       ],
       "correct_index": 1,
       "explanation": "The Belmont Report's four conditions are the canonical framework. AI deployments break each one in characteristic ways.",
-      "misconception_id": "click_is_consent"
+      "misconception_id": "click_is_consent",
+      "learning_objective_ids": [
+        "ai-ethics-04-02-lo-01"
+      ]
     },
     {
       "id": "consent_asymmetric_prominence",
@@ -39,7 +42,10 @@
       ],
       "correct_index": 1,
       "explanation": "Asymmetric prominence is one of the best-documented dark patterns. Symmetric controls are required for defensible consent under DSA and GDPR.",
-      "misconception_id": "any_design_is_neutral"
+      "misconception_id": "any_design_is_neutral",
+      "learning_objective_ids": [
+        "ai-ethics-04-02-lo-02"
+      ]
     },
     {
       "id": "consent_inappropriate_carry",
@@ -59,7 +65,10 @@
       ],
       "correct_index": 1,
       "explanation": "Public goods and population-level decisions need democratic deliberation, not aggregated individual clicks. Consent is one layer of many in such cases.",
-      "misconception_id": "consent_solves_everything"
+      "misconception_id": "consent_solves_everything",
+      "learning_objective_ids": [
+        "ai-ethics-04-02-lo-03"
+      ]
     },
     {
       "id": "consent_withdrawal",
@@ -79,7 +88,10 @@
       ],
       "correct_index": 1,
       "explanation": "Revocable consent is the only kind that satisfies voluntariness over time. CCPA right to deletion and GDPR right to erasure operationalize this; current generative architectures still struggle to comply cleanly.",
-      "misconception_id": "consent_is_one_time"
+      "misconception_id": "consent_is_one_time",
+      "learning_objective_ids": [
+        "ai-ethics-04-02-lo-04"
+      ]
     }
   ]
 }

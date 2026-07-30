@@ -20,6 +20,9 @@
         "cat531_supplement_dts_map_reading",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-01-03-lo-01"
       ]
     },
     {
@@ -40,6 +43,9 @@
       "concept_ids": [
         "cat531_supplement_dts_map_reading",
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-01-03-lo-02"
       ]
     },
     {
@@ -60,6 +66,9 @@
       "concept_ids": [
         "ai_supported_learning",
         "cat531_supplement_dts_map_reading"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-01-03-lo-01"
       ]
     },
     {
@@ -80,6 +89,20 @@
       "concept_ids": [
         "cat531_supplement_dts_map_reading",
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-01-03-lo-04"
+      ]
+    },
+    {
+      "id": "cat531-supplement_01_03_lo_03_direct_check",
+      "type": "conceptual",
+      "stem": "Provide a concise response that demonstrates this learning objective: Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "expected_answer": "The response accurately demonstrates the section objective: Document a bounded AI/software support move with accepted and rejected suggestions, using relevant section concepts, evidence, or calculations.",
+      "explanation": "This direct-evidence item is used when no closed-response item adequately samples the objective. Score it with the section concepts and worked examples as the rubric.",
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat531-supplement-01-03-lo-03"
       ]
     }
   ]

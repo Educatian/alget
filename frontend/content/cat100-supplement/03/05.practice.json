@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "#DIV/0! appears when a formula divides by an empty or zero cell. The fix is to handle the zero case, for example with =IF(B2=0,\"n/a\",A2/B2).",
       "misconception_id": "cat100_supplement_3_5_ai_help_for_excel_debugging_error_codes",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-03-05-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_3_5_ai_help_for_excel_debugging_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "#N/A from a lookup usually means no exact match was found. Trailing spaces or a text-vs-number mismatch between the lookup value and the source column is the most common cause.",
       "misconception_id": "cat100_supplement_3_5_ai_help_for_excel_debugging_error_codes",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-03-05-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_3_5_ai_help_for_excel_debugging_ai_boundary",
@@ -57,7 +63,10 @@
       "correct_index": 1,
       "explanation": "AI can return a fluent but wrong formula. Checking it against a row whose answer you already know turns the suggestion into a verified fix rather than a guess.",
       "misconception_id": "cat100_supplement_3_5_ai_help_for_excel_debugging_unverified_ai_fix",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-03-05-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_3_5_ai_help_for_excel_debugging_calibration",
@@ -77,7 +86,10 @@
       "correct_index": 1,
       "explanation": "A precise debugging prompt gives the formula text, the error message, and the expected result for a concrete row. Vague prompts produce vague or wrong fixes.",
       "misconception_id": "cat100_supplement_3_5_ai_help_for_excel_debugging_vague_prompt",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-03-05-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_3_5_ai_help_for_excel_debugging_privacy_boundary",
@@ -96,6 +108,21 @@
       "difficulty": "easy",
       "concept_ids": [
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat100-supplement-03-05-lo-01",
+        "cat100-supplement-03-05-lo-02"
+      ]
+    },
+    {
+      "id": "cat100-supplement_03_05_lo_04_direct_check",
+      "type": "conceptual",
+      "stem": "Provide a concise response that demonstrates this learning objective: Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "expected_answer": "The response accurately demonstrates the section objective: Document a bounded AI/software support move with accepted and rejected suggestions, using relevant section concepts, evidence, or calculations.",
+      "explanation": "This direct-evidence item is used when no closed-response item adequately samples the objective. Score it with the section concepts and worked examples as the rubric.",
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-03-05-lo-04"
       ]
     }
   ]

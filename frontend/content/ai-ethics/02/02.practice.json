@@ -19,7 +19,10 @@
       ],
       "correct_index": 1,
       "explanation": "The impossibility theorem is a mathematical fact about the relationship between calibration and equalized error rates when base rates differ. Engineering cannot escape it; it can only choose where to spend the trade-off.",
-      "misconception_id": "fairness_criteria_compatible"
+      "misconception_id": "fairness_criteria_compatible",
+      "learning_objective_ids": [
+        "ai-ethics-02-02-lo-02"
+      ]
     },
     {
       "id": "fairness_demographic_parity",
@@ -39,7 +42,10 @@
       ],
       "correct_index": 0,
       "explanation": "Demographic parity equates selection rates across groups. It does not look at ground-truth Y; that is its strength (proportional outcomes) and its weakness (ignores qualification).",
-      "misconception_id": "demographic_parity_is_error_equality"
+      "misconception_id": "demographic_parity_is_error_equality",
+      "learning_objective_ids": [
+        "ai-ethics-02-02-lo-04"
+      ]
     },
     {
       "id": "fairness_match_to_harm",
@@ -59,7 +65,11 @@
       ],
       "correct_index": 1,
       "explanation": "Match the criterion to where the concrete harm lands. In criminal-risk deployment, false-positive harm is direct and severe; equalizing false-positive rates is the louder demand.",
-      "misconception_id": "fairness_is_one_size_fits_all"
+      "misconception_id": "fairness_is_one_size_fits_all",
+      "learning_objective_ids": [
+        "ai-ethics-02-02-lo-01",
+        "ai-ethics-02-02-lo-03"
+      ]
     },
     {
       "id": "fairness_individual_metric",
@@ -79,7 +89,10 @@
       ],
       "correct_index": 1,
       "explanation": "Individual fairness's content depends on what 'similar' means. Picking d to exclude or include the protected attribute encodes group-fairness implications back into the criterion.",
-      "misconception_id": "individual_fairness_is_objective"
+      "misconception_id": "individual_fairness_is_objective",
+      "learning_objective_ids": [
+        "ai-ethics-02-02-lo-03"
+      ]
     }
   ]
 }

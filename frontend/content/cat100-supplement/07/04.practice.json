@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "AI does not know your real professor or schedule. Always check names, dates, and facts before the email leaves your outbox.",
       "misconception_id": "cat100_supplement_7_4_send_unedited_ai",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-07-04-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_7_4_ai_assisted_email_drafting_annotation_signal",
@@ -37,7 +40,11 @@
       "correct_index": 1,
       "explanation": "The specific prompt names the recipient, course, exact request, deadline, and reason. A one-line prompt yields a generic draft you cannot use.",
       "misconception_id": "cat100_supplement_7_4_no_specifics_in_prompt",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-07-04-lo-01",
+        "cat100-supplement-07-04-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_7_4_ai_assisted_email_drafting_ai_boundary",
@@ -56,7 +63,10 @@
       "correct_index": 1,
       "explanation": "A professor audience needs a clear subject line, a named greeting, and a specific, calm request. Casual or aggressive tone undercuts the ask.",
       "misconception_id": "cat100_supplement_7_4_tone_mismatch",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-07-04-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_7_4_ai_assisted_email_drafting_calibration",
@@ -75,7 +85,10 @@
       "correct_index": 1,
       "explanation": "Sensitive identifiers and medical details should not go into a public tool. Draft with a placeholder, then fill the private value in yourself.",
       "misconception_id": "cat100_supplement_7_4_leak_private_info",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-07-04-lo-03"
+      ]
     }
   ]
 }

@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "It names a grade so ROLE is partly filled, but AUDIENCE, KNOWLEDGE BOUND, and HARD STOP are all blank.",
       "misconception_id": "cat100_supplement_4_1_persona_is_just_role_line",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-04-01-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_4_1_teacher_persona_setup_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "HARD STOP names a forbidden action. The other lines are KNOWLEDGE/task, ROLE, and AUDIENCE.",
       "misconception_id": "cat100_supplement_4_1_no_hard_stop",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-04-01-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_4_1_teacher_persona_setup_ai_boundary",
@@ -57,7 +63,10 @@
       "correct_index": 1,
       "explanation": "A specific task belongs in your first message, not the reusable persona. Keeping it out lets the persona stay constant across chats.",
       "misconception_id": "cat100_supplement_4_1_persona_vs_first_message",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-04-01-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_4_1_teacher_persona_setup_calibration",
@@ -77,7 +86,12 @@
       "correct_index": 1,
       "explanation": "Rejecting against an existing field and recording why is the evidence trace; you judge the suggestion against your own constraint.",
       "misconception_id": "cat100_supplement_4_1_no_hard_stop",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-04-01-lo-02",
+        "cat100-supplement-04-01-lo-03",
+        "cat100-supplement-04-01-lo-04"
+      ]
     }
   ]
 }

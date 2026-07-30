@@ -3,10 +3,22 @@
   "title": "Rubric Calibration",
   "description": "AIL 606 textbook section connecting rubric calibration to the calibrated analytic rubric with scored-draft reconciliation log (before/after agreement, traced split, rewritten descriptor), reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Diagnose why a rubric descriptor produces inter-rater disagreement by distinguishing adjective descriptors from observable, countable anchors.",
-    "Reconcile a rater split by tracing it to a feature of the work rather than averaging the scores.",
-    "Rewrite a level descriptor into a countable observation and verify the gain by re-scoring drafts and re-checking exact agreement.",
-    "Apply the new-rater test to judge whether reported agreement is calibration or convergence by habit."
+    {
+      "id": "ail606-supplement-08-03-lo-01",
+      "statement": "Diagnose why a rubric descriptor produces inter-rater disagreement by distinguishing adjective descriptors from observable, countable anchors"
+    },
+    {
+      "id": "ail606-supplement-08-03-lo-02",
+      "statement": "Reconcile a rater split by tracing it to a feature of the work rather than averaging the scores"
+    },
+    {
+      "id": "ail606-supplement-08-03-lo-03",
+      "statement": "Rewrite a level descriptor into a countable observation and verify the gain by re-scoring drafts and re-checking exact agreement"
+    },
+    {
+      "id": "ail606-supplement-08-03-lo-04",
+      "statement": "Apply the new-rater test to judge whether reported agreement is calibration or convergence by habit"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_instructor_implementation_toolkit",
@@ -29,5 +41,22 @@
     "ail606_supplement_8_3_rubric_calibration_annotation_signal",
     "ail606_supplement_8_3_rubric_calibration_ai_boundary",
     "ail606_supplement_8_3_rubric_calibration_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-08-03-lo-01": [
+      "ail606_supplement_8_3_rubric_calibration_ai_boundary",
+      "ail606_supplement_8_3_rubric_calibration_artifact_signal",
+      "ail606_supplement_8_3_rubric_calibration_calibration"
+    ],
+    "ail606-supplement-08-03-lo-02": [
+      "ail606_supplement_8_3_rubric_calibration_annotation_signal"
+    ],
+    "ail606-supplement-08-03-lo-03": [
+      "ail606_supplement_8_3_rubric_calibration_ai_boundary"
+    ],
+    "ail606-supplement-08-03-lo-04": [
+      "ail606_supplement_8_3_rubric_calibration_ai_boundary"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

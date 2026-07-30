@@ -100,6 +100,18 @@ function formatRecentTimestamp(value) {
     })
 }
 
+function normalizeLearningObjectives(objectives) {
+    if (!Array.isArray(objectives)) return []
+
+    return objectives
+        .map((objective) => {
+            if (typeof objective === 'string') return objective.trim()
+            if (objective && typeof objective.statement === 'string') return objective.statement.trim()
+            return ''
+        })
+        .filter(Boolean)
+}
+
 function ReadingPane({
     sectionData,
     loading,
@@ -254,6 +266,7 @@ function ReadingPane({
     }
 
     const { meta, content, simulation, illustration, practice } = sectionData
+    const learningObjectives = normalizeLearningObjectives(meta?.learning_objectives)
     const workProduct = inferWorkProduct(meta)
     const contentHasLearningTargets = /(^|\n)##\s+Learning (?:Targets|Objectives)\b/.test(content || '')
     const contentHasEmbeddedCheck = /<(?:inline-check|interactive-quiz)\b/i.test(content || '')
@@ -290,17 +303,17 @@ function ReadingPane({
                     </div>
                 </div>
 
-                {meta?.learning_objectives?.length > 0 && !contentHasLearningTargets && (
+                {learningObjectives.length > 0 && !contentHasLearningTargets && (
                     <details className="group mt-3 border-b border-[var(--ath-line)] px-1 py-2">
                         <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-xs font-semibold text-[var(--ath-secondary)]">
-                            <span>Learning objectives · {meta.learning_objectives.length}</span>
+                            <span>Learning objectives · {learningObjectives.length}</span>
                             <span className="transition-transform group-open:rotate-90" aria-hidden="true">›</span>
                         </summary>
                         <ul className="mt-2 space-y-1.5">
-                            {meta.learning_objectives.map((obj, i) => (
+                            {learningObjectives.map((objective, i) => (
                                 <li key={i} className="flex items-start gap-2.5 text-sm leading-6 text-[var(--ath-text)]">
                                     <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[var(--ath-primary)]" aria-hidden="true" />
-                                    <span>{obj}</span>
+                                    <span>{objective}</span>
                                 </li>
                             ))}
                         </ul>
@@ -512,7 +525,7 @@ function ReadingPane({
                                 sectionId={sectionId}
                                 sectionTitle={meta?.title}
                                 contentVersion={sectionData?.content_version || null}
-                                learningObjectives={meta?.learning_objectives}
+                                learningObjectives={learningObjectives}
                                 conceptIds={meta?.concept_ids}
                                 onNeedsReview={onNeedsReview}
                             />
@@ -528,7 +541,7 @@ function ReadingPane({
                             sectionId={sectionId}
                             sectionTitle={meta?.title}
                             contentVersion={sectionData?.content_version || null}
-                            learningObjectives={meta?.learning_objectives}
+                            learningObjectives={learningObjectives}
                             conceptIds={meta?.concept_ids}
                             onNeedsReview={onNeedsReview}
                         />

@@ -1,4 +1,4 @@
-﻿{
+{
   "course": "cat100-supplement",
   "chapter": "08",
   "section": "01",
@@ -6,10 +6,22 @@
   "title": "Capstone Artifact Review",
   "description": "CAT 100 textbook section on capstone artifact review, centered on a review checklist, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the capstone artifact review checklist shows a defensible decision in CAT 100.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    {
+      "id": "cat100-supplement-08-01-lo-01",
+      "statement": "Analyze how the capstone artifact review checklist shows a defensible decision in CAT 100"
+    },
+    {
+      "id": "cat100-supplement-08-01-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "cat100-supplement-08-01-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat100-supplement-08-01-lo-04",
+      "statement": "Use feedback, support requests, and revision notes to improve the artifact before sharing it"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_course_completion_and_transfer",
@@ -28,6 +40,22 @@
     "cat100_supplement_8_1_capstone_artifact_review_annotation_signal",
     "cat100_supplement_8_1_capstone_artifact_review_ai_boundary",
     "cat100_supplement_8_1_capstone_artifact_review_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-08-01-lo-01": [
+      "cat100_supplement_8_1_capstone_artifact_review_artifact_signal"
+    ],
+    "cat100-supplement-08-01-lo-02": [
+      "cat100_supplement_8_1_capstone_artifact_review_annotation_signal",
+      "cat100_supplement_8_1_capstone_artifact_review_calibration"
+    ],
+    "cat100-supplement-08-01-lo-03": [
+      "cat100_supplement_8_1_capstone_artifact_review_artifact_signal"
+    ],
+    "cat100-supplement-08-01-lo-04": [
+      "cat100_supplement_8_1_capstone_artifact_review_artifact_signal",
+      "cat100_supplement_8_1_capstone_artifact_review_ai_boundary"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }
-

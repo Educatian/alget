@@ -6,10 +6,22 @@
   "chapter": "07",
   "section": "04",
   "learning_objectives": [
-    "Analyze how the equity-oriented edtech evaluation matrix with context-specific risk notes shows a defensible decision in CAT 531.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible."
+    {
+      "id": "cat531-supplement-07-04-lo-01",
+      "statement": "Analyze how the equity-oriented edtech evaluation matrix with context-specific risk notes shows a defensible decision in CAT 531"
+    },
+    {
+      "id": "cat531-supplement-07-04-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "cat531-supplement-07-04-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat531-supplement-07-04-lo-04",
+      "statement": "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible"
+    }
   ],
   "concept_ids": [
     "cat531_supplement_field_based_transfer_and_coaching",
@@ -24,9 +36,27 @@
     "cat531_supplement_7_4_equity_audit_in_field_contexts_artifact_signal",
     "cat531_supplement_7_4_equity_audit_in_field_contexts_annotation_signal",
     "cat531_supplement_7_4_equity_audit_in_field_contexts_ai_boundary",
-    "cat531_supplement_7_4_equity_audit_in_field_contexts_calibration"
+    "cat531_supplement_7_4_equity_audit_in_field_contexts_calibration",
+    "cat531-supplement_07_04_lo_03_direct_check"
   ],
   "estimated_time_minutes": 14,
   "order": 4,
-  "top_tier_hardened": false
+  "top_tier_hardened": false,
+  "lo_practice_map": {
+    "cat531-supplement-07-04-lo-01": [
+      "cat531_supplement_7_4_equity_audit_in_field_contexts_ai_boundary",
+      "cat531_supplement_7_4_equity_audit_in_field_contexts_artifact_signal",
+      "cat531_supplement_7_4_equity_audit_in_field_contexts_calibration"
+    ],
+    "cat531-supplement-07-04-lo-02": [
+      "cat531_supplement_7_4_equity_audit_in_field_contexts_annotation_signal"
+    ],
+    "cat531-supplement-07-04-lo-03": [
+      "cat531-supplement_07_04_lo_03_direct_check"
+    ],
+    "cat531-supplement-07-04-lo-04": [
+      "cat531_supplement_7_4_equity_audit_in_field_contexts_annotation_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

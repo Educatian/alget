@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "A useful revision log lets a reader reconstruct your reasoning: the change itself, the reason, and the prompt (a piece of feedback, an AI suggestion, or new evidence).",
       "misconception_id": "cat100_supplement_2_6_log_records_cosmetics",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-02-06-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_2_6_revision_logs_annotation_signal",
@@ -38,7 +41,10 @@
       "correct_index": 2,
       "explanation": "The strong row names the location (summary, line 2), the exact change, and the prompt (career-center feedback). The vague rows could describe any edit anywhere.",
       "misconception_id": "cat100_supplement_2_6_vague_log_row",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-02-06-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_2_6_revision_logs_ai_boundary",
@@ -58,7 +64,11 @@
       "correct_index": 1,
       "explanation": "A revision log that hides AI use cannot show your judgment. Recording what AI proposed, what you accepted, and what you rejected is exactly what makes the log honest and useful.",
       "misconception_id": "cat100_supplement_2_6_hiding_ai_in_log",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-02-06-lo-01",
+        "cat100-supplement-02-06-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_2_6_revision_logs_calibration",
@@ -78,7 +88,10 @@
       "correct_index": 1,
       "explanation": "The value of a log is traceability over time: you can see the sequence of decisions, link each to its prompt, and roll back if a change did not help. Overwriting destroys that history.",
       "misconception_id": "cat100_supplement_2_6_overwrite_loses_history",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-02-06-lo-02"
+      ]
     }
   ]
 }

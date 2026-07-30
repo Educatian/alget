@@ -20,6 +20,9 @@
         "ail606_supplement_research_translation_studio",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-07-08-lo-01"
       ]
     },
     {
@@ -42,6 +45,9 @@
         "ail606_supplement_research_translation_studio",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-07-08-lo-03"
       ]
     },
     {
@@ -64,6 +70,9 @@
         "ail606_supplement_research_translation_studio",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-07-08-lo-04"
       ]
     },
     {
@@ -86,6 +95,9 @@
         "ail606_supplement_research_translation_studio",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-07-08-lo-02"
       ]
     }
   ]

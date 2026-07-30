@@ -18,7 +18,11 @@
       "correct_index": 0,
       "explanation": "Edit a copy, not the master. Save As (or an .xltx template) keeps a blank, reusable original.",
       "misconception_id": "cat100_supplement_7_3_overwrite_master",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-07-03-lo-03",
+        "cat100-supplement-07-03-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_7_3_template_based_productivity_annotation_signal",
@@ -37,7 +41,10 @@
       "correct_index": 1,
       "explanation": "=SUM(B2:B10) recalculates whenever a cost changes. A typed 450 goes stale on the next edit.",
       "misconception_id": "cat100_supplement_7_3_hardcode_instead_of_formula",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-07-03-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_7_3_template_based_productivity_ai_boundary",
@@ -56,7 +63,10 @@
       "correct_index": 1,
       "explanation": "Placeholders flag exactly which fields to fill, so no stale value from last week is left behind.",
       "misconception_id": "cat100_supplement_7_3_format_without_placeholders",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-07-03-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_7_3_template_based_productivity_calibration",
@@ -75,7 +85,10 @@
       "correct_index": 1,
       "explanation": "B2 must shift to B3, B4 as you copy down; the single tax rate cell must stay locked as $C$1.",
       "misconception_id": "cat100_supplement_7_3_no_relative_reference",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-07-03-lo-02"
+      ]
     }
   ]
 }

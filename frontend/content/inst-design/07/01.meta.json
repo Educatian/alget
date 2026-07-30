@@ -1,32 +1,54 @@
 {
-    "course": "inst-design",
-    "chapter": "07",
-    "section": "01",
-    "title": "Module 7: Universal Design for Learning (UDL)",
-    "description": "Designing accessible learning experiences that accommodate neurodiversity and physical disabilities by providing multiple means of representation, action, and engagement.",
-    "chapter_title": "Accessibility and Inclusive Learning Design",
-    "learning_objectives": [
-        "Explain the three UDL pillars and how they support learner variability.",
-        "Audit an instructional experience for accessibility, flexibility, and cognitive inclusion.",
-        "Choose representation, expression, and engagement supports that expand access without lowering rigor."
+  "course": "inst-design",
+  "chapter": "07",
+  "section": "01",
+  "title": "Module 7: Universal Design for Learning (UDL)",
+  "description": "Designing accessible learning experiences that accommodate neurodiversity and physical disabilities by providing multiple means of representation, action, and engagement.",
+  "chapter_title": "Accessibility and Inclusive Learning Design",
+  "learning_objectives": [
+    {
+      "id": "inst-design-07-01-lo-01",
+      "statement": "Explain the three UDL pillars and how they support learner variability"
+    },
+    {
+      "id": "inst-design-07-01-lo-02",
+      "statement": "Audit an instructional experience for accessibility, flexibility, and cognitive inclusion"
+    },
+    {
+      "id": "inst-design-07-01-lo-03",
+      "statement": "Choose representation, expression, and engagement supports that expand access without lowering rigor"
+    }
+  ],
+  "concept_ids": [
+    "universal_design_for_learning",
+    "multiple_means_of_representation",
+    "multiple_means_of_action_and_expression",
+    "multiple_means_of_engagement",
+    "inclusive_design"
+  ],
+  "prereq_section_ids": [
+    "inst-design/03/01",
+    "inst-design/06/01"
+  ],
+  "practice_ids": [
+    "udl_representation",
+    "udl_expression",
+    "udl_engagement",
+    "wcag_contrast_case"
+  ],
+  "estimated_time_minutes": 12,
+  "order": 7,
+  "lo_practice_map": {
+    "inst-design-07-01-lo-01": [
+      "udl_engagement"
     ],
-    "concept_ids": [
-        "universal_design_for_learning",
-        "multiple_means_of_representation",
-        "multiple_means_of_action_and_expression",
-        "multiple_means_of_engagement",
-        "inclusive_design"
+    "inst-design-07-01-lo-02": [
+      "wcag_contrast_case"
     ],
-    "prereq_section_ids": [
-        "inst-design/03/01",
-        "inst-design/06/01"
-    ],
-    "practice_ids": [
-        "udl_representation",
-        "udl_expression",
-        "udl_engagement",
-        "wcag_contrast_case"
-    ],
-    "estimated_time_minutes": 12,
-    "order": 7
+    "inst-design-07-01-lo-03": [
+      "udl_representation",
+      "udl_expression"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

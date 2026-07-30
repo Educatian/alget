@@ -17,6 +17,9 @@
       "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_prioritizing_iterations"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-05-07-lo-01"
       ]
     },
     {
@@ -36,6 +39,9 @@
       "difficulty": "medium",
       "concept_ids": [
         "ail606_supplement_prioritizing_iterations"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-05-07-lo-03"
       ]
     },
     {
@@ -55,6 +61,10 @@
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-05-07-lo-01",
+        "ail606-supplement-05-07-lo-04"
       ]
     },
     {
@@ -74,6 +84,9 @@
       "difficulty": "hard",
       "concept_ids": [
         "ail606_supplement_prioritizing_iterations"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-05-07-lo-02"
       ]
     }
   ]

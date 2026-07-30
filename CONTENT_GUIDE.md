@@ -1,106 +1,85 @@
-# ALGET 콘텐츠 목록 v2
+# ALGET Content Guide
 
-> **Statics + Dynamics** - UA Mechanical Engineering (1-2학년)
+> Canonical corpus snapshot: 2026-07-30
 
----
+ALGET contains eight adaptive textbook pathways. Counts are generated from the
+MDX corpus by `scripts/generate_content_manifest.mjs`; the app imports the
+generated manifest so catalog claims cannot drift from deployable content.
 
-## 📊 콘텐츠 요약
+## Corpus summary
 
-| 과목 | Chapters | Sections | 총 파일 |
-|------|----------|----------|---------|
-| **Statics** | 3 | 10 | 30+ |
-| **Dynamics** | 3 | 9 | 27+ |
-| **Total** | 6 | 19 | 57+ |
+| Course | Chapters | Sections | Track |
+| --- | ---: | ---: | --- |
+| Engineering Statics | 6 | 14 | Engineering |
+| ME 201: Engineering Dynamics | 3 | 11 | Engineering |
+| Bio-Inspired Design | 8 | 10 | Engineering |
+| Foundation of Instructional Design | 8 | 17 | Education |
+| AI and Ethics | 6 | 12 | Education |
+| AIL 606 Software Technology Supplement | 8 | 64 | Education |
+| CAT 531 Technology and Teaching Supplement | 8 | 64 | Education |
+| CAT 100 Computer Concepts Supplement | 8 | 64 | Education |
+| **Total** | **55** | **256** | — |
 
----
+## Section contract
 
-# STATICS (정역학)
+Each section lives under `frontend/content/<course>/<chapter>/` as four sibling
+files:
 
-## Chapter 1: Equilibrium of a Particle
+- `<section>.mdx`: narrative, worked examples, visuals, and inline interactions.
+- `<section>.meta.json`: title, stable learning-objective IDs, concepts,
+  prerequisites, practice IDs, and the objective-to-practice map.
+- `<section>.practice.json`: closed and open-response evidence items. Every item
+  carries one or more `learning_objective_ids`.
+- `<section>.misconceptions.json`: misconception patterns and adaptive rail action.
 
-| Section | Title | Time | Key Concepts |
-|---------|-------|------|--------------|
-| 1.1 | Equilibrium Conditions | 25분 | ΣF=0, FBD, tension |
-| 1.2 | Free Body Diagrams | 45분 | 6-step procedure, force identification |
-| 1.3 | Two-Force/Three-Force Members | 40분 | two-force member, concurrency |
-| 1.4 | **Friction** ⭐ | 50분 | μs, impending motion, direction |
+The current corpus contains 1,002 explicit learning objectives and 1,131
+practice items. When no existing closed-response item adequately samples an
+objective, the alignment migration adds a direct-evidence conceptual prompt
+instead of claiming a false mapping.
 
-## Chapter 2: Force Systems (Rigid Bodies)
+## Authoring and quality commands
 
-| Section | Title | Time | Key Concepts |
-|---------|-------|------|--------------|
-| 2.1 | Moment of a Force | 50분 | M=r×F, Varignon, cross product |
-| 2.2 | Couples and Equivalent Systems | 45분 | couple, free vector |
-| 2.3 | Equilibrium of Rigid Bodies | 55분 | ΣM=0, support reactions |
-
-## Chapter 3: Structural Analysis
-
-| Section | Title | Time | Key Concepts |
-|---------|-------|------|--------------|
-| 3.1 | Simple Trusses | 40분 | m=2j-3, determinacy |
-| 3.2 | Method of Joints | 55분 | joint equilibrium, T/C |
-| 3.3 | Method of Sections | 50분 | cutting plane, moment point |
-
----
-
-# DYNAMICS (동역학)
-
-## Chapter 1: Kinematics of Particles
-
-| Section | Title | Time | Key Concepts |
-|---------|-------|------|--------------|
-| 1.1 | Rectilinear Motion | 55분 | s-v-a, constant acceleration |
-| 1.2 | Curvilinear Motion | 60분 | n-t coords, aₜ, aₙ |
-| 1.3 | Relative Motion | 45분 | vB/A = vB - vA |
-
-## Chapter 2: Kinetics of Particles
-
-| Section | Title | Time | Key Concepts |
-|---------|-------|------|--------------|
-| 2.1 | Newton's Second Law | 60분 | ΣF=ma, friction, inclines |
-| 2.2 | Work and Energy | 55분 | W=ΔT, conservation |
-| 2.3 | Impulse-Momentum | 55분 | J=Δp, collisions |
-
-## Chapter 3: Planar Rigid Body Dynamics
-
-| Section | Title | Time | Key Concepts |
-|---------|-------|------|--------------|
-| 3.1 | Kinematics of Rigid Bodies | 50분 | ω, α, v=rω |
-| 3.2 | Equations of Motion | 60분 | ΣM=Iα, moment of inertia |
-| 3.3 | Work-Energy for Rigid Bodies | 50분 | T = ½mv² + ½Iω² |
-
----
-
-## 📂 파일 구조
-
-```
-frontend/content/
-├── statics/
-│   ├── 01/  (Ch1: 4 sections - 1.1~1.4)
-│   ├── 02/  (Ch2: 3 sections)
-│   └── 03/  (Ch3: 3 sections)
-└── dynamics/
-    ├── 01/  (Ch1: 3 sections)
-    ├── 02/  (Ch2: 3 sections)
-    └── 03/  (Ch3: 3 sections)
+```powershell
+python scripts\validate_content.py
+python scripts\lint_boilerplate.py
+python scripts\content_census.py
+node scripts\generate_content_manifest.mjs
+python scripts\generate_reference_figures.py
+node scripts\verify_static_snapshot.mjs
 ```
 
-섹션당 파일:
-- `XX.mdx` - 본문 (Learning Objectives, Examples, Summary)
-- `XX.meta.json` - 메타데이터 (prereqs, concepts, units_focus)
-- `XX.practice.json` - 연습문제 (MCQ, Numeric, Step-based)
-- `XX.misconceptions.json` - 오개념 패턴 *(Dynamics 1.1에 포함)*
+`validate_content.py` blocks missing or dangling learning-objective links,
+unassessed objectives, invalid practice IDs, broken misconception references,
+and invalid prerequisite graphs. Generated alignment is explicitly marked for
+instructor review in each meta file; automation establishes traceability but
+does not replace domain-expert judgment.
 
----
+## Reference-image policy
 
-## ⏱️ 총 학습 시간
+- Every section must include at least one instructional visual: a semantic
+  reference figure, a dedicated concept diagram, a simulation, or an
+  instructional video.
+- Images must be organizational or explanative and explicitly support a
+  learning objective. Decorative stock imagery is not part of the textbook
+  visual standard.
+- Project-authored images use `<figure-block>` so the rendered page has a real
+  `<figure>`/`<figcaption>` relationship, descriptive alt text, a nearby
+  instructional caption, visual purpose, source, and license.
+- `frontend/public/course-art/reference-manifest.json` records objective links,
+  concept IDs, provenance, licensing, and SHA-256 integrity hashes.
+- Existing dedicated diagrams are retained instead of adding a redundant
+  overview graphic. Missing visual coverage is blocked by
+  `scripts/release_readiness.mjs`.
 
-| Course | Time |
-|--------|------|
-| Statics | ~7시간 |
-| Dynamics | ~7.5시간 |
-| **Total** | **~14.5시간** |
+See `research/REFERENCE_IMAGE_AUDIT.md` for course-level coverage.
 
----
+## Citation policy
 
-*Last Updated: 2026-01-09*
+- Use resolvable identifiers that match the cited title, author, year, and
+  edition; a resolving DOI attached to the wrong work is still an error.
+- Prefer primary or peer-reviewed sources for factual claims.
+- Record hypothetical scenario numbers as illustrative rather than empirical.
+- Run the citation-integrity check before an official course publication.
+
+See `CONTENT_MODEL.md` for the schema-level contract and
+`research/CONTENT_VERIFICATION.md` for the trust audit history.

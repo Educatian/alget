@@ -6,10 +6,22 @@
   "chapter": "04",
   "section": "07",
   "learning_objectives": [
-    "Analyze how the Ethobot transcript annotation showing where ethical reasoning changed shows a defensible decision in CAT 531.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible."
+    {
+      "id": "cat531-supplement-04-07-lo-01",
+      "statement": "Analyze how the Ethobot transcript annotation showing where ethical reasoning changed shows a defensible decision in CAT 531"
+    },
+    {
+      "id": "cat531-supplement-04-07-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "cat531-supplement-04-07-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat531-supplement-04-07-lo-04",
+      "statement": "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible"
+    }
   ],
   "concept_ids": [
     "cat531_supplement_ai_ethics_and_ethobot_3_2",
@@ -28,5 +40,22 @@
   ],
   "estimated_time_minutes": 14,
   "order": 7,
-  "top_tier_hardened": false
+  "top_tier_hardened": false,
+  "lo_practice_map": {
+    "cat531-supplement-04-07-lo-01": [
+      "cat531_supplement_4_7_adapting_ethobot_prompts_calibration",
+      "cat531_supplement_4_7_adapting_ethobot_prompts_ai_boundary"
+    ],
+    "cat531-supplement-04-07-lo-02": [
+      "cat531_supplement_4_7_adapting_ethobot_prompts_calibration",
+      "cat531_supplement_4_7_adapting_ethobot_prompts_artifact_signal"
+    ],
+    "cat531-supplement-04-07-lo-03": [
+      "cat531_supplement_4_7_adapting_ethobot_prompts_annotation_signal"
+    ],
+    "cat531-supplement-04-07-lo-04": [
+      "cat531_supplement_4_7_adapting_ethobot_prompts_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

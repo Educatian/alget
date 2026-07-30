@@ -3,10 +3,22 @@
   "title": "Wireframes That Show Learning Logic",
   "description": "AIL 606 textbook section connecting wireframes that show learning logic to the annotated wireframe with per-region learner-action and sequence-phase labels, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Annotate each wireframe region with the learner action it supports and its sequence position.",
-    "Detect contradictions between a screen's purpose and its interaction affordances.",
-    "Encode instructional intent through layout choices (button placement, feedback timing).",
-    "Critique a wireframe as a teaching decision, not as a visual arrangement."
+    {
+      "id": "ail606-supplement-04-03-lo-01",
+      "statement": "Annotate each wireframe region with the learner action it supports and its sequence position"
+    },
+    {
+      "id": "ail606-supplement-04-03-lo-02",
+      "statement": "Detect contradictions between a screen's purpose and its interaction affordances"
+    },
+    {
+      "id": "ail606-supplement-04-03-lo-03",
+      "statement": "Encode instructional intent through layout choices (button placement, feedback timing)"
+    },
+    {
+      "id": "ail606-supplement-04-03-lo-04",
+      "statement": "Critique a wireframe as a teaching decision, not as a visual arrangement"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_design_draft_and_theory_to_prototype_alignment",
@@ -28,5 +40,21 @@
     "ail606_supplement_4_3_wireframes_that_show_learning_logic_annotation_signal",
     "ail606_supplement_4_3_wireframes_that_show_learning_logic_ai_boundary",
     "ail606_supplement_4_3_wireframes_that_show_learning_logic_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-04-03-lo-01": [
+      "ail606_supplement_4_3_wireframes_that_show_learning_logic_artifact_signal",
+      "ail606_supplement_4_3_wireframes_that_show_learning_logic_annotation_signal"
+    ],
+    "ail606-supplement-04-03-lo-02": [
+      "ail606_supplement_4_3_wireframes_that_show_learning_logic_ai_boundary"
+    ],
+    "ail606-supplement-04-03-lo-03": [
+      "ail606_supplement_4_3_wireframes_that_show_learning_logic_calibration"
+    ],
+    "ail606-supplement-04-03-lo-04": [
+      "ail606_supplement_4_3_wireframes_that_show_learning_logic_artifact_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

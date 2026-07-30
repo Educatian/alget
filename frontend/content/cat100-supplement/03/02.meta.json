@@ -6,10 +6,22 @@
   "title": "Formulas for Everyday Analysis",
   "description": "CAT 100 textbook section connecting formulas for everyday analysis to a spreadsheet formula trace with locked-constant labels and a bottom-row verification note, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Predict how a relative, absolute ($F$1), or mixed (B$1, $A2) reference rewrites when a formula is copied down or across.",
-    "Choose relative references for per-row inputs and absolute references for shared constants, and justify the lock pattern in a trace.",
-    "Verify a copied formula column by reading the formula in the last filled cell, not just the first.",
-    "Explain SUM, AVERAGE, and COUNT semantics, including why AVERAGE skips blanks but counts a stray zero."
+    {
+      "id": "cat100-supplement-03-02-lo-01",
+      "statement": "Predict how a relative, absolute ($F$1), or mixed (B$1, $A2) reference rewrites when a formula is copied down or across"
+    },
+    {
+      "id": "cat100-supplement-03-02-lo-02",
+      "statement": "Choose relative references for per-row inputs and absolute references for shared constants, and justify the lock pattern in a trace"
+    },
+    {
+      "id": "cat100-supplement-03-02-lo-03",
+      "statement": "Verify a copied formula column by reading the formula in the last filled cell, not just the first"
+    },
+    {
+      "id": "cat100-supplement-03-02-lo-04",
+      "statement": "Explain SUM, AVERAGE, and COUNT semantics, including why AVERAGE skips blanks but counts a stray zero"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_data_storytelling_with_excel",
@@ -28,5 +40,21 @@
     "cat100_supplement_3_2_formulas_for_everyday_analysis_annotation_signal",
     "cat100_supplement_3_2_formulas_for_everyday_analysis_ai_boundary",
     "cat100_supplement_3_2_formulas_for_everyday_analysis_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-03-02-lo-01": [
+      "cat100_supplement_3_2_formulas_for_everyday_analysis_annotation_signal"
+    ],
+    "cat100-supplement-03-02-lo-02": [
+      "cat100_supplement_3_2_formulas_for_everyday_analysis_artifact_signal"
+    ],
+    "cat100-supplement-03-02-lo-03": [
+      "cat100_supplement_3_2_formulas_for_everyday_analysis_annotation_signal"
+    ],
+    "cat100-supplement-03-02-lo-04": [
+      "cat100_supplement_3_2_formulas_for_everyday_analysis_ai_boundary",
+      "cat100_supplement_3_2_formulas_for_everyday_analysis_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

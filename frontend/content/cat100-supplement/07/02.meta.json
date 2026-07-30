@@ -1,4 +1,4 @@
-﻿{
+{
   "course": "cat100-supplement",
   "chapter": "07",
   "section": "02",
@@ -6,10 +6,22 @@
   "title": "Calendar and Task Systems",
   "description": "CAT 100 textbook section connecting calendar and task systems to one-week calendar and task plan, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Separate fixed-time events (which belong on a calendar) from deadline-bound work (which belongs on a task list).",
-    "Schedule a work block for each task before its deadline, so the work has a reserved time and not just a due time.",
-    "Set reminder lead times that account for travel and setup, not just the moment the event starts.",
-    "Track task state (not started, in progress, done) so the list shows what is left, not just what exists."
+    {
+      "id": "cat100-supplement-07-02-lo-01",
+      "statement": "Separate fixed-time events (which belong on a calendar) from deadline-bound work (which belongs on a task list)"
+    },
+    {
+      "id": "cat100-supplement-07-02-lo-02",
+      "statement": "Schedule a work block for each task before its deadline, so the work has a reserved time and not just a due time"
+    },
+    {
+      "id": "cat100-supplement-07-02-lo-03",
+      "statement": "Set reminder lead times that account for travel and setup, not just the moment the event starts"
+    },
+    {
+      "id": "cat100-supplement-07-02-lo-04",
+      "statement": "Track task state (not started, in progress, done) so the list shows what is left, not just what exists"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_productivity_and_workflow_automation",
@@ -28,5 +40,22 @@
     "cat100_supplement_7_2_calendar_and_task_systems_annotation_signal",
     "cat100_supplement_7_2_calendar_and_task_systems_ai_boundary",
     "cat100_supplement_7_2_calendar_and_task_systems_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-07-02-lo-01": [
+      "cat100_supplement_7_2_calendar_and_task_systems_artifact_signal"
+    ],
+    "cat100-supplement-07-02-lo-02": [
+      "cat100_supplement_7_2_calendar_and_task_systems_artifact_signal",
+      "cat100_supplement_7_2_calendar_and_task_systems_annotation_signal",
+      "cat100_supplement_7_2_calendar_and_task_systems_ai_boundary"
+    ],
+    "cat100-supplement-07-02-lo-03": [
+      "cat100_supplement_7_2_calendar_and_task_systems_calibration"
+    ],
+    "cat100-supplement-07-02-lo-04": [
+      "cat100_supplement_7_2_calendar_and_task_systems_artifact_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

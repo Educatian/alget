@@ -3,10 +3,22 @@
   "title": "Evidence-Centered Design for Prototypes",
   "description": "AIL 606 textbook section connecting evidence-centered design for prototypes to prototype README traceability matrix connecting theory to screen changes, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "State the three ECD layers used here: claim (what the learner knows or can do), evidence (the observable that would reveal it), task (the screen that elicits the observable).",
-    "Audit a traceability matrix row for the two classic failures: an unobservable evidence cell and a task that cannot elicit the named observable.",
-    "Rewrite an internal-state evidence cell (\"feels confident\") as a scorable behavior.",
-    "Reject task features that produce data unrelated to the claim."
+    {
+      "id": "ail606-supplement-07-02-lo-01",
+      "statement": "State the three ECD layers used here: claim (what the learner knows or can do), evidence (the observable that would reveal it), task (the screen that elicits the observable)"
+    },
+    {
+      "id": "ail606-supplement-07-02-lo-02",
+      "statement": "Audit a traceability matrix row for the two classic failures: an unobservable evidence cell and a task that cannot elicit the named observable"
+    },
+    {
+      "id": "ail606-supplement-07-02-lo-03",
+      "statement": "Rewrite an internal-state evidence cell (\"feels confident\") as a scorable behavior"
+    },
+    {
+      "id": "ail606-supplement-07-02-lo-04",
+      "statement": "Reject task features that produce data unrelated to the claim"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_research_translation_for_learning_design",
@@ -28,5 +40,21 @@
     "ail606_supplement_7_2_evidence_centered_design_for_prototypes_annotation_signal",
     "ail606_supplement_7_2_evidence_centered_design_for_prototypes_ai_boundary",
     "ail606_supplement_7_2_evidence_centered_design_for_prototypes_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-07-02-lo-01": [
+      "ail606_supplement_7_2_evidence_centered_design_for_prototypes_artifact_signal",
+      "ail606_supplement_7_2_evidence_centered_design_for_prototypes_calibration"
+    ],
+    "ail606-supplement-07-02-lo-02": [
+      "ail606_supplement_7_2_evidence_centered_design_for_prototypes_annotation_signal"
+    ],
+    "ail606-supplement-07-02-lo-03": [
+      "ail606_supplement_7_2_evidence_centered_design_for_prototypes_artifact_signal"
+    ],
+    "ail606-supplement-07-02-lo-04": [
+      "ail606_supplement_7_2_evidence_centered_design_for_prototypes_ai_boundary"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

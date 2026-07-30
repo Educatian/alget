@@ -1,27 +1,49 @@
 {
-    "chapter": "03",
-    "section": "01",
-    "title": "Aeroacoustics & Wing Serrations",
-    "chapter_title": "Thermoregulation",
-    "course": "bio-inspired",
-    "learning_objectives": [
-        "Examine the acoustic damping properties of owl wing serrations.",
-        "Abstract the biological principle of micro-turbulence separation.",
-        "Apply geometric patterns to mechanical drone propeller design."
+  "chapter": "03",
+  "section": "01",
+  "title": "Aeroacoustics & Wing Serrations",
+  "chapter_title": "Thermoregulation",
+  "course": "bio-inspired",
+  "learning_objectives": [
+    {
+      "id": "bio-inspired-03-01-lo-01",
+      "statement": "Examine the acoustic damping properties of owl wing serrations"
+    },
+    {
+      "id": "bio-inspired-03-01-lo-02",
+      "statement": "Abstract the biological principle of micro-turbulence separation"
+    },
+    {
+      "id": "bio-inspired-03-01-lo-03",
+      "statement": "Apply geometric patterns to mechanical drone propeller design"
+    }
+  ],
+  "concept_ids": [
+    "aeroacoustics",
+    "wing_serrations",
+    "drone_propellers",
+    "turbulence"
+  ],
+  "prereq_section_ids": [
+    "bio-inspired/02/01"
+  ],
+  "practice_ids": [
+    "bio_owl_silent_flight",
+    "bio_aeroacoustics_focus",
+    "bio_microturbulence_breakdown",
+    "bio_propeller_transfer"
+  ],
+  "lo_practice_map": {
+    "bio-inspired-03-01-lo-01": [
+      "bio_owl_silent_flight",
+      "bio_aeroacoustics_focus"
     ],
-    "concept_ids": [
-        "aeroacoustics",
-        "wing_serrations",
-        "drone_propellers",
-        "turbulence"
+    "bio-inspired-03-01-lo-02": [
+      "bio_microturbulence_breakdown"
     ],
-    "prereq_section_ids": [
-        "bio-inspired/02/01"
-    ],
-    "practice_ids": [
-        "bio_owl_silent_flight",
-        "bio_aeroacoustics_focus",
-        "bio_microturbulence_breakdown",
-        "bio_propeller_transfer"
+    "bio-inspired-03-01-lo-03": [
+      "bio_propeller_transfer"
     ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

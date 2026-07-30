@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "A PDF preserves layout and is the required type. The checklist step is to export and then verify the exported file looks right.",
       "misconception_id": "cat100_supplement_8_7_wrong_export_format",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-08-07-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_8_7_final_submission_checklist_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "A link that works while signed in may be private or local. Testing in a signed-out window confirms the grader can actually reach it.",
       "misconception_id": "cat100_supplement_8_7_untested_link",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-08-07-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_8_7_final_submission_checklist_ai_boundary",
@@ -56,7 +62,12 @@
       "correct_index": 1,
       "explanation": "The AI can draft the checklist, but the learner verifies each item against the real artifact. The tool cannot confirm your file opens or your link is public; even an assistant that can fetch a URL does so through its own service, not the grader's signed-out session.",
       "misconception_id": "cat100_supplement_8_7_ai_confirms_complete",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-08-07-lo-01",
+        "cat100-supplement-08-07-lo-02",
+        "cat100-supplement-08-07-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_8_7_final_submission_checklist_calibration",
@@ -75,7 +86,10 @@
       "correct_index": 1,
       "explanation": "A name with your last name, the course, the assignment, and a version is identifiable and avoids overwrite collisions; 'final.docx' is ambiguous among many submissions.",
       "misconception_id": "cat100_supplement_8_7_meaningless_filename",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-08-07-lo-03"
+      ]
     }
   ]
 }

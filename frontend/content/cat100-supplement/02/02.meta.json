@@ -6,10 +6,22 @@
   "title": "Two-AI Critique Workflow",
   "description": "CAT 100 textbook section connecting two-ai critique workflow to AI critique log showing accepted, modified, and rejected suggestions, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Sort critiques from two independent AI tools into agreement, conflict, and unique, and explain why the conflict bucket carries the most value.",
-    "Break a tool-vs-tool conflict using an external anchor (the job posting or rubric) rather than the tool's tone or order.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    {
+      "id": "cat100-supplement-02-02-lo-01",
+      "statement": "Sort critiques from two independent AI tools into agreement, conflict, and unique, and explain why the conflict bucket carries the most value"
+    },
+    {
+      "id": "cat100-supplement-02-02-lo-02",
+      "statement": "Break a tool-vs-tool conflict using an external anchor (the job posting or rubric) rather than the tool's tone or order"
+    },
+    {
+      "id": "cat100-supplement-02-02-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat100-supplement-02-02-lo-04",
+      "statement": "Use feedback, support requests, and revision notes to improve the artifact before sharing it"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_resume_branding_and_ai_brainstorming",
@@ -28,5 +40,22 @@
     "cat100_supplement_2_2_two_ai_critique_workflow_annotation_signal",
     "cat100_supplement_2_2_two_ai_critique_workflow_ai_boundary",
     "cat100_supplement_2_2_two_ai_critique_workflow_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-02-02-lo-01": [
+      "cat100_supplement_2_2_two_ai_critique_workflow_artifact_signal",
+      "cat100_supplement_2_2_two_ai_critique_workflow_ai_boundary",
+      "cat100_supplement_2_2_two_ai_critique_workflow_calibration"
+    ],
+    "cat100-supplement-02-02-lo-02": [
+      "cat100_supplement_2_2_two_ai_critique_workflow_annotation_signal"
+    ],
+    "cat100-supplement-02-02-lo-03": [
+      "cat100_supplement_2_2_two_ai_critique_workflow_annotation_signal"
+    ],
+    "cat100-supplement-02-02-lo-04": [
+      "cat100_supplement_2_2_two_ai_critique_workflow_annotation_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

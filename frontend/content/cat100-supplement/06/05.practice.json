@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "A missing </a> leaves the link open, so the following content is swallowed into the anchor. Closing the tag fixes the runaway styling.",
       "misconception_id": "cat100_supplement_6_5_browser_blamed_for_markup_bug",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-06-05-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_6_5_debugging_with_ai_assistance_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "A good debugging prompt states the symptom, pastes the relevant code, and asks a specific question. That lets you check the answer against your own files.",
       "misconception_id": "cat100_supplement_6_5_vague_prompt_expectation",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-06-05-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_6_5_debugging_with_ai_assistance_ai_boundary",
@@ -57,7 +63,11 @@
       "correct_index": 1,
       "explanation": "AI sometimes diagnoses a problem you do not have. A local same-folder image cannot trigger CORS, so the realistic cause is a path or filename typo. Judge the suggestion against your context.",
       "misconception_id": "cat100_supplement_6_5_ai_diagnosis_unverified",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-06-05-lo-02",
+        "cat100-supplement-06-05-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_6_5_debugging_with_ai_assistance_calibration",
@@ -77,7 +87,10 @@
       "correct_index": 1,
       "explanation": "The browser console shows real errors. Reloading and confirming the message disappeared is direct evidence the fix worked, independent of the AI's confidence.",
       "misconception_id": "cat100_supplement_6_5_fix_assumed_without_check",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-06-05-lo-04"
+      ]
     }
   ]
 }

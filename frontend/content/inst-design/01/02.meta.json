@@ -1,30 +1,53 @@
 {
-    "course": "inst-design",
-    "chapter": "01",
-    "section": "02",
-    "chapter_title": "Introduction to Instructional Design",
-    "title": "Module 2: Cognitive Load & Schema",
-    "description": "Examine how working memory limits, schema development, and instructional presentation choices interact to support or overload learners.",
-    "learning_objectives": [
-        "Explain the three types of cognitive load: intrinsic, extraneous, and germane.",
-        "Understand schema theory and its role in information processing.",
-        "Identify design decisions that reduce overload and support schema formation."
+  "course": "inst-design",
+  "chapter": "01",
+  "section": "02",
+  "chapter_title": "Introduction to Instructional Design",
+  "title": "Module 2: Cognitive Load & Schema",
+  "description": "Examine how working memory limits, schema development, and instructional presentation choices interact to support or overload learners.",
+  "learning_objectives": [
+    {
+      "id": "inst-design-01-02-lo-01",
+      "statement": "Explain the three types of cognitive load: intrinsic, extraneous, and germane"
+    },
+    {
+      "id": "inst-design-01-02-lo-02",
+      "statement": "Understand schema theory and its role in information processing"
+    },
+    {
+      "id": "inst-design-01-02-lo-03",
+      "statement": "Identify design decisions that reduce overload and support schema formation"
+    }
+  ],
+  "concept_ids": [
+    "cognitive_load",
+    "schema_theory",
+    "intrinsic_load",
+    "extraneous_load",
+    "germane_load"
+  ],
+  "prereq_section_ids": [
+    "inst-design/01/01"
+  ],
+  "practice_ids": [
+    "clt_intrinsic_load",
+    "clt_extraneous_load",
+    "clt_germane_load",
+    "schema_theory_transfer"
+  ],
+  "estimated_time_minutes": 11,
+  "lo_practice_map": {
+    "inst-design-01-02-lo-01": [
+      "clt_extraneous_load",
+      "clt_intrinsic_load",
+      "clt_germane_load"
     ],
-    "concept_ids": [
-        "cognitive_load",
-        "schema_theory",
-        "intrinsic_load",
-        "extraneous_load",
-        "germane_load"
+    "inst-design-01-02-lo-02": [
+      "schema_theory_transfer"
     ],
-    "prereq_section_ids": [
-        "inst-design/01/01"
-    ],
-    "practice_ids": [
-        "clt_intrinsic_load",
-        "clt_extraneous_load",
-        "clt_germane_load",
-        "schema_theory_transfer"
-    ],
-    "estimated_time_minutes": 11
+    "inst-design-01-02-lo-03": [
+      "schema_theory_transfer"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

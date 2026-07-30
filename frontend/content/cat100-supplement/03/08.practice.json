@@ -18,7 +18,12 @@
       "correct_index": 1,
       "explanation": "A defensible data story flows from clean data to summary to chart to headline. Building visuals or writing the headline before cleaning the data risks telling a story the numbers do not support.",
       "misconception_id": "cat100_supplement_3_8_module_3_data_story_studio_chart_before_clean",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-03-08-lo-01",
+        "cat100-supplement-03-08-lo-03",
+        "cat100-supplement-03-08-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_3_8_module_3_data_story_studio_annotation_signal",
@@ -37,7 +42,10 @@
       "correct_index": 1,
       "explanation": "The three-way match runs per category: the West headline number, the West pivot cell, and the West bar height must agree. A category-level mismatch usually means a stale pivot range or a filter applied to one representation but not another; reconcile before any formatting or publishing.",
       "misconception_id": "cat100_supplement_3_8_module_3_data_story_studio_unreconciled_numbers",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-03-08-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_3_8_module_3_data_story_studio_ai_boundary",
@@ -57,7 +65,10 @@
       "correct_index": 1,
       "explanation": "The capstone keeps the learner responsible for the data and the claim. AI can critique a draft against your real numbers, but it should not fabricate findings or receive others' personal data.",
       "misconception_id": "cat100_supplement_3_8_module_3_data_story_studio_ai_makes_the_story",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-03-08-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_3_8_module_3_data_story_studio_calibration",
@@ -77,7 +88,10 @@
       "correct_index": 1,
       "explanation": "A verifiable data story exposes the whole chain: clean data, summary, chart, headline, source, and exclusion notes. The reviewer can then re-trace each step rather than trust a lone image.",
       "misconception_id": "cat100_supplement_3_8_module_3_data_story_studio_chart_before_clean",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-03-08-lo-02"
+      ]
     }
   ]
 }

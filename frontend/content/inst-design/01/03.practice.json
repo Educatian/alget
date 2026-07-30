@@ -17,7 +17,10 @@
         "Learning is strongest when all ambiguity is removed before instruction begins."
       ],
       "correct_index": 2,
-      "explanation": "Constructivism emphasizes active meaning-making by connecting new experiences to prior schemas."
+      "explanation": "Constructivism emphasizes active meaning-making by connecting new experiences to prior schemas.",
+      "learning_objective_ids": [
+        "inst-design-01-03-lo-03"
+      ]
     },
     {
       "id": "zpd_identification",
@@ -36,7 +39,10 @@
         "Any task that includes a quiz at the end"
       ],
       "correct_index": 2,
-      "explanation": "The ZPD is the sweet spot where guided support makes progress possible without overwhelming the learner."
+      "explanation": "The ZPD is the sweet spot where guided support makes progress possible without overwhelming the learner.",
+      "learning_objective_ids": [
+        "inst-design-01-03-lo-02"
+      ]
     },
     {
       "id": "scaffolding_function",
@@ -56,7 +62,10 @@
         "To punish incorrect reasoning before peer discussion begins"
       ],
       "correct_index": 1,
-      "explanation": "Scaffolding is temporary support designed to help learners perform tasks they cannot yet complete independently."
+      "explanation": "Scaffolding is temporary support designed to help learners perform tasks they cannot yet complete independently.",
+      "learning_objective_ids": [
+        "inst-design-01-03-lo-02"
+      ]
     },
     {
       "id": "active_learning_design",
@@ -75,7 +84,10 @@
         "A module that hides objectives so learners stay surprised"
       ],
       "correct_index": 1,
-      "explanation": "Active learning requires learners to do something cognitively meaningful with the content, not just receive it."
+      "explanation": "Active learning requires learners to do something cognitively meaningful with the content, not just receive it.",
+      "learning_objective_ids": [
+        "inst-design-01-03-lo-01"
+      ]
     }
   ]
 }

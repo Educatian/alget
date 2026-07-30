@@ -1,33 +1,60 @@
 {
-    "course": "ai-ethics",
-    "chapter": "04",
-    "section": "02",
-    "chapter_title": "Privacy, Consent, and Data Governance",
-    "title": "Module 2: Consent in Algorithmic Contexts",
-    "description": "Apply the four conditions of informed consent (disclosure, comprehension, voluntariness, competence) to AI deployments, recognize dark patterns that defeat consent, and design defensible consent flows that meet GDPR and DSA standards.",
-    "learning_objectives": [
-        "State the four conditions of informed consent and identify where each breaks under typical AI deployment conditions.",
-        "Recognize at least four dark patterns (asymmetric prominence, confirmshaming, roach motel, forced action) and the regulations that prohibit them.",
-        "Identify three contexts where consent alone cannot carry the ethical weight (public goods, asymmetric power, vulnerable users).",
-        "Design a defensible consent flow using layered notice, just-in-time disclosure, symmetric controls, real withdrawal, and surrogate/granular consent."
+  "course": "ai-ethics",
+  "chapter": "04",
+  "section": "02",
+  "chapter_title": "Privacy, Consent, and Data Governance",
+  "title": "Module 2: Consent in Algorithmic Contexts",
+  "description": "Apply the four conditions of informed consent (disclosure, comprehension, voluntariness, competence) to AI deployments, recognize dark patterns that defeat consent, and design defensible consent flows that meet GDPR and DSA standards.",
+  "learning_objectives": [
+    {
+      "id": "ai-ethics-04-02-lo-01",
+      "statement": "State the four conditions of informed consent and identify where each breaks under typical AI deployment conditions"
+    },
+    {
+      "id": "ai-ethics-04-02-lo-02",
+      "statement": "Recognize at least four dark patterns (asymmetric prominence, confirmshaming, roach motel, forced action) and the regulations that prohibit them"
+    },
+    {
+      "id": "ai-ethics-04-02-lo-03",
+      "statement": "Identify three contexts where consent alone cannot carry the ethical weight (public goods, asymmetric power, vulnerable users)"
+    },
+    {
+      "id": "ai-ethics-04-02-lo-04",
+      "statement": "Design a defensible consent flow using layered notice, just-in-time disclosure, symmetric controls, real withdrawal, and surrogate/granular consent"
+    }
+  ],
+  "concept_ids": [
+    "informed_consent",
+    "dark_patterns",
+    "consent_flow_design",
+    "voluntariness",
+    "withdrawal_rights",
+    "surrogate_consent"
+  ],
+  "prereq_section_ids": [
+    "ai-ethics/04/01"
+  ],
+  "practice_ids": [
+    "consent_four_conditions",
+    "consent_asymmetric_prominence",
+    "consent_inappropriate_carry",
+    "consent_withdrawal"
+  ],
+  "estimated_time_minutes": 12,
+  "order": 2,
+  "lo_practice_map": {
+    "ai-ethics-04-02-lo-01": [
+      "consent_four_conditions"
     ],
-    "concept_ids": [
-        "informed_consent",
-        "dark_patterns",
-        "consent_flow_design",
-        "voluntariness",
-        "withdrawal_rights",
-        "surrogate_consent"
+    "ai-ethics-04-02-lo-02": [
+      "consent_asymmetric_prominence"
     ],
-    "prereq_section_ids": [
-        "ai-ethics/04/01"
+    "ai-ethics-04-02-lo-03": [
+      "consent_inappropriate_carry"
     ],
-    "practice_ids": [
-        "consent_four_conditions",
-        "consent_asymmetric_prominence",
-        "consent_inappropriate_carry",
-        "consent_withdrawal"
-    ],
-    "estimated_time_minutes": 12,
-    "order": 2
+    "ai-ethics-04-02-lo-04": [
+      "consent_withdrawal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

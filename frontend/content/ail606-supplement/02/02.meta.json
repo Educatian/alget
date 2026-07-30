@@ -3,10 +3,22 @@
   "title": "Platform Affordances and Constraints",
   "description": "AIL 606 textbook section on platform affordances and constraints: building an action-to-affordance map, distinguishing soft from hard constraints, reading signifiers, and verifying affordances against the live tool, with reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Distinguish a platform feature from an affordance or constraint relative to a named learner action.",
-    "Build an action-to-affordance map that classifies each platform response as affordance, soft constraint, or hard constraint, and re-run the classification across learner variability.",
-    "Choose among redesigning the action, changing the tool, or keeping the constraint on purpose when an action hits a hard constraint, with a stated learning reason.",
-    "Verify an affordance against the live tool rather than assuming it from a feature name or marketing copy."
+    {
+      "id": "ail606-supplement-02-02-lo-01",
+      "statement": "Distinguish a platform feature from an affordance or constraint relative to a named learner action"
+    },
+    {
+      "id": "ail606-supplement-02-02-lo-02",
+      "statement": "Build an action-to-affordance map that classifies each platform response as affordance, soft constraint, or hard constraint, and re-run the classification across learner variability"
+    },
+    {
+      "id": "ail606-supplement-02-02-lo-03",
+      "statement": "Choose among redesigning the action, changing the tool, or keeping the constraint on purpose when an action hits a hard constraint, with a stated learning reason"
+    },
+    {
+      "id": "ail606-supplement-02-02-lo-04",
+      "statement": "Verify an affordance against the live tool rather than assuming it from a feature name or marketing copy"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_learning_experience_design_and_software_technology",
@@ -28,5 +40,23 @@
     "ail606_supplement_2_2_platform_affordances_and_constraints_annotation_signal",
     "ail606_supplement_2_2_platform_affordances_and_constraints_ai_boundary",
     "ail606_supplement_2_2_platform_affordances_and_constraints_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-02-02-lo-01": [
+      "ail606_supplement_2_2_platform_affordances_and_constraints_artifact_signal"
+    ],
+    "ail606-supplement-02-02-lo-02": [
+      "ail606_supplement_2_2_platform_affordances_and_constraints_artifact_signal",
+      "ail606_supplement_2_2_platform_affordances_and_constraints_annotation_signal",
+      "ail606_supplement_2_2_platform_affordances_and_constraints_ai_boundary",
+      "ail606_supplement_2_2_platform_affordances_and_constraints_calibration"
+    ],
+    "ail606-supplement-02-02-lo-03": [
+      "ail606_supplement_2_2_platform_affordances_and_constraints_artifact_signal"
+    ],
+    "ail606-supplement-02-02-lo-04": [
+      "ail606_supplement_2_2_platform_affordances_and_constraints_artifact_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

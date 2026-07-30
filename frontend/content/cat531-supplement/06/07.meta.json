@@ -6,10 +6,22 @@
   "chapter": "06",
   "section": "07",
   "learning_objectives": [
-    "Analyze how the field-placement transfer note connecting tool choice to classroom constraints shows a defensible decision in CAT 531.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible."
+    {
+      "id": "cat531-supplement-06-07-lo-01",
+      "statement": "Analyze how the field-placement transfer note connecting tool choice to classroom constraints shows a defensible decision in CAT 531"
+    },
+    {
+      "id": "cat531-supplement-06-07-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "cat531-supplement-06-07-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat531-supplement-06-07-lo-04",
+      "statement": "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible"
+    }
   ],
   "concept_ids": [
     "cat531_supplement_final_project_and_professional_vision",
@@ -24,9 +36,27 @@
     "cat531_supplement_6_7_presentation_of_professional_vision_artifact_signal",
     "cat531_supplement_6_7_presentation_of_professional_vision_annotation_signal",
     "cat531_supplement_6_7_presentation_of_professional_vision_ai_boundary",
-    "cat531_supplement_6_7_presentation_of_professional_vision_calibration"
+    "cat531_supplement_6_7_presentation_of_professional_vision_calibration",
+    "cat531-supplement_06_07_lo_03_direct_check"
   ],
   "estimated_time_minutes": 14,
   "order": 7,
-  "top_tier_hardened": false
+  "top_tier_hardened": false,
+  "lo_practice_map": {
+    "cat531-supplement-06-07-lo-01": [
+      "cat531_supplement_6_7_presentation_of_professional_vision_artifact_signal",
+      "cat531_supplement_6_7_presentation_of_professional_vision_annotation_signal",
+      "cat531_supplement_6_7_presentation_of_professional_vision_ai_boundary"
+    ],
+    "cat531-supplement-06-07-lo-02": [
+      "cat531_supplement_6_7_presentation_of_professional_vision_calibration"
+    ],
+    "cat531-supplement-06-07-lo-03": [
+      "cat531-supplement_06_07_lo_03_direct_check"
+    ],
+    "cat531-supplement-06-07-lo-04": [
+      "cat531_supplement_6_7_presentation_of_professional_vision_artifact_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

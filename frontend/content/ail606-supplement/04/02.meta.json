@@ -3,10 +3,22 @@
   "title": "Principle-to-Feature Traceability",
   "description": "AIL 606 textbook section connecting principle-to-feature traceability to a traceability matrix that maps one controlling principle to one feature with its processing demand named, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Map one controlling principle to one feature, with the processing demand named explicitly.",
-    "Detect post-hoc justification (many principles attached to one cosmetic change).",
-    "Describe features as mechanisms that act on a demand, not as decoration.",
-    "Defend any feature by tracing it forward from principle to demand to implementation."
+    {
+      "id": "ail606-supplement-04-02-lo-01",
+      "statement": "Map one controlling principle to one feature, with the processing demand named explicitly"
+    },
+    {
+      "id": "ail606-supplement-04-02-lo-02",
+      "statement": "Detect post-hoc justification (many principles attached to one cosmetic change)"
+    },
+    {
+      "id": "ail606-supplement-04-02-lo-03",
+      "statement": "Describe features as mechanisms that act on a demand, not as decoration"
+    },
+    {
+      "id": "ail606-supplement-04-02-lo-04",
+      "statement": "Defend any feature by tracing it forward from principle to demand to implementation"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_design_draft_and_theory_to_prototype_alignment",
@@ -28,5 +40,22 @@
     "ail606_supplement_4_2_principle_to_feature_traceability_annotation_signal",
     "ail606_supplement_4_2_principle_to_feature_traceability_ai_boundary",
     "ail606_supplement_4_2_principle_to_feature_traceability_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-04-02-lo-01": [
+      "ail606_supplement_4_2_principle_to_feature_traceability_calibration",
+      "ail606_supplement_4_2_principle_to_feature_traceability_annotation_signal",
+      "ail606_supplement_4_2_principle_to_feature_traceability_ai_boundary"
+    ],
+    "ail606-supplement-04-02-lo-02": [
+      "ail606_supplement_4_2_principle_to_feature_traceability_calibration"
+    ],
+    "ail606-supplement-04-02-lo-03": [
+      "ail606_supplement_4_2_principle_to_feature_traceability_artifact_signal"
+    ],
+    "ail606-supplement-04-02-lo-04": [
+      "ail606_supplement_4_2_principle_to_feature_traceability_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

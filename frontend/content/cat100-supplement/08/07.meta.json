@@ -1,4 +1,4 @@
-﻿{
+{
   "course": "cat100-supplement",
   "chapter": "08",
   "section": "07",
@@ -6,10 +6,22 @@
   "title": "Final Submission Checklist",
   "description": "CAT 100 textbook section on final submission checks, centered on a final submission checklist, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Translate each literal assignment requirement into a testable checklist row with a pass condition.",
-    "Verify each row from the recipient's position, such as loading links in a signed-out window and opening the exported file you actually submitted.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    {
+      "id": "cat100-supplement-08-07-lo-01",
+      "statement": "Translate each literal assignment requirement into a testable checklist row with a pass condition"
+    },
+    {
+      "id": "cat100-supplement-08-07-lo-02",
+      "statement": "Verify each row from the recipient's position, such as loading links in a signed-out window and opening the exported file you actually submitted"
+    },
+    {
+      "id": "cat100-supplement-08-07-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat100-supplement-08-07-lo-04",
+      "statement": "Use feedback, support requests, and revision notes to improve the artifact before sharing it"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_course_completion_and_transfer",
@@ -28,5 +40,22 @@
     "cat100_supplement_8_7_final_submission_checklist_annotation_signal",
     "cat100_supplement_8_7_final_submission_checklist_ai_boundary",
     "cat100_supplement_8_7_final_submission_checklist_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-08-07-lo-01": [
+      "cat100_supplement_8_7_final_submission_checklist_ai_boundary"
+    ],
+    "cat100-supplement-08-07-lo-02": [
+      "cat100_supplement_8_7_final_submission_checklist_ai_boundary",
+      "cat100_supplement_8_7_final_submission_checklist_artifact_signal",
+      "cat100_supplement_8_7_final_submission_checklist_annotation_signal"
+    ],
+    "cat100-supplement-08-07-lo-03": [
+      "cat100_supplement_8_7_final_submission_checklist_calibration"
+    ],
+    "cat100-supplement-08-07-lo-04": [
+      "cat100_supplement_8_7_final_submission_checklist_ai_boundary"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "A readiness check is a real test, not a formality. Verify the artifact meets the standard before marking it complete.",
       "misconception_id": "cat100_supplement_1_8_module_1_readiness_studio_checklist_is_busywork",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-01-08-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_1_8_module_1_readiness_studio_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "The module's skills combine in one artifact. Readiness means evidence, AI disclosure, accessibility, and privacy are all handled together.",
       "misconception_id": "cat100_supplement_1_8_module_1_readiness_studio_skills_dont_connect",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-01-08-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_1_8_module_1_readiness_studio_ai_boundary",
@@ -56,7 +62,10 @@
       "correct_index": 1,
       "explanation": "The studio supports your self-assessment but does not replace it. You verify readiness by checking your own evidence against the standards.",
       "misconception_id": "cat100_supplement_1_8_module_1_readiness_studio_studio_replaces_judgment",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-01-08-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_1_8_module_1_readiness_studio_calibration",
@@ -75,7 +84,10 @@
       "correct_index": 1,
       "explanation": "An honestly flagged gap routes you to the right practice. A false all-clear hides exactly the skill you most need to build.",
       "misconception_id": "cat100_supplement_1_8_module_1_readiness_studio_gaps_left_unmarked",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-01-08-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_1_8_module_1_readiness_studio_recheck",
@@ -94,6 +106,9 @@
       "difficulty": "easy",
       "concept_ids": [
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat100-supplement-01-08-lo-02"
       ]
     }
   ]

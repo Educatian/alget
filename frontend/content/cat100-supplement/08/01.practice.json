@@ -18,7 +18,12 @@
       "correct_index": 1,
       "explanation": "A key committed to a public repo is already exposed in history. The defensible fix is to remove it from tracked files, rotate it, and document the change so a reviewer can verify it.",
       "misconception_id": "cat100_supplement_8_1_privacy_public_repo_safe",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-08-01-lo-01",
+        "cat100-supplement-08-01-lo-03",
+        "cat100-supplement-08-01-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_8_1_capstone_artifact_review_annotation_signal",
@@ -37,7 +42,10 @@
       "correct_index": 1,
       "explanation": "Git history is additive. Anyone can check out a1b2c3 and read secrets.txt, so the only safe response is to rotate the password.",
       "misconception_id": "cat100_supplement_8_1_delete_equals_gone",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-08-01-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_8_1_capstone_artifact_review_ai_boundary",
@@ -56,7 +64,10 @@
       "correct_index": 1,
       "explanation": "The AI needs the shape, not the people. Anonymized headers and two fake rows get the same formatting help without exposing real names, emails, or IDs.",
       "misconception_id": "cat100_supplement_8_1_ai_paste_full_data",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-08-01-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_8_1_capstone_artifact_review_calibration",
@@ -75,7 +86,10 @@
       "correct_index": 1,
       "explanation": "A verifiable entry names the file, the line, the action, the date, and the confirmation, so a reviewer can re-check it directly.",
       "misconception_id": "cat100_supplement_8_1_privacy_public_repo_safe",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-08-01-lo-02"
+      ]
     }
   ]
 }

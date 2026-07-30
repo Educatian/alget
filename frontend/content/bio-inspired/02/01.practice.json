@@ -17,7 +17,12 @@
       "concept_ids": [
         "drag_reduction"
       ],
-      "misconception_id": "rougher_always_better"
+      "misconception_id": "rougher_always_better",
+      "learning_objective_ids": [
+        "bio-inspired-02-01-lo-01",
+        "bio-inspired-02-01-lo-02",
+        "bio-inspired-02-01-lo-03"
+      ]
     },
     {
       "id": "bio_boundary_layer_logic",
@@ -36,7 +41,10 @@
       "concept_ids": [
         "fluid_dynamics"
       ],
-      "misconception_id": "drag_only_macro_shape"
+      "misconception_id": "drag_only_macro_shape",
+      "learning_objective_ids": [
+        "bio-inspired-02-01-lo-03"
+      ]
     },
     {
       "id": "bio_shark_skin_transfer",
@@ -55,7 +63,10 @@
       "concept_ids": [
         "shark_skin"
       ],
-      "misconception_id": "copy_skin_material_not_pattern"
+      "misconception_id": "copy_skin_material_not_pattern",
+      "learning_objective_ids": [
+        "bio-inspired-02-01-lo-03"
+      ]
     },
     {
       "id": "bio_vortex_shedding_design",
@@ -74,7 +85,10 @@
       "concept_ids": [
         "vortex_shedding"
       ],
-      "misconception_id": "drag_only_macro_shape"
+      "misconception_id": "drag_only_macro_shape",
+      "learning_objective_ids": [
+        "bio-inspired-02-01-lo-01"
+      ]
     }
   ]
 }

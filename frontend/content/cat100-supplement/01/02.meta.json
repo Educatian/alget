@@ -1,4 +1,4 @@
-﻿{
+{
   "course": "cat100-supplement",
   "chapter": "01",
   "section": "02",
@@ -6,10 +6,22 @@
   "title": "Responsible AI Use in Coursework",
   "description": "CAT 100 textbook section connecting responsible ai use in coursework to responsible AI use disclosure note, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Read an assignment's AI policy and sort each planned action into allowed, required, or prohibited.",
-    "Write an AI-use disclosure that names the tool, the step, and the suggestions you rejected.",
-    "Recognize the line between AI assisting your thinking and AI replacing your thinking.",
-    "Keep private data (yours and others') out of tools that may store or train on inputs."
+    {
+      "id": "cat100-supplement-01-02-lo-01",
+      "statement": "Read an assignment's AI policy and sort each planned action into allowed, required, or prohibited"
+    },
+    {
+      "id": "cat100-supplement-01-02-lo-02",
+      "statement": "Write an AI-use disclosure that names the tool, the step, and the suggestions you rejected"
+    },
+    {
+      "id": "cat100-supplement-01-02-lo-03",
+      "statement": "Recognize the line between AI assisting your thinking and AI replacing your thinking"
+    },
+    {
+      "id": "cat100-supplement-01-02-lo-04",
+      "statement": "Keep private data (yours and others') out of tools that may store or train on inputs"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_digital_citizenship_and_ai_readiness",
@@ -28,5 +40,21 @@
     "cat100_supplement_1_2_responsible_ai_use_in_coursework_annotation_signal",
     "cat100_supplement_1_2_responsible_ai_use_in_coursework_ai_boundary",
     "cat100_supplement_1_2_responsible_ai_use_in_coursework_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-01-02-lo-01": [
+      "cat100_supplement_1_2_responsible_ai_use_in_coursework_ai_boundary"
+    ],
+    "cat100-supplement-01-02-lo-02": [
+      "cat100_supplement_1_2_responsible_ai_use_in_coursework_artifact_signal",
+      "cat100_supplement_1_2_responsible_ai_use_in_coursework_calibration"
+    ],
+    "cat100-supplement-01-02-lo-03": [
+      "cat100_supplement_1_2_responsible_ai_use_in_coursework_annotation_signal"
+    ],
+    "cat100-supplement-01-02-lo-04": [
+      "cat100_supplement_1_2_responsible_ai_use_in_coursework_ai_boundary"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

@@ -16,7 +16,10 @@
         "Adults should be taught exactly like children to ensure consistency"
       ],
       "correct_index": 1,
-      "explanation": "Knowles emphasized adult autonomy, relevance, and self-direction rather than passive dependence."
+      "explanation": "Knowles emphasized adult autonomy, relevance, and self-direction rather than passive dependence.",
+      "learning_objective_ids": [
+        "inst-design-05-01-lo-02"
+      ]
     },
     {
       "id": "adult_prior_experience",
@@ -36,7 +39,10 @@
         "Because prior experience replaces the need for instruction"
       ],
       "correct_index": 1,
-      "explanation": "Adult learners bring rich prior experience that can support learning, but it can also introduce misconceptions that design must address."
+      "explanation": "Adult learners bring rich prior experience that can support learning, but it can also introduce misconceptions that design must address.",
+      "learning_objective_ids": [
+        "inst-design-05-01-lo-03"
+      ]
     },
     {
       "id": "problem_centered_design",
@@ -55,7 +61,10 @@
         "A sequence that prevents learners from seeing why the topic matters"
       ],
       "correct_index": 1,
-      "explanation": "Adults often engage best when instruction is tied directly to practical problems they recognize as relevant."
+      "explanation": "Adults often engage best when instruction is tied directly to practical problems they recognize as relevant.",
+      "learning_objective_ids": [
+        "inst-design-05-01-lo-03"
+      ]
     },
     {
       "id": "self_directed_learning_case",
@@ -75,7 +84,11 @@
         "A design that avoids workplace application in order to stay neutral"
       ],
       "correct_index": 1,
-      "explanation": "Self-directed learning is supported when adults can exercise meaningful control over pace, sequence, and relevance."
+      "explanation": "Self-directed learning is supported when adults can exercise meaningful control over pace, sequence, and relevance.",
+      "learning_objective_ids": [
+        "inst-design-05-01-lo-01",
+        "inst-design-05-01-lo-03"
+      ]
     }
   ]
 }

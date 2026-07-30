@@ -6,10 +6,22 @@
   "title": "AI-Assisted Email Drafting",
   "description": "CAT 100 textbook section connecting ai-assisted email drafting to AI critique log showing accepted, modified, and rejected suggestions, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Write a specific email prompt that names the recipient, course, exact request, deadline, and reason.",
-    "Run a verification pass on every fact (names, dates, the actual ask) before sending an AI-drafted message.",
-    "Keep private data (student ID, grades, personal details) out of public AI tools.",
-    "Keep a short log of which AI suggestions you accepted, modified, or rejected, and why."
+    {
+      "id": "cat100-supplement-07-04-lo-01",
+      "statement": "Write a specific email prompt that names the recipient, course, exact request, deadline, and reason"
+    },
+    {
+      "id": "cat100-supplement-07-04-lo-02",
+      "statement": "Run a verification pass on every fact (names, dates, the actual ask) before sending an AI-drafted message"
+    },
+    {
+      "id": "cat100-supplement-07-04-lo-03",
+      "statement": "Keep private data (student ID, grades, personal details) out of public AI tools"
+    },
+    {
+      "id": "cat100-supplement-07-04-lo-04",
+      "statement": "Keep a short log of which AI suggestions you accepted, modified, or rejected, and why"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_productivity_and_workflow_automation",
@@ -28,5 +40,21 @@
     "cat100_supplement_7_4_ai_assisted_email_drafting_annotation_signal",
     "cat100_supplement_7_4_ai_assisted_email_drafting_ai_boundary",
     "cat100_supplement_7_4_ai_assisted_email_drafting_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-07-04-lo-01": [
+      "cat100_supplement_7_4_ai_assisted_email_drafting_annotation_signal",
+      "cat100_supplement_7_4_ai_assisted_email_drafting_ai_boundary"
+    ],
+    "cat100-supplement-07-04-lo-02": [
+      "cat100_supplement_7_4_ai_assisted_email_drafting_artifact_signal"
+    ],
+    "cat100-supplement-07-04-lo-03": [
+      "cat100_supplement_7_4_ai_assisted_email_drafting_calibration"
+    ],
+    "cat100-supplement-07-04-lo-04": [
+      "cat100_supplement_7_4_ai_assisted_email_drafting_annotation_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

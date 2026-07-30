@@ -6,10 +6,22 @@
   "title": "Image Generation for Explaining Ideas",
   "description": "CAT 100 textbook section connecting image generation for explaining ideas to AI critique log showing accepted, modified, and rejected suggestions, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the AI critique log showing accepted, modified, and rejected suggestions shows a defensible decision in CAT 100.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    {
+      "id": "cat100-supplement-05-03-lo-01",
+      "statement": "Analyze how the AI critique log showing accepted, modified, and rejected suggestions shows a defensible decision in CAT 100"
+    },
+    {
+      "id": "cat100-supplement-05-03-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "cat100-supplement-05-03-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat100-supplement-05-03-lo-04",
+      "statement": "Use feedback, support requests, and revision notes to improve the artifact before sharing it"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_ai_enhanced_presentation_development",
@@ -27,6 +39,25 @@
     "cat100_supplement_5_3_image_generation_for_explaining_ideas_artifact_signal",
     "cat100_supplement_5_3_image_generation_for_explaining_ideas_annotation_signal",
     "cat100_supplement_5_3_image_generation_for_explaining_ideas_ai_boundary",
-    "cat100_supplement_5_3_image_generation_for_explaining_ideas_calibration"
-  ]
+    "cat100_supplement_5_3_image_generation_for_explaining_ideas_calibration",
+    "cat100-supplement_05_03_lo_03_direct_check"
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-05-03-lo-01": [
+      "cat100-supplement_05_03_lo_03_direct_check",
+      "cat100_supplement_5_3_image_generation_for_explaining_ideas_artifact_signal"
+    ],
+    "cat100-supplement-05-03-lo-02": [
+      "cat100_supplement_5_3_image_generation_for_explaining_ideas_annotation_signal",
+      "cat100_supplement_5_3_image_generation_for_explaining_ideas_calibration"
+    ],
+    "cat100-supplement-05-03-lo-03": [
+      "cat100-supplement_05_03_lo_03_direct_check"
+    ],
+    "cat100-supplement-05-03-lo-04": [
+      "cat100_supplement_5_3_image_generation_for_explaining_ideas_annotation_signal",
+      "cat100_supplement_5_3_image_generation_for_explaining_ideas_ai_boundary"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

@@ -1,49 +1,82 @@
 {
-    "chapter": "02",
-    "section": "01",
-    "title": "Newton's Second Law",
-    "chapter_title": "Kinetics of Particles",
-    "course": "dynamics",
-    "learning_objectives": [
-        "Apply ΣF = ma to particle dynamics",
-        "Draw free body diagrams for dynamic problems",
-        "Solve problems involving friction, tension, and inclines",
-        "Analyze systems with multiple particles"
+  "chapter": "02",
+  "section": "01",
+  "title": "Newton's Second Law",
+  "chapter_title": "Kinetics of Particles",
+  "course": "dynamics",
+  "learning_objectives": [
+    {
+      "id": "dynamics-02-01-lo-01",
+      "statement": "Apply ΣF = ma to particle dynamics"
+    },
+    {
+      "id": "dynamics-02-01-lo-02",
+      "statement": "Draw free body diagrams for dynamic problems"
+    },
+    {
+      "id": "dynamics-02-01-lo-03",
+      "statement": "Solve problems involving friction, tension, and inclines"
+    },
+    {
+      "id": "dynamics-02-01-lo-04",
+      "statement": "Analyze systems with multiple particles"
+    }
+  ],
+  "concept_ids": [
+    "newtons_second_law",
+    "kinetic_friction"
+  ],
+  "physics_prereqs": [
+    "fbd",
+    "friction",
+    "rectilinear_motion"
+  ],
+  "math_prereqs": [
+    "algebra",
+    "trig"
+  ],
+  "units_focus": [
+    "N",
+    "kg",
+    "m/s^2"
+  ],
+  "common_errors": [
+    "sign",
+    "component",
+    "mass_weight"
+  ],
+  "estimated_time_minutes": 60,
+  "prereq_section_ids": [
+    "dynamics/01/01",
+    "dynamics/01/04"
+  ],
+  "practice_ids": [
+    "newton_concept_sign",
+    "newton_basic_numeric",
+    "newton_incline_numeric",
+    "newton_friction_steps",
+    "newton_tension_numeric",
+    "newton_two_force_balance",
+    "dynamics_02_01_lo_02_direct_check",
+    "dynamics_02_01_lo_04_direct_check"
+  ],
+  "lo_practice_map": {
+    "dynamics-02-01-lo-01": [
+      "newton_two_force_balance"
     ],
-    "concept_ids": [
-        "newtons_second_law",
-        "kinetic_friction"
+    "dynamics-02-01-lo-02": [
+      "dynamics_02_01_lo_02_direct_check",
+      "newton_concept_sign",
+      "newton_basic_numeric",
+      "newton_incline_numeric",
+      "newton_tension_numeric"
     ],
-    "physics_prereqs": [
-        "fbd",
-        "friction",
-        "rectilinear_motion"
+    "dynamics-02-01-lo-03": [
+      "newton_friction_steps"
     ],
-    "math_prereqs": [
-        "algebra",
-        "trig"
-    ],
-    "units_focus": [
-        "N",
-        "kg",
-        "m/s^2"
-    ],
-    "common_errors": [
-        "sign",
-        "component",
-        "mass_weight"
-    ],
-    "estimated_time_minutes": 60,
-    "prereq_section_ids": [
-        "dynamics/01/01",
-        "dynamics/01/04"
-    ],
-    "practice_ids": [
-        "newton_concept_sign",
-        "newton_basic_numeric",
-        "newton_incline_numeric",
-        "newton_friction_steps",
-        "newton_tension_numeric",
-        "newton_two_force_balance"
+    "dynamics-02-01-lo-04": [
+      "dynamics_02_01_lo_04_direct_check"
     ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

@@ -1,30 +1,58 @@
 {
-    "chapter": "02",
-    "section": "02",
-    "title": "Couples and Equivalent Systems",
-    "course": "statics",
-    "learning_objectives": [
-        "Define a couple and calculate its moment",
-        "Understand that a couple is a free vector",
-        "Replace force systems with equivalent systems",
-        "Move forces to different points using couples"
+  "chapter": "02",
+  "section": "02",
+  "title": "Couples and Equivalent Systems",
+  "course": "statics",
+  "learning_objectives": [
+    {
+      "id": "statics-02-02-lo-01",
+      "statement": "Define a couple and calculate its moment"
+    },
+    {
+      "id": "statics-02-02-lo-02",
+      "statement": "Understand that a couple is a free vector"
+    },
+    {
+      "id": "statics-02-02-lo-03",
+      "statement": "Replace force systems with equivalent systems"
+    },
+    {
+      "id": "statics-02-02-lo-04",
+      "statement": "Move forces to different points using couples"
+    }
+  ],
+  "concept_ids": [
+    "couple",
+    "equivalent_systems",
+    "force_couple_system"
+  ],
+  "prerequisites": [
+    "moment"
+  ],
+  "prereq_section_ids": [
+    "statics/02/01"
+  ],
+  "practice_ids": [
+    "statics_couple_basic_numeric",
+    "statics_couple_distance_choice",
+    "statics_equivalent_system",
+    "statics_force_couple_interpretation"
+  ],
+  "estimated_time_minutes": 45,
+  "lo_practice_map": {
+    "statics-02-02-lo-01": [
+      "statics_force_couple_interpretation",
+      "statics_couple_basic_numeric"
     ],
-    "concept_ids": [
-        "couple",
-        "equivalent_systems",
-        "force_couple_system"
+    "statics-02-02-lo-02": [
+      "statics_equivalent_system"
     ],
-    "prerequisites": [
-        "moment"
+    "statics-02-02-lo-03": [
+      "statics_equivalent_system"
     ],
-    "prereq_section_ids": [
-        "statics/02/01"
-    ],
-    "practice_ids": [
-        "statics_couple_basic_numeric",
-        "statics_couple_distance_choice",
-        "statics_equivalent_system",
-        "statics_force_couple_interpretation"
-    ],
-    "estimated_time_minutes": 45
+    "statics-02-02-lo-04": [
+      "statics_couple_distance_choice"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

@@ -3,10 +3,22 @@
   "title": "Comparative Software Audit",
   "description": "AIL 606 textbook section connecting comparative software audit to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Build a comparative audit matrix that scores every candidate tool on the same task-derived criteria.",
-    "Distinguish a pass-or-fail gate from a weighted dimension and apply gates before reading totals.",
-    "State a recommendation bounded by its named context (learners, budget, constraints) plus the re-entry condition that would change the winner.",
-    "Document a bounded AI/software support move with an accepted and a rejected suggestion, such as using BigAL to attack the criteria rather than rank the tools."
+    {
+      "id": "ail606-supplement-02-07-lo-01",
+      "statement": "Build a comparative audit matrix that scores every candidate tool on the same task-derived criteria"
+    },
+    {
+      "id": "ail606-supplement-02-07-lo-02",
+      "statement": "Distinguish a pass-or-fail gate from a weighted dimension and apply gates before reading totals"
+    },
+    {
+      "id": "ail606-supplement-02-07-lo-03",
+      "statement": "State a recommendation bounded by its named context (learners, budget, constraints) plus the re-entry condition that would change the winner"
+    },
+    {
+      "id": "ail606-supplement-02-07-lo-04",
+      "statement": "Document a bounded AI/software support move with an accepted and a rejected suggestion, such as using BigAL to attack the criteria rather than rank the tools"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_learning_experience_design_and_software_technology",
@@ -28,5 +40,20 @@
     "ail606_supplement_2_7_comparative_software_audit_annotation_signal",
     "ail606_supplement_2_7_comparative_software_audit_ai_boundary",
     "ail606_supplement_2_7_comparative_software_audit_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-02-07-lo-01": [
+      "ail606_supplement_2_7_comparative_software_audit_annotation_signal"
+    ],
+    "ail606-supplement-02-07-lo-02": [
+      "ail606_supplement_2_7_comparative_software_audit_calibration"
+    ],
+    "ail606-supplement-02-07-lo-03": [
+      "ail606_supplement_2_7_comparative_software_audit_ai_boundary"
+    ],
+    "ail606-supplement-02-07-lo-04": [
+      "ail606_supplement_2_7_comparative_software_audit_artifact_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

@@ -1,35 +1,64 @@
 {
-    "course": "statics",
-    "chapter": "04",
-    "section": "01",
-    "chapter_title": "Internal Forces in Beams",
-    "title": "Module 1: Internal Forces and Shear-Moment Diagrams",
-    "description": "Use the section-and-replace logic to find internal normal force, shear, and bending moment at any beam cross section, and build shear and moment diagrams using the load-shear-moment slope relations.",
-    "learning_objectives": [
-        "Apply section-and-replace logic to compute internal N, V, and M at any cross section of a beam.",
-        "Use a consistent sign convention so left-side and right-side free bodies tell the same physical story.",
-        "Construct shear and moment diagrams using dV/dx = -w and dM/dx = V, including jumps at point loads and couples.",
-        "Locate the position and value of maximum bending moment by finding where V crosses zero."
+  "course": "statics",
+  "chapter": "04",
+  "section": "01",
+  "chapter_title": "Internal Forces in Beams",
+  "title": "Module 1: Internal Forces and Shear-Moment Diagrams",
+  "description": "Use the section-and-replace logic to find internal normal force, shear, and bending moment at any beam cross section, and build shear and moment diagrams using the load-shear-moment slope relations.",
+  "learning_objectives": [
+    {
+      "id": "statics-04-01-lo-01",
+      "statement": "Apply section-and-replace logic to compute internal N, V, and M at any cross section of a beam"
+    },
+    {
+      "id": "statics-04-01-lo-02",
+      "statement": "Use a consistent sign convention so left-side and right-side free bodies tell the same physical story"
+    },
+    {
+      "id": "statics-04-01-lo-03",
+      "statement": "Construct shear and moment diagrams using dV/dx = -w and dM/dx = V, including jumps at point loads and couples"
+    },
+    {
+      "id": "statics-04-01-lo-04",
+      "statement": "Locate the position and value of maximum bending moment by finding where V crosses zero"
+    }
+  ],
+  "concept_ids": [
+    "internal_forces",
+    "shear_force",
+    "bending_moment",
+    "shear_moment_diagram",
+    "method_of_sections",
+    "beam_loading"
+  ],
+  "prereq_section_ids": [
+    "statics/03/03",
+    "statics/02/03"
+  ],
+  "practice_ids": [
+    "internal_max_moment_location",
+    "internal_load_shear_relation",
+    "internal_section_consistency",
+    "internal_point_load_jump",
+    "internal_cantilever_udl_moment"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 1,
+  "lo_practice_map": {
+    "statics-04-01-lo-01": [
+      "internal_section_consistency"
     ],
-    "concept_ids": [
-        "internal_forces",
-        "shear_force",
-        "bending_moment",
-        "shear_moment_diagram",
-        "method_of_sections",
-        "beam_loading"
+    "statics-04-01-lo-02": [
+      "internal_section_consistency"
     ],
-    "prereq_section_ids": [
-        "statics/03/03",
-        "statics/02/03"
+    "statics-04-01-lo-03": [
+      "internal_point_load_jump",
+      "internal_load_shear_relation"
     ],
-    "practice_ids": [
-        "internal_max_moment_location",
-        "internal_load_shear_relation",
-        "internal_section_consistency",
-        "internal_point_load_jump",
-        "internal_cantilever_udl_moment"
-    ],
-    "estimated_time_minutes": 14,
-    "order": 1
+    "statics-04-01-lo-04": [
+      "internal_max_moment_location",
+      "internal_cantilever_udl_moment"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

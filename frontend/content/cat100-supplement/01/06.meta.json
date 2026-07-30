@@ -1,4 +1,4 @@
-﻿{
+{
   "course": "cat100-supplement",
   "chapter": "01",
   "section": "06",
@@ -6,10 +6,22 @@
   "title": "Accessibility Basics",
   "description": "CAT 100 textbook section connecting accessibility basics to accessibility revision pass, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Write alt text that conveys an image's meaning, not just its file name.",
-    "Use real heading styles so assistive technology can navigate the structure.",
-    "Ensure no information is carried by color alone.",
-    "Check text contrast against the [WCAG](https://www.w3.org/TR/WCAG22/) threshold and fix failures."
+    {
+      "id": "cat100-supplement-01-06-lo-01",
+      "statement": "Write alt text that conveys an image's meaning, not just its file name"
+    },
+    {
+      "id": "cat100-supplement-01-06-lo-02",
+      "statement": "Use real heading styles so assistive technology can navigate the structure"
+    },
+    {
+      "id": "cat100-supplement-01-06-lo-03",
+      "statement": "Ensure no information is carried by color alone"
+    },
+    {
+      "id": "cat100-supplement-01-06-lo-04",
+      "statement": "Check text contrast against the [WCAG](https://www.w3.org/TR/WCAG22/) threshold and fix failures"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_digital_citizenship_and_ai_readiness",
@@ -28,5 +40,21 @@
     "cat100_supplement_1_6_accessibility_basics_annotation_signal",
     "cat100_supplement_1_6_accessibility_basics_ai_boundary",
     "cat100_supplement_1_6_accessibility_basics_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-01-06-lo-01": [
+      "cat100_supplement_1_6_accessibility_basics_ai_boundary",
+      "cat100_supplement_1_6_accessibility_basics_artifact_signal"
+    ],
+    "cat100-supplement-01-06-lo-02": [
+      "cat100_supplement_1_6_accessibility_basics_annotation_signal"
+    ],
+    "cat100-supplement-01-06-lo-03": [
+      "cat100_supplement_1_6_accessibility_basics_calibration"
+    ],
+    "cat100-supplement-01-06-lo-04": [
+      "cat100_supplement_1_6_accessibility_basics_annotation_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

@@ -1,34 +1,63 @@
 {
-    "chapter": "03",
-    "section": "01",
-    "title": "Simple Trusses",
-    "chapter_title": "Structural Analysis",
-    "course": "statics",
-    "learning_objectives": [
-        "Define a truss and identify its components",
-        "Recognize assumptions in truss analysis",
-        "Identify simple trusses and understand their stability",
-        "Classify trusses as statically determinate or indeterminate"
+  "chapter": "03",
+  "section": "01",
+  "title": "Simple Trusses",
+  "chapter_title": "Structural Analysis",
+  "course": "statics",
+  "learning_objectives": [
+    {
+      "id": "statics-03-01-lo-01",
+      "statement": "Define a truss and identify its components"
+    },
+    {
+      "id": "statics-03-01-lo-02",
+      "statement": "Recognize assumptions in truss analysis"
+    },
+    {
+      "id": "statics-03-01-lo-03",
+      "statement": "Identify simple trusses and understand their stability"
+    },
+    {
+      "id": "statics-03-01-lo-04",
+      "statement": "Classify trusses as statically determinate or indeterminate"
+    }
+  ],
+  "concept_ids": [
+    "truss_analysis",
+    "joint_equilibrium",
+    "member_force",
+    "statical_determinacy"
+  ],
+  "prerequisites": [
+    "two_force_member",
+    "rigid_body_equilibrium"
+  ],
+  "prereq_section_ids": [
+    "statics/02/03",
+    "statics/01/03"
+  ],
+  "practice_ids": [
+    "statics_truss_count_check",
+    "statics_members_needed",
+    "statics_zero_force_rule",
+    "statics_two_force_member"
+  ],
+  "estimated_time_minutes": 40,
+  "lo_practice_map": {
+    "statics-03-01-lo-01": [
+      "statics_members_needed"
     ],
-    "concept_ids": [
-        "truss_analysis",
-        "joint_equilibrium",
-        "member_force",
-        "statical_determinacy"
+    "statics-03-01-lo-02": [
+      "statics_members_needed",
+      "statics_two_force_member"
     ],
-    "prerequisites": [
-        "two_force_member",
-        "rigid_body_equilibrium"
+    "statics-03-01-lo-03": [
+      "statics_members_needed",
+      "statics_zero_force_rule"
     ],
-    "prereq_section_ids": [
-        "statics/02/03",
-        "statics/01/03"
-    ],
-    "practice_ids": [
-        "statics_truss_count_check",
-        "statics_members_needed",
-        "statics_zero_force_rule",
-        "statics_two_force_member"
-    ],
-    "estimated_time_minutes": 40
+    "statics-03-01-lo-04": [
+      "statics_truss_count_check"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

@@ -29,6 +29,7 @@ screenshots/wired_*.png
 screenshots/design_audit/
 screenshots/sweep/
 frontend/.playwright-cli/
+.playwright-cli/
 frontend/output/
 .debug-journal.md
 .fablize/

@@ -6,10 +6,22 @@
   "title": "Spreadsheet Structure and Clean Data",
   "description": "CAT 100 textbook section connecting spreadsheet structure and clean data to Excel pivot-table finding with unit labels, source note, and claim-first chart title, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Audit a raw spreadsheet export against the four tidy-data rules (one header row, one value per cell, one record per row, consistent category labels) and name the analytical failure each defect causes.",
-    "Diagnose and repair numbers-stored-as-text by reading default alignment and confirming SUM matches a hand count.",
-    "Choose the correct repair tool (Text to Columns, Find and Replace, or row deletion) for a given structural defect.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions."
+    {
+      "id": "cat100-supplement-03-01-lo-01",
+      "statement": "Audit a raw spreadsheet export against the four tidy-data rules (one header row, one value per cell, one record per row, consistent category labels) and name the analytical failure each defect causes"
+    },
+    {
+      "id": "cat100-supplement-03-01-lo-02",
+      "statement": "Diagnose and repair numbers-stored-as-text by reading default alignment and confirming SUM matches a hand count"
+    },
+    {
+      "id": "cat100-supplement-03-01-lo-03",
+      "statement": "Choose the correct repair tool (Text to Columns, Find and Replace, or row deletion) for a given structural defect"
+    },
+    {
+      "id": "cat100-supplement-03-01-lo-04",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_data_storytelling_with_excel",
@@ -28,5 +40,21 @@
     "cat100_supplement_3_1_spreadsheet_structure_and_clean_data_annotation_signal",
     "cat100_supplement_3_1_spreadsheet_structure_and_clean_data_ai_boundary",
     "cat100_supplement_3_1_spreadsheet_structure_and_clean_data_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-03-01-lo-01": [
+      "cat100_supplement_3_1_spreadsheet_structure_and_clean_data_ai_boundary",
+      "cat100_supplement_3_1_spreadsheet_structure_and_clean_data_artifact_signal"
+    ],
+    "cat100-supplement-03-01-lo-02": [
+      "cat100_supplement_3_1_spreadsheet_structure_and_clean_data_annotation_signal"
+    ],
+    "cat100-supplement-03-01-lo-03": [
+      "cat100_supplement_3_1_spreadsheet_structure_and_clean_data_ai_boundary"
+    ],
+    "cat100-supplement-03-01-lo-04": [
+      "cat100_supplement_3_1_spreadsheet_structure_and_clean_data_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

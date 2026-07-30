@@ -1,34 +1,71 @@
 {
-    "chapter": "01",
-    "section": "01",
-    "title": "Introduction to Dynamics",
-    "chapter_title": "Foundational Kinematics",
-    "course": "dynamics",
-    "description": "Differentiate kinematics from kinetics and interpret velocity and acceleration in engineering motion problems.",
-    "estimated_time_minutes": 12,
-    "learning_objectives": [
-        "Understand the difference between statics and dynamics",
-        "Define position, velocity, and acceleration",
-        "Interpret the signs of velocity and acceleration in one-dimensional motion",
-        "Explain why engineers separate describing motion from explaining its causes"
+  "chapter": "01",
+  "section": "01",
+  "title": "Introduction to Dynamics",
+  "chapter_title": "Foundational Kinematics",
+  "course": "dynamics",
+  "description": "Differentiate kinematics from kinetics and interpret velocity and acceleration in engineering motion problems.",
+  "estimated_time_minutes": 12,
+  "learning_objectives": [
+    {
+      "id": "dynamics-01-01-lo-01",
+      "statement": "Understand the difference between statics and dynamics"
+    },
+    {
+      "id": "dynamics-01-01-lo-02",
+      "statement": "Define position, velocity, and acceleration"
+    },
+    {
+      "id": "dynamics-01-01-lo-03",
+      "statement": "Interpret the signs of velocity and acceleration in one-dimensional motion"
+    },
+    {
+      "id": "dynamics-01-01-lo-04",
+      "statement": "Explain why engineers separate describing motion from explaining its causes"
+    }
+  ],
+  "concept_ids": [
+    "kinematics",
+    "dynamics",
+    "velocity",
+    "acceleration"
+  ],
+  "prereq_section_ids": [],
+  "practice_ids": [
+    "rectilinear_concept_1",
+    "rectilinear_concept_2",
+    "rectilinear_concept_3",
+    "rectilinear_concept_4",
+    "rectilinear_numeric_1",
+    "rectilinear_numeric_2",
+    "rectilinear_numeric_3",
+    "rectilinear_numeric_4",
+    "rectilinear_step_1",
+    "rectilinear_step_2",
+    "dynamics_01_01_lo_01_direct_check"
+  ],
+  "lo_practice_map": {
+    "dynamics-01-01-lo-01": [
+      "dynamics_01_01_lo_01_direct_check"
     ],
-    "concept_ids": [
-        "kinematics",
-        "dynamics",
-        "velocity",
-        "acceleration"
+    "dynamics-01-01-lo-02": [
+      "rectilinear_numeric_4",
+      "rectilinear_concept_2"
     ],
-    "prereq_section_ids": [],
-    "practice_ids": [
-        "rectilinear_concept_1",
-        "rectilinear_concept_2",
-        "rectilinear_concept_3",
-        "rectilinear_concept_4",
-        "rectilinear_numeric_1",
-        "rectilinear_numeric_2",
-        "rectilinear_numeric_3",
-        "rectilinear_numeric_4",
-        "rectilinear_step_1",
-        "rectilinear_step_2"
+    "dynamics-01-01-lo-03": [
+      "rectilinear_numeric_4",
+      "rectilinear_concept_1",
+      "rectilinear_concept_3",
+      "rectilinear_concept_4",
+      "rectilinear_numeric_1",
+      "rectilinear_numeric_2",
+      "rectilinear_numeric_3",
+      "rectilinear_step_1",
+      "rectilinear_step_2"
+    ],
+    "dynamics-01-01-lo-04": [
+      "rectilinear_numeric_4"
     ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

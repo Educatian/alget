@@ -3,10 +3,22 @@
   "title": "Module 1 Synthesis Studio",
   "description": "AIL 606 textbook section connecting module 1 synthesis studio to the one-page synthesis decision brief (convergence of principles on one screen, a named and resolved conflict, and a recorded rejected alternative), reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Integrate multiple Module 1 principles into one design decision rather than listing them separately.",
-    "Name a conflict between two principles and resolve it explicitly for a stated learner.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    {
+      "id": "ail606-supplement-01-08-lo-01",
+      "statement": "Integrate multiple Module 1 principles into one design decision rather than listing them separately"
+    },
+    {
+      "id": "ail606-supplement-01-08-lo-02",
+      "statement": "Name a conflict between two principles and resolve it explicitly for a stated learner"
+    },
+    {
+      "id": "ail606-supplement-01-08-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "ail606-supplement-01-08-lo-04",
+      "statement": "Use annotations, support requests, and revision notes to decide what help or design change should come next"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_foundations_of_interactive_multimedia_learning",
@@ -28,5 +40,21 @@
     "ail606_supplement_1_8_module_1_synthesis_studio_annotation_signal",
     "ail606_supplement_1_8_module_1_synthesis_studio_ai_boundary",
     "ail606_supplement_1_8_module_1_synthesis_studio_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-01-08-lo-01": [
+      "ail606_supplement_1_8_module_1_synthesis_studio_artifact_signal",
+      "ail606_supplement_1_8_module_1_synthesis_studio_ai_boundary"
+    ],
+    "ail606-supplement-01-08-lo-02": [
+      "ail606_supplement_1_8_module_1_synthesis_studio_annotation_signal"
+    ],
+    "ail606-supplement-01-08-lo-03": [
+      "ail606_supplement_1_8_module_1_synthesis_studio_calibration"
+    ],
+    "ail606-supplement-01-08-lo-04": [
+      "ail606_supplement_1_8_module_1_synthesis_studio_annotation_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

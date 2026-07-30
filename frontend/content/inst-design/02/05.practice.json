@@ -18,7 +18,10 @@
       ],
       "correct_index": 1,
       "explanation": "Audience (security analyst), behavior (identify suspicious flows), condition (given trace and rulebook), and degree (>=90% precision and recall) are all explicit. The others rely on unmeasurable verbs.",
-      "misconception_id": "vague_verbs_are_objectives"
+      "misconception_id": "vague_verbs_are_objectives",
+      "learning_objective_ids": [
+        "inst-design-02-05-lo-02"
+      ]
     },
     {
       "id": "objectives_bloom_match",
@@ -38,7 +41,10 @@
       ],
       "correct_index": 1,
       "explanation": "Constructive alignment requires the assessment to test the same cognitive level the objective claims. A recall item cannot validate an Evaluate objective.",
-      "misconception_id": "any_test_proves_any_objective"
+      "misconception_id": "any_test_proves_any_objective",
+      "learning_objective_ids": [
+        "inst-design-02-05-lo-01"
+      ]
     },
     {
       "id": "objectives_stacking",
@@ -58,7 +64,10 @@
       ],
       "correct_index": 1,
       "explanation": "Stacked objectives obscure the assessment target. Split into three: one Analyze, one Evaluate, one Create.",
-      "misconception_id": "stacking_is_efficient"
+      "misconception_id": "stacking_is_efficient",
+      "learning_objective_ids": [
+        "inst-design-02-05-lo-01"
+      ]
     },
     {
       "id": "objectives_constructive_alignment",
@@ -77,7 +86,10 @@
       ],
       "correct_index": 1,
       "explanation": "Constructive alignment (Biggs) is the principle that objectives, assessment, and activities must converge on the same performance.",
-      "misconception_id": "alignment_is_a_paperwork_step"
+      "misconception_id": "alignment_is_a_paperwork_step",
+      "learning_objective_ids": [
+        "inst-design-02-05-lo-03"
+      ]
     }
   ]
 }

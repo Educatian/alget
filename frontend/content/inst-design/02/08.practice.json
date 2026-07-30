@@ -18,7 +18,10 @@
       ],
       "correct_index": 1,
       "explanation": "Recorded videos plus auto-graded quizzes are pure learner-content. Strong online courses deliberately add the other two interaction types.",
-      "misconception_id": "video_plus_quiz_is_complete"
+      "misconception_id": "video_plus_quiz_is_complete",
+      "learning_objective_ids": [
+        "inst-design-02-08-lo-01"
+      ]
     },
     {
       "id": "online_coi_phases",
@@ -38,7 +41,10 @@
       ],
       "correct_index": 2,
       "explanation": "The four-phase cognitive presence sequence requires moving past exploration into integration and resolution. Stalling at exploration is one of the most common online-learning defects.",
-      "misconception_id": "exploration_alone_is_deep_learning"
+      "misconception_id": "exploration_alone_is_deep_learning",
+      "learning_objective_ids": [
+        "inst-design-02-08-lo-02"
+      ]
     },
     {
       "id": "online_async_vs_sync",
@@ -57,7 +63,10 @@
       ],
       "correct_index": 1,
       "explanation": "Synchronous time is most valuable for live discourse and immediate feedback that asynchronous mode cannot reproduce. One-way lectures or self-paced reading should be asynchronous.",
-      "misconception_id": "sync_is_for_lectures"
+      "misconception_id": "sync_is_for_lectures",
+      "learning_objective_ids": [
+        "inst-design-02-08-lo-03"
+      ]
     },
     {
       "id": "online_teaching_presence",
@@ -77,7 +86,10 @@
       ],
       "correct_index": 1,
       "explanation": "Teaching presence is the design-and-facilitation function. Camera presence is one expression of it but not the construct.",
-      "misconception_id": "teaching_presence_is_camera_time"
+      "misconception_id": "teaching_presence_is_camera_time",
+      "learning_objective_ids": [
+        "inst-design-02-08-lo-02"
+      ]
     }
   ]
 }

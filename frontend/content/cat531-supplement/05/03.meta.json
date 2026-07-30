@@ -6,10 +6,22 @@
   "chapter": "05",
   "section": "03",
   "learning_objectives": [
-    "Define usability, accessibility, and equity as three distinct checks with three distinct populations.",
-    "Run each check as its own test rather than inferring all three from a single smooth experience.",
-    "Recognize when a compliance badge (for example WCAG AA) does not match the tool's core task.",
-    "Document a decision that names which check failed, for whom, and what condition must be met before adoption."
+    {
+      "id": "cat531-supplement-05-03-lo-01",
+      "statement": "Define usability, accessibility, and equity as three distinct checks with three distinct populations"
+    },
+    {
+      "id": "cat531-supplement-05-03-lo-02",
+      "statement": "Run each check as its own test rather than inferring all three from a single smooth experience"
+    },
+    {
+      "id": "cat531-supplement-05-03-lo-03",
+      "statement": "Recognize when a compliance badge (for example WCAG AA) does not match the tool's core task"
+    },
+    {
+      "id": "cat531-supplement-05-03-lo-04",
+      "statement": "Document a decision that names which check failed, for whom, and what condition must be met before adoption"
+    }
   ],
   "concept_ids": [
     "cat531_supplement_educational_technology_evaluation",
@@ -28,5 +40,21 @@
   ],
   "estimated_time_minutes": 14,
   "order": 3,
-  "top_tier_hardened": false
+  "top_tier_hardened": false,
+  "lo_practice_map": {
+    "cat531-supplement-05-03-lo-01": [
+      "cat531_supplement_5_3_usability_accessibility_and_equity_ai_boundary"
+    ],
+    "cat531-supplement-05-03-lo-02": [
+      "cat531_supplement_5_3_usability_accessibility_and_equity_ai_boundary"
+    ],
+    "cat531-supplement-05-03-lo-03": [
+      "cat531_supplement_5_3_usability_accessibility_and_equity_annotation_signal",
+      "cat531_supplement_5_3_usability_accessibility_and_equity_artifact_signal"
+    ],
+    "cat531-supplement-05-03-lo-04": [
+      "cat531_supplement_5_3_usability_accessibility_and_equity_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

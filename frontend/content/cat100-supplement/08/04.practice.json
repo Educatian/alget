@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "A resume claim must be true and defensible. 'Led financial operations' overstates a $600 tracking task; the honest, specific bullet is stronger and verifiable.",
       "misconception_id": "cat100_supplement_8_4_ai_inflated_claim",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-08-04-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_8_4_ai_use_disclosure_portfolio_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "Disclosure records a bounded, judged use of AI. It is not a confession; it shows you stayed in control of the truthful content.",
       "misconception_id": "cat100_supplement_8_4_disclosure_is_confession",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-08-04-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_8_4_ai_use_disclosure_portfolio_ai_boundary",
@@ -56,7 +62,10 @@
       "correct_index": 1,
       "explanation": "Match the role with true evidence. Cite the chart you actually built; do not claim a skill you cannot demonstrate just to match a keyword.",
       "misconception_id": "cat100_supplement_8_4_keyword_stuffing",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-08-04-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_8_4_ai_use_disclosure_portfolio_calibration",
@@ -75,7 +84,12 @@
       "correct_index": 1,
       "explanation": "A verifiable record shows the before line, the after line, the AI proposal, and the accept/reject decision with a reason, so a reviewer can audit honesty.",
       "misconception_id": "cat100_supplement_8_4_ai_inflated_claim",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-08-04-lo-01",
+        "cat100-supplement-08-04-lo-02",
+        "cat100-supplement-08-04-lo-04"
+      ]
     }
   ]
 }

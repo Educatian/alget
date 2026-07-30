@@ -6,10 +6,22 @@
   "title": "Pivot Tables as Summaries",
   "description": "CAT 100 textbook section connecting pivot tables as summaries to Excel pivot-table finding with unit labels, source note, and claim-first chart title, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Choose the pivot aggregation (Sum, Count, or Average) that matches the stated question, and justify it in the artifact source note.",
-    "Distinguish a per-category pivot row from the Grand Total, and confirm the pivot is refreshed against a source range that covers all the data before quoting any figure.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    {
+      "id": "cat100-supplement-03-04-lo-01",
+      "statement": "Choose the pivot aggregation (Sum, Count, or Average) that matches the stated question, and justify it in the artifact source note"
+    },
+    {
+      "id": "cat100-supplement-03-04-lo-02",
+      "statement": "Distinguish a per-category pivot row from the Grand Total, and confirm the pivot is refreshed against a source range that covers all the data before quoting any figure"
+    },
+    {
+      "id": "cat100-supplement-03-04-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat100-supplement-03-04-lo-04",
+      "statement": "Use feedback, support requests, and revision notes to improve the artifact before sharing it"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_data_storytelling_with_excel",
@@ -28,6 +40,25 @@
     "cat100_supplement_3_4_pivot_tables_as_summaries_annotation_signal",
     "cat100_supplement_3_4_pivot_tables_as_summaries_ai_boundary",
     "cat100_supplement_3_4_pivot_tables_as_summaries_calibration",
-    "cat100_supplement_3_4_pivot_tables_as_summaries_grand_total"
-  ]
+    "cat100_supplement_3_4_pivot_tables_as_summaries_grand_total",
+    "cat100-supplement_03_04_lo_03_direct_check"
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-03-04-lo-01": [
+      "cat100_supplement_3_4_pivot_tables_as_summaries_artifact_signal"
+    ],
+    "cat100-supplement-03-04-lo-02": [
+      "cat100_supplement_3_4_pivot_tables_as_summaries_grand_total",
+      "cat100_supplement_3_4_pivot_tables_as_summaries_annotation_signal",
+      "cat100_supplement_3_4_pivot_tables_as_summaries_ai_boundary",
+      "cat100_supplement_3_4_pivot_tables_as_summaries_calibration"
+    ],
+    "cat100-supplement-03-04-lo-03": [
+      "cat100-supplement_03_04_lo_03_direct_check"
+    ],
+    "cat100-supplement-03-04-lo-04": [
+      "cat100-supplement_03_04_lo_03_direct_check"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

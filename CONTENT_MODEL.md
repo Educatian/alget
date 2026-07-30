@@ -43,10 +43,12 @@ Because only the supplement generation can lack `course`/`chapter`/`section`, th
 | `estimated_time_minutes` | number | no | |
 | `order` | number | no | Sort key within a chapter. |
 | `top_tier_hardened` | boolean | no | Marks a section that passed the quality-hardening pass. |
-| `learning_objectives` | array of strings | no | Plain-language objectives. (Object-with-`id` form is also accepted by the alignment check; see section 5.) |
+| `learning_objectives` | array of `{id, statement}` objects | yes by corpus policy | Stable, section-scoped objective IDs used by item-level alignment checks. The schema still accepts legacy strings for migration compatibility, but the validator rejects them in the active corpus. |
 | `concept_ids` | array of strings | no | Ids that must exist in `_concepts/registry.json`; these are the cross-section knowledge-tracing keys. |
 | `practice_ids` | array of strings | no | Each must reference a real problem id in the sibling practice file (cross-file check, hard error if not). |
 | `prereq_section_ids` | array of strings | no (present on all 256 today) | Each is a `course/chapter/section` slug naming a prerequisite section. Used by the backend `_find_concept_origin` remediation route. Must form a DAG (corpus check). |
+| `lo_practice_map` | object | yes by corpus policy | Maps every learning-objective ID to one or more real sibling practice IDs. |
+| `alignment_method` | string | yes by corpus policy | Records how the mapping was produced and whether instructor review remains necessary. |
 
 ---
 
@@ -59,6 +61,11 @@ Schema id: `alget://schema/practice.schema.json`. `additionalProperties: false` 
 Every problem requires `id` (string, min length 1) and `type` (one of `multiple_choice`, `numeric`, `step_based`, `conceptual`).
 
 Every problem needs a prompt. The prompt is `stem` in the dominant generation and `statement` in the legacy flat-numeric generation, so the schema requires **at least one of** `stem` or `statement` (an `anyOf`). Prefer `stem` for new content.
+
+Every active-corpus problem also carries a non-empty `learning_objective_ids`
+array. Each referenced objective must exist in the sibling meta file. A direct-
+evidence conceptual item is preferred over falsely mapping an unrelated closed-
+response item.
 
 Per-type required fields and accepted keys are layered on top via conditional (`if`/`then`) subschemas keyed on `type`.
 
@@ -209,7 +216,7 @@ Prerequisite relationships are expressed per-section, not in the registry. Each 
 **Corpus-level (across sections):**
 
 - Prerequisite graph integrity over `meta.prereq_section_ids`: dangling target, self-reference, non-string entry, and cycle (topological sort): all **hard errors**.
-- Constructive-alignment soft check: once `practice_ids` are populated and a learning-objective linkage convention exists (either `learning_objectives` entries carrying an `id` plus per-problem `learning_objective_id`/`lo_id`/`learning_objective_ids`/`lo_ids`, or an explicit `meta.lo_practice_map`), any objective with no assessing practice item is flagged, **soft warning only**. It is a no-op on the current corpus because objectives are plain strings.
+- Constructive-alignment integrity is a **hard check**: every objective must have a stable ID, every problem must reference at least one existing objective, every objective must be assessed, and every `lo_practice_map` target must resolve to a real problem. The checked-in mappings are deterministic first-pass mappings and remain subject to instructor/domain-expert review.
 
 A non-zero exit (any hard error) blocks the merge.
 
