@@ -34,7 +34,7 @@ function ChapterPassport({
     const totalCompleted = chapterProgress.reduce((sum, chapter) => sum + chapter.progress.completed, 0)
 
     return (
-        <details className="group px-3 pb-2 pt-3">
+        <details className="ath-chapter-passport group px-3 pb-2 pt-3">
             <summary className="flex cursor-pointer list-none items-center justify-between gap-3">
                 <span className="sr-only">Chapter Passport</span>
                 <span className="sr-only">Collect chapter stamps</span>
