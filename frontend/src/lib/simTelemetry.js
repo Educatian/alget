@@ -30,7 +30,6 @@ export function useIframeSimTelemetry(sectionId, simId) {
         }
         window.addEventListener('message', onMessage)
         return () => window.removeEventListener('message', onMessage)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sectionId, simId])
 }
 
@@ -67,7 +66,6 @@ export function useSimTelemetry(sectionId, simId, state, mastery = false) {
                 reached_mastery: reachedMastery.current,
             })
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sectionId, simId])
 
     useEffect(() => {

@@ -187,7 +187,14 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                                     </p>
                                 </div>
 
-                                <div className="ath-preview-progress mt-7" aria-label="Mastery progress: 68 percent">
+                                <div
+                                    className="ath-preview-progress mt-7"
+                                    role="progressbar"
+                                    aria-label="Mastery progress"
+                                    aria-valuemin={0}
+                                    aria-valuemax={100}
+                                    aria-valuenow={68}
+                                >
                                     <span style={{ width: '68%' }} />
                                 </div>
 

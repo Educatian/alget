@@ -29,7 +29,7 @@ export default defineConfig([
     },
   },
   {
-    files: ['e2e/**/*.js', 'playwright.config.js'],
+    files: ['e2e/**/*.js', 'src/test/**/*.js', 'playwright.config.js'],
     languageOptions: {
       ecmaVersion: 2020,
       globals: {
@@ -40,6 +40,22 @@ export default defineConfig([
         ecmaVersion: 'latest',
         sourceType: 'module',
       },
+    },
+  },
+  {
+    files: [
+      'src/components/BraggColorDesigner.jsx',
+      'src/components/CapsuleHealingExplorer.jsx',
+      'src/components/ConfidencePrompt.jsx',
+      'src/components/PeelAsymmetryExplorer.jsx',
+      'src/components/RelativeDensityExplorer.jsx',
+      'src/components/SerrationOptimizer.jsx',
+      'src/components/StackEffectDesigner.jsx',
+    ],
+    rules: {
+      // These interactive labs intentionally export their pure physics models
+      // alongside the React view so the same equations can be unit tested.
+      'react-refresh/only-export-components': 'off',
     },
   },
 ])
