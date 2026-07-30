@@ -8,7 +8,7 @@ import { clearStreak } from './lib/streak'
 import { clearFacultyPartnershipCache } from './lib/facultyPartnershipService'
 import { safeSessionStorageGet, safeLocalStorageGet, safeLocalStorageRemove } from './lib/browserStorage'
 import { DEMO_SESSION_KEY } from './lib/demoSession'
-import { clearCohortLearner, formatUserLabel, readCohortLearner } from './lib/cohortLearner'
+import { clearCohortLearner, formatUserLabel, markInvitedLearnerActive, readCohortLearner } from './lib/cohortLearner'
 import { ToastProvider } from './lib/toast.jsx'
 import { ThemeProvider } from './lib/theme.jsx'
 import GlobalClickLogger from './components/GlobalClickLogger'
@@ -141,6 +141,7 @@ export default function App() {
 
         // Initialize logging session when user is authenticated
         if (sessionUser) {
+          markInvitedLearnerActive(sessionUser).catch(() => {})
           initSession(sessionUser).then(() => {
             replayPendingResearchPersists().catch(() => {})
           })
@@ -158,6 +159,7 @@ export default function App() {
 
       setUser((previousUser) => {
         if (newUser && !previousUser) {
+          markInvitedLearnerActive(newUser).catch(() => {})
           initSession(newUser)
         } else if (!newUser && previousUser) {
           endSession()
