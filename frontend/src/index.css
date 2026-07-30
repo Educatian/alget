@@ -572,6 +572,58 @@ h6,
   letter-spacing: -0.0125em;
 }
 
+.ath-reader-density .reading-narrative :where(.reading-breakout, .worked-example, figure, pre, .reading-table-scroll) {
+  border: 0;
+  border-radius: 0.875rem;
+  box-shadow: none;
+}
+
+.ath-reader-density .reading-narrative :where(.reading-breakout, .worked-example) {
+  background: #fff;
+}
+
+@media (max-width: 63.99rem) {
+  .ath-reader-density .ath-reader-pane {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 1.5rem 1rem 4rem;
+  }
+
+  .ath-reader-density .ath-reader-pane .reading-narrative {
+    max-width: 100%;
+  }
+
+  .ath-reader-density .ath-reader-pane .editorial-title {
+    font-size: clamp(1.75rem, 7vw, 2.25rem);
+    line-height: 1.12;
+  }
+
+  .ath-reader-density .ath-knowledge-check > div:last-child {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 48rem) {
+  .ath-admin-shell > div {
+    padding: 1rem;
+  }
+
+  .ath-instructor-shell {
+    padding: 1rem;
+  }
+
+  .ath-instructor-shell > section:not(:first-of-type),
+  .ath-instructor-shell > form {
+    margin-top: 1rem;
+  }
+
+  .ath-auth-dialog > div:first-child,
+  .ath-auth-dialog > div:last-child {
+    padding: 1.25rem;
+  }
+}
+
 .ath-reader-density .reading-narrative h1 {
   margin-bottom: 0.85rem;
 }
