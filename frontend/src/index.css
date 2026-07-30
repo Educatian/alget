@@ -402,6 +402,52 @@ h6,
   box-shadow: none;
 }
 
+/* Reader density pass: keep the editorial tone, but bring the reading rhythm
+   closer to a focused annotation app. Structural whitespace is retained at
+   the shell edges; repeated text gaps and chrome padding are tightened. */
+.ath-reader-density {
+  --reading-line-height: 1.52;
+  --reading-letter-spacing: -0.008em;
+  --reading-paragraph-spacing: 0.62rem;
+}
+
+.ath-reader-density > header {
+  min-height: 3.5rem;
+}
+
+.ath-reader-density .reading-narrative h1 {
+  margin-bottom: 0.85rem;
+}
+
+.ath-reader-density .reading-narrative h2 {
+  margin-top: 1.3rem;
+  margin-bottom: 0.45rem;
+}
+
+.ath-reader-density .reading-narrative h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.ath-reader-density .reading-narrative ul,
+.ath-reader-density .reading-narrative ol {
+  margin-top: 0.65rem;
+  margin-bottom: 0.8rem;
+}
+
+.ath-reader-density .reading-narrative li {
+  margin-top: 0.22rem;
+  margin-bottom: 0.22rem;
+}
+
+.ath-reader-density #main-content > div {
+  padding-top: 0.25rem;
+}
+
+.ath-reader-density aside {
+  width: 13.5rem;
+}
+
 .ath-page {
   width: 100%;
   max-width: var(--ath-container-marketing);
