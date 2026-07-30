@@ -242,6 +242,24 @@ function buildGoogleDocCourseDraft(text, documentId, title = '') {
     const nextIndex = next ? cleaned.toLowerCase().indexOf(next.toLowerCase(), start + heading.length) : cleaned.length
     const end = nextIndex > start ? nextIndex : Math.min(cleaned.length, start + 5000)
     const excerpt = (cleaned.slice(start + heading.length, end).trim() || cleaned.slice(start, start + 1200)).slice(0, 1200)
+    const runtime = {
+      tutor: {
+        persona: 'BigAL source-grounded course tutor',
+        objective: `Help learners explain and apply ${heading} without giving away active assessment answers.`,
+        hint_ladder: ['diagnose misconception', 'ask a guiding question', 'offer one conceptual cue', 'give one micro-step', 'check transfer'],
+        source_scope: 'published-section-only',
+      },
+      analytics: {
+        events: ['section_view', 'reading_progress', 'activity_attempt', 'simulation_prediction', 'tutor_help', 'social_checkin', 'section_complete'],
+        mastery_concepts: [heading.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '')],
+        intervention_triggers: { low_mastery: 0.58, repeated_help: 3, stalled_minutes: 8 },
+      },
+      social_dynamics: {
+        cues: ['peer_presence', 'same_concept_peers', 'share_one_evidence_based_revision'],
+        prompts: [`Compare your interpretation of ${heading} with one peer and name the evidence that changed your view.`],
+        privacy: 'pseudonymous-cohort-aggregate',
+      },
+    }
     return {
       section_id: `draft-${String(index + 1).padStart(2, '0')}`,
       title: heading,
@@ -257,13 +275,15 @@ function buildGoogleDocCourseDraft(text, documentId, title = '') {
         interaction: 'Change one input, predict the effect, observe the response, and explain the discrepancy.',
         variables: ['input', 'response', 'constraint'], evidence_collected: ['prediction', 'observation', 'explanation'],
       },
+      ...runtime,
     }
   })
   return {
-    schema_version: 'google-doc-course-draft-v1',
+    schema_version: 'google-doc-course-runtime-package-v1',
     source: { kind: 'google_doc', document_id: documentId, title: title || headings[0], characters: cleaned.length },
     learning_objectives: headings.slice(0, 5).map((heading) => `Explain and apply the central ideas in ${heading}.`),
     sections,
+    runtime_package: { version: 'course-runtime-v1', generated: ['reading', 'activity', 'simulation', 'tutor', 'analytics', 'social_dynamics'], approval_required: true },
     quality: {
       source_grounded: true, human_approval_required: true, student_visible: false, automatic_publish: false,
       warnings: sections.length >= 2 ? [] : ['Only one section was detected; review the document heading structure.'],
@@ -284,12 +304,16 @@ function normalizeGeneratedCourseDraft(generated, fallback) {
       reading: { ...fallbackSection.reading, ...(section.reading || {}) },
       activity: { ...fallbackSection.activity, ...(section.activity || {}) },
       simulation: { ...fallbackSection.simulation, ...(section.simulation || {}), status: 'proposed' },
+      tutor: { ...fallbackSection.tutor, ...(section.tutor || {}) },
+      analytics: { ...fallbackSection.analytics, ...(section.analytics || {}) },
+      social_dynamics: { ...fallbackSection.social_dynamics, ...(section.social_dynamics || {}) },
     }
   })
   return {
     ...fallback,
     learning_objectives: Array.isArray(generated.learning_objectives) ? generated.learning_objectives.slice(0, 8).map((item) => cleanExcerpt(item, 220)).filter(Boolean) : fallback.learning_objectives,
     sections,
+    runtime_package: generated.runtime_package || fallback.runtime_package,
   }
 }
 
@@ -1085,6 +1109,7 @@ export default {
       if (path === '/orchestrate') {
         if (!key) return json({ intent: 'legacy', text: noKeyMsg })
         const ctx = body.current_content ? `\n\nSection context (excerpt):\n${String(body.current_content).slice(0, 2000)}` : ''
+        const generatedTutorConfig = body.tutor_config ? `\n\nInstructor-approved tutor configuration (follow within these bounds):\n${JSON.stringify(body.tutor_config).slice(0, 3000)}` : ''
         const pedagogyPolicy = `
 
 Tutoring pedagogy policy — follow it on every turn:
@@ -1093,7 +1118,7 @@ Tutoring pedagogy policy — follow it on every turn:
 (c) Never state the complete final answer to a practice or quiz problem the learner is currently working on. Guide them to produce it themselves; you may confirm or correct the steps of their own attempt.
 (d) End every turn with one short check question that tests whether the learner can take the next step on their own.`
         const messages = [
-          { role: 'system', content: `You are BigAL, a friendly, rigorous tutor embedded in an interactive textbook (course: ${body.course || 'general'}). Answer the learner's question clearly and concisely, grounded in the section context when relevant. Use Markdown. If the learner highlighted a passage, explain it.${pedagogyPolicy}${ctx}` },
+          { role: 'system', content: `You are BigAL, a friendly, rigorous tutor embedded in an interactive textbook (course: ${body.course || 'general'}). Answer the learner's question clearly and concisely, grounded in the section context when relevant. Use Markdown. If the learner highlighted a passage, explain it.${pedagogyPolicy}${generatedTutorConfig}${ctx}` },
           ...historyToMessages(body.history),
           { role: 'user', content: String(body.query || '') },
         ]

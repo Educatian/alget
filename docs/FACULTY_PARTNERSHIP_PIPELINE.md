@@ -11,9 +11,11 @@ ALGET lets an instructor connect one Google Doc, inspect a generated course expe
    - reading sections with estimated time and purpose;
    - claim-evidence-revision activities and their evidence fields;
    - proposed parameter-exploration simulations with prediction, observation, and explanation traces.
+   - a per-section runtime package: BigAL tutor guardrails, analytics events/mastery triggers, and privacy-safe social cues/prompts.
 4. The draft is stored with its source revision hash. Student visibility, automatic publishing, messaging, and grading remain disabled.
 5. The instructor reviews the generated experience and marks the pilot ready. This state remains learner-invisible.
 6. A separate **Approve & publish** action writes an RLS-protected `published_course_modules` record and activates the pilot. The module then appears under **Instructor-published modules** in that course's reader.
+   The published section passes its approved tutor configuration into BigAL, records the generated analytics contract when the section opens, and renders the social prompt inside Social Pulse.
 7. Weekly evidence briefs and course impact reports reuse the same governed faculty workspace.
 
 ## Account and roster onboarding

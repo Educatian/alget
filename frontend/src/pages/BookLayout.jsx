@@ -353,6 +353,14 @@ export default function BookLayout({ user, onLogout }) {
     }, [chapter, course, markRecentSection, section, sectionData])
 
     useEffect(() => {
+        if (!sectionData?.analytics) return
+        recordAdaptiveSignal(sectionPath, 'runtime_package_loaded', {
+            configuredEvents: sectionData.analytics.events || [],
+            masteryConcepts: sectionData.analytics.mastery_concepts || [],
+        })
+    }, [sectionData, sectionPath])
+
+    useEffect(() => {
         if (!railOpen || !railContext || railContext.sectionId !== sectionPath) {
             return
         }
@@ -579,6 +587,7 @@ export default function BookLayout({ user, onLogout }) {
                                             liveFeed={socialState.liveFeed}
                                             onReaction={socialState.sendReaction}
                                             sectionTitle={sectionData?.meta?.title || sectionData?.title || ''}
+                                            socialDynamics={sectionData?.social_dynamics || null}
                                         />
                                     </Suspense>
                                 </Popover.Content>
@@ -924,7 +933,9 @@ export default function BookLayout({ user, onLogout }) {
                         sectionTitle: sectionData?.title || '',
                         contentVersion: sectionData?.content_version || null,
                         conceptIds: sectionData?.meta?.concept_ids || [],
-                        course
+                        course,
+                        tutorConfig: sectionData?.tutor || null,
+                        socialDynamics: sectionData?.social_dynamics || null,
                     }}
                 />
             </Suspense>
