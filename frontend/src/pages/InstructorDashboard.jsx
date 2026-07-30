@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { supabase } from '../lib/supabase'
 import { fetchRctSnapshot } from '../lib/researchService'
+import { inviteLearnerToCourse } from '../lib/facultyPartnershipService'
 import InstructorInterventionQueue from '../components/InstructorInterventionQueue'
 import FacultyPartnershipWorkspace from '../components/FacultyPartnershipWorkspace'
 
@@ -134,6 +135,8 @@ export default function InstructorDashboard({ user }) {
                 <Metric value={lowMasteryConcepts.length} label="Hot-spot concepts" />
             </section>
 
+            <LearnerInvitePanel courseId={selectedCourseId} />
+
             <FacultyPartnershipWorkspace courseId={selectedCourseId} hotSpots={lowMasteryConcepts} strugglers={strugglers} rct={rct} />
             <InstructorInterventionQueue user={user} hotSpots={lowMasteryConcepts} courseId={selectedCourseId} />
 
@@ -151,6 +154,49 @@ export default function InstructorDashboard({ user }) {
 
 function Metric({ value, label }) {
     return <div className="border-l-2 border-[var(--ath-primary-soft)] px-4 py-2"><p className="text-2xl font-semibold text-[var(--ath-text)]">{value}</p><p className="text-[11px] uppercase tracking-[0.16em] text-[var(--ath-secondary)]">{label}</p></div>
+}
+
+function LearnerInvitePanel({ courseId }) {
+    const [form, setForm] = useState({ email: '', displayName: '', cohortLabel: '' })
+    const [busy, setBusy] = useState(false)
+    const [message, setMessage] = useState('')
+    const [error, setError] = useState('')
+
+    async function submit(event) {
+        event.preventDefault()
+        setBusy(true)
+        setMessage('')
+        setError('')
+        try {
+            await inviteLearnerToCourse({ courseId, ...form })
+            setForm({ email: '', displayName: '', cohortLabel: '' })
+            setMessage('Invitation sent. The learner will receive a secure account setup email.')
+        } catch (inviteError) {
+            setError(inviteError.message || 'Could not invite learner.')
+        } finally {
+            setBusy(false)
+        }
+    }
+
+    return (
+        <section className="mx-auto mt-5 max-w-5xl border-y border-[var(--ath-line)] py-4" aria-labelledby="learner-invite-title">
+            <div className="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                    <p className="editorial-kicker">COURSE ROSTER</p>
+                    <h2 id="learner-invite-title" className="mt-1 text-sm font-semibold text-[var(--ath-text)]">Invite a learner to {courseId}</h2>
+                    <p className="mt-1 text-xs leading-5 text-[var(--ath-muted)]">The invitation is limited to this assigned course. Learners receive an email to set up their account.</p>
+                </div>
+            </div>
+            <form onSubmit={submit} className="mt-3 grid gap-2 md:grid-cols-[1fr_1fr_1fr_auto]">
+                <input required type="email" value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} className="editorial-input" placeholder="learner@school.edu" aria-label="Learner email" />
+                <input required minLength={2} value={form.displayName} onChange={(event) => setForm({ ...form, displayName: event.target.value })} className="editorial-input" placeholder="Learner name" aria-label="Learner name" />
+                <input value={form.cohortLabel} onChange={(event) => setForm({ ...form, cohortLabel: event.target.value })} className="editorial-input" placeholder="Cohort label (optional)" aria-label="Cohort label" />
+                <button type="submit" disabled={busy} className="editorial-button px-4 py-2 text-xs">{busy ? 'Sending…' : 'Invite learner'}</button>
+            </form>
+            {message && <p role="status" className="mt-2 text-xs text-emerald-700">{message}</p>}
+            {error && <p role="alert" className="mt-2 text-xs text-red-700">{error}</p>}
+        </section>
+    )
 }
 
 function buildRosterMap(rows = []) { return new Map(rows.map((row) => [row.user_id, row])) }

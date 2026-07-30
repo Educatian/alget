@@ -199,6 +199,29 @@ export async function importGoogleDocCourseDraft({ courseId, documentUrl }) {
     return body.draft
 }
 
+export async function inviteLearnerToCourse({ courseId, email, displayName, cohortId = '', cohortLabel = '' }) {
+    const { data } = await supabase.auth.getSession()
+    const token = data?.session?.access_token || ''
+    const response = await fetch(`${LLM_API_BASE}/faculty/learners/invite`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+        body: JSON.stringify({
+            course_id: courseId,
+            email: email.trim().toLowerCase(),
+            display_name: displayName.trim(),
+            cohort_id: cohortId.trim() || `${courseId}-instructor`,
+            cohort_label: cohortLabel.trim() || 'Instructor roster',
+            redirect_url: `${window.location.origin}/`,
+        }),
+    })
+    const body = await response.json().catch(() => ({}))
+    if (!response.ok) throw new Error(body.detail || `Learner invitation failed (${response.status})`)
+    return body
+}
+
 export async function setPilotStatus(pilot, status, persistence = 'local') {
     if (!['shadow', 'ready', 'active', 'completed'].includes(status)) throw new Error('Invalid pilot status')
     if (persistence === 'supabase') {

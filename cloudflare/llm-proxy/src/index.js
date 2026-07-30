@@ -476,6 +476,16 @@ async function handleAdminRequest(request, env, path) {
 async function handleFacultyRequest(request, env, path) {
   const auth = await requireFacultyInstructor(request, env)
   if (auth.error) return auth.error
+  if (path === '/faculty/learners/invite' && request.method === 'POST') {
+    if (!env.SUPABASE_URL) return json({ detail: 'Learner invitations are not configured' }, 503)
+    const edgeUrl = `${String(env.SUPABASE_URL).replace(/\/$/, '')}/functions/v1/faculty-learner-invite`
+    const proxied = await fetch(edgeUrl, {
+      method: 'POST',
+      headers: supabaseHeaders(env, auth.authorization),
+      body: await request.text(),
+    })
+    return new Response(proxied.body, { status: proxied.status, headers: { ...CORS, 'content-type': proxied.headers.get('content-type') || 'application/json' } })
+  }
   if (path !== '/faculty/google-docs/import' || request.method !== 'POST') return json({ detail: `Unknown faculty endpoint: ${path}` }, 404)
 
   const payload = await request.json().catch(() => ({}))

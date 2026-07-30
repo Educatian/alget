@@ -16,6 +16,12 @@ ALGET lets an instructor connect one Google Doc, inspect a generated course expe
 6. A separate **Approve & publish** action writes an RLS-protected `published_course_modules` record and activates the pilot. The module then appears under **Instructor-published modules** in that course's reader.
 7. Weekly evidence briefs and course impact reports reuse the same governed faculty workspace.
 
+## Account and roster onboarding
+
+- Instructor accounts are created through an administrator invitation. A public user cannot self-assign the `instructor` role.
+- An active instructor can invite a learner from the course-scoped roster panel. The invitation creates a Supabase Auth account, sends the learner a secure setup email, and records an `invited` roster row for that course.
+- The invitation endpoint verifies the instructor's active profile and course ownership before creating the account. It never grants instructor or administrator metadata to the learner.
+
 ## Runtime contract
 
 - `POST /api/faculty/google-docs/import` requires an authenticated `instructor`, `course_admin`, or `admin` role.
