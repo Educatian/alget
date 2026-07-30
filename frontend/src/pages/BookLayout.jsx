@@ -2,11 +2,9 @@ import { Suspense, lazy, useState, useEffect, useRef, useMemo, useCallback } fro
 import { useParams, useNavigate } from 'react-router-dom'
 import * as Popover from '@radix-ui/react-popover'
 import {
-    BarChart3,
     Bookmark,
     ChevronLeft,
     ChevronRight,
-    Flame,
     Home,
     LogOut,
     Menu,
@@ -14,8 +12,7 @@ import {
     PanelRightClose,
     PanelRightOpen,
     Search,
-    Settings,
-    LayoutDashboard
+    Settings
 } from 'lucide-react'
 import { getStreak } from '../lib/streak'
 import { useToast } from '../lib/toastContext'
@@ -175,7 +172,6 @@ export default function BookLayout({ user, onLogout }) {
         ? flatSections[currentSectionIndex + 1]
         : null
     const sectionPosition = Math.max(currentSectionIndex + 1, 1)
-    const completedCount = progressStats?.totalCompleted || 0
     const currentBookmarked = isBookmarked(course, chapter, section)
     const socialState = useSocialPresence({
         user,
@@ -244,13 +240,11 @@ export default function BookLayout({ user, onLogout }) {
         setTocReloadKey((value) => value + 1)
     }, [])
 
-    const [streak, setStreak] = useState(() => getStreak())
     const toast = useToast()
     useEffect(() => {
         const handler = (event) => {
             const detail = event.detail || {}
             const next = detail.streak || getStreak()
-            setStreak(next)
             const advanced = next.advanced
             const message = advanced && next.count > 1
                 ? `✓ Section complete · ${next.count}-day streak 🔥`
@@ -485,72 +479,54 @@ export default function BookLayout({ user, onLogout }) {
     }, [handleNavigate, nextSection, previousSection, railOpen, tocOpen])
 
     return (
-        <div className="editorial-shell flex h-screen flex-col overflow-hidden selection:bg-[rgba(200,226,236,0.35)]">
+        <div className="editorial-shell ath-open-layout flex h-screen flex-col overflow-hidden selection:bg-[rgba(200,226,236,0.35)]">
             <a href="#main-content" className="skip-to-content-link">Skip to reading content</a>
             <OnboardingTour />
             <RetentionBanner course={course} />
 
-            <header className="sticky top-0 z-50 border-b border-[var(--ath-line)] bg-[rgba(248,246,241,0.84)] px-4 py-3 backdrop-blur-3xl sm:px-6 sm:py-4">
-                <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4">
+            <header className="sticky top-0 z-50 flex items-center gap-3 border-b border-[var(--ath-line)] bg-[rgba(248,246,241,0.94)] px-3 py-1.5 backdrop-blur-3xl sm:px-4">
+                <div className="flex shrink-0 items-center gap-2 sm:min-w-0 sm:flex-1 sm:justify-between sm:gap-3">
                     <button
                         type="button"
                         onClick={() => navigate('/')}
                         aria-label="Go to ALGET home"
-                        className="flex min-w-0 items-center gap-3 rounded-2xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)] sm:gap-4"
+                        className="flex min-w-0 items-center gap-2.5 rounded-xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
                     >
-                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[var(--ath-radius-xl)] border border-[color-mix(in_srgb,var(--ath-primary)_14%,transparent)] bg-[var(--ath-primary)] text-lg font-bold text-white shadow-[0_16px_32px_color-mix(in_srgb,var(--ath-primary-deep)_24%,transparent)] sm:h-11 sm:w-11 sm:text-xl">
+                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--ath-primary)] text-xs font-bold text-white">
                             AL
                         </div>
-                        <div className="min-w-0">
-                            <p className="editorial-kicker">Alabama Generative Intelligent Textbook</p>
-                            <h1 className="truncate text-lg font-semibold tracking-tight text-[var(--ath-primary-deep)] sm:text-xl">ALGET Reader</h1>
-                            <p className="truncate text-xs font-medium uppercase tracking-[0.18em] text-[var(--ath-secondary)]">
+                        <div className="hidden min-w-0 sm:block">
+                            <span className="sr-only">Alabama Generative Intelligent Textbook</span>
+                            <h1 className="truncate text-sm font-semibold tracking-tight text-[var(--ath-primary-deep)]">ALGET Reader</h1>
+                            <p className="truncate text-[10px] font-medium text-[var(--ath-secondary)]">
                                 {formatCourseLabel(course)} / Chapter {chapter} / Section {section}
                             </p>
                         </div>
                     </button>
 
-                    <div className="flex flex-wrap items-center gap-2">
-                        <div className="rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.8)] px-3 py-1.5 text-xs font-semibold text-[var(--ath-muted)] shadow-sm">
-                            <span className="text-[var(--ath-secondary)]">Section</span>{' '}
-                            <span className="text-[var(--ath-text)]">{sectionPosition}/{flatSections.length || 1}</span>
-                        </div>
-                        <div className="rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.8)] px-3 py-1.5 text-xs font-semibold text-[var(--ath-muted)] shadow-sm">
-                            <span className="text-[var(--ath-secondary)]">Completed</span>{' '}
-                            <span className="text-[var(--ath-text)]">{completedCount}</span>
-                        </div>
-                        <div className="rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.8)] px-3 py-1.5 text-xs font-semibold text-[var(--ath-muted)] shadow-sm">
-                            <span className={`mr-2 inline-block h-2 w-2 rounded-full ${progressStats?.syncStatus === 'synced' ? 'bg-emerald-500' : 'bg-amber-400'}`}></span>
-                            {progressStats?.syncStatus === 'synced' ? 'Cloud sync on' : 'Saving progress'}
-                        </div>
-                        {streak.count > 0 && (
-                            <div
-                                className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2.5 py-1 text-xs font-bold text-amber-700"
-                                title={streak.isToday ? `${streak.count}-day completion streak — done for today` : `${streak.count}-day streak — complete a section today to keep it`}
-                            >
-                                <Flame className="h-3.5 w-3.5" />
-                                {streak.count}
-                            </div>
-                        )}
+                    <div className="hidden items-center gap-2 text-[11px] font-medium text-[var(--ath-muted)] sm:flex" aria-label={`Section ${sectionPosition} of ${flatSections.length || 1}`}>
+                        <span>{sectionPosition}/{flatSections.length || 1}</span>
+                        <span aria-hidden="true" className="text-[var(--ath-line-strong)]">·</span>
+                        <span className="inline-flex items-center gap-1.5">
+                            <span className={`h-1.5 w-1.5 rounded-full ${progressStats?.syncStatus === 'synced' ? 'bg-emerald-500' : 'bg-amber-400'}`} aria-hidden="true"></span>
+                            {progressStats?.syncStatus === 'synced' ? 'Saved' : 'Saving'}
+                        </span>
                     </div>
                 </div>
 
-                <div className="mt-2 flex flex-wrap items-center justify-between gap-2 sm:mt-3 sm:gap-3">
-                    <div className="min-w-0">
+                <div className="flex min-w-0 flex-1 items-center justify-end gap-2">
+                    <div className="hidden min-w-0 2xl:block">
                         <p className="truncate text-sm font-semibold text-[var(--ath-text)]">
                             {sectionData?.meta?.title || sectionData?.title || 'Loading section...'}
                         </p>
-                        <p className="hidden truncate text-xs text-[var(--ath-muted)] sm:block">
-                            {sectionData?.meta?.description || sectionData?.meta?.chapter_title || 'Guided reading, practice, social presence, and adaptive support.'}
-                        </p>
                     </div>
 
-                    <div className="flex w-full items-center gap-2 overflow-x-auto pb-1 sm:w-auto sm:flex-wrap sm:gap-3 sm:overflow-visible sm:pb-0 [&>*]:shrink-0">
+                    <div className="flex w-full items-center gap-1.5 overflow-x-auto [scrollbar-width:none] [&>*]:shrink-0 [&::-webkit-scrollbar]:hidden sm:w-auto">
                         <Popover.Root>
                             <Popover.Trigger asChild>
                                 <button
                                     type="button"
-                                    className="hidden md:flex items-center gap-2 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.8)] px-2.5 py-1.5 shadow-sm transition-all hover:bg-[var(--ath-panel)] hover:shadow-md"
+                                    className="hidden items-center gap-2 px-2.5 py-1.5 transition-colors hover:text-[var(--ath-primary)] md:flex"
                                     aria-label="See classmates online (live presence)"
                                     title="Classmates online"
                                 >
@@ -602,7 +578,7 @@ export default function BookLayout({ user, onLogout }) {
                         <button
                             type="button"
                             onClick={() => setTocOpen(true)}
-                            className="lg:hidden flex h-11 w-11 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[rgba(255,255,255,0.6)] text-[var(--ath-secondary)] shadow-sm transition-all hover:bg-[rgba(200,226,236,0.35)] hover:text-[var(--ath-primary)] md:h-9 md:w-9"
+                            className="flex h-11 w-11 items-center justify-center text-[var(--ath-secondary)] transition-colors hover:text-[var(--ath-primary)] md:h-9 md:w-9 lg:hidden"
                             aria-label="Open chapter contents"
                             title="Chapter contents"
                         >
@@ -612,8 +588,8 @@ export default function BookLayout({ user, onLogout }) {
                         <button
                             onClick={handleBookmarkToggle}
                             className={`flex h-11 w-11 items-center justify-center rounded-lg text-sm font-semibold transition-all duration-200 md:h-9 md:w-9 ${currentBookmarked
-                                ? 'border border-[rgba(15,81,103,0.12)] bg-[rgba(200,226,236,0.35)] text-[var(--ath-primary)] hover:bg-[rgba(200,226,236,0.5)]'
-                                : 'bg-[var(--ath-panel)] text-[var(--ath-secondary)] hover:bg-[rgba(255,255,255,0.85)] hover:text-[var(--ath-text)]'
+                                ? 'bg-[rgba(200,226,236,0.35)] text-[var(--ath-primary)]'
+                                : 'text-[var(--ath-secondary)] hover:text-[var(--ath-text)]'
                                 }`}
                             aria-label={currentBookmarked ? 'Remove bookmark' : 'Save section'}
                             title={currentBookmarked ? 'Saved' : 'Save for later'}
@@ -625,8 +601,8 @@ export default function BookLayout({ user, onLogout }) {
                             onClick={toggleRail}
                             data-onboarding="help-rail-button"
                             className={`flex h-11 w-11 items-center justify-center rounded-lg text-sm font-semibold transition-all duration-200 md:h-9 md:w-9 ${railOpen
-                                ? 'bg-[var(--ath-panel-muted)] text-[var(--ath-muted)] hover:bg-[rgba(200,226,236,0.45)]'
-                                : 'border border-[rgba(15,81,103,0.12)] bg-[rgba(200,226,236,0.35)] text-[var(--ath-primary)] hover:bg-[rgba(200,226,236,0.5)]'
+                                ? 'bg-[var(--ath-panel-muted)] text-[var(--ath-muted)]'
+                                : 'bg-[rgba(200,226,236,0.35)] text-[var(--ath-primary)]'
                                 }`}
                             aria-label={railOpen ? 'Close the AI help panel' : 'Open the AI help panel (hints, tutor, explanations)'}
                             title={railOpen ? 'Close AI help' : 'AI help & hints'}
@@ -637,7 +613,7 @@ export default function BookLayout({ user, onLogout }) {
                         <button
                             type="button"
                             onClick={() => window.dispatchEvent(new CustomEvent('alget-open-search'))}
-                            className="hidden md:inline-flex items-center gap-2 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.6)] px-3 py-1.5 text-xs font-semibold text-[var(--ath-secondary)] shadow-sm transition-all hover:bg-[rgba(200,226,236,0.35)] hover:text-[var(--ath-primary)]"
+                            className="hidden items-center gap-2 px-2 py-1.5 text-xs font-semibold text-[var(--ath-secondary)] transition-colors hover:text-[var(--ath-primary)] md:inline-flex"
                             title="Search ⌘K"
                             aria-label="Open global search"
                         >
@@ -648,21 +624,19 @@ export default function BookLayout({ user, onLogout }) {
                         <button
                             type="button"
                             onClick={() => window.dispatchEvent(new CustomEvent('alget-open-search'))}
-                            className="md:hidden flex h-11 w-11 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[rgba(255,255,255,0.6)] text-[var(--ath-secondary)] shadow-sm hover:bg-[rgba(200,226,236,0.35)] hover:text-[var(--ath-primary)]"
+                            className="flex h-11 w-11 items-center justify-center text-[var(--ath-secondary)] hover:text-[var(--ath-primary)] md:hidden"
                             title="Search"
                             aria-label="Open global search"
                         >
                             <Search className="h-4 w-4" />
                         </button>
 
-                        <div className="h-8 w-px shrink-0 bg-[var(--ath-line)]"></div>
-
-                        <ThemeToggle />
+                        <div className="hidden sm:block"><ThemeToggle /></div>
 
                         <button
                             type="button"
                             onClick={() => setSettingsOpen(true)}
-                            className="flex h-11 w-11 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[rgba(255,255,255,0.6)] text-[var(--ath-secondary)] shadow-sm transition-all hover:bg-[rgba(200,226,236,0.35)] hover:text-[var(--ath-primary)] md:h-9 md:w-9"
+                            className="flex h-11 w-11 items-center justify-center text-[var(--ath-secondary)] transition-colors hover:text-[var(--ath-primary)] md:h-9 md:w-9"
                             title="Reading settings"
                             aria-label="Open reading settings (text size, width, dyslexia-friendly font)"
                         >
@@ -674,7 +648,7 @@ export default function BookLayout({ user, onLogout }) {
                                 <button
                                     type="button"
                                     data-onboarding="concept-map-button"
-                                    className="flex h-11 w-11 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[rgba(255,255,255,0.6)] text-[var(--ath-secondary)] shadow-sm transition-all hover:bg-[rgba(200,226,236,0.35)] hover:text-[var(--ath-primary)] md:h-9 md:w-9"
+                                    className="hidden h-11 w-11 items-center justify-center text-[var(--ath-secondary)] transition-colors hover:text-[var(--ath-primary)] sm:flex md:h-9 md:w-9"
                                     title="Concept map"
                                     aria-label="Open the concept map for this chapter"
                                 >
@@ -702,32 +676,8 @@ export default function BookLayout({ user, onLogout }) {
                         </Popover.Root>
 
                         <button
-                            onClick={() => navigate('/dashboard')}
-                            className="flex h-11 w-11 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-secondary)] transition-all hover:bg-[rgba(255,255,255,0.85)] hover:text-[var(--ath-text)] md:h-9 md:w-9"
-                            title="My progress"
-                            aria-label="Open my progress dashboard"
-                        >
-                            <LayoutDashboard className="h-4 w-4" aria-hidden="true" />
-                        </button>
-                        <button
-                            onClick={() => navigate('/analytics')}
-                            className="flex h-11 w-11 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-secondary)] transition-all hover:bg-[rgba(255,255,255,0.85)] hover:text-[var(--ath-text)] md:h-9 md:w-9"
-                            title="Learning analytics"
-                            aria-label="Open learning analytics"
-                        >
-                            <BarChart3 className="h-4 w-4" aria-hidden="true" />
-                        </button>
-
-                        <div className="flex shrink-0 items-center gap-3 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.75)] px-3 py-1.5 shadow-sm">
-                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--ath-panel-muted)] text-sm font-medium text-[var(--ath-muted)]">
-                                {user?.email ? user.email.charAt(0).toUpperCase() : 'U'}
-                            </div>
-                            <span className="hidden text-sm font-medium text-[var(--ath-muted)] sm:block">{user?.email}</span>
-                        </div>
-
-                        <button
                             onClick={onLogout}
-                            className="flex h-11 w-11 items-center justify-center rounded-lg text-[var(--ath-secondary)] transition-all duration-200 hover:bg-[rgba(255,255,255,0.65)] hover:text-[var(--ath-text)] md:h-9 md:w-9"
+                            className="hidden h-11 w-11 items-center justify-center rounded-lg text-[var(--ath-secondary)] transition-all duration-200 hover:bg-[rgba(255,255,255,0.65)] hover:text-[var(--ath-text)] sm:flex md:h-9 md:w-9"
                             aria-label="Sign out"
                             title="Sign out"
                         >
@@ -738,7 +688,7 @@ export default function BookLayout({ user, onLogout }) {
             </header>
 
             <div className="relative flex min-h-0 flex-1 overflow-hidden">
-                <aside className="hidden lg:block lg:w-56 xl:w-64 min-h-0 shrink-0 overflow-y-auto border-r border-[var(--ath-line)] bg-[rgba(240,237,230,0.72)] backdrop-blur-3xl">
+                <aside className="hidden min-h-0 shrink-0 overflow-y-auto bg-[rgba(240,237,230,0.5)] backdrop-blur-3xl lg:block lg:w-52">
                     {tocError ? (
                         <div className="m-4 rounded-2xl border border-[rgba(220,38,38,0.25)] bg-[rgba(254,242,242,0.85)] p-4 text-sm">
                             <p className="font-semibold text-[var(--ath-text)]">Couldn't load chapter list</p>
@@ -852,8 +802,6 @@ export default function BookLayout({ user, onLogout }) {
                                         onStuckEvent={handleStuckEvent}
                                         onHeadingChange={setActiveHeading}
                                         onNeedsReview={handleNeedsReview}
-                                        isBookmarked={currentBookmarked}
-                                        toggleBookmark={handleBookmarkToggle}
                                         isCompleted={isCompleted(course, chapter, section)}
                                         markCompleted={handleSectionComplete}
                                         previousSection={previousSection}
@@ -901,13 +849,13 @@ export default function BookLayout({ user, onLogout }) {
                 </div>
 
                 <aside
-                    className={`relative z-20 hidden min-h-0 shrink-0 xl:block transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${railOpen ? 'w-[22rem] pl-4 pr-4 py-4' : 'w-0 pl-0 pr-0 py-0'
+                    className={`relative z-20 hidden min-h-0 shrink-0 border-l border-[var(--ath-line)] bg-[var(--ath-surface-strong)] xl:block transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${railOpen ? 'w-[21rem]' : 'w-0 border-l-0'
                         }`}
                     aria-hidden={!railOpen}
                 >
                     {railOpen && (
-                        <div className="sticky top-4 h-[calc(100dvh-7.5rem)] min-h-[34rem]">
-                            <div className="flex h-full flex-col overflow-hidden rounded-[2rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.86)] shadow-[-20px_20px_60px_rgba(15,23,42,0.08)] backdrop-blur-3xl">
+                        <div className="h-full min-h-[34rem]">
+                            <div className="flex h-full flex-col overflow-hidden bg-[rgba(255,255,255,0.86)] backdrop-blur-3xl">
                                 <Suspense fallback={<div className="p-4"><SurfaceFallback label="Loading adaptive support..." compact /></div>}>
                                     <IntelRail
                                         context={railContext?.sectionId === sectionPath ? railContext : null}
@@ -957,6 +905,7 @@ export default function BookLayout({ user, onLogout }) {
                     onQuestionSent={() => setHighlightQuestion(null)}
                     userId={user?.id}
                     railOpen={railOpen}
+                    launcherVisible={false}
                     context={{
                         sectionId: sectionPath,
                         pageContent: sectionData?.raw || '',

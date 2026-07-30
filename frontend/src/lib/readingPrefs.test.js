@@ -65,9 +65,10 @@ describe('applyReadingPrefs reading-width preference', () => {
 
         const root = document.documentElement
         expect(root.style.getPropertyValue('--reading-font-scale')).toBe('1.25')
-        // relaxed multiplier is 2, airy spacing is 1.8em.
-        expect(root.style.getPropertyValue('--reading-line-height')).toBe('2')
-        expect(root.style.getPropertyValue('--reading-paragraph-spacing')).toBe('1.8em')
+        // The relaxed preset remains spacious without returning to the former
+        // double-spaced reading surface.
+        expect(root.style.getPropertyValue('--reading-line-height')).toBe('1.75')
+        expect(root.style.getPropertyValue('--reading-paragraph-spacing')).toBe('1.25em')
     })
 
     it('toggles the dyslexia font class and data attribute (not color alone)', () => {

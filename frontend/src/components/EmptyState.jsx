@@ -35,13 +35,13 @@ export default function EmptyState({ icon, title, body, action, className = '', 
 
     return (
         <div
-            className={`flex flex-col items-center justify-center gap-4 rounded-[var(--ath-radius-xl)] border border-dashed border-[var(--ath-line-strong)] bg-[var(--ath-surface)] px-6 py-10 text-center ${className}`}
+            className={`flex flex-col items-center justify-center gap-3 bg-transparent px-4 py-6 text-center ${className}`}
             {...rest}
         >
             {icon != null && (
                 <span
                     aria-hidden="true"
-                    className="flex h-14 w-14 items-center justify-center rounded-[var(--ath-radius-lg)] border border-[var(--ath-line)] bg-[var(--ath-panel-muted)] text-[var(--ath-primary)]"
+                    className="flex h-11 w-11 items-center justify-center rounded-[var(--ath-radius)] bg-[var(--ath-panel-muted)] text-[var(--ath-primary)]"
                 >
                     {icon}
                 </span>

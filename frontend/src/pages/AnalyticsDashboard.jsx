@@ -399,9 +399,9 @@ export default function AnalyticsDashboard() {
     }
 
     return (
-        <div className="editorial-shell min-h-screen p-6 lg:p-10">
-            <div className="mx-auto max-w-7xl space-y-8">
-                <header className="rounded-2xl border border-[var(--ath-line)] bg-white/85 px-5 py-4 shadow-sm">
+        <div className="editorial-shell ath-open-layout ath-density-compact min-h-screen p-4 lg:p-6">
+            <div className="mx-auto max-w-7xl space-y-6">
+                <header className="ath-open-strip px-1">
                     <div className="flex flex-wrap items-center gap-3">
                         <button
                             type="button"
@@ -441,7 +441,7 @@ export default function AnalyticsDashboard() {
                     </div>
                 </header>
 
-                <section className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+                <section className="ath-metric-strip grid gap-5 md:grid-cols-2 xl:grid-cols-4">
                     <div className="editorial-surface p-6">
                         <div className="flex items-center justify-between">
                             <p className="editorial-label">Average mastery</p>
@@ -479,7 +479,7 @@ export default function AnalyticsDashboard() {
                     </div>
                 </section>
 
-                <section className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+                <section className="ath-metric-strip grid gap-5 md:grid-cols-2 xl:grid-cols-4">
                     <div className="editorial-surface p-6">
                         <p className="editorial-label">Forgetting risk</p>
                         <p className="mt-4 text-4xl font-semibold text-[var(--ath-text)]">
@@ -512,26 +512,26 @@ export default function AnalyticsDashboard() {
                     </div>
                 </section>
 
-                <section className="editorial-surface p-6">
-                    <div className="flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
+                <section className="border-y border-[var(--ath-line)] py-4">
+                    <div className="flex flex-col gap-3">
                         <div>
                             <h2 className="text-sm font-semibold text-[var(--ath-text)]">Filters</h2>
-                            <p className="mt-2 text-sm leading-7 text-[var(--ath-muted)]">
+                            <p className="mt-1 text-sm leading-6 text-[var(--ath-muted)]">
                                 Search concepts or section ids, focus the mastery band, and isolate course or signal activity without leaving the dashboard.
                             </p>
                         </div>
-                        <div className="flex flex-wrap gap-3">
+                        <div className="grid w-full gap-2 sm:grid-cols-2 xl:grid-cols-[1.4fr_repeat(3,minmax(0,1fr))]">
                             <input
                                 type="text"
                                 value={conceptQuery}
                                 onChange={(event) => setConceptQuery(event.target.value)}
                                 placeholder="Search concept or section..."
-                                className="editorial-input min-w-[16rem]"
+                                className="editorial-input min-w-0"
                             />
                             <select
                                 value={masteryBand}
                                 onChange={(event) => setMasteryBand(event.target.value)}
-                                className="editorial-input min-w-[11rem]"
+                                className="editorial-input min-w-0"
                             >
                                 <option value="all">All mastery bands</option>
                                 <option value="support">Support needed</option>
@@ -541,7 +541,7 @@ export default function AnalyticsDashboard() {
                             <select
                                 value={courseFilter}
                                 onChange={(event) => setCourseFilter(event.target.value)}
-                                className="editorial-input min-w-[11rem]"
+                                className="editorial-input min-w-0"
                             >
                                 <option value="all">All courses</option>
                                 {availableCourses.map((course) => (
@@ -551,7 +551,7 @@ export default function AnalyticsDashboard() {
                             <select
                                 value={signalFilter}
                                 onChange={(event) => setSignalFilter(event.target.value)}
-                                className="editorial-input min-w-[11rem]"
+                                className="editorial-input min-w-0"
                             >
                                 <option value="all">All signals</option>
                                 {availableSignals.map((signal) => (

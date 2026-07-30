@@ -14,7 +14,7 @@ const nextMsgId = () =>
     (typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `m${++_msgSeq}`)
 const withMsgId = (msg) => (msg && msg.id ? msg : { ...msg, id: nextMsgId() })
 
-const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, onQuestionSent, userId, railOpen = false }, ref) {
+const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, onQuestionSent, userId, railOpen = false, launcherVisible = true }, ref) {
     const [isOpen, setIsOpen] = useState(false)
     const [messages, setMessages] = useState([])
     const [inputValue, setInputValue] = useState('')
@@ -296,7 +296,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                 aria-expanded={isOpen}
                 aria-haspopup="dialog"
                 data-onboarding="chat-widget-button"
-                className={`fixed bottom-6 right-6 z-50 ${railOpen && !isOpen ? 'hidden xl:flex' : 'flex'} h-14 w-14 items-center justify-center rounded-full shadow-[0_8px_30px_color-mix(in_srgb,var(--ath-primary)_34%,transparent)] transition-all duration-300 hover:scale-110 active:scale-95 ${isOpen
+                className={`fixed bottom-6 right-6 z-50 ${!launcherVisible && !isOpen ? 'hidden' : railOpen && !isOpen ? 'hidden' : 'flex'} h-14 w-14 items-center justify-center rounded-full shadow-[0_8px_30px_color-mix(in_srgb,var(--ath-primary)_34%,transparent)] transition-all duration-300 hover:scale-110 active:scale-95 ${isOpen
                     ? 'bg-[var(--ath-panel-muted)] hover:bg-[var(--ath-panel)]'
                     : 'bg-[var(--ath-primary)] hover:shadow-[0_12px_40px_color-mix(in_srgb,var(--ath-primary)_42%,transparent)]'
                     }`}
@@ -368,7 +368,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                         aria-live="polite"
                         aria-relevant="additions"
                         aria-label="Conversation with BigAL tutor"
-                        className="flex-1 space-y-6 overflow-y-auto bg-[var(--ath-panel-muted)] p-6 scroll-smooth"
+                        className="flex-1 space-y-4 overflow-y-auto bg-[var(--ath-panel-muted)] p-4 scroll-smooth"
                     >
                         {messages.length === 0 && (
                             <div className="h-full flex flex-col items-center justify-center text-center px-6 animate-fade-in">

@@ -122,23 +122,23 @@ export default function GenerativeLab() {
     };
 
     return (
-        <div className="editorial-shell min-h-screen font-sans selection:bg-[color-mix(in_srgb,var(--ath-primary)_20%,transparent)] flex flex-col">
+        <div className="editorial-shell ath-open-layout ath-density-compact min-h-screen font-sans selection:bg-[color-mix(in_srgb,var(--ath-primary)_20%,transparent)] flex flex-col">
             {/* Premium Header */}
             <header className="bg-[color-mix(in_srgb,var(--ath-surface-strong)_82%,transparent)] backdrop-blur-2xl border-b border-[var(--ath-line)] shadow-[0_4px_30px_rgb(0,0,0,0.03)] sticky top-0 z-50 transition-all duration-300">
-                <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2.5">
                     <div className="flex items-center justify-between">
                         <button
                             type="button"
                             onClick={() => navigate('/')}
                             aria-label="Back to ALGET home"
-                            className="group flex items-center gap-4 rounded-2xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_40%,transparent)]"
+                            className="group flex items-center gap-2.5 rounded-xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_40%,transparent)]"
                         >
-                            <div className="w-11 h-11 bg-[linear-gradient(135deg,var(--ath-primary),var(--ath-primary-deep))] rounded-2xl flex items-center justify-center shadow-[0_12px_24px_rgba(9,56,72,0.18)]">
-                                <span className="text-white text-xl font-extrabold tracking-tight">AL</span>
+                            <div className="w-9 h-9 bg-[linear-gradient(135deg,var(--ath-primary),var(--ath-primary-deep))] rounded-lg flex items-center justify-center">
+                                <span className="text-white text-sm font-extrabold tracking-tight">AL</span>
                             </div>
                             <div>
-                                <h1 className="text-xl font-bold text-[var(--ath-text)] tracking-tight">Generative Bio-Design Lab</h1>
-                                <p className="text-xs text-[var(--ath-secondary)] font-semibold uppercase tracking-wider mt-0.5">ALGET Intelligent Platform</p>
+                                <h1 className="text-base font-bold text-[var(--ath-text)] tracking-tight">Generative Bio-Design Lab</h1>
+                                <p className="sr-only">ALGET Intelligent Platform</p>
                             </div>
                         </button>
                         <button
@@ -153,10 +153,10 @@ export default function GenerativeLab() {
             </header>
 
             {/* Main Content */}
-            <main className="flex-1 max-w-5xl mx-auto w-full p-6 lg:p-8 flex flex-col gap-8">
+            <main className="flex-1 max-w-5xl mx-auto w-full p-4 sm:p-6 flex flex-col gap-5">
 
                 {/* Generative Input Area */}
-                <div className="editorial-surface p-8 lg:p-10 relative overflow-hidden group">
+                <div className="editorial-surface p-5 sm:p-6 relative overflow-hidden group">
                     <div className="absolute inset-0 bg-[linear-gradient(120deg,color-mix(in_srgb,var(--ath-primary-soft)_45%,transparent),transparent_60%)] pointer-events-none"></div>
                     <div className="relative z-10 w-full">
                         <div className="flex items-center gap-3 mb-4">
@@ -165,7 +165,7 @@ export default function GenerativeLab() {
                             </div>
                             <h2 className="text-2xl font-bold text-[var(--ath-text)] tracking-tight">What do you want to explore?</h2>
                         </div>
-                        <p className="text-[var(--ath-muted)] text-[1.05rem] font-medium leading-relaxed mb-6">
+                        <p className="text-[var(--ath-muted)] text-base font-medium leading-6 mb-4">
                             Ask a question, propose a design, or ask to brainstorm a biological concept.
                         </p>
 

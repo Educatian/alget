@@ -72,31 +72,26 @@ function BookToc({ toc, currentCourse, currentChapter, currentSection, onNavigat
     const summary = getCourseSummary(toc?.chapters || [])
 
     return (
-        <div className="p-4">
-            <div className="rounded-[var(--ath-radius-xl)] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.64)] p-5 shadow-sm">
+        <div className="px-3 pb-5 pt-2">
+            <div className="px-1">
                 <p className="editorial-kicker">Course Navigation</p>
-                <h2 className="mt-3 text-2xl font-semibold tracking-tight text-[var(--ath-text)]">
+                <h2 className="mt-1 text-lg font-semibold tracking-tight text-[var(--ath-text)]">
                     {toc?.title || 'Table of Contents'}
                 </h2>
-                <div className="mt-5 grid grid-cols-2 gap-3">
-                    <div className="rounded-[var(--ath-radius-lg)] bg-[var(--ath-panel)] px-3 py-3">
-                        <p className="editorial-label">Chapters</p>
-                        <p className="mt-2 text-2xl font-semibold text-[var(--ath-text)]">{summary.chapterCount}</p>
-                    </div>
-                    <div className="rounded-[var(--ath-radius-lg)] bg-[var(--ath-panel)] px-3 py-3">
-                        <p className="editorial-label">Sections</p>
-                        <p className="mt-2 text-2xl font-semibold text-[var(--ath-text)]">{summary.sectionCount}</p>
-                    </div>
+                <div className="mt-1 flex gap-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--ath-muted)]">
+                    <span>{summary.chapterCount} chapters</span>
+                    <span aria-hidden="true">·</span>
+                    <span>{summary.sectionCount} sections</span>
                 </div>
             </div>
 
-            <div className="mt-4">
+            <div className="mt-3 border-b border-[var(--ath-line)]">
                 <input
                     type="text"
                     placeholder="Search chapters or sections"
                     value={searchQuery}
                     onChange={(event) => setSearchQuery(event.target.value)}
-                    className="editorial-input text-sm"
+                    className="w-full border-0 bg-transparent px-1 py-2 text-sm text-[var(--ath-text)] outline-none placeholder:text-[var(--ath-muted)] focus-visible:ring-0"
                 />
             </div>
 
@@ -106,12 +101,12 @@ function BookToc({ toc, currentCourse, currentChapter, currentSection, onNavigat
                 </div>
             )}
 
-            <nav className="mt-4 space-y-2">
+            <nav className="mt-2">
                 {filteredChapters.map((chapter) => (
-                    <div key={chapter.id} className="overflow-hidden rounded-[var(--ath-radius-xl)] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.62)] shadow-sm">
+                    <div key={chapter.id} className="overflow-hidden">
                         <button
                             onClick={() => toggleChapter(chapter.id)}
-                            className="flex w-full items-center justify-between px-4 py-3 text-left transition-colors hover:bg-[rgba(255,255,255,0.62)]"
+                            className="flex w-full items-center justify-between px-1 py-2.5 text-left transition-colors hover:text-[var(--ath-primary)]"
                         >
                             <div className="min-w-0">
                                 <p className="editorial-label">Chapter {chapter.id}</p>
@@ -124,7 +119,7 @@ function BookToc({ toc, currentCourse, currentChapter, currentSection, onNavigat
                         </button>
 
                         {expandedChapters.includes(chapter.id) && (
-                            <ul className="space-y-1 border-t border-[var(--ath-line)] px-2 py-2">
+                            <ul className="mb-2 space-y-0.5 border-l border-[var(--ath-line)] pl-2">
                                 {chapter.sections?.map((section) => {
                                     const isActive = currentChapter === chapter.id && currentSection === section.id
                                     const isDone = completedSections?.includes(`${currentCourse}/${chapter.id}/${section.id}`)
@@ -133,17 +128,18 @@ function BookToc({ toc, currentCourse, currentChapter, currentSection, onNavigat
                                         <li key={section.id}>
                                             <button
                                                 onClick={() => onNavigate(chapter.id, section.id)}
-                                                className={`flex w-full min-h-[44px] items-center justify-between rounded-[var(--ath-radius-lg)] px-3 py-2.5 text-left text-sm transition-all sm:min-h-0 ${isActive
-                                                    ? 'bg-[linear-gradient(135deg,var(--ath-primary),var(--ath-primary-deep))] text-white shadow-[0_16px_30px_rgba(9,56,72,0.18)]'
-                                                    : 'text-[var(--ath-muted)] hover:bg-[var(--ath-panel)]'
+                                                className={`relative flex min-h-[40px] w-full items-center justify-between px-2.5 py-2 text-left text-sm transition-colors sm:min-h-0 ${isActive
+                                                    ? 'bg-[color-mix(in_srgb,var(--ath-primary-soft)_58%,transparent)] font-semibold text-[var(--ath-primary-deep)] before:absolute before:-left-[3px] before:inset-y-1.5 before:w-0.5 before:rounded-full before:bg-[var(--ath-primary)]'
+                                                    : 'text-[var(--ath-muted)] hover:bg-[color-mix(in_srgb,var(--ath-panel)_55%,transparent)] hover:text-[var(--ath-text)]'
                                                     }`}
                                             >
                                                 <span className="line-clamp-2">
                                                     {chapter.id}.{section.id} {section.title}
                                                 </span>
                                                 {isDone && (
-                                                    <span className={`ml-2 shrink-0 text-xs font-bold ${isActive ? 'text-white' : 'text-[var(--ath-success)]'}`}>
-                                                        Done
+                                                    <span className="ml-2 shrink-0 text-[10px] font-bold text-[var(--ath-success)]">
+                                                        <span aria-hidden="true">✓</span>
+                                                        <span className="sr-only">Done</span>
                                                     </span>
                                                 )}
                                             </button>

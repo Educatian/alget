@@ -142,9 +142,9 @@ export default function StudentDashboard({ user }) {
     const isDemoUser = !user?.id || user.id === '00000000-0000-0000-0000-000000000000'
 
     return (
-        <div className="editorial-shell min-h-screen">
-            <div className="ath-container flex flex-col gap-8 px-6 pb-24 md:px-8">
-                <header className="pt-8">
+        <div className="editorial-shell ath-open-layout ath-density-compact min-h-screen">
+            <div className="ath-container flex flex-col gap-5 pb-10">
+                <header className="pt-5">
                     <div className="flex flex-wrap items-center gap-2 text-[var(--ath-text-xs)] font-semibold text-[var(--ath-secondary)]">
                         <button
                             type="button"
@@ -224,7 +224,7 @@ export default function StudentDashboard({ user }) {
                             type="button"
                             onClick={() => weakConcepts[0] && handleConceptOpen(weakConcepts[0].concept_id)}
                             disabled={!weakConcepts[0]}
-                            className="group card-actionable flex min-h-[10rem] flex-col gap-2 p-4 text-left disabled:cursor-default disabled:opacity-60"
+                            className="group card-actionable flex min-h-[8rem] flex-col gap-2 p-4 text-left disabled:cursor-default disabled:opacity-60"
                         >
                             <div className="flex items-center gap-2 text-[var(--ath-primary)]">
                                 <Target className="h-4 w-4" />
@@ -250,7 +250,7 @@ export default function StudentDashboard({ user }) {
                             type="button"
                             onClick={() => recentSection && navigate(`/book/${recentSection.course}/${recentSection.chapter}/${recentSection.section}`)}
                             disabled={!recentSection}
-                            className="group card-actionable flex min-h-[10rem] flex-col gap-2 p-4 text-left disabled:cursor-default disabled:opacity-60"
+                            className="group card-actionable flex min-h-[8rem] flex-col gap-2 p-4 text-left disabled:cursor-default disabled:opacity-60"
                         >
                             <div className="flex items-center gap-2 text-[var(--ath-primary)]">
                                 <BookOpen className="h-4 w-4" />
@@ -274,7 +274,7 @@ export default function StudentDashboard({ user }) {
                             type="button"
                             onClick={() => latestExitTicket && navigate(`/book/${latestExitTicket.course}/${latestExitTicket.chapter}/${latestExitTicket.section}`)}
                             disabled={!latestExitTicket}
-                            className="group card-actionable flex min-h-[10rem] flex-col gap-2 p-4 text-left disabled:cursor-default disabled:opacity-60"
+                            className="group card-actionable flex min-h-[8rem] flex-col gap-2 p-4 text-left disabled:cursor-default disabled:opacity-60"
                         >
                             <div className="flex items-center gap-2 text-[var(--ath-primary)]">
                                 <NotebookPen className="h-4 w-4" />
@@ -302,7 +302,7 @@ export default function StudentDashboard({ user }) {
                             type="button"
                             onClick={() => retentionDue[0] && navigate(`/diagnostic/${retentionDue[0].course}?phase=retention`)}
                             disabled={!retentionDue[0]}
-                            className="group card-actionable flex min-h-[10rem] flex-col gap-2 p-4 text-left disabled:cursor-default disabled:opacity-60"
+                            className="group card-actionable flex min-h-[8rem] flex-col gap-2 p-4 text-left disabled:cursor-default disabled:opacity-60"
                         >
                             <div className="flex items-center gap-2 text-[var(--ath-primary)]">
                                 <Flame className="h-4 w-4" />

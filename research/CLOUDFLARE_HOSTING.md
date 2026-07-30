@@ -71,6 +71,6 @@ annotation and artifact score tables.
   `SUPABASE_URL` is already configured on the adaptive Worker. The hosted LLM Worker preserves the adaptive Worker
   `decision_id`, so any persisted decision can be joined to the UI-facing response.
 - **Access codes are server-side only.** `ENGINEERING_ACCESS_CODE`, `EDUCATION_ACCESS_CODE`, and
-  `RESEARCHER_ACCESS_CODE` are configured in Cloudflare Pages production. The local fallback codes only work when
-  `ALLOW_FALLBACK_ACCESS_CODES=true` is explicitly set.
+  `RESEARCHER_ACCESS_CODE` must be configured explicitly in Cloudflare Pages production and local environments.
+  Missing, blank, or malformed configuration denies access; there are no local fallback codes.
 - For full server features, host the FastAPI backend (e.g. Render/Fly) and point `VITE_API_BASE` at it instead of `/api`.

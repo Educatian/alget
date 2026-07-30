@@ -5,16 +5,16 @@
 :root,
 [data-theme="light"] {
   color-scheme: light;
-  --ath-background: #f8f8f4;
+  --ath-background: #f5f5ef;
   --ath-surface: rgba(255, 255, 252, 0.86);
   --ath-surface-strong: rgba(255, 255, 252, 0.96);
-  --ath-panel: #fffffc;
-  --ath-panel-muted: #eeeee8;
-  --ath-line: rgba(32, 38, 36, 0.14);
-  --ath-line-strong: rgba(20, 27, 24, 0.24);
-  --ath-primary: #27624f;
-  --ath-primary-deep: #163f34;
-  --ath-primary-soft: #d9ebe2;
+  --ath-panel: #fdfdf9;
+  --ath-panel-muted: #eceee7;
+  --ath-line: rgba(32, 38, 36, 0.085);
+  --ath-line-strong: rgba(20, 27, 24, 0.16);
+  --ath-primary: #1f624c;
+  --ath-primary-deep: #123e31;
+  --ath-primary-soft: #dcece3;
   --ath-secondary: #5a615d;
   --ath-text: #171a17;
   --ath-muted: #555f59;
@@ -24,12 +24,20 @@
   --ath-grid-line: rgba(25, 32, 29, 0.045);
   /* Layered, two-stop shadows read softer and more "lifted" than a single blur
      (contact shadow + ambient spread) — a more current card depth. */
-  --ath-shadow: 0 1px 2px rgba(27, 34, 31, 0.05), 0 22px 50px rgba(27, 34, 31, 0.11);
-  --ath-shadow-soft: 0 1px 2px rgba(27, 34, 31, 0.04), 0 10px 28px rgba(27, 34, 31, 0.07);
-  /* Larger, friendlier corner radii (modern card language). */
+  --ath-shadow: 0 1px 2px rgba(27, 34, 31, 0.03), 0 12px 30px rgba(27, 34, 31, 0.055);
+  --ath-shadow-soft: 0 1px 2px rgba(27, 34, 31, 0.02), 0 6px 16px rgba(27, 34, 31, 0.028);
+  /* Compact radii keep dense learning surfaces from reading as nested cards. */
   --ath-radius: 12px;
-  --ath-radius-lg: 16px;
-  --ath-radius-xl: 22px;
+  --ath-radius-lg: 14px;
+  --ath-radius-xl: 18px;
+
+  /* Editorial tracking tokens keep display, body, and interface spacing
+     coherent across the textbook instead of relying on one-off values. */
+  --ath-tracking-display: -0.026em;
+  --ath-tracking-heading: -0.018em;
+  --ath-tracking-body: -0.004em;
+  --ath-tracking-ui: 0.006em;
+  --ath-tracking-label: 0.105em;
 
   /* TYPE SCALE: modular ~1.20 (minor-third) ratio. Use these instead of
      one-off rem/px literals so every surface shares one governing rhythm.
@@ -55,8 +63,8 @@
   --ath-space-6: 2rem;     /* 32px */
   --ath-space-7: 3rem;     /* 48px */
   --ath-space-8: 4rem;     /* 64px */
-  --ath-section-gap: 2rem;
-  --ath-gutter: 1.5rem;
+  --ath-section-gap: 1.25rem;
+  --ath-gutter: clamp(1rem, 2.5vw, 1.5rem);
 
   /* SEMANTIC COLOR RAMP (light). Components derive softer tints via
      color-mix() instead of hardcoding amber/emerald/sky/#b45309/#047857. */
@@ -85,7 +93,7 @@
      learner (font scale, line height, measure/width, letter/word spacing).
      The reading surface (.reading-narrative) CONSUMES them below. */
   --reading-font-scale: 1;
-  --reading-line-height: 1.78;
+  --reading-line-height: 1.56;
   /* Comfortable body-text measure. ~66-72ch is the long-form reading sweet
      spot (a modern intelligent-book measure); wide figures/tables/sims break
      out past it via --reading-breakout so they are never boxed into the column.
@@ -93,15 +101,15 @@
      defaults to the "Standard" option.
      Block-level visuals (tables, figures, worked examples) break out wider via
      --reading-breakout so textbook content is not boxed into the text column. */
-  --reading-width: 72ch;
+  --reading-width: 68ch;
   --reading-breakout: 74rem;
   /* Reading shell must be wider than --reading-breakout (+ gutters) so wide
      visuals never overflow the centered column into an overflow-hidden shell
      and get clipped. 80rem holds the 74rem breakout + 2x1.5rem gutter. */
   --ath-container-reading: 80rem;
-  --reading-letter-spacing: 0em;
+  --reading-letter-spacing: -0.006em;
   --reading-word-spacing: 0em;
-  --reading-paragraph-spacing: 1.35rem;
+  --reading-paragraph-spacing: 0.72rem;
   --reading-font-family: 'IBM Plex Sans', 'Inter', 'Segoe UI', sans-serif;
 }
 
@@ -112,8 +120,8 @@
   --ath-surface-strong: rgba(22, 25, 30, 0.96);
   --ath-panel: #111318;
   --ath-panel-muted: #181b21;
-  --ath-line: rgba(204, 214, 220, 0.14);
-  --ath-line-strong: rgba(219, 232, 239, 0.24);
+  --ath-line: rgba(204, 214, 220, 0.10);
+  --ath-line-strong: rgba(219, 232, 239, 0.18);
   /* Desaturated green keeps the editorial brand hue at night (was near-lime
      #b9ff4a, which shifted the product ~40 deg toward neon). Lime is demoted
      to --ath-accent as an intentional pop, not the primary brand. */
@@ -127,8 +135,8 @@
   --ath-danger: #ff8674;
   --ath-topbar: rgba(10, 11, 13, 0.88);
   --ath-grid-line: rgba(95, 174, 140, 0.06);
-  --ath-shadow: 0 22px 64px rgba(0, 0, 0, 0.58);
-  --ath-shadow-soft: 0 12px 34px rgba(0, 0, 0, 0.38);
+  --ath-shadow: 0 18px 48px rgba(0, 0, 0, 0.38);
+  --ath-shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.22);
   --ath-radius: 8px;
   --ath-radius-lg: 12px;
   --ath-radius-xl: 16px;
@@ -168,7 +176,7 @@ body {
   background-size: 44px 44px, 44px 44px, auto;
   color: var(--ath-text);
   font-family: 'IBM Plex Sans', 'Inter', system-ui, sans-serif;
-  letter-spacing: 0;
+  letter-spacing: var(--ath-tracking-body);
   text-rendering: optimizeLegibility;
   /* Assert kerning/ligatures and Fraunces' opsz axis explicitly rather than
      relying on browser defaults, so display serif renders at optical size. */
@@ -195,7 +203,7 @@ textarea,
 .inter,
 .label-font {
   font-family: 'IBM Plex Sans', 'Inter', 'Segoe UI', sans-serif;
-  letter-spacing: 0;
+  letter-spacing: var(--ath-tracking-ui);
 }
 
 h1,
@@ -210,7 +218,7 @@ h6,
   font-family: 'Fraunces', Georgia, serif;
   /* Mild negative tracking tightens Fraunces display type at heading sizes;
      the reading surface refines this further to -0.015em. */
-  letter-spacing: -0.01em;
+  letter-spacing: var(--ath-tracking-heading);
 }
 
 #root {
@@ -253,7 +261,7 @@ h6,
   font-family: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, monospace;
   font-size: 0.75rem;
   font-weight: 800;
-  letter-spacing: 0.16em;
+  letter-spacing: var(--ath-tracking-label);
   text-transform: uppercase;
   color: var(--ath-primary);
 }
@@ -262,7 +270,7 @@ h6,
   font-family: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, monospace;
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: var(--ath-tracking-label);
   text-transform: uppercase;
   color: var(--ath-secondary);
 }
@@ -273,7 +281,7 @@ h6,
   font-weight: 700;
   /* Match the reading-narrative headings' modern display-serif tracking so the
      section title and the in-body headings read as one type system. */
-  letter-spacing: -0.015em;
+  letter-spacing: var(--ath-tracking-heading);
   text-wrap: balance;
 }
 
@@ -342,6 +350,261 @@ h6,
 
 .ath-container-focus {
   max-width: var(--ath-container-focus);
+}
+
+/* Open-layout mode keeps grouping through tone and rhythm instead of drawing
+   a box around every dashboard region. Interactive controls retain their own
+   focus rings and subtle affordance, while read-only panels sit quietly on
+   the page. */
+.ath-open-layout .editorial-surface,
+.ath-open-layout .editorial-panel,
+.ath-open-layout .content-card,
+.ath-open-layout .card-surface {
+  border-color: transparent;
+  background: color-mix(in srgb, var(--ath-surface-strong) 76%, transparent);
+  box-shadow: none;
+}
+
+.ath-open-layout .card-actionable {
+  border-color: color-mix(in srgb, var(--ath-line) 58%, transparent);
+  box-shadow: none;
+}
+
+.ath-page {
+  width: 100%;
+  max-width: var(--ath-container-marketing);
+  margin-inline: auto;
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.ath-page-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ath-section-gap);
+}
+
+/* Dense application views share one spacing pass. Marketing keeps its own
+   expressive rhythm; task surfaces prioritize scanability and working room. */
+.ath-density-compact .p-8 {
+  padding: 1.25rem;
+}
+
+.ath-density-compact .py-12 {
+  padding-block: 1.75rem;
+}
+
+.ath-density-compact .gap-8 {
+  gap: 1.25rem;
+}
+
+.ath-density-compact .space-y-8 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 1.25rem;
+}
+
+.ath-density-compact .editorial-surface,
+.ath-density-compact .content-card,
+.ath-density-compact .card-surface {
+  border-radius: var(--ath-radius-lg);
+}
+
+.ath-metric-strip > .editorial-surface {
+  border: 0;
+  border-left: 2px solid var(--ath-primary-soft);
+  border-radius: 0;
+  background: transparent;
+  padding: 0.75rem 1rem;
+}
+
+.ath-open-strip {
+  padding-block: 0.75rem;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+/* Commercial shell primitives shared by marketing, pathways, dashboards, and
+   reader chrome. They preserve the editorial identity while giving every
+   surface a consistent density, edge, and elevation language. */
+.ath-topbar {
+  border-bottom: 1px solid color-mix(in srgb, var(--ath-line) 72%, transparent);
+  background: color-mix(in srgb, var(--ath-topbar) 92%, transparent);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.62), 0 12px 36px rgba(20, 34, 28, 0.045);
+  backdrop-filter: blur(24px) saturate(145%);
+}
+
+.ath-brand-mark {
+  display: flex;
+  width: 2.65rem;
+  height: 2.65rem;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, white 24%, transparent);
+  border-radius: 14px;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--ath-primary) 92%, white), var(--ath-primary-deep));
+  color: white;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.025em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 10px 24px color-mix(in srgb, var(--ath-primary-deep) 24%, transparent);
+}
+
+.ath-hero-title {
+  max-width: 11ch;
+  font-size: clamp(3.25rem, 6.25vw, 5.8rem);
+  line-height: 0.93;
+  letter-spacing: var(--ath-tracking-display);
+}
+
+.ath-hero-dek {
+  color: var(--ath-muted);
+  font-size: clamp(1.06rem, 1.4vw, 1.22rem);
+  line-height: 1.68;
+  letter-spacing: -0.006em;
+  text-wrap: pretty;
+}
+
+.ath-proof-strip {
+  align-items: stretch;
+}
+
+.ath-proof-card {
+  min-width: 0;
+  min-height: 5.75rem;
+  padding: 0.75rem 1.15rem;
+  border-left: 1px solid color-mix(in srgb, var(--ath-line) 76%, transparent);
+}
+
+.ath-proof-card:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.ath-proof-value {
+  margin: 0;
+  color: var(--ath-primary-deep);
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.ath-proof-label {
+  margin: 0.58rem 0 0;
+  color: var(--ath-muted);
+  font-size: var(--ath-text-xs);
+  font-weight: 650;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+.ath-product-preview {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 2rem;
+  background:
+    radial-gradient(circle at 82% 8%, rgba(92, 174, 139, 0.14), transparent 34%),
+    linear-gradient(165deg, #15343d 0%, #0c2027 62%, #09191f 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 34px 90px rgba(9, 27, 32, 0.25);
+}
+
+.ath-learning-preview {
+  min-height: 29.5rem;
+  padding: clamp(1.35rem, 3vw, 2.1rem);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.65rem;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(95, 174, 140, 0.12), transparent 30%),
+    rgba(255, 255, 255, 0.045);
+}
+
+.ath-preview-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.45rem 0.7rem;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.ath-preview-progress {
+  height: 0.4rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.ath-preview-progress > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #58d7a8, #9ce6c7);
+  box-shadow: 0 0 18px rgba(88, 215, 168, 0.36);
+}
+
+.ath-preview-action {
+  display: flex;
+  min-height: 3.45rem;
+  align-items: center;
+  gap: 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1rem;
+  padding: 0.85rem 1rem;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+
+.ath-preview-action-primary {
+  border-color: rgba(88, 215, 168, 0.24);
+  background: rgba(88, 215, 168, 0.12);
+  color: #dcfff1;
+}
+
+.ath-section-band {
+  background: color-mix(in srgb, var(--ath-panel) 52%, transparent);
+}
+
+.ath-feature-card,
+.ath-workflow-card {
+  background: transparent;
+}
+
+.ath-feature-card {
+  position: relative;
+  transition: transform 0.24s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.ath-feature-card::after {
+  position: absolute;
+  inset: auto 0 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ath-primary), color-mix(in srgb, var(--ath-accent) 72%, var(--ath-primary)));
+  content: '';
+  opacity: 0;
+  transform: scaleX(0.3);
+  transform-origin: left;
+  transition: opacity 0.24s ease, transform 0.24s ease;
+}
+
+.ath-feature-card:hover {
+  transform: translateY(-3px);
+}
+
+.ath-feature-card:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.ath-workflow-card {
+  border-left: 1px solid color-mix(in srgb, var(--ath-line) 76%, transparent);
+}
+
+.ath-footer {
+  background: color-mix(in srgb, var(--ath-panel) 46%, transparent);
 }
 
 .editorial-button {
@@ -574,6 +837,12 @@ h6,
   outline-offset: 2px;
 }
 
+.ath-open-layout .content-card:hover {
+  transform: none;
+  border-color: transparent;
+  box-shadow: none;
+}
+
 .step-circle {
   display: flex;
   height: 3rem;
@@ -581,7 +850,7 @@ h6,
   align-items: center;
   justify-content: center;
   border-radius: var(--ath-radius);
-  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-family: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, monospace;
   font-size: 1rem;
   font-weight: 700;
   transition: transform 0.22s ease;
@@ -739,7 +1008,7 @@ h6,
   /* Cap the secondary markdown surface at the same reading measure as
      .reading-narrative; without this, tutor/markdown prose runs the full
      container width. */
-  max-width: min(var(--reading-width, 72ch), 100%);
+  max-width: min(var(--reading-width, 68ch), 100%);
   overflow-wrap: break-word;
 }
 
@@ -748,7 +1017,7 @@ h6,
   color: var(--ath-text);
   /* Align with the tuned reading-narrative rhythm (1.78) instead of the
      looser 1.95 so both prose surfaces read as one system. */
-  line-height: 1.75;
+  line-height: 1.6;
   text-wrap: pretty;
 }
 
@@ -788,12 +1057,9 @@ h6,
 .prose table {
   width: 100%;
   border-collapse: collapse;
-  margin: 2rem 0;
-  overflow: hidden;
-  border-radius: 1.2rem;
-  border: 1px solid var(--ath-line);
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: var(--ath-shadow-soft);
+  margin: 1.25rem 0;
+  border-block: 1px solid var(--ath-line);
+  background: rgba(255, 255, 255, 0.42);
 }
 
 .prose thead {
@@ -808,13 +1074,29 @@ h6,
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 1rem 1.2rem;
+  padding: 0.72rem 0.85rem;
   text-align: left;
 }
 
 .prose td {
   color: var(--ath-muted);
-  padding: 0.95rem 1.2rem;
+  padding: 0.68rem 0.85rem;
+}
+
+.prose th:first-child,
+.prose td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  min-width: 8rem;
+  background: color-mix(in srgb, var(--ath-surface-strong) 94%, var(--ath-panel));
+  color: var(--ath-text);
+  font-weight: 700;
+}
+
+.prose thead th:first-child {
+  z-index: 2;
+  background: var(--ath-panel-muted);
 }
 
 .prose tbody tr {
@@ -830,21 +1112,18 @@ h6,
 }
 
 .prose .katex-display {
-  margin: 2rem 0;
+  margin: 1rem 0;
   overflow-x: auto;
-  border: 1px solid var(--ath-line);
-  border-radius: 1.4rem;
-  background: linear-gradient(180deg, #fbfaf7 0%, #f2efe8 100%);
-  padding: 1.4rem 1.6rem;
-  box-shadow: var(--ath-shadow-soft);
+  border-block: 1px solid var(--ath-line);
+  background: color-mix(in srgb, var(--ath-panel) 54%, transparent);
+  padding: 0.8rem 1rem;
 }
 
 .prose blockquote {
-  margin: 2rem 0;
-  border-left: 3px solid var(--ath-primary);
-  border-radius: 0 1.25rem 1.25rem 0;
-  background: linear-gradient(90deg, color-mix(in srgb, var(--ath-primary) 12%, transparent), rgba(255, 255, 255, 0.1));
-  padding: 1.3rem 1.5rem;
+  margin: 1.2rem 0;
+  border-left: 2px solid var(--ath-primary);
+  background: color-mix(in srgb, var(--ath-primary-soft) 42%, transparent);
+  padding: 0.8rem 1rem;
 }
 
 .prose blockquote p {
@@ -869,11 +1148,11 @@ h6,
 }
 
 .reading-narrative {
-  max-width: min(var(--reading-width, 72ch), 100%);
+  max-width: min(var(--reading-width, 68ch), 100%);
   margin-right: auto;
   margin-left: auto;
   color: var(--ath-text);
-  font-size: calc(1.125rem * var(--reading-font-scale, 1));
+  font-size: calc(1.0625rem * var(--reading-font-scale, 1));
   font-family: var(--reading-font-family, 'IBM Plex Sans', 'Inter', 'Segoe UI', sans-serif);
   letter-spacing: var(--reading-letter-spacing, 0em);
   word-spacing: var(--reading-word-spacing, 0em);
@@ -955,30 +1234,30 @@ h6,
   font-family: 'Fraunces', Georgia, serif;
   font-weight: 650;
   line-height: 1.12;
-  letter-spacing: -0.015em;
+  letter-spacing: var(--ath-tracking-heading);
   text-wrap: balance;
   scroll-margin-top: 8rem;
 }
 
 .reading-narrative h1 {
-  margin: 0 0 1.65rem;
-  font-size: clamp(2.15rem, 4vw, 3.6rem);
+  margin: 0 0 1.2rem;
+  font-size: clamp(2rem, 3.4vw, 3.2rem);
 }
 
 .reading-narrative h2 {
-  margin: 3.2rem 0 1.05rem;
-  padding-top: 1.15rem;
-  border-top: 1px solid var(--ath-line);
-  font-size: clamp(1.65rem, 2.5vw, 2.25rem);
+  margin: 1.75rem 0 0.6rem;
+  padding-top: 0;
+  border-top: 0;
+  font-size: clamp(1.55rem, 2.2vw, 2.05rem);
 }
 
 .reading-narrative h3 {
-  margin: 2.25rem 0 0.75rem;
+  margin: 1.35rem 0 0.45rem;
   font-size: clamp(1.28rem, 2vw, 1.55rem);
 }
 
 .reading-narrative h4 {
-  margin: 1.8rem 0 0.6rem;
+  margin: 1.4rem 0 0.45rem;
   font-family: 'IBM Plex Sans', 'Inter', sans-serif;
   font-size: 0.9rem;
   font-weight: 800;
@@ -988,24 +1267,43 @@ h6,
 }
 
 .reading-narrative p {
-  margin: var(--reading-paragraph-spacing, 1.35rem) 0;
+  margin: var(--reading-paragraph-spacing, 0.9rem) 0;
   color: var(--ath-text);
-  font-size: calc(1.125rem * var(--reading-font-scale, 1));
-  line-height: var(--reading-line-height, 1.78);
+  font-size: calc(1.0625rem * var(--reading-font-scale, 1));
+  line-height: var(--reading-line-height, 1.58);
   /* Avoid single-word last lines in long-form reading. */
   text-wrap: pretty;
 }
 
+.reading-narrative > p:first-of-type {
+  color: color-mix(in srgb, var(--ath-text) 84%, var(--ath-muted));
+  font-size: calc(1.1rem * var(--reading-font-scale, 1));
+  line-height: 1.58;
+}
+
+.reading-narrative :where(a) {
+  color: var(--ath-primary);
+  font-weight: 650;
+  text-decoration-color: color-mix(in srgb, var(--ath-primary) 34%, transparent);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.17em;
+}
+
+.reading-narrative :where(a:hover) {
+  color: var(--ath-primary-deep);
+  text-decoration-color: currentColor;
+}
+
 .reading-narrative ul,
 .reading-narrative ol {
-  margin: 1.35rem 0 1.6rem;
+  margin: 0.9rem 0 1.1rem;
   padding-left: 1.4rem;
 }
 
 .reading-narrative li {
-  margin: 0.6rem 0;
+  margin: 0.35rem 0;
   padding-left: 0.15rem;
-  line-height: var(--reading-line-height, 1.78);
+  line-height: var(--reading-line-height, 1.58);
 }
 
 .reading-narrative strong {
@@ -1018,14 +1316,14 @@ h6,
   width: min(100%, 58rem);
   max-height: 34rem;
   object-fit: cover;
-  margin: 1.4rem auto 2.25rem;
+  margin: 1.1rem auto 1.6rem;
   border: 1px solid var(--ath-line);
   border-radius: 1.5rem;
   box-shadow: var(--ath-shadow-soft);
 }
 
 .reading-narrative hr {
-  margin: 3rem 0;
+  margin: 2rem 0;
   border: 0;
   border-top: 1px solid var(--ath-line);
 }
@@ -1083,17 +1381,57 @@ h6,
 }
 
 @media (max-width: 720px) {
+  :root,
+  [data-theme='light'] {
+    --reading-letter-spacing: 0em;
+  }
+
+  .ath-hero-title {
+    max-width: 12ch;
+    font-size: clamp(2.85rem, 13vw, 4.15rem);
+    line-height: 0.96;
+  }
+
+  .ath-proof-card {
+    min-height: 5.2rem;
+    padding: 0.55rem 0.7rem;
+  }
+
+  .ath-proof-card:first-child {
+    padding-left: 0;
+  }
+
+  .ath-proof-value {
+    font-size: 1.45rem;
+  }
+
+  .ath-proof-label {
+    margin-top: 0.42rem;
+    font-size: 0.66rem;
+    line-height: 1.25;
+  }
+
+  .ath-learning-preview {
+    min-height: 24rem;
+    padding: 1.15rem;
+  }
+
+  .ath-workflow-card {
+    padding-left: 0;
+    border-left: 0;
+  }
+
   .reading-narrative {
-    font-size: 1rem;
+    font-size: calc(1rem * var(--reading-font-scale, 1));
   }
 
   .reading-narrative h2 {
-    margin-top: 2.35rem;
+    margin-top: 1.7rem;
   }
 
   .reading-narrative p {
-    font-size: 1rem;
-    line-height: 1.82;
+    font-size: calc(1rem * var(--reading-font-scale, 1));
+    line-height: var(--reading-line-height, 1.56);
   }
 }
 
@@ -1370,4 +1708,66 @@ h6,
 .font-dyslexic .reading-narrative p,
 .font-dyslexic .reading-narrative li {
   font-family: var(--reading-font-family);
+}
+/* BigAL is a margin-scale learning state, not a decorative mascot. */
+.bigal-companion {
+  --bigal-size: 40px;
+  display: inline-grid;
+  width: var(--bigal-size);
+  height: var(--bigal-size);
+  flex: 0 0 var(--bigal-size);
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--ath-line);
+  border-radius: min(18px, calc(var(--bigal-size) * 0.25));
+  color: var(--ath-primary-deep);
+  background: var(--ath-primary-soft);
+}
+
+.bigal-companion svg {
+  width: 78%;
+  height: 78%;
+  overflow: visible;
+}
+
+.bigal-glyph,
+.bigal-accent {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.bigal-glyph {
+  stroke-width: 3.2;
+}
+
+.bigal-accent {
+  stroke: var(--ath-accent);
+  stroke-width: 2;
+}
+
+.bigal-mirror {
+  opacity: 0.38;
+}
+
+.bigal-nudge-dot {
+  fill: var(--ath-accent);
+  stroke: none;
+}
+
+.bigal-companion--notice .bigal-notice-ring {
+  transform-origin: center;
+  animation: bigal-notice 1.8s ease-in-out infinite;
+}
+
+@keyframes bigal-notice {
+  0%, 100% { opacity: 0.45; transform: scale(0.94); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bigal-companion--notice .bigal-notice-ring {
+    animation: none;
+  }
 }
