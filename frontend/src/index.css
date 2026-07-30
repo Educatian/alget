@@ -1277,8 +1277,8 @@ h6,
 
 .reading-narrative > p:first-of-type {
   color: color-mix(in srgb, var(--ath-text) 84%, var(--ath-muted));
-  font-size: calc(1.1rem * var(--reading-font-scale, 1));
-  line-height: 1.58;
+  font-size: inherit;
+  line-height: var(--reading-line-height, 1.58);
 }
 
 .reading-narrative :where(a) {

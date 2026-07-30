@@ -11,9 +11,9 @@ const VIEWPORTS = [
 ]
 
 const PREFERENCES = [
-    { name: 'Compact', lineHeight: 'compact', multiplier: 1.4 },
-    { name: 'Standard', lineHeight: 'standard', multiplier: 1.7 },
-    { name: 'Relaxed', lineHeight: 'relaxed', multiplier: 2 },
+    { name: 'Compact', lineHeight: 'compact', multiplier: 1.42 },
+    { name: 'Standard', lineHeight: 'standard', multiplier: 1.58 },
+    { name: 'Relaxed', lineHeight: 'relaxed', multiplier: 1.75 },
 ]
 
 async function openReader(page, viewport, prefs) {
@@ -72,12 +72,12 @@ test.describe('reader typography preferences', () => {
         })
 
         const typography = await readTypography(page)
-        expect(typography.paragraphFontSize).toBeCloseTo(18, 3)
-        expect(typography.listFontSize).toBeCloseTo(18, 3)
-        expect(typography.paragraphLineHeight).toBeCloseTo(30.6, 2)
-        expect(typography.listLineHeight).toBeCloseTo(30.6, 2)
-        expect(typography.rootReadingWidth).toBe('72ch')
-        expect(typography.paragraphMarginTop).toBeCloseTo(21.6, 2)
+        expect(typography.paragraphFontSize).toBeCloseTo(17, 3)
+        expect(typography.listFontSize).toBeCloseTo(17, 3)
+        expect(typography.paragraphLineHeight).toBeCloseTo(26.86, 2)
+        expect(typography.listLineHeight).toBeCloseTo(26.86, 2)
+        expect(typography.rootReadingWidth).toBe('68ch')
+        expect(typography.paragraphMarginTop).toBeCloseTo(14.45, 2)
     })
 
     for (const viewport of VIEWPORTS) {
@@ -93,7 +93,7 @@ test.describe('reader typography preferences', () => {
                     })
 
                     const typography = await readTypography(page)
-                    const baseFontSize = viewport.width <= 720 ? 16 : 18
+                    const baseFontSize = viewport.width <= 720 ? 16 : 17
                     const expectedFontSize = baseFontSize * fontScale
                     const expectedLineHeight = expectedFontSize * preference.multiplier
 
@@ -105,8 +105,8 @@ test.describe('reader typography preferences', () => {
                     expect(typography.listLineHeight).toBeCloseTo(expectedLineHeight, 2)
                     expect(typography.paragraphFontSize).toBeCloseTo(typography.listFontSize, 3)
                     expect(typography.paragraphLineHeight).toBeCloseTo(typography.listLineHeight, 2)
-                    expect(typography.rootReadingWidth).toBe('72ch')
-                    expect(typography.paragraphMarginTop).toBeCloseTo(expectedFontSize * 1.2, 2)
+                    expect(typography.rootReadingWidth).toBe('68ch')
+                    expect(typography.paragraphMarginTop).toBeCloseTo(expectedFontSize * 0.85, 2)
                     expect(typography.documentOverflow).toBeLessThanOrEqual(0)
                 })
             }
@@ -124,10 +124,10 @@ test.describe('reader typography preferences', () => {
 
         const typography = await readTypography(page)
         expect(typography.rootFontScale).toBe(1)
-        expect(typography.rootLineHeight).toBe(1.7)
-        expect(typography.rootReadingWidth).toBe('72ch')
+        expect(typography.rootLineHeight).toBe(1.58)
+        expect(typography.rootReadingWidth).toBe('68ch')
         expect(typography.paragraphFontSize).toBeCloseTo(16, 3)
-        expect(typography.paragraphLineHeight).toBeCloseTo(27.2, 2)
+        expect(typography.paragraphLineHeight).toBeCloseTo(25.28, 2)
     })
 
     test('WCAG text-spacing overrides reflow without clipping or horizontal overflow', async ({ page }) => {

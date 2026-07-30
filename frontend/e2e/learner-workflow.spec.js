@@ -104,7 +104,8 @@ test.describe('ALGET full learner workflow', () => {
         await installResearchApiMocks(page)
         await page.goto('/book/ail606-supplement/01/01', { waitUntil: 'networkidle' })
 
-        // Annotations now collapsed — open via the Add note CTA in the bar
+        // Reflection tools are progressive disclosure; open the section first.
+        await page.locator('#section-reflect > summary').click()
         await page.getByRole('button', { name: /Add note/i }).first().click()
         await page.getByRole('button', { name: 'Connection', exact: true }).click()
         await page.getByLabel(/^Note$/i).fill('This passage should connect the storyboard revision to cognitive load evidence.')
