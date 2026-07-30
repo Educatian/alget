@@ -319,7 +319,7 @@ export async function convertCoursePdf(file, course, persistence = 'local') {
         source_sha256: result.sha256,
         page_count: result.page_count,
         status: result.status,
-        quality_report: result.quality,
+        quality_report: { ...(result.quality || {}), runtime_package: result.runtime_draft || null },
         warnings: result.warnings,
     }
     if (persistence === 'supabase') {
