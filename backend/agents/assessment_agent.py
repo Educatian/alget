@@ -22,11 +22,13 @@ class MultipleChoiceQuestion(BaseModel):
     correct_option_id: str = Field(description="ID of the correct option")
     explanation: str = Field(description="Explanation of why the correct option is right and others are wrong")
     concept_id: str = Field(description="The underlying concept being tested (e.g., 'sum_of_forces', 'fbd', 'tension', 'equilibrium')")
+    evidence: list[dict] = Field(default_factory=list, description="Source anchors supporting the question")
 
 class ShortAnswerQuestion(BaseModel):
     question: str = Field(description="The short answer or summary question text")
     concept_id: str = Field(description="The underlying concept being tested")
     rubric: str = Field(description="A brief grading rubric or key points expected in the answer")
+    evidence: list[dict] = Field(default_factory=list, description="Source anchors supporting the question")
 
 class KnowledgeCheckForm(BaseModel):
     mcq_questions: list[MultipleChoiceQuestion] = Field(description="List of 2 multiple choice questions")
@@ -52,7 +54,7 @@ class AssessmentAgent:
             legacy_genai.configure(api_key=self.api_key)
             self.model = legacy_genai.GenerativeModel('gemini-2.0-flash')
 
-    def generate_assessment(self, bio_context: str, eng_context: str, section_title: str, learning_objectives: list[str] = None, concept_ids: list[str] = None) -> dict:
+    def generate_assessment(self, bio_context: str, eng_context: str, section_title: str, learning_objectives: list[str] = None, concept_ids: list[str] = None, retrieved_context: list[dict] = None) -> dict:
         """Generates a 3-question assessment (2 MCQs, 1 Summary)."""
         
         objective_statements = [
@@ -62,6 +64,10 @@ class AssessmentAgent:
         objective_statements = [obj.strip() for obj in objective_statements if obj and obj.strip()]
         objs_text = "\n".join([f"- {obj}" for obj in objective_statements]) if objective_statements else "None specified"
         concepts_text = ", ".join(concept_ids) if concept_ids else "infer from context"
+        retrieved_text = "\n\n".join(
+            f"[{index + 1}] {str(item.get('content', ''))[:1200]} (source: {item.get('source_id', item.get('doc_id', 'section-context'))})"
+            for index, item in enumerate((retrieved_context or [])[:5])
+        ) or "No retrieved passages supplied."
 
         prompt = f"""
         You are an expert engineering and biology educator. 
@@ -71,6 +77,8 @@ class AssessmentAgent:
         Section Title: {section_title}
         Biology Context: {bio_context}
         Engineering Context: {eng_context}
+        Retrieved source passages (ground every item in one or more passages and include source_id, passage_index, and a short excerpt in evidence):
+        {retrieved_text}
         Learning Objectives to Evaluate:
         {objs_text}
         

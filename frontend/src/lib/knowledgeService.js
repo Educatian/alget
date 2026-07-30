@@ -319,6 +319,7 @@ export const generateAssessment = async (sectionTitle, bioContext, engContext, l
                 concept_ids: conceptIds,
                 section_id: options.sectionId || '',
                 content_version: options.contentVersion || null,
+                retrieved_context: Array.isArray(options.retrievedContext) ? options.retrievedContext.slice(0, 5) : [],
                 api_key: apiKey
             })
         });
