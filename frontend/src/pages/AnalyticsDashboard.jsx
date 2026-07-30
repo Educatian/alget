@@ -262,6 +262,12 @@ export default function AnalyticsDashboard() {
             }
 
             const data = await response.json()
+            if (data.error === 'access_code_not_configured') {
+                setError('This dashboard is not configured yet. Ask your administrator for access.')
+                setPasscode('')
+                return
+            }
+
             if (!data.valid) {
                 setError('Invalid access code')
                 setPasscode('')

@@ -156,10 +156,12 @@ async function fetchCloudProgress(userId) {
     }
 
     try {
-        const { data, error } = await supabase
+        const result = await supabase
             .from('course_progress')
             .select('section_id')
             .eq('user_id', userId)
+        const data = result?.data
+        const error = result?.error
 
         if (error) {
             console.warn('[Progress] Could not fetch cloud progress:', error)
