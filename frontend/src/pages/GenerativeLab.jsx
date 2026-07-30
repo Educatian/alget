@@ -122,7 +122,7 @@ export default function GenerativeLab() {
     };
 
     return (
-        <div className="editorial-shell ath-open-layout ath-density-compact min-h-screen font-sans selection:bg-[color-mix(in_srgb,var(--ath-primary)_20%,transparent)] flex flex-col">
+        <div className="ath-lab-shell editorial-shell ath-open-layout ath-density-compact min-h-screen font-sans selection:bg-[color-mix(in_srgb,var(--ath-primary)_20%,transparent)] flex flex-col">
             {/* Premium Header */}
             <header className="bg-[color-mix(in_srgb,var(--ath-surface-strong)_82%,transparent)] backdrop-blur-2xl border-b border-[var(--ath-line)] shadow-[0_4px_30px_rgb(0,0,0,0.03)] sticky top-0 z-50 transition-all duration-300">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2.5">

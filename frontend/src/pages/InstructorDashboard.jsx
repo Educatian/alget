@@ -113,7 +113,7 @@ export default function InstructorDashboard({ user }) {
     }
 
     return (
-        <div className="editorial-shell ath-open-layout ath-density-compact min-h-screen p-4 md:p-6">
+        <div className="ath-instructor-shell editorial-shell ath-open-layout ath-density-compact min-h-screen p-4 md:p-6">
             <header className="mx-auto max-w-5xl">
                 <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[var(--ath-secondary)]">
                     <button type="button" onClick={() => navigate(-1)} className="text-[var(--ath-muted)] hover:text-[var(--ath-text)]" aria-label="Go back">← Back</button>
