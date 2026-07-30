@@ -1153,15 +1153,18 @@ Tutoring pedagogy policy — follow it on every turn:
         if (!key) return json({ assessment: { mcq_questions: [], summary_question: null }, summary: noKeyMsg })
         const objs = (Array.isArray(body.learning_objectives) ? body.learning_objectives : []).map((o) => `- ${o}`).join('\n') || 'None specified'
         const concepts = (Array.isArray(body.concept_ids) ? body.concept_ids : []).join(', ') || 'infer from context'
+        const retrieved = (Array.isArray(body.retrieved_context) ? body.retrieved_context : []).slice(0, 5)
+        const retrievedText = retrieved.map((item, index) => `[${index + 1}] ${String(item.content || '').slice(0, 1200)} (source: ${item.source_id || 'section-context'})`).join('\n\n') || 'No retrieved passages supplied; use only the provided section context.'
         const assessment = await openrouterJSON(key, [
           { role: 'system', content: 'You are an expert educator generating formative assessments aligned to learning objectives. Return ONLY a JSON object — no prose, no markdown.' },
           { role: 'user', content: `Section title: "${body.section_title || 'this section'}".
 Context: ${(body.biology_context || '') + ' ' + (body.engineering_context || '')}
 Learning objectives:\n${objs}
 Target concepts (use when applicable): [${concepts}]
+Retrieved source passages (every item must be grounded in one or more of these):\n${retrievedText}
 
-Return EXACTLY this JSON shape, fitting THIS section's actual topic:
-{"mcq_questions":[{"question":"...","options":[{"id":"A","text":"..."},{"id":"B","text":"..."},{"id":"C","text":"..."},{"id":"D","text":"..."}],"correct_option_id":"A","explanation":"why correct & others wrong","concept_id":"..."}],"summary_question":{"question":"a generative short-answer prompt","concept_id":"...","rubric":"key points expected"}}
+Return EXACTLY this JSON shape, fitting THIS section's actual topic. Evidence must cite a retrieved passage index and a short verbatim excerpt (max 180 chars):
+{"mcq_questions":[{"question":"...","options":[{"id":"A","text":"..."},{"id":"B","text":"..."},{"id":"C","text":"..."},{"id":"D","text":"..."}],"correct_option_id":"A","explanation":"why correct & others wrong","concept_id":"...","evidence":[{"source_id":"...","passage_index":1,"excerpt":"..."}]}],"summary_question":{"question":"a generative short-answer prompt","concept_id":"...","rubric":"key points expected","evidence":[{"source_id":"...","passage_index":1,"excerpt":"..."}]}}
 Exactly 2 items in mcq_questions and exactly 1 summary_question.` },
         ], { model, temperature: 0.5, maxTokens: 1500 })
         const generation_trace = await buildGenerationTrace({
@@ -1170,7 +1173,7 @@ Exactly 2 items in mcq_questions and exactly 1 summary_question.` },
           model,
           promptVersion: 'formative-assessment-objective-aligned-v2',
           sourceKind: 'assessment_context',
-          sourceText: `${body.biology_context || ''}\n${body.engineering_context || ''}`,
+          sourceText: `${body.biology_context || ''}\n${body.engineering_context || ''}\n${retrievedText}`,
           sourceTitle: body.section_title || 'Assessment generation context',
         })
         return json({ assessment, summary: 'Assessment generated successfully.', generation_trace })

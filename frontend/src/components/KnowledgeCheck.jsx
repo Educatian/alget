@@ -62,8 +62,13 @@ export default function KnowledgeCheck({
             const bioTrim = bioContext ? bioContext.substring(0, 1000) : 'Biological mechanisms of adhesion and load-bearing'
             const engTrim = engContext ? engContext.substring(0, 1000) : 'Engineering statics and equilibrium'
             const titleTrim = sectionTitle || 'Statics 1.1: Equilibrium'
+            const retrievalTerms = [titleTrim, ...(learningObjectives || []), ...(conceptIds || [])].join(' ').toLowerCase().split(/\W+/).filter((term) => term.length > 3)
+            const retrievedContext = String(bioContext || '').split(/\n\s*\n/).map((content, index) => ({ content: content.trim().slice(0, 900), source_id: sectionId || 'section-context', chunk_index: index }))
+                .filter((item) => item.content.length > 40)
+                .map((item) => ({ ...item, score: retrievalTerms.filter((term) => item.content.toLowerCase().includes(term)).length }))
+                .sort((a, b) => b.score - a.score).slice(0, 5)
 
-            const generated = await generateAssessment(titleTrim, bioTrim, engTrim, learningObjectives, conceptIds, { sectionId, contentVersion })
+            const generated = await generateAssessment(titleTrim, bioTrim, engTrim, learningObjectives, conceptIds, { sectionId, contentVersion, retrievedContext })
             if (!generated || (!generated.mcq_questions?.length && !generated.summary_question)) {
                 setStatus('error')
                 return

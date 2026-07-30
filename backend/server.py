@@ -198,6 +198,7 @@ class OrchestrateRequest(BaseModel):
     section_title: str = ""
     content_version: Any = None
     api_key: str = ""
+    retrieved_context: list[dict[str, Any]] = []
 
 class ModuleInfo(BaseModel):
     icon: str
@@ -2154,12 +2155,21 @@ async def generate_assessment(request: AssessmentRequest):
         # We need to make sure we parse the response which might be wrapped in JSON markdown blocks
         # or it might just be the dict already
         
+        retrieved = list(request.retrieved_context or [])
+        try:
+            retrieved.extend(rag_service.retrieve_context(
+                f"{request.section_title} {' '.join(request.learning_objectives)} {' '.join(request.concept_ids)}", top_k=5
+            ) or [])
+        except Exception:
+            pass
+        retrieved = retrieved[:5]
         result_json = agent.generate_assessment(
             bio_context=request.biology_context,
             eng_context=request.engineering_context,
             section_title=request.section_title,
             learning_objectives=request.learning_objectives,
-            concept_ids=request.concept_ids
+            concept_ids=request.concept_ids,
+            retrieved_context=retrieved
         )
         generation_trace = build_generation_trace(
             output=result_json,
@@ -2169,7 +2179,7 @@ async def generate_assessment(request: AssessmentRequest):
             section_title=request.section_title,
             content_version=request.content_version,
             source_kind="assessment_context",
-            source_text=f"{request.biology_context}\n{request.engineering_context}",
+            source_text=f"{request.biology_context}\n{request.engineering_context}\n" + "\n".join(str(item.get("content", "")) for item in retrieved),
         )
         return {"assessment": result_json, "summary": "Assessment generated successfully.", "generation_trace": generation_trace}
     except Exception as e:
