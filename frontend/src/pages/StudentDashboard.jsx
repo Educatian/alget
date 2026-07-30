@@ -142,7 +142,7 @@ export default function StudentDashboard({ user }) {
     const isDemoUser = !user?.id || user.id === '00000000-0000-0000-0000-000000000000'
 
     return (
-        <div className="editorial-shell ath-open-layout ath-density-compact min-h-screen">
+        <div className="student-dashboard editorial-shell ath-open-layout ath-density-compact min-h-screen">
             <div className="ath-container flex flex-col gap-5 pb-10">
                 <header className="pt-5">
                     <div className="flex flex-wrap items-center gap-2 text-[var(--ath-text-xs)] font-semibold text-[var(--ath-secondary)]">

@@ -559,7 +559,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                                 {loading ? 'Generating...' : 'Get a simpler explanation'}
                             </button>
                         ) : (
-                            <div className="rounded-[1.2rem] border border-[rgba(15,81,103,0.12)] bg-[rgba(200,226,236,0.28)] p-4" role="status" aria-live="polite">
+                            <div className="border-y border-[var(--ath-line)] bg-[var(--ath-info-soft)] px-1 py-3" role="status" aria-live="polite">
                                 <h4 className="mb-2 font-semibold text-[var(--ath-primary-deep)]">Simplified explanation</h4>
                                 <p className="whitespace-pre-wrap text-sm leading-6 text-[var(--ath-text)]">{explanation}</p>
                                 <GenerationTrace trace={explanationTrace} compact />
@@ -589,7 +589,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                         </div>
 
                         {representation && (
-                            <div className="mt-4 rounded-[1.2rem] border border-[rgba(199,137,67,0.18)] bg-[rgba(255,221,187,0.38)] p-4" role="status" aria-live="polite">
+                            <div className="mt-4 border-y border-[var(--ath-line)] bg-[var(--ath-warning-soft)] px-1 py-3" role="status" aria-live="polite">
                                 <p className="whitespace-pre-wrap text-sm leading-6 text-[var(--ath-text)]">{representation}</p>
                                 <GenerationTrace trace={representationTrace} compact />
                             </div>
@@ -599,9 +599,9 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
 
                 {activeTab === 'practice' && (
                     <div className="space-y-4">
-                        <div className="rounded-[1.2rem] border border-emerald-200 bg-emerald-50/70 p-4">
-                            <h4 className="font-semibold text-emerald-800">Recommended focus</h4>
-                            <p className="mt-2 text-sm leading-relaxed text-emerald-700">
+                        <div className="border-l-2 border-[var(--ath-success)] px-3 py-2">
+                            <h4 className="font-semibold text-[var(--ath-success)]">Recommended focus</h4>
+                            <p className="mt-2 text-sm leading-relaxed text-[var(--ath-muted)]">
                                 Return to the practice problems and focus on {prettyConcept(primaryRecommendation?.focus_concepts?.[0])}.
                                 If the next attempt still feels shaky, come back here and open Explain or Ask.
                             </p>
