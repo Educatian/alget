@@ -1,3 +1,5 @@
+import { extractText, getDocumentProxy } from 'unpdf'
+
 // Cloudflare Worker: alget-llm  (OpenRouter-backed)
 //
 // The ENTIRE dynamic AI/compute layer for ALGET — no FastAPI/onrender backend.
@@ -15,12 +17,24 @@
 // Optional [vars]:
 //   OPENROUTER_MODEL  (default google/gemini-2.0-flash-001)
 //   STATIC_API_BASE   (default the Pages /api origin)
-//   BACKEND_API_BASE  (FastAPI base including /api; required for admin control)
+//   SUPABASE_URL / SUPABASE_PUBLISHABLE_KEY (admin identity and invitation bridge)
 
 const DEFAULT_MODEL = 'google/gemini-2.5-flash'
 // Static content (Pages) the Worker reads for deterministic grading/graphs.
 const DEFAULT_STATIC_BASE = 'https://alget.pages.dev/api'
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
+const MAX_PDF_BYTES = 25 * 1024 * 1024
+const MAX_PDF_PAGES = 500
+
+const ADMIN_AGENTS = [
+  { id: 'curriculum', name: 'Curriculum Agent', stage: 'structure', approval: 'required', can_publish: false },
+  { id: 'extraction', name: 'Document Extraction Agent', stage: 'ingestion', approval: 'automatic', can_publish: false },
+  { id: 'alignment', name: 'Outcome Alignment Agent', stage: 'curriculum', approval: 'required', can_publish: false },
+  { id: 'assessment', name: 'Assessment Agent', stage: 'assessment', approval: 'required', can_publish: false },
+  { id: 'accessibility', name: 'Accessibility Agent', stage: 'quality', approval: 'automatic', can_publish: false },
+  { id: 'validation', name: 'Validation Agent', stage: 'quality', approval: 'required', can_publish: false },
+  { id: 'release', name: 'Release Agent', stage: 'release', approval: 'required', can_publish: true },
+]
 
 const CORS = {
   'Access-Control-Allow-Origin': '*',
@@ -33,6 +47,176 @@ function json(obj, status = 200) {
     status,
     headers: { ...CORS, 'content-type': 'application/json' },
   })
+}
+
+function supabaseHeaders(env, authorization = '') {
+  return {
+    apikey: env.SUPABASE_PUBLISHABLE_KEY || '',
+    ...(authorization ? { Authorization: authorization } : {}),
+    'content-type': 'application/json',
+  }
+}
+
+function constantTimeEqual(left, right) {
+  const a = new TextEncoder().encode(String(left || ''))
+  const b = new TextEncoder().encode(String(right || ''))
+  if (a.length !== b.length) return false
+  let difference = 0
+  for (let index = 0; index < a.length; index += 1) difference |= a[index] ^ b[index]
+  return difference === 0
+}
+
+async function requireCourseAdmin(request, env) {
+  const adminToken = request.headers.get('x-alget-admin-token') || ''
+  if (env.ALGET_ADMIN_TOKEN && adminToken && constantTimeEqual(env.ALGET_ADMIN_TOKEN, adminToken)) {
+    return { authorization: '', operator: { role: 'admin', subject: 'server-token' } }
+  }
+  const authorization = request.headers.get('authorization') || ''
+  if (!authorization.toLowerCase().startsWith('bearer ') || !env.SUPABASE_URL || !env.SUPABASE_PUBLISHABLE_KEY) {
+    return { error: json({ detail: 'Administrator authentication required' }, 401) }
+  }
+  let response
+  try {
+    response = await fetch(`${String(env.SUPABASE_URL).replace(/\/$/, '')}/auth/v1/user`, {
+      headers: supabaseHeaders(env, authorization),
+    })
+  } catch {
+    return { error: json({ detail: 'Identity provider unavailable' }, 503) }
+  }
+  if (!response.ok) return { error: json({ detail: 'Invalid or expired administrator session' }, 401) }
+  const user = await response.json()
+  const role = user?.app_metadata?.role
+  if (!['admin', 'course_admin'].includes(role)) {
+    return { error: json({ detail: 'Course administrator role required' }, 403) }
+  }
+  return { authorization, operator: { role, subject: user.id } }
+}
+
+function governedCoursePlan(courseId, sourceId) {
+  return {
+    course_id: courseId,
+    source_id: sourceId,
+    status: 'planned',
+    release_gate: 'human_approval_required',
+    stages: ADMIN_AGENTS.map((agent, index) => ({
+      order: index + 1,
+      agent_id: agent.id,
+      agent_name: agent.name,
+      status: 'waiting',
+      approval: agent.approval,
+      can_publish: agent.can_publish,
+    })),
+  }
+}
+
+function cleanPdfText(value) {
+  return String(value || '').replace(/\0/g, '').replace(/\r\n?/g, '\n').replace(/[ \t]+/g, ' ').replace(/\n{3,}/g, '\n\n').trim()
+}
+
+function pdfHeadingCandidates(text) {
+  const headings = []
+  for (const rawLine of text.split('\n')) {
+    const line = rawLine.trim()
+    if (line.length < 4 || line.length > 120 || /[.?!]$/.test(line)) continue
+    const words = line.split(/\s+/)
+    if (words.length > 14) continue
+    const capitalized = words.filter((word) => /^[A-Z]/.test(word)).length
+    const titleLike = line === line.toUpperCase() || capitalized >= Math.max(1, Math.floor(words.length / 2))
+    if (titleLike || /^(chapter|module|unit|section|\d+(?:\.\d+)*)\b/i.test(line)) headings.push(line)
+    if (headings.length === 4) break
+  }
+  return headings
+}
+
+async function sha256Hex(bytes) {
+  const digest = await crypto.subtle.digest('SHA-256', bytes)
+  return [...new Uint8Array(digest)].map((part) => part.toString(16).padStart(2, '0')).join('')
+}
+
+async function convertPdfAtEdge(request) {
+  let form
+  try { form = await request.formData() } catch { return json({ detail: 'Invalid multipart PDF upload' }, 400) }
+  const file = form.get('file')
+  const courseId = String(form.get('course_id') || '').trim()
+  if (!file || typeof file.arrayBuffer !== 'function') return json({ detail: 'PDF file is required' }, 422)
+  if (courseId.length < 2 || courseId.length > 80) return json({ detail: 'Valid course_id is required' }, 422)
+  if (file.size < 1 || file.size > MAX_PDF_BYTES) return json({ detail: `PDF must be between 1 byte and ${MAX_PDF_BYTES} bytes` }, 413)
+
+  const buffer = await file.arrayBuffer()
+  const bytes = new Uint8Array(buffer)
+  if (String.fromCharCode(...bytes.slice(0, 5)) !== '%PDF-') return json({ detail: 'File signature is not a PDF' }, 422)
+  const hash = await sha256Hex(buffer)
+
+  let document
+  let extracted
+  try {
+    document = await getDocumentProxy(bytes)
+    if (!document.numPages) return json({ detail: 'PDF contains no pages' }, 422)
+    if (document.numPages > MAX_PDF_PAGES) return json({ detail: `PDF exceeds the ${MAX_PDF_PAGES}-page ingestion limit` }, 422)
+    extracted = await extractText(document, { mergePages: false })
+  } catch {
+    return json({ detail: 'PDF could not be parsed; encrypted PDFs must be unlocked before ingestion' }, 422)
+  }
+
+  const rawPages = Array.isArray(extracted?.text) ? extracted.text : [extracted?.text || '']
+  const warnings = []
+  const pages = Array.from({ length: document.numPages }, (_, index) => {
+    const text = cleanPdfText(rawPages[index] || '')
+    if (text.length < 24) warnings.push(`Page ${index + 1}: little or no extractable text; OCR review recommended`)
+    return { page: index + 1, characters: text.length, heading_candidates: pdfHeadingCandidates(text), text }
+  })
+  const extractablePages = pages.filter((page) => page.characters >= 24).length
+  const filename = String(file.name || 'course-source.pdf').split(/[\\/]/).pop()
+  return json({
+    status: warnings.length ? 'needs_review' : 'converted',
+    filename,
+    sha256: hash,
+    page_count: pages.length,
+    total_characters: pages.reduce((sum, page) => sum + page.characters, 0),
+    metadata: {},
+    pages,
+    markdown: pages.map((page) => `## Page ${page.page}\n\n${page.text || '[No extractable text]'}`).join('\n\n'),
+    warnings,
+    quality: {
+      extractable_page_ratio: Number((extractablePages / pages.length).toFixed(4)),
+      requires_ocr: warnings.length > 0,
+      human_approval_required: true,
+    },
+    course_id: courseId,
+    source_id: `pdf:${hash.slice(0, 16)}`,
+  })
+}
+
+async function handleAdminRequest(request, env, path) {
+  const auth = await requireCourseAdmin(request, env)
+  if (auth.error) return auth.error
+
+  if (path === '/admin/system/summary' && request.method === 'GET') {
+    return json({ status: 'ready', operator: auth.operator, agent_count: ADMIN_AGENTS.length, pdf_limit_bytes: MAX_PDF_BYTES, release_policy: 'human_approval_required', runtime: 'cloudflare' })
+  }
+  if (path === '/admin/agents' && request.method === 'GET') {
+    return json({ agents: ADMIN_AGENTS, release_policy: 'human_approval_required' })
+  }
+  if (path === '/admin/course-plan' && request.method === 'POST') {
+    const payload = await request.json().catch(() => ({}))
+    const courseId = String(payload.course_id || '')
+    const sourceId = String(payload.source_id || '')
+    if (!/^[a-z0-9][a-z0-9-]{1,79}$/.test(courseId) || sourceId.length < 2 || sourceId.length > 128) return json({ detail: 'Invalid course or source identifier' }, 422)
+    return json(governedCoursePlan(courseId, sourceId))
+  }
+  if (path === '/admin/pdf/convert' && request.method === 'POST') return convertPdfAtEdge(request)
+  if (path === '/admin/instructors/invite' && request.method === 'POST') {
+    if (!auth.authorization) return json({ detail: 'Instructor invitations require an interactive administrator session' }, 401)
+    if (!env.SUPABASE_URL) return json({ detail: 'Instructor invitations are not configured' }, 503)
+    const edgeUrl = `${String(env.SUPABASE_URL).replace(/\/$/, '')}/functions/v1/admin-instructor-invite`
+    const proxied = await fetch(edgeUrl, {
+      method: 'POST',
+      headers: supabaseHeaders(env, auth.authorization),
+      body: await request.text(),
+    })
+    return new Response(proxied.body, { status: proxied.status, headers: { ...CORS, 'content-type': proxied.headers.get('content-type') || 'application/json' } })
+  }
+  return json({ detail: `Unknown admin endpoint: ${path}` }, 404)
 }
 
 async function openrouter(key, messages, { model, temperature = 0.7, maxTokens = 600 } = {}) {
@@ -356,27 +540,11 @@ export default {
     // Pages), so there is no sleepy backend to wake. Kept so the app's on-load
     // ping still gets a 200. Only wakes a backend if one is explicitly configured.
     if (path === '/warmup') {
-      if (env.BACKEND_API_BASE) ctx.waitUntil(fetch(`${String(env.BACKEND_API_BASE).replace(/\/$/, '')}/book/inst-design/toc`).catch(() => {}))
       return json({ ok: true })
     }
 
-    // Admin operations live on the stateful FastAPI control plane. Forward the
-    // original stream so multipart PDFs and administrator authorization survive
-    // intact; never parse or reconstruct privileged requests in this Worker.
     if (path.startsWith('/admin/')) {
-      if (!env.BACKEND_API_BASE) return json({ error: 'Admin control plane is not configured' }, 503)
-      const target = `${String(env.BACKEND_API_BASE).replace(/\/$/, '')}${path}${url.search}`
-      const headers = new Headers(request.headers)
-      headers.delete('host')
-      const proxied = await fetch(target, {
-        method: request.method,
-        headers,
-        body: ['GET', 'HEAD'].includes(request.method) ? undefined : request.body,
-        redirect: 'manual',
-      })
-      const responseHeaders = new Headers(proxied.headers)
-      Object.entries(CORS).forEach(([name, value]) => responseHeaders.set(name, value))
-      return new Response(proxied.body, { status: proxied.status, headers: responseHeaders })
+      return handleAdminRequest(request, env, path)
     }
 
     let body = {}
@@ -786,18 +954,7 @@ Return EXACTLY: {"content_score":0.0-1.0,"wording_score":0.0-1.0,"sub_scores":{"
         return json({ success: false, message: 'Custom module authoring runs only in the local/dev environment (it writes new content files). The hosted build serves a fixed, versioned catalog.' })
       }
 
-      // --- Unknown path. Every endpoint the app calls is handled above, so the
-      // app no longer depends on the onrender backend at all. Optional escape
-      // hatch: only proxy if a BACKEND_API_BASE var is explicitly configured.
-      if (env.BACKEND_API_BASE) {
-        const proxied = await fetch(`${String(env.BACKEND_API_BASE).replace(/\/$/, '')}${path}${url.search}`, {
-          method: request.method,
-          headers: { 'content-type': 'application/json' },
-          body: request.method === 'POST' ? JSON.stringify(body) : undefined,
-        })
-        const text = await proxied.text()
-        return new Response(text, { status: proxied.status, headers: { ...CORS, 'content-type': proxied.headers.get('content-type') || 'application/json' } })
-      }
+      // --- Unknown path. Every endpoint the hosted app calls is handled above.
       return json({ error: `Unknown endpoint: ${path}` }, 404)
     } catch (e) {
       return json({ error: String(e?.message || e) }, 500)
