@@ -3,7 +3,12 @@ import unittest
 
 from pypdf import PdfWriter
 
-from admin_control import build_governed_course_plan, convert_pdf_bytes
+from admin_control import (
+    build_governed_course_plan,
+    build_google_doc_course_draft,
+    convert_pdf_bytes,
+    extract_google_doc_id,
+)
 
 
 def _blank_pdf() -> bytes:
@@ -34,6 +39,21 @@ class AdminControlTests(unittest.TestCase):
         self.assertEqual(plan["release_gate"], "human_approval_required")
         self.assertEqual(sum(stage["can_publish"] for stage in plan["stages"]), 1)
         self.assertEqual(plan["stages"][-1]["agent_id"], "release")
+
+    def test_google_doc_link_is_allowlisted(self):
+        document_id = "12345678901234567890"
+        self.assertEqual(extract_google_doc_id(f"https://docs.google.com/document/d/{document_id}/edit?tab=t.0"), document_id)
+        with self.assertRaises(ValueError):
+            extract_google_doc_id("https://example.com/course.txt")
+
+    def test_google_doc_draft_is_source_grounded_and_review_only(self):
+        text = "Course Foundations\n" + ("Evidence evaluation requires comparing a claim with its source. " * 5) + "\nLearning Activity\n" + ("Learners revise the claim and explain the evidence. " * 5)
+        result = build_google_doc_course_draft(text, "12345678901234567890", "Course Foundations")
+
+        self.assertGreaterEqual(len(result["sections"]), 1)
+        self.assertEqual(result["sections"][0]["simulation"]["status"], "proposed")
+        self.assertFalse(result["quality"]["student_visible"])
+        self.assertFalse(result["quality"]["automatic_publish"])
 
 
 if __name__ == "__main__":

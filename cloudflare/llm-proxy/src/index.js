@@ -26,6 +26,7 @@ const DEFAULT_STATIC_BASE = 'https://alget.pages.dev/api'
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
 const MAX_PDF_BYTES = 25 * 1024 * 1024
 const MAX_PDF_PAGES = 500
+const MAX_GOOGLE_DOC_CHARACTERS = 250000
 const RELEASE_SCHEMA_VERSION = '2026-07-30'
 const GENERATION_TRACE_SCHEMA_VERSION = 'generation-trace-v1'
 
@@ -168,6 +169,26 @@ async function requireCourseAdmin(request, env) {
   return { authorization, operator: { role, subject: user.id } }
 }
 
+async function requireFacultyInstructor(request, env) {
+  const authorization = request.headers.get('authorization') || ''
+  if (!authorization.toLowerCase().startsWith('bearer ') || !env.SUPABASE_URL || !env.SUPABASE_PUBLISHABLE_KEY) {
+    return { error: json({ detail: 'Instructor authentication required' }, 401) }
+  }
+  let response
+  try {
+    response = await fetch(`${String(env.SUPABASE_URL).replace(/\/$/, '')}/auth/v1/user`, {
+      headers: supabaseHeaders(env, authorization),
+    })
+  } catch {
+    return { error: json({ detail: 'Identity provider unavailable' }, 503) }
+  }
+  if (!response.ok) return { error: json({ detail: 'Invalid or expired instructor session' }, 401) }
+  const user = await response.json()
+  const role = user?.app_metadata?.role
+  if (!['instructor', 'admin', 'course_admin'].includes(role)) return { error: json({ detail: 'Instructor role required' }, 403) }
+  return { authorization, operator: { role, subject: user.id } }
+}
+
 function governedCoursePlan(courseId, sourceId) {
   return {
     course_id: courseId,
@@ -202,6 +223,74 @@ function pdfHeadingCandidates(text) {
     if (headings.length === 4) break
   }
   return headings
+}
+
+function extractGoogleDocId(value) {
+  const match = String(value || '').trim().match(/^https:\/\/docs\.google\.com\/document\/d\/([A-Za-z0-9_-]{20,})\/(?:edit|view)(?:[?#].*)?$/)
+  if (!match) throw new Error('Enter a standard Google Docs document link')
+  return match[1]
+}
+
+function buildGoogleDocCourseDraft(text, documentId, title = '') {
+  const cleaned = cleanPdfText(text).slice(0, MAX_GOOGLE_DOC_CHARACTERS)
+  if (cleaned.length < 80) throw new Error('Google Doc contains too little readable course material')
+  const headings = pdfHeadingCandidates(cleaned)
+  if (!headings.length) headings.push(String(title || cleaned.split('\n').find(Boolean) || 'Course module').slice(0, 100))
+  const sections = headings.slice(0, 8).map((heading, index) => {
+    const start = Math.max(0, cleaned.toLowerCase().indexOf(heading.toLowerCase()))
+    const next = headings[index + 1]
+    const nextIndex = next ? cleaned.toLowerCase().indexOf(next.toLowerCase(), start + heading.length) : cleaned.length
+    const end = nextIndex > start ? nextIndex : Math.min(cleaned.length, start + 5000)
+    const excerpt = (cleaned.slice(start + heading.length, end).trim() || cleaned.slice(start, start + 1200)).slice(0, 1200)
+    return {
+      section_id: `draft-${String(index + 1).padStart(2, '0')}`,
+      title: heading,
+      source_excerpt: excerpt,
+      reading: { estimated_minutes: Math.max(4, Math.min(18, Math.round(excerpt.split(/\s+/).length / 180))), purpose: `Build source-grounded understanding of ${heading}.` },
+      activity: {
+        type: 'claim-evidence-revision',
+        prompt: `Identify one claim about ${heading}, attach evidence from the reading, and revise the claim after critique.`,
+        evidence_collected: ['initial_claim', 'source_evidence', 'revision_rationale'],
+      },
+      simulation: {
+        status: 'proposed', concept: heading,
+        interaction: 'Change one input, predict the effect, observe the response, and explain the discrepancy.',
+        variables: ['input', 'response', 'constraint'], evidence_collected: ['prediction', 'observation', 'explanation'],
+      },
+    }
+  })
+  return {
+    schema_version: 'google-doc-course-draft-v1',
+    source: { kind: 'google_doc', document_id: documentId, title: title || headings[0], characters: cleaned.length },
+    learning_objectives: headings.slice(0, 5).map((heading) => `Explain and apply the central ideas in ${heading}.`),
+    sections,
+    quality: {
+      source_grounded: true, human_approval_required: true, student_visible: false, automatic_publish: false,
+      warnings: sections.length >= 2 ? [] : ['Only one section was detected; review the document heading structure.'],
+    },
+  }
+}
+
+function normalizeGeneratedCourseDraft(generated, fallback) {
+  const candidateSections = Array.isArray(generated?.sections) ? generated.sections : []
+  if (!candidateSections.length) return fallback
+  const byTitle = new Map(fallback.sections.map((section) => [section.title.toLowerCase(), section]))
+  const sections = candidateSections.slice(0, 8).map((section, index) => {
+    const fallbackSection = byTitle.get(String(section.title || '').toLowerCase()) || fallback.sections[index] || fallback.sections[0]
+    return {
+      ...fallbackSection,
+      title: cleanExcerpt(section.title || fallbackSection.title, 120),
+      source_excerpt: fallbackSection.source_excerpt,
+      reading: { ...fallbackSection.reading, ...(section.reading || {}) },
+      activity: { ...fallbackSection.activity, ...(section.activity || {}) },
+      simulation: { ...fallbackSection.simulation, ...(section.simulation || {}), status: 'proposed' },
+    }
+  })
+  return {
+    ...fallback,
+    learning_objectives: Array.isArray(generated.learning_objectives) ? generated.learning_objectives.slice(0, 8).map((item) => cleanExcerpt(item, 220)).filter(Boolean) : fallback.learning_objectives,
+    sections,
+  }
 }
 
 async function sha256Hex(bytes) {
@@ -382,6 +471,58 @@ async function handleAdminRequest(request, env, path) {
     return new Response(proxied.body, { status: proxied.status, headers: { ...CORS, 'content-type': proxied.headers.get('content-type') || 'application/json' } })
   }
   return json({ detail: `Unknown admin endpoint: ${path}` }, 404)
+}
+
+async function handleFacultyRequest(request, env, path) {
+  const auth = await requireFacultyInstructor(request, env)
+  if (auth.error) return auth.error
+  if (path !== '/faculty/google-docs/import' || request.method !== 'POST') return json({ detail: `Unknown faculty endpoint: ${path}` }, 404)
+
+  const payload = await request.json().catch(() => ({}))
+  const courseId = String(payload.course_id || '').trim()
+  if (!/^[a-z0-9][a-z0-9-]{1,79}$/.test(courseId)) return json({ detail: 'A valid course identifier is required' }, 422)
+  let documentId
+  try { documentId = extractGoogleDocId(payload.document_url) } catch (error) { return json({ detail: error.message }, 422) }
+
+  let response
+  try {
+    response = await fetch(`https://docs.google.com/document/d/${documentId}/export?format=txt`, { redirect: 'follow' })
+  } catch {
+    return json({ detail: 'Google Docs is temporarily unavailable' }, 503)
+  }
+  const contentType = response.headers.get('content-type') || ''
+  if (!response.ok || contentType.includes('text/html') || response.url.includes('accounts.google.com')) {
+    return json({ detail: 'The document could not be read. Share it as “Anyone with the link can view,” then try again.' }, 403)
+  }
+  const sourceText = (await response.text()).slice(0, MAX_GOOGLE_DOC_CHARACTERS + 1)
+  if (sourceText.length > MAX_GOOGLE_DOC_CHARACTERS) return json({ detail: 'Google Doc exceeds the 250,000-character import limit' }, 413)
+  const title = cleanExcerpt(sourceText.split('\n').find((line) => line.trim()) || 'Google Docs course source', 120)
+  let draft
+  try { draft = buildGoogleDocCourseDraft(sourceText, documentId, title) } catch (error) { return json({ detail: error.message }, 422) }
+  draft.source.sha256 = await sha256Hex(new TextEncoder().encode(cleanPdfText(sourceText)))
+  draft.source.canonical_url = `https://docs.google.com/document/d/${documentId}/edit`
+
+  const key = env.OPENROUTER_API_KEY || ''
+  if (key) {
+    try {
+      const generated = await openrouterJSON(key, [
+        {
+          role: 'system',
+          content: 'You are a higher-education curriculum designer. Return JSON only. Convert the supplied course document into a source-grounded module draft. Preserve the source meaning. Every section needs title, reading {purpose, estimated_minutes}, activity {type, prompt, evidence_collected}, and simulation {concept, interaction, variables, evidence_collected}. Simulations must be pedagogically useful and feasible as interactive parameter explorations. Do not invent citations, grades, or publication status.',
+        },
+        {
+          role: 'user',
+          content: `Course: ${courseId}\nReturn up to 8 sections and up to 8 measurable learning_objectives.\n\nSOURCE DOCUMENT:\n${sourceText.slice(0, 24000)}`,
+        },
+      ], { model: env.OPENROUTER_MODEL || DEFAULT_MODEL, temperature: 0.25, maxTokens: 3600 })
+      draft = normalizeGeneratedCourseDraft(generated, draft)
+    } catch {
+      draft.quality.warnings.push('AI enrichment was unavailable; a deterministic source-grounded draft was created instead.')
+    }
+  } else {
+    draft.quality.warnings.push('AI enrichment is not configured; a deterministic source-grounded draft was created instead.')
+  }
+  return json({ course_id: courseId, status: 'shadow_draft', operator: auth.operator, draft }, 201)
 }
 
 function validateAdaptationPolicy(input) {
@@ -810,7 +951,14 @@ function buildAgenticIntervention(body) {
   }
 }
 
-export { evaluateAgenticTool, validateAgenticTransition, buildAgenticLearnerPlan, buildAgenticIntervention }
+export {
+  evaluateAgenticTool,
+  validateAgenticTransition,
+  buildAgenticLearnerPlan,
+  buildAgenticIntervention,
+  extractGoogleDocId,
+  buildGoogleDocCourseDraft,
+}
 
 export default {
   async fetch(request, env, ctx) {
@@ -846,6 +994,9 @@ export default {
 
     if (path.startsWith('/admin/')) {
       return handleAdminRequest(request, env, path)
+    }
+    if (path.startsWith('/faculty/')) {
+      return handleFacultyRequest(request, env, path)
     }
 
     let body = {}
