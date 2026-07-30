@@ -353,6 +353,10 @@ export async function loadPublishedCourseSection(courseId, routeSectionId) {
         raw: content,
         activity: generated.activity || null,
         simulation: generated.simulation || null,
+        tutor: generated.tutor || module.generation_draft?.tutor || null,
+        analytics: generated.analytics || module.generation_draft?.analytics || null,
+        social_dynamics: generated.social_dynamics || module.generation_draft?.social_dynamics || null,
+        runtime_package: module.generation_draft?.runtime_package || null,
         practice: generated.practice || null,
         content_version: module.published_at || module.updated_at || null,
     }

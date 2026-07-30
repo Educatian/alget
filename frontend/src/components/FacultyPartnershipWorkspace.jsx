@@ -131,7 +131,7 @@ export default function FacultyPartnershipWorkspace({ courseId, hotSpots = [], s
                 moduleName: current.moduleName || draft.sections?.[0]?.title || draft.source?.title || '',
                 learningObjectives: (draft.learning_objectives || []).join('\n'),
             }))
-            setMessage(`Google Doc connected. ${draft.sections?.length || 0} reading, activity, and simulation drafts are ready to inspect.`)
+            setMessage(`Google Doc connected. ${draft.sections?.length || 0} sections plus tutor, analytics, and social runtime settings are ready to inspect.`)
         } catch (error) {
             setMessage(error.message || 'Could not import the Google Doc.')
         } finally {
@@ -290,7 +290,10 @@ export default function FacultyPartnershipWorkspace({ courseId, hotSpots = [], s
                         <button type="submit" disabled={Boolean(busy)} className="editorial-button px-4 py-2.5 text-xs">{busy === 'pilot' ? 'Starting…' : 'Start shadow mode'}</button>
                         {generationDraft?.sections?.length > 0 && (
                             <div className="border-t border-[var(--ath-line)] pt-4">
-                                <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--ath-secondary)]">Generated course experience</p>
+                                    <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--ath-secondary)]">Generated course runtime package</p>
+                                <div className="mt-2 flex flex-wrap gap-1.5 text-[10px] font-bold uppercase tracking-[0.1em] text-[var(--ath-primary)]">
+                                    {['Reading', 'Activity', 'Simulation', 'Tutor', 'Analytics', 'Social cues'].map((label) => <span key={label} className="rounded-full bg-[color-mix(in_srgb,var(--ath-primary)_10%,var(--ath-panel))] px-2 py-1">{label}</span>)}
+                                </div>
                                 <ul className="mt-2 divide-y divide-[var(--ath-line)] border-y border-[var(--ath-line)]">
                                     {generationDraft.sections.slice(0, 5).map((section) => (
                                         <li key={section.section_id} className="py-3">

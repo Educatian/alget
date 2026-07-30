@@ -36,7 +36,8 @@ export default function SocialPresencePanel({
     signalSummary = {},
     liveFeed = [],
     onReaction,
-    sectionTitle
+    sectionTitle,
+    socialDynamics = null
 }) {
     const livePeerCount = peers.length
     const sameHeadingCount = sameHeadingPeers.length
@@ -66,6 +67,13 @@ export default function SocialPresencePanel({
                     <PulseMetric icon={<Activity className="h-3.5 w-3.5" />} label="Passage" value={sameHeadingCount} />
                     <PulseMetric icon={<HeartHandshake className="h-3.5 w-3.5" />} label="Concept" value={sameConceptCount} />
                 </div>
+
+                {socialDynamics?.prompts?.[0] && (
+                    <div className="rounded-xl bg-[color-mix(in_srgb,var(--ath-primary)_8%,var(--ath-panel))] px-3 py-2">
+                        <p className="text-[0.66rem] font-bold uppercase tracking-[0.12em] text-[var(--ath-secondary)]">Try with peers</p>
+                        <p className="mt-1 text-xs leading-5 text-[var(--ath-text)]">{socialDynamics.prompts[0]}</p>
+                    </div>
+                )}
 
                 {(livePeerCount > 0 || liveFeed.length > 0) && (
                     <div className="rounded-xl border border-[var(--ath-line)] bg-[var(--ath-panel-muted)] p-2">

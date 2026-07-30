@@ -224,6 +224,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                     section_title: context?.sectionTitle || '',
                     content_version: context?.contentVersion || null,
                     current_content: context?.pageContent ? context.pageContent.substring(0, 2000) : "",
+                    tutor_config: context?.tutorConfig || null,
                     history: messages.slice(-10), // Send more history for better context
                     is_highlight: isHighlight,
                     api_key: apiKey
