@@ -865,7 +865,8 @@ export default function BookLayout({ user, onLogout }) {
                                             sectionTitle: sectionData?.meta?.title || sectionData?.title || '',
                                             conceptIds: sectionData?.meta?.concept_ids || [],
                                             currentHeading: activeHeading,
-                                            pageContent: sectionData?.raw || ''
+                                            pageContent: sectionData?.raw || '',
+                                            contentVersion: sectionData?.content_version || null
                                         }}
                                         onClose={() => setRailOpen(false)}
                                     />
@@ -887,7 +888,8 @@ export default function BookLayout({ user, onLogout }) {
                                         sectionTitle: sectionData?.meta?.title || sectionData?.title || '',
                                         conceptIds: sectionData?.meta?.concept_ids || [],
                                         currentHeading: activeHeading,
-                                        pageContent: sectionData?.raw || ''
+                                        pageContent: sectionData?.raw || '',
+                                        contentVersion: sectionData?.content_version || null
                                     }}
                                     onClose={() => setRailOpen(false)}
                                 />
@@ -910,6 +912,7 @@ export default function BookLayout({ user, onLogout }) {
                         sectionId: sectionPath,
                         pageContent: sectionData?.raw || '',
                         sectionTitle: sectionData?.title || '',
+                        contentVersion: sectionData?.content_version || null,
                         conceptIds: sectionData?.meta?.concept_ids || [],
                         course
                     }}

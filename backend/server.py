@@ -92,6 +92,7 @@ from grading_service import grade_problem
 from rag_service import rag_service
 from agents.assessment_agent import AssessmentAgent
 from admin_control import AGENT_MANIFEST, MAX_PDF_BYTES, build_governed_course_plan, convert_pdf_bytes
+from generation_trace import build_generation_trace
 from knowledge_tracing import (
     BayesianKnowledgeTracing,
     select_support_move,
@@ -177,6 +178,9 @@ class OrchestrateRequest(BaseModel):
     is_highlight: bool = False
     grade_level: str = "Undergraduate"
     interest: str = "Bio-Inspired Design"
+    section_id: str = ""
+    section_title: str = ""
+    content_version: Any = None
     api_key: str = ""
 
 class ModuleInfo(BaseModel):
@@ -193,12 +197,18 @@ class GradeRequest(BaseModel):
 
 class ExplainRequest(BaseModel):
     section_id: str
+    section_title: str = ""
+    page_content: str = ""
+    content_version: Any = None
     problem_id: Optional[str] = None
     stuck_reason: Optional[str] = None
     api_key: str = ""
 
 class RepresentRequest(BaseModel):
     section_id: str
+    section_title: str = ""
+    page_content: str = ""
+    content_version: Any = None
     representation_type: str  # mindmap, analogy, visual, formula
     api_key: str = ""
 
@@ -242,6 +252,8 @@ class AssessmentRequest(BaseModel):
     engineering_context: str
     learning_objectives: list[str] = []
     concept_ids: list[str] = []
+    section_id: str = ""
+    content_version: Any = None
     api_key: str = ""
 
 
@@ -336,6 +348,7 @@ class OrchestratorResponse(BaseModel):
     illustration: Optional[IllustrationResponse] = None
     simulation: Optional[SimulationResponse] = None
     iterations: int = 0
+    generation_trace: Optional[dict[str, Any]] = None
 
 
 class AdaptiveMasteryState(BaseModel):
@@ -2054,6 +2067,16 @@ async def orchestrate_query(request: OrchestrateRequest):
             interest=request.interest,
         )
         normalized = normalize_orchestrator_response(result)
+        normalized.generation_trace = build_generation_trace(
+            output=normalized.model_dump(exclude_none=True),
+            model=os.environ.get("ALGET_GENERATION_MODEL", "gemini-2.0-flash"),
+            prompt_version="multi-agent-orchestrator-v2",
+            section_id=request.section_id or None,
+            section_title=request.section_title,
+            content_version=request.content_version,
+            source_text=request.current_content,
+            review_status="agent_reviewed" if normalized.validation_critique else "not_human_reviewed",
+        )
         return normalized.model_dump(exclude_none=True)
     except Exception as e:
         import traceback
@@ -2077,7 +2100,17 @@ async def generate_assessment(request: AssessmentRequest):
             learning_objectives=request.learning_objectives,
             concept_ids=request.concept_ids
         )
-        return {"assessment": result_json, "summary": "Assessment generated successfully."}
+        generation_trace = build_generation_trace(
+            output=result_json,
+            model=os.environ.get("ALGET_GENERATION_MODEL", "gemini-2.0-flash"),
+            prompt_version="formative-assessment-objective-aligned-v2",
+            section_id=request.section_id or None,
+            section_title=request.section_title,
+            content_version=request.content_version,
+            source_kind="assessment_context",
+            source_text=f"{request.biology_context}\n{request.engineering_context}",
+        )
+        return {"assessment": result_json, "summary": "Assessment generated successfully.", "generation_trace": generation_trace}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Assessment generation error: {str(e)}")
 
@@ -2085,6 +2118,8 @@ class GradeSummaryRequest(BaseModel):
     question: str
     student_answer: str
     rubric: str
+    section_id: str = ""
+    section_title: str = ""
     api_key: str = ""
 
 @app.post("/api/grade_summary")
@@ -2099,7 +2134,17 @@ async def grade_summary(request: GradeSummaryRequest):
             student_answer=request.student_answer,
             rubric=request.rubric
         )
-        return result_json
+        generation_trace = build_generation_trace(
+            output=result_json,
+            model=os.environ.get("ALGET_GENERATION_MODEL", "gemini-2.0-flash"),
+            prompt_version="summary-rubric-grader-v2",
+            section_id=request.section_id or None,
+            section_title=request.section_title or "Instructor-provided scoring rubric",
+            source_kind="rubric",
+            source_text=request.rubric,
+            source_locator="request.rubric",
+        )
+        return {**result_json, "generation_trace": generation_trace}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Grading error: {str(e)}")
 
@@ -3012,11 +3057,22 @@ async def explain_easier(request: ExplainRequest):
                 )
             )
             
-            return {"explanation": response.text}
+            explanation = response.text
         else:
-            return {
-                "explanation": "Let's break this down step by step:\n\n1. First, identify all forces acting on the object.\n2. Draw a free body diagram.\n3. Apply the equilibrium conditions (ΣF = 0).\n4. Solve for the unknown.\n\nRemember: when an object is in equilibrium, all forces must balance!"
-            }
+            explanation = "Let's break this down step by step:\n\n1. First, identify all forces acting on the object.\n2. Draw a free body diagram.\n3. Apply the equilibrium conditions (ΣF = 0).\n4. Solve for the unknown.\n\nRemember: when an object is in equilibrium, all forces must balance!"
+
+        generation_trace = build_generation_trace(
+            output=explanation,
+            model="gemini-2.0-flash" if _key else "alget-static-fallback",
+            prompt_version="assist-explain-v2",
+            section_id=request.section_id,
+            section_title=request.section_title,
+            content_version=request.content_version,
+            source_text=request.page_content,
+            provider="google" if _key else "alget",
+            review_status="not_human_reviewed" if _key else "deterministic_fallback",
+        )
+        return {"explanation": explanation, "generation_trace": generation_trace}
             
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -3086,7 +3142,18 @@ In engineering, we use this principle to design safe structures.
             "Representation type not supported."
         )
         
-        return {"content": content, "type": request.representation_type}
+        generation_trace = build_generation_trace(
+            output=content,
+            model="alget-static-representation",
+            prompt_version=f"assist-represent-{request.representation_type}-v2",
+            section_id=request.section_id,
+            section_title=request.section_title,
+            content_version=request.content_version,
+            source_text=request.page_content,
+            provider="alget",
+            review_status="deterministic_fallback",
+        )
+        return {"content": content, "type": request.representation_type, "generation_trace": generation_trace}
         
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

@@ -477,6 +477,27 @@ export function logContentAudit(sectionId, eventData = {}) {
 }
 
 /**
+ * Persist privacy-safe generation provenance. Source excerpts and generated
+ * text stay out of the event firehose; the trace id + hashes join them later.
+ */
+export function logGenerationTrace(trace, surface, sectionId) {
+    if (!trace?.trace_id) return null
+    return logEvent('generation_trace', surface || 'ai_generation', {
+        trace_id: trace.trace_id,
+        schema_version: trace.schema_version || null,
+        provider: trace.provider || null,
+        model: trace.model || null,
+        prompt_version: trace.prompt_version || null,
+        output_hash: trace.output_hash || null,
+        content_version: trace.content_version || null,
+        source_status: trace.source_status || null,
+        source_ids: (trace.sources || []).map((source) => source.source_id).filter(Boolean),
+        review_status: trace.review?.status || null,
+        claim_level_citations: Boolean(trace.verification?.claim_level_citations)
+    }, sectionId || trace.section_id || 'generation')
+}
+
+/**
  * Flush events to database
  */
 async function flushEvents() {

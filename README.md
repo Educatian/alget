@@ -224,11 +224,17 @@ Pydantic schema gates (`backend/agents/schema_gate.py`) validate every agent out
 
 ALGET is *generative*, not just *adaptive*. Five learner-facing generative surfaces:
 
-1. **Explain / Reframe** (rail). Fresh, RAG-grounded re-expression composed at the moment you ask.
+1. **Explain / Reframe** (rail). Fresh, section-context-grounded re-expression composed at the moment you ask.
 2. **Practice** (rail). PracticeGenerationAgent picks the weakest subskill and writes a targeted micro-problem; CritiqueAgent reviews before delivery.
 3. **Simulate / Illustrate** (chat). SimulationAgent emits a self-contained HTML/p5.js sketch; bio-inspired runs through ValidationAgent first.
 4. **Multi-agent grounded answers** (chat). Bio-inspired routes through Biology → Engineering → Validation → Tutor with the debate loop above.
 5. **Generative Lab** at `/lab` (researcher / instructor). CurriculumAgent generates a complete new module (narrative + practice + misconceptions) from a biology + engineering context.
+
+Learner-facing generations now carry the additive
+[`generation-trace-v1`](docs/GENERATION_TRACE.md) contract: model and prompt
+versions, output hash, content version, attached context, review status, and an
+explicit statement that attached context is not yet claim-level citation
+verification. Privacy-safe trace metadata is also written to the event log.
 
 A pilot Remotion-rendered video clip — **Directional Adhesion: How Geckos Stick** — is live in `bio-inspired/01/03` via `@remotion/player`'s `<Player>` (see `frontend/src/animations/bio_inspired/DirectionalAdhesion.jsx` + `frontend/src/components/RemotionClip.jsx`).
 
