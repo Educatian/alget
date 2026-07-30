@@ -107,6 +107,10 @@ function hasInstructorAccess(user) {
     || ['admin', 'course_admin', 'instructor'].includes(role)
 }
 
+function PendingInstructorNotice({ user }) {
+  return <div className="editorial-shell flex min-h-screen items-center justify-center px-6"><section className="max-w-xl border-l-2 border-amber-500 pl-5"><p className="editorial-kicker">INSTRUCTOR APPLICATION</p><h1 className="mt-2 text-2xl font-semibold text-[var(--ath-text)]">Approval is pending</h1><p className="mt-3 text-sm leading-6 text-[var(--ath-muted)]">{user?.email || 'Your account'} is confirmed, but a course administrator must approve instructor access before you can create courses or learning materials.</p><p className="mt-3 text-xs text-[var(--ath-muted)]">You can return after approval and sign in again.</p></section></div>
+}
+
 function hasCourseAdminAccess(user) {
   const role = user?.app_metadata?.role
   return user?.id === 'e2e-user' || ['admin', 'course_admin'].includes(role)
@@ -302,7 +306,7 @@ export default function App() {
                 path="/instructor"
                 element={
                   user ? (
-                    hasInstructorAccess(user) ? (
+                    (user?.app_metadata?.role === 'instructor_pending' || user?.user_metadata?.requested_role === 'instructor') ? <PendingInstructorNotice user={user} /> : hasInstructorAccess(user) ? (
                       <InstructorDashboard user={user} />
                     ) : (
                       <Navigate to="/analytics?return=instructor" replace />

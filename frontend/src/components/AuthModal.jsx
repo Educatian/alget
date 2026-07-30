@@ -11,6 +11,8 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
     const [password, setPassword] = useState('')
     const [studentName, setStudentName] = useState('')
     const [studentCohort, setStudentCohort] = useState(CURRENT_STUDENT_COHORTS[0].id)
+    const [accountType, setAccountType] = useState('learner')
+    const [fullName, setFullName] = useState('')
     const [loading, setLoading] = useState(false)
     const [studentLoading, setStudentLoading] = useState(false)
     const [error, setError] = useState('')
@@ -92,9 +94,14 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
             }
 
             if (mode === 'signup') {
-                const { error: signUpError } = await signUp(email, password)
+                if (accountType === 'instructor' && fullName.trim().length < 2) throw new Error('Enter your full name to apply as an instructor.')
+                const { error: signUpError } = await signUp(email, password, accountType === 'instructor'
+                    ? { full_name: fullName.trim(), requested_role: 'instructor' }
+                    : { requested_role: 'learner' })
                 if (signUpError) throw signUpError
-                setMessage('Check your email for a confirmation link before signing in.')
+                setMessage(accountType === 'instructor'
+                    ? 'Application submitted. Confirm your email, then wait for a course administrator to approve your instructor account.'
+                    : 'Check your email for a confirmation link before signing in.')
                 return
             }
 
@@ -240,6 +247,23 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
                                 required
                             />
                         </div>
+
+                        {mode !== 'forgot' && (
+                            mode === 'signup' && <div>
+                                <label htmlFor="account-type" className="editorial-label mb-2 block">Account type</label>
+                                <select id="account-type" value={accountType} onChange={(event) => setAccountType(event.target.value)} className="editorial-input">
+                                    <option value="learner">Learner</option>
+                                    <option value="instructor">Instructor (requires administrator approval)</option>
+                                </select>
+                            </div>
+                        )}
+
+                        {mode === 'signup' && accountType === 'instructor' && (
+                            <div>
+                                <label htmlFor="instructor-full-name" className="editorial-label mb-2 block">Full name</label>
+                                <input id="instructor-full-name" type="text" value={fullName} onChange={(event) => setFullName(event.target.value)} placeholder="Your full name" className="editorial-input" autoComplete="name" required />
+                            </div>
+                        )}
 
                         {mode !== 'forgot' && (
                             <div>

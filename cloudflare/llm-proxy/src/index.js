@@ -470,6 +470,13 @@ async function handleAdminRequest(request, env, path) {
     })
     return new Response(proxied.body, { status: proxied.status, headers: { ...CORS, 'content-type': proxied.headers.get('content-type') || 'application/json' } })
   }
+  if (path === '/admin/instructors/review' && request.method === 'POST') {
+    if (!auth.authorization) return json({ detail: 'Instructor review requires an interactive administrator session' }, 401)
+    if (!env.SUPABASE_URL) return json({ detail: 'Instructor review is not configured' }, 503)
+    const edgeUrl = `${String(env.SUPABASE_URL).replace(/\/$/, '')}/functions/v1/admin-review-instructor`
+    const proxied = await fetch(edgeUrl, { method: 'POST', headers: supabaseHeaders(env, auth.authorization), body: await request.text() })
+    return new Response(proxied.body, { status: proxied.status, headers: { ...CORS, 'content-type': proxied.headers.get('content-type') || 'application/json' } })
+  }
   return json({ detail: `Unknown admin endpoint: ${path}` }, 404)
 }
 

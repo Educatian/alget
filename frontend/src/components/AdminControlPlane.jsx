@@ -9,6 +9,7 @@ import {
     createManagedCourse,
     loadAdminState,
     registerInstructor,
+    reviewInstructorApplication,
 } from '../lib/adminControlService'
 
 const VIEWS = [
@@ -31,6 +32,8 @@ const STATUS_TONE = {
     suspended: 'text-rose-700',
     needs_review: 'text-amber-700',
     awaiting_approval: 'text-amber-700',
+    pending_approval: 'text-amber-700',
+    rejected: 'text-rose-700',
 }
 
 function Status({ children }) {
@@ -212,7 +215,7 @@ function Instructors({ state, busy, runAction, persistence }) {
                 <input required type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="editorial-input" placeholder="University email" aria-label="Instructor email" />
                 <button disabled={busy === 'instructor'} className="editorial-button px-4">{busy === 'instructor' ? 'Saving...' : 'Invite instructor'}</button>
             </form>
-            <RecordTable columns={['Instructor', 'Email', 'Status']} rows={state.instructors.map((item) => [item.display_name, item.email, <Status key={item.id}>{item.status}</Status>])} empty="No instructors registered." />
+            <RecordTable columns={['Instructor', 'Email', 'Status', 'Action']} rows={state.instructors.map((item) => [item.display_name, item.email, <Status key={item.id}>{item.status}</Status>, ['pending_approval', 'invited'].includes(item.status) ? <span key={`actions-${item.id}`} className="flex gap-2"><button type="button" disabled={busy === `approve-${item.id}`} onClick={() => runAction(`approve-${item.id}`, () => reviewInstructorApplication(item, 'approve', '', persistence), 'Instructor approved.')} className="text-xs font-semibold text-emerald-700">Approve</button><button type="button" disabled={busy === `reject-${item.id}`} onClick={() => runAction(`reject-${item.id}`, () => reviewInstructorApplication(item, 'reject', '', persistence), 'Instructor rejected.')} className="text-xs font-semibold text-rose-700">Reject</button></span> : '—'])} empty="No instructors registered." />
         </>
     )
 }
