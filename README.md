@@ -19,6 +19,7 @@
   <a href="#3-a-tour-of-the-surfaces"><strong>Product tour</strong></a> ·
   <a href="#4-architecture"><strong>Architecture</strong></a> ·
   <a href="docs/AGENTIC_LMS_RUNTIME.md"><strong>Agentic LMS contract</strong></a>
+  · <a href="docs/FACULTY_PARTNERSHIP_PIPELINE.md"><strong>Faculty partnership pipeline</strong></a>
 </p>
 
 ALGET pairs canonical engineering and instructional-design content with a learning environment that responds to each learner — pace, confusions, strong concepts, weak ones — while staying grounded in source material through a debate loop of specialist agents and a peer-review validator. It is the reference implementation for the system paper currently being prepared (`paper_draft.md`).
@@ -175,7 +176,7 @@ flowchart TB
 | Layer | Production responsibility | Failure boundary |
 |---|---|---|
 | **Cloudflare Pages** | SPA, fonts, diagrams, reference images, immutable course JSON | Core reading remains available without an AI response. |
-| **ALGET Worker** | Tutor calls, deterministic grading, agentic plan proposals, admin/PDF APIs | Returns bounded fallbacks; it does not own learner authorization state. |
+| **ALGET Worker** | Tutor calls, deterministic grading, agentic plan proposals, Google Docs/PDF ingestion APIs | Returns bounded fallbacks; it does not own learner authorization state. |
 | **Adaptive Worker + KV** | Low-latency support selection and versioned course policy | Emergency pause suppresses interventions without blocking reading. |
 | **Supabase** | Identity, RLS-governed records, Realtime, workflow events and reviewed RPCs | Tables are read-only to clients where approval integrity matters. |
 | **FastAPI parity runtime** | Local development, research experiments, Python contract tests | Not required for the Cloudflare production reading path. |
@@ -213,7 +214,7 @@ flowchart TB
 | `/book/:course` | BookLayout (TOC) | user |
 | `/book/:course/:chapter/:section` | BookLayout (reader + IntelRail + ChatWidget) | user |
 | `/dashboard` | StudentDashboard + learner-owned study planner | user |
-| `/instructor` | InstructorDashboard + intervention approval queue | `alget_instructor_access` |
+| `/instructor` | Faculty shadow pilot, weekly evidence brief, impact report, intervention approval queue | `alget_instructor_access` |
 | `/admin` | AdminControlPlane (ingestion, agents, policy, audit) | admin / course admin |
 | `/lab` | GenerativeLab (CurriculumAgent module gen) | researcher |
 | `/analytics` | AnalyticsDashboard (research console) | researcher |

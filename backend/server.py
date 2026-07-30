@@ -92,7 +92,15 @@ from content_service import (
 from grading_service import grade_problem
 from rag_service import rag_service
 from agents.assessment_agent import AssessmentAgent
-from admin_control import AGENT_MANIFEST, MAX_PDF_BYTES, build_governed_course_plan, convert_pdf_bytes
+from admin_control import (
+    AGENT_MANIFEST,
+    MAX_PDF_BYTES,
+    MAX_GOOGLE_DOC_CHARACTERS,
+    build_governed_course_plan,
+    build_google_doc_course_draft,
+    convert_pdf_bytes,
+    extract_google_doc_id,
+)
 from agentic_runtime import (
     TOOL_REGISTRY,
     build_intervention_proposal,
@@ -248,6 +256,11 @@ class AdminInstructorInviteRequest(BaseModel):
     email: str = Field(min_length=5, max_length=320)
     display_name: str = Field(min_length=2, max_length=120)
     redirect_url: Optional[str] = Field(default=None, max_length=500)
+
+
+class FacultyGoogleDocImportRequest(BaseModel):
+    course_id: str = Field(min_length=2, max_length=80, pattern=r"^[a-z0-9][a-z0-9-]*$")
+    document_url: str = Field(min_length=40, max_length=1000)
 
 
 class AgenticMasteryEvidence(BaseModel):
@@ -2291,6 +2304,31 @@ async def require_course_admin(operator=Depends(require_admin_access)):
     return operator
 
 
+async def require_faculty_access(request: Request):
+    """Allow accountable instructor, course-admin, or admin sessions."""
+    auth_header = request.headers.get("authorization", "")
+    bearer = auth_header[7:].strip() if auth_header.lower().startswith("bearer ") else ""
+    supabase_url = os.environ.get("SUPABASE_URL", "").rstrip("/")
+    supabase_anon_key = os.environ.get("SUPABASE_ANON_KEY", "").strip()
+    if not bearer or not supabase_url or not supabase_anon_key:
+        raise HTTPException(status_code=503, detail="Instructor authentication is not configured")
+    try:
+        async with httpx.AsyncClient(timeout=8.0) as client:
+            response = await client.get(
+                f"{supabase_url}/auth/v1/user",
+                headers={"apikey": supabase_anon_key, "Authorization": f"Bearer {bearer}"},
+            )
+    except httpx.HTTPError as exc:
+        raise HTTPException(status_code=503, detail="Identity provider unavailable") from exc
+    if response.status_code != 200:
+        raise HTTPException(status_code=401, detail="Invalid or expired instructor session")
+    user = response.json()
+    role = (user.get("app_metadata") or {}).get("role")
+    if role not in {"instructor", "admin", "course_admin"}:
+        raise HTTPException(status_code=403, detail="Instructor role required")
+    return {"role": role, "subject": user.get("id")}
+
+
 @app.get("/api/admin/system/summary")
 async def admin_system_summary(operator=Depends(require_admin_access)):
     return {
@@ -2451,6 +2489,36 @@ async def admin_convert_pdf(
     result["course_id"] = course_id
     result["source_id"] = f"pdf:{result['sha256'][:16]}"
     return result
+
+
+@app.post("/api/faculty/google-docs/import")
+async def faculty_import_google_doc(
+    payload: FacultyGoogleDocImportRequest,
+    operator=Depends(require_faculty_access),
+):
+    try:
+        document_id = extract_google_doc_id(payload.document_url)
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    export_url = f"https://docs.google.com/document/d/{document_id}/export?format=txt"
+    try:
+        async with httpx.AsyncClient(timeout=18.0, follow_redirects=True) as client:
+            response = await client.get(export_url)
+    except httpx.HTTPError as exc:
+        raise HTTPException(status_code=503, detail="Google Docs is temporarily unavailable") from exc
+    content_type = response.headers.get("content-type", "")
+    if response.status_code != 200 or "text/html" in content_type or "accounts.google.com" in str(response.url):
+        raise HTTPException(status_code=403, detail='The document could not be read. Share it as "Anyone with the link can view," then try again.')
+    if len(response.text) > MAX_GOOGLE_DOC_CHARACTERS:
+        raise HTTPException(status_code=413, detail="Google Doc exceeds the 250,000-character import limit")
+    title = next((line.strip() for line in response.text.splitlines() if line.strip()), "Google Docs course source")[:120]
+    try:
+        draft = build_google_doc_course_draft(response.text, document_id, title)
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    draft["source"]["canonical_url"] = f"https://docs.google.com/document/d/{document_id}/edit"
+    draft["quality"]["warnings"].append("Local FastAPI created the deterministic draft; Cloudflare runtime adds optional AI enrichment.")
+    return {"course_id": payload.course_id, "status": "shadow_draft", "operator": operator, "draft": draft}
 
 
 class AdaptiveDecisionOutcomeRequest(BaseModel):

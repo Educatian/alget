@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router'
 import { supabase } from '../lib/supabase'
 import { fetchRctSnapshot } from '../lib/researchService'
 import InstructorInterventionQueue from '../components/InstructorInterventionQueue'
+import FacultyPartnershipWorkspace from '../components/FacultyPartnershipWorkspace'
 
 /**
  * InstructorDashboard - cohort-level view for instructors. Shows where the
@@ -133,6 +134,13 @@ export default function InstructorDashboard({ user }) {
                     <p className="text-[11px] uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Hot-spot concepts</p>
                 </div>
             </section>
+
+            <FacultyPartnershipWorkspace
+                courseId={cohortCourseId}
+                hotSpots={lowMasteryConcepts}
+                strugglers={strugglers}
+                rct={rct}
+            />
 
             <InstructorInterventionQueue
                 user={user}
