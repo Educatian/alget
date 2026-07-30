@@ -497,7 +497,7 @@ export default function BookLayout({ user, onLogout }) {
     }, [handleNavigate, nextSection, previousSection, railOpen, tocOpen])
 
     return (
-        <div className="editorial-shell ath-open-layout flex h-screen flex-col overflow-hidden selection:bg-[rgba(200,226,236,0.35)]">
+        <div className="editorial-shell ath-open-layout ath-reader-density flex h-screen flex-col overflow-hidden selection:bg-[rgba(200,226,236,0.35)]">
             <a href="#main-content" className="skip-to-content-link">Skip to reading content</a>
             <OnboardingTour />
             <RetentionBanner course={course} />

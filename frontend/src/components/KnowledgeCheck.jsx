@@ -275,19 +275,19 @@ export default function KnowledgeCheck({
 
     if (status === 'idle') {
         return (
-            <div className="mt-12 overflow-hidden border-y border-[var(--ath-line)] bg-[color-mix(in_srgb,var(--ath-primary-soft)_28%,transparent)]">
+            <div className="mt-8 overflow-hidden border-y border-[var(--ath-line)] bg-[color-mix(in_srgb,var(--ath-primary-soft)_28%,transparent)]">
                 <div className="h-1 w-full bg-[linear-gradient(90deg,var(--ath-primary),#4a7382)]" />
-                <div className="px-4 py-8 text-center md:px-8">
-                    <div className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full bg-[var(--ath-panel)] px-4 py-2 text-[0.72rem] font-bold uppercase tracking-[0.2em] text-[var(--ath-primary)]">
+                <div className="px-4 py-6 text-center md:px-8">
+                    <div className="mx-auto mb-4 inline-flex items-center gap-2 rounded-full bg-[var(--ath-panel)] px-3 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-[var(--ath-primary)]">
                         Knowledge Check
                     </div>
-                    <h3 className="text-3xl font-semibold text-[var(--ath-text)]">Stress-Test Your Understanding</h3>
-                    <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[var(--ath-muted)]">
+                    <h3 className="text-2xl font-semibold text-[var(--ath-text)]">Stress-Test Your Understanding</h3>
+                    <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-[var(--ath-muted)]">
                         Generate a short adaptive quiz for this section. Missed questions can now feed directly into the support rail for targeted review.
                     </p>
                     <button
                         onClick={handleStart}
-                        className="editorial-button mt-7 px-6 py-3 text-sm"
+                        className="editorial-button mt-5 px-5 py-2.5 text-sm"
                     >
                         Generate Quiz
                     </button>
@@ -298,7 +298,7 @@ export default function KnowledgeCheck({
 
     if (status === 'loading') {
         return (
-            <div className="mt-12 border-y border-[var(--ath-line)] bg-[var(--ath-panel)] px-4 py-8 text-center md:px-8">
+            <div className="mt-8 border-y border-[var(--ath-line)] bg-[var(--ath-panel)] px-4 py-6 text-center md:px-8">
                 <p className="editorial-kicker">Knowledge Check</p>
                 <div className="mx-auto my-5 h-12 w-12 animate-spin rounded-full border-4 border-[var(--ath-panel-muted)] border-t-[var(--ath-primary)]" />
                 <h3 className="text-2xl font-semibold text-[var(--ath-text)]">Synthesizing Questions</h3>
@@ -372,19 +372,19 @@ export default function KnowledgeCheck({
             </div>
 
             <div className="px-4 py-6 md:px-6">
-                <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+                <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
                     <span className="editorial-kicker">
                         Question {currentQuestionIndex + 1} of {questions.length} / {currentQuestion?.type === 'summary' ? 'Short Response' : 'Multiple Choice'}
                     </span>
                     <span className="editorial-chip">Concept {currentQuestion?.concept_id || 'n/a'}</span>
                 </div>
 
-                <h3 className="text-2xl font-semibold leading-relaxed text-[var(--ath-text)]">
+                <h3 className="text-2xl font-semibold leading-snug text-[var(--ath-text)]">
                     {currentQuestion?.question}
                 </h3>
                 <GenerationTrace trace={assessmentTrace} compact />
 
-                <div className="mt-6 border-l-2 border-[var(--ath-line-strong)] bg-[var(--ath-panel)] px-4 py-3">
+                <div className="mt-4 border-l-2 border-[var(--ath-line-strong)] bg-[var(--ath-panel)] px-4 py-3">
                     <p className="editorial-label" id={`confidence-label-${currentQuestionIndex}`}>How confident are you in this answer?</p>
                     <div
                         className="mt-3 flex flex-wrap gap-2"
