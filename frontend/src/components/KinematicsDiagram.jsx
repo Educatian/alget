@@ -67,7 +67,7 @@ export const KinematicsDiagram = () => {
                 <button
                     onClick={() => setIsPlaying(!isPlaying)}
                     className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all shadow-md flex items-center gap-2
-                        ${isPlaying ? 'bg-red-50 text-red-600 border border-red-200 hover:bg-red-100' : 'bg-indigo-600 hover:bg-indigo-700 text-white'}`}
+                        ${isPlaying ? 'bg-red-50 text-red-600 border border-red-200 hover:bg-red-100' : 'bg-[var(--ath-primary)] hover:bg-[var(--ath-primary-deep)] text-white'}`}
                 >
                     {isPlaying ? (
                         <>
@@ -89,7 +89,7 @@ export const KinematicsDiagram = () => {
                     <label htmlFor="kinematics-scrub" className="text-xs font-bold uppercase tracking-wider text-[var(--ath-muted)]">
                         Scrub time {isPlaying ? '(stop to drag)' : ''}
                     </label>
-                    <span className="text-xs font-bold text-indigo-600">t = {tSeconds.toFixed(1)} s</span>
+                    <span className="text-xs font-bold text-[var(--ath-primary)]">t = {tSeconds.toFixed(1)} s</span>
                 </div>
                 <input
                     id="kinematics-scrub"
@@ -101,7 +101,7 @@ export const KinematicsDiagram = () => {
                     disabled={isPlaying}
                     onChange={(event) => setScrub(Number(event.target.value))}
                     aria-valuetext={`t = ${tSeconds.toFixed(1)} seconds`}
-                    className="mt-2 h-2 w-full cursor-pointer appearance-none rounded-lg bg-[var(--ath-line)] accent-indigo-600 disabled:opacity-50"
+                    className="mt-2 h-2 w-full cursor-pointer appearance-none rounded-lg bg-[var(--ath-line)] accent-[var(--ath-primary)] disabled:opacity-50"
                 />
                 <p className="mt-2 rounded-lg bg-[var(--ath-panel-muted)] px-3 py-2 text-xs text-[var(--ath-muted)]" aria-live="polite">
                     At t = {tSeconds.toFixed(1)} s the speed is {speed.toFixed(1)} m/s

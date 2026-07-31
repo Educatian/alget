@@ -420,7 +420,7 @@ h6,
   min-height: 3.5rem;
   padding: 0 1.25rem;
   border-bottom: 0;
-  background: #fff;
+  background: var(--ath-topbar);
   box-shadow: none;
   backdrop-filter: none;
 }
@@ -433,17 +433,17 @@ h6,
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 9999px;
-  background: #5c4afa;
+  background: var(--ath-primary);
 }
 
 .ath-reader-density .ath-reader-header button > div:first-child + div h1 {
-  color: #1c1a29;
+  color: var(--ath-text);
   font-size: 0.9375rem;
   letter-spacing: -0.0125em;
 }
 
 .ath-reader-density .ath-reader-header button > div:first-child + div p {
-  color: #63616e;
+  color: var(--ath-muted);
   font-size: 0.6875rem;
   letter-spacing: 0;
 }
@@ -812,12 +812,12 @@ h6,
    but give its shell, auth dialog, and pathway gate the same quiet density as
    the learner/instructor/admin frames. */
 .ath-landing-shell {
-  background: #f7f5f0;
+  background: var(--ath-background);
 }
 
 .ath-landing-shell .ath-topbar {
   border-bottom: 0;
-  background: #fff;
+  background: var(--ath-topbar);
   box-shadow: none;
   backdrop-filter: none;
 }
@@ -827,7 +827,7 @@ h6,
   height: 1.5rem;
   border: 0;
   border-radius: 9999px;
-  background: #5c4afa;
+  background: var(--ath-primary);
   padding: 0;
   font-size: 0.68rem;
   box-shadow: none;
@@ -907,7 +907,7 @@ h6,
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 9999px;
-  background: #5c4afa;
+  background: var(--ath-primary);
 }
 
 .ath-pathway-shell main {
