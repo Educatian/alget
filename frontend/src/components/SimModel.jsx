@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 /**
  * SimModel — an interactive 3D viewport band for a sim card. Renders a
@@ -8,11 +8,40 @@ import { useEffect } from 'react'
  * browser-side so it never touches the jsdom test environment.)
  */
 export default function SimModel({ src, alt, label }) {
+    const modelContainerRef = useRef(null)
+
     useEffect(() => {
-        import('@google/model-viewer').catch(() => {})
+        let cancelled = false
+        const loadModelViewer = () => {
+            if (cancelled) return
+            import('@google/model-viewer').catch(() => {})
+        }
+
+        const container = modelContainerRef.current
+        if (!container || typeof IntersectionObserver === 'undefined') {
+            loadModelViewer()
+            return () => {
+                cancelled = true
+            }
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            if (entries.some((entry) => entry.isIntersecting)) {
+                loadModelViewer()
+                observer.disconnect()
+            }
+        }, { rootMargin: '240px 0px' })
+        observer.observe(container)
+
+        return () => {
+            cancelled = true
+            observer.disconnect()
+        }
     }, [])
+
     return (
         <div
+            ref={modelContainerRef}
             className="relative border-y border-[var(--ath-line)]"
             style={{ background: 'radial-gradient(circle at 50% 38%, #202a38 0%, #0c0f14 75%)' }}
         >
@@ -23,6 +52,8 @@ export default function SimModel({ src, alt, label }) {
                 camera-orbit="30deg 72deg auto"
                 auto-rotate
                 auto-rotate-delay="0"
+                loading="lazy"
+                reveal="interaction"
                 rotation-per-second="18deg"
                 interaction-prompt="none"
                 shadow-intensity="0.9"
