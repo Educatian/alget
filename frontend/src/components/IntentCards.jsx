@@ -57,14 +57,14 @@ export function LearnIntentCard({ data }) {
                     <div className="border border-indigo-200/60 rounded-xl overflow-hidden shadow-sm transition-all duration-300">
                         <button
                             onClick={() => setOpenSection(openSection === 'eng' ? null : 'eng')}
-                            className="w-full bg-linear-to-r from-indigo-50/80 to-purple-50/80 px-4 py-3 text-left text-sm font-bold text-indigo-900 flex justify-between items-center hover:bg-indigo-100/50 transition-colors"
+                            className="w-full bg-[color-mix(in_srgb,var(--ath-primary-soft)_65%,white)] px-4 py-3 text-left text-sm font-bold text-[var(--ath-primary-deep)] flex justify-between items-center hover:bg-[var(--ath-primary-soft)] transition-colors"
                         >
                             <span className="text-[13px]">Engineering Application</span>
-                            <span className={`text-indigo-600 transition-transform duration-300 ${openSection === 'eng' ? 'rotate-180' : ''}`}>v</span>
+                            <span className={`text-[var(--ath-primary)] transition-transform duration-300 ${openSection === 'eng' ? 'rotate-180' : ''}`}>v</span>
                         </button>
                         {openSection === 'eng' && (
                             <div className="p-4 bg-white/60 backdrop-blur-md text-[13px] text-slate-700 leading-relaxed border-t border-indigo-100/50">
-                                <p className="font-bold mb-2 text-indigo-950">{engineeringTitle}</p>
+                                <p className="font-bold mb-2 text-[var(--ath-primary-deep)]">{engineeringTitle}</p>
                                 <p>{engineeringBody}</p>
                                 {engApp.challenges?.length > 0 && (
                                     <ul className="list-disc pl-5 mt-3 space-y-1.5 text-sm text-slate-700">
@@ -192,7 +192,7 @@ export function IllustrateIntentCard({ data }) {
     return (
         <div className="glass-panel p-6 border-purple-200/50 shadow-xl shadow-purple-900/5 mt-2 bg-linear-to-br from-white/80 to-purple-50/30">
             <div className="flex items-center gap-3 mb-4">
-                <h4 className="font-bold text-purple-950 text-sm tracking-tight">{illData.illustration_title || 'Conceptual Illustration'}</h4>
+                <h4 className="font-bold text-[var(--ath-primary-deep)] text-sm tracking-tight">{illData.illustration_title || 'Conceptual Illustration'}</h4>
             </div>
 
             <p className="text-slate-700 text-[13px] font-medium leading-relaxed mb-6 bg-white/50 p-4 rounded-xl border border-white">
@@ -201,11 +201,11 @@ export function IllustrateIntentCard({ data }) {
 
             {illData.ui_elements?.length > 0 && (
                 <div className="bg-white/80 backdrop-blur-md p-4 rounded-xl border border-purple-100 shadow-[0_2px_10px_rgb(0,0,0,0.02)]">
-                    <h5 className="text-[10px] font-bold text-purple-800 uppercase tracking-widest mb-2">Key Visual Elements:</h5>
+                    <h5 className="text-[10px] font-bold text-[var(--ath-primary)] uppercase tracking-widest mb-2">Key Visual Elements:</h5>
                     <ul className="list-none text-[13px] text-slate-700 space-y-1.5 font-medium">
                         {illData.ui_elements.map((el, i) => (
                             <li key={i} className="flex items-start gap-2.5 leading-relaxed">
-                                <span className="text-purple-500 mt-1.5 text-[0.6rem]">*</span> <span>{el}</span>
+                                <span className="text-[var(--ath-primary)] mt-1.5 text-[0.6rem]">*</span> <span>{el}</span>
                             </li>
                         ))}
                     </ul>

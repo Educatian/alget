@@ -64,7 +64,7 @@ export const SelfHealingDiagram = () => {
             <button
                 onClick={handleStress}
                 disabled={isAnimating}
-                className="mb-6 px-6 py-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-[var(--ath-panel-muted)] disabled:text-[var(--ath-muted)] text-white font-bold rounded-lg transition-colors shadow-sm active:scale-95"
+                className="mb-6 px-6 py-2 bg-[var(--ath-primary)] hover:bg-[var(--ath-primary-deep)] disabled:bg-[var(--ath-panel-muted)] disabled:text-[var(--ath-muted)] text-white font-bold rounded-lg transition-colors shadow-sm active:scale-95"
             >
                 {crackProgress === 0 ? "Apply Structural Stress" : (crackProgress >= 100 ? "Reset & Re-stress" : "Fracturing...")}
             </button>
