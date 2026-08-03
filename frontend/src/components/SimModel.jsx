@@ -11,6 +11,12 @@ export default function SimModel({ src, alt, label }) {
     const modelContainerRef = useRef(null)
 
     useEffect(() => {
+        // jsdom cannot create a WebGL context. Keep the custom element as a
+        // harmless markup placeholder in unit tests; real browsers still load
+        // model-viewer lazily when the viewport reaches the model.
+        if (typeof navigator !== 'undefined' && /jsdom/i.test(navigator.userAgent)) {
+            return undefined
+        }
         let cancelled = false
         const loadModelViewer = () => {
             if (cancelled) return

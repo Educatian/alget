@@ -14,6 +14,10 @@ vi.mock('../components/CourseIllustrations', () => ({
     InstDesignIllustration: () => <div>Inst Illustration</div>
 }))
 
+vi.mock('../hooks/useCourseProgress', () => ({
+    useCourseProgress: () => ({ recentSection: null, bookmarks: [] })
+}))
+
 beforeEach(() => {
     window.localStorage.clear()
     globalThis.fetch = vi.fn().mockResolvedValue({

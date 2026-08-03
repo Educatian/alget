@@ -5,8 +5,10 @@ import { useCourseProgress } from './useCourseProgress'
 const mockSelect = vi.fn()
 const mockEq = vi.fn()
 const mockUpsert = vi.fn()
+const supabaseState = vi.hoisted(() => ({ configured: true }))
 
 vi.mock('../lib/supabase', () => ({
+    get isSupabaseConfigured() { return supabaseState.configured },
     supabase: {
         from: vi.fn(() => ({
             select: mockSelect,
@@ -19,6 +21,7 @@ describe('useCourseProgress', () => {
     beforeEach(() => {
         window.localStorage.clear()
         vi.clearAllMocks()
+        supabaseState.configured = true
 
         mockSelect.mockReturnValue({ eq: mockEq })
         mockEq.mockResolvedValue({
@@ -76,5 +79,16 @@ describe('useCourseProgress', () => {
         expect(result.current.recentSection?.sectionId).toBe('inst-design/02/03')
         expect(result.current.bookmarks[0]?.sectionId).toBe('inst-design/02/03')
         expect(result.current.isBookmarked('inst-design', '02', '03')).toBe(true)
+    })
+
+    it('stays local without touching Supabase when the service is not configured', async () => {
+        supabaseState.configured = false
+        const { result } = renderHook(() => useCourseProgress({ id: 'offline-user' }))
+
+        await waitFor(() => {
+            expect(result.current.progressStats.syncStatus).toBe('local')
+        })
+        expect(mockSelect).not.toHaveBeenCalled()
+        expect(mockUpsert).not.toHaveBeenCalled()
     })
 })

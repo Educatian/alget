@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { safeLocalStorageGet, safeLocalStorageSet, safeLocalStorageRemove } from '../lib/browserStorage'
-import { supabase } from '../lib/supabase'
+import { isSupabaseConfigured, supabase } from '../lib/supabase'
 
 function getScopedKey(prefix, userId) {
     return `${prefix}_${userId || 'guest'}`
@@ -151,7 +151,7 @@ function persistBookmarks(userId, bookmarks) {
 }
 
 async function fetchCloudProgress(userId) {
-    if (!userId) {
+    if (!userId || !isSupabaseConfigured) {
         return []
     }
 
@@ -176,7 +176,7 @@ async function fetchCloudProgress(userId) {
 }
 
 async function syncProgressRows(userId, sectionIds) {
-    if (!userId || sectionIds.length === 0) {
+    if (!userId || !isSupabaseConfigured || sectionIds.length === 0) {
         return
     }
 
@@ -258,7 +258,7 @@ export function useCourseProgress(user) {
                 safeLocalStorageRemove(getBookmarkKey(null))
             }
 
-            if (!userId) {
+            if (!userId || !isSupabaseConfigured) {
                 setSyncStatus('local')
                 return
             }
