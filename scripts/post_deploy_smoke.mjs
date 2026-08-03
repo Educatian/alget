@@ -22,13 +22,19 @@ const results = []
 async function request(url, options = {}) {
   const controller = new AbortController()
   const timer = setTimeout(() => controller.abort(), TIMEOUT_MS)
+  const startedAt = Date.now()
   try {
     const response = await fetch(url, { ...options, signal: controller.signal })
     const text = await response.text()
-    return { status: response.status, headers: response.headers, text }
+    return { status: response.status, headers: response.headers, text, elapsedMs: Date.now() - startedAt }
   } finally {
     clearTimeout(timer)
   }
+}
+
+function withinBudget(response, budgetMs, label) {
+  if (response.elapsedMs > budgetMs) throw new Error(`${label} exceeded ${budgetMs}ms budget (${response.elapsedMs}ms)`)
+  return `${response.status} in ${response.elapsedMs}ms`
 }
 
 async function check(name, run) {
@@ -56,9 +62,10 @@ console.log(`app    ${APP}`)
 console.log(`worker ${WORKER}\n`)
 
 await check('app shell responds', async () => {
-  const { status } = await request(`${APP}/`)
+  const response = await request(`${APP}/`)
+  const { status } = response
   if (status !== 200) throw new Error(`expected 200, got ${status}`)
-  return '200'
+  return withinBudget(response, 5000, 'app shell')
 })
 
 await check('security headers present', async () => {
@@ -86,13 +93,15 @@ await check('access-code endpoint is a function, not a static asset', async () =
 })
 
 await check('worker health reports its services', async () => {
-  const { status, text } = await request(`${WORKER}/health`)
+  const response = await request(`${WORKER}/health`)
+  const { status, text } = response
   if (status !== 200) throw new Error(`expected 200, got ${status}`)
   const body = json(text)
   if (body.status !== 'ready') throw new Error(`status is "${body.status}"`)
   const down = Object.entries(body.services || {}).filter(([, up]) => !up).map(([name]) => name)
   if (down.length) throw new Error(`services down: ${down.join(', ')}`)
-  return `ready, ${Object.keys(body.services || {}).length} services up`
+  withinBudget(response, 5000, 'worker health')
+  return `ready, ${Object.keys(body.services || {}).length} services up in ${response.elapsedMs}ms`
 })
 
 await check('roadmap manifest exposes governed runtime contracts', async () => {
@@ -109,18 +118,20 @@ await check('roadmap manifest exposes governed runtime contracts', async () => {
 })
 
 await check('assessment generation returns a usable assessment', async () => {
-  const { status, text } = await request(`${WORKER}/generate_assessment`, {
+  const response = await request(`${WORKER}/generate_assessment`, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({ section_title: 'Post-deploy smoke check' }),
   })
+  const { status, text } = response
   if (status !== 200) throw new Error(`expected 200, got ${status}`)
   const body = json(text)
   const questions = body.assessment?.mcq_questions
   if (!Array.isArray(questions) || questions.length === 0) {
     throw new Error(`no questions generated: ${body.summary || 'no summary'}`)
   }
-  return `${questions.length} questions`
+  withinBudget(response, 15000, 'assessment generation')
+  return `${questions.length} questions in ${response.elapsedMs}ms`
 })
 
 // Unauthenticated callers must be refused, and refused as a routed endpoint
