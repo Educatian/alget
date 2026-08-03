@@ -304,7 +304,7 @@ function buildGoogleDocCourseDraft(text, documentId, title = '') {
     sections,
     runtime_package: { version: 'course-runtime-v1', generated: ['reading', 'activity', 'simulation', 'tutor', 'analytics', 'social_dynamics'], approval_required: true },
     quality: {
-      source_grounded: true, human_approval_required: true, student_visible: false, automatic_publish: false,
+      source_grounded: true, citation_verification: 'not-verified', human_approval_required: true, student_visible: false, automatic_publish: false,
       warnings: sections.length >= 2 ? [] : ['Only one section was detected; review the document heading structure.'],
     },
   }
@@ -679,7 +679,11 @@ async function groundDraftInOpenStax(env, authorization, draft) {
   }
   if (moduleReferences.length) {
     draft.references = moduleReferences
+    draft.quality.citation_verification = 'openstax-retrieved'
     draft.quality.warnings.push(`${moduleReferences.length} open textbook passages cited; honour each passage's licence before reusing its text.`)
+  } else {
+    draft.quality.citation_verification = 'not-verified'
+    draft.quality.warnings.push('No independent OpenStax passages were retrieved; an instructor must verify claims before approval.')
   }
   return draft
 }
