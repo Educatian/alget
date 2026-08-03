@@ -22,6 +22,20 @@ A release candidate is ready to deploy only when GitHub CI is green and the prod
 - Validate one Caliper event, OneRoster user payload, CASE competency, and evaluation manifest before institutional export.
 6. Confirm the GitHub commit deployed to both production surfaces.
 
+The same smoke runs hourly through `.github/workflows/production-smoke.yml` and
+can be started manually from the Actions tab. A failed scheduled run is an
+operational alert: inspect the Pages deployment and Worker version before
+promoting a rollback.
+
+Supabase migration history contains older remote-only versions from the legacy
+schema bundle. Do not repair those versions by marking them reverted without a
+schema review. The current forward contracts are tracked and verified by
+`20260801000000_openstax_reference_index.sql` and
+`20260802000000_agentic_roadmap_contracts.sql`; after applying them, confirm
+`openstax_sections`, `course_runtime_packages`, and
+`agent_decision_ledger` exist with
+`powershell -File scripts/verify_live_migrations.ps1` before release.
+
 ## Adaptation incident response
 
 1. Open `/admin` and choose `Adaptation`.
