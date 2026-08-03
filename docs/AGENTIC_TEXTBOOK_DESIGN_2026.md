@@ -68,4 +68,5 @@ The control plane also exposes the long-horizon contracts needed for an institut
 - [x] LTI 1.3, Caliper, OneRoster, and CASE payloads pass contract validation before institutional export.
 - [x] Content schema, reference/image manifests, frontend tests/lint/build, backend tests, worker tests, and release readiness pass.
 - [x] Live Supabase migration history, RLS contracts, sensitive anonymous ACL revokes, and anonymous route refusal are verified against the deployed project.
-- [ ] Authenticated PDF/Google Docs import smoke still requires a designated instructor pilot account; no test identity or credential is stored in the repository or CI.
+- [x] Authenticated PDF/Google Docs import contract is covered by a hermetic Worker integration test: instructor role succeeds with a private shadow draft, learner role is rejected, and no automatic publication is possible.
+- [ ] A live authenticated PDF/Google Docs smoke still requires a designated instructor pilot token; no test identity or credential is stored in the repository or CI.

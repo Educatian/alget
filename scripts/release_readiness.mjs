@@ -92,6 +92,16 @@ for (const contract of [
 ]) {
   requireText(liveSmoke, contract, `Production smoke contract ${contract}`)
 }
+const facultyRuntimeTest = read('cloudflare/llm-proxy/src/faculty-auth-runtime.test.mjs')
+for (const contract of [
+  'authenticated instructor can import Google Docs',
+  'authenticated instructor can import PDF',
+  'learner role cannot reach faculty import',
+  'student_visible, false',
+  'automatic_publish, false',
+]) {
+  requireText(facultyRuntimeTest, contract, `Authenticated faculty import contract ${contract}`)
+}
 for (const contract of ['privacy-deletion-v1', 'incident', 'evaluation', 'decision ledger']) {
   requireText(roadmapMigration, contract, `Roadmap contract ${contract}`)
 }
