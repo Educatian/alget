@@ -67,4 +67,5 @@ The control plane also exposes the long-horizon contracts needed for an institut
 - [x] Model versions, agent decisions, privacy requests, incidents, and evaluation manifests are auditable and course-scoped in local/API contracts.
 - [x] LTI 1.3, Caliper, OneRoster, and CASE payloads pass contract validation before institutional export.
 - [x] Content schema, reference/image manifests, frontend tests/lint/build, backend tests, worker tests, and release readiness pass.
-- [ ] Live deployment still needs authenticated Supabase migration verification and a real PDF/Google Docs import smoke; local green tests cannot substitute for those external checks.
+- [x] Live Supabase migration history, RLS contracts, sensitive anonymous ACL revokes, and anonymous route refusal are verified against the deployed project.
+- [ ] Authenticated PDF/Google Docs import smoke still requires a designated instructor pilot account; no test identity or credential is stored in the repository or CI.

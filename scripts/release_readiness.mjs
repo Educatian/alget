@@ -79,7 +79,17 @@ for (const contract of ['alget-pilot-events-v1', 'sanitizePilotPayload', 'buildP
 }
 
 const liveSmoke = read('scripts/post_deploy_smoke.mjs')
-for (const contract of ['elapsedMs', 'withinBudget', '/admin/instructors/invite', '/admin/instructors/review']) {
+for (const contract of [
+  'elapsedMs',
+  'withinBudget',
+  '/agentic/tools',
+  '/agentic/tools/evaluate',
+  '/agentic/learner-plan',
+  '/agentic/interventions/propose',
+  '/admin/instructors/invite',
+  '/admin/instructors/review',
+  '/faculty/google-docs/import',
+]) {
   requireText(liveSmoke, contract, `Production smoke contract ${contract}`)
 }
 for (const contract of ['privacy-deletion-v1', 'incident', 'evaluation', 'decision ledger']) {

@@ -136,6 +136,74 @@ await check('assessment generation returns a usable assessment', async () => {
   return `${questions.length} questions in ${response.elapsedMs}ms`
 })
 
+await check('agentic tool registry exposes default-deny policy', async () => {
+  const response = await request(`${WORKER}/agentic/tools`)
+  if (response.status !== 200) throw new Error(`expected 200, got ${response.status}`)
+  const body = json(response.text)
+  if (body.schema_version !== 'agentic-tool-registry-v1') throw new Error(`schema is "${body.schema_version || 'missing'}"`)
+  if (body.default_policy !== 'deny') throw new Error(`default policy is "${body.default_policy || 'missing'}"`)
+  if (!Array.isArray(body.tools) || body.tools.length < 5) throw new Error('tool registry is incomplete')
+  return `${body.tools.length} tools, default deny`
+})
+
+await check('agentic policy refuses unimplemented high-risk execution', async () => {
+  const response = await request(`${WORKER}/agentic/tools/evaluate`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ tool_id: 'content.publish', actor_role: 'admin', approved: true }),
+  })
+  if (response.status !== 200) throw new Error(`expected 200, got ${response.status}`)
+  const body = json(response.text)
+  if (body.allowed !== false || body.reason !== 'execution_not_implemented') {
+    throw new Error(`unexpected policy result: ${body.reason || 'missing reason'}`)
+  }
+  return 'content.publish remains unavailable to autonomous execution'
+})
+
+await check('agentic learner plan remains approval-gated', async () => {
+  const target = new Date()
+  target.setUTCDate(target.getUTCDate() + 7)
+  const response = await request(`${WORKER}/agentic/learner-plan`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({
+      course_id: 'cat100-supplement',
+      goal_title: 'Post-deploy smoke plan',
+      target_date: target.toISOString().slice(0, 10),
+      target_mastery: 0.8,
+      weekly_minutes: 180,
+      mastery: [{ concept_id: 'smoke_concept', mastery_score: 0.35, attempts_count: 2 }],
+    }),
+  })
+  if (response.status !== 200) throw new Error(`expected 200, got ${response.status}`)
+  const body = json(response.text)
+  if (body.schema_version !== 'agentic-study-plan-v1') throw new Error('unexpected learner plan schema')
+  if (body.learner_control?.requires_approval !== true) throw new Error('learner approval gate is missing')
+  if (!Array.isArray(body.sessions) || body.sessions.length === 0) throw new Error('plan has no sessions')
+  return `${body.sessions.length} sessions; learner approval required`
+})
+
+await check('agentic intervention proposal never delivers automatically', async () => {
+  const response = await request(`${WORKER}/agentic/interventions/propose`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({
+      course_id: 'cat100-supplement',
+      concept_id: 'smoke_concept',
+      learner_count: 3,
+      average_mastery: 0.38,
+      target_user_ids: [],
+    }),
+  })
+  if (response.status !== 200) throw new Error(`expected 200, got ${response.status}`)
+  const body = json(response.text)
+  if (body.delivery?.executed !== false || body.delivery?.requires_instructor_approval !== true) {
+    throw new Error('intervention delivery guard is missing')
+  }
+  if (body.evidence?.causal_claim !== false) throw new Error('proposal did not preserve non-causal evidence label')
+  return 'proposal only; delivery and grading remain disabled'
+})
+
 // Unauthenticated callers must be refused, and refused as a routed endpoint
 // rather than falling through to the SPA shell.
 for (const [name, path] of [
@@ -143,6 +211,8 @@ for (const [name, path] of [
   ['instructor invite', '/admin/instructors/invite'],
   ['instructor approval review', '/admin/instructors/review'],
   ['faculty PDF import', '/faculty/pdf/import'],
+  ['faculty Google Docs import', '/faculty/google-docs/import'],
+  ['roadmap runtime package', '/roadmap/runtime-package'],
 ]) {
   await check(`${name} endpoint refuses anonymous callers`, async () => {
     const { status, text } = await request(`${WORKER}${path}`, { method: path.includes('summary') ? 'GET' : 'POST' })
