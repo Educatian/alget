@@ -95,6 +95,19 @@ await check('worker health reports its services', async () => {
   return `ready, ${Object.keys(body.services || {}).length} services up`
 })
 
+await check('roadmap manifest exposes governed runtime contracts', async () => {
+  const { status, text } = await request(`${WORKER}/roadmap/manifest`)
+  if (status !== 200) throw new Error(`expected 200, got ${status}`)
+  const body = json(text)
+  if (body.schema_version !== 'roadmap-manifest-v1') throw new Error(`schema is "${body.schema_version || 'missing'}"`)
+  if (body.roadmap_contract !== 'roadmap-runtime-v1') throw new Error(`contract is "${body.roadmap_contract || 'missing'}"`)
+  const horizons = body.horizons || {}
+  if (!['0-12_months', '12-24_months', '24-36_months'].every((key) => Array.isArray(horizons[key]) && horizons[key].length)) {
+    throw new Error('roadmap horizons are incomplete')
+  }
+  return 'roadmap-runtime-v1, 3 horizons'
+})
+
 await check('assessment generation returns a usable assessment', async () => {
   const { status, text } = await request(`${WORKER}/generate_assessment`, {
     method: 'POST',
