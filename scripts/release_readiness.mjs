@@ -82,6 +82,7 @@ const liveSmoke = read('scripts/post_deploy_smoke.mjs')
 for (const contract of [
   'elapsedMs',
   'withinBudget',
+  'malformed bearer tokens',
   '/agentic/tools',
   '/agentic/tools/evaluate',
   '/agentic/learner-plan',

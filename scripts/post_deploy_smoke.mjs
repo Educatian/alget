@@ -221,6 +221,16 @@ for (const [name, path] of [
     json(text)
     return `${status}`
   })
+  await check(`${name} endpoint refuses malformed bearer tokens`, async () => {
+    const { status, text } = await request(`${WORKER}${path}`, {
+      method: path.includes('summary') ? 'GET' : 'POST',
+      headers: { authorization: 'Bearer definitely-not-a-jwt' },
+    })
+    if (status === 404) throw new Error('404: the endpoint is not deployed')
+    if (status !== 401 && status !== 403) throw new Error(`expected 401/403, got ${status}`)
+    json(text)
+    return `${status}`
+  })
 }
 
 const failed = results.filter((result) => !result.ok)
