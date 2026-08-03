@@ -8,7 +8,9 @@ import {
     importPdfCourseDraft,
     loadAssignedIngestionSources,
     loadFacultyWorkspace,
+    loadPilotEventExport,
     publishFacultyPilot,
+    pilotEventsToCsv,
     publishedSectionRoute,
     saveEvidenceBrief,
     saveImpactReport,
@@ -251,6 +253,20 @@ export default function FacultyPartnershipWorkspace({ courseId, hotSpots = [], s
         }
     }
 
+    const exportPilotEvents = async () => {
+        setBusy('events')
+        setMessage('')
+        try {
+            const events = await loadPilotEventExport(courseId)
+            downloadText(pilotEventsToCsv(events), `${courseId}-pilot-events.csv`, 'text/csv;charset=utf-8')
+            setMessage(`Exported ${events.length} privacy-safe pilot events. No raw learner writing or direct identifiers are included.`)
+        } catch (error) {
+            setMessage(error.message || 'Could not export pilot events.')
+        } finally {
+            setBusy('')
+        }
+    }
+
     return (
         <section aria-labelledby="faculty-partnership-title" className="mx-auto mt-5 max-w-5xl border-t border-[var(--ath-line)] pt-4">
             <div className="flex flex-wrap items-start gap-4">
@@ -430,7 +446,10 @@ export default function FacultyPartnershipWorkspace({ courseId, hotSpots = [], s
                             <div className="flex items-center gap-2"><FileSearch className="h-4 w-4 text-[var(--ath-primary)]" /><h2 className="text-sm font-semibold text-[var(--ath-text)]">Course improvement record</h2></div>
                             <p className="mt-1 text-xs text-[var(--ath-muted)]">De-identified, instructor-owned, and explicit about evidence limits.</p>
                         </div>
-                        <button type="button" onClick={exportReport} disabled={Boolean(busy)} className="editorial-button px-4 py-2 text-xs"><Download className="mr-1 inline h-3.5 w-3.5" />{busy === 'report' ? 'Exporting…' : 'Export Markdown'}</button>
+                        <div className="flex flex-wrap gap-2">
+                            <button type="button" onClick={exportPilotEvents} disabled={Boolean(busy)} className="editorial-button-secondary px-4 py-2 text-xs"><Download className="mr-1 inline h-3.5 w-3.5" />{busy === 'events' ? 'Exporting…' : 'Export pilot CSV'}</button>
+                            <button type="button" onClick={exportReport} disabled={Boolean(busy)} className="editorial-button px-4 py-2 text-xs"><Download className="mr-1 inline h-3.5 w-3.5" />{busy === 'report' ? 'Exporting…' : 'Export Markdown'}</button>
+                        </div>
                     </div>
                     <dl className="mt-5 grid gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
                         <Metric label="Closed interventions" value={report.outcomes.intervention_count} />
@@ -459,7 +478,11 @@ function prettify(value) {
 }
 
 function downloadMarkdown(markdown, filename) {
-    const url = URL.createObjectURL(new Blob([markdown], { type: 'text/markdown;charset=utf-8' }))
+    downloadText(markdown, filename, 'text/markdown;charset=utf-8')
+}
+
+function downloadText(content, filename, type) {
+    const url = URL.createObjectURL(new Blob([content], { type }))
     const anchor = document.createElement('a')
     anchor.href = url
     anchor.download = filename
