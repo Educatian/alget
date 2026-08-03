@@ -106,6 +106,14 @@ const facultySmoke = read('scripts/faculty_authenticated_smoke.mjs')
 for (const contract of ['ALGET_INSTRUCTOR_TOKEN', '/faculty/google-docs/import', '/faculty/pdf/import', 'shadow_draft', 'never written to disk']) {
   requireText(facultySmoke, contract, 'Authenticated faculty smoke helper contract')
 }
+const roleOnboardingE2e = read('frontend/e2e/auth-role-signup.spec.js')
+for (const contract of ['Sign Up', 'selectOption(\'instructor\')', 'requires administrator approval']) {
+  requireText(roleOnboardingE2e, contract, 'Role-aware onboarding E2E contract')
+}
+const adminControlPlaneE2e = read('frontend/e2e/admin-control-plane.spec.js')
+for (const contract of ['Instructor invitation recorded.', 'Instructor approved.', 'Course shell created.']) {
+  requireText(adminControlPlaneE2e, contract, 'Admin control-plane E2E contract')
+}
 for (const contract of ['privacy-deletion-v1', 'incident', 'evaluation', 'decision ledger']) {
   requireText(roadmapMigration, contract, `Roadmap contract ${contract}`)
 }
