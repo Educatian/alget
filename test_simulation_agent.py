@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import webbrowser
+import pytest
 from dotenv import load_dotenv
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -12,11 +13,10 @@ load_dotenv()
 
 API_KEY = os.environ.get("GEMINI_API_KEY")
 
-if not API_KEY:
-    print("Error: GEMINI_API_KEY not found in .env")
-    sys.exit(1)
-
 def test_simulation_agent():
+    if not API_KEY:
+        pytest.skip("GEMINI_API_KEY is required for the live simulation-agent smoke test")
+
     print("\n--- Testing Simulation Agent HTML Generation ---")
     agent = SimulationAgent(API_KEY)
     

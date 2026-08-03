@@ -68,6 +68,11 @@ for (const contract of ['research_pilot_event_export', 'actor_hash', 'jsonb_stri
   requireText(pilotMigration, contract, `Pilot export contract ${contract}`)
 }
 
+const aclMigration = read('supabase/migrations/20260803010000_harden_sensitive_acl.sql')
+for (const contract of ['revoke all on table', 'public.managed_courses', 'public.agent_decision_ledger', 'public.interaction_events', 'revoke all on public.research_pilot_event_export']) {
+  requireText(aclMigration, contract, `Sensitive ACL contract ${contract}`)
+}
+
 const pilotSchema = read('frontend/src/lib/pilotEventSchema.js')
 for (const contract of ['alget-pilot-events-v1', 'sanitizePilotPayload', 'buildPilotEvent']) {
   requireText(pilotSchema, contract, `Pilot event schema ${contract}`)

@@ -7,6 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 PLACEHOLDER_PREFIXES = ("replace-with-", "optional-")
+SAFE_LITERAL_VALUES = {"true", "false", "0", "1"}
 ENV_ASSIGNMENT = re.compile(r"^(?:export\s+)?[A-Z][A-Z0-9_]*\s*=\s*(.*)$")
 
 
@@ -48,7 +49,11 @@ def test_committed_environment_contract_contains_placeholders_only() -> None:
             if match is None:
                 continue
             value = match.group(1).strip()
-            if value and not value.startswith(PLACEHOLDER_PREFIXES):
+            if (
+                value
+                and value.lower() not in SAFE_LITERAL_VALUES
+                and not value.startswith(PLACEHOLDER_PREFIXES)
+            ):
                 unsafe_paths.append(path.relative_to(ROOT).as_posix())
                 break
     assert not unsafe_paths, f"credential-bearing tracked configuration: {unsafe_paths}"

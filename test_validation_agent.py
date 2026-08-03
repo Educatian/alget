@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import pytest
 from dotenv import load_dotenv
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -12,11 +13,10 @@ load_dotenv()
 
 API_KEY = os.environ.get("GEMINI_API_KEY")
 
-if not API_KEY:
-    print("Error: GEMINI_API_KEY not found in .env")
-    sys.exit(1)
-
 def test_validation_independent():
+    if not API_KEY:
+        pytest.skip("GEMINI_API_KEY is required for the live validation-agent smoke test")
+
     print("\n--- Testing ValidationAgent Independently ---")
     agent = ValidationAgent(API_KEY)
     
@@ -35,6 +35,9 @@ def test_validation_independent():
     print(json.dumps(invalid_res, indent=2))
 
 def test_orchestrator():
+    if not API_KEY:
+        pytest.skip("GEMINI_API_KEY is required for the live orchestrator smoke test")
+
     print("\n--- Testing Full Orchestrator Integration ---")
     agent = OrchestratorAgent(API_KEY)
     

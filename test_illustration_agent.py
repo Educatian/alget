@@ -1,6 +1,7 @@
 import os
 import json
 import sys
+import pytest
 from backend.agents.illustration_agent import IllustrationAgent
 from backend.agents.orchestrator import OrchestratorAgent
 
@@ -14,8 +15,7 @@ except ImportError:
 def test_illustration_agent_direct():
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
-        print("Skipping direct test - no API key found.")
-        return
+        pytest.skip("GEMINI_API_KEY is required for the live illustration-agent smoke test")
         
     print("\n--- Testing IllustrationAgent Direct ---")
     agent = IllustrationAgent(api_key=api_key)
@@ -32,8 +32,7 @@ def test_illustration_agent_direct():
 def test_orchestrator_illustration_intent():
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
-        print("Skipping orchestrator test - no API key found.")
-        return
+        pytest.skip("GEMINI_API_KEY is required for the live illustration orchestrator smoke test")
         
     print("\n--- Testing Orchestrator 'illustrate' Intent ---")
     orchestrator = OrchestratorAgent(api_key=api_key)
