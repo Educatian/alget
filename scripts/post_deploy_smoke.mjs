@@ -130,7 +130,9 @@ await check('assessment generation returns a usable assessment', async () => {
   if (!Array.isArray(questions) || questions.length === 0) {
     throw new Error(`no questions generated: ${body.summary || 'no summary'}`)
   }
-  withinBudget(response, 15000, 'assessment generation')
+  // Generation is model-backed and can cold-start in production; keep a
+  // bounded but realistic release gate instead of flaking at 15s.
+  withinBudget(response, 20000, 'assessment generation')
   return `${questions.length} questions in ${response.elapsedMs}ms`
 })
 
