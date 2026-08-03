@@ -5,7 +5,10 @@
       "type": "multiple_choice",
       "difficulty": "easy",
       "concept_id": "statical_determinacy",
-      "concept_ids": ["statical_determinacy", "truss_analysis"],
+      "concept_ids": [
+        "statical_determinacy",
+        "truss_analysis"
+      ],
       "stem": "A planar truss has 11 members and 7 joints. Based on the count test, how is it classified?",
       "options": [
         "Unstable",
@@ -15,27 +18,41 @@
       ],
       "correct_index": 1,
       "explanation": "Because 2j - 3 = 2(7) - 3 = 11, the member count is consistent with a statically determinate planar truss.",
-      "misconception_id": "count_test_is_everything"
+      "misconception_id": "count_test_is_everything",
+      "learning_objective_ids": [
+        "statics-03-01-lo-04"
+      ]
     },
     {
       "id": "statics_members_needed",
       "type": "numeric",
       "difficulty": "medium",
       "concept_id": "statical_determinacy",
-      "concept_ids": ["statical_determinacy", "truss_analysis"],
+      "concept_ids": [
+        "statical_determinacy",
+        "truss_analysis"
+      ],
       "stem": "How many members are required for a simple planar truss with 8 joints to satisfy m = 2j - 3?",
       "final_answer": {
         "value": 13,
         "unit": "",
         "tolerance": 0
-      }
+      },
+      "learning_objective_ids": [
+        "statics-03-01-lo-01",
+        "statics-03-01-lo-02",
+        "statics-03-01-lo-03"
+      ]
     },
     {
       "id": "statics_zero_force_rule",
       "type": "multiple_choice",
       "difficulty": "medium",
       "concept_id": "joint",
-      "concept_ids": ["joint_equilibrium", "member_force"],
+      "concept_ids": [
+        "joint_equilibrium",
+        "member_force"
+      ],
       "stem": "At an unloaded joint with two non-collinear members only, what can you conclude?",
       "options": [
         "Both members are zero-force members",
@@ -45,14 +62,20 @@
       ],
       "correct_index": 0,
       "explanation": "If there is no external load or support reaction at that joint, both non-collinear member forces must be zero for equilibrium.",
-      "misconception_id": "zero_force_members_useless"
+      "misconception_id": "zero_force_members_useless",
+      "learning_objective_ids": [
+        "statics-03-01-lo-03"
+      ]
     },
     {
       "id": "statics_two_force_member",
       "type": "multiple_choice",
       "difficulty": "easy",
       "concept_id": "member",
-      "concept_ids": ["member_force", "truss_analysis"],
+      "concept_ids": [
+        "member_force",
+        "truss_analysis"
+      ],
       "stem": "Why are ideal truss members often treated as two-force members?",
       "options": [
         "Because loads act only at joints and pin connections prevent moment transfer in the ideal model",
@@ -62,7 +85,10 @@
       ],
       "correct_index": 0,
       "explanation": "In the ideal truss model, joint loading and pin connections mean each member carries axial force only.",
-      "misconception_id": "all_members_carry_bending"
+      "misconception_id": "all_members_carry_bending",
+      "learning_objective_ids": [
+        "statics-03-01-lo-02"
+      ]
     }
   ]
 }

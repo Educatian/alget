@@ -6,10 +6,22 @@
   "chapter": "03",
   "section": "02",
   "learning_objectives": [
-    "Distinguish product evidence from process evidence and explain why generative AI weakened product evidence.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Apply an allowed-use boundary to judge whether a student did the reserved work, rather than whether AI touched the document.",
-    "Critique AI-detector scores as probabilistic, equity-biased hypotheses rather than integrity evidence."
+    {
+      "id": "cat531-supplement-03-02-lo-01",
+      "statement": "Distinguish product evidence from process evidence and explain why generative AI weakened product evidence"
+    },
+    {
+      "id": "cat531-supplement-03-02-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "cat531-supplement-03-02-lo-03",
+      "statement": "Apply an allowed-use boundary to judge whether a student did the reserved work, rather than whether AI touched the document"
+    },
+    {
+      "id": "cat531-supplement-03-02-lo-04",
+      "statement": "Critique AI-detector scores as probabilistic, equity-biased hypotheses rather than integrity evidence"
+    }
   ],
   "concept_ids": [
     "cat531_supplement_ai_in_education",
@@ -28,5 +40,21 @@
   ],
   "estimated_time_minutes": 14,
   "order": 2,
-  "top_tier_hardened": false
+  "top_tier_hardened": false,
+  "lo_practice_map": {
+    "cat531-supplement-03-02-lo-01": [
+      "cat531_supplement_3_2_generative_ai_and_student_work_ai_boundary"
+    ],
+    "cat531-supplement-03-02-lo-02": [
+      "cat531_supplement_3_2_generative_ai_and_student_work_calibration"
+    ],
+    "cat531-supplement-03-02-lo-03": [
+      "cat531_supplement_3_2_generative_ai_and_student_work_annotation_signal"
+    ],
+    "cat531-supplement-03-02-lo-04": [
+      "cat531_supplement_3_2_generative_ai_and_student_work_annotation_signal",
+      "cat531_supplement_3_2_generative_ai_and_student_work_artifact_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

@@ -20,6 +20,9 @@
         "cat531_supplement_generative_ai_and_student_work",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-02-lo-04"
       ]
     },
     {
@@ -42,6 +45,10 @@
         "cat531_supplement_generative_ai_and_student_work",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-02-lo-03",
+        "cat531-supplement-03-02-lo-04"
       ]
     },
     {
@@ -64,6 +71,9 @@
         "cat531_supplement_generative_ai_and_student_work",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-02-lo-01"
       ]
     },
     {
@@ -86,6 +96,9 @@
         "cat531_supplement_generative_ai_and_student_work",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-02-lo-02"
       ]
     }
   ]

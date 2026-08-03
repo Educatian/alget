@@ -18,7 +18,11 @@
       "correct_index": 1,
       "explanation": "Triage by impact. A broken total is a correctness failure; fix it before any cosmetic change in a limited time box.",
       "misconception_id": "cat100_supplement_8_6_polish_before_fix",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-08-06-lo-01",
+        "cat100-supplement-08-06-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_8_6_revision_sprint_annotation_signal",
@@ -37,7 +41,10 @@
       "correct_index": 1,
       "explanation": "A short changelog of time, change, and reason makes the sprint traceable and lets you roll back a change that made things worse.",
       "misconception_id": "cat100_supplement_8_6_no_changelog",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-08-06-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_8_6_revision_sprint_ai_boundary",
@@ -56,7 +63,10 @@
       "correct_index": 1,
       "explanation": "A sprint revises, it does not rebuild. Use the time for high-impact targeted fixes and defer larger rework so you do not ship something broken.",
       "misconception_id": "cat100_supplement_8_6_scope_creep",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-08-06-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_8_6_revision_sprint_calibration",
@@ -75,7 +85,10 @@
       "correct_index": 1,
       "explanation": "A traceable entry gives the time, the exact cell and formula, the verified result, and the reason, so a reviewer can confirm the fix.",
       "misconception_id": "cat100_supplement_8_6_no_changelog",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-08-06-lo-02"
+      ]
     }
   ]
 }

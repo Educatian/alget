@@ -1,4 +1,5 @@
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
+import { createHash } from 'node:crypto'
 import { join, relative, resolve } from 'node:path'
 
 const root = resolve(import.meta.dirname, '..')
@@ -35,8 +36,11 @@ const redirects = read('frontend/public/_redirects')
 requireText(redirects, '/*  /index.html  200', 'SPA fallback')
 
 const worker = read('cloudflare/llm-proxy/src/index.js')
-for (const safeguard of ['/health', 'adaptation_emergency_pause', '/(pause|resume)', "suppressionReason = 'emergency_pause'"]) {
+for (const safeguard of ['/health', 'adaptation_emergency_pause', '/(pause|resume)', "suppressionReason = 'emergency_pause'", '/agentic/learner-plan', '/agentic/interventions/propose', 'execution_not_implemented']) {
   requireText(worker, safeguard, 'Worker release safeguard')
+}
+for (const roadmapContract of ['/roadmap/manifest', '/roadmap/runtime-package', '/roadmap/decision-ledger', '/roadmap/interoperability/caliper', '/roadmap/interoperability/oneroster', '/roadmap/interoperability/case', '/roadmap/interoperability/lti13', '/roadmap/model-registry', '/roadmap/privacy/export', '/roadmap/privacy/delete', '/roadmap/incidents', '/roadmap/evaluation-manifest', 'published_requires_human_approval']) {
+  requireText(worker, roadmapContract, 'Worker roadmap contract')
 }
 
 const migration = read('supabase/migrations/20260730090000_admin_control_plane.sql')
@@ -44,6 +48,125 @@ for (const table of ['instructor_profiles', 'managed_courses', 'content_ingestio
   requireText(migration, `alter table public.${table} enable row level security`, `RLS for ${table}`)
 }
 requireText(migration, "auth.jwt() -> 'app_metadata'", 'role authorization')
+
+const agenticMigration = read('supabase/migrations/20260730100000_agentic_lms_runtime.sql')
+for (const table of ['agent_workflows', 'agent_workflow_events', 'learner_goals', 'learner_study_plans', 'instructor_intervention_queue']) {
+  requireText(agenticMigration, `alter table public.${table} enable row level security`, `Agentic LMS RLS for ${table}`)
+}
+for (const rpc of ['transition_agent_workflow', 'create_learner_plan_workflow', 'review_learner_plan', 'create_instructor_intervention_workflow', 'review_instructor_intervention']) {
+  requireText(agenticMigration, `function public.${rpc}`, `Agentic LMS RPC ${rpc}`)
+}
+requireText(agenticMigration, 'agent_workflow_events', 'Agentic LMS audit trail')
+
+const roadmapMigration = read('supabase/migrations/20260802000000_agentic_roadmap_contracts.sql')
+for (const table of ['course_runtime_packages', 'agent_decision_ledger', 'roadmap_interop_events', 'agent_model_registry', 'roadmap_incidents', 'roadmap_privacy_requests', 'roadmap_evaluation_manifests']) {
+  requireText(roadmapMigration, `alter table public.${table} enable row level security`, `Roadmap RLS for ${table}`)
+}
+for (const contract of ['privacy-deletion-v1', 'incident', 'evaluation', 'decision ledger']) {
+  requireText(roadmapMigration, contract, `Roadmap contract ${contract}`)
+}
+
+const roadmapModule = read('backend/roadmap_runtime.py')
+for (const contract of ['build_runtime_package', 'record_agent_decision', 'summarize_social_outcomes', 'to_caliper_event', 'normalize_oneroster_users', 'build_case_competency', 'ModelRegistry', 'build_privacy_export', 'create_incident', 'build_evaluation_manifest']) {
+  requireText(roadmapModule, contract, `Backend roadmap contract ${contract}`)
+}
+
+const contentFiles = filesUnder('frontend/content').filter((file) => file.endsWith('.mdx'))
+const forbiddenCitationIdentifiers = [
+  '10.4324/9781315670160',
+  '10.1016/j.learninstruc.2009.12.009',
+]
+for (const file of contentFiles) {
+  const content = readFileSync(file, 'utf8')
+  for (const identifier of forbiddenCitationIdentifiers) {
+    if (content.includes(identifier)) {
+      failures.push(`invalid citation identifier in ${relative(root, file)} (${identifier})`)
+    }
+  }
+}
+
+const manifestModule = await import('../frontend/src/generated/contentManifest.js')
+const actualCounts = {}
+for (const file of contentFiles) {
+  const parts = relative(join(root, 'frontend/content'), file).split(/[\\/]/)
+  const [course, chapter] = parts
+  actualCounts[course] ||= { chapters: new Set(), sections: 0 }
+  actualCounts[course].chapters.add(chapter)
+  actualCounts[course].sections += 1
+}
+for (const [course, actual] of Object.entries(actualCounts)) {
+  const generated = manifestModule.CONTENT_COUNTS[course]
+  if (!generated || generated.chapters !== actual.chapters.size || generated.sections !== actual.sections) {
+    failures.push(
+      `content manifest mismatch for ${course}: generated ${JSON.stringify(generated)} vs ` +
+      `actual ${actual.chapters.size} chapters/${actual.sections} sections`,
+    )
+  }
+}
+
+const referenceManifestText = read('frontend/public/course-art/reference-manifest.json')
+if (referenceManifestText) {
+  let referenceManifest
+  try {
+    referenceManifest = JSON.parse(referenceManifestText)
+  } catch (error) {
+    failures.push(`reference image manifest is not valid JSON: ${error.message}`)
+  }
+
+  if (referenceManifest) {
+    const figures = Array.isArray(referenceManifest.figures) ? referenceManifest.figures : []
+    if (referenceManifest.figure_count !== figures.length || figures.length !== 210) {
+      failures.push(`reference image manifest count mismatch: declared ${referenceManifest.figure_count}, actual ${figures.length}, expected 210`)
+    }
+    const paths = new Set()
+    const sections = new Set()
+    for (const figure of figures) {
+      if (!figure.path || !figure.section_id || !figure.alt || !figure.caption || !figure.source || !figure.license || !figure.sha256) {
+        failures.push(`incomplete reference image metadata for ${figure.section_id || figure.path || 'unknown figure'}`)
+        continue
+      }
+      if (paths.has(figure.path)) failures.push(`duplicate reference image path: ${figure.path}`)
+      if (sections.has(figure.section_id)) failures.push(`duplicate reference image section: ${figure.section_id}`)
+      paths.add(figure.path)
+      sections.add(figure.section_id)
+
+      const absolute = join(root, 'frontend/public', figure.path.replace(/^\//, ''))
+      if (!existsSync(absolute)) {
+        failures.push(`missing reference image asset: ${figure.path}`)
+        continue
+      }
+      const digest = createHash('sha256').update(readFileSync(absolute)).digest('hex')
+      if (digest !== figure.sha256) failures.push(`reference image integrity mismatch: ${figure.path}`)
+
+      const [course, chapter, section] = figure.section_id.split('/')
+      const mdxPath = join(root, 'frontend/content', course, chapter, `${section}.mdx`)
+      const metaPath = join(root, 'frontend/content', course, chapter, `${section}.meta.json`)
+      if (!existsSync(mdxPath) || !readFileSync(mdxPath, 'utf8').includes(figure.path)) {
+        failures.push(`reference image is not linked from its section: ${figure.section_id}`)
+      }
+      if (figure.learning_objective_id && existsSync(metaPath)) {
+        const meta = JSON.parse(readFileSync(metaPath, 'utf8'))
+        const objectiveIds = new Set((meta.learning_objectives || []).map((objective) => objective?.id).filter(Boolean))
+        if (!objectiveIds.has(figure.learning_objective_id)) {
+          failures.push(`reference image objective mismatch: ${figure.section_id}/${figure.learning_objective_id}`)
+        }
+      }
+    }
+  }
+}
+
+const instructionalVisualPattern = /!\[[^\]]*\]\([^)]+\)|<[a-z-]*diagram\b|<concept-diagram\b|<figure-block\b|<youtube-embed\b|<remotion-clip\b/i
+for (const file of contentFiles) {
+  const content = readFileSync(file, 'utf8')
+  if (!instructionalVisualPattern.test(content)) {
+    failures.push(`section has no instructional visual: ${relative(root, file)}`)
+  }
+  for (const figureMatch of content.matchAll(/<figure-block\b[^>]*>[\s\S]*?<\/figure-block>/gi)) {
+    for (const match of figureMatch[0].matchAll(/<img\b[^>]*>/gi)) {
+      if (!/\balt="[^"]+"/i.test(match[0])) failures.push(`figure image missing descriptive alt text: ${relative(root, file)}`)
+    }
+  }
+}
 
 const productionFrontendFiles = [
   ...filesUnder('frontend/src'),
@@ -76,4 +199,4 @@ if (failures.length) {
   process.exit(1)
 }
 
-console.log('Release readiness passed: security headers, SPA fallback, emergency pause, health endpoint, RLS declarations, and frontend secret scan are present.')
+console.log('Release readiness passed: security headers, SPA fallback, emergency pause, health endpoint, admin/agentic/roadmap RLS contracts, citations, catalog counts, reference-image coverage/integrity, and frontend secret scan are valid.')

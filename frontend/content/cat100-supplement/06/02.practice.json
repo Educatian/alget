@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "The browser tab text comes from the <title> element inside <head>. <h1> shows on the page itself; it does not set the tab.",
       "misconception_id": "cat100_supplement_6_2_h1_sets_tab_title",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-06-02-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_6_2_starter_html_and_css_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "When two selectors have the same specificity, the rule that appears later in the stylesheet overrides the earlier one, so the text is green.",
       "misconception_id": "cat100_supplement_6_2_first_rule_wins",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-06-02-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_6_2_starter_html_and_css_ai_boundary",
@@ -57,7 +63,10 @@
       "correct_index": 1,
       "explanation": "AI-generated CSS often references classes that are not in your HTML. You stay responsible for making selectors and markup match before the styles will do anything.",
       "misconception_id": "cat100_supplement_6_2_ai_css_runs_blindly",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-06-02-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_6_2_starter_html_and_css_calibration",
@@ -77,7 +86,21 @@
       "correct_index": 1,
       "explanation": "A screen reader announces the alt text. Adding alt=\"Maria Lopez, headshot\" makes the image meaningful to non-visual users; size and format do not address accessibility.",
       "misconception_id": "cat100_supplement_6_2_alt_text_optional",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-06-02-lo-02"
+      ]
+    },
+    {
+      "id": "cat100-supplement_06_02_lo_04_direct_check",
+      "type": "conceptual",
+      "stem": "Provide a concise response that demonstrates this learning objective: Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "expected_answer": "The response accurately demonstrates the section objective: Document a bounded AI/software support move with accepted and rejected suggestions, using relevant section concepts, evidence, or calculations.",
+      "explanation": "This direct-evidence item is used when no closed-response item adequately samples the objective. Score it with the section concepts and worked examples as the rubric.",
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-06-02-lo-04"
+      ]
     }
   ]
 }

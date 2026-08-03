@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import BigALCompanion from './BigALCompanion'
 import AdaptationDesignStudio from './AdaptationDesignStudio'
+import RoadmapGovernancePanel from './RoadmapGovernancePanel'
 import {
     AGENT_MANIFEST,
     approveAgentRun,
@@ -9,6 +10,7 @@ import {
     createManagedCourse,
     loadAdminState,
     registerInstructor,
+    reviewInstructorApplication,
 } from '../lib/adminControlService'
 
 const VIEWS = [
@@ -18,28 +20,31 @@ const VIEWS = [
     ['ingestion', 'PDF ingestion'],
     ['agents', 'Agent control'],
     ['adaptation', 'Adaptation'],
+    ['roadmap', 'Roadmap governance'],
     ['cohort', 'Cohort'],
 ]
 
 const STATUS_TONE = {
-    active: 'text-emerald-700',
-    approved: 'text-emerald-700',
-    ready: 'text-emerald-700',
-    published: 'text-emerald-700',
-    failed: 'text-rose-700',
-    blocked: 'text-rose-700',
-    suspended: 'text-rose-700',
-    needs_review: 'text-amber-700',
-    awaiting_approval: 'text-amber-700',
+    active: 'text-[var(--ath-success)]',
+    approved: 'text-[var(--ath-success)]',
+    ready: 'text-[var(--ath-success)]',
+    published: 'text-[var(--ath-success)]',
+    failed: 'text-[var(--ath-danger)]',
+    blocked: 'text-[var(--ath-danger)]',
+    suspended: 'text-[var(--ath-danger)]',
+    needs_review: 'text-[var(--ath-warning)]',
+    awaiting_approval: 'text-[var(--ath-warning)]',
+    pending_approval: 'text-[var(--ath-warning)]',
+    rejected: 'text-[var(--ath-danger)]',
 }
 
 function Status({ children }) {
-    return <span className={`text-[10px] font-semibold uppercase tracking-[0.12em] ${STATUS_TONE[children] || 'text-[var(--ath-secondary)]'}`}>{String(children).replaceAll('_', ' ')}</span>
+    return <span className={`text-[length:var(--ath-text-2xs)] font-semibold uppercase tracking-[0.12em] ${STATUS_TONE[children] || 'text-[var(--ath-secondary)]'}`}>{String(children).replaceAll('_', ' ')}</span>
 }
 
 export default function AdminControlPlane({ cohortContent, onBack, onResearcher }) {
     const [view, setView] = useState('overview')
-    const [state, setState] = useState({ instructors: [], courses: [], ingestionJobs: [], agentRuns: [], auditEvents: [], adaptationPolicies: [], adaptationControls: {} })
+    const [state, setState] = useState({ instructors: [], courses: [], ingestionJobs: [], agentRuns: [], workflows: [], auditEvents: [], adaptationPolicies: [], adaptationControls: {} })
     const [persistence, setPersistence] = useState('local')
     const [loading, setLoading] = useState(true)
     const [busy, setBusy] = useState('')
@@ -77,11 +82,13 @@ export default function AdminControlPlane({ cohortContent, onBack, onResearcher 
         instructors: state.instructors.length,
         courses: state.courses.length,
         review: state.ingestionJobs.filter((item) => item.status === 'needs_review').length,
-        approvals: state.agentRuns.filter((item) => item.status === 'awaiting_approval').length,
+        approvals: state.agentRuns.filter((item) => item.status === 'awaiting_approval').length
+            + (state.workflows || []).filter((item) => item.status === 'awaiting_approval').length,
+        activeWorkflows: (state.workflows || []).filter((item) => item.status === 'active').length,
     }), [state])
 
     return (
-        <div className="editorial-shell ath-open-layout min-h-screen bg-[var(--ath-background)]">
+        <div className="ath-admin-shell editorial-shell ath-open-layout min-h-screen bg-[var(--ath-background)]">
             <header className="ath-topbar sticky top-0 z-20 px-4 py-3 md:px-6">
                 <div className="mx-auto flex max-w-7xl items-center gap-3">
                     <BigALCompanion state={metrics.approvals ? 'nudge' : 'rest'} size={40} />
@@ -114,7 +121,7 @@ export default function AdminControlPlane({ cohortContent, onBack, onResearcher 
 
                 <main className="min-w-0">
                     {(error || message) && (
-                        <div role={error ? 'alert' : 'status'} className={`mb-4 border-l-2 px-3 py-2 text-sm ${error ? 'border-rose-500 text-rose-700' : 'border-emerald-500 text-emerald-700'}`}>
+                        <div role={error ? 'alert' : 'status'} className={`mb-4 border-l-2 px-3 py-2 text-sm ${error ? 'border-[var(--ath-danger)] text-[var(--ath-danger)]' : 'border-[var(--ath-success)] text-[var(--ath-success)]'}`}>
                             {error || message}
                         </div>
                     )}
@@ -126,6 +133,7 @@ export default function AdminControlPlane({ cohortContent, onBack, onResearcher 
                             {view === 'ingestion' && <Ingestion state={state} busy={busy} runAction={runAction} persistence={persistence} />}
                             {view === 'agents' && <Agents state={state} busy={busy} runAction={runAction} persistence={persistence} />}
                             {view === 'adaptation' && <AdaptationDesignStudio state={state} busy={busy} runAction={runAction} persistence={persistence} />}
+                            {view === 'roadmap' && <RoadmapGovernancePanel />}
                             {view === 'cohort' && cohortContent}
                         </>
                     )}
@@ -210,7 +218,7 @@ function Instructors({ state, busy, runAction, persistence }) {
                 <input required type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="editorial-input" placeholder="University email" aria-label="Instructor email" />
                 <button disabled={busy === 'instructor'} className="editorial-button px-4">{busy === 'instructor' ? 'Saving...' : 'Invite instructor'}</button>
             </form>
-            <RecordTable columns={['Instructor', 'Email', 'Status']} rows={state.instructors.map((item) => [item.display_name, item.email, <Status key={item.id}>{item.status}</Status>])} empty="No instructors registered." />
+            <RecordTable columns={['Instructor', 'Email', 'Status', 'Action']} rows={state.instructors.map((item) => [item.display_name, item.email, <Status key={item.id}>{item.status}</Status>, ['pending_approval', 'invited'].includes(item.status) ? <span key={`actions-${item.id}`} className="flex gap-2"><button type="button" disabled={busy === `approve-${item.id}`} onClick={() => runAction(`approve-${item.id}`, () => reviewInstructorApplication(item, 'approve', '', persistence), 'Instructor approved.')} className="text-xs font-semibold text-emerald-700">Approve</button><button type="button" disabled={busy === `reject-${item.id}`} onClick={() => runAction(`reject-${item.id}`, () => reviewInstructorApplication(item, 'reject', '', persistence), 'Instructor rejected.')} className="text-xs font-semibold text-rose-700">Reject</button></span> : '—'])} empty="No instructors registered." />
         </>
     )
 }
@@ -276,6 +284,12 @@ function Agents({ state, busy, runAction, persistence }) {
     return (
         <>
             <SectionHeader kicker="GOVERNANCE" title="Agent control" description="Plan first, approve explicitly, execute one stage at a time, and preserve a human release gate." />
+            <div className="mb-5 grid gap-3 border-y border-[var(--ath-line)] py-3 sm:grid-cols-3">
+                <RuntimeMetric label="Durable workflows" value={(state.workflows || []).length} />
+                <RuntimeMetric label="Awaiting approval" value={(state.workflows || []).filter((item) => item.status === 'awaiting_approval').length} />
+                <RuntimeMetric label="Active" value={(state.workflows || []).filter((item) => item.status === 'active').length} />
+                <p className="text-xs text-[var(--ath-muted)] sm:col-span-3">Default deny · messaging, publishing, enrollment changes, and final grades remain unavailable to autonomous execution.</p>
+            </div>
             <div className="grid gap-3 border-b border-[var(--ath-line)] pb-5 md:grid-cols-[minmax(0,1fr)_auto]">
                 <select value={courseId} onChange={(e) => setCourseId(e.target.value)} className="editorial-input" aria-label="Agent run course">
                     <option value="">Select course</option>
@@ -304,7 +318,32 @@ function Agents({ state, busy, runAction, persistence }) {
                     </div>
                 ))}
             </div>
+            {(state.workflows || []).length > 0 && (
+                <div className="mt-6">
+                    <p className="editorial-label">Recent learner and instructor workflows</p>
+                    <div className="mt-2 divide-y divide-[var(--ath-line)] border-y border-[var(--ath-line)]">
+                        {state.workflows.slice(0, 8).map((workflow) => (
+                            <div key={workflow.id} className="flex flex-wrap items-center gap-3 py-3">
+                                <div className="min-w-0 flex-1">
+                                    <p className="truncate text-sm font-semibold text-[var(--ath-text)]">{workflow.goal || workflow.workflow_type}</p>
+                                    <p className="text-xs text-[var(--ath-muted)]">{String(workflow.workflow_type).replaceAll('_', ' ')} · {workflow.risk_level || 'low'} risk</p>
+                                </div>
+                                <Status>{workflow.status}</Status>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
         </>
+    )
+}
+
+function RuntimeMetric({ label, value }) {
+    return (
+        <div className="border-l-2 border-[var(--ath-primary-soft)] pl-3">
+            <p className="text-xl font-semibold text-[var(--ath-text)]">{value}</p>
+            <p className="text-xs text-[var(--ath-secondary)]">{label}</p>
+        </div>
     )
 }
 

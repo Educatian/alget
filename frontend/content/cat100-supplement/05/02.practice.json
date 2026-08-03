@@ -18,7 +18,11 @@
       "correct_index": 1,
       "explanation": "Assertion headlines plus limited support are the structure; decoration is deferred until the message arc is clear.",
       "difficulty": "easy",
-      "misconception_id": "cat100_supplement_5_2_slide_structure_before_decoration_wall_of_bullets"
+      "misconception_id": "cat100_supplement_5_2_slide_structure_before_decoration_wall_of_bullets",
+      "learning_objective_ids": [
+        "cat100-supplement-05-02-lo-01",
+        "cat100-supplement-05-02-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_5_2_slide_structure_before_decoration_annotation_signal",
@@ -37,7 +41,11 @@
       "correct_index": 1,
       "explanation": "The note names a concrete structural fault (a repeated headline claim) so feedback can target the arc.",
       "difficulty": "medium",
-      "misconception_id": "cat100_supplement_5_2_slide_structure_before_decoration_decorate_first"
+      "misconception_id": "cat100_supplement_5_2_slide_structure_before_decoration_decorate_first",
+      "learning_objective_ids": [
+        "cat100-supplement-05-02-lo-02",
+        "cat100-supplement-05-02-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_5_2_slide_structure_before_decoration_ai_boundary",
@@ -56,7 +64,10 @@
       "correct_index": 1,
       "explanation": "AI critiques the headline arc as a proposal; you keep the decision about ordering and message.",
       "difficulty": "hard",
-      "misconception_id": "cat100_supplement_5_2_slide_structure_before_decoration_polish_signals_done"
+      "misconception_id": "cat100_supplement_5_2_slide_structure_before_decoration_polish_signals_done",
+      "learning_objective_ids": [
+        "cat100-supplement-05-02-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_5_2_slide_structure_before_decoration_calibration",
@@ -74,7 +85,10 @@
       ],
       "correct_index": 1,
       "explanation": "An assertion headline gives the slide a single inspectable point before any decoration is considered.",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-05-02-lo-02"
+      ]
     }
   ]
 }

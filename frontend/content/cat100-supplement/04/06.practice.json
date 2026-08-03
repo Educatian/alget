@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "A decision log records choices and reasons; a feelings paragraph shows no judgment.",
       "misconception_id": "cat100_supplement_4_6_feelings_not_decisions",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-04-06-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_4_6_reflection_on_teacher_judgment_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "All-accepts with no override means no independent judgment is visible in the log.",
       "misconception_id": "cat100_supplement_4_6_only_accepts",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-04-06-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_4_6_reflection_on_teacher_judgment_ai_boundary",
@@ -57,7 +63,10 @@
       "correct_index": 1,
       "explanation": "The reason ties the override to something you could not observe, which a reader can check.",
       "misconception_id": "cat100_supplement_4_6_override_without_reason",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-04-06-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_4_6_reflection_on_teacher_judgment_calibration",
@@ -77,7 +86,10 @@
       "correct_index": 1,
       "explanation": "A visible accept/override ratio lets a reader gauge how much independent judgment occurred.",
       "misconception_id": "cat100_supplement_4_6_only_accepts",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-04-06-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_4_6_reflection_on_teacher_judgment_reject_row",
@@ -96,6 +108,9 @@
       "difficulty": "hard",
       "concept_ids": [
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat100-supplement-04-06-lo-03"
       ]
     }
   ]

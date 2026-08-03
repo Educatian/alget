@@ -3,10 +3,22 @@
   "title": "LXD as a Decision Discipline",
   "description": "Frames LXD as a decision discipline in which the deliverable is an auditable chain of reasoning, not the screen. Introduces the four-part defensible decision (purpose, constraint, evidence, revision) and shows it on a before/after onboarding storyboard frame.",
   "learning_objectives": [
-    "Analyze how a storyboard decision trace applies the four-part defensible-decision framework (purpose, constraint, evidence, revision) in AIL 606.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    {
+      "id": "ail606-supplement-02-01-lo-01",
+      "statement": "Analyze how a storyboard decision trace applies the four-part defensible-decision framework (purpose, constraint, evidence, revision) in AIL 606"
+    },
+    {
+      "id": "ail606-supplement-02-01-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "ail606-supplement-02-01-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "ail606-supplement-02-01-lo-04",
+      "statement": "Use annotations, support requests, and revision notes to decide what help or design change should come next"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_learning_experience_design_and_software_technology",
@@ -28,5 +40,21 @@
     "ail606_supplement_2_1_lxd_as_a_decision_discipline_annotation_signal",
     "ail606_supplement_2_1_lxd_as_a_decision_discipline_ai_boundary",
     "ail606_supplement_2_1_lxd_as_a_decision_discipline_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-02-01-lo-01": [
+      "ail606_supplement_2_1_lxd_as_a_decision_discipline_calibration",
+      "ail606_supplement_2_1_lxd_as_a_decision_discipline_artifact_signal"
+    ],
+    "ail606-supplement-02-01-lo-02": [
+      "ail606_supplement_2_1_lxd_as_a_decision_discipline_ai_boundary"
+    ],
+    "ail606-supplement-02-01-lo-03": [
+      "ail606_supplement_2_1_lxd_as_a_decision_discipline_annotation_signal"
+    ],
+    "ail606-supplement-02-01-lo-04": [
+      "ail606_supplement_2_1_lxd_as_a_decision_discipline_ai_boundary"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

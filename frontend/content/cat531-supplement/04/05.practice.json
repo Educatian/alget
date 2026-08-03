@@ -18,6 +18,9 @@
       "concept_ids": [
         "cat531_supplement_ethobot_transcript_annotation",
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-04-05-lo-01"
       ]
     },
     {
@@ -38,6 +41,12 @@
       "concept_ids": [
         "cat531_supplement_ethobot_transcript_annotation",
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-04-05-lo-01",
+        "cat531-supplement-04-05-lo-02",
+        "cat531-supplement-04-05-lo-03",
+        "cat531-supplement-04-05-lo-04"
       ]
     },
     {
@@ -58,6 +67,9 @@
       "concept_ids": [
         "cat531_supplement_ethobot_transcript_annotation",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-04-05-lo-01"
       ]
     },
     {
@@ -78,6 +90,9 @@
       "concept_ids": [
         "cat531_supplement_evidence_based_revision",
         "cat531_supplement_ethobot_transcript_annotation"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-04-05-lo-01"
       ]
     }
   ]

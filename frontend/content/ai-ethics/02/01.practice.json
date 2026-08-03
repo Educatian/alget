@@ -18,7 +18,10 @@
       ],
       "correct_index": 1,
       "explanation": "Differential subgroup error driven by skewed training distribution is representation bias. The Gender Shades work (Buolamwini and Gebru) is the canonical example.",
-      "misconception_id": "all_bias_is_historical"
+      "misconception_id": "all_bias_is_historical",
+      "learning_objective_ids": [
+        "ai-ethics-02-01-lo-02"
+      ]
     },
     {
       "id": "bias_proxy_problem",
@@ -38,7 +41,10 @@
       ],
       "correct_index": 1,
       "explanation": "When the same underlying state produces different observed values across groups, the proxy is measurement-biased. Obermeyer et al. (Science 2019) is the canonical case.",
-      "misconception_id": "proxy_is_neutral"
+      "misconception_id": "proxy_is_neutral",
+      "learning_objective_ids": [
+        "ai-ethics-02-01-lo-01"
+      ]
     },
     {
       "id": "bias_predictive_policing",
@@ -58,7 +64,10 @@
       ],
       "correct_index": 2,
       "explanation": "Self-confirming feedback loops are deployment-time bias. Retraining on more of the loop's own output is the trap; breaking the loop is the fix.",
-      "misconception_id": "more_data_always_helps"
+      "misconception_id": "more_data_always_helps",
+      "learning_objective_ids": [
+        "ai-ethics-02-01-lo-02"
+      ]
     },
     {
       "id": "bias_debiasing_limit",
@@ -78,7 +87,11 @@
       ],
       "correct_index": 1,
       "explanation": "Post-processing reshuffles errors but cannot fix bias rooted in target choice, missing information, or feedback loops. The honest answer is that some interventions live outside engineering.",
-      "misconception_id": "debiasing_is_universal"
+      "misconception_id": "debiasing_is_universal",
+      "learning_objective_ids": [
+        "ai-ethics-02-01-lo-03",
+        "ai-ethics-02-01-lo-04"
+      ]
     }
   ]
 }

@@ -1,18 +1,60 @@
 {
-    "course": "bio-inspired",
-    "chapter": "04",
-    "section": "01",
-    "title": "Module 4: Dry Adhesion & Nanotech",
-    "description": "Understanding the physics of the Gecko effect, Van der Waals forces, and the engineering of dry adhesives.",
-    "order": 4,
-    "chapter_title": "Dry Adhesion and Contact Mechanics",
-    "prereq_section_ids": [
-        "bio-inspired/03/01"
+  "course": "bio-inspired",
+  "chapter": "04",
+  "section": "01",
+  "title": "Module 4: Dry Adhesion & Nanotech",
+  "description": "Understanding the physics of the Gecko effect, Van der Waals forces, and the engineering of dry adhesives.",
+  "order": 4,
+  "chapter_title": "Dry Adhesion and Contact Mechanics",
+  "prereq_section_ids": [
+    "bio-inspired/03/01"
+  ],
+  "practice_ids": [
+    "bio_dry_adhesion_core",
+    "bio_nanotech_contact_split",
+    "bio_reversible_attachment",
+    "bio_surface_engineering_transfer"
+  ],
+  "learning_objectives": [
+    {
+      "id": "bio-inspired-04-01-lo-01",
+      "statement": "Explain the hierarchical seta-to-spatula structure of the gecko foot and why scale matters"
+    },
+    {
+      "id": "bio-inspired-04-01-lo-02",
+      "statement": "Estimate total adhesive force from per-contact force using multiplication and area scaling"
+    },
+    {
+      "id": "bio-inspired-04-01-lo-03",
+      "statement": "Translate the biological mechanism into a function-based engineering specification (preload, shear, release)"
+    },
+    {
+      "id": "bio-inspired-04-01-lo-04",
+      "statement": "Evaluate a gecko-inspired dry adhesive against competing attachment methods for a given mission"
+    },
+    {
+      "id": "bio-inspired-04-01-lo-05",
+      "statement": "Identify the conditions under which the clean-contact assumption breaks and holding force collapses"
+    }
+  ],
+  "lo_practice_map": {
+    "bio-inspired-04-01-lo-01": [
+      "bio_dry_adhesion_core"
     ],
-    "practice_ids": [
-        "bio_dry_adhesion_core",
-        "bio_nanotech_contact_split",
-        "bio_reversible_attachment",
-        "bio_surface_engineering_transfer"
+    "bio-inspired-04-01-lo-02": [
+      "bio_surface_engineering_transfer"
+    ],
+    "bio-inspired-04-01-lo-03": [
+      "bio_surface_engineering_transfer"
+    ],
+    "bio-inspired-04-01-lo-04": [
+      "bio_surface_engineering_transfer",
+      "bio_nanotech_contact_split",
+      "bio_reversible_attachment"
+    ],
+    "bio-inspired-04-01-lo-05": [
+      "bio_surface_engineering_transfer"
     ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

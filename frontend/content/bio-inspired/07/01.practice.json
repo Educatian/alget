@@ -17,7 +17,11 @@
       "concept_ids": [
         "self_healing_materials"
       ],
-      "misconception_id": "healing_replaces_inspection"
+      "misconception_id": "healing_replaces_inspection",
+      "learning_objective_ids": [
+        "bio-inspired-07-01-lo-01",
+        "bio-inspired-07-01-lo-03"
+      ]
     },
     {
       "id": "bio_fatigue_failure_value",
@@ -36,7 +40,10 @@
       "concept_ids": [
         "fatigue_failure"
       ],
-      "misconception_id": "self_healing_means_unbreakable"
+      "misconception_id": "self_healing_means_unbreakable",
+      "learning_objective_ids": [
+        "bio-inspired-07-01-lo-03"
+      ]
     },
     {
       "id": "bio_microvascular_logic",
@@ -55,7 +62,10 @@
       "concept_ids": [
         "microvascular_repair"
       ],
-      "misconception_id": "repair_has_no_cost"
+      "misconception_id": "repair_has_no_cost",
+      "learning_objective_ids": [
+        "bio-inspired-07-01-lo-03"
+      ]
     },
     {
       "id": "bio_resilience_tradeoff",
@@ -74,7 +84,10 @@
       "concept_ids": [
         "resilient_design"
       ],
-      "misconception_id": "repair_has_no_cost"
+      "misconception_id": "repair_has_no_cost",
+      "learning_objective_ids": [
+        "bio-inspired-07-01-lo-02"
+      ]
     }
   ]
 }

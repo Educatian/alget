@@ -1,33 +1,62 @@
 {
-    "course": "ai-ethics",
-    "chapter": "03",
-    "section": "01",
-    "chapter_title": "Transparency and Accountability",
-    "title": "Module 1: Black Boxes, Interpretability, and the Right to Explanation",
-    "description": "Distinguish interpretability from explainability, evaluate post-hoc explanation methods, and meet the legal-and-ethical floor for meaningful explanations under GDPR, EU AI Act, and FCRA.",
-    "learning_objectives": [
-        "Distinguish interpretability (property of the model) from explainability (property of the explanation surface).",
-        "Compare feature attribution, counterfactual, and example-based explanation methods and their limits.",
-        "State three properties of a meaningful explanation (faithful, actionable, contextually appropriate) and apply them to a real case.",
-        "Identify the relevant regulatory framework (GDPR Art. 22, EU AI Act, FCRA) for a given deployment context."
+  "course": "ai-ethics",
+  "chapter": "03",
+  "section": "01",
+  "chapter_title": "Transparency and Accountability",
+  "title": "Module 1: Black Boxes, Interpretability, and the Right to Explanation",
+  "description": "Distinguish interpretability from explainability, evaluate post-hoc explanation methods, and meet the legal-and-ethical floor for meaningful explanations under GDPR, EU AI Act, and FCRA.",
+  "learning_objectives": [
+    {
+      "id": "ai-ethics-03-01-lo-01",
+      "statement": "Distinguish interpretability (property of the model) from explainability (property of the explanation surface)"
+    },
+    {
+      "id": "ai-ethics-03-01-lo-02",
+      "statement": "Compare feature attribution, counterfactual, and example-based explanation methods and their limits"
+    },
+    {
+      "id": "ai-ethics-03-01-lo-03",
+      "statement": "State three properties of a meaningful explanation (faithful, actionable, contextually appropriate) and apply them to a real case"
+    },
+    {
+      "id": "ai-ethics-03-01-lo-04",
+      "statement": "Identify the relevant regulatory framework (GDPR Art. 22, EU AI Act, FCRA) for a given deployment context"
+    }
+  ],
+  "concept_ids": [
+    "interpretability",
+    "explainability",
+    "post_hoc_explanation",
+    "counterfactual_explanation",
+    "right_to_explanation",
+    "gdpr_article_22"
+  ],
+  "prereq_section_ids": [
+    "ai-ethics/02/02"
+  ],
+  "practice_ids": [
+    "explain_interp_vs_explain",
+    "explain_counterfactual_value",
+    "explain_post_hoc_limit",
+    "explain_high_stakes_choice"
+  ],
+  "estimated_time_minutes": 13,
+  "order": 1,
+  "lo_practice_map": {
+    "ai-ethics-03-01-lo-01": [
+      "explain_interp_vs_explain",
+      "explain_high_stakes_choice"
     ],
-    "concept_ids": [
-        "interpretability",
-        "explainability",
-        "post_hoc_explanation",
-        "counterfactual_explanation",
-        "right_to_explanation",
-        "gdpr_article_22"
+    "ai-ethics-03-01-lo-02": [
+      "explain_counterfactual_value"
     ],
-    "prereq_section_ids": [
-        "ai-ethics/02/02"
+    "ai-ethics-03-01-lo-03": [
+      "explain_counterfactual_value",
+      "explain_post_hoc_limit"
     ],
-    "practice_ids": [
-        "explain_interp_vs_explain",
-        "explain_counterfactual_value",
-        "explain_post_hoc_limit",
-        "explain_high_stakes_choice"
-    ],
-    "estimated_time_minutes": 13,
-    "order": 1
+    "ai-ethics-03-01-lo-04": [
+      "explain_counterfactual_value"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

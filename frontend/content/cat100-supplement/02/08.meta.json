@@ -1,4 +1,4 @@
-﻿{
+{
   "course": "cat100-supplement",
   "chapter": "02",
   "section": "08",
@@ -6,10 +6,22 @@
   "title": "Module 2 Branding Studio",
   "description": "CAT 100 textbook section connecting module 2 branding studio to module 2 branding checklist, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Build a cross-artifact comparison table (name, title, dates, headline proof) and identify contradictions that live between artifacts rather than inside them.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Resolve cross-artifact contradictions toward the truth and complete an AI-use log before declaring the package ready."
+    {
+      "id": "cat100-supplement-02-08-lo-01",
+      "statement": "Build a cross-artifact comparison table (name, title, dates, headline proof) and identify contradictions that live between artifacts rather than inside them"
+    },
+    {
+      "id": "cat100-supplement-02-08-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "cat100-supplement-02-08-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat100-supplement-02-08-lo-04",
+      "statement": "Resolve cross-artifact contradictions toward the truth and complete an AI-use log before declaring the package ready"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_resume_branding_and_ai_brainstorming",
@@ -28,5 +40,21 @@
     "cat100_supplement_2_8_module_2_branding_studio_annotation_signal",
     "cat100_supplement_2_8_module_2_branding_studio_ai_boundary",
     "cat100_supplement_2_8_module_2_branding_studio_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-02-08-lo-01": [
+      "cat100_supplement_2_8_module_2_branding_studio_calibration",
+      "cat100_supplement_2_8_module_2_branding_studio_annotation_signal"
+    ],
+    "cat100-supplement-02-08-lo-02": [
+      "cat100_supplement_2_8_module_2_branding_studio_calibration"
+    ],
+    "cat100-supplement-02-08-lo-03": [
+      "cat100_supplement_2_8_module_2_branding_studio_ai_boundary"
+    ],
+    "cat100-supplement-02-08-lo-04": [
+      "cat100_supplement_2_8_module_2_branding_studio_artifact_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "Two tools are useful precisely because they differ. Agreement flags likely-real issues; disagreement is where you must decide, which is the judgment the assignment is testing.",
       "misconception_id": "cat100_supplement_2_2_more_tools_more_edits",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-02-02-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_2_2_two_ai_critique_workflow_annotation_signal",
@@ -38,7 +41,12 @@
       "correct_index": 2,
       "explanation": "Neither tool knows your target job. A conflict is a signal to apply your own criterion (fit to the posting) and record why you accepted one critique over the other.",
       "misconception_id": "cat100_supplement_2_2_tie_breaking_by_tone",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-02-02-lo-02",
+        "cat100-supplement-02-02-lo-03",
+        "cat100-supplement-02-02-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_2_2_two_ai_critique_workflow_ai_boundary",
@@ -58,7 +66,10 @@
       "correct_index": 1,
       "explanation": "Agreement between tools usually points to a real weakness, so do not dismiss it. But the fix must be truthful. The honest log records the valid critique and the reason you could not yet act on it.",
       "misconception_id": "cat100_supplement_2_2_agreement_forces_action",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-02-02-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_2_2_two_ai_critique_workflow_calibration",
@@ -78,7 +89,10 @@
       "correct_index": 1,
       "explanation": "A usable log names each tool's suggestion, the decision, the concrete change (4 lines to 2), the reason (posting asks for brevity), and what was rejected. The other options record no traceable judgment.",
       "misconception_id": "cat100_supplement_2_2_vague_log_entry",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-02-02-lo-01"
+      ]
     }
   ]
 }

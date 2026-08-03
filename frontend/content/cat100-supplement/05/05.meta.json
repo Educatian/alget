@@ -6,10 +6,22 @@
   "title": "Self-Recording With AI Coaching",
   "description": "CAT 100 textbook section connecting self-recording with ai coaching to AI critique log showing accepted, modified, and rejected suggestions, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Interpret AI speech-coaching metrics (pace, filler count, clarity) as gameable proxies for the listener's experience, not as goals.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Apply one-change-per-take, single-variable practice and confirm each metric gain with a human listener.",
-    "Document accepted, modified, and rejected AI coach suggestions in the critique log with reasons."
+    {
+      "id": "cat100-supplement-05-05-lo-01",
+      "statement": "Interpret AI speech-coaching metrics (pace, filler count, clarity) as gameable proxies for the listener's experience, not as goals"
+    },
+    {
+      "id": "cat100-supplement-05-05-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "cat100-supplement-05-05-lo-03",
+      "statement": "Apply one-change-per-take, single-variable practice and confirm each metric gain with a human listener"
+    },
+    {
+      "id": "cat100-supplement-05-05-lo-04",
+      "statement": "Document accepted, modified, and rejected AI coach suggestions in the critique log with reasons"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_ai_enhanced_presentation_development",
@@ -28,5 +40,21 @@
     "cat100_supplement_5_5_self_recording_with_ai_coaching_annotation_signal",
     "cat100_supplement_5_5_self_recording_with_ai_coaching_ai_boundary",
     "cat100_supplement_5_5_self_recording_with_ai_coaching_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-05-05-lo-01": [
+      "cat100_supplement_5_5_self_recording_with_ai_coaching_artifact_signal"
+    ],
+    "cat100-supplement-05-05-lo-02": [
+      "cat100_supplement_5_5_self_recording_with_ai_coaching_annotation_signal"
+    ],
+    "cat100-supplement-05-05-lo-03": [
+      "cat100_supplement_5_5_self_recording_with_ai_coaching_calibration",
+      "cat100_supplement_5_5_self_recording_with_ai_coaching_ai_boundary"
+    ],
+    "cat100-supplement-05-05-lo-04": [
+      "cat100_supplement_5_5_self_recording_with_ai_coaching_annotation_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

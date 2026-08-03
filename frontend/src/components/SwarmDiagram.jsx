@@ -64,7 +64,7 @@ export const SwarmDiagram = () => {
                 <button
                     onClick={() => setIsRunning(!isRunning)}
                     disabled={step >= 100}
-                    className={`px-4 py-2 rounded-lg font-bold text-white transition-colors ${isRunning ? 'bg-amber-500 hover:bg-amber-600' : 'bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50'}`}
+                    className={`px-4 py-2 rounded-lg font-bold text-white transition-colors ${isRunning ? 'bg-amber-500 hover:bg-amber-600' : 'bg-[var(--ath-primary)] hover:bg-[var(--ath-primary-deep)] disabled:opacity-50'}`}
                 >
                     {isRunning ? "Pause" : (step >= 100 ? "Converged!" : "Run Simulation")}
                 </button>

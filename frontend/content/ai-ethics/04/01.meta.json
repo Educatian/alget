@@ -1,33 +1,60 @@
 {
-    "course": "ai-ethics",
-    "chapter": "04",
-    "section": "01",
-    "chapter_title": "Privacy, Consent, and Data Governance",
-    "title": "Module 1: Privacy Threats from AI Systems",
-    "description": "Identify four distinct privacy threats (re-identification, inference attacks, training-data leakage, surveillance-by-aggregation) and match each to its appropriate countermeasure (k-anonymity, differential privacy, federated learning, data minimization).",
-    "learning_objectives": [
-        "Distinguish re-identification, membership inference, attribute inference, and model inversion attacks.",
-        "Recognize when removing direct identifiers is insufficient for anonymization.",
-        "Match each privacy threat to an appropriate technical or governance countermeasure.",
-        "Apply GDPR principles (data minimization, purpose limitation, retention limits) to AI deployment design."
+  "course": "ai-ethics",
+  "chapter": "04",
+  "section": "01",
+  "chapter_title": "Privacy, Consent, and Data Governance",
+  "title": "Module 1: Privacy Threats from AI Systems",
+  "description": "Identify four distinct privacy threats (re-identification, inference attacks, training-data leakage, surveillance-by-aggregation) and match each to its appropriate countermeasure (k-anonymity, differential privacy, federated learning, data minimization).",
+  "learning_objectives": [
+    {
+      "id": "ai-ethics-04-01-lo-01",
+      "statement": "Distinguish re-identification, membership inference, attribute inference, and model inversion attacks"
+    },
+    {
+      "id": "ai-ethics-04-01-lo-02",
+      "statement": "Recognize when removing direct identifiers is insufficient for anonymization"
+    },
+    {
+      "id": "ai-ethics-04-01-lo-03",
+      "statement": "Match each privacy threat to an appropriate technical or governance countermeasure"
+    },
+    {
+      "id": "ai-ethics-04-01-lo-04",
+      "statement": "Apply GDPR principles (data minimization, purpose limitation, retention limits) to AI deployment design"
+    }
+  ],
+  "concept_ids": [
+    "re_identification",
+    "membership_inference",
+    "training_data_leakage",
+    "differential_privacy",
+    "federated_learning",
+    "data_minimization"
+  ],
+  "prereq_section_ids": [
+    "ai-ethics/03/02"
+  ],
+  "practice_ids": [
+    "privacy_anonymization_limit",
+    "privacy_membership_inference",
+    "privacy_dp_purpose",
+    "privacy_aggregation_threat"
+  ],
+  "estimated_time_minutes": 13,
+  "order": 1,
+  "lo_practice_map": {
+    "ai-ethics-04-01-lo-01": [
+      "privacy_membership_inference"
     ],
-    "concept_ids": [
-        "re_identification",
-        "membership_inference",
-        "training_data_leakage",
-        "differential_privacy",
-        "federated_learning",
-        "data_minimization"
+    "ai-ethics-04-01-lo-02": [
+      "privacy_anonymization_limit"
     ],
-    "prereq_section_ids": [
-        "ai-ethics/03/02"
+    "ai-ethics-04-01-lo-03": [
+      "privacy_dp_purpose"
     ],
-    "practice_ids": [
-        "privacy_anonymization_limit",
-        "privacy_membership_inference",
-        "privacy_dp_purpose",
-        "privacy_aggregation_threat"
-    ],
-    "estimated_time_minutes": 13,
-    "order": 1
+    "ai-ethics-04-01-lo-04": [
+      "privacy_aggregation_threat"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

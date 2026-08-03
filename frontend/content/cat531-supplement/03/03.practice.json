@@ -20,6 +20,9 @@
         "cat531_supplement_bias_data_and_classroom_consequences",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-03-lo-04"
       ]
     },
     {
@@ -42,6 +45,9 @@
         "cat531_supplement_bias_data_and_classroom_consequences",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-03-lo-01"
       ]
     },
     {
@@ -64,6 +70,9 @@
         "cat531_supplement_bias_data_and_classroom_consequences",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-03-lo-02"
       ]
     },
     {
@@ -86,6 +95,10 @@
         "cat531_supplement_bias_data_and_classroom_consequences",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-03-lo-03",
+        "cat531-supplement-03-03-lo-04"
       ]
     }
   ]

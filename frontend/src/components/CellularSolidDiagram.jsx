@@ -19,13 +19,13 @@ export const CellularSolidDiagram = () => {
                     <div>
                         <div className="flex justify-between mb-2">
                             <label htmlFor="cellular-density" className="text-xs font-bold text-[var(--ath-muted)] uppercase tracking-wider">Relative Density</label>
-                            <span className="text-xs font-bold text-indigo-600">{density.toFixed(2)}</span>
+                            <span className="text-xs font-bold text-[var(--ath-primary)]">{density.toFixed(2)}</span>
                         </div>
                         <input
                             id="cellular-density"
                             type="range" min="0.1" max="1.0" step="0.05" value={density}
                             onChange={(e) => setDensity(Number(e.target.value))}
-                            className="w-full h-2 bg-[var(--ath-line)] rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                            className="w-full h-2 bg-[var(--ath-line)] rounded-lg appearance-none cursor-pointer accent-[var(--ath-primary)]"
                         />
                     </div>
 

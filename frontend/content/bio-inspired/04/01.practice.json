@@ -17,7 +17,10 @@
       "concept_ids": [
         "dry_adhesion"
       ],
-      "misconception_id": "dry_means_no_physics"
+      "misconception_id": "dry_means_no_physics",
+      "learning_objective_ids": [
+        "bio-inspired-04-01-lo-01"
+      ]
     },
     {
       "id": "bio_nanotech_contact_split",
@@ -36,7 +39,10 @@
       "concept_ids": [
         "nanotech_adhesion"
       ],
-      "misconception_id": "nano_patterning_always_solves_it"
+      "misconception_id": "nano_patterning_always_solves_it",
+      "learning_objective_ids": [
+        "bio-inspired-04-01-lo-04"
+      ]
     },
     {
       "id": "bio_reversible_attachment",
@@ -55,7 +61,10 @@
       "concept_ids": [
         "reversible_adhesion"
       ],
-      "misconception_id": "reversible_equals_weak"
+      "misconception_id": "reversible_equals_weak",
+      "learning_objective_ids": [
+        "bio-inspired-04-01-lo-04"
+      ]
     },
     {
       "id": "bio_surface_engineering_transfer",
@@ -74,7 +83,13 @@
       "concept_ids": [
         "surface_engineering"
       ],
-      "misconception_id": "nano_patterning_always_solves_it"
+      "misconception_id": "nano_patterning_always_solves_it",
+      "learning_objective_ids": [
+        "bio-inspired-04-01-lo-02",
+        "bio-inspired-04-01-lo-03",
+        "bio-inspired-04-01-lo-04",
+        "bio-inspired-04-01-lo-05"
+      ]
     }
   ]
 }

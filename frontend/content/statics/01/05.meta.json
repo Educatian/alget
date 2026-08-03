@@ -1,33 +1,60 @@
 {
-    "course": "statics",
-    "chapter": "01",
-    "section": "05",
-    "chapter_title": "Force Vectors",
-    "title": "Module 5: Force Vectors — 2D, 3D, Dot and Cross Products",
-    "description": "Build the vector toolbox that every later statics topic depends on: 2D resolution, 3D unit vectors via position vectors, the dot product for projection and angles, and the cross product for moments.",
-    "learning_objectives": [
-        "Resolve a 2D force into x and y components without quadrant errors.",
-        "Build a 3D force vector from a position vector along its line of action using direction cosines or unit vectors.",
-        "Use the dot product to compute angles between vectors and projections along a line.",
-        "Use the cross product to compute the moment of a force about a point and to test collinearity."
+  "course": "statics",
+  "chapter": "01",
+  "section": "05",
+  "chapter_title": "Force Vectors",
+  "title": "Module 5: Force Vectors — 2D, 3D, Dot and Cross Products",
+  "description": "Build the vector toolbox that every later statics topic depends on: 2D resolution, 3D unit vectors via position vectors, the dot product for projection and angles, and the cross product for moments.",
+  "learning_objectives": [
+    {
+      "id": "statics-01-05-lo-01",
+      "statement": "Resolve a 2D force into x and y components without quadrant errors"
+    },
+    {
+      "id": "statics-01-05-lo-02",
+      "statement": "Build a 3D force vector from a position vector along its line of action using direction cosines or unit vectors"
+    },
+    {
+      "id": "statics-01-05-lo-03",
+      "statement": "Use the dot product to compute angles between vectors and projections along a line"
+    },
+    {
+      "id": "statics-01-05-lo-04",
+      "statement": "Use the cross product to compute the moment of a force about a point and to test collinearity"
+    }
+  ],
+  "concept_ids": [
+    "force_vector",
+    "force_components",
+    "unit_vector",
+    "direction_cosines",
+    "dot_product",
+    "cross_product"
+  ],
+  "prereq_section_ids": [
+    "statics/01/01"
+  ],
+  "practice_ids": [
+    "force_vec_2d_resultant",
+    "force_vec_3d_unit",
+    "force_vec_dot_projection",
+    "force_vec_cross_anticommute"
+  ],
+  "estimated_time_minutes": 13,
+  "order": 5,
+  "lo_practice_map": {
+    "statics-01-05-lo-01": [
+      "force_vec_2d_resultant"
     ],
-    "concept_ids": [
-        "force_vector",
-        "force_components",
-        "unit_vector",
-        "direction_cosines",
-        "dot_product",
-        "cross_product"
+    "statics-01-05-lo-02": [
+      "force_vec_3d_unit"
     ],
-    "prereq_section_ids": [
-        "statics/01/01"
+    "statics-01-05-lo-03": [
+      "force_vec_dot_projection"
     ],
-    "practice_ids": [
-        "force_vec_2d_resultant",
-        "force_vec_3d_unit",
-        "force_vec_dot_projection",
-        "force_vec_cross_anticommute"
-    ],
-    "estimated_time_minutes": 13,
-    "order": 5
+    "statics-01-05-lo-04": [
+      "force_vec_cross_anticommute"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

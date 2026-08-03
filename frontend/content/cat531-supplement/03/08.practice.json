@@ -20,6 +20,9 @@
         "cat531_supplement_module_3_ai_analysis_studio",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-08-lo-04"
       ]
     },
     {
@@ -42,6 +45,12 @@
         "cat531_supplement_module_3_ai_analysis_studio",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-08-lo-01",
+        "cat531-supplement-03-08-lo-02",
+        "cat531-supplement-03-08-lo-03",
+        "cat531-supplement-03-08-lo-04"
       ]
     },
     {
@@ -64,6 +73,9 @@
         "cat531_supplement_module_3_ai_analysis_studio",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-08-lo-02"
       ]
     },
     {
@@ -86,6 +98,9 @@
         "cat531_supplement_module_3_ai_analysis_studio",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-08-lo-01"
       ]
     }
   ]

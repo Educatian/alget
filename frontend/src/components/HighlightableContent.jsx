@@ -590,7 +590,7 @@ export default function HighlightableContent({
                         aria-label="Ask BigAL"
                         title="Ask BigAL"
                     >
-                        <Sparkles className="w-4 h-4 text-indigo-400 group-hover:text-indigo-300" />
+                        <Sparkles className="w-4 h-4 text-[var(--ath-primary)] group-hover:text-[var(--ath-primary-deep)]" />
                     </button>
 
                     <button

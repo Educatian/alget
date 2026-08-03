@@ -20,6 +20,9 @@
         "ail606_supplement_turning_designs_into_study_questions",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-07-01-lo-02"
       ]
     },
     {
@@ -42,6 +45,10 @@
         "ail606_supplement_turning_designs_into_study_questions",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-07-01-lo-01",
+        "ail606-supplement-07-01-lo-02"
       ]
     },
     {
@@ -64,6 +71,9 @@
         "ail606_supplement_turning_designs_into_study_questions",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-07-01-lo-02"
       ]
     },
     {
@@ -86,6 +96,10 @@
         "ail606_supplement_turning_designs_into_study_questions",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-07-01-lo-03",
+        "ail606-supplement-07-01-lo-04"
       ]
     }
   ]

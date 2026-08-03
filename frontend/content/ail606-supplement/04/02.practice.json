@@ -17,6 +17,9 @@
       "difficulty": "medium",
       "concept_ids": [
         "ail606_supplement_principle_to_feature_traceability"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-04-02-lo-03"
       ]
     },
     {
@@ -36,6 +39,9 @@
       "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_principle_to_feature_traceability"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-04-02-lo-01"
       ]
     },
     {
@@ -55,6 +61,9 @@
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-04-02-lo-01"
       ]
     },
     {
@@ -74,6 +83,11 @@
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-04-02-lo-01",
+        "ail606-supplement-04-02-lo-02",
+        "ail606-supplement-04-02-lo-04"
       ]
     }
   ]

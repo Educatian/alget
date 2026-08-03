@@ -3,10 +3,22 @@
   "title": "README and Repository Disclosure",
   "description": "AIL 606 textbook section connecting readme and repository disclosure to prototype README traceability matrix connecting theory to screen changes, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the prototype README traceability matrix connecting theory to screen changes shows a defensible decision in AIL 606.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    {
+      "id": "ail606-supplement-04-07-lo-01",
+      "statement": "Analyze how the prototype README traceability matrix connecting theory to screen changes shows a defensible decision in AIL 606"
+    },
+    {
+      "id": "ail606-supplement-04-07-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "ail606-supplement-04-07-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "ail606-supplement-04-07-lo-04",
+      "statement": "Use annotations, support requests, and revision notes to decide what help or design change should come next"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_design_draft_and_theory_to_prototype_alignment",
@@ -28,5 +40,21 @@
     "ail606_supplement_4_7_readme_and_repository_disclosure_annotation_signal",
     "ail606_supplement_4_7_readme_and_repository_disclosure_ai_boundary",
     "ail606_supplement_4_7_readme_and_repository_disclosure_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-04-07-lo-01": [
+      "ail606_supplement_4_7_readme_and_repository_disclosure_annotation_signal",
+      "ail606_supplement_4_7_readme_and_repository_disclosure_ai_boundary"
+    ],
+    "ail606-supplement-04-07-lo-02": [
+      "ail606_supplement_4_7_readme_and_repository_disclosure_calibration"
+    ],
+    "ail606-supplement-04-07-lo-03": [
+      "ail606_supplement_4_7_readme_and_repository_disclosure_artifact_signal"
+    ],
+    "ail606-supplement-04-07-lo-04": [
+      "ail606_supplement_4_7_readme_and_repository_disclosure_annotation_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

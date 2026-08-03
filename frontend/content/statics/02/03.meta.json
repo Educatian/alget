@@ -1,32 +1,61 @@
 {
-    "chapter": "02",
-    "section": "03",
-    "title": "Equilibrium of Rigid Bodies",
-    "course": "statics",
-    "learning_objectives": [
-        "Apply equilibrium equations for rigid bodies",
-        "Write three equilibrium equations: ΣFx=0, ΣFy=0, ΣM=0",
-        "Solve statically determinate problems",
-        "Identify support reactions"
+  "chapter": "02",
+  "section": "03",
+  "title": "Equilibrium of Rigid Bodies",
+  "course": "statics",
+  "learning_objectives": [
+    {
+      "id": "statics-02-03-lo-01",
+      "statement": "Apply equilibrium equations for rigid bodies"
+    },
+    {
+      "id": "statics-02-03-lo-02",
+      "statement": "Write three equilibrium equations: ΣFx=0, ΣFy=0, ΣM=0"
+    },
+    {
+      "id": "statics-02-03-lo-03",
+      "statement": "Solve statically determinate problems"
+    },
+    {
+      "id": "statics-02-03-lo-04",
+      "statement": "Identify support reactions"
+    }
+  ],
+  "concept_ids": [
+    "rigid_body_equilibrium",
+    "support_reactions",
+    "beam_equilibrium"
+  ],
+  "prerequisites": [
+    "moment",
+    "couple"
+  ],
+  "prereq_section_ids": [
+    "statics/02/02",
+    "statics/02/01"
+  ],
+  "practice_ids": [
+    "statics_rigid_body_support_count",
+    "statics_beam_center_load",
+    "statics_cantilever_moment",
+    "statics_choose_moment_point",
+    "statics_02_03_lo_03_direct_check"
+  ],
+  "estimated_time_minutes": 55,
+  "lo_practice_map": {
+    "statics-02-03-lo-01": [
+      "statics_choose_moment_point",
+      "statics_cantilever_moment"
     ],
-    "concept_ids": [
-        "rigid_body_equilibrium",
-        "support_reactions",
-        "beam_equilibrium"
+    "statics-02-03-lo-02": [
+      "statics_rigid_body_support_count"
     ],
-    "prerequisites": [
-        "moment",
-        "couple"
+    "statics-02-03-lo-03": [
+      "statics_02_03_lo_03_direct_check"
     ],
-    "prereq_section_ids": [
-        "statics/02/02",
-        "statics/02/01"
-    ],
-    "practice_ids": [
-        "statics_rigid_body_support_count",
-        "statics_beam_center_load",
-        "statics_cantilever_moment",
-        "statics_choose_moment_point"
-    ],
-    "estimated_time_minutes": 55
+    "statics-02-03-lo-04": [
+      "statics_beam_center_load"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

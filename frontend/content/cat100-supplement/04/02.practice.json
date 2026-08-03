@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "NARROW adds the constraint (length, tone). Pasting the scenario is SET CONTEXT; the 'what if' is STRESS-TEST.",
       "misconception_id": "cat100_supplement_4_2_one_giant_prompt",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-04-02-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_4_2_scenario_based_ai_dialogue_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "A scenario without constraints lets the model guess. Audience, length, and tone make the output usable.",
       "misconception_id": "cat100_supplement_4_2_no_scenario_constraints",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-04-02-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_4_2_scenario_based_ai_dialogue_ai_boundary",
@@ -57,7 +63,10 @@
       "correct_index": 1,
       "explanation": "Selecting one line and logging the cut makes your judgment part of the evidence; keeping both adds no information.",
       "misconception_id": "cat100_supplement_4_2_keep_whole_output",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-04-02-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_4_2_scenario_based_ai_dialogue_calibration",
@@ -77,7 +86,12 @@
       "correct_index": 1,
       "explanation": "Labeled turns make the cause of each change traceable; one giant prompt hides which instruction did the work.",
       "misconception_id": "cat100_supplement_4_2_one_giant_prompt",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-04-02-lo-01",
+        "cat100-supplement-04-02-lo-02",
+        "cat100-supplement-04-02-lo-04"
+      ]
     }
   ]
 }

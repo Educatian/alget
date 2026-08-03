@@ -3,10 +3,22 @@
   "title": "Mayer Principles as Design Constraints",
   "description": "AIL 606 textbook section connecting mayer principles as design constraints to the Mayer principle-to-edit constraint table with boundary conditions and conflict rankings, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the Mayer principle-to-edit constraint table with boundary conditions and conflict rankings shows a defensible decision in AIL 606.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    {
+      "id": "ail606-supplement-01-02-lo-01",
+      "statement": "Analyze how the Mayer principle-to-edit constraint table with boundary conditions and conflict rankings shows a defensible decision in AIL 606"
+    },
+    {
+      "id": "ail606-supplement-01-02-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "ail606-supplement-01-02-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "ail606-supplement-01-02-lo-04",
+      "statement": "Use annotations, support requests, and revision notes to decide what help or design change should come next"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_foundations_of_interactive_multimedia_learning",
@@ -29,5 +41,23 @@
     "ail606_supplement_1_2_mayer_principles_as_design_constraints_annotation_signal",
     "ail606_supplement_1_2_mayer_principles_as_design_constraints_ai_boundary",
     "ail606_supplement_1_2_mayer_principles_as_design_constraints_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-01-02-lo-01": [
+      "ail606_supplement_1_2_mayer_principles_as_design_constraints_calibration",
+      "ail606_supplement_1_2_mayer_principles_as_design_constraints_artifact_signal",
+      "ail606_supplement_1_2_mayer_principles_as_design_constraints_annotation_signal",
+      "ail606_supplement_1_2_mayer_principles_as_design_constraints_ai_boundary"
+    ],
+    "ail606-supplement-01-02-lo-02": [
+      "ail606_supplement_1_2_mayer_principles_as_design_constraints_calibration"
+    ],
+    "ail606-supplement-01-02-lo-03": [
+      "ail606_supplement_1_2_mayer_principles_as_design_constraints_conflict_ranking"
+    ],
+    "ail606-supplement-01-02-lo-04": [
+      "ail606_supplement_1_2_mayer_principles_as_design_constraints_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

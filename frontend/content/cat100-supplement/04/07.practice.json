@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "A descriptive, ordered name states the content; 'Untitled' and 'final final v2' tell the reviewer nothing.",
       "misconception_id": "cat100_supplement_4_7_meaningless_filenames",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-04-07-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_4_7_evidence_collection_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "Without a file-to-claim manifest, the reviewer cannot tell what each file is evidence for.",
       "misconception_id": "cat100_supplement_4_7_no_claim_mapping",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-04-07-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_4_7_evidence_collection_ai_boundary",
@@ -57,7 +63,11 @@
       "correct_index": 1,
       "explanation": "The decision log is where AI suggestions meet evidence. A statistic with no verifiable source cannot enter the package in any wording; softening it just hides the same unverified claim. The defensible move is a logged rejection with its reason, which is itself evidence of your verification work (it ties to the 02_factcheck row).",
       "misconception_id": "cat100_supplement_4_7_unverified_ai_claim_kept",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-04-07-lo-01",
+        "cat100-supplement-04-07-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_4_7_evidence_collection_calibration",
@@ -77,7 +87,11 @@
       "correct_index": 1,
       "explanation": "Every claim needs a supporting file; an unsupported claim and an unclaimed file are both defects.",
       "misconception_id": "cat100_supplement_4_7_no_claim_mapping",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-04-07-lo-02",
+        "cat100-supplement-04-07-lo-04"
+      ]
     }
   ]
 }

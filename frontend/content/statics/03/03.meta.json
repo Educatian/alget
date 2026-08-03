@@ -1,32 +1,61 @@
 {
-    "chapter": "03",
-    "section": "03",
-    "title": "Method of Sections",
-    "course": "statics",
-    "learning_objectives": [
-        "Apply the method of sections to analyze trusses",
-        "Cut through a truss strategically",
-        "Use moment equilibrium to find specific member forces",
-        "Choose between methods for efficiency"
+  "chapter": "03",
+  "section": "03",
+  "title": "Method of Sections",
+  "course": "statics",
+  "learning_objectives": [
+    {
+      "id": "statics-03-03-lo-01",
+      "statement": "Apply the method of sections to analyze trusses"
+    },
+    {
+      "id": "statics-03-03-lo-02",
+      "statement": "Cut through a truss strategically"
+    },
+    {
+      "id": "statics-03-03-lo-03",
+      "statement": "Use moment equilibrium to find specific member forces"
+    },
+    {
+      "id": "statics-03-03-lo-04",
+      "statement": "Choose between methods for efficiency"
+    }
+  ],
+  "concept_ids": [
+    "method_of_sections",
+    "cutting_plane",
+    "internal_forces"
+  ],
+  "prerequisites": [
+    "method_of_joints",
+    "rigid_body_equilibrium"
+  ],
+  "prereq_section_ids": [
+    "statics/03/02",
+    "statics/03/01"
+  ],
+  "practice_ids": [
+    "statics_sections_best_use",
+    "statics_sections_cut_limit",
+    "statics_sections_moment_point",
+    "statics_sections_support_reactions",
+    "statics_03_03_lo_04_direct_check"
+  ],
+  "estimated_time_minutes": 50,
+  "lo_practice_map": {
+    "statics-03-03-lo-01": [
+      "statics_sections_cut_limit",
+      "statics_sections_support_reactions"
     ],
-    "concept_ids": [
-        "method_of_sections",
-        "cutting_plane",
-        "internal_forces"
+    "statics-03-03-lo-02": [
+      "statics_sections_moment_point"
     ],
-    "prerequisites": [
-        "method_of_joints",
-        "rigid_body_equilibrium"
+    "statics-03-03-lo-03": [
+      "statics_sections_best_use"
     ],
-    "prereq_section_ids": [
-        "statics/03/02",
-        "statics/03/01"
-    ],
-    "practice_ids": [
-        "statics_sections_best_use",
-        "statics_sections_cut_limit",
-        "statics_sections_moment_point",
-        "statics_sections_support_reactions"
-    ],
-    "estimated_time_minutes": 50
+    "statics-03-03-lo-04": [
+      "statics_03_03_lo_04_direct_check"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

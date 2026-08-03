@@ -18,6 +18,9 @@
       "concept_ids": [
         "cat531_supplement_adapting_ethobot_prompts",
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-04-07-lo-02"
       ]
     },
     {
@@ -38,6 +41,9 @@
       "concept_ids": [
         "cat531_supplement_adapting_ethobot_prompts",
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-04-07-lo-03"
       ]
     },
     {
@@ -58,6 +64,9 @@
       "concept_ids": [
         "cat531_supplement_adapting_ethobot_prompts",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-04-07-lo-01"
       ]
     },
     {
@@ -78,6 +87,11 @@
       "concept_ids": [
         "cat531_supplement_evidence_based_revision",
         "cat531_supplement_adapting_ethobot_prompts"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-04-07-lo-01",
+        "cat531-supplement-04-07-lo-02",
+        "cat531-supplement-04-07-lo-04"
       ]
     }
   ]

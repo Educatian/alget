@@ -17,7 +17,11 @@
         "Pictures always reduce cognitive load"
       ],
       "correct_index": 1,
-      "explanation": "Mayer's theory assumes separate visual and auditory channels, each with limited capacity."
+      "explanation": "Mayer's theory assumes separate visual and auditory channels, each with limited capacity.",
+      "learning_objective_ids": [
+        "inst-design-03-01-lo-01",
+        "inst-design-03-01-lo-03"
+      ]
     },
     {
       "id": "multimedia_modality",
@@ -37,7 +41,10 @@
         "Because images automatically teach all concepts"
       ],
       "correct_index": 0,
-      "explanation": "The modality effect matters because distributing processing across channels can reduce overload when designed well."
+      "explanation": "The modality effect matters because distributing processing across channels can reduce overload when designed well.",
+      "learning_objective_ids": [
+        "inst-design-03-01-lo-02"
+      ]
     },
     {
       "id": "mayer_coherence_principle",
@@ -57,7 +64,10 @@
         "Duplicating narration as full paragraphs on the screen"
       ],
       "correct_index": 1,
-      "explanation": "The coherence principle recommends removing unnecessary material that consumes attention without supporting the objective."
+      "explanation": "The coherence principle recommends removing unnecessary material that consumes attention without supporting the objective.",
+      "learning_objective_ids": [
+        "inst-design-03-01-lo-02"
+      ]
     },
     {
       "id": "multimedia_overload_case",
@@ -76,7 +86,10 @@
         "The problem is only that there is no grading rubric"
       ],
       "correct_index": 1,
-      "explanation": "Too many simultaneous media elements can overload working memory and reduce learning rather than increase it."
+      "explanation": "Too many simultaneous media elements can overload working memory and reduce learning rather than increase it.",
+      "learning_objective_ids": [
+        "inst-design-03-01-lo-02"
+      ]
     }
   ]
 }

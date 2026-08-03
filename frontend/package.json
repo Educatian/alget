@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "content:manifest": "node ../scripts/generate_content_manifest.mjs",
+    "build": "npm run content:manifest && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",

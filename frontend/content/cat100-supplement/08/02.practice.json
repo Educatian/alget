@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "A storyboard is an argument, not a folder listing. The fix is an opening question that the three artifacts then answer in order.",
       "misconception_id": "cat100_supplement_8_2_one_slide_per_artifact",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-08-02-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_8_2_professional_story_across_artifacts_annotation_signal",
@@ -37,7 +40,11 @@
       "correct_index": 1,
       "explanation": "A claim slide needs one visible artifact. Showing the real pivot output and formula turns an adjective into evidence.",
       "misconception_id": "cat100_supplement_8_2_bullet_text_no_evidence",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-08-02-lo-02",
+        "cat100-supplement-08-02-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_8_2_professional_story_across_artifacts_ai_boundary",
@@ -56,7 +63,10 @@
       "correct_index": 1,
       "explanation": "Audience is the constraint. The artifacts stay; their order and framing shift to match what each room cares about.",
       "misconception_id": "cat100_supplement_8_2_same_deck_every_audience",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-08-02-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_8_2_professional_story_across_artifacts_calibration",
@@ -75,7 +85,10 @@
       "correct_index": 1,
       "explanation": "A verifiable note names which slide moved, where, and the audience reason, so a reviewer can judge the storytelling decision.",
       "misconception_id": "cat100_supplement_8_2_same_deck_every_audience",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-08-02-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_8_2_professional_story_across_artifacts_ai_log",
@@ -94,6 +107,9 @@
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat100-supplement-08-02-lo-03"
       ]
     }
   ]

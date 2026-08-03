@@ -1,28 +1,51 @@
 {
-    "course": "inst-design",
-    "chapter": "01",
-    "section": "01",
-    "chapter_title": "Introduction to Instructional Design",
-    "title": "Module 1: What is Instructional Design?",
-    "description": "Introduce instructional design as the deliberate planning of learning experiences, then anchor the field in the major learning-theory traditions that shape design decisions.",
-    "learning_objectives": [
-        "Define Instructional Design (ID) and its main purposes.",
-        "Differentiate between foundational learning theories (Behaviorism, Cognitivism, Constructivism).",
-        "Explain how learning theory choices influence the structure of content, practice, and feedback."
+  "course": "inst-design",
+  "chapter": "01",
+  "section": "01",
+  "chapter_title": "Introduction to Instructional Design",
+  "title": "Module 1: What is Instructional Design?",
+  "description": "Introduce instructional design as the deliberate planning of learning experiences, then anchor the field in the major learning-theory traditions that shape design decisions.",
+  "learning_objectives": [
+    {
+      "id": "inst-design-01-01-lo-01",
+      "statement": "Define Instructional Design (ID) and its main purposes"
+    },
+    {
+      "id": "inst-design-01-01-lo-02",
+      "statement": "Differentiate between foundational learning theories (Behaviorism, Cognitivism, Constructivism)"
+    },
+    {
+      "id": "inst-design-01-01-lo-03",
+      "statement": "Explain how learning theory choices influence the structure of content, practice, and feedback"
+    }
+  ],
+  "concept_ids": [
+    "instructional_design",
+    "learning_theories",
+    "behaviorism",
+    "cognitivism",
+    "constructivism"
+  ],
+  "prereq_section_ids": [],
+  "practice_ids": [
+    "id_foundations_addie_role",
+    "id_foundations_behaviorism",
+    "id_foundations_cognitivism",
+    "id_foundations_constructivism"
+  ],
+  "estimated_time_minutes": 10,
+  "lo_practice_map": {
+    "inst-design-01-01-lo-01": [
+      "id_foundations_addie_role"
     ],
-    "concept_ids": [
-        "instructional_design",
-        "learning_theories",
-        "behaviorism",
-        "cognitivism",
-        "constructivism"
+    "inst-design-01-01-lo-02": [
+      "id_foundations_behaviorism",
+      "id_foundations_cognitivism",
+      "id_foundations_constructivism"
     ],
-    "prereq_section_ids": [],
-    "practice_ids": [
-        "id_foundations_addie_role",
-        "id_foundations_behaviorism",
-        "id_foundations_cognitivism",
-        "id_foundations_constructivism"
-    ],
-    "estimated_time_minutes": 10
+    "inst-design-01-01-lo-03": [
+      "id_foundations_behaviorism"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

@@ -1,34 +1,61 @@
 {
-    "course": "inst-design",
-    "chapter": "02",
-    "section": "07",
-    "chapter_title": "Assessment Design",
-    "title": "Module 7: Assessment Design — Validity, Reliability, and Item Construction",
-    "description": "Design defensible assessments by aligning to objectives, ensuring validity and reliability, writing diagnostic distractors, and using calibrated rubrics for open-ended performance.",
-    "learning_objectives": [
-        "Distinguish content, construct, and face validity, and explain what inference each one supports.",
-        "Identify common threats to assessment reliability and apply mitigations.",
-        "Audit an assessment for constructive alignment with its objective at the correct Bloom level.",
-        "Construct multiple-choice items whose distractors map to specific misconceptions, and design analytic rubrics for open-ended responses."
+  "course": "inst-design",
+  "chapter": "02",
+  "section": "07",
+  "chapter_title": "Assessment Design",
+  "title": "Module 7: Assessment Design — Validity, Reliability, and Item Construction",
+  "description": "Design defensible assessments by aligning to objectives, ensuring validity and reliability, writing diagnostic distractors, and using calibrated rubrics for open-ended performance.",
+  "learning_objectives": [
+    {
+      "id": "inst-design-02-07-lo-01",
+      "statement": "Distinguish content, construct, and face validity, and explain what inference each one supports"
+    },
+    {
+      "id": "inst-design-02-07-lo-02",
+      "statement": "Identify common threats to assessment reliability and apply mitigations"
+    },
+    {
+      "id": "inst-design-02-07-lo-03",
+      "statement": "Audit an assessment for constructive alignment with its objective at the correct Bloom level"
+    },
+    {
+      "id": "inst-design-02-07-lo-04",
+      "statement": "Construct multiple-choice items whose distractors map to specific misconceptions, and design analytic rubrics for open-ended responses"
+    }
+  ],
+  "concept_ids": [
+    "assessment_design",
+    "validity",
+    "reliability",
+    "constructive_alignment_audit",
+    "item_construction",
+    "rubric_design"
+  ],
+  "prereq_section_ids": [
+    "inst-design/02/05",
+    "inst-design/02/06"
+  ],
+  "practice_ids": [
+    "assessment_validity_inference",
+    "assessment_distractor_quality",
+    "assessment_alignment_audit",
+    "assessment_reliability_relationship"
+  ],
+  "estimated_time_minutes": 13,
+  "order": 7,
+  "lo_practice_map": {
+    "inst-design-02-07-lo-01": [
+      "assessment_validity_inference"
     ],
-    "concept_ids": [
-        "assessment_design",
-        "validity",
-        "reliability",
-        "constructive_alignment_audit",
-        "item_construction",
-        "rubric_design"
+    "inst-design-02-07-lo-02": [
+      "assessment_reliability_relationship"
     ],
-    "prereq_section_ids": [
-        "inst-design/02/05",
-        "inst-design/02/06"
+    "inst-design-02-07-lo-03": [
+      "assessment_alignment_audit"
     ],
-    "practice_ids": [
-        "assessment_validity_inference",
-        "assessment_distractor_quality",
-        "assessment_alignment_audit",
-        "assessment_reliability_relationship"
-    ],
-    "estimated_time_minutes": 13,
-    "order": 7
+    "inst-design-02-07-lo-04": [
+      "assessment_distractor_quality"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

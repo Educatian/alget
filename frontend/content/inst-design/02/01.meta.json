@@ -1,30 +1,53 @@
 {
-    "course": "inst-design",
-    "chapter": "02",
-    "section": "01",
-    "chapter_title": "The ADDIE Framework",
-    "title": "Module 1: Analysis & Design Phases",
-    "description": "Trace how instructional designers move from learner and context analysis into concrete learning goals, sequencing, and blueprint-level design decisions.",
-    "learning_objectives": [
-        "Identify the key components of the Analysis phase (learner, context, task).",
-        "Explain how the Design phase translates analysis into actionable learning blueprints.",
-        "Connect learner analysis data to measurable instructional objectives and content sequencing."
+  "course": "inst-design",
+  "chapter": "02",
+  "section": "01",
+  "chapter_title": "The ADDIE Framework",
+  "title": "Module 1: Analysis & Design Phases",
+  "description": "Trace how instructional designers move from learner and context analysis into concrete learning goals, sequencing, and blueprint-level design decisions.",
+  "learning_objectives": [
+    {
+      "id": "inst-design-02-01-lo-01",
+      "statement": "Identify the key components of the Analysis phase (learner, context, task)"
+    },
+    {
+      "id": "inst-design-02-01-lo-02",
+      "statement": "Explain how the Design phase translates analysis into actionable learning blueprints"
+    },
+    {
+      "id": "inst-design-02-01-lo-03",
+      "statement": "Connect learner analysis data to measurable instructional objectives and content sequencing"
+    }
+  ],
+  "concept_ids": [
+    "analysis_phase",
+    "design_phase",
+    "learner_analysis",
+    "task_analysis",
+    "instructional_objectives"
+  ],
+  "prereq_section_ids": [
+    "inst-design/01/01"
+  ],
+  "practice_ids": [
+    "analysis_root_cause",
+    "design_objectives_alignment",
+    "learner_analysis_case",
+    "task_analysis_function"
+  ],
+  "estimated_time_minutes": 11,
+  "lo_practice_map": {
+    "inst-design-02-01-lo-01": [
+      "task_analysis_function"
     ],
-    "concept_ids": [
-        "analysis_phase",
-        "design_phase",
-        "learner_analysis",
-        "task_analysis",
-        "instructional_objectives"
+    "inst-design-02-01-lo-02": [
+      "design_objectives_alignment"
     ],
-    "prereq_section_ids": [
-        "inst-design/01/01"
-    ],
-    "practice_ids": [
-        "analysis_root_cause",
-        "design_objectives_alignment",
-        "learner_analysis_case",
-        "task_analysis_function"
-    ],
-    "estimated_time_minutes": 11
+    "inst-design-02-01-lo-03": [
+      "design_objectives_alignment",
+      "analysis_root_cause",
+      "learner_analysis_case"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

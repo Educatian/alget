@@ -18,6 +18,9 @@
       "concept_ids": [
         "centripetal_acceleration",
         "normal_tangential_coordinates"
+      ],
+      "learning_objective_ids": [
+        "dynamics-01-04-lo-04"
       ]
     },
     {
@@ -39,6 +42,9 @@
         "curvilinear_motion",
         "normal_tangential_coordinates",
         "polar_coordinates"
+      ],
+      "learning_objective_ids": [
+        "dynamics-01-04-lo-01"
       ]
     },
     {
@@ -59,6 +65,9 @@
       "concept_ids": [
         "polar_coordinates",
         "cylindrical_coordinates"
+      ],
+      "learning_objective_ids": [
+        "dynamics-01-04-lo-03"
       ]
     },
     {
@@ -80,6 +89,9 @@
         "normal_tangential_coordinates",
         "radius_of_curvature",
         "centripetal_acceleration"
+      ],
+      "learning_objective_ids": [
+        "dynamics-01-04-lo-02"
       ]
     },
     {
@@ -97,8 +109,14 @@
         "unit": "m/s^2",
         "tolerance": 0.05
       },
-      "concept_ids": ["normal_tangential_coordinates", "centripetal_acceleration"],
-      "hint": "Find a_n = v^2/rho, then combine with the perpendicular a_t: |a| = sqrt(a_t^2 + a_n^2)."
+      "concept_ids": [
+        "normal_tangential_coordinates",
+        "centripetal_acceleration"
+      ],
+      "hint": "Find a_n = v^2/rho, then combine with the perpendicular a_t: |a| = sqrt(a_t^2 + a_n^2).",
+      "learning_objective_ids": [
+        "dynamics-01-04-lo-02"
+      ]
     }
   ]
 }

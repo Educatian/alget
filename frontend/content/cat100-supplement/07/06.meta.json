@@ -1,4 +1,4 @@
-﻿{
+{
   "course": "cat100-supplement",
   "chapter": "07",
   "section": "06",
@@ -6,10 +6,22 @@
   "title": "Collaboration Norms",
   "description": "CAT 100 textbook section connecting collaboration norms to shared document collaboration setup with access and comment controls, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Set least-access sharing so only the people who need to edit can edit, and everyone else can view.",
-    "Assign section ownership so no two people work on the same part at the same time.",
-    "Use suggesting mode and comments so edits are visible and reversible, never silent overwrites.",
-    "Set an internal deadline ahead of the real one to leave time for review."
+    {
+      "id": "cat100-supplement-07-06-lo-01",
+      "statement": "Set least-access sharing so only the people who need to edit can edit, and everyone else can view"
+    },
+    {
+      "id": "cat100-supplement-07-06-lo-02",
+      "statement": "Assign section ownership so no two people work on the same part at the same time"
+    },
+    {
+      "id": "cat100-supplement-07-06-lo-03",
+      "statement": "Use suggesting mode and comments so edits are visible and reversible, never silent overwrites"
+    },
+    {
+      "id": "cat100-supplement-07-06-lo-04",
+      "statement": "Set an internal deadline ahead of the real one to leave time for review"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_productivity_and_workflow_automation",
@@ -28,5 +40,20 @@
     "cat100_supplement_7_6_collaboration_norms_annotation_signal",
     "cat100_supplement_7_6_collaboration_norms_ai_boundary",
     "cat100_supplement_7_6_collaboration_norms_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-07-06-lo-01": [
+      "cat100_supplement_7_6_collaboration_norms_artifact_signal"
+    ],
+    "cat100-supplement-07-06-lo-02": [
+      "cat100_supplement_7_6_collaboration_norms_ai_boundary"
+    ],
+    "cat100-supplement-07-06-lo-03": [
+      "cat100_supplement_7_6_collaboration_norms_annotation_signal"
+    ],
+    "cat100-supplement-07-06-lo-04": [
+      "cat100_supplement_7_6_collaboration_norms_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

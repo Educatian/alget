@@ -3,10 +3,22 @@
   "title": "Module 5 Usability Plan Studio",
   "description": "AIL 606 textbook section connecting module 5 usability plan studio to moderated usability test script with observation-to-revision trace, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Audit a full usability plan for alignment across hypothesis, sample, task, metric, observation, and decision rule.",
-    "Trace each component back to the single learning goal the plan exists to serve.",
-    "Locate the seam where two well-formed parts contradict each other.",
-    "Revise the plan so every part puts the same hypothesis at risk."
+    {
+      "id": "ail606-supplement-05-08-lo-01",
+      "statement": "Audit a full usability plan for alignment across hypothesis, sample, task, metric, observation, and decision rule"
+    },
+    {
+      "id": "ail606-supplement-05-08-lo-02",
+      "statement": "Trace each component back to the single learning goal the plan exists to serve"
+    },
+    {
+      "id": "ail606-supplement-05-08-lo-03",
+      "statement": "Locate the seam where two well-formed parts contradict each other"
+    },
+    {
+      "id": "ail606-supplement-05-08-lo-04",
+      "statement": "Revise the plan so every part puts the same hypothesis at risk"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_usability_testing_and_learning_evidence",
@@ -28,5 +40,22 @@
     "ail606_supplement_5_8_module_5_usability_plan_studio_annotation_signal",
     "ail606_supplement_5_8_module_5_usability_plan_studio_ai_boundary",
     "ail606_supplement_5_8_module_5_usability_plan_studio_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-05-08-lo-01": [
+      "ail606_supplement_5_8_module_5_usability_plan_studio_annotation_signal",
+      "ail606_supplement_5_8_module_5_usability_plan_studio_artifact_signal",
+      "ail606_supplement_5_8_module_5_usability_plan_studio_calibration"
+    ],
+    "ail606-supplement-05-08-lo-02": [
+      "ail606_supplement_5_8_module_5_usability_plan_studio_ai_boundary"
+    ],
+    "ail606-supplement-05-08-lo-03": [
+      "ail606_supplement_5_8_module_5_usability_plan_studio_annotation_signal"
+    ],
+    "ail606-supplement-05-08-lo-04": [
+      "ail606_supplement_5_8_module_5_usability_plan_studio_annotation_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

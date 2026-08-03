@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "A GitHub user site is served from a repository named exactly username.github.io. Any other repo name produces a project site at a /repo subpath instead.",
       "misconception_id": "cat100_supplement_6_3_repo_name_arbitrary",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-06-03-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_6_3_github_repository_setup_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 0,
       "explanation": "GitHub Pages serves index.html (lowercase) as the root document. Index.HTML is treated as a different filename, so the root URL has nothing to serve.",
       "misconception_id": "cat100_supplement_6_3_filename_case_ignored",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-06-03-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_6_3_github_repository_setup_ai_boundary",
@@ -57,7 +63,10 @@
       "correct_index": 1,
       "explanation": "Force-pushing to a shared branch can erase others' commits. AI suggestions about destructive git commands must be judged against the cost; pulling first is the safe path.",
       "misconception_id": "cat100_supplement_6_3_force_push_is_safe",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-06-03-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_6_3_github_repository_setup_calibration",
@@ -77,7 +86,11 @@
       "correct_index": 1,
       "explanation": "Once a key is committed it is in history. You remove and gitignore the file and, crucially, rotate the key, because the old one must be treated as compromised.",
       "misconception_id": "cat100_supplement_6_3_committed_secret_is_safe",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-06-03-lo-02",
+        "cat100-supplement-06-03-lo-04"
+      ]
     }
   ]
 }

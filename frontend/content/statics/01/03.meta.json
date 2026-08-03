@@ -1,32 +1,60 @@
 {
-    "chapter": "01",
-    "section": "03",
-    "title": "Two-Force and Three-Force Members",
-    "course": "statics",
-    "learning_objectives": [
-        "Identify two-force members in a structure",
-        "Apply the two-force member principle to simplify analysis",
-        "Recognize three-force member conditions",
-        "Use concurrency for three-force equilibrium"
+  "chapter": "01",
+  "section": "03",
+  "title": "Two-Force and Three-Force Members",
+  "course": "statics",
+  "learning_objectives": [
+    {
+      "id": "statics-01-03-lo-01",
+      "statement": "Identify two-force members in a structure"
+    },
+    {
+      "id": "statics-01-03-lo-02",
+      "statement": "Apply the two-force member principle to simplify analysis"
+    },
+    {
+      "id": "statics-01-03-lo-03",
+      "statement": "Recognize three-force member conditions"
+    },
+    {
+      "id": "statics-01-03-lo-04",
+      "statement": "Use concurrency for three-force equilibrium"
+    }
+  ],
+  "concept_ids": [
+    "two_force_member",
+    "three_force_member",
+    "concurrency",
+    "truss_analysis"
+  ],
+  "prerequisites": [
+    "fbd",
+    "equilibrium_condition"
+  ],
+  "prereq_section_ids": [
+    "statics/01/02",
+    "statics/01/01"
+  ],
+  "practice_ids": [
+    "two_force_identify",
+    "three_force_concurrent",
+    "truss_member_force"
+  ],
+  "estimated_time_minutes": 40,
+  "lo_practice_map": {
+    "statics-01-03-lo-01": [
+      "truss_member_force"
     ],
-    "concept_ids": [
-        "two_force_member",
-        "three_force_member",
-        "concurrency",
-        "truss_analysis"
+    "statics-01-03-lo-02": [
+      "truss_member_force",
+      "two_force_identify"
     ],
-    "prerequisites": [
-        "fbd",
-        "equilibrium_condition"
+    "statics-01-03-lo-03": [
+      "three_force_concurrent"
     ],
-    "prereq_section_ids": [
-        "statics/01/02",
-        "statics/01/01"
-    ],
-    "practice_ids": [
-        "two_force_identify",
-        "three_force_concurrent",
-        "truss_member_force"
-    ],
-    "estimated_time_minutes": 40
+    "statics-01-03-lo-04": [
+      "three_force_concurrent"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

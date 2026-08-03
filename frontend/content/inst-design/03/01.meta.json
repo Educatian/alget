@@ -1,32 +1,55 @@
 {
-    "course": "inst-design",
-    "chapter": "03",
-    "section": "01",
-    "title": "Module 3: Multimedia Learning Principles",
-    "description": "Understanding how the brain processes multimedia information through Mayer's 12 Principles. Avoiding cognitive overload when combining text, audio, and graphics.",
-    "chapter_title": "Multimedia and Message Design",
-    "learning_objectives": [
-        "Explain why multimedia learning depends on coordinated verbal and visual processing.",
-        "Apply Mayer's principles to reduce cognitive overload in instructional media.",
-        "Diagnose when text, graphics, and narration are competing instead of reinforcing learning."
+  "course": "inst-design",
+  "chapter": "03",
+  "section": "01",
+  "title": "Module 3: Multimedia Learning Principles",
+  "description": "Understanding how the brain processes multimedia information through Mayer's 12 Principles. Avoiding cognitive overload when combining text, audio, and graphics.",
+  "chapter_title": "Multimedia and Message Design",
+  "learning_objectives": [
+    {
+      "id": "inst-design-03-01-lo-01",
+      "statement": "Explain why multimedia learning depends on coordinated verbal and visual processing"
+    },
+    {
+      "id": "inst-design-03-01-lo-02",
+      "statement": "Apply Mayer's principles to reduce cognitive overload in instructional media"
+    },
+    {
+      "id": "inst-design-03-01-lo-03",
+      "statement": "Diagnose when text, graphics, and narration are competing instead of reinforcing learning"
+    }
+  ],
+  "concept_ids": [
+    "multimedia_learning",
+    "mayer_principles",
+    "dual_channel_processing",
+    "cognitive_overload",
+    "modality_effect"
+  ],
+  "prereq_section_ids": [
+    "inst-design/01/02",
+    "inst-design/02/08"
+  ],
+  "practice_ids": [
+    "multimedia_dual_channel",
+    "multimedia_modality",
+    "mayer_coherence_principle",
+    "multimedia_overload_case"
+  ],
+  "estimated_time_minutes": 12,
+  "order": 3,
+  "lo_practice_map": {
+    "inst-design-03-01-lo-01": [
+      "multimedia_dual_channel"
     ],
-    "concept_ids": [
-        "multimedia_learning",
-        "mayer_principles",
-        "dual_channel_processing",
-        "cognitive_overload",
-        "modality_effect"
+    "inst-design-03-01-lo-02": [
+      "multimedia_overload_case",
+      "multimedia_modality",
+      "mayer_coherence_principle"
     ],
-    "prereq_section_ids": [
-        "inst-design/01/02",
-        "inst-design/02/08"
-    ],
-    "practice_ids": [
-        "multimedia_dual_channel",
-        "multimedia_modality",
-        "mayer_coherence_principle",
-        "multimedia_overload_case"
-    ],
-    "estimated_time_minutes": 12,
-    "order": 3
+    "inst-design-03-01-lo-03": [
+      "multimedia_dual_channel"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

@@ -20,6 +20,9 @@
         "ai_use_disclosure",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-07-lo-02"
       ]
     },
     {
@@ -42,6 +45,10 @@
         "ai_use_disclosure",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-07-lo-02",
+        "cat531-supplement-03-07-lo-03"
       ]
     },
     {
@@ -64,6 +71,9 @@
         "ai_use_disclosure",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-07-lo-02"
       ]
     },
     {
@@ -86,6 +96,21 @@
         "ai_use_disclosure",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-07-lo-02"
+      ]
+    },
+    {
+      "id": "cat531-supplement_03_07_lo_01_direct_check",
+      "type": "conceptual",
+      "stem": "Provide a concise response that demonstrates this learning objective: Analyze how the Design Tension Studio map naming a classroom value conflict and negotiated decision shows a defensible decision in CAT 531.",
+      "expected_answer": "The response accurately demonstrates the section objective: Analyze how the Design Tension Studio map naming a classroom value conflict and negotiated decision shows a defensible decision in CAT 531, using relevant section concepts, evidence, or calculations.",
+      "explanation": "This direct-evidence item is used when no closed-response item adequately samples the objective. Score it with the section concepts and worked examples as the rubric.",
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat531-supplement-03-07-lo-01",
+        "cat531-supplement-03-07-lo-04"
       ]
     }
   ]

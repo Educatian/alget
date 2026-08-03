@@ -11,6 +11,10 @@ node_modules
 dist
 dist-ssr
 *.local
+.env.local.*
+
+# Demo recording scratch: captured admin sessions and rendered video.
+tmp
 
 # Editor directories and files
 .vscode/*

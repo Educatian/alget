@@ -6,10 +6,22 @@
   "chapter": "06",
   "section": "05",
   "learning_objectives": [
-    "Analyze how the school AI policy memo with privacy, equity, consent, and learning-purpose checks shows a defensible decision in CAT 531.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible."
+    {
+      "id": "cat531-supplement-06-05-lo-01",
+      "statement": "Analyze how the school AI policy memo with privacy, equity, consent, and learning-purpose checks shows a defensible decision in CAT 531"
+    },
+    {
+      "id": "cat531-supplement-06-05-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "cat531-supplement-06-05-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat531-supplement-06-05-lo-04",
+      "statement": "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible"
+    }
   ],
   "concept_ids": [
     "cat531_supplement_final_project_and_professional_vision",
@@ -28,5 +40,21 @@
   ],
   "estimated_time_minutes": 14,
   "order": 5,
-  "top_tier_hardened": false
+  "top_tier_hardened": false,
+  "lo_practice_map": {
+    "cat531-supplement-06-05-lo-01": [
+      "cat531_supplement_6_5_risk_mitigation_and_family_communication_ai_boundary",
+      "cat531_supplement_6_5_risk_mitigation_and_family_communication_calibration"
+    ],
+    "cat531-supplement-06-05-lo-02": [
+      "cat531_supplement_6_5_risk_mitigation_and_family_communication_annotation_signal"
+    ],
+    "cat531-supplement-06-05-lo-03": [
+      "cat531_supplement_6_5_risk_mitigation_and_family_communication_artifact_signal"
+    ],
+    "cat531-supplement-06-05-lo-04": [
+      "cat531_supplement_6_5_risk_mitigation_and_family_communication_artifact_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

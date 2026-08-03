@@ -95,6 +95,30 @@ Specification gaming can satisfy the metric while defeating the goal.
         expect(note).toHaveTextContent(/Specification gaming/i)
     })
 
+    it('renders figure purpose, caption, source, license, and descriptive alt text', async () => {
+        render(
+            <ReadingNarrative
+                sectionId="statics/01/01"
+                course="statics"
+                conceptIds={['equilibrium']}
+                content={`# Equilibrium
+
+<figure-block caption="A concept map connecting equilibrium to force balance." conceptid="equilibrium" purpose="organizational" source="ALGET original instructional diagram" license="Project-authored">
+  <img src="/course-art/reference-figures/statics/example.png" alt="Equilibrium at the center with force and moment balance connected around it" />
+</figure-block>
+`}
+            />,
+        )
+
+        const figure = await screen.findByRole('figure')
+        expect(figure).toHaveAttribute('data-visual-purpose', 'organizational')
+        expect(screen.getByRole('region', { name: /Scrollable instructional figure/i })).toHaveAttribute('tabindex', '0')
+        expect(screen.getByAltText(/Equilibrium at the center/i)).toBeInTheDocument()
+        expect(screen.getByText(/A concept map connecting equilibrium/i)).toBeInTheDocument()
+        expect(screen.getByText(/Source:/i)).toHaveTextContent(/ALGET original instructional diagram/i)
+        expect(screen.getByText(/Source:/i)).toHaveTextContent(/Project-authored/i)
+    })
+
     it('falls back to readable text for an unresolved concept reference', async () => {
         render(
             <ReadingNarrative

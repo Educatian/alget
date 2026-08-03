@@ -6,10 +6,22 @@
   "chapter": "04",
   "section": "06",
   "learning_objectives": [
-    "Analyze how the school AI policy memo with privacy, equity, consent, and learning-purpose checks shows a defensible decision in CAT 531.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible."
+    {
+      "id": "cat531-supplement-04-06-lo-01",
+      "statement": "Analyze how the school AI policy memo with privacy, equity, consent, and learning-purpose checks shows a defensible decision in CAT 531"
+    },
+    {
+      "id": "cat531-supplement-04-06-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "cat531-supplement-04-06-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat531-supplement-04-06-lo-04",
+      "statement": "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible"
+    }
   ],
   "concept_ids": [
     "cat531_supplement_ai_ethics_and_ethobot_3_2",
@@ -24,9 +36,27 @@
     "cat531_supplement_4_6_moving_from_debate_to_policy_artifact_signal",
     "cat531_supplement_4_6_moving_from_debate_to_policy_annotation_signal",
     "cat531_supplement_4_6_moving_from_debate_to_policy_ai_boundary",
-    "cat531_supplement_4_6_moving_from_debate_to_policy_calibration"
+    "cat531_supplement_4_6_moving_from_debate_to_policy_calibration",
+    "cat531-supplement_04_06_lo_03_direct_check"
   ],
   "estimated_time_minutes": 14,
   "order": 6,
-  "top_tier_hardened": false
+  "top_tier_hardened": false,
+  "lo_practice_map": {
+    "cat531-supplement-04-06-lo-01": [
+      "cat531_supplement_4_6_moving_from_debate_to_policy_ai_boundary"
+    ],
+    "cat531-supplement-04-06-lo-02": [
+      "cat531_supplement_4_6_moving_from_debate_to_policy_artifact_signal",
+      "cat531_supplement_4_6_moving_from_debate_to_policy_annotation_signal",
+      "cat531_supplement_4_6_moving_from_debate_to_policy_calibration"
+    ],
+    "cat531-supplement-04-06-lo-03": [
+      "cat531-supplement_04_06_lo_03_direct_check"
+    ],
+    "cat531-supplement-04-06-lo-04": [
+      "cat531-supplement_04_06_lo_03_direct_check"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

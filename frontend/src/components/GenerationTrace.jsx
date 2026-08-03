@@ -17,7 +17,7 @@ export default function GenerationTrace({ trace, compact = false }) {
 
     return (
         <details className={`${compact ? 'mt-2' : 'mt-4'} group border-t border-[var(--ath-line)] pt-2 text-left`}>
-            <summary className="flex min-h-8 cursor-pointer list-none items-center justify-between gap-3 text-[11px] font-semibold text-[var(--ath-secondary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_40%,transparent)]">
+            <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 text-[11px] font-semibold text-[var(--ath-secondary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_40%,transparent)]">
                 <span className="flex flex-wrap items-center gap-2">
                     <span className="rounded-full bg-[color-mix(in_srgb,var(--ath-primary)_10%,transparent)] px-2 py-0.5 uppercase tracking-[0.12em] text-[var(--ath-primary)]">AI generated</span>
                     <span>{hasContext ? 'Current section context used' : 'No source context attached'}</span>

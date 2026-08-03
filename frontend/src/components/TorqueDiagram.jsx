@@ -34,27 +34,27 @@ export const TorqueDiagram = () => {
                     <div>
                         <div className="flex justify-between mb-2">
                             <label htmlFor="torque-force" className="text-xs font-bold text-[var(--ath-muted)] uppercase tracking-wider">Applied Force</label>
-                            <span className="text-xs font-bold text-indigo-600">{force} N</span>
+                            <span className="text-xs font-bold text-[var(--ath-primary)]">{force} N</span>
                         </div>
                         <input
                             id="torque-force"
                             type="range" min="10" max="100" value={force}
                             aria-valuetext={`${force} newtons`}
                             onChange={(e) => setForce(Number(e.target.value))}
-                            className="w-full h-2 bg-[var(--ath-line)] rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                            className="w-full h-2 bg-[var(--ath-line)] rounded-lg appearance-none cursor-pointer accent-[var(--ath-primary)]"
                         />
                     </div>
                     <div>
                         <div className="flex justify-between mb-2">
                             <label htmlFor="torque-angle" className="text-xs font-bold text-[var(--ath-muted)] uppercase tracking-wider">Angle (θ)</label>
-                            <span className="text-xs font-bold text-indigo-600">{angle}°</span>
+                            <span className="text-xs font-bold text-[var(--ath-primary)]">{angle}°</span>
                         </div>
                         <input
                             id="torque-angle"
                             type="range" min="0" max="180" value={angle}
                             aria-valuetext={`${angle} degrees`}
                             onChange={(e) => setAngle(Number(e.target.value))}
-                            className="w-full h-2 bg-[var(--ath-line)] rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                            className="w-full h-2 bg-[var(--ath-line)] rounded-lg appearance-none cursor-pointer accent-[var(--ath-primary)]"
                         />
                     </div>
 

@@ -3,10 +3,22 @@
   "title": "Accessibility Review Workflow",
   "description": "AIL 606 textbook section on running a WCAG-anchored accessibility review of a prototype: mapping elements to WCAG 2.2 success criteria, prioritizing fixes by depth of exclusion, and adding redundant cues for learner variability, with reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Map each element of a prototype screen to a named WCAG 2.2 success criterion (1.1.1, 1.4.1, 1.4.3, 2.1.1, 2.2.1) rather than judging by appearance.",
-    "Prioritize accessibility fixes by depth of exclusion, fixing full lock-outs before strain.",
-    "Add redundant cues (color plus label plus icon) consistent with UDL learner variability without raising load for other learners.",
-    "Judge an AI-drafted alt text against WCAG 1.1.1 (does it name what the image shows and why it matters) before accepting it."
+    {
+      "id": "ail606-supplement-08-05-lo-01",
+      "statement": "Map each element of a prototype screen to a named WCAG 2.2 success criterion (1.1.1, 1.4.1, 1.4.3, 2.1.1, 2.2.1) rather than judging by appearance"
+    },
+    {
+      "id": "ail606-supplement-08-05-lo-02",
+      "statement": "Prioritize accessibility fixes by depth of exclusion, fixing full lock-outs before strain"
+    },
+    {
+      "id": "ail606-supplement-08-05-lo-03",
+      "statement": "Add redundant cues (color plus label plus icon) consistent with UDL learner variability without raising load for other learners"
+    },
+    {
+      "id": "ail606-supplement-08-05-lo-04",
+      "statement": "Judge an AI-drafted alt text against WCAG 1.1.1 (does it name what the image shows and why it matters) before accepting it"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_instructor_implementation_toolkit",
@@ -28,5 +40,21 @@
     "ail606_supplement_8_5_accessibility_review_workflow_annotation_signal",
     "ail606_supplement_8_5_accessibility_review_workflow_ai_boundary",
     "ail606_supplement_8_5_accessibility_review_workflow_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-08-05-lo-01": [
+      "ail606_supplement_8_5_accessibility_review_workflow_artifact_signal"
+    ],
+    "ail606-supplement-08-05-lo-02": [
+      "ail606_supplement_8_5_accessibility_review_workflow_ai_boundary"
+    ],
+    "ail606-supplement-08-05-lo-03": [
+      "ail606_supplement_8_5_accessibility_review_workflow_annotation_signal"
+    ],
+    "ail606-supplement-08-05-lo-04": [
+      "ail606_supplement_8_5_accessibility_review_workflow_ai_boundary",
+      "ail606_supplement_8_5_accessibility_review_workflow_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

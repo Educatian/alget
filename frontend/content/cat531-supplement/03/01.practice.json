@@ -20,6 +20,10 @@
         "cat531_supplement_what_ai_changes_in_schools",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-01-lo-01",
+        "cat531-supplement-03-01-lo-04"
       ]
     },
     {
@@ -42,6 +46,9 @@
         "cat531_supplement_what_ai_changes_in_schools",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-01-lo-03"
       ]
     },
     {
@@ -64,6 +71,9 @@
         "cat531_supplement_what_ai_changes_in_schools",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-01-lo-02"
       ]
     },
     {
@@ -86,6 +96,9 @@
         "cat531_supplement_what_ai_changes_in_schools",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-01-lo-04"
       ]
     }
   ]

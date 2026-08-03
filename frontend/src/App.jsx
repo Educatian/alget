@@ -5,9 +5,10 @@ import { initSession, endSession } from './lib/loggingService'
 import { replayPendingResearchPersists, clearResearchCaches } from './lib/researchService'
 import { clearLocalLearnerCaches } from './lib/knowledgeService'
 import { clearStreak } from './lib/streak'
+import { clearFacultyPartnershipCache } from './lib/facultyPartnershipService'
 import { safeSessionStorageGet, safeLocalStorageGet, safeLocalStorageRemove } from './lib/browserStorage'
 import { DEMO_SESSION_KEY } from './lib/demoSession'
-import { clearCohortLearner, formatUserLabel, readCohortLearner } from './lib/cohortLearner'
+import { clearCohortLearner, formatUserLabel, markInvitedLearnerActive, readCohortLearner } from './lib/cohortLearner'
 import { ToastProvider } from './lib/toast.jsx'
 import { ThemeProvider } from './lib/theme.jsx'
 import GlobalClickLogger from './components/GlobalClickLogger'
@@ -102,10 +103,12 @@ function RouteFallback() {
 
 function hasInstructorAccess(user) {
   const role = user?.app_metadata?.role
-  return user?.id === 'e2e-user'
+  return (E2E_USER && user?.id === E2E_USER.id)
     || ['admin', 'course_admin', 'instructor'].includes(role)
-    || safeSessionStorageGet('alget_instructor_access') === 'granted'
-    || safeSessionStorageGet('alget_researcher_access') === 'granted'
+}
+
+function PendingInstructorNotice({ user }) {
+  return <div className="editorial-shell flex min-h-screen items-center justify-center px-6"><section className="max-w-xl border-l-2 border-amber-500 pl-5"><p className="editorial-kicker">INSTRUCTOR APPLICATION</p><h1 className="mt-2 text-2xl font-semibold text-[var(--ath-text)]">Approval is pending</h1><p className="mt-3 text-sm leading-6 text-[var(--ath-muted)]">{user?.email || 'Your account'} is confirmed, but a course administrator must approve instructor access before you can create courses or learning materials.</p><p className="mt-3 text-xs text-[var(--ath-muted)]">You can return after approval and sign in again.</p></section></div>
 }
 
 function hasCourseAdminAccess(user) {
@@ -142,6 +145,7 @@ export default function App() {
 
         // Initialize logging session when user is authenticated
         if (sessionUser) {
+          markInvitedLearnerActive(sessionUser).catch(() => {})
           initSession(sessionUser).then(() => {
             replayPendingResearchPersists().catch(() => {})
           })
@@ -159,6 +163,7 @@ export default function App() {
 
       setUser((previousUser) => {
         if (newUser && !previousUser) {
+          markInvitedLearnerActive(newUser).catch(() => {})
           initSession(newUser)
         } else if (!newUser && previousUser) {
           endSession()
@@ -184,6 +189,7 @@ export default function App() {
     // inherit them; they rebuild from the cloud.
     clearLocalLearnerCaches()
     clearResearchCaches()
+    clearFacultyPartnershipCache()
     clearStreak()
     setUser(user)
     initSession(user)
@@ -198,6 +204,7 @@ export default function App() {
       clearCohortLearner()
       clearLocalLearnerCaches()
       clearResearchCaches()
+      clearFacultyPartnershipCache()
       clearStreak()
       setUser(null)
     }
@@ -299,7 +306,7 @@ export default function App() {
                 path="/instructor"
                 element={
                   user ? (
-                    hasInstructorAccess(user) ? (
+                    (user?.app_metadata?.role === 'instructor_pending' || user?.user_metadata?.requested_role === 'instructor') ? <PendingInstructorNotice user={user} /> : hasInstructorAccess(user) ? (
                       <InstructorDashboard user={user} />
                     ) : (
                       <Navigate to="/analytics?return=instructor" replace />

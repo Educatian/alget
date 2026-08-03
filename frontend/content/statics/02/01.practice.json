@@ -4,33 +4,48 @@
       "id": "moment_perpendicular",
       "type": "numeric",
       "difficulty": "easy",
-      "concept_ids": ["moment"],
+      "concept_ids": [
+        "moment"
+      ],
       "stem": "A 150 N horizontal force acts at a point 3 m directly above point O. Calculate the magnitude of the moment about O.",
       "final_answer": {
         "value": 450,
         "unit": "N m",
         "tolerance": 1
       },
-      "hint": "Use M = Fd with the perpendicular distance from O to the line of action."
+      "hint": "Use M = Fd with the perpendicular distance from O to the line of action.",
+      "learning_objective_ids": [
+        "statics-02-01-lo-01",
+        "statics-02-01-lo-03"
+      ]
     },
     {
       "id": "moment_components",
       "type": "numeric",
       "difficulty": "medium",
-      "concept_ids": ["moment", "varignon_theorem", "force_components"],
+      "concept_ids": [
+        "moment",
+        "varignon_theorem",
+        "force_components"
+      ],
       "stem": "A 200 N force acts at 45 degrees from horizontal at point P located at (2, 3) m from origin O. Calculate the moment about O using components.",
       "final_answer": {
         "value": 141.4,
         "unit": "N m",
         "tolerance": 5
       },
-      "hint": "Find Fx and Fy first, then apply M = Fx*y - Fy*x."
+      "hint": "Find Fx and Fy first, then apply M = Fx*y - Fy*x.",
+      "learning_objective_ids": [
+        "statics-02-01-lo-04"
+      ]
     },
     {
       "id": "moment_arm_definition",
       "type": "multiple_choice",
       "difficulty": "easy",
-      "concept_ids": ["moment"],
+      "concept_ids": [
+        "moment"
+      ],
       "stem": "What is the moment arm of a force about a point?",
       "options": [
         "The total length of the body",
@@ -40,13 +55,18 @@
       ],
       "correct_index": 1,
       "explanation": "The moment arm is the perpendicular distance from the reference point to the line of action of the force.",
-      "misconception_id": "use_nonperpendicular_distance"
+      "misconception_id": "use_nonperpendicular_distance",
+      "learning_objective_ids": [
+        "statics-02-01-lo-01"
+      ]
     },
     {
       "id": "moment_sign_convention",
       "type": "multiple_choice",
       "difficulty": "easy",
-      "concept_ids": ["moment"],
+      "concept_ids": [
+        "moment"
+      ],
       "stem": "In standard planar statics convention, which moment sense is usually taken as positive?",
       "options": [
         "Counterclockwise",
@@ -56,7 +76,21 @@
       ],
       "correct_index": 0,
       "explanation": "Most 2D statics solutions use counterclockwise moment as the positive sign convention.",
-      "misconception_id": "ignore_moment_sign"
+      "misconception_id": "ignore_moment_sign",
+      "learning_objective_ids": [
+        "statics-02-01-lo-03"
+      ]
+    },
+    {
+      "id": "statics_02_01_lo_02_direct_check",
+      "type": "conceptual",
+      "stem": "Provide a concise response that demonstrates this learning objective: Calculate moments using the cross product.",
+      "expected_answer": "The response accurately demonstrates the section objective: Calculate moments using the cross product, using relevant section concepts, evidence, or calculations.",
+      "explanation": "This direct-evidence item is used when no closed-response item adequately samples the objective. Score it with the section concepts and worked examples as the rubric.",
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "statics-02-01-lo-02"
+      ]
     }
   ]
 }

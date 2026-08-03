@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "Relative references shift with the cell when copied. Copying =B2*C2 down one row makes it =B3*C3, which is exactly what a per-row calculation needs.",
       "misconception_id": "cat100_supplement_3_2_formulas_for_everyday_analysis_relative_vs_absolute",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-03-02-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_3_2_formulas_for_everyday_analysis_annotation_signal",
@@ -37,7 +40,11 @@
       "correct_index": 1,
       "explanation": "A value reused by every row must be an absolute reference. $F$1 stays fixed when the formula is copied, so each row multiplies its own amount by the same 8% rate.",
       "misconception_id": "cat100_supplement_3_2_formulas_for_everyday_analysis_relative_vs_absolute",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-03-02-lo-01",
+        "cat100-supplement-03-02-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_3_2_formulas_for_everyday_analysis_ai_boundary",
@@ -57,7 +64,10 @@
       "correct_index": 1,
       "explanation": "AVERAGE skips truly blank cells and divides by the count of real values. Dividing a SUM by a hard-coded 3 treats the blank as a 0 and understates the average.",
       "misconception_id": "cat100_supplement_3_2_formulas_for_everyday_analysis_blank_as_zero",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-03-02-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_3_2_formulas_for_everyday_analysis_calibration",
@@ -77,7 +87,10 @@
       "correct_index": 1,
       "explanation": "COUNTIF with the criterion \">500\" counts only cells meeting the condition. Plain COUNT counts all numbers regardless of value, and the other formulas do not return a count of matching cells.",
       "misconception_id": "cat100_supplement_3_2_formulas_for_everyday_analysis_count_vs_countif",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-03-02-lo-04"
+      ]
     }
   ]
 }

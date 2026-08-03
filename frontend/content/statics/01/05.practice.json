@@ -5,7 +5,10 @@
       "type": "multiple_choice",
       "difficulty": "medium",
       "concept_id": "force_components",
-      "concept_ids": ["force_components", "force_vector"],
+      "concept_ids": [
+        "force_components",
+        "force_vector"
+      ],
       "stem": "Two perpendicular forces act on a particle: F₁ = 80 N along the +x axis and F₂ = 60 N along the +y axis. What is the magnitude of the resultant?",
       "options": [
         "140 N (sum of magnitudes).",
@@ -15,14 +18,21 @@
       ],
       "correct_index": 1,
       "explanation": "Perpendicular forces combine as √(80² + 60²) = 100 N. Adding magnitudes gives 140 N, which would only be correct if the forces were collinear and same direction.",
-      "misconception_id": "scalar_addition_of_vectors"
+      "misconception_id": "scalar_addition_of_vectors",
+      "learning_objective_ids": [
+        "statics-01-05-lo-01"
+      ]
     },
     {
       "id": "force_vec_3d_unit",
       "type": "multiple_choice",
       "difficulty": "medium",
       "concept_id": "unit_vector",
-      "concept_ids": ["unit_vector", "force_vector", "direction_cosines"],
+      "concept_ids": [
+        "unit_vector",
+        "force_vector",
+        "direction_cosines"
+      ],
       "stem": "A cable runs from A(1, 2, 4) m to B(4, 6, 0) m. What is the unit vector along the line from A toward B?",
       "options": [
         "(3i + 4j - 4k) / √41",
@@ -32,14 +42,20 @@
       ],
       "correct_index": 0,
       "explanation": "r_AB = (4-1)i + (6-2)j + (0-4)k = 3i + 4j - 4k, |r_AB| = √(9+16+16) = √41. The unit vector is r_AB / |r_AB| = (3i + 4j - 4k)/√41.",
-      "misconception_id": "unit_vector_from_endpoint"
+      "misconception_id": "unit_vector_from_endpoint",
+      "learning_objective_ids": [
+        "statics-01-05-lo-02"
+      ]
     },
     {
       "id": "force_vec_dot_projection",
       "type": "multiple_choice",
       "difficulty": "medium",
       "concept_id": "dot_product",
-      "concept_ids": ["dot_product", "force_vector"],
+      "concept_ids": [
+        "dot_product",
+        "force_vector"
+      ],
       "stem": "Force F = 100i + 0j + 0k N is applied to a member whose axis is along unit vector u = (i + j + k)/√3. What is the component of F along the member's axis?",
       "options": [
         "100 N (the full magnitude).",
@@ -49,14 +65,19 @@
       ],
       "correct_index": 1,
       "explanation": "The projection along the axis is F · u = (100)(1/√3) + 0 + 0 = 100/√3 ≈ 57.7 N.",
-      "misconception_id": "projection_equals_magnitude"
+      "misconception_id": "projection_equals_magnitude",
+      "learning_objective_ids": [
+        "statics-01-05-lo-03"
+      ]
     },
     {
       "id": "force_vec_cross_anticommute",
       "type": "multiple_choice",
       "difficulty": "easy",
       "concept_id": "cross_product",
-      "concept_ids": ["cross_product"],
+      "concept_ids": [
+        "cross_product"
+      ],
       "stem": "Why does swapping the order of operands in a cross product (A × B → B × A) change the sign of the result?",
       "options": [
         "It does not; the cross product is commutative like the dot product.",
@@ -66,7 +87,10 @@
       ],
       "correct_index": 1,
       "explanation": "The cross product is anti-commutative. Swapping operands flips the right-hand-rule direction. This is the most common source of moment-sign errors.",
-      "misconception_id": "cross_product_commutative"
+      "misconception_id": "cross_product_commutative",
+      "learning_objective_ids": [
+        "statics-01-05-lo-04"
+      ]
     }
   ]
 }

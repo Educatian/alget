@@ -206,7 +206,7 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
         <div className="my-10 overflow-hidden rounded-[var(--ath-radius-xl)] border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] font-sans shadow-sm">
             <div className="flex items-center justify-between border-b border-[var(--ath-line)] bg-[var(--ath-panel-muted)] px-6 py-4">
                 <h3 className="flex items-center gap-2 font-bold text-[var(--ath-text)]">
-                    <span className="rounded-full bg-[var(--ath-primary-soft)] px-2 py-0.5 text-[var(--ath-text-2xs)] font-bold uppercase tracking-[0.2em] text-[var(--ath-primary-deep)]">
+                    <span className="rounded-full bg-[var(--ath-primary-soft)] px-2 py-0.5 text-[length:var(--ath-text-2xs)] font-bold uppercase tracking-[0.2em] text-[var(--ath-primary-deep)]">
                         KC
                     </span>
                     Knowledge Check

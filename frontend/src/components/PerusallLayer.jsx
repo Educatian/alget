@@ -294,7 +294,7 @@ export default function PerusallLayer({ sectionId, conceptIds = [] }) {
                     type="button"
                     onClick={() => setExpanded((value) => !value)}
                     aria-expanded={expanded}
-                    className="flex items-center gap-2 rounded-md px-1 text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
+                    className="flex min-h-11 items-center gap-2 rounded-md px-1 text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_35%,transparent)]"
                 >
                     <ChevronDown className={`h-3.5 w-3.5 transition-transform ${expanded ? '' : '-rotate-90'}`} aria-hidden />
                     <span>Annotations</span>
@@ -304,7 +304,7 @@ export default function PerusallLayer({ sectionId, conceptIds = [] }) {
                 <button
                     type="button"
                     onClick={() => startCompose()}
-                    className="ml-auto inline-flex items-center gap-1.5 rounded-md bg-[var(--ath-primary)] px-2.5 py-1.5 text-[11px] font-semibold text-white hover:brightness-105"
+                    className="ml-auto inline-flex min-h-11 items-center gap-1.5 rounded-md bg-[var(--ath-primary)] px-3 text-[11px] font-semibold text-white hover:brightness-105"
                 >
                     <MessageSquarePlus className="h-3.5 w-3.5" />
                     Add note
@@ -318,7 +318,7 @@ export default function PerusallLayer({ sectionId, conceptIds = [] }) {
                         <button
                             type="button"
                             onClick={() => setFilter('all')}
-                            className={`rounded-full px-2.5 py-0.5 transition-colors ${filter === 'all' ? 'bg-[var(--ath-text)] text-[var(--ath-background)]' : 'bg-[var(--ath-panel)] text-[var(--ath-muted)] hover:bg-[var(--ath-panel-muted)]'}`}
+                            className={`min-h-8 rounded-full px-2.5 transition-colors ${filter === 'all' ? 'bg-[var(--ath-text)] text-[var(--ath-background)]' : 'bg-[var(--ath-panel)] text-[var(--ath-muted)] hover:bg-[var(--ath-panel-muted)]'}`}
                         >
                             All {annotations.length}
                         </button>
@@ -327,7 +327,7 @@ export default function PerusallLayer({ sectionId, conceptIds = [] }) {
                                 key={item.id}
                                 type="button"
                                 onClick={() => setFilter(filter === item.id ? 'all' : item.id)}
-                                className={`rounded-full px-2.5 py-0.5 transition-colors ${filter === item.id
+                                className={`min-h-8 rounded-full px-2.5 transition-colors ${filter === item.id
                                     ? 'bg-[var(--ath-text)] text-[var(--ath-background)]'
                                     : 'bg-[var(--ath-panel)] text-[var(--ath-muted)] hover:bg-[var(--ath-panel-muted)]'
                                     }`}
@@ -346,7 +346,7 @@ export default function PerusallLayer({ sectionId, conceptIds = [] }) {
                                         key={item.id}
                                         type="button"
                                         onClick={() => setTag(item.id)}
-                                        className={`rounded-full px-2.5 py-0.5 transition-colors ${tag === item.id
+                                        className={`min-h-8 rounded-full px-2.5 transition-colors ${tag === item.id
                                             ? 'bg-[var(--ath-primary)] text-white'
                                             : 'bg-white text-[var(--ath-muted)] hover:text-[var(--ath-primary)]'
                                             }`}
@@ -357,7 +357,7 @@ export default function PerusallLayer({ sectionId, conceptIds = [] }) {
                                 <button
                                     type="button"
                                     onClick={captureSelection}
-                                    className="ml-auto inline-flex items-center gap-1 text-[10px] font-medium text-[var(--ath-muted)] hover:text-[var(--ath-text)]"
+                                    className="ml-auto inline-flex min-h-8 items-center gap-1 px-1 text-[10px] font-medium text-[var(--ath-muted)] hover:text-[var(--ath-text)]"
                                     title="Use the currently selected reading text as the quote"
                                 >
                                     <Highlighter className="h-3 w-3" />
@@ -381,7 +381,7 @@ export default function PerusallLayer({ sectionId, conceptIds = [] }) {
                                 <button
                                     type="button"
                                     onClick={cancelCompose}
-                                    className="rounded-full px-2.5 py-1 text-[11px] font-semibold text-[var(--ath-muted)] hover:text-[var(--ath-text)]"
+                                    className="min-h-11 rounded-full px-3 text-[11px] font-semibold text-[var(--ath-muted)] hover:text-[var(--ath-text)]"
                                 >
                                     Cancel
                                 </button>
@@ -389,7 +389,7 @@ export default function PerusallLayer({ sectionId, conceptIds = [] }) {
                                     type="button"
                                     onClick={submitNote}
                                     disabled={!body.trim()}
-                                    className="editorial-button px-3 py-1.5 text-[11px] disabled:opacity-50"
+                                    className="editorial-button min-h-11 px-3 text-[11px] disabled:opacity-50"
                                 >
                                     <MessageSquarePlus className="h-3.5 w-3.5" />
                                     Post
@@ -423,7 +423,7 @@ export default function PerusallLayer({ sectionId, conceptIds = [] }) {
                                 <button
                                     type="button"
                                     onClick={() => upvote(annotation.id)}
-                                    className="mt-2 inline-flex items-center gap-1 text-[11px] font-semibold text-[var(--ath-muted)] hover:text-[var(--ath-primary)]"
+                                    className="mt-2 inline-flex min-h-8 items-center gap-1 px-1 text-[11px] font-semibold text-[var(--ath-muted)] hover:text-[var(--ath-primary)]"
                                 >
                                     <ThumbsUp className="h-3 w-3" />
                                     Helpful {annotation.upvotes > 0 ? annotation.upvotes : ''}

@@ -6,10 +6,22 @@
   "title": "Digital Identity and Professional Presence",
   "description": "CAT 100 textbook section connecting digital identity and professional presence to resume before-after revision with truthful evidence, role fit, and AI-use note, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Convert a duty statement into an accomplishment statement built from a strong action verb plus a quantified, truthful result.",
-    "Tailor resume claims to a specific role so a reader sees fit in the top third of the page.",
-    "Disclose any AI editing help with a note that records what you accepted and what you rejected.",
-    "Keep every claim defensible: write nothing you could not back up if a reference checker asked."
+    {
+      "id": "cat100-supplement-01-01-lo-01",
+      "statement": "Convert a duty statement into an accomplishment statement built from a strong action verb plus a quantified, truthful result"
+    },
+    {
+      "id": "cat100-supplement-01-01-lo-02",
+      "statement": "Tailor resume claims to a specific role so a reader sees fit in the top third of the page"
+    },
+    {
+      "id": "cat100-supplement-01-01-lo-03",
+      "statement": "Disclose any AI editing help with a note that records what you accepted and what you rejected"
+    },
+    {
+      "id": "cat100-supplement-01-01-lo-04",
+      "statement": "Keep every claim defensible: write nothing you could not back up if a reference checker asked"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_digital_citizenship_and_ai_readiness",
@@ -26,5 +38,20 @@
     "cat100_supplement_1_1_digital_identity_and_professional_presence_annotation_signal",
     "cat100_supplement_1_1_digital_identity_and_professional_presence_ai_boundary",
     "cat100_supplement_1_1_digital_identity_and_professional_presence_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-01-01-lo-01": [
+      "cat100_supplement_1_1_digital_identity_and_professional_presence_artifact_signal"
+    ],
+    "cat100-supplement-01-01-lo-02": [
+      "cat100_supplement_1_1_digital_identity_and_professional_presence_calibration"
+    ],
+    "cat100-supplement-01-01-lo-03": [
+      "cat100_supplement_1_1_digital_identity_and_professional_presence_ai_boundary"
+    ],
+    "cat100-supplement-01-01-lo-04": [
+      "cat100_supplement_1_1_digital_identity_and_professional_presence_annotation_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

@@ -18,7 +18,10 @@
       ],
       "correct_index": 1,
       "explanation": "The school-official exception transfers FERPA obligations to the vendor; the institution's exposure is the relevant constraint. Vendor-side terms cannot override that.",
-      "misconception_id": "vendor_terms_supersede_ferpa"
+      "misconception_id": "vendor_terms_supersede_ferpa",
+      "learning_objective_ids": [
+        "ai-ethics-06-01-lo-04"
+      ]
     },
     {
       "id": "edu_idea_due_process",
@@ -38,7 +41,10 @@
       ],
       "correct_index": 1,
       "explanation": "Algorithmic decisions affecting special-education identification or services inherit IDEA procedural obligations. The AI route is not a workaround.",
-      "misconception_id": "ferpa_covers_everything"
+      "misconception_id": "ferpa_covers_everything",
+      "learning_objective_ids": [
+        "ai-ethics-06-01-lo-01"
+      ]
     },
     {
       "id": "edu_equity_question",
@@ -57,7 +63,10 @@
       ],
       "correct_index": 1,
       "explanation": "Equity in educational AI is about distribution of benefit and harm across schools and learners, not the tool's average performance.",
-      "misconception_id": "average_quality_is_equity"
+      "misconception_id": "average_quality_is_equity",
+      "learning_objective_ids": [
+        "ai-ethics-06-01-lo-03"
+      ]
     },
     {
       "id": "edu_coppa_age",
@@ -76,7 +85,11 @@
       ],
       "correct_index": 1,
       "explanation": "COPPA stops at 13, but the developmental vulnerabilities it addresses do not. Designers should treat 13-18 as an ethical zone above the COPPA floor.",
-      "misconception_id": "coppa_covers_all_minors"
+      "misconception_id": "coppa_covers_all_minors",
+      "learning_objective_ids": [
+        "ai-ethics-06-01-lo-02",
+        "ai-ethics-06-01-lo-03"
+      ]
     }
   ]
 }

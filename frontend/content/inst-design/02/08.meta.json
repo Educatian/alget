@@ -1,32 +1,54 @@
 {
-    "course": "inst-design",
-    "chapter": "02",
-    "section": "08",
-    "chapter_title": "Online &amp; Distance Learning",
-    "title": "Module 8: Online &amp; Distance Learning Design",
-    "description": "Design defensible online courses using Moore's three types of interaction and the Community of Inquiry model, and choose modes (asynchronous, synchronous, hybrid) deliberately.",
-    "learning_objectives": [
-        "Allocate Moore's three interaction types (learner-content, learner-instructor, learner-learner) intentionally across an online course.",
-        "Apply the Community of Inquiry model (cognitive, social, teaching presence) to diagnose deep-learning gaps.",
-        "Match mode (asynchronous, synchronous, hybrid) to objective rather than treating mode as a default."
+  "course": "inst-design",
+  "chapter": "02",
+  "section": "08",
+  "chapter_title": "Online &amp; Distance Learning",
+  "title": "Module 8: Online &amp; Distance Learning Design",
+  "description": "Design defensible online courses using Moore's three types of interaction and the Community of Inquiry model, and choose modes (asynchronous, synchronous, hybrid) deliberately.",
+  "learning_objectives": [
+    {
+      "id": "inst-design-02-08-lo-01",
+      "statement": "Allocate Moore's three interaction types (learner-content, learner-instructor, learner-learner) intentionally across an online course"
+    },
+    {
+      "id": "inst-design-02-08-lo-02",
+      "statement": "Apply the Community of Inquiry model (cognitive, social, teaching presence) to diagnose deep-learning gaps"
+    },
+    {
+      "id": "inst-design-02-08-lo-03",
+      "statement": "Match mode (asynchronous, synchronous, hybrid) to objective rather than treating mode as a default"
+    }
+  ],
+  "concept_ids": [
+    "online_learning_design",
+    "moore_three_interactions",
+    "community_of_inquiry",
+    "cognitive_presence",
+    "social_presence",
+    "teaching_presence"
+  ],
+  "prereq_section_ids": [
+    "inst-design/02/07"
+  ],
+  "practice_ids": [
+    "online_moore_balance",
+    "online_coi_phases",
+    "online_async_vs_sync",
+    "online_teaching_presence"
+  ],
+  "estimated_time_minutes": 13,
+  "order": 8,
+  "lo_practice_map": {
+    "inst-design-02-08-lo-01": [
+      "online_moore_balance"
     ],
-    "concept_ids": [
-        "online_learning_design",
-        "moore_three_interactions",
-        "community_of_inquiry",
-        "cognitive_presence",
-        "social_presence",
-        "teaching_presence"
+    "inst-design-02-08-lo-02": [
+      "online_coi_phases",
+      "online_teaching_presence"
     ],
-    "prereq_section_ids": [
-        "inst-design/02/07"
-    ],
-    "practice_ids": [
-        "online_moore_balance",
-        "online_coi_phases",
-        "online_async_vs_sync",
-        "online_teaching_presence"
-    ],
-    "estimated_time_minutes": 13,
-    "order": 8
+    "inst-design-02-08-lo-03": [
+      "online_async_vs_sync"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

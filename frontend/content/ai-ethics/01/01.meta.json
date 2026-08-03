@@ -1,31 +1,59 @@
 {
-    "course": "ai-ethics",
-    "chapter": "01",
-    "section": "01",
-    "chapter_title": "Foundations of AI Ethics",
-    "title": "Module 1: Why AI Needs Ethics",
-    "description": "Understand what makes AI ethics distinct from general engineering ethics: scale, encoded decisions, invisible stakeholders, and the shift toward generative and autonomous systems.",
-    "learning_objectives": [
-        "Explain four reasons AI ethics is treated as its own subject rather than a footnote to engineering ethics.",
-        "Identify the four stakeholder groups affected by an AI system and trace decisions that affect each.",
-        "Distinguish ethics from preferences and from law, and recognize where each one lives.",
-        "Reject four common misframings (just a tool; fix later; ethics slows innovation; no objective answers means anything goes)."
+  "course": "ai-ethics",
+  "chapter": "01",
+  "section": "01",
+  "chapter_title": "Foundations of AI Ethics",
+  "title": "Module 1: Why AI Needs Ethics",
+  "description": "Understand what makes AI ethics distinct from general engineering ethics: scale, encoded decisions, invisible stakeholders, and the shift toward generative and autonomous systems.",
+  "learning_objectives": [
+    {
+      "id": "ai-ethics-01-01-lo-01",
+      "statement": "Explain four reasons AI ethics is treated as its own subject rather than a footnote to engineering ethics"
+    },
+    {
+      "id": "ai-ethics-01-01-lo-02",
+      "statement": "Identify the four stakeholder groups affected by an AI system and trace decisions that affect each"
+    },
+    {
+      "id": "ai-ethics-01-01-lo-03",
+      "statement": "Distinguish ethics from preferences and from law, and recognize where each one lives"
+    },
+    {
+      "id": "ai-ethics-01-01-lo-04",
+      "statement": "Reject four common misframings (just a tool; fix later; ethics slows innovation; no objective answers means anything goes)"
+    }
+  ],
+  "concept_ids": [
+    "ai_ethics_foundations",
+    "scale_argument",
+    "encoded_decisions",
+    "ai_stakeholders",
+    "generative_systems_ethics",
+    "ethics_vs_law"
+  ],
+  "prereq_section_ids": [],
+  "practice_ids": [
+    "ai_ethics_distinctive",
+    "ai_ethics_stakeholders",
+    "ai_ethics_encoded_decisions",
+    "ai_ethics_law_vs_ethics"
+  ],
+  "estimated_time_minutes": 12,
+  "order": 1,
+  "lo_practice_map": {
+    "ai-ethics-01-01-lo-01": [
+      "ai_ethics_distinctive"
     ],
-    "concept_ids": [
-        "ai_ethics_foundations",
-        "scale_argument",
-        "encoded_decisions",
-        "ai_stakeholders",
-        "generative_systems_ethics",
-        "ethics_vs_law"
+    "ai-ethics-01-01-lo-02": [
+      "ai_ethics_stakeholders"
     ],
-    "prereq_section_ids": [],
-    "practice_ids": [
-        "ai_ethics_distinctive",
-        "ai_ethics_stakeholders",
-        "ai_ethics_encoded_decisions",
-        "ai_ethics_law_vs_ethics"
+    "ai-ethics-01-01-lo-03": [
+      "ai_ethics_distinctive"
     ],
-    "estimated_time_minutes": 12,
-    "order": 1
+    "ai-ethics-01-01-lo-04": [
+      "ai_ethics_encoded_decisions",
+      "ai_ethics_law_vs_ethics"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

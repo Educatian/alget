@@ -3,10 +3,22 @@
   "title": "Module 3 Storyboard Studio",
   "description": "The Module 3 capstone studio: integrating seven prior storyboard skills into one coherent frame sequence, auditing objective trace, claim chain, and principle consistency across frames, and shipping an auditable decision record of accepted and rejected (including AI-suggested) choices.",
   "learning_objectives": [
-    "Audit a multi-frame storyboard for sequence coherence (objective trace, claim chain, principle consistency) and ship an auditable decision record of accepted and rejected choices in AIL 606.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    {
+      "id": "ail606-supplement-03-08-lo-01",
+      "statement": "Audit a multi-frame storyboard for sequence coherence (objective trace, claim chain, principle consistency) and ship an auditable decision record of accepted and rejected choices in AIL 606"
+    },
+    {
+      "id": "ail606-supplement-03-08-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "ail606-supplement-03-08-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "ail606-supplement-03-08-lo-04",
+      "statement": "Use annotations, support requests, and revision notes to decide what help or design change should come next"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_multimedia_storyboarding_and_ai_asset_generation",
@@ -28,5 +40,22 @@
     "ail606_supplement_3_8_module_3_storyboard_studio_annotation_signal",
     "ail606_supplement_3_8_module_3_storyboard_studio_ai_boundary",
     "ail606_supplement_3_8_module_3_storyboard_studio_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-03-08-lo-01": [
+      "ail606_supplement_3_8_module_3_storyboard_studio_ai_reject",
+      "ail606_supplement_3_8_module_3_storyboard_studio_artifact_signal",
+      "ail606_supplement_3_8_module_3_storyboard_studio_ai_boundary"
+    ],
+    "ail606-supplement-03-08-lo-02": [
+      "ail606_supplement_3_8_module_3_storyboard_studio_calibration"
+    ],
+    "ail606-supplement-03-08-lo-03": [
+      "ail606_supplement_3_8_module_3_storyboard_studio_ai_reject"
+    ],
+    "ail606-supplement-03-08-lo-04": [
+      "ail606_supplement_3_8_module_3_storyboard_studio_annotation_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

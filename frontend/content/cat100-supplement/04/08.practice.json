@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "Fluency is a style property, not an evidence check; each claim in the advice has to be verified before it goes on the public page.",
       "misconception_id": "cat100_supplement_4_8_fluent_equals_correct",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-04-08-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_4_8_module_4_dialogue_studio_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "The persona is the contract the dialogue must honor; treating it as decoration means the tone, audience, and bounds were never really set.",
       "misconception_id": "cat100_supplement_4_8_persona_is_decoration",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-04-08-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_4_8_module_4_dialogue_studio_ai_boundary",
@@ -57,7 +63,10 @@
       "correct_index": 1,
       "explanation": "Confident, fluent advice with a citation still has to pass claim-by-claim verification; this is the fabricated statistic and misattribution debunked in 04.03, so you reject it and record the rejection in your trace.",
       "misconception_id": "cat100_supplement_4_8_fluent_equals_correct",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-04-08-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_4_8_module_4_dialogue_studio_calibration",
@@ -77,7 +86,12 @@
       "correct_index": 1,
       "explanation": "One unedited draft is not a revision; the artifact is done when the live page carries the dialogue and the accept/modify/reject trace a reviewer can audit.",
       "misconception_id": "cat100_supplement_4_8_one_draft_is_revision",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-04-08-lo-02",
+        "cat100-supplement-04-08-lo-03",
+        "cat100-supplement-04-08-lo-04"
+      ]
     }
   ]
 }

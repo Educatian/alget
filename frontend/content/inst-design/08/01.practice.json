@@ -17,7 +17,10 @@
         "It established that only AI can support learning"
       ],
       "correct_index": 1,
-      "explanation": "Bloom's finding matters because it showed how large the gains from high-quality tutoring can be compared with standard classroom instruction."
+      "explanation": "Bloom's finding matters because it showed how large the gains from high-quality tutoring can be compared with standard classroom instruction.",
+      "learning_objective_ids": [
+        "inst-design-08-01-lo-03"
+      ]
     },
     {
       "id": "ai_tutor_strength",
@@ -37,7 +40,12 @@
         "They remove the need for evaluation or ethics"
       ],
       "correct_index": 1,
-      "explanation": "AI tutors are promising because they can personalize support at scale, but they still depend on sound pedagogy, evaluation, and guardrails."
+      "explanation": "AI tutors are promising because they can personalize support at scale, but they still depend on sound pedagogy, evaluation, and guardrails.",
+      "learning_objective_ids": [
+        "inst-design-08-01-lo-01",
+        "inst-design-08-01-lo-02",
+        "inst-design-08-01-lo-03"
+      ]
     },
     {
       "id": "llm_risk_design",
@@ -55,7 +63,10 @@
         "They eliminate the need for content models"
       ],
       "correct_index": 1,
-      "explanation": "LLMs can sound convincing while being wrong or instructionally misaligned, so evaluation and guardrails are essential."
+      "explanation": "LLMs can sound convincing while being wrong or instructionally misaligned, so evaluation and guardrails are essential.",
+      "learning_objective_ids": [
+        "inst-design-08-01-lo-03"
+      ]
     },
     {
       "id": "human_ai_orchestration",
@@ -74,7 +85,10 @@
         "Avoid any evaluation because personalization is automatically beneficial"
       ],
       "correct_index": 1,
-      "explanation": "Strong orchestration uses AI where it scales well, while humans retain responsibility for quality, ethics, and high-stakes judgment."
+      "explanation": "Strong orchestration uses AI where it scales well, while humans retain responsibility for quality, ethics, and high-stakes judgment.",
+      "learning_objective_ids": [
+        "inst-design-08-01-lo-03"
+      ]
     }
   ]
 }

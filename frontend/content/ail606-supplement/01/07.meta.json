@@ -3,10 +3,22 @@
   "title": "Design Rationale as Evidence",
   "description": "AIL 606 textbook section connecting design rationale as evidence to the design-rationale log entry with claim, evidence, warrant, rejected alternatives, and planned check, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Distinguish a description of a design (what it contains) from a rationale (why, with alternatives weighed).",
-    "Structure a rationale entry as claim, evidence, warrant, and rejected alternatives.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    {
+      "id": "ail606-supplement-01-07-lo-01",
+      "statement": "Distinguish a description of a design (what it contains) from a rationale (why, with alternatives weighed)"
+    },
+    {
+      "id": "ail606-supplement-01-07-lo-02",
+      "statement": "Structure a rationale entry as claim, evidence, warrant, and rejected alternatives"
+    },
+    {
+      "id": "ail606-supplement-01-07-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "ail606-supplement-01-07-lo-04",
+      "statement": "Use annotations, support requests, and revision notes to decide what help or design change should come next"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_foundations_of_interactive_multimedia_learning",
@@ -28,5 +40,21 @@
     "ail606_supplement_1_7_design_rationale_as_evidence_annotation_signal",
     "ail606_supplement_1_7_design_rationale_as_evidence_ai_boundary",
     "ail606_supplement_1_7_design_rationale_as_evidence_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-01-07-lo-01": [
+      "ail606_supplement_1_7_design_rationale_as_evidence_artifact_signal"
+    ],
+    "ail606-supplement-01-07-lo-02": [
+      "ail606_supplement_1_7_design_rationale_as_evidence_ai_boundary",
+      "ail606_supplement_1_7_design_rationale_as_evidence_annotation_signal"
+    ],
+    "ail606-supplement-01-07-lo-03": [
+      "ail606_supplement_1_7_design_rationale_as_evidence_ai_boundary"
+    ],
+    "ail606-supplement-01-07-lo-04": [
+      "ail606_supplement_1_7_design_rationale_as_evidence_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

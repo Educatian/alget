@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "Evidence needs context: what it is, which skill it demonstrates, and what you decided. A bare screenshot leaves the reviewer guessing.",
       "misconception_id": "cat100_supplement_1_7_evidence_of_digital_citizenship_screenshot_without_context",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-01-07-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_1_7_evidence_of_digital_citizenship_annotation_signal",
@@ -37,7 +40,11 @@
       "correct_index": 1,
       "explanation": "A few relevant items that each map to a target show competence better than a large pile of unlabeled files.",
       "misconception_id": "cat100_supplement_1_7_evidence_of_digital_citizenship_quantity_over_quality",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-01-07-lo-01",
+        "cat100-supplement-01-07-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_1_7_evidence_of_digital_citizenship_ai_boundary",
@@ -56,7 +63,10 @@
       "correct_index": 1,
       "explanation": "Every skill claim must be backed by an artifact. AI polish cannot substitute for evidence, and AI use should be disclosed.",
       "misconception_id": "cat100_supplement_1_7_evidence_of_digital_citizenship_claim_without_artifact",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-01-07-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_1_7_evidence_of_digital_citizenship_calibration",
@@ -76,7 +86,10 @@
       "correct_index": 1,
       "explanation": "A before/after with a reason shows the reasoning behind the work, which is what process evidence requires; a polished final file alone does not.",
       "misconception_id": "cat100_supplement_1_7_evidence_of_digital_citizenship_no_process_trail",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-01-07-lo-03"
+      ]
     }
   ]
 }

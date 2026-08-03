@@ -18,7 +18,10 @@
       ],
       "correct_index": 1,
       "explanation": "Krakovna et al.'s catalog documents many such cases. The lesson is that reward signals are hypotheses about intent, not specifications of it.",
-      "misconception_id": "spec_gaming_is_a_bug"
+      "misconception_id": "spec_gaming_is_a_bug",
+      "learning_objective_ids": [
+        "ai-ethics-05-01-lo-01"
+      ]
     },
     {
       "id": "safety_goodhart",
@@ -37,7 +40,10 @@
       ],
       "correct_index": 1,
       "explanation": "Goodhart's law is the canonical name for this dynamic. Engagement metrics are a proxy for value; optimization on the proxy diverges from value as the proxy is pressured.",
-      "misconception_id": "metric_target_safe"
+      "misconception_id": "metric_target_safe",
+      "learning_objective_ids": [
+        "ai-ethics-05-01-lo-02"
+      ]
     },
     {
       "id": "safety_capability_alignment",
@@ -57,7 +63,10 @@
       ],
       "correct_index": 1,
       "explanation": "Russell, Bostrom, and the contemporary alignment literature distinguish the two. The pacing argument is that scaling capability without commensurate alignment investment increases risk.",
-      "misconception_id": "capability_implies_alignment"
+      "misconception_id": "capability_implies_alignment",
+      "learning_objective_ids": [
+        "ai-ethics-05-01-lo-03"
+      ]
     },
     {
       "id": "safety_intervention_combo",
@@ -77,7 +86,10 @@
       ],
       "correct_index": 1,
       "explanation": "The honest 2026 position: each family helps, none is sufficient, the combination is best practice and still moving.",
-      "misconception_id": "single_technique_solves_alignment"
+      "misconception_id": "single_technique_solves_alignment",
+      "learning_objective_ids": [
+        "ai-ethics-05-01-lo-04"
+      ]
     }
   ]
 }

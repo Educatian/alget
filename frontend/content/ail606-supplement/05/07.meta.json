@@ -3,10 +3,22 @@
   "title": "Prioritizing Iterations",
   "description": "AIL 606 textbook section connecting prioritizing iterations to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Rank issues by severity and reach against the learning goal, not by ease of fixing.",
-    "Treat accessibility barriers as non-negotiable even when they do not block the median learner.",
-    "Build a triage table that makes the ordering inspectable and arguable.",
-    "Defend an iteration plan by tracing each item's position to its effect on the goal."
+    {
+      "id": "ail606-supplement-05-07-lo-01",
+      "statement": "Rank issues by severity and reach against the learning goal, not by ease of fixing"
+    },
+    {
+      "id": "ail606-supplement-05-07-lo-02",
+      "statement": "Treat accessibility barriers as non-negotiable even when they do not block the median learner"
+    },
+    {
+      "id": "ail606-supplement-05-07-lo-03",
+      "statement": "Build a triage table that makes the ordering inspectable and arguable"
+    },
+    {
+      "id": "ail606-supplement-05-07-lo-04",
+      "statement": "Defend an iteration plan by tracing each item's position to its effect on the goal"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_usability_testing_and_learning_evidence",
@@ -28,5 +40,21 @@
     "ail606_supplement_5_7_prioritizing_iterations_annotation_signal",
     "ail606_supplement_5_7_prioritizing_iterations_ai_boundary",
     "ail606_supplement_5_7_prioritizing_iterations_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-05-07-lo-01": [
+      "ail606_supplement_5_7_prioritizing_iterations_ai_boundary",
+      "ail606_supplement_5_7_prioritizing_iterations_artifact_signal"
+    ],
+    "ail606-supplement-05-07-lo-02": [
+      "ail606_supplement_5_7_prioritizing_iterations_calibration"
+    ],
+    "ail606-supplement-05-07-lo-03": [
+      "ail606_supplement_5_7_prioritizing_iterations_annotation_signal"
+    ],
+    "ail606-supplement-05-07-lo-04": [
+      "ail606_supplement_5_7_prioritizing_iterations_ai_boundary"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

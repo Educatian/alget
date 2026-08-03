@@ -17,7 +17,10 @@
         "Removing diagrams so only text remains"
       ],
       "correct_index": 1,
-      "explanation": "UDL's representation principle encourages flexible access through multiple ways of perceiving the content."
+      "explanation": "UDL's representation principle encourages flexible access through multiple ways of perceiving the content.",
+      "learning_objective_ids": [
+        "inst-design-07-01-lo-03"
+      ]
     },
     {
       "id": "udl_expression",
@@ -37,7 +40,10 @@
         "Replacing all assessments with attendance checks"
       ],
       "correct_index": 1,
-      "explanation": "This principle is about flexible ways for learners to act, express, and demonstrate what they know."
+      "explanation": "This principle is about flexible ways for learners to act, express, and demonstrate what they know.",
+      "learning_objective_ids": [
+        "inst-design-07-01-lo-03"
+      ]
     },
     {
       "id": "udl_engagement",
@@ -56,7 +62,10 @@
         "Because engagement matters only after assessment is complete"
       ],
       "correct_index": 1,
-      "explanation": "UDL recognizes that learners vary in how they engage, persist, and regulate their attention and motivation."
+      "explanation": "UDL recognizes that learners vary in how they engage, persist, and regulate their attention and motivation.",
+      "learning_objective_ids": [
+        "inst-design-07-01-lo-01"
+      ]
     },
     {
       "id": "wcag_contrast_case",
@@ -76,7 +85,10 @@
         "Because semantic HTML matters only to search engines"
       ],
       "correct_index": 1,
-      "explanation": "If learners cannot perceive or operate the environment, the instruction fails before any pedagogy can help."
+      "explanation": "If learners cannot perceive or operate the environment, the instruction fails before any pedagogy can help.",
+      "learning_objective_ids": [
+        "inst-design-07-01-lo-02"
+      ]
     }
   ]
 }

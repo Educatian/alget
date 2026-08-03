@@ -18,7 +18,11 @@
       "correct_index": 1,
       "explanation": "It names the topic, the student, and the timeframe so the reader knows the content before opening.",
       "misconception_id": "cat100_supplement_4_4_vague_subject_line",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-04-04-lo-01",
+        "cat100-supplement-04-04-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_4_4_classroom_communication_drafts_annotation_signal",
@@ -37,7 +41,10 @@
       "correct_index": 1,
       "explanation": "One dated, countable fact replaces vague worry; the reader now knows exactly what happened.",
       "misconception_id": "cat100_supplement_4_4_no_concrete_fact",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-04-04-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_4_4_classroom_communication_drafts_ai_boundary",
@@ -57,7 +64,10 @@
       "correct_index": 1,
       "explanation": "Rejecting against an already-passing field and recording the reason is the evidence trace.",
       "misconception_id": "cat100_supplement_4_4_disproportionate_tone",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-04-04-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_4_4_classroom_communication_drafts_calibration",
@@ -77,7 +87,10 @@
       "correct_index": 1,
       "explanation": "It names a specific action (check folder, reply) and a deadline (Friday); the others leave the reader nothing to do.",
       "misconception_id": "cat100_supplement_4_4_no_clear_action",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-04-04-lo-02"
+      ]
     }
   ]
 }

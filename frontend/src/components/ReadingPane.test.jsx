@@ -23,7 +23,9 @@ vi.mock('./PracticeBlock', () => ({
 }))
 
 vi.mock('./KnowledgeCheck', () => ({
-    default: () => <div>Knowledge check loaded</div>,
+    default: ({ learningObjectives = [] }) => (
+        <div>Knowledge check loaded: {learningObjectives.join(' | ')}</div>
+    ),
 }))
 
 vi.mock('./AffectiveReaction', () => ({
@@ -54,6 +56,33 @@ const sectionData = {
 }
 
 describe('ReadingPane continuity cues', () => {
+    it('renders structured learning objectives and passes statements to assessment UI', async () => {
+        const structuredSectionData = {
+            ...sectionData,
+            meta: {
+                ...sectionData.meta,
+                learning_objectives: [
+                    { id: 'lo_inst_design_01_02_01', statement: 'Build a work product trace.' },
+                ],
+            },
+        }
+
+        render(
+            <ReadingPane
+                sectionData={structuredSectionData}
+                loading={false}
+                isCompleted={false}
+                markCompleted={vi.fn()}
+                previousSection={null}
+                nextSection={null}
+                recentSection={null}
+            />,
+        )
+
+        expect(screen.getByText('Build a work product trace.')).toBeInTheDocument()
+        expect(await screen.findByText(/Knowledge check loaded: Build a work product trace\./i)).toBeInTheDocument()
+    })
+
     it('offers a section path with jump targets and a ready check', () => {
         const scrollIntoView = vi.fn()
         window.HTMLElement.prototype.scrollIntoView = scrollIntoView

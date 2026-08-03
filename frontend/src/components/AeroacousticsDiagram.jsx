@@ -10,7 +10,7 @@ export const MicroTurbulenceDiagram = () => {
             <div className="relative z-10 flex flex-col md:flex-row gap-6 items-center justify-between mb-6 border-b border-[var(--ath-line)] pb-6">
                 <div>
                     <h3 className="text-xl font-bold text-[var(--ath-text)] mb-1 flex items-center gap-2">
-                        <span className="text-purple-400" aria-hidden="true">✧</span> Vortex Shredding Analysis
+                        <span className="text-[var(--ath-primary)]" aria-hidden="true">✧</span> Vortex Shredding Analysis
                     </h3>
                     <p className="text-sm text-[var(--ath-muted)]">Observe how trailing edge wing serrations break up large acoustic vortices.</p>
                 </div>
@@ -18,7 +18,7 @@ export const MicroTurbulenceDiagram = () => {
                 <button
                     onClick={() => setSerrationEnabled(!serrationEnabled)}
                     className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg flex items-center gap-2
-                        ${serrationEnabled ? 'bg-purple-600 hover:bg-purple-500 text-white shadow-purple-900/30' : 'bg-[var(--ath-panel-muted)] hover:bg-[var(--ath-line)] text-[var(--ath-text)]'}`}
+                        ${serrationEnabled ? 'bg-[var(--ath-primary)] hover:bg-[var(--ath-primary-deep)] text-white shadow-black/10' : 'bg-[var(--ath-panel-muted)] hover:bg-[var(--ath-line)] text-[var(--ath-text)]'}`}
                 >
                     {serrationEnabled ? 'Serrations Active' : 'Enable Serrations'}
                 </button>
@@ -100,7 +100,7 @@ export const MicroTurbulenceDiagram = () => {
                 </span>
             </div>
 
-            <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-[60px] pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[color-mix(in_srgb,var(--ath-primary)_10%,transparent)] rounded-full blur-[60px] pointer-events-none"></div>
             <div className="absolute bottom-0 left-0 w-40 h-40 bg-blue-500/10 rounded-full blur-2xl pointer-events-none"></div>
         </div>
     );

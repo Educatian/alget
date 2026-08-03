@@ -6,10 +6,22 @@
   "chapter": "01",
   "section": "08",
   "learning_objectives": [
-    "Distinguish a synthesis reflection (names a sourced principle, shows a revised belief, transfers to a new dilemma, leaves an honest open tension) from a vague recap.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Transfer a module principle to a classroom dilemma the module never used.",
-    "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible."
+    {
+      "id": "cat531-supplement-01-08-lo-01",
+      "statement": "Distinguish a synthesis reflection (names a sourced principle, shows a revised belief, transfers to a new dilemma, leaves an honest open tension) from a vague recap"
+    },
+    {
+      "id": "cat531-supplement-01-08-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "cat531-supplement-01-08-lo-03",
+      "statement": "Transfer a module principle to a classroom dilemma the module never used"
+    },
+    {
+      "id": "cat531-supplement-01-08-lo-04",
+      "statement": "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible"
+    }
   ],
   "concept_ids": [
     "cat531_supplement_foundations_of_cbi_and_design_tensions",
@@ -28,5 +40,21 @@
   ],
   "estimated_time_minutes": 14,
   "order": 8,
-  "top_tier_hardened": false
+  "top_tier_hardened": false,
+  "lo_practice_map": {
+    "cat531-supplement-01-08-lo-01": [
+      "cat531_supplement_1_8_module_1_reflection_studio_calibration",
+      "cat531_supplement_1_8_module_1_reflection_studio_ai_boundary"
+    ],
+    "cat531-supplement-01-08-lo-02": [
+      "cat531_supplement_1_8_module_1_reflection_studio_calibration"
+    ],
+    "cat531-supplement-01-08-lo-03": [
+      "cat531_supplement_1_8_module_1_reflection_studio_annotation_signal"
+    ],
+    "cat531-supplement-01-08-lo-04": [
+      "cat531_supplement_1_8_module_1_reflection_studio_artifact_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

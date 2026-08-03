@@ -1,39 +1,73 @@
 {
-    "chapter": "01",
-    "section": "04",
-    "title": "Friction",
-    "course": "statics",
-    "learning_objectives": [
-        "Distinguish between static and kinetic friction",
-        "Apply the maximum static friction condition Fs ≤ μsN",
-        "Identify impending motion conditions",
-        "Determine friction force direction"
+  "chapter": "01",
+  "section": "04",
+  "title": "Friction",
+  "course": "statics",
+  "learning_objectives": [
+    {
+      "id": "statics-01-04-lo-01",
+      "statement": "Distinguish between static and kinetic friction"
+    },
+    {
+      "id": "statics-01-04-lo-02",
+      "statement": "Apply the maximum static friction condition Fs ≤ μsN"
+    },
+    {
+      "id": "statics-01-04-lo-03",
+      "statement": "Identify impending motion conditions"
+    },
+    {
+      "id": "statics-01-04-lo-04",
+      "statement": "Determine friction force direction"
+    }
+  ],
+  "concept_ids": [
+    "static_friction",
+    "kinetic_friction",
+    "friction_coefficient",
+    "impending_motion"
+  ],
+  "prerequisites": [
+    "equilibrium_condition",
+    "fbd"
+  ],
+  "prereq_section_ids": [
+    "statics/01/02",
+    "statics/01/01"
+  ],
+  "practice_ids": [
+    "friction_direction_conceptual_1",
+    "friction_direction_conceptual_2",
+    "friction_coefficient_conceptual",
+    "friction_impending_conceptual",
+    "friction_common_mistake",
+    "friction_max_force",
+    "friction_impending_force",
+    "friction_incline_angle",
+    "friction_will_slip",
+    "friction_step_based"
+  ],
+  "estimated_time_minutes": 50,
+  "lo_practice_map": {
+    "statics-01-04-lo-01": [
+      "friction_impending_conceptual",
+      "friction_direction_conceptual_1",
+      "friction_direction_conceptual_2",
+      "friction_coefficient_conceptual",
+      "friction_common_mistake",
+      "friction_incline_angle",
+      "friction_step_based"
     ],
-    "concept_ids": [
-        "static_friction",
-        "kinetic_friction",
-        "friction_coefficient",
-        "impending_motion"
+    "statics-01-04-lo-02": [
+      "friction_max_force",
+      "friction_will_slip"
     ],
-    "prerequisites": [
-        "equilibrium_condition",
-        "fbd"
+    "statics-01-04-lo-03": [
+      "friction_impending_force"
     ],
-    "prereq_section_ids": [
-        "statics/01/02",
-        "statics/01/01"
-    ],
-    "practice_ids": [
-        "friction_direction_conceptual_1",
-        "friction_direction_conceptual_2",
-        "friction_coefficient_conceptual",
-        "friction_impending_conceptual",
-        "friction_common_mistake",
-        "friction_max_force",
-        "friction_impending_force",
-        "friction_incline_angle",
-        "friction_will_slip",
-        "friction_step_based"
-    ],
-    "estimated_time_minutes": 50
+    "statics-01-04-lo-04": [
+      "friction_max_force"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

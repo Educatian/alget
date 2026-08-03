@@ -3,10 +3,22 @@
   "title": "Peer Scholarly Critique",
   "description": "AIL 606 textbook section connecting peer scholarly critique to peer-critique-and-disposition log (criterion-anchored critique points plus accept / modify / reject dispositions), reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Convert praise or preference into criterion-anchored, actionable peer critique using the element-problem-criterion frame.",
-    "Respond to each critique point with a reasoned disposition (accept, modify, or reject), including at least one reasoned rejection.",
-    "Verify an AI-drafted critique against the actual artifact before adopting any of its points.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    {
+      "id": "ail606-supplement-06-06-lo-01",
+      "statement": "Convert praise or preference into criterion-anchored, actionable peer critique using the element-problem-criterion frame"
+    },
+    {
+      "id": "ail606-supplement-06-06-lo-02",
+      "statement": "Respond to each critique point with a reasoned disposition (accept, modify, or reject), including at least one reasoned rejection"
+    },
+    {
+      "id": "ail606-supplement-06-06-lo-03",
+      "statement": "Verify an AI-drafted critique against the actual artifact before adopting any of its points"
+    },
+    {
+      "id": "ail606-supplement-06-06-lo-04",
+      "statement": "Use annotations, support requests, and revision notes to decide what help or design change should come next"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_refined_prototype_and_capstone_defense",
@@ -28,5 +40,21 @@
     "ail606_supplement_6_6_peer_scholarly_critique_annotation_signal",
     "ail606_supplement_6_6_peer_scholarly_critique_ai_boundary",
     "ail606_supplement_6_6_peer_scholarly_critique_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-06-06-lo-01": [
+      "ail606_supplement_6_6_peer_scholarly_critique_artifact_signal",
+      "ail606_supplement_6_6_peer_scholarly_critique_annotation_signal"
+    ],
+    "ail606-supplement-06-06-lo-02": [
+      "ail606_supplement_6_6_peer_scholarly_critique_calibration"
+    ],
+    "ail606-supplement-06-06-lo-03": [
+      "ail606_supplement_6_6_peer_scholarly_critique_ai_boundary"
+    ],
+    "ail606-supplement-06-06-lo-04": [
+      "ail606_supplement_6_6_peer_scholarly_critique_artifact_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

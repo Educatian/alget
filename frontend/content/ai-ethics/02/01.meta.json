@@ -1,34 +1,62 @@
 {
-    "course": "ai-ethics",
-    "chapter": "02",
-    "section": "01",
-    "chapter_title": "Bias and Fairness",
-    "title": "Module 1: Algorithmic Bias and Where It Comes From",
-    "description": "Disentangle the six sources of algorithmic bias (historical, representation, measurement, aggregation, evaluation, deployment feedback) and match each to its appropriate intervention.",
-    "learning_objectives": [
-        "Name and distinguish six sources of algorithmic bias.",
-        "Diagnose which bias sources are present in a real-world AI failure case.",
-        "Match each bias source to an appropriate engineering or non-engineering intervention.",
-        "Recognize when post-processing 'debiasing' cannot fix the underlying problem."
+  "course": "ai-ethics",
+  "chapter": "02",
+  "section": "01",
+  "chapter_title": "Bias and Fairness",
+  "title": "Module 1: Algorithmic Bias and Where It Comes From",
+  "description": "Disentangle the six sources of algorithmic bias (historical, representation, measurement, aggregation, evaluation, deployment feedback) and match each to its appropriate intervention.",
+  "learning_objectives": [
+    {
+      "id": "ai-ethics-02-01-lo-01",
+      "statement": "Name and distinguish six sources of algorithmic bias"
+    },
+    {
+      "id": "ai-ethics-02-01-lo-02",
+      "statement": "Diagnose which bias sources are present in a real-world AI failure case"
+    },
+    {
+      "id": "ai-ethics-02-01-lo-03",
+      "statement": "Match each bias source to an appropriate engineering or non-engineering intervention"
+    },
+    {
+      "id": "ai-ethics-02-01-lo-04",
+      "statement": "Recognize when post-processing 'debiasing' cannot fix the underlying problem"
+    }
+  ],
+  "concept_ids": [
+    "algorithmic_bias",
+    "historical_bias",
+    "representation_bias",
+    "measurement_bias",
+    "aggregation_bias",
+    "evaluation_bias",
+    "deployment_feedback_bias"
+  ],
+  "prereq_section_ids": [
+    "ai-ethics/01/02"
+  ],
+  "practice_ids": [
+    "bias_face_recog_source",
+    "bias_proxy_problem",
+    "bias_predictive_policing",
+    "bias_debiasing_limit"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 1,
+  "lo_practice_map": {
+    "ai-ethics-02-01-lo-01": [
+      "bias_proxy_problem"
     ],
-    "concept_ids": [
-        "algorithmic_bias",
-        "historical_bias",
-        "representation_bias",
-        "measurement_bias",
-        "aggregation_bias",
-        "evaluation_bias",
-        "deployment_feedback_bias"
+    "ai-ethics-02-01-lo-02": [
+      "bias_face_recog_source",
+      "bias_predictive_policing"
     ],
-    "prereq_section_ids": [
-        "ai-ethics/01/02"
+    "ai-ethics-02-01-lo-03": [
+      "bias_debiasing_limit"
     ],
-    "practice_ids": [
-        "bias_face_recog_source",
-        "bias_proxy_problem",
-        "bias_predictive_policing",
-        "bias_debiasing_limit"
-    ],
-    "estimated_time_minutes": 14,
-    "order": 1
+    "ai-ethics-02-01-lo-04": [
+      "bias_debiasing_limit"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

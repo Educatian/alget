@@ -3,10 +3,22 @@
   "title": "Learner Variability and UDL",
   "description": "AIL 606 textbook section connecting learner variability and udl to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Distinguish the firm learning goal from the (flexible) means of reaching and expressing it.",
-    "Apply the three UDL principles to remove construct-irrelevant barriers without changing the construct.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    {
+      "id": "ail606-supplement-01-05-lo-01",
+      "statement": "Distinguish the firm learning goal from the (flexible) means of reaching and expressing it"
+    },
+    {
+      "id": "ail606-supplement-01-05-lo-02",
+      "statement": "Apply the three UDL principles to remove construct-irrelevant barriers without changing the construct"
+    },
+    {
+      "id": "ail606-supplement-01-05-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "ail606-supplement-01-05-lo-04",
+      "statement": "Use annotations, support requests, and revision notes to decide what help or design change should come next"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_foundations_of_interactive_multimedia_learning",
@@ -28,6 +40,24 @@
     "ail606_supplement_1_5_learner_variability_and_udl_artifact_signal",
     "ail606_supplement_1_5_learner_variability_and_udl_annotation_signal",
     "ail606_supplement_1_5_learner_variability_and_udl_ai_boundary",
-    "ail606_supplement_1_5_learner_variability_and_udl_calibration"
-  ]
+    "ail606_supplement_1_5_learner_variability_and_udl_calibration",
+    "ail606-supplement_01_05_lo_03_direct_check"
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-01-05-lo-01": [
+      "ail606_supplement_1_5_learner_variability_and_udl_annotation_signal",
+      "ail606_supplement_1_5_learner_variability_and_udl_artifact_signal",
+      "ail606_supplement_1_5_learner_variability_and_udl_calibration"
+    ],
+    "ail606-supplement-01-05-lo-02": [
+      "ail606_supplement_1_5_learner_variability_and_udl_annotation_signal"
+    ],
+    "ail606-supplement-01-05-lo-03": [
+      "ail606-supplement_01_05_lo_03_direct_check"
+    ],
+    "ail606-supplement-01-05-lo-04": [
+      "ail606_supplement_1_5_learner_variability_and_udl_ai_boundary"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

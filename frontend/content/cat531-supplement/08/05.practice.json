@@ -20,6 +20,9 @@
         "cat531_supplement_discussion_prompts_by_module",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-08-05-lo-01"
       ]
     },
     {
@@ -40,6 +43,10 @@
       "concept_ids": [
         "cat531_supplement_discussion_prompts_by_module",
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-08-05-lo-02",
+        "cat531-supplement-08-05-lo-04"
       ]
     },
     {
@@ -60,6 +67,9 @@
       "concept_ids": [
         "cat531_supplement_discussion_prompts_by_module",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-08-05-lo-03"
       ]
     },
     {
@@ -80,6 +90,9 @@
       "concept_ids": [
         "cat531_supplement_discussion_prompts_by_module",
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-08-05-lo-04"
       ]
     }
   ]

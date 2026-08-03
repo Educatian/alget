@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Cellular Solids learning map</title>
+  <desc id="desc">A three-step learning map connecting the section principle, evidence check, and transfer decision.</desc>
+  <rect width="1600" height="900" fill="#edf3ec"/>
+  <rect x="48" y="48" width="1504" height="804" rx="42" fill="#ffffff" stroke="#d8e3df" stroke-width="4"/>
+  <circle cx="1450" cy="120" r="130" fill="#c78a35" opacity="0.18"/>
+  <circle cx="120" cy="800" r="180" fill="#1f624c" opacity="0.08"/>
+  <text x="110" y="145" font-family="IBM Plex Sans, Arial" font-size="22" font-weight="700" letter-spacing="3" fill="#1f624c">BIO INSPIRED · SECTION 01.01</text>
+  <text x="110" y="220" font-family="Fraunces, Georgia" font-size="54" font-weight="700" fill="#17382e">Cellular Solids</text>
+  <text x="110" y="275" font-family="IBM Plex Sans, Arial" font-size="22" fill="#52645e">A visual anchor for reading, practice, and transfer.</text>
+  <path d="M 500 510 C 535 510, 550 510, 590 510" stroke="#ffffff" stroke-width="10" opacity="0.9"/>
+  <path d="M 990 510 C 1025 510, 1040 510, 1080 510" stroke="#ffffff" stroke-width="10" opacity="0.9"/>
+  <g>
+  <rect x="110" y="385" width="390" height="250" rx="28" fill="#1f624c"/>
+  <text x="138" y="430" font-family="IBM Plex Sans, Arial" font-size="18" font-weight="700" letter-spacing="2" fill="#ffffff">NAME THE PRINCIPLE</text>
+  <text x="138" y="478" font-family="Fraunces, Georgia" font-size="27" font-weight="700" fill="#ffffff">cellular solids</text>
+  <text x="138" y="525" font-family="IBM Plex Sans, Arial" font-size="18" fill="#ffffff">Understand the principles of structural eff…</text>
+  <text x="138" y="565" font-family="IBM Plex Sans, Arial" font-size="16" fill="#ffffff" opacity="0.82">Evidence trace → revision</text>
+</g><g>
+  <rect x="600" y="385" width="390" height="250" rx="28" fill="#c78a35"/>
+  <text x="628" y="430" font-family="IBM Plex Sans, Arial" font-size="18" font-weight="700" letter-spacing="2" fill="#231d12">TEST THE EVIDENCE</text>
+  <text x="628" y="478" font-family="Fraunces, Georgia" font-size="27" font-weight="700" fill="#231d12">porosity</text>
+  <text x="628" y="525" font-family="IBM Plex Sans, Arial" font-size="18" fill="#231d12">Analyze the physical properties of cellular…</text>
+  <text x="628" y="565" font-family="IBM Plex Sans, Arial" font-size="16" fill="#231d12" opacity="0.82">Evidence trace → revision</text>
+</g><g>
+  <rect x="1090" y="385" width="390" height="250" rx="28" fill="#17382e"/>
+  <text x="1118" y="430" font-family="IBM Plex Sans, Arial" font-size="18" font-weight="700" letter-spacing="2" fill="#ffffff">TRANSFER THE DECISION</text>
+  <text x="1118" y="478" font-family="Fraunces, Georgia" font-size="27" font-weight="700" fill="#ffffff">strength to weight</text>
+  <text x="1118" y="525" font-family="IBM Plex Sans, Arial" font-size="18" fill="#ffffff">Apply volume and mass reduction techniques…</text>
+  <text x="1118" y="565" font-family="IBM Plex Sans, Arial" font-size="16" fill="#ffffff" opacity="0.82">Evidence trace → revision</text>
+</g>
+  <text x="110" y="765" font-family="IBM Plex Sans, Arial" font-size="18" font-weight="600" fill="#52645e">ALGET original instructional visual · generated from section objectives and concepts</text>
+</svg>

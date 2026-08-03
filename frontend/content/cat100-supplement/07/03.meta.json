@@ -1,4 +1,4 @@
-﻿{
+{
   "course": "cat100-supplement",
   "chapter": "07",
   "section": "03",
@@ -6,10 +6,22 @@
   "title": "Template-Based Productivity",
   "description": "CAT 100 textbook section connecting template-based productivity to reusable spreadsheet template with formulas, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Replace hand-typed totals with formulas (`=SUM`) so values recalculate when inputs change.",
-    "Distinguish relative references (`B2`) from absolute references (`$C$1`) and predict how each behaves when copied.",
-    "Keep a blank master template separate from each filled-in working copy.",
-    "Justify a template by the recurring task it eliminates, not by how the document looks."
+    {
+      "id": "cat100-supplement-07-03-lo-01",
+      "statement": "Replace hand-typed totals with formulas (=SUM) so values recalculate when inputs change"
+    },
+    {
+      "id": "cat100-supplement-07-03-lo-02",
+      "statement": "Distinguish relative references (B2) from absolute references ($C$1) and predict how each behaves when copied"
+    },
+    {
+      "id": "cat100-supplement-07-03-lo-03",
+      "statement": "Keep a blank master template separate from each filled-in working copy"
+    },
+    {
+      "id": "cat100-supplement-07-03-lo-04",
+      "statement": "Justify a template by the recurring task it eliminates, not by how the document looks"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_productivity_and_workflow_automation",
@@ -28,5 +40,21 @@
     "cat100_supplement_7_3_template_based_productivity_annotation_signal",
     "cat100_supplement_7_3_template_based_productivity_ai_boundary",
     "cat100_supplement_7_3_template_based_productivity_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-07-03-lo-01": [
+      "cat100_supplement_7_3_template_based_productivity_annotation_signal"
+    ],
+    "cat100-supplement-07-03-lo-02": [
+      "cat100_supplement_7_3_template_based_productivity_calibration"
+    ],
+    "cat100-supplement-07-03-lo-03": [
+      "cat100_supplement_7_3_template_based_productivity_artifact_signal",
+      "cat100_supplement_7_3_template_based_productivity_ai_boundary"
+    ],
+    "cat100-supplement-07-03-lo-04": [
+      "cat100_supplement_7_3_template_based_productivity_artifact_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

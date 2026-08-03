@@ -6,10 +6,22 @@
   "chapter": "07",
   "section": "03",
   "learning_objectives": [
-    "Produce a low-inference technology observation note set a second observer could use to reach an independent conclusion, recording who had access and which AI-added claim was deleted and why.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible."
+    {
+      "id": "cat531-supplement-07-03-lo-01",
+      "statement": "Produce a low-inference technology observation note set a second observer could use to reach an independent conclusion, recording who had access and which AI-added claim was deleted and why"
+    },
+    {
+      "id": "cat531-supplement-07-03-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "cat531-supplement-07-03-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat531-supplement-07-03-lo-04",
+      "statement": "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible"
+    }
   ],
   "concept_ids": [
     "cat531_supplement_field_based_transfer_and_coaching",
@@ -24,9 +36,27 @@
     "cat531_supplement_7_3_technology_observation_notes_artifact_signal",
     "cat531_supplement_7_3_technology_observation_notes_annotation_signal",
     "cat531_supplement_7_3_technology_observation_notes_ai_boundary",
-    "cat531_supplement_7_3_technology_observation_notes_calibration"
+    "cat531_supplement_7_3_technology_observation_notes_calibration",
+    "cat531-supplement_07_03_lo_03_direct_check"
   ],
   "estimated_time_minutes": 14,
   "order": 3,
-  "top_tier_hardened": false
+  "top_tier_hardened": false,
+  "lo_practice_map": {
+    "cat531-supplement-07-03-lo-01": [
+      "cat531_supplement_7_3_technology_observation_notes_calibration",
+      "cat531_supplement_7_3_technology_observation_notes_annotation_signal",
+      "cat531_supplement_7_3_technology_observation_notes_ai_boundary"
+    ],
+    "cat531-supplement-07-03-lo-02": [
+      "cat531_supplement_7_3_technology_observation_notes_calibration"
+    ],
+    "cat531-supplement-07-03-lo-03": [
+      "cat531-supplement_07_03_lo_03_direct_check"
+    ],
+    "cat531-supplement-07-03-lo-04": [
+      "cat531_supplement_7_3_technology_observation_notes_artifact_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

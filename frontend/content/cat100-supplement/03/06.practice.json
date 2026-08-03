@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "Removing the name is not enough. A combination of quasi-identifiers (major, dorm, specific job) can single out one person, especially in a small dataset.",
       "misconception_id": "cat100_supplement_3_6_data_ethics_in_small_datasets_anonymous_if_no_name",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-03-06-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_3_6_data_ethics_in_small_datasets_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "A group of one is not anonymous and not a pattern. The 'average' is just that person's value, and presenting it as a group trend is both a privacy and an honesty problem. Suppress or combine tiny groups.",
       "misconception_id": "cat100_supplement_3_6_data_ethics_in_small_datasets_small_n_as_pattern",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-03-06-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_3_6_data_ethics_in_small_datasets_ai_boundary",
@@ -57,7 +63,10 @@
       "correct_index": 1,
       "explanation": "Sharing classmates' names and emails with an external tool exposes their data without consent. 'The tool is private' is not a safe assumption: as of 2026, consumer AI chat tools (such as the free or personal tiers of ChatGPT, Claude, or Gemini) may retain pasted text and use it for model training by default unless you opt out in settings, while enterprise or institution-licensed tiers typically do not train on submitted content by default. Strip or mask direct identifiers before pasting, regardless of which tool or tier you use.",
       "misconception_id": "cat100_supplement_3_6_data_ethics_in_small_datasets_sharing_identifiers",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-03-06-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_3_6_data_ethics_in_small_datasets_calibration",
@@ -77,7 +86,21 @@
       "correct_index": 1,
       "explanation": "With a tiny sample, a raw count like '4 of 7' is more honest than a percentage that hides how few responses there were. Percentages on small n can mislead.",
       "misconception_id": "cat100_supplement_3_6_data_ethics_in_small_datasets_small_n_as_pattern",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-03-06-lo-02"
+      ]
+    },
+    {
+      "id": "cat100-supplement_03_06_lo_03_direct_check",
+      "type": "conceptual",
+      "stem": "Provide a concise response that demonstrates this learning objective: Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "expected_answer": "The response accurately demonstrates the section objective: Document a bounded AI/software support move with accepted and rejected suggestions, using relevant section concepts, evidence, or calculations.",
+      "explanation": "This direct-evidence item is used when no closed-response item adequately samples the objective. Score it with the section concepts and worked examples as the rubric.",
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-03-06-lo-03"
+      ]
     }
   ]
 }

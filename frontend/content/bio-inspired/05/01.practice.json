@@ -17,7 +17,12 @@
       "concept_ids": [
         "structural_color"
       ],
-      "misconception_id": "all_color_is_pigment"
+      "misconception_id": "all_color_is_pigment",
+      "learning_objective_ids": [
+        "bio-inspired-05-01-lo-01",
+        "bio-inspired-05-01-lo-02",
+        "bio-inspired-05-01-lo-04"
+      ]
     },
     {
       "id": "bio_morpho_interference",
@@ -36,7 +41,10 @@
       "concept_ids": [
         "morpho_butterfly"
       ],
-      "misconception_id": "copy_blue_paint_only"
+      "misconception_id": "copy_blue_paint_only",
+      "learning_objective_ids": [
+        "bio-inspired-05-01-lo-03"
+      ]
     },
     {
       "id": "bio_optical_design_transfer",
@@ -55,7 +63,10 @@
       "concept_ids": [
         "optical_interference"
       ],
-      "misconception_id": "copy_blue_paint_only"
+      "misconception_id": "copy_blue_paint_only",
+      "learning_objective_ids": [
+        "bio-inspired-05-01-lo-05"
+      ]
     },
     {
       "id": "bio_nanostructure_signal",
@@ -74,7 +85,10 @@
       "concept_ids": [
         "nanostructure_optics"
       ],
-      "misconception_id": "smaller_feature_universally_better"
+      "misconception_id": "smaller_feature_universally_better",
+      "learning_objective_ids": [
+        "bio-inspired-05-01-lo-05"
+      ]
     }
   ]
 }

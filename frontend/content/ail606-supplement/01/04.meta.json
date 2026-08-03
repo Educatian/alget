@@ -3,10 +3,22 @@
   "title": "Worked Examples and Fading",
   "description": "AIL 606 textbook section connecting worked examples and fading to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Explain the [worked-example effect](https://en.wikipedia.org/wiki/Worked-example_effect) in terms of search load versus schema-building load.",
-    "Engineer a fading sequence (worked, completion, open) matched to the learner's growing schema.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    {
+      "id": "ail606-supplement-01-04-lo-01",
+      "statement": "Explain the [worked-example effect](https://en.wikipedia.org/wiki/Worked-exampleeffect) in terms of search load versus schema-building load"
+    },
+    {
+      "id": "ail606-supplement-01-04-lo-02",
+      "statement": "Engineer a fading sequence (worked, completion, open) matched to the learner's growing schema"
+    },
+    {
+      "id": "ail606-supplement-01-04-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "ail606-supplement-01-04-lo-04",
+      "statement": "Use annotations, support requests, and revision notes to decide what help or design change should come next"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_foundations_of_interactive_multimedia_learning",
@@ -28,5 +40,22 @@
     "ail606_supplement_1_4_worked_examples_and_fading_annotation_signal",
     "ail606_supplement_1_4_worked_examples_and_fading_ai_boundary",
     "ail606_supplement_1_4_worked_examples_and_fading_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-01-04-lo-01": [
+      "ail606_supplement_1_4_worked_examples_and_fading_calibration",
+      "ail606_supplement_1_4_worked_examples_and_fading_artifact_signal"
+    ],
+    "ail606-supplement-01-04-lo-02": [
+      "ail606_supplement_1_4_worked_examples_and_fading_annotation_signal",
+      "ail606_supplement_1_4_worked_examples_and_fading_ai_boundary"
+    ],
+    "ail606-supplement-01-04-lo-03": [
+      "ail606_supplement_1_4_worked_examples_and_fading_annotation_signal"
+    ],
+    "ail606-supplement-01-04-lo-04": [
+      "ail606_supplement_1_4_worked_examples_and_fading_annotation_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

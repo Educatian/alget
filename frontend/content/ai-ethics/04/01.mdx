@@ -1,5 +1,10 @@
 # Privacy in the Age of AI: Why "We Anonymized the Data" Is Almost Never the End of the Story
 
+<figure-block id="section-anchor-ai-ethics-04-01" caption="Learning map for Module 1: Privacy Threats from AI Systems: principle, evidence, and transfer." purpose="organizational" source="ALGET original instructional diagram" license="Project-authored; repository license">
+  <img src="/course-art/section-anchors/ai-ethics/04-01.svg" alt="Learning map for Module 1: Privacy Threats from AI Systems, connecting re identification, membership inference, training data leakage to evidence and transfer." loading="lazy" decoding="async" />
+</figure-block>
+
+
 > **"Anonymized data isn't."**
 > - Cynthia Dwork, co-inventor of differential privacy, paraphrasing a hard-won lesson from a decade of re-identification results.
 
@@ -202,3 +207,9 @@ The next section moves from *protecting* individuals in data to *fairness* in th
   question="Why is removing names and SSNs typically insufficient for anonymizing a behavioral dataset used in AI training?"
   options='[{"text":"Because names and SSNs are not personal data.","isCorrect":false},{"text":"Because remaining quasi-identifiers (zip code, birth date, gender, behavioral signatures) can be linked to auxiliary datasets to re-identify records, and the trained model itself can leak training subjects via membership inference, attribute inference, or memorized verbatim outputs.","isCorrect":true},{"text":"Because SSNs are public.","isCorrect":false}]'
   explanation="Correct. Re-identification, membership inference, and training-data leakage all operate after direct identifiers are removed. Anonymization is a high bar that simple field removal does not clear."></interactive-quiz>
+
+## References
+
+- Tabassi, E. (2023). *Artificial Intelligence Risk Management Framework (AI RMF 1.0).* NIST AI 100-1. https://doi.org/10.6028/NIST.AI.100-1
+- UNESCO. (2021). *Recommendation on the Ethics of Artificial Intelligence.* https://www.unesco.org/en/legal-affairs/recommendation-ethics-artificial-intelligence?hub=1063
+- European Parliament and Council of the European Union. (2024). *Regulation (EU) 2024/1689 (Artificial Intelligence Act).* https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex%3A32024R1689

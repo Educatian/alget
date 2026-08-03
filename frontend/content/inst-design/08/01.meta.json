@@ -1,31 +1,55 @@
 {
-    "course": "inst-design",
-    "chapter": "08",
-    "section": "01",
-    "title": "Module 8: Emerging Technologies in Learning",
-    "description": "Analyzing the impact of Artificial Intelligence Tutors, Large Language Models (LLMs), and VR/AR on the future architecture of learning.",
-    "chapter_title": "Future Learning Systems",
-    "learning_objectives": [
-        "Evaluate where AI tutors, LLMs, and immersive media fit in instructional ecosystems.",
-        "Identify the instructional opportunities and risks of emerging learning technologies.",
-        "Design a future-facing learning workflow that still preserves pedagogy, ethics, and human support."
+  "course": "inst-design",
+  "chapter": "08",
+  "section": "01",
+  "title": "Module 8: Emerging Technologies in Learning",
+  "description": "Analyzing the impact of Artificial Intelligence Tutors, Large Language Models (LLMs), and VR/AR on the future architecture of learning.",
+  "chapter_title": "Future Learning Systems",
+  "learning_objectives": [
+    {
+      "id": "inst-design-08-01-lo-01",
+      "statement": "Evaluate where AI tutors, LLMs, and immersive media fit in instructional ecosystems"
+    },
+    {
+      "id": "inst-design-08-01-lo-02",
+      "statement": "Identify the instructional opportunities and risks of emerging learning technologies"
+    },
+    {
+      "id": "inst-design-08-01-lo-03",
+      "statement": "Design a future-facing learning workflow that still preserves pedagogy, ethics, and human support"
+    }
+  ],
+  "concept_ids": [
+    "ai_tutors",
+    "large_language_models",
+    "extended_reality_learning",
+    "future_learning_ecosystems",
+    "human_ai_orchestration"
+  ],
+  "prereq_section_ids": [
+    "inst-design/07/01"
+  ],
+  "practice_ids": [
+    "bloom_sigma_problem",
+    "ai_tutor_strength",
+    "llm_risk_design",
+    "human_ai_orchestration"
+  ],
+  "estimated_time_minutes": 12,
+  "order": 8,
+  "lo_practice_map": {
+    "inst-design-08-01-lo-01": [
+      "ai_tutor_strength"
     ],
-    "concept_ids": [
-        "ai_tutors",
-        "large_language_models",
-        "extended_reality_learning",
-        "future_learning_ecosystems",
-        "human_ai_orchestration"
+    "inst-design-08-01-lo-02": [
+      "ai_tutor_strength"
     ],
-    "prereq_section_ids": [
-        "inst-design/07/01"
-    ],
-    "practice_ids": [
-        "bloom_sigma_problem",
-        "ai_tutor_strength",
-        "llm_risk_design",
-        "human_ai_orchestration"
-    ],
-    "estimated_time_minutes": 12,
-    "order": 8
+    "inst-design-08-01-lo-03": [
+      "ai_tutor_strength",
+      "bloom_sigma_problem",
+      "llm_risk_design",
+      "human_ai_orchestration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

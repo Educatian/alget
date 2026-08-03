@@ -3,10 +3,22 @@
   "title": "Learning Metrics and Usability Metrics",
   "description": "AIL 606 textbook section connecting learning metrics and usability metrics to moderated usability test script with observation-to-revision trace, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Classify a metric as usability (operability) or learning (capability gain) by the construct it measures.",
-    "Pair each claim with a metric that has the validity to support it, never a proxy.",
-    "Read satisfaction as an attitude signal, not as evidence of learning or of effectiveness.",
-    "Combine completion, time, error, and outcome data into a picture no single number could give."
+    {
+      "id": "ail606-supplement-05-04-lo-01",
+      "statement": "Classify a metric as usability (operability) or learning (capability gain) by the construct it measures"
+    },
+    {
+      "id": "ail606-supplement-05-04-lo-02",
+      "statement": "Pair each claim with a metric that has the validity to support it, never a proxy"
+    },
+    {
+      "id": "ail606-supplement-05-04-lo-03",
+      "statement": "Read satisfaction as an attitude signal, not as evidence of learning or of effectiveness"
+    },
+    {
+      "id": "ail606-supplement-05-04-lo-04",
+      "statement": "Combine completion, time, error, and outcome data into a picture no single number could give"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_usability_testing_and_learning_evidence",
@@ -28,5 +40,21 @@
     "ail606_supplement_5_4_learning_metrics_and_usability_metrics_annotation_signal",
     "ail606_supplement_5_4_learning_metrics_and_usability_metrics_ai_boundary",
     "ail606_supplement_5_4_learning_metrics_and_usability_metrics_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-05-04-lo-01": [
+      "ail606_supplement_5_4_learning_metrics_and_usability_metrics_annotation_signal",
+      "ail606_supplement_5_4_learning_metrics_and_usability_metrics_calibration"
+    ],
+    "ail606-supplement-05-04-lo-02": [
+      "ail606_supplement_5_4_learning_metrics_and_usability_metrics_artifact_signal"
+    ],
+    "ail606-supplement-05-04-lo-03": [
+      "ail606_supplement_5_4_learning_metrics_and_usability_metrics_artifact_signal"
+    ],
+    "ail606-supplement-05-04-lo-04": [
+      "ail606_supplement_5_4_learning_metrics_and_usability_metrics_ai_boundary"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

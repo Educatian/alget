@@ -18,34 +18,34 @@ export function LearnIntentCard({ data }) {
 
     return (
         <div className="space-y-4">
-            <div className="glass-panel p-4 bg-white/90 border-blue-200/50 shadow-sm">
-                <h4 className="font-bold text-blue-900 text-sm mb-2.5">BigAL's Synthesis</h4>
-                <p className="text-slate-700 text-[13px] leading-relaxed whitespace-pre-wrap break-words">{summaryText}</p>
+            <div className="editorial-surface p-4">
+                <h4 className="font-headline text-[length:var(--ath-text-lg)] font-semibold text-[var(--ath-text)] mb-2.5">BigAL's Synthesis</h4>
+                <p className="text-[length:var(--ath-text-sm)] leading-relaxed whitespace-pre-wrap break-words text-[var(--ath-text)]">{summaryText}</p>
                 {nextSteps.length > 0 && (
-                    <ul className="list-disc pl-5 mt-3 space-y-1.5 text-[13px] text-slate-700">
+                    <ul className="list-disc pl-5 mt-3 space-y-1.5 text-[length:var(--ath-text-sm)] text-[var(--ath-muted)]">
                         {nextSteps.map((point, i) => <li key={i}>{point}</li>)}
                     </ul>
                 )}
-                {encouragement && <p className="mt-3 text-sm font-medium text-blue-800">{encouragement}</p>}
+                {encouragement && <p className="mt-3 text-sm font-medium text-[var(--ath-primary-deep)]">{encouragement}</p>}
             </div>
 
             <div className="flex flex-col gap-3">
                 {bioContext.primary_mechanism && (
-                    <div className="border border-emerald-200/60 rounded-xl overflow-hidden shadow-sm transition-all duration-300">
+                    <div className="overflow-hidden rounded-[var(--ath-radius-lg)] border border-[var(--ath-line)] transition-all duration-300">
                         <button
                             onClick={() => setOpenSection(openSection === 'bio' ? null : 'bio')}
-                            className="w-full bg-linear-to-r from-emerald-50/80 to-teal-50/80 px-4 py-3 text-left text-sm font-bold text-emerald-900 flex justify-between items-center hover:bg-emerald-100/50 transition-colors"
+                            className="flex w-full items-center justify-between bg-[var(--ath-primary-soft)] px-4 py-3 text-left text-sm font-semibold text-[var(--ath-primary-deep)] transition-colors hover:bg-[color-mix(in_srgb,var(--ath-primary-soft)_75%,var(--ath-panel))]"
                         >
                             <span className="text-[13px]">Biological Deep Dive: {bioContext.primary_mechanism}</span>
-                            <span className={`text-emerald-600 transition-transform duration-300 ${openSection === 'bio' ? 'rotate-180' : ''}`}>v</span>
+                            <span aria-hidden="true" className={`text-[var(--ath-primary)] transition-transform duration-300 ${openSection === 'bio' ? 'rotate-180' : ''}`}>⌄</span>
                         </button>
                         {openSection === 'bio' && (
-                            <div className="p-4 bg-white/60 backdrop-blur-md text-[13px] text-slate-700 leading-relaxed border-t border-emerald-100/50">
+                            <div className="border-t border-[var(--ath-line)] bg-[var(--ath-surface)] p-4 text-[length:var(--ath-text-sm)] leading-relaxed text-[var(--ath-muted)]">
                                 <p>{bioContext.explanation}</p>
                                 {bioContext.organism_examples?.length > 0 && (
-                                    <div className="mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 bg-emerald-100/50 rounded-md border border-emerald-200/50">
-                                        <span className="text-xs font-bold text-emerald-800 uppercase tracking-wider">Organisms</span>
-                                        <span className="text-xs font-semibold text-emerald-900">{bioContext.organism_examples.join(', ')}</span>
+                                    <div className="mt-3 inline-flex items-center gap-1.5 rounded-[var(--ath-radius)] border border-[var(--ath-line)] bg-[var(--ath-panel-muted)] px-2.5 py-1">
+                                        <span className="text-[length:var(--ath-text-xs)] font-bold uppercase tracking-wider text-[var(--ath-primary)]">Organisms</span>
+                                        <span className="text-[length:var(--ath-text-xs)] font-semibold text-[var(--ath-text)]">{bioContext.organism_examples.join(', ')}</span>
                                     </div>
                                 )}
                             </div>
@@ -54,20 +54,20 @@ export function LearnIntentCard({ data }) {
                 )}
 
                 {engineeringTitle && (
-                    <div className="border border-indigo-200/60 rounded-xl overflow-hidden shadow-sm transition-all duration-300">
+                    <div className="overflow-hidden rounded-[var(--ath-radius-lg)] border border-[var(--ath-line)] transition-all duration-300">
                         <button
                             onClick={() => setOpenSection(openSection === 'eng' ? null : 'eng')}
-                            className="w-full bg-linear-to-r from-indigo-50/80 to-purple-50/80 px-4 py-3 text-left text-sm font-bold text-indigo-900 flex justify-between items-center hover:bg-indigo-100/50 transition-colors"
+                            className="w-full bg-[color-mix(in_srgb,var(--ath-primary-soft)_65%,white)] px-4 py-3 text-left text-sm font-bold text-[var(--ath-primary-deep)] flex justify-between items-center hover:bg-[var(--ath-primary-soft)] transition-colors"
                         >
                             <span className="text-[13px]">Engineering Application</span>
-                            <span className={`text-indigo-600 transition-transform duration-300 ${openSection === 'eng' ? 'rotate-180' : ''}`}>v</span>
+                            <span className={`text-[var(--ath-primary)] transition-transform duration-300 ${openSection === 'eng' ? 'rotate-180' : ''}`}>v</span>
                         </button>
                         {openSection === 'eng' && (
-                            <div className="p-4 bg-white/60 backdrop-blur-md text-[13px] text-slate-700 leading-relaxed border-t border-indigo-100/50">
-                                <p className="font-bold mb-2 text-indigo-950">{engineeringTitle}</p>
+                            <div className="border-t border-[var(--ath-line)] bg-[var(--ath-surface)] p-4 text-[length:var(--ath-text-sm)] leading-relaxed text-[var(--ath-muted)]">
+                                <p className="font-bold mb-2 text-[var(--ath-primary-deep)]">{engineeringTitle}</p>
                                 <p>{engineeringBody}</p>
                                 {engApp.challenges?.length > 0 && (
-                                    <ul className="list-disc pl-5 mt-3 space-y-1.5 text-sm text-slate-700">
+                                    <ul className="list-disc pl-5 mt-3 space-y-1.5 text-sm text-[var(--ath-muted)]">
                                         {engApp.challenges.map((challenge, index) => <li key={index}>{challenge}</li>)}
                                     </ul>
                                 )}
@@ -85,34 +85,34 @@ export function EvaluateIntentCard({ data }) {
     const evalData = data.evaluation;
 
     return (
-        <div className="bg-linear-to-br from-emerald-50/90 to-teal-50/90 p-5 rounded-2xl border border-emerald-200/60 shadow-sm">
+        <div className="rounded-[var(--ath-radius-xl)] border border-[var(--ath-line)] bg-[var(--ath-success-soft)] p-5 shadow-sm">
             <div className="flex items-center gap-3.5 mb-4">
                 <div className="w-11 h-11 bg-linear-to-br from-emerald-700 to-teal-800 rounded-full flex items-center justify-center text-white font-black text-sm shadow-md border border-emerald-600">
                     JB
                 </div>
                 <div>
-                    <h4 className="font-bold text-emerald-950 text-[13px] tracking-tight">Janine's Evaluation</h4>
+                    <h4 className="font-semibold text-[length:var(--ath-text-sm)] tracking-tight text-[var(--ath-text)]">Janine's Evaluation</h4>
                     <div className="flex items-center mt-0.5">
-                        <span className="text-[10px] font-bold text-emerald-800 uppercase tracking-widest">Biomimicry Score:</span>
-                        <span className="ml-2 bg-emerald-600 text-white text-xs font-black px-2.5 py-0.5 rounded-full shadow-sm">{evalData.score}/10</span>
+                        <span className="text-[length:var(--ath-text-2xs)] font-bold uppercase tracking-widest text-[var(--ath-primary)]">Biomimicry Score:</span>
+                        <span className="ml-2 rounded-full bg-[var(--ath-success)] px-2.5 py-0.5 text-[length:var(--ath-text-xs)] font-black text-[var(--ath-background)] shadow-sm">{evalData.score}/10</span>
                     </div>
                 </div>
             </div>
 
-            <p className="text-slate-800 text-[13px] font-medium italic mb-5 border-l-4 border-emerald-400 pl-4 py-1 leading-relaxed">
+            <p className="mb-5 border-l-4 border-[var(--ath-success)] py-1 pl-4 text-[length:var(--ath-text-sm)] font-medium italic leading-relaxed text-[var(--ath-text)]">
                 "{evalData.janine_feedback}"
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-                <div className="bg-white/80 backdrop-blur-md p-4 rounded-xl border border-emerald-100 shadow-[0_2px_10px_rgb(0,0,0,0.02)]">
-                    <h5 className="font-bold text-emerald-800 mb-2.5 text-xs uppercase tracking-wider">Strengths</h5>
-                    <ul className="list-disc pl-5 text-slate-700 space-y-1.5 leading-relaxed font-medium">
+                <div className="rounded-[var(--ath-radius-lg)] border border-[var(--ath-line)] bg-[var(--ath-surface)] p-4 shadow-sm">
+                    <h5 className="mb-2.5 text-[length:var(--ath-text-xs)] font-bold uppercase tracking-wider text-[var(--ath-success)]">Strengths</h5>
+                    <ul className="list-disc pl-5 text-[var(--ath-muted)] space-y-1.5 leading-relaxed font-medium">
                         {evalData.strengths?.map((s, i) => <li key={i}>{s}</li>)}
                     </ul>
                 </div>
-                <div className="bg-white/80 backdrop-blur-md p-4 rounded-xl border border-orange-100 shadow-[0_2px_10px_rgb(0,0,0,0.02)]">
-                    <h5 className="font-bold text-orange-800 mb-2.5 text-xs uppercase tracking-wider">Improve</h5>
-                    <ul className="list-disc pl-5 text-slate-700 space-y-1.5 leading-relaxed font-medium">
+                <div className="rounded-[var(--ath-radius-lg)] border border-[var(--ath-line)] bg-[var(--ath-surface)] p-4 shadow-sm">
+                    <h5 className="mb-2.5 text-[length:var(--ath-text-xs)] font-bold uppercase tracking-wider text-[var(--ath-warning)]">Improve</h5>
+                    <ul className="list-disc pl-5 text-[var(--ath-muted)] space-y-1.5 leading-relaxed font-medium">
                         {evalData.areas_for_improvement?.map((s, i) => <li key={i}>{s}</li>)}
                     </ul>
                 </div>
@@ -127,28 +127,28 @@ export function BrainstormIntentCard({ data }) {
     const prompts = activity.guiding_questions?.length ? activity.guiding_questions : (activity.constraints || []);
 
     return (
-        <div className="bg-linear-to-br from-amber-50/90 to-orange-50/90 p-5 rounded-2xl border border-amber-200/60 shadow-sm backdrop-blur-sm">
+        <div className="rounded-[var(--ath-radius-xl)] border border-[var(--ath-line)] bg-[var(--ath-warning-soft)] p-5 shadow-sm">
             <div className="flex items-center gap-2.5 mb-3">
-                <h4 className="font-bold text-orange-950 text-[13px] tracking-tight">{activity.activity_title || activity.exercise_name || 'Brainstorming Activity'}</h4>
+                <h4 className="font-semibold text-[length:var(--ath-text-sm)] tracking-tight text-[var(--ath-text)]">{activity.activity_title || activity.exercise_name || 'Brainstorming Activity'}</h4>
             </div>
 
-            <p className="text-slate-800 text-[13px] font-medium leading-relaxed mb-4">
+            <p className="mb-4 text-[length:var(--ath-text-sm)] font-medium leading-relaxed text-[var(--ath-text)]">
                 {activity.lateral_thinking_prompt}
             </p>
 
-            <div className="bg-white/80 backdrop-blur-md p-4 rounded-xl border border-amber-200/50 shadow-[0_2px_10px_rgb(0,0,0,0.02)]">
-                <h5 className="text-[10px] font-bold text-amber-800 uppercase tracking-widest mb-2">Creative Prompts:</h5>
-                <ul className="list-none text-[13px] text-slate-700 space-y-1.5 font-medium">
+            <div className="rounded-[var(--ath-radius-lg)] border border-[var(--ath-line)] bg-[var(--ath-surface)] p-4 shadow-sm">
+                <h5 className="mb-2 text-[length:var(--ath-text-2xs)] font-bold uppercase tracking-widest text-[var(--ath-warning)]">Creative Prompts:</h5>
+                <ul className="list-none text-[length:var(--ath-text-sm)] text-[var(--ath-muted)] space-y-1.5 font-medium">
                     {prompts.map((prompt, i) => (
                         <li key={i} className="flex items-start gap-2.5 leading-relaxed">
-                            <span className="text-amber-500 mt-1.5 text-[0.6rem]">*</span> <span>{prompt}</span>
+                            <span aria-hidden="true" className="mt-1.5 text-[var(--ath-warning)] text-[0.6rem]">•</span> <span>{prompt}</span>
                         </li>
                     ))}
                 </ul>
             </div>
 
             {activity.example_idea && (
-                <div className="bg-amber-100/60 border border-amber-200 rounded-xl p-4 text-sm text-amber-950 font-medium">
+                <div className="rounded-[var(--ath-radius-lg)] border border-[var(--ath-line)] bg-[var(--ath-warning-soft)] p-4 text-sm font-medium text-[var(--ath-text)]">
                     Example idea: {activity.example_idea}
                 </div>
             )}
@@ -161,18 +161,18 @@ export function ScaffoldingIntentCard({ data }) {
     const scaffold = data.scaffolding;
 
     return (
-        <div className="glass-panel p-6 rounded-3xl border border-[#9E1B32]/20 shadow-xl shadow-red-900/5 mt-2 bg-white/80">
+        <div className="editorial-surface mt-2 rounded-[var(--ath-radius-xl)] border border-[var(--ath-line)] p-6 shadow-sm">
             <div className="flex gap-4">
                 <div className="flex-1">
-                    <h4 className="font-bold text-[#9E1B32] mb-1.5 text-sm tracking-tight">Let's figure this out together.</h4>
-                    <p className="text-[13px] text-slate-700 italic border-l-4 border-red-200 pl-4 mb-5 font-medium leading-relaxed bg-linear-to-r from-red-50/50 to-transparent py-2 rounded-r-lg">
+                    <h4 className="mb-1.5 text-sm font-semibold tracking-tight text-[var(--ath-primary-deep)]">Let's figure this out together.</h4>
+                    <p className="mb-5 rounded-r-lg border-l-4 border-[var(--ath-primary)] bg-[var(--ath-primary-soft)] py-2 pl-4 text-[length:var(--ath-text-sm)] font-medium italic leading-relaxed text-[var(--ath-text)]">
                         {scaffold.encouraging_remark}
                     </p>
 
                     <div className="space-y-3">
-                        <h5 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">Consider this:</h5>
+                        <h5 className="mb-1.5 text-[length:var(--ath-text-2xs)] font-bold uppercase tracking-widest text-[var(--ath-secondary)]">Consider this:</h5>
                         {scaffold.guiding_questions?.map((q, i) => (
-                            <div key={i} className="bg-white p-4 rounded-xl text-[13px] font-medium text-slate-800 border border-slate-200 shadow-sm leading-relaxed">
+                            <div key={i} className="rounded-[var(--ath-radius-lg)] border border-[var(--ath-line)] bg-[var(--ath-surface)] p-4 text-[length:var(--ath-text-sm)] font-medium leading-relaxed text-[var(--ath-text)] shadow-sm">
                                 {q}
                             </div>
                         ))}
@@ -190,22 +190,22 @@ export function IllustrateIntentCard({ data }) {
     // Image generation has been removed; this card shows the textual concept
     // and key visual elements only.
     return (
-        <div className="glass-panel p-6 border-purple-200/50 shadow-xl shadow-purple-900/5 mt-2 bg-linear-to-br from-white/80 to-purple-50/30">
+        <div className="editorial-surface mt-2 border border-[var(--ath-line)] p-6 shadow-sm">
             <div className="flex items-center gap-3 mb-4">
-                <h4 className="font-bold text-purple-950 text-sm tracking-tight">{illData.illustration_title || 'Conceptual Illustration'}</h4>
+                <h4 className="font-bold text-[var(--ath-primary-deep)] text-sm tracking-tight">{illData.illustration_title || 'Conceptual Illustration'}</h4>
             </div>
 
-            <p className="text-slate-700 text-[13px] font-medium leading-relaxed mb-6 bg-white/50 p-4 rounded-xl border border-white">
+            <p className="mb-6 rounded-[var(--ath-radius-lg)] border border-[var(--ath-line)] bg-[var(--ath-surface)] p-4 text-[length:var(--ath-text-sm)] font-medium leading-relaxed text-[var(--ath-muted)]">
                 {illData.conceptual_design}
             </p>
 
             {illData.ui_elements?.length > 0 && (
-                <div className="bg-white/80 backdrop-blur-md p-4 rounded-xl border border-purple-100 shadow-[0_2px_10px_rgb(0,0,0,0.02)]">
-                    <h5 className="text-[10px] font-bold text-purple-800 uppercase tracking-widest mb-2">Key Visual Elements:</h5>
-                    <ul className="list-none text-[13px] text-slate-700 space-y-1.5 font-medium">
+                <div className="rounded-[var(--ath-radius-lg)] border border-[var(--ath-line)] bg-[var(--ath-surface)] p-4 shadow-sm">
+                    <h5 className="text-[10px] font-bold text-[var(--ath-primary)] uppercase tracking-widest mb-2">Key Visual Elements:</h5>
+                    <ul className="list-none text-[length:var(--ath-text-sm)] text-[var(--ath-muted)] space-y-1.5 font-medium">
                         {illData.ui_elements.map((el, i) => (
                             <li key={i} className="flex items-start gap-2.5 leading-relaxed">
-                                <span className="text-purple-500 mt-1.5 text-[0.6rem]">*</span> <span>{el}</span>
+                                <span className="text-[var(--ath-primary)] mt-1.5 text-[0.6rem]">*</span> <span>{el}</span>
                             </li>
                         ))}
                     </ul>
@@ -220,19 +220,19 @@ export function SimulateIntentCard({ data }) {
     const simData = data.simulation;
 
     return (
-        <div className="glass-panel p-6 border-cyan-200/50 shadow-xl shadow-cyan-900/5 mt-2 bg-linear-to-br from-white/80 to-cyan-50/30 w-full max-w-full overflow-hidden">
+        <div className="editorial-surface mt-2 w-full max-w-full overflow-hidden border border-[var(--ath-line)] p-6 shadow-sm">
             <div className="flex items-center gap-3 mb-4">
                 <h4 className="font-bold text-cyan-950 text-sm tracking-tight">Interactive Simulation</h4>
             </div>
 
-            <p className="text-slate-700 text-[13px] font-medium leading-relaxed mb-5 bg-white/50 p-4 rounded-xl border border-white">
+            <p className="mb-5 rounded-[var(--ath-radius-lg)] border border-[var(--ath-line)] bg-[var(--ath-surface)] p-4 text-[length:var(--ath-text-sm)] font-medium leading-relaxed text-[var(--ath-muted)]">
                 {simData.description}
             </p>
 
             {simData.concepts_shown?.length > 0 && (
                 <div className="flex flex-wrap gap-2 mb-4">
                     {simData.concepts_shown.map((concept, i) => (
-                        <span key={i} className="bg-cyan-100/80 text-cyan-800 text-xs px-2.5 py-1 rounded-md font-bold uppercase tracking-wider border border-cyan-200/50 shadow-sm">
+                        <span key={i} className="rounded-md border border-[var(--ath-line)] bg-[var(--ath-info-soft)] px-2.5 py-1 text-[length:var(--ath-text-xs)] font-bold uppercase tracking-wider text-[var(--ath-info)] shadow-sm">
                             {concept}
                         </span>
                     ))}
@@ -240,11 +240,11 @@ export function SimulateIntentCard({ data }) {
             )}
 
             {simData.html_code && (
-                <div className="mt-4 w-full h-[350px] border-4 border-slate-900 rounded-xl overflow-hidden shadow-xl bg-white relative">
-                    <div className="h-6 bg-slate-100 border-b border-slate-200 flex items-center px-3 gap-1.5 absolute top-0 left-0 right-0 z-10">
-                        <div className="w-2.5 h-2.5 rounded-full bg-red-400"></div>
-                        <div className="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
-                        <div className="w-2.5 h-2.5 rounded-full bg-green-400"></div>
+                <div className="relative mt-4 h-[350px] w-full overflow-hidden rounded-[var(--ath-radius-lg)] border border-[var(--ath-line-strong)] bg-[var(--ath-panel)] shadow-sm">
+                    <div className="absolute left-0 right-0 top-0 z-10 flex h-6 items-center gap-1.5 border-b border-[var(--ath-line)] bg-[var(--ath-panel-muted)] px-3">
+                        <div className="h-2.5 w-2.5 rounded-full bg-[var(--ath-danger)]"></div>
+                        <div className="h-2.5 w-2.5 rounded-full bg-[var(--ath-warning)]"></div>
+                        <div className="h-2.5 w-2.5 rounded-full bg-[var(--ath-success)]"></div>
                     </div>
                     <iframe
                         srcDoc={simData.html_code}
@@ -264,8 +264,8 @@ export function ErrorIntentCard({ data }) {
     const message = data?.error || data?.summary || 'Something went wrong while generating a response.';
 
     return (
-        <div className="rounded-2xl border border-red-200 bg-red-50 p-4 text-red-900">
-            <h4 className="font-bold text-sm mb-2">Response Error</h4>
+        <div role="alert" className="rounded-[var(--ath-radius-lg)] border border-[var(--ath-danger)] bg-[color-mix(in_srgb,var(--ath-danger)_10%,var(--ath-panel))] p-4 text-[var(--ath-danger)]">
+            <h4 className="mb-2 text-sm font-semibold">Response Error</h4>
             <p className="text-sm leading-relaxed whitespace-pre-wrap break-words">{message}</p>
         </div>
     );

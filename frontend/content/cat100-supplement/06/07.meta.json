@@ -6,10 +6,22 @@
   "title": "Maintenance Plan",
   "description": "CAT 100 textbook section connecting maintenance plan to AI critique log showing accepted, modified, and rejected suggestions, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Design a maintenance plan that is triggered (a concrete date or event), specific enough to verify, and matched to a static GitHub Pages platform.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the maintenance plan before sharing it."
+    {
+      "id": "cat100-supplement-06-07-lo-01",
+      "statement": "Design a maintenance plan that is triggered (a concrete date or event), specific enough to verify, and matched to a static GitHub Pages platform"
+    },
+    {
+      "id": "cat100-supplement-06-07-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "cat100-supplement-06-07-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat100-supplement-06-07-lo-04",
+      "statement": "Use feedback, support requests, and revision notes to improve the maintenance plan before sharing it"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_github_pages_personal_website",
@@ -27,6 +39,24 @@
     "cat100_supplement_6_7_maintenance_plan_artifact_signal",
     "cat100_supplement_6_7_maintenance_plan_annotation_signal",
     "cat100_supplement_6_7_maintenance_plan_ai_boundary",
-    "cat100_supplement_6_7_maintenance_plan_calibration"
-  ]
+    "cat100_supplement_6_7_maintenance_plan_calibration",
+    "cat100-supplement_06_07_lo_03_direct_check"
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-06-07-lo-01": [
+      "cat100_supplement_6_7_maintenance_plan_ai_boundary",
+      "cat100_supplement_6_7_maintenance_plan_artifact_signal",
+      "cat100_supplement_6_7_maintenance_plan_annotation_signal"
+    ],
+    "cat100-supplement-06-07-lo-02": [
+      "cat100_supplement_6_7_maintenance_plan_calibration"
+    ],
+    "cat100-supplement-06-07-lo-03": [
+      "cat100-supplement_06_07_lo_03_direct_check"
+    ],
+    "cat100-supplement-06-07-lo-04": [
+      "cat100_supplement_6_7_maintenance_plan_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

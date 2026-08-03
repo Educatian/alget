@@ -17,7 +17,10 @@
       "concept_ids": [
         "cellular_solids"
       ],
-      "misconception_id": "porous_means_weak"
+      "misconception_id": "porous_means_weak",
+      "learning_objective_ids": [
+        "bio-inspired-01-01-lo-02"
+      ]
     },
     {
       "id": "bio_porosity_tradeoff",
@@ -36,7 +39,10 @@
       "concept_ids": [
         "porosity"
       ],
-      "misconception_id": "less_material_means_no_tradeoff"
+      "misconception_id": "less_material_means_no_tradeoff",
+      "learning_objective_ids": [
+        "bio-inspired-01-01-lo-02"
+      ]
     },
     {
       "id": "bio_strength_to_weight_application",
@@ -55,7 +61,10 @@
       "concept_ids": [
         "strength_to_weight"
       ],
-      "misconception_id": "porous_means_weak"
+      "misconception_id": "porous_means_weak",
+      "learning_objective_ids": [
+        "bio-inspired-01-01-lo-01"
+      ]
     },
     {
       "id": "bio_cellular_design_choice",
@@ -74,7 +83,10 @@
       "concept_ids": [
         "cellular_solids"
       ],
-      "misconception_id": "copy_nature_exactly"
+      "misconception_id": "copy_nature_exactly",
+      "learning_objective_ids": [
+        "bio-inspired-01-01-lo-02"
+      ]
     },
     {
       "id": "bio_function_first_search",
@@ -93,7 +105,10 @@
       "concept_ids": [
         "function_based_search"
       ],
-      "misconception_id": "search_by_organism_first"
+      "misconception_id": "search_by_organism_first",
+      "learning_objective_ids": [
+        "bio-inspired-01-01-lo-03"
+      ]
     },
     {
       "id": "bio_principle_not_shape",
@@ -112,7 +127,10 @@
       "concept_ids": [
         "analogical_transfer"
       ],
-      "misconception_id": "visual_similarity_proves_transfer"
+      "misconception_id": "visual_similarity_proves_transfer",
+      "learning_objective_ids": [
+        "bio-inspired-01-01-lo-02"
+      ]
     }
   ]
 }

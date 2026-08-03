@@ -16,7 +16,10 @@
         "Satisfaction"
       ],
       "correct_index": 0,
-      "explanation": "Attention is the entry point of the ARCS model and focuses on arousing curiosity or interest."
+      "explanation": "Attention is the entry point of the ARCS model and focuses on arousing curiosity or interest.",
+      "learning_objective_ids": [
+        "inst-design-04-01-lo-01"
+      ]
     },
     {
       "id": "arcs_relevance_case",
@@ -36,7 +39,10 @@
         "Reducing every task to drill-only repetition"
       ],
       "correct_index": 1,
-      "explanation": "Relevance grows when learners can see why the material matters in their own context."
+      "explanation": "Relevance grows when learners can see why the material matters in their own context.",
+      "learning_objective_ids": [
+        "inst-design-04-01-lo-03"
+      ]
     },
     {
       "id": "arcs_confidence",
@@ -56,7 +62,10 @@
         "Using only external rewards"
       ],
       "correct_index": 1,
-      "explanation": "Confidence grows when learners understand the target and experience achievable success along the way."
+      "explanation": "Confidence grows when learners understand the target and experience achievable success along the way.",
+      "learning_objective_ids": [
+        "inst-design-04-01-lo-01"
+      ]
     },
     {
       "id": "overjustification_effect",
@@ -75,7 +84,10 @@
         "Because extrinsic motivation always produces deep transfer"
       ],
       "correct_index": 1,
-      "explanation": "The overjustification effect occurs when an activity once valued for its own sake is reinterpreted as something done merely for reward."
+      "explanation": "The overjustification effect occurs when an activity once valued for its own sake is reinterpreted as something done merely for reward.",
+      "learning_objective_ids": [
+        "inst-design-04-01-lo-02"
+      ]
     }
   ]
 }

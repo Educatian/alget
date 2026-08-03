@@ -8,7 +8,8 @@ import { extractText, getDocumentProxy } from 'unpdf'
 //   - Deterministic, ported from the Python backend (parity-verified): BKT
 //     grade + telemetry_fusion, practice grade/{id} (reads static practice),
 //     artifact-revision score, research-evaluation validate, concept-origin +
-//     mastery_graph (from baked static indexes), adaptive_recommendation
+//     mastery_graph (from baked static indexes), governed agentic planning,
+//     adaptive_recommendation
 //     (policy via the alget-adaptive-recommendation Worker, service-bound).
 //   - Static content/diagnostic/indexes are served by Cloudflare Pages.
 //
@@ -25,8 +26,12 @@ const DEFAULT_STATIC_BASE = 'https://alget.pages.dev/api'
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
 const MAX_PDF_BYTES = 25 * 1024 * 1024
 const MAX_PDF_PAGES = 500
+const MAX_GOOGLE_DOC_CHARACTERS = 250000
 const RELEASE_SCHEMA_VERSION = '2026-07-30'
 const GENERATION_TRACE_SCHEMA_VERSION = 'generation-trace-v1'
+const ROADMAP_CONTRACT_VERSION = 'roadmap-runtime-v1'
+const ROADMAP_MODELS = new Map()
+const ROADMAP_INCIDENTS = new Map()
 
 function cleanExcerpt(value, limit = 280) {
   return String(value || '').replace(/\s+/g, ' ').trim().slice(0, limit)
@@ -132,6 +137,21 @@ function supabaseHeaders(env, authorization = '') {
   }
 }
 
+async function persistRoadmapRow(env, authorization, table, row) {
+  if (!env.SUPABASE_URL || !authorization) return { persisted: false, reason: 'supabase_session_required' }
+  try {
+    const response = await fetch(`${String(env.SUPABASE_URL).replace(/\/$/, '')}/rest/v1/${table}`, {
+      method: 'POST',
+      headers: { ...supabaseHeaders(env, authorization), Prefer: 'return=minimal' },
+      body: JSON.stringify(row),
+    })
+    if (!response.ok) return { persisted: false, reason: `supabase_${response.status}` }
+    return { persisted: true, table }
+  } catch {
+    return { persisted: false, reason: 'supabase_unavailable' }
+  }
+}
+
 function constantTimeEqual(left, right) {
   const a = new TextEncoder().encode(String(left || ''))
   const b = new TextEncoder().encode(String(right || ''))
@@ -164,6 +184,26 @@ async function requireCourseAdmin(request, env) {
   if (!['admin', 'course_admin'].includes(role)) {
     return { error: json({ detail: 'Course administrator role required' }, 403) }
   }
+  return { authorization, operator: { role, subject: user.id } }
+}
+
+async function requireFacultyInstructor(request, env) {
+  const authorization = request.headers.get('authorization') || ''
+  if (!authorization.toLowerCase().startsWith('bearer ') || !env.SUPABASE_URL || !env.SUPABASE_PUBLISHABLE_KEY) {
+    return { error: json({ detail: 'Instructor authentication required' }, 401) }
+  }
+  let response
+  try {
+    response = await fetch(`${String(env.SUPABASE_URL).replace(/\/$/, '')}/auth/v1/user`, {
+      headers: supabaseHeaders(env, authorization),
+    })
+  } catch {
+    return { error: json({ detail: 'Identity provider unavailable' }, 503) }
+  }
+  if (!response.ok) return { error: json({ detail: 'Invalid or expired instructor session' }, 401) }
+  const user = await response.json()
+  const role = user?.app_metadata?.role
+  if (!['instructor', 'admin', 'course_admin'].includes(role)) return { error: json({ detail: 'Instructor role required' }, 403) }
   return { authorization, operator: { role, subject: user.id } }
 }
 
@@ -201,6 +241,99 @@ function pdfHeadingCandidates(text) {
     if (headings.length === 4) break
   }
   return headings
+}
+
+function extractGoogleDocId(value) {
+  const match = String(value || '').trim().match(/^https:\/\/docs\.google\.com\/document\/d\/([A-Za-z0-9_-]{20,})\/(?:edit|view)(?:[?#].*)?$/)
+  if (!match) throw new Error('Enter a standard Google Docs document link')
+  return match[1]
+}
+
+function buildGoogleDocCourseDraft(text, documentId, title = '') {
+  const cleaned = cleanPdfText(text).slice(0, MAX_GOOGLE_DOC_CHARACTERS)
+  if (cleaned.length < 80) throw new Error('Google Doc contains too little readable course material')
+  const headings = pdfHeadingCandidates(cleaned)
+  if (!headings.length) headings.push(String(title || cleaned.split('\n').find(Boolean) || 'Course module').slice(0, 100))
+  const sections = headings.slice(0, 8).map((heading, index) => {
+    const start = Math.max(0, cleaned.toLowerCase().indexOf(heading.toLowerCase()))
+    const next = headings[index + 1]
+    const nextIndex = next ? cleaned.toLowerCase().indexOf(next.toLowerCase(), start + heading.length) : cleaned.length
+    const end = nextIndex > start ? nextIndex : Math.min(cleaned.length, start + 5000)
+    const excerpt = (cleaned.slice(start + heading.length, end).trim() || cleaned.slice(start, start + 1200)).slice(0, 1200)
+    const runtime = {
+      tutor: {
+        persona: 'BigAL source-grounded course tutor',
+        objective: `Help learners explain and apply ${heading} without giving away active assessment answers.`,
+        hint_ladder: ['diagnose misconception', 'ask a guiding question', 'offer one conceptual cue', 'give one micro-step', 'check transfer'],
+        source_scope: 'published-section-only',
+      },
+      analytics: {
+        events: ['section_view', 'reading_progress', 'activity_attempt', 'simulation_prediction', 'tutor_help', 'social_checkin', 'section_complete'],
+        mastery_concepts: [heading.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '')],
+        intervention_triggers: { low_mastery: 0.58, repeated_help: 3, stalled_minutes: 8 },
+      },
+      social_dynamics: {
+        cues: ['peer_presence', 'same_concept_peers', 'share_one_evidence_based_revision'],
+        prompts: [`Compare your interpretation of ${heading} with one peer and name the evidence that changed your view.`],
+        rounds: [{ type: 'evidence_compare', min_peers: 1, prompt: `Peer round: compare one evidence-based revision about ${heading}.` }],
+        privacy: 'pseudonymous-cohort-aggregate',
+      },
+    }
+    return {
+      section_id: `draft-${String(index + 1).padStart(2, '0')}`,
+      title: heading,
+      source_excerpt: excerpt,
+      reading: { estimated_minutes: Math.max(4, Math.min(18, Math.round(excerpt.split(/\s+/).length / 180))), purpose: `Build source-grounded understanding of ${heading}.` },
+      activity: {
+        type: 'claim-evidence-revision',
+        prompt: `Identify one claim about ${heading}, attach evidence from the reading, and revise the claim after critique.`,
+        evidence_collected: ['initial_claim', 'source_evidence', 'revision_rationale'],
+      },
+      simulation: {
+        status: 'proposed', concept: heading,
+        interaction: 'Change one input, predict the effect, observe the response, and explain the discrepancy.',
+        variables: ['input', 'response', 'constraint'], evidence_collected: ['prediction', 'observation', 'explanation'],
+      },
+      ...runtime,
+    }
+  })
+  return {
+    schema_version: 'google-doc-course-runtime-package-v1',
+    source: { kind: 'google_doc', document_id: documentId, title: title || headings[0], characters: cleaned.length },
+    learning_objectives: headings.slice(0, 5).map((heading) => `Explain and apply the central ideas in ${heading}.`),
+    sections,
+    runtime_package: { version: 'course-runtime-v1', generated: ['reading', 'activity', 'simulation', 'tutor', 'analytics', 'social_dynamics'], approval_required: true },
+    quality: {
+      source_grounded: true, human_approval_required: true, student_visible: false, automatic_publish: false,
+      warnings: sections.length >= 2 ? [] : ['Only one section was detected; review the document heading structure.'],
+    },
+  }
+}
+
+function normalizeGeneratedCourseDraft(generated, fallback) {
+  const candidateSections = Array.isArray(generated?.sections) ? generated.sections : []
+  if (!candidateSections.length) return fallback
+  const byTitle = new Map(fallback.sections.map((section) => [section.title.toLowerCase(), section]))
+  const sections = candidateSections.slice(0, 8).map((section, index) => {
+    const fallbackSection = byTitle.get(String(section.title || '').toLowerCase()) || fallback.sections[index] || fallback.sections[0]
+    return {
+      ...fallbackSection,
+      title: cleanExcerpt(section.title || fallbackSection.title, 120),
+      source_excerpt: fallbackSection.source_excerpt,
+      reading: { ...fallbackSection.reading, ...(section.reading || {}) },
+      activity: { ...fallbackSection.activity, ...(section.activity || {}) },
+      simulation: { ...fallbackSection.simulation, ...(section.simulation || {}), status: 'proposed' },
+      tutor: { ...fallbackSection.tutor, ...(section.tutor || {}) },
+      analytics: { ...fallbackSection.analytics, ...(section.analytics || {}) },
+      social_dynamics: { ...fallbackSection.social_dynamics, ...(section.social_dynamics || {}) },
+    }
+  })
+  return {
+    ...fallback,
+    learning_objectives: Array.isArray(generated.learning_objectives) ? generated.learning_objectives.slice(0, 8).map((item) => cleanExcerpt(item, 220)).filter(Boolean) : fallback.learning_objectives,
+    sections,
+    runtime_package: generated.runtime_package || fallback.runtime_package,
+  }
 }
 
 async function sha256Hex(bytes) {
@@ -242,6 +375,9 @@ async function convertPdfAtEdge(request) {
   })
   const extractablePages = pages.filter((page) => page.characters >= 24).length
   const filename = String(file.name || 'course-source.pdf').split(/[\\/]/).pop()
+  const markdown = pages.map((page) => `## Page ${page.page}\n\n${page.text || '[No extractable text]'}`).join('\n\n')
+  let runtimeDraft = null
+  try { runtimeDraft = buildGoogleDocCourseDraft(markdown, `pdf:${hash.slice(0, 24)}`, filename) } catch { /* extraction remains usable; faculty can review before generation */ }
   return json({
     status: warnings.length ? 'needs_review' : 'converted',
     filename,
@@ -250,7 +386,8 @@ async function convertPdfAtEdge(request) {
     total_characters: pages.reduce((sum, page) => sum + page.characters, 0),
     metadata: {},
     pages,
-    markdown: pages.map((page) => `## Page ${page.page}\n\n${page.text || '[No extractable text]'}`).join('\n\n'),
+    markdown,
+    runtime_draft: runtimeDraft,
     warnings,
     quality: {
       extractable_page_ratio: Number((extractablePages / pages.length).toFixed(4)),
@@ -380,7 +517,224 @@ async function handleAdminRequest(request, env, path) {
     })
     return new Response(proxied.body, { status: proxied.status, headers: { ...CORS, 'content-type': proxied.headers.get('content-type') || 'application/json' } })
   }
+  if (path === '/admin/instructors/review' && request.method === 'POST') {
+    if (!auth.authorization) return json({ detail: 'Instructor review requires an interactive administrator session' }, 401)
+    if (!env.SUPABASE_URL) return json({ detail: 'Instructor review is not configured' }, 503)
+    const edgeUrl = `${String(env.SUPABASE_URL).replace(/\/$/, '')}/functions/v1/admin-review-instructor`
+    const proxied = await fetch(edgeUrl, { method: 'POST', headers: supabaseHeaders(env, auth.authorization), body: await request.text() })
+    return new Response(proxied.body, { status: proxied.status, headers: { ...CORS, 'content-type': proxied.headers.get('content-type') || 'application/json' } })
+  }
   return json({ detail: `Unknown admin endpoint: ${path}` }, 404)
+}
+
+async function handleFacultyRequest(request, env, path) {
+  const auth = await requireFacultyInstructor(request, env)
+  if (auth.error) return auth.error
+  if (path === '/faculty/learners/invite' && request.method === 'POST') {
+    if (!env.SUPABASE_URL) return json({ detail: 'Learner invitations are not configured' }, 503)
+    const edgeUrl = `${String(env.SUPABASE_URL).replace(/\/$/, '')}/functions/v1/faculty-learner-invite`
+    const proxied = await fetch(edgeUrl, {
+      method: 'POST',
+      headers: supabaseHeaders(env, auth.authorization),
+      body: await request.text(),
+    })
+    return new Response(proxied.body, { status: proxied.status, headers: { ...CORS, 'content-type': proxied.headers.get('content-type') || 'application/json' } })
+  }
+  if (path === '/faculty/pdf/import' && request.method === 'POST') {
+    let form
+    try { form = await request.formData() } catch { return json({ detail: 'Invalid multipart PDF upload' }, 400) }
+    const file = form.get('file')
+    const pdfCourseId = String(form.get('course_id') || '').trim()
+    if (!/^[a-z0-9][a-z0-9-]{1,79}$/.test(pdfCourseId)) return json({ detail: 'A valid course identifier is required' }, 422)
+    if (!file || typeof file.arrayBuffer !== 'function') return json({ detail: 'PDF file is required' }, 422)
+    if (file.size < 1 || file.size > MAX_PDF_BYTES) return json({ detail: `PDF must be between 1 byte and ${MAX_PDF_BYTES} bytes` }, 413)
+
+    let source
+    try { source = await readPdfSourceText(file) } catch (error) { return json({ detail: error.message || 'PDF could not be parsed' }, 422) }
+    const filename = String(file.name || 'course-source.pdf').split(/[\\/]/).pop()
+    let pdfDraft
+    try { pdfDraft = buildGoogleDocCourseDraft(source.text, `pdf:${source.sha256.slice(0, 24)}`, filename) } catch (error) { return json({ detail: error.message }, 422) }
+    pdfDraft.source.sha256 = source.sha256
+    pdfDraft.source.page_count = source.pageCount
+    pdfDraft.source.title = filename
+    pdfDraft = await enrichCourseDraft(env, pdfCourseId, source.text, pdfDraft)
+    pdfDraft = await groundDraftInOpenStax(env, auth.authorization, pdfDraft)
+    return json({ course_id: pdfCourseId, status: 'shadow_draft', operator: auth.operator, draft: pdfDraft }, 201)
+  }
+  if (path !== '/faculty/google-docs/import' || request.method !== 'POST') return json({ detail: `Unknown faculty endpoint: ${path}` }, 404)
+
+  const payload = await request.json().catch(() => ({}))
+  const courseId = String(payload.course_id || '').trim()
+  if (!/^[a-z0-9][a-z0-9-]{1,79}$/.test(courseId)) return json({ detail: 'A valid course identifier is required' }, 422)
+  let documentId
+  try { documentId = extractGoogleDocId(payload.document_url) } catch (error) { return json({ detail: error.message }, 422) }
+
+  let response
+  try {
+    response = await fetch(`https://docs.google.com/document/d/${documentId}/export?format=txt`, { redirect: 'follow' })
+  } catch {
+    return json({ detail: 'Google Docs is temporarily unavailable' }, 503)
+  }
+  const contentType = response.headers.get('content-type') || ''
+  if (!response.ok || contentType.includes('text/html') || response.url.includes('accounts.google.com')) {
+    return json({ detail: 'The document could not be read. Share it as “Anyone with the link can view,” then try again.' }, 403)
+  }
+  const sourceText = (await response.text()).slice(0, MAX_GOOGLE_DOC_CHARACTERS + 1)
+  if (sourceText.length > MAX_GOOGLE_DOC_CHARACTERS) return json({ detail: 'Google Doc exceeds the 250,000-character import limit' }, 413)
+  const title = cleanExcerpt(sourceText.split('\n').find((line) => line.trim()) || 'Google Docs course source', 120)
+  let draft
+  try { draft = buildGoogleDocCourseDraft(sourceText, documentId, title) } catch (error) { return json({ detail: error.message }, 422) }
+  draft.source.sha256 = await sha256Hex(new TextEncoder().encode(cleanPdfText(sourceText)))
+  draft.source.canonical_url = `https://docs.google.com/document/d/${documentId}/edit`
+
+  draft = await enrichCourseDraft(env, courseId, sourceText, draft)
+  draft = await groundDraftInOpenStax(env, auth.authorization, draft)
+  return json({ course_id: courseId, status: 'shadow_draft', operator: auth.operator, draft }, 201)
+}
+
+/**
+ * Open textbook passages related to a draft, for citation alongside it.
+ *
+ * Lexical search over the OpenStax index; the caller's own session authorises
+ * the read, so a draft can only be grounded by someone entitled to the course.
+ * Retrieval failure is not draft failure — an ungrounded draft is still usable.
+ */
+// Terms that carry no topical signal, so an OR query is not dragged toward
+// whichever section happens to use the most connective prose.
+const REFERENCE_STOPWORDS = new Set([
+  'about', 'after', 'against', 'because', 'been', 'before', 'being', 'between', 'build',
+  'course', 'from', 'generation', 'have', 'into', 'introduction', 'learn', 'module',
+  'over', 'section', 'source', 'student', 'students', 'their', 'them', 'then', 'these',
+  'they', 'this', 'through', 'understand', 'using', 'what', 'when', 'where', 'which',
+  'while', 'with', 'within', 'would', 'your',
+])
+
+// Measured against the live index: queries whose topic the corpus really covers
+// rank 0.35-0.50, while queries on absent topics top out around 0.29 on shared
+// vocabulary alone. Citing that second group would mislead a reader, so a
+// section with nothing genuinely related is better left uncited.
+const MIN_REFERENCE_RANK = 0.33
+
+/**
+ * websearch_to_tsquery conjoins its terms, so a whole sentence matches almost
+ * nothing. Reduce the phrase to its distinctive words and join them with `or`,
+ * leaving ts_rank to order what comes back.
+ */
+function toReferenceQuery(text) {
+  const words = String(text || '').toLowerCase().match(/[a-z][a-z0-9-]{3,}/g) || []
+  const terms = [...new Set(words)].filter((word) => !REFERENCE_STOPWORDS.has(word)).slice(0, 12)
+  return terms.join(' or ')
+}
+
+async function findOpenStaxReferences(env, authorization, query, limit = 4) {
+  if (!env.SUPABASE_URL || !env.SUPABASE_PUBLISHABLE_KEY || !authorization) return []
+  const search = toReferenceQuery(query)
+  if (search.length < 4) return []
+  try {
+    const response = await fetch(`${String(env.SUPABASE_URL).replace(/\/$/, '')}/rest/v1/rpc/search_openstax_sections`, {
+      method: 'POST',
+      headers: supabaseHeaders(env, authorization),
+      body: JSON.stringify({ p_query: search, p_limit: limit * 3 }),
+    })
+    if (!response.ok) return []
+    const rows = await response.json()
+    if (!Array.isArray(rows)) return []
+    return rows
+      .filter((row) => Number(row.rank) >= MIN_REFERENCE_RANK)
+      .slice(0, limit)
+      .map((row) => ({
+        title: row.title,
+        url: row.url,
+        book: row.book_title,
+        license_url: row.license_url,
+        excerpt: cleanExcerpt(row.excerpt || '', 400),
+      }))
+  } catch {
+    return []
+  }
+}
+
+/**
+ * Attach open-textbook references to each generated section, and to the module.
+ *
+ * Only the citation and a short excerpt travel with the draft. Bulk reuse of a
+ * section's prose is a licensing decision, not a retrieval one, so the licence
+ * of every cited passage rides along for the caller to honour.
+ */
+async function groundDraftInOpenStax(env, authorization, draft) {
+  const sections = Array.isArray(draft?.sections) ? draft.sections : []
+  if (!sections.length) return draft
+  const seen = new Set()
+  const moduleReferences = []
+  for (const section of sections) {
+    const query = [section.title, section.reading?.purpose].filter(Boolean).join(' ')
+    const references = await findOpenStaxReferences(env, authorization, query)
+    if (!references.length) continue
+    section.references = references
+    for (const reference of references) {
+      if (seen.has(reference.url)) continue
+      seen.add(reference.url)
+      moduleReferences.push(reference)
+    }
+  }
+  if (moduleReferences.length) {
+    draft.references = moduleReferences
+    draft.quality.warnings.push(`${moduleReferences.length} open textbook passages cited; honour each passage's licence before reusing its text.`)
+  }
+  return draft
+}
+
+/** Plain source text from an uploaded PDF, for faculty course drafting. */
+async function readPdfSourceText(file) {
+  const buffer = await file.arrayBuffer()
+  const bytes = new Uint8Array(buffer)
+  if (String.fromCharCode(...bytes.slice(0, 5)) !== '%PDF-') throw new Error('File signature is not a PDF')
+  // Digest before parsing: the PDF reader detaches the buffer, which would
+  // leave the checksum computed over zero bytes.
+  const sha256 = await sha256Hex(bytes.slice())
+  const document = await getDocumentProxy(bytes)
+  if (!document.numPages) throw new Error('PDF contains no pages')
+  if (document.numPages > MAX_PDF_PAGES) throw new Error(`PDF exceeds the ${MAX_PDF_PAGES}-page ingestion limit`)
+  const extracted = await extractText(document, { mergePages: false })
+  const rawPages = Array.isArray(extracted?.text) ? extracted.text : [extracted?.text || '']
+  // Page markers are ingestion scaffolding and would be read as course headings.
+  const text = rawPages.map((value) => cleanPdfText(value || '')).filter(Boolean).join('\n\n')
+  return { text, pageCount: document.numPages, sha256 }
+}
+
+/**
+ * Raise a deterministic source-grounded draft into a teachable module. Shared by
+ * every faculty source type, so a PDF and a Google Doc yield the same quality of
+ * structure. Without a provider key the deterministic draft stands on its own.
+ */
+async function enrichCourseDraft(env, courseId, sourceText, draft) {
+  const key = env.OPENROUTER_API_KEY || ''
+  if (!key) {
+    draft.quality.warnings.push('AI enrichment is not configured; a deterministic source-grounded draft was created instead.')
+    return draft
+  }
+  try {
+    const generated = await openrouterJSON(key, [
+      {
+        role: 'system',
+        content: 'You are a higher-education curriculum designer. Return JSON only. Convert the supplied course document into a source-grounded module draft. Preserve the source meaning. Every section needs title, reading {purpose, estimated_minutes, content}, activity {type, prompt, evidence_collected}, and simulation {concept, interaction, variables, evidence_collected}. reading.content is the lesson a learner actually reads: 200-350 words of markdown drawn from the source, teaching the section rather than summarising it. Simulations must be pedagogically useful and feasible as interactive parameter explorations. Ignore front matter such as journal mastheads, running headers, page numbers, author affiliation blocks, and reference lists. Do not invent citations, grades, or publication status.',
+      },
+      {
+        role: 'user',
+        content: `Course: ${courseId}\n\nReturn EXACTLY this JSON shape, with 4-8 entries in each array:\n{"learning_objectives":["measurable objective", "..."],"sections":[{"title":"...","reading":{"purpose":"...","estimated_minutes":8,"content":"200-350 words of markdown teaching this section"},"activity":{"type":"claim-evidence-revision","prompt":"...","evidence_collected":"..."},"simulation":{"concept":"...","interaction":"...","variables":["..."],"evidence_collected":"..."}}]}\n\nTitles must name what the section teaches, never the document's front matter.\n\nSOURCE DOCUMENT:\n${sourceText.slice(0, 24000)}`,
+      },
+      // Eight sections of lesson prose do not fit the previous 3,600-token
+      // ceiling; a truncated body fails JSON.parse and drops the whole draft.
+    ], { model: env.OPENROUTER_MODEL || DEFAULT_MODEL, temperature: 0.25, maxTokens: 16000 })
+    const enriched = normalizeGeneratedCourseDraft(generated, draft)
+    // The normalizer returns the fallback unchanged when the model answered
+    // without usable sections. Say so rather than presenting it as generated.
+    if (enriched === draft) draft.quality.warnings.push('AI enrichment returned no usable sections; the deterministic source-grounded draft was kept.')
+    return enriched
+  } catch {
+    draft.quality.warnings.push('AI enrichment was unavailable; a deterministic source-grounded draft was created instead.')
+    return draft
+  }
 }
 
 function validateAdaptationPolicy(input) {
@@ -715,6 +1069,327 @@ function historyToMessages(history) {
   }).filter((m) => m.content)
 }
 
+const AGENTIC_TOOLS = [
+  { id: 'course.read', label: 'Read course content', risk: 'low', roles: ['learner', 'instructor', 'course_admin', 'admin'], approval: 'none' },
+  { id: 'mastery.read_own', label: 'Read own mastery evidence', risk: 'low', roles: ['learner'], approval: 'none' },
+  { id: 'study_plan.write_own', label: 'Draft or revise own study plan', risk: 'low', roles: ['learner'], approval: 'learner' },
+  { id: 'cohort.aggregate.read', label: 'Read cohort-level learning signals', risk: 'medium', roles: ['instructor', 'course_admin', 'admin'], approval: 'none' },
+  { id: 'intervention.draft', label: 'Draft a cohort intervention', risk: 'medium', roles: ['instructor', 'course_admin', 'admin'], approval: 'instructor' },
+  { id: 'learner.message', label: 'Send a learner communication', risk: 'high', roles: ['instructor', 'course_admin', 'admin'], approval: 'instructor', executable: false },
+  { id: 'grade.finalize', label: 'Finalize a grade', risk: 'high', roles: ['instructor'], approval: 'instructor', executable: false },
+  { id: 'content.publish', label: 'Publish course content', risk: 'high', roles: ['course_admin', 'admin'], approval: 'course_admin', executable: false },
+]
+
+const AGENTIC_TRANSITIONS = {
+  draft: ['awaiting_approval', 'cancelled'],
+  awaiting_approval: ['active', 'cancelled', 'blocked'],
+  active: ['paused', 'completed', 'blocked', 'cancelled'],
+  paused: ['active', 'cancelled'],
+  blocked: ['awaiting_approval', 'cancelled'],
+  completed: [],
+  cancelled: [],
+}
+
+function evaluateAgenticTool(body) {
+  const tool = AGENTIC_TOOLS.find((entry) => entry.id === body.tool_id)
+  if (!tool) return { allowed: false, reason: 'unknown_tool', tool_id: body.tool_id }
+  if (!tool.roles.includes(body.actor_role)) return { allowed: false, reason: 'role_not_permitted', tool }
+  if (tool.executable === false) return { allowed: false, reason: 'execution_not_implemented', tool }
+  if (tool.approval !== 'none' && body.approved !== true) return { allowed: false, reason: 'approval_required', tool }
+  return { allowed: true, reason: 'policy_passed', tool }
+}
+
+function validateAgenticTransition(body) {
+  const targets = AGENTIC_TRANSITIONS[body.current_status]
+  if (!targets) return { allowed: false, reason: 'unknown_current_status' }
+  if (!targets.includes(body.target_status)) return { allowed: false, reason: 'invalid_transition' }
+  if (body.current_status === 'awaiting_approval' && body.target_status === 'active' && body.approved !== true) {
+    return { allowed: false, reason: 'approval_required' }
+  }
+  return { allowed: true, reason: 'transition_allowed' }
+}
+
+function buildAgenticLearnerPlan(body) {
+  const targetMastery = Number(body.target_mastery ?? 0.8)
+  const weeklyMinutes = Number(body.weekly_minutes ?? 180)
+  const today = new Date(); today.setUTCHours(0, 0, 0, 0)
+  const targetDate = new Date(`${body.target_date}T00:00:00.000Z`)
+  if (!body.course_id || !body.goal_title || !Number.isFinite(targetDate.getTime())) throw new Error('invalid_plan_request')
+  if (targetDate < today) throw new Error('target_date must be today or later')
+  if (targetMastery < 0.5 || targetMastery > 1) throw new Error('target_mastery must be between 0.5 and 1.0')
+  if (weeklyMinutes < 60 || weeklyMinutes > 1200) throw new Error('weekly_minutes must be between 60 and 1200')
+  const mastery = (Array.isArray(body.mastery) ? body.mastery : [])
+    .filter((row) => row?.concept_id)
+    .map((row) => ({ concept_id: String(row.concept_id), mastery: Math.max(0, Math.min(1, Number(row.mastery_score ?? row.p_known ?? 0))), attempts: Math.max(0, Number(row.attempts_count || 0)) }))
+    .sort((left, right) => left.mastery - right.mastery || left.attempts - right.attempts || left.concept_id.localeCompare(right.concept_id))
+  const weak = mastery.filter((row) => row.mastery < targetMastery)
+  const focus = weak.length ? weak : mastery.length ? mastery.slice(0, 3) : [{ concept_id: 'course-foundations', mastery: 0, attempts: 0 }]
+  const sessionCount = Math.max(3, Math.min(7, Math.round(weeklyMinutes / 35)))
+  const sessionMinutes = Math.max(20, Math.min(50, Math.floor(weeklyMinutes / sessionCount)))
+  const daysAvailable = Math.max(1, Math.min(7, Math.floor((targetDate - today) / 86400000) + 1))
+  const modes = ['explain', 'worked-example', 'retrieval-practice', 'teach-back']
+  const sessions = Array.from({ length: sessionCount }, (_, index) => {
+    const concept = focus[index % focus.length]
+    const scheduled = new Date(today); scheduled.setUTCDate(today.getUTCDate() + Math.round(index * Math.max(0, daysAvailable - 1) / Math.max(1, sessionCount - 1)))
+    const mode = modes[index % modes.length]
+    return {
+      id: `session-${index + 1}`, scheduled_for: scheduled.toISOString().slice(0, 10), minutes: sessionMinutes,
+      concept_id: concept.concept_id, mode,
+      actions: ['Review the learning objective and one canonical example', `Complete a ${mode.replaceAll('-', ' ')} activity`, 'Record confidence before checking feedback', 'Finish with one retrieval question'],
+      why_now: `Current mastery evidence is ${Math.round(concept.mastery * 100)}% from ${concept.attempts} recorded attempt(s), below the ${Math.round(targetMastery * 100)}% goal.`,
+    }
+  })
+  return {
+    schema_version: 'agentic-study-plan-v1', course_id: body.course_id, goal: String(body.goal_title).trim(),
+    target_date: body.target_date, target_mastery: targetMastery, weekly_minutes: weeklyMinutes, generated_at: new Date().toISOString(),
+    planning_horizon: { starts_on: today.toISOString().slice(0, 10), days: daysAvailable }, focus_concepts: focus.slice(0, 8), sessions,
+    evidence: { source: 'learner_mastery_snapshot', concept_count: mastery.length, weak_concept_count: weak.length, causal_claim: false },
+    learner_control: { requires_approval: true, can_edit: true, can_pause: true, can_cancel: true, memory_scope: 'learner-owned' },
+  }
+}
+
+function buildAgenticIntervention(body) {
+  const learnerCount = Number(body.learner_count)
+  const average = Math.max(0, Math.min(1, Number(body.average_mastery)))
+  if (!body.course_id || !body.concept_id || !Number.isFinite(learnerCount) || learnerCount < 1 || !Number.isFinite(average)) throw new Error('invalid_intervention_request')
+  return {
+    schema_version: 'agentic-intervention-v1', course_id: body.course_id, concept_id: body.concept_id,
+    title: `Re-teach ${String(body.concept_id).replace(/[_-]/g, ' ')}`,
+    summary: `Prepare a short compare-and-correct activity for ${learnerCount} learner(s); do not send or grade automatically.`,
+    recommended_actions: ['Open with one diagnostic contrast example', 'Ask learners to explain the difference before feedback', 'Assign one low-stakes retrieval check', 'Review the next evidence snapshot before further action'],
+    evidence: { learner_count: learnerCount, average_mastery: Math.round(average * 10000) / 10000, threshold: 0.6, urgency: average < 0.4 ? 'urgent' : 'monitor', causal_claim: false },
+    target_user_ids: Array.isArray(body.target_user_ids) ? body.target_user_ids : [], risk_level: 'medium',
+    delivery: { executed: false, requires_instructor_approval: true }, generated_at: new Date().toISOString(),
+  }
+}
+
+function roadmapManifest() {
+  return {
+    schema_version: 'roadmap-manifest-v1',
+    roadmap_contract: ROADMAP_CONTRACT_VERSION,
+    horizons: {
+      '0-12_months': ['governed_runtime_package', 'evidence_visible_generation', 'human_release_gate'],
+      '12-24_months': ['decision_ledger', 'bounded_adaptive_interventions', 'social_outcome_metrics', 'evaluation_manifest'],
+      '24-36_months': ['caliper', 'oneroster', 'case', 'model_registry', 'privacy_controls', 'incident_review'],
+    },
+    high_risk_actions: { publish: 'human_approval', grade: 'human_approval', message: 'human_approval', enroll: 'human_approval', policy_change: 'human_approval' },
+    analytics: ['mastery', 'metacognitive_calibration', 'evidence_alignment', 'transfer', 'social_reasoning'],
+  }
+}
+
+async function buildRoadmapRuntimePackage(body) {
+  const courseId = String(body.course_id || '').trim()
+  const sourceText = String(body.source_text || '')
+  if (!/^[a-z0-9][a-z0-9-]{1,79}$/.test(courseId) || !sourceText.trim()) throw new Error('course_and_source_required')
+  const source = { ...(body.source || {}) }
+  source.sha256 = source.sha256 || await sha256Hex(new TextEncoder().encode(sourceText))
+  source.title = String(source.title || 'Untitled course source').slice(0, 160)
+  const sections = (Array.isArray(body.sections) ? body.sections : []).map((section, index) => ({
+    id: String(section.id || `section-${index + 1}`), title: String(section.title || `Section ${index + 1}`),
+    reading: { content: String(section.reading?.content || ''), estimated_minutes: Number(section.reading?.estimated_minutes || 8) },
+    learning_objectives: Array.isArray(section.learning_objectives) ? section.learning_objectives : [],
+    references: Array.isArray(section.references) ? section.references : [],
+    activity: section.activity || { status: 'proposed' }, simulation: section.simulation || { status: 'proposed' },
+    tutor: section.tutor || { status: 'proposed', approval: 'required' }, social: section.social || { status: 'proposed', dismissible: true },
+  }))
+  return {
+    schema_version: ROADMAP_CONTRACT_VERSION, course_id: courseId, source, sections,
+    runtime: { tutor: 'course_scoped', analytics: roadmapManifest().analytics, social_cues: 'passive_optional', high_risk_actions: 'default_deny' },
+    policy: body.policy || { release_gate: 'human_approval_required', autonomy: 'bounded' },
+    release: { status: 'shadow_draft', student_visible: false, automatic_publish: false, approval: null },
+    created_at: new Date().toISOString(),
+  }
+}
+
+function validateRoadmapRuntimePackage(pkg) {
+  const errors = [], warnings = []
+  const sourceHash = String(pkg?.source?.sha256 || '')
+  if (!/^[0-9a-f]{64}$/.test(sourceHash)) errors.push('source_sha256_required')
+  if (!pkg?.course_id) errors.push('course_id_required')
+  if (!Array.isArray(pkg?.sections) || pkg.sections.length === 0) errors.push('sections_required')
+  for (const [index, section] of (pkg.sections || []).entries()) {
+    if (!String(section.id || '').trim()) errors.push(`section_${index}_id_required`)
+    if (!String(section.reading?.content || '').trim()) errors.push(`section_${index}_reading_required`)
+    if (!(section.references || []).length) warnings.push(`section_${index}_no_references`)
+    for (const reference of section.references || []) if (reference.url && !String(reference.url).toLowerCase().startsWith('https://')) errors.push(`section_${index}_unsafe_reference`)
+  }
+  const release = pkg.release || {}
+  if (release.status === 'published' && (!release.approval?.actor_id || !release.approval?.approved_at)) errors.push('published_requires_human_approval')
+  if (release.automatic_publish) errors.push('automatic_publish_forbidden')
+  return { valid: errors.length === 0, errors, warnings, claims_are_not_independently_verified: true }
+}
+
+function buildRoadmapDecision(body) {
+  const decision = String(body.decision || '')
+  if (!['accept', 'modify', 'reject', 'defer'].includes(decision)) throw new Error('invalid_agent_decision')
+  if (!body.course_id || !body.actor_id || !body.proposal_id) throw new Error('decision_identity_required')
+  if (decision === 'modify' && body.revised === undefined) throw new Error('modified_decision_requires_revised_value')
+  return {
+    id: `decision-${crypto.randomUUID()}`, schema_version: 'agent-decision-v1', course_id: body.course_id,
+    proposal_id: body.proposal_id, actor: { id: body.actor_id, role: body.actor_role || 'instructor' }, decision,
+    original: body.original, revised: decision === 'modify' ? body.revised : body.original,
+    rationale: String(body.rationale || '').slice(0, 2000), evidence_ids: Array.isArray(body.evidence_ids) ? body.evidence_ids.filter(Boolean) : [],
+    created_at: new Date().toISOString(),
+  }
+}
+
+function summarizeRoadmapSocial(events) {
+  const rows = Array.isArray(events) ? events : []
+  const cueImpressions = rows.filter((event) => ['peer_pulse_seen', 'your_cue_selected', 'evidence_echo_opened'].includes(event.event_type)).length
+  const started = rows.filter((event) => event.event_type === 'social_round_started').length
+  const completed = rows.filter((event) => event.event_type === 'social_evidence_compared' && event.evidence_submitted).length
+  return { schema_version: 'social-outcomes-v1', cue_impressions: cueImpressions, evidence_compare_started: started, evidence_compare_completed: completed, evidence_compare_completion_rate: started ? Number((completed / started).toFixed(4)) : null, learning_gain_claim: 'not_inferred_from_clicks', missing_evidence: completed === 0 }
+}
+
+function roadmapCaliper(body) {
+  if (![body.event_type, body.actor_id, body.course_id, body.object_id, body.action].every((value) => String(value || '').trim())) throw new Error('caliper_event_fields_required')
+  return { '@context': 'http://purl.imsglobal.org/ctx/caliper/v1p2', type: body.event_type, id: `urn:alget:event:${crypto.randomUUID()}`, eventTime: new Date().toISOString(), actor: { id: `urn:alget:user:${body.actor_id}`, type: 'Person' }, action: body.action, object: { id: `urn:alget:course:${body.course_id}:${body.object_id}`, type: 'DigitalResource' }, extensions: { course_id: body.course_id, ...(body.extensions || {}) } }
+}
+
+function roadmapOneRoster(body) {
+  const users = (Array.isArray(body.users) ? body.users : []).map((user) => {
+    if (!String(user.sourcedId || '').trim()) throw new Error('oneroster_sourced_id_required')
+    const role = String(user.role || 'student').toLowerCase()
+    if (!['student', 'teacher', 'administrator'].includes(role)) throw new Error('oneroster_role_invalid')
+    return { sourcedId: String(user.sourcedId), status: String(user.status || 'active'), role, orgs: Array.isArray(user.orgs) ? user.orgs : [], metadata: { source: 'oneroster', privacy_scope: 'course_only' } }
+  })
+  return { schema_version: 'oneroster-v1', users }
+}
+
+function roadmapCase(body) {
+  if (![body.uri, body.statement, body.human_code, body.document_uri].every((value) => String(value || '').trim())) throw new Error('case_competency_fields_required')
+  return { uri: body.uri, fullStatement: body.statement, humanCodingScheme: body.human_code, CFDocument: { uri: body.document_uri }, type: 'CFItem', source: 'alget' }
+}
+
+function roadmapLti13(body) {
+  if (!String(body.issuer || '').toLowerCase().startsWith('https://')) throw new Error('lti13_issuer_must_be_https')
+  if (![body.client_id, body.deployment_id, body.context_id, body.course_id, body.resource_link_id].every((value) => String(value || '').trim())) throw new Error('lti13_context_fields_required')
+  return {
+    schema_version: 'lti13-context-v1', iss: body.issuer, client_id: body.client_id, deployment_id: body.deployment_id,
+    context: { id: body.context_id, course_id: body.course_id }, resource_link: { id: body.resource_link_id },
+    roles: Array.isArray(body.roles) && body.roles.length ? [...new Set(body.roles)] : ['http://purl.imsglobal.org/vocab/lis/v2/membership#Learner'],
+    privacy_scope: 'course_only', launch_state: 'requires_oidc_validation', jwt_validation_required: true,
+  }
+}
+
+function roadmapPrivacy(body, confirm = false) {
+  const subjectId = String(body.subject_id || '')
+  if (!subjectId) throw new Error('privacy_subject_required')
+  const records = Array.isArray(body.records) ? body.records : []
+  const matches = records.filter((record) => [record.user_id, record.owner_id, record.actor_id, record.subject_id].includes(subjectId))
+  if (!confirm) return { schema_version: 'privacy-deletion-v1', subject_id: subjectId, status: 'ready_for_confirmation', record_ids: matches.map((record) => record.id).filter(Boolean), requires_explicit_confirmation: true }
+  return { schema_version: 'privacy-deletion-v1', subject_id: subjectId, status: 'deleted', removed_ids: matches.map((record) => record.id).filter(Boolean), remaining_records: records.filter((record) => !matches.includes(record)) }
+}
+
+function roadmapEvaluation(body) {
+  if (![body.course_id, body.intervention, body.comparison, body.primary_outcome].every((value) => String(value || '').trim())) throw new Error('evaluation_manifest_fields_required')
+  return { schema_version: 'evaluation-manifest-v1', course_id: body.course_id, intervention: body.intervention, comparison: body.comparison, primary_outcome: body.primary_outcome, secondary_outcomes: Array.isArray(body.secondary_outcomes) ? body.secondary_outcomes : [], preregistered: false, causal_claim_status: 'not_established', created_at: new Date().toISOString() }
+}
+
+async function handleRoadmapRequest(request, env, path) {
+  if (path === '/roadmap/manifest' && request.method === 'GET') return json(roadmapManifest())
+  const isAdminPath = path.includes('/model-registry') || path.includes('/incidents') || path.includes('/oneroster') || path.includes('/case') || path.includes('/lti13')
+  const auth = isAdminPath ? await requireCourseAdmin(request, env) : await requireFacultyInstructor(request, env)
+  if (auth.error) return auth.error
+  const body = request.method === 'POST' ? await request.json().catch(() => ({})) : {}
+  try {
+    if (path === '/roadmap/runtime-package' && request.method === 'POST') {
+      const pkg = await buildRoadmapRuntimePackage(body)
+      const persistence = await persistRoadmapRow(env, auth.authorization, 'course_runtime_packages', {
+        course_id: pkg.course_id, source_sha256: pkg.source.sha256, package: pkg, status: pkg.release.status,
+        student_visible: false, created_by: auth.operator.subject,
+      })
+      return json({ package: pkg, validation: validateRoadmapRuntimePackage(pkg), persistence })
+    }
+    if (path === '/roadmap/decision-ledger' && request.method === 'POST') {
+      const event = buildRoadmapDecision(body)
+      const persistence = await persistRoadmapRow(env, auth.authorization, 'agent_decision_ledger', {
+        course_id: event.course_id, proposal_id: event.proposal_id, actor_id: auth.operator.subject,
+        actor_role: event.actor.role, decision: event.decision, original: event.original, revised: event.revised,
+        rationale: event.rationale, evidence_ids: event.evidence_ids, event_hash: event.id,
+      })
+      return json({ event, persistence }, 201)
+    }
+    if (path === '/roadmap/social/outcomes' && request.method === 'POST') return json(summarizeRoadmapSocial(body.events))
+    if (path === '/roadmap/interoperability/caliper' && request.method === 'POST') {
+      const payload = roadmapCaliper(body)
+      const persistence = await persistRoadmapRow(env, auth.authorization, 'roadmap_interop_events', { course_id: body.course_id, standard: 'caliper', payload, actor_id: auth.operator.subject })
+      return json({ ...payload, persistence })
+    }
+    if (path === '/roadmap/interoperability/oneroster' && request.method === 'POST') {
+      const payload = roadmapOneRoster(body)
+      const persistence = await persistRoadmapRow(env, auth.authorization, 'roadmap_interop_events', { course_id: String(body.course_id || 'institutional'), standard: 'oneroster', payload, actor_id: auth.operator.subject })
+      return json({ ...payload, persistence })
+    }
+    if (path === '/roadmap/interoperability/case' && request.method === 'POST') {
+      const payload = roadmapCase(body)
+      const persistence = await persistRoadmapRow(env, auth.authorization, 'roadmap_interop_events', { course_id: String(body.course_id || 'institutional'), standard: 'case', payload, actor_id: auth.operator.subject })
+      return json({ ...payload, persistence })
+    }
+    if (path === '/roadmap/interoperability/lti13' && request.method === 'POST') {
+      const payload = roadmapLti13(body)
+      const persistence = await persistRoadmapRow(env, auth.authorization, 'roadmap_interop_events', { course_id: body.course_id, standard: 'lti13', payload, actor_id: auth.operator.subject })
+      return json({ ...payload, persistence })
+    }
+    if (path === '/roadmap/model-registry' && request.method === 'GET') return json({ schema_version: 'model-registry-v1', models: [...ROADMAP_MODELS.values()] })
+    if (path === '/roadmap/model-registry' && request.method === 'POST') {
+      if (body.status === 'production' && !body.approved_by) return json({ detail: 'production_model_requires_approval' }, 422)
+      const record = { id: `${body.provider}:${body.model_id}:${body.version}`, provider: body.provider, model_id: body.model_id, version: body.version, capabilities: Array.isArray(body.capabilities) ? body.capabilities : [], status: body.status || 'draft', approved_by: body.approved_by || auth.operator.subject, registered_at: new Date().toISOString() }
+      ROADMAP_MODELS.set(record.id, record)
+      const persistence = await persistRoadmapRow(env, auth.authorization, 'agent_model_registry', { provider: record.provider, model_id: record.model_id, version: record.version, capabilities: record.capabilities, status: record.status, approved_by: auth.operator.subject, registered_by: auth.operator.subject })
+      return json({ ...record, persistence }, 201)
+    }
+    if (path === '/roadmap/privacy/export' && request.method === 'POST') {
+      const subjectId = String(body.subject_id || '')
+      const payload = { schema_version: 'privacy-export-v1', subject_id: subjectId, generated_at: new Date().toISOString(), records: (body.records || []).filter((record) => [record.user_id, record.owner_id, record.actor_id, record.subject_id].includes(subjectId)) }
+      const persistence = await persistRoadmapRow(env, auth.authorization, 'roadmap_privacy_requests', { subject_id: subjectId, request_type: 'export', status: 'completed', record_ids: payload.records.map((record) => record.id).filter(Boolean), requested_by: auth.operator.subject, completed_at: new Date().toISOString() })
+      return json({ ...payload, persistence })
+    }
+    if (path === '/roadmap/privacy/delete' && request.method === 'POST') {
+      const payload = roadmapPrivacy(body, body.confirm === true)
+      const persistence = await persistRoadmapRow(env, auth.authorization, 'roadmap_privacy_requests', { subject_id: body.subject_id, request_type: 'delete', status: payload.status, record_ids: payload.record_ids || payload.removed_ids || [], requested_by: auth.operator.subject, confirmed_at: body.confirm === true ? new Date().toISOString() : null })
+      return json({ ...payload, persistence })
+    }
+    if (path === '/roadmap/incidents' && request.method === 'POST') {
+      const incident = { id: `incident-${crypto.randomUUID()}`, schema_version: 'incident-v1', course_id: body.course_id, severity: body.severity, category: body.category, summary: body.summary, detected_by: auth.operator.subject, status: 'open', timeline: [{ status: 'open', actor_id: auth.operator.subject, at: new Date().toISOString() }] }
+      ROADMAP_INCIDENTS.set(incident.id, incident)
+      const persistence = await persistRoadmapRow(env, auth.authorization, 'roadmap_incidents', { course_id: incident.course_id, severity: incident.severity, category: incident.category, summary: incident.summary, status: incident.status, detected_by: auth.operator.subject, timeline: incident.timeline })
+      return json({ ...incident, persistence }, 201)
+    }
+    const incidentMatch = path.match(/^\/roadmap\/incidents\/([^/]+)\/transition$/)
+    if (incidentMatch && request.method === 'POST') {
+      const incident = ROADMAP_INCIDENTS.get(incidentMatch[1])
+      if (!incident) return json({ detail: 'Incident not found' }, 404)
+      const allowed = { open: ['triaged'], triaged: ['contained', 'resolved'], contained: ['resolved'], resolved: [] }
+      if (!allowed[incident.status]?.includes(body.target_status)) return json({ detail: 'incident_transition_invalid' }, 422)
+      incident.status = body.target_status
+      incident.timeline.push({ status: body.target_status, actor_id: auth.operator.subject, note: String(body.note || ''), at: new Date().toISOString() })
+      return json(incident)
+    }
+    if (path === '/roadmap/evaluation-manifest' && request.method === 'POST') {
+      const manifest = roadmapEvaluation(body)
+      const persistence = await persistRoadmapRow(env, auth.authorization, 'roadmap_evaluation_manifests', { course_id: manifest.course_id, intervention: manifest.intervention, comparison: manifest.comparison, primary_outcome: manifest.primary_outcome, secondary_outcomes: manifest.secondary_outcomes, preregistered: false, causal_claim_status: manifest.causal_claim_status, created_by: auth.operator.subject })
+      return json({ ...manifest, persistence }, 201)
+    }
+    return json({ detail: `Unknown roadmap endpoint: ${path}` }, 404)
+  } catch (error) { return json({ detail: error.message || 'Roadmap request invalid' }, 422) }
+}
+
+export {
+  evaluateAgenticTool,
+  validateAgenticTransition,
+  buildAgenticLearnerPlan,
+  buildAgenticIntervention,
+  extractGoogleDocId,
+  buildGoogleDocCourseDraft,
+  roadmapManifest,
+  validateRoadmapRuntimePackage,
+  buildRoadmapDecision,
+  summarizeRoadmapSocial,
+  roadmapCaliper,
+  roadmapLti13,
+}
+
 export default {
   async fetch(request, env, ctx) {
     if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: CORS })
@@ -743,8 +1418,19 @@ export default {
       })
     }
 
+    if (path === '/agentic/tools' && request.method === 'GET') {
+      return json({ schema_version: 'agentic-tool-registry-v1', tools: AGENTIC_TOOLS, default_policy: 'deny' })
+    }
+
+    if (path.startsWith('/roadmap/')) {
+      return handleRoadmapRequest(request, env, path)
+    }
+
     if (path.startsWith('/admin/')) {
       return handleAdminRequest(request, env, path)
+    }
+    if (path.startsWith('/faculty/')) {
+      return handleFacultyRequest(request, env, path)
     }
 
     let body = {}
@@ -757,6 +1443,15 @@ export default {
     const noKeyMsg = 'AI support is not configured yet (no OpenRouter key). Add your own key in Settings, or ask your instructor to enable it.'
 
     try {
+      if (path === '/agentic/tools/evaluate') return json(evaluateAgenticTool(body))
+      if (path === '/agentic/workflows/transition-check') return json(validateAgenticTransition(body))
+      if (path === '/agentic/learner-plan') {
+        try { return json(buildAgenticLearnerPlan(body)) } catch (error) { return json({ detail: error.message }, 422) }
+      }
+      if (path === '/agentic/interventions/propose') {
+        try { return json(buildAgenticIntervention(body)) } catch (error) { return json({ detail: error.message }, 422) }
+      }
+
       // --- Rail: simpler explanation ---
       if (path === '/assist/explain') {
         if (!key) return json({ explanation: noKeyMsg })
@@ -807,6 +1502,7 @@ export default {
       if (path === '/orchestrate') {
         if (!key) return json({ intent: 'legacy', text: noKeyMsg })
         const ctx = body.current_content ? `\n\nSection context (excerpt):\n${String(body.current_content).slice(0, 2000)}` : ''
+        const generatedTutorConfig = body.tutor_config ? `\n\nInstructor-approved tutor configuration (follow within these bounds):\n${JSON.stringify(body.tutor_config).slice(0, 3000)}` : ''
         const pedagogyPolicy = `
 
 Tutoring pedagogy policy — follow it on every turn:
@@ -815,7 +1511,7 @@ Tutoring pedagogy policy — follow it on every turn:
 (c) Never state the complete final answer to a practice or quiz problem the learner is currently working on. Guide them to produce it themselves; you may confirm or correct the steps of their own attempt.
 (d) End every turn with one short check question that tests whether the learner can take the next step on their own.`
         const messages = [
-          { role: 'system', content: `You are BigAL, a friendly, rigorous tutor embedded in an interactive textbook (course: ${body.course || 'general'}). Answer the learner's question clearly and concisely, grounded in the section context when relevant. Use Markdown. If the learner highlighted a passage, explain it.${pedagogyPolicy}${ctx}` },
+          { role: 'system', content: `You are BigAL, a friendly, rigorous tutor embedded in an interactive textbook (course: ${body.course || 'general'}). Answer the learner's question clearly and concisely, grounded in the section context when relevant. Use Markdown. If the learner highlighted a passage, explain it.${pedagogyPolicy}${generatedTutorConfig}${ctx}` },
           ...historyToMessages(body.history),
           { role: 'user', content: String(body.query || '') },
         ]
@@ -845,15 +1541,18 @@ Tutoring pedagogy policy — follow it on every turn:
         if (!key) return json({ assessment: { mcq_questions: [], summary_question: null }, summary: noKeyMsg })
         const objs = (Array.isArray(body.learning_objectives) ? body.learning_objectives : []).map((o) => `- ${o}`).join('\n') || 'None specified'
         const concepts = (Array.isArray(body.concept_ids) ? body.concept_ids : []).join(', ') || 'infer from context'
+        const retrieved = (Array.isArray(body.retrieved_context) ? body.retrieved_context : []).slice(0, 5)
+        const retrievedText = retrieved.map((item, index) => `[${index + 1}] ${String(item.content || '').slice(0, 1200)} (source: ${item.source_id || 'section-context'})`).join('\n\n') || 'No retrieved passages supplied; use only the provided section context.'
         const assessment = await openrouterJSON(key, [
           { role: 'system', content: 'You are an expert educator generating formative assessments aligned to learning objectives. Return ONLY a JSON object — no prose, no markdown.' },
           { role: 'user', content: `Section title: "${body.section_title || 'this section'}".
 Context: ${(body.biology_context || '') + ' ' + (body.engineering_context || '')}
 Learning objectives:\n${objs}
 Target concepts (use when applicable): [${concepts}]
+Retrieved source passages (every item must be grounded in one or more of these):\n${retrievedText}
 
-Return EXACTLY this JSON shape, fitting THIS section's actual topic:
-{"mcq_questions":[{"question":"...","options":[{"id":"A","text":"..."},{"id":"B","text":"..."},{"id":"C","text":"..."},{"id":"D","text":"..."}],"correct_option_id":"A","explanation":"why correct & others wrong","concept_id":"..."}],"summary_question":{"question":"a generative short-answer prompt","concept_id":"...","rubric":"key points expected"}}
+Return EXACTLY this JSON shape, fitting THIS section's actual topic. Evidence must cite a retrieved passage index and a short verbatim excerpt (max 180 chars):
+{"mcq_questions":[{"question":"...","options":[{"id":"A","text":"..."},{"id":"B","text":"..."},{"id":"C","text":"..."},{"id":"D","text":"..."}],"correct_option_id":"A","explanation":"why correct & others wrong","concept_id":"...","evidence":[{"source_id":"...","passage_index":1,"excerpt":"..."}]}],"summary_question":{"question":"a generative short-answer prompt","concept_id":"...","rubric":"key points expected","evidence":[{"source_id":"...","passage_index":1,"excerpt":"..."}]}}
 Exactly 2 items in mcq_questions and exactly 1 summary_question.` },
         ], { model, temperature: 0.5, maxTokens: 1500 })
         const generation_trace = await buildGenerationTrace({
@@ -862,7 +1561,7 @@ Exactly 2 items in mcq_questions and exactly 1 summary_question.` },
           model,
           promptVersion: 'formative-assessment-objective-aligned-v2',
           sourceKind: 'assessment_context',
-          sourceText: `${body.biology_context || ''}\n${body.engineering_context || ''}`,
+          sourceText: `${body.biology_context || ''}\n${body.engineering_context || ''}\n${retrievedText}`,
           sourceTitle: body.section_title || 'Assessment generation context',
         })
         return json({ assessment, summary: 'Assessment generated successfully.', generation_trace })
