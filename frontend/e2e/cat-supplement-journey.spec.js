@@ -19,6 +19,13 @@ const PERSONA_JOURNEYS = [
     },
 ]
 
+function shouldIgnoreConsoleError(text) {
+    return (
+        text.includes('Failed to load resource: the server responded with a status of 404') ||
+        text === 'Permissions policy violation: compute-pressure is not allowed in this document.'
+    )
+}
+
 test.describe('CAT supplement learner journeys', () => {
     test.use({
         viewport: { width: 390, height: 844 },
@@ -35,7 +42,7 @@ test.describe('CAT supplement learner journeys', () => {
             const failures = []
 
             page.on('console', (message) => {
-                if (message.type() === 'error' && !message.text().includes('Failed to load resource: the server responded with a status of 404')) {
+                if (message.type() === 'error' && !shouldIgnoreConsoleError(message.text())) {
                     failures.push(`console error: ${message.text()}`)
                 }
             })
