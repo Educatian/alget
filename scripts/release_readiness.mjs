@@ -39,6 +39,9 @@ const worker = read('cloudflare/llm-proxy/src/index.js')
 for (const safeguard of ['/health', 'adaptation_emergency_pause', '/(pause|resume)', "suppressionReason = 'emergency_pause'", '/agentic/learner-plan', '/agentic/interventions/propose', 'execution_not_implemented']) {
   requireText(worker, safeguard, 'Worker release safeguard')
 }
+for (const roadmapContract of ['/roadmap/manifest', '/roadmap/runtime-package', '/roadmap/decision-ledger', '/roadmap/interoperability/caliper', '/roadmap/interoperability/oneroster', '/roadmap/interoperability/case', '/roadmap/interoperability/lti13', '/roadmap/model-registry', '/roadmap/privacy/export', '/roadmap/privacy/delete', '/roadmap/incidents', '/roadmap/evaluation-manifest', 'published_requires_human_approval']) {
+  requireText(worker, roadmapContract, 'Worker roadmap contract')
+}
 
 const migration = read('supabase/migrations/20260730090000_admin_control_plane.sql')
 for (const table of ['instructor_profiles', 'managed_courses', 'content_ingestion_jobs', 'agent_control_runs', 'admin_audit_events']) {
@@ -54,6 +57,19 @@ for (const rpc of ['transition_agent_workflow', 'create_learner_plan_workflow', 
   requireText(agenticMigration, `function public.${rpc}`, `Agentic LMS RPC ${rpc}`)
 }
 requireText(agenticMigration, 'agent_workflow_events', 'Agentic LMS audit trail')
+
+const roadmapMigration = read('supabase/migrations/20260802000000_agentic_roadmap_contracts.sql')
+for (const table of ['course_runtime_packages', 'agent_decision_ledger', 'roadmap_interop_events', 'agent_model_registry', 'roadmap_incidents', 'roadmap_privacy_requests', 'roadmap_evaluation_manifests']) {
+  requireText(roadmapMigration, `alter table public.${table} enable row level security`, `Roadmap RLS for ${table}`)
+}
+for (const contract of ['privacy-deletion-v1', 'incident', 'evaluation', 'decision ledger']) {
+  requireText(roadmapMigration, contract, `Roadmap contract ${contract}`)
+}
+
+const roadmapModule = read('backend/roadmap_runtime.py')
+for (const contract of ['build_runtime_package', 'record_agent_decision', 'summarize_social_outcomes', 'to_caliper_event', 'normalize_oneroster_users', 'build_case_competency', 'ModelRegistry', 'build_privacy_export', 'create_incident', 'build_evaluation_manifest']) {
+  requireText(roadmapModule, contract, `Backend roadmap contract ${contract}`)
+}
 
 const contentFiles = filesUnder('frontend/content').filter((file) => file.endsWith('.mdx'))
 const forbiddenCitationIdentifiers = [
@@ -183,4 +199,4 @@ if (failures.length) {
   process.exit(1)
 }
 
-console.log('Release readiness passed: security headers, SPA fallback, emergency pause, health endpoint, admin and agentic RLS/RPC declarations, citations, catalog counts, reference-image coverage/integrity, and frontend secret scan are valid.')
+console.log('Release readiness passed: security headers, SPA fallback, emergency pause, health endpoint, admin/agentic/roadmap RLS contracts, citations, catalog counts, reference-image coverage/integrity, and frontend secret scan are valid.')

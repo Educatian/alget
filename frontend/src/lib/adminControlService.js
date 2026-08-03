@@ -195,8 +195,10 @@ export async function loadAdminState() {
     try {
         return { state: await loadRemoteState(), persistence: 'supabase' }
     } catch (error) {
-        console.warn('[AdminControl] using local fallback:', error)
-        return { state: readLocalState(), persistence: 'local' }
+        // Never silently downgrade a configured institutional control plane to
+        // browser storage. A transient Supabase failure must be visible to the
+        // operator rather than presenting stale or incomplete authorization data.
+        throw new Error(`Cloud control-plane data is unavailable. Nothing was loaded locally. ${error?.message || 'Please retry.'}`)
     }
 }
 

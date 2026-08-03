@@ -35,7 +35,7 @@ export default function EmptyState({ icon, title, body, action, className = '', 
 
     return (
         <div
-            className={`flex flex-col items-center justify-center gap-3 bg-transparent px-4 py-6 text-center ${className}`}
+            className={`flex flex-col items-center justify-center gap-3 rounded-[var(--ath-radius-lg)] border border-dashed border-[var(--ath-line-strong)] bg-[color-mix(in_srgb,var(--ath-surface)_62%,transparent)] px-4 py-6 text-center ${className}`}
             {...rest}
         >
             {icon != null && (

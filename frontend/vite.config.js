@@ -2,6 +2,13 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
+const localSecurityHeaders = {
+  // Keep local Playwright runs aligned with the Cloudflare Pages policy. Some
+  // Chromium builds probe Compute Pressure on page load; without this header
+  // they emit a console error even though ALGET never consumes the signal.
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), compute-pressure=(self)',
+}
+
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   build: {
@@ -108,6 +115,7 @@ export default defineConfig({
   },
   server: {
     port: 5173,
+    headers: localSecurityHeaders,
     proxy: {
       '/api': {
         target: 'http://localhost:8000',
@@ -118,6 +126,7 @@ export default defineConfig({
   // vite preview (production-build server) needs the same /api proxy as dev so
   // local QA sweeps against the built app reach the FastAPI backend.
   preview: {
+    headers: localSecurityHeaders,
     proxy: {
       '/api': {
         target: 'http://localhost:8000',

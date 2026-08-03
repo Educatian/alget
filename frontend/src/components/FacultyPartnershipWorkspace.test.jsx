@@ -1,13 +1,14 @@
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import FacultyPartnershipWorkspace from './FacultyPartnershipWorkspace'
-import { importGoogleDocCourseDraft, loadFacultyWorkspace, publishFacultyPilot, saveShadowPilot } from '../lib/facultyPartnershipService'
+import { importGoogleDocCourseDraft, loadAssignedIngestionSources, loadFacultyWorkspace, publishFacultyPilot, saveShadowPilot } from '../lib/facultyPartnershipService'
 
 vi.mock('../lib/facultyPartnershipService', async (importOriginal) => {
     const actual = await importOriginal()
     return {
         ...actual,
         loadFacultyWorkspace: vi.fn(),
+        loadAssignedIngestionSources: vi.fn(),
         importGoogleDocCourseDraft: vi.fn(),
         saveShadowPilot: vi.fn(),
         saveEvidenceBrief: vi.fn(async (brief) => ({ id: 'brief-1', summary: brief })),
@@ -20,6 +21,7 @@ vi.mock('../lib/facultyPartnershipService', async (importOriginal) => {
 describe('FacultyPartnershipWorkspace', () => {
     beforeEach(() => {
         loadFacultyWorkspace.mockResolvedValue({ pilots: [], briefs: [], reports: [], published: [], persistence: 'local' })
+        loadAssignedIngestionSources.mockResolvedValue([])
         saveShadowPilot.mockResolvedValue({ id: 'pilot-1', module_name: 'AI evidence', status: 'shadow' })
         importGoogleDocCourseDraft.mockResolvedValue({
             source: { title: 'AI Literacy Module', sha256: 'abc123' },
@@ -76,6 +78,23 @@ describe('FacultyPartnershipWorkspace', () => {
         }))
         expect(await screen.findByText('Evidence evaluation')).toBeInTheDocument()
         expect(screen.getByText(/Reading · 8 min/i)).toBeInTheDocument()
+    })
+
+    it('shows the instructor when a draft fell back instead of being generated', async () => {
+        importGoogleDocCourseDraft.mockResolvedValue({
+            source: { title: 'AI Literacy Module' },
+            learning_objectives: [],
+            quality: { warnings: ['AI enrichment returned no usable sections; the deterministic source-grounded draft was kept.'] },
+            sections: [{ section_id: 'draft-01', title: 'Evidence evaluation', reading: { estimated_minutes: 8 }, activity: { type: 'claim-evidence-revision' } }],
+        })
+
+        render(<FacultyPartnershipWorkspace courseId="ail-606" rct={{}} />)
+        fireEvent.click(screen.getByRole('button', { name: 'Shadow pilot' }))
+        fireEvent.change(screen.getByLabelText('Google Docs course source'), { target: { value: 'https://docs.google.com/document/d/12345678901234567890/edit' } })
+        fireEvent.click(screen.getByRole('button', { name: 'Connect & draft' }))
+
+        const notices = await screen.findByRole('list', { name: 'Draft generation notices' })
+        expect(notices).toHaveTextContent(/deterministic source-grounded draft was kept/i)
     })
 
     it('restores a saved generated draft after reload and publishes only after approval', async () => {

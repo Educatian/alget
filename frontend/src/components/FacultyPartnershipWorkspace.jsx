@@ -5,6 +5,8 @@ import {
     buildImpactReport,
     impactReportToMarkdown,
     importGoogleDocCourseDraft,
+    importPdfCourseDraft,
+    loadAssignedIngestionSources,
     loadFacultyWorkspace,
     publishFacultyPilot,
     publishedSectionRoute,
@@ -33,6 +35,11 @@ export default function FacultyPartnershipWorkspace({ courseId, hotSpots = [], s
         googleDocUrl: '',
     })
     const [generationDraft, setGenerationDraft] = useState(null)
+    // Governed PDF sources already ingested for this course that carry a runtime
+    // draft, so a pilot can start from the reviewed source instead of only a link.
+    const [ingestedSources, setIngestedSources] = useState([])
+    const [selectedSourceId, setSelectedSourceId] = useState('')
+    const [pdfFile, setPdfFile] = useState(null)
 
     const brief = useMemo(() => buildEvidenceBrief({
         courseId,
@@ -71,6 +78,21 @@ export default function FacultyPartnershipWorkspace({ courseId, hotSpots = [], s
                 }
             })
             .catch((error) => { if (!cancelled) setMessage(error.message) })
+        return () => { cancelled = true }
+    }, [courseId])
+
+    useEffect(() => {
+        let cancelled = false
+        setIngestedSources([])
+        setSelectedSourceId('')
+        loadAssignedIngestionSources(courseId)
+            .then((sources) => {
+                if (cancelled) return
+                setIngestedSources(sources)
+            })
+            .catch((error) => {
+                if (!cancelled) setMessage(error?.message || 'Could not load assigned source records.')
+            })
         return () => { cancelled = true }
     }, [courseId])
 
@@ -137,6 +159,47 @@ export default function FacultyPartnershipWorkspace({ courseId, hotSpots = [], s
         } finally {
             setBusy('')
         }
+    }
+
+    const importPdf = async () => {
+        if (!pdfFile) {
+            setMessage('Choose a PDF first.')
+            return
+        }
+        setBusy('pdf-source')
+        setMessage('')
+        try {
+            const draft = await importPdfCourseDraft({ courseId, file: pdfFile })
+            setGenerationDraft(draft)
+            setForm((current) => ({
+                ...current,
+                sourceName: draft.source?.title || pdfFile.name,
+                moduleName: current.moduleName || draft.sections?.[0]?.title || pdfFile.name,
+                learningObjectives: (draft.learning_objectives || []).join('\n'),
+            }))
+            setMessage(`${pdfFile.name} drafted. ${draft.sections?.length || 0} sections plus tutor, analytics, and social runtime settings are ready to inspect.`)
+        } catch (error) {
+            setMessage(error.message || 'Could not import the PDF.')
+        } finally {
+            setBusy('')
+        }
+    }
+
+    const draftFromIngestedSource = () => {
+        const job = ingestedSources.find((item) => item.id === selectedSourceId)
+        if (!job) {
+            setMessage('Choose an ingested source first.')
+            return
+        }
+        const draft = job.quality_report.runtime_package
+        setGenerationDraft(draft)
+        setForm((current) => ({
+            ...current,
+            sourceName: job.source_name || draft.source?.title || 'Ingested course source',
+            moduleName: current.moduleName || draft.sections?.[0]?.title || job.source_name || '',
+            learningObjectives: (draft.learning_objectives || []).join('\n'),
+        }))
+        setMessage(`Drafted from ${job.source_name}. ${draft.sections?.length || 0} sections plus tutor, analytics, and social runtime settings are ready to inspect.`)
     }
 
     const markReady = async () => {
@@ -267,6 +330,29 @@ export default function FacultyPartnershipWorkspace({ courseId, hotSpots = [], s
             {view === 'pilot' && (
                 <div className="mt-4 grid gap-6 md:grid-cols-[minmax(0,1fr)_minmax(17rem,.7fr)]">
                     <form onSubmit={createPilot} className="space-y-4">
+                        {ingestedSources.length > 0 && (
+                            <div>
+                                <label htmlFor="pilot-ingested-source" className="text-xs font-semibold text-[var(--ath-text)]">Ingested course source</label>
+                                <div className="mt-1 flex flex-col gap-2 sm:flex-row">
+                                    <select id="pilot-ingested-source" value={selectedSourceId} onChange={(event) => setSelectedSourceId(event.target.value)} className="editorial-input min-w-0 flex-1" aria-label="Ingested course source">
+                                        <option value="">Select an approved source</option>
+                                        {ingestedSources.map((job) => (
+                                            <option key={job.id} value={job.id}>{job.source_name} · {job.page_count || '—'} pages</option>
+                                        ))}
+                                    </select>
+                                    <button type="button" onClick={draftFromIngestedSource} disabled={Boolean(busy)} className="editorial-button-secondary shrink-0 px-3 py-2 text-xs">Draft from source</button>
+                                </div>
+                                <p className="mt-1.5 text-[11px] leading-4 text-[var(--ath-secondary)]">Sources converted under Admin → PDF ingestion, with their checksum and page record preserved.</p>
+                            </div>
+                        )}
+                        <div>
+                            <label htmlFor="pilot-pdf" className="text-xs font-semibold text-[var(--ath-text)]">PDF course source</label>
+                            <div className="mt-1 flex flex-col gap-2 sm:flex-row">
+                                <input id="pilot-pdf" type="file" accept="application/pdf,.pdf" onChange={(event) => setPdfFile(event.target.files?.[0] || null)} className="editorial-input min-w-0 flex-1 text-sm" aria-label="PDF course source" />
+                                <button type="button" onClick={importPdf} disabled={Boolean(busy) || !pdfFile} className="editorial-button-secondary shrink-0 px-3 py-2 text-xs">{busy === 'pdf-source' ? 'Drafting…' : 'Upload & draft'}</button>
+                            </div>
+                            <p className="mt-1.5 text-[11px] leading-4 text-[var(--ath-secondary)]">Text is extracted, checksummed, and drafted into a private shadow module. The file itself is never published.</p>
+                        </div>
                         <div>
                             <label htmlFor="pilot-google-doc" className="text-xs font-semibold text-[var(--ath-text)]">Google Docs course source</label>
                             <div className="mt-1 flex flex-col gap-2 sm:flex-row">
@@ -291,6 +377,16 @@ export default function FacultyPartnershipWorkspace({ courseId, hotSpots = [], s
                         {generationDraft?.sections?.length > 0 && (
                             <div className="border-t border-[var(--ath-line)] pt-4">
                                     <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--ath-secondary)]">Generated course runtime package</p>
+                                {/* How the draft was produced decides whether an instructor
+                                    should trust it. A run that fell back to deterministic
+                                    structure must say so here, not look generated. */}
+                                {generationDraft.quality?.warnings?.length > 0 && (
+                                    <ul aria-label="Draft generation notices" className="mt-2 space-y-1 border-l-2 border-amber-500 pl-3">
+                                        {generationDraft.quality.warnings.map((warning) => (
+                                            <li key={warning} className="text-xs leading-5 text-amber-800">{warning}</li>
+                                        ))}
+                                    </ul>
+                                )}
                                 <div className="mt-2 flex flex-wrap gap-1.5 text-[10px] font-bold uppercase tracking-[0.1em] text-[var(--ath-primary)]">
                                     {['Reading', 'Activity', 'Simulation', 'Tutor', 'Analytics', 'Social cues'].map((label) => <span key={label} className="rounded-full bg-[color-mix(in_srgb,var(--ath-primary)_10%,var(--ath-panel))] px-2 py-1">{label}</span>)}
                                 </div>

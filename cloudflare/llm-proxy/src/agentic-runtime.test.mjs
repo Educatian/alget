@@ -4,9 +4,15 @@ import {
   buildAgenticIntervention,
   buildAgenticLearnerPlan,
   buildGoogleDocCourseDraft,
+  buildRoadmapDecision,
   evaluateAgenticTool,
   extractGoogleDocId,
+  roadmapCaliper,
+  roadmapManifest,
+  roadmapLti13,
+  summarizeRoadmapSocial,
   validateAgenticTransition,
+  validateRoadmapRuntimePackage,
 } from './index.js'
 
 test('Cloudflare agentic policy remains default-deny for high-risk execution', () => {
@@ -47,4 +53,45 @@ test('Google Docs course drafting keeps generated experiences in shadow review',
   assert.equal(draft.sections[0].simulation.status, 'proposed')
   assert.equal(draft.quality.student_visible, false)
   assert.equal(draft.quality.automatic_publish, false)
+})
+
+test('roadmap manifest exposes all three horizons and default human gates', () => {
+  const manifest = roadmapManifest()
+  assert.equal(manifest.roadmap_contract, 'roadmap-runtime-v1')
+  assert.deepEqual(Object.keys(manifest.horizons), ['0-12_months', '12-24_months', '24-36_months'])
+  assert.equal(manifest.high_risk_actions.publish, 'human_approval')
+})
+
+test('roadmap package validation refuses unapproved publishing', () => {
+  const pkg = {
+    course_id: 'ail-606',
+    source: { sha256: 'a'.repeat(64) },
+    sections: [{ id: '01/01', reading: { content: 'Read the source.' }, references: [] }],
+    release: { status: 'published', automatic_publish: false },
+  }
+  const result = validateRoadmapRuntimePackage(pkg)
+  assert.equal(result.valid, false)
+  assert.ok(result.errors.includes('published_requires_human_approval'))
+})
+
+test('roadmap decision and social metrics keep agency and evidence separate', () => {
+  const decision = buildRoadmapDecision({ course_id: 'ail-606', actor_id: 'u1', actor_role: 'instructor', proposal_id: 'p1', decision: 'modify', original: { prompt: 'Explain' }, revised: { prompt: 'Compare evidence' }, evidence_ids: ['src-1'] })
+  assert.equal(decision.decision, 'modify')
+  assert.deepEqual(decision.evidence_ids, ['src-1'])
+  const metrics = summarizeRoadmapSocial([{ event_type: 'peer_pulse_seen' }, { event_type: 'social_round_started' }, { event_type: 'social_evidence_compared', evidence_submitted: true }])
+  assert.equal(metrics.learning_gain_claim, 'not_inferred_from_clicks')
+  assert.equal(metrics.evidence_compare_completion_rate, 1)
+})
+
+test('roadmap Caliper envelope is course scoped', () => {
+  const event = roadmapCaliper({ event_type: 'ViewedEvent', actor_id: 'u1', course_id: 'ail-606', object_id: '01/01', action: 'Viewed' })
+  assert.equal(event['@context'], 'http://purl.imsglobal.org/ctx/caliper/v1p2')
+  assert.match(event.object.id, /ail-606:01\/01/)
+})
+
+test('roadmap LTI 1.3 contract keeps OIDC validation explicit', () => {
+  const context = roadmapLti13({ issuer: 'https://lms.example.edu', client_id: 'client-1', deployment_id: 'deploy-1', context_id: 'ctx-1', course_id: 'ail-606', resource_link_id: 'reader-1' })
+  assert.equal(context.schema_version, 'lti13-context-v1')
+  assert.equal(context.jwt_validation_required, true)
+  assert.equal(context.privacy_scope, 'course_only')
 })

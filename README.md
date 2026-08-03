@@ -232,6 +232,8 @@ Six SQL schemas, all RLS-gated:
 
 The timestamped migration `supabase/migrations/20260730100000_agentic_lms_runtime.sql` adds durable workflows, workflow events, learner goals/plans, and instructor intervention review queues. Proposals are separated from effects: learner plans and instructor interventions remain `awaiting_approval` until the accountable person acts. Messaging, publishing, enrollment changes, and final-grade execution are not exposed as autonomous actions. See `docs/AGENTIC_LMS_RUNTIME.md`.
 
+The roadmap migration `supabase/migrations/20260802000000_agentic_roadmap_contracts.sql` adds durable runtime packages, agent decision ledgers, LTI 1.3/Caliper/OneRoster/CASE event envelopes, model registry, incident response, privacy requests, and evaluation manifests. The API contract is exposed at `/api/roadmap/*` on FastAPI and `/roadmap/*` on the Cloudflare Worker. Production models require an approver; privacy deletion requires explicit confirmation; generated course packages remain shadow drafts until human approval.
+
 The four-way join `experiment_assignments × interaction_events × intervention_traces/recommendation_decisions × evaluation_runs/evaluation_responses` is what makes RCT, off-policy evaluation, item diagnostics, and forgetting-rate estimation tractable directly from production data.
 
 ### 4.5 Agentic workflow lifecycle
@@ -405,9 +407,10 @@ backend/supabase_research_schema.sql
 backend/supabase_social_features.sql
 supabase/migrations/20260730090000_admin_control_plane.sql
 supabase/migrations/20260730100000_agentic_lms_runtime.sql
+supabase/migrations/20260802000000_agentic_roadmap_contracts.sql
 ```
 
-The timestamped migrations add the administrative and agentic runtime layers and must be applied after the legacy schema bundle. Every new table is RLS-gated; security-definer RPCs perform identity and role checks before creating or reviewing workflows.
+The timestamped migrations add the administrative, agentic, and roadmap runtime layers and must be applied after the legacy schema bundle. Every new table is RLS-gated; security-definer RPCs and API boundaries perform identity and role checks before creating, reviewing, exporting, or deleting records.
 
 ### 9.5 Demo flow
 

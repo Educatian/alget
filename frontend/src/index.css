@@ -15,6 +15,7 @@
   --ath-primary: #1f624c;
   --ath-primary-deep: #123e31;
   --ath-primary-soft: #dcece3;
+  --ath-on-primary: #ffffff;
   --ath-secondary: #5a615d;
   --ath-text: #171a17;
   --ath-muted: #555f59;
@@ -128,6 +129,7 @@
   --ath-primary: #5fae8c;
   --ath-primary-deep: #3f8a6a;
   --ath-primary-soft: #1c3329;
+  --ath-on-primary: #102019;
   --ath-secondary: #9aa4aa;
   --ath-text: #f2f4f5;
   --ath-muted: #a4adb3;
