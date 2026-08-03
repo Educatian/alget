@@ -127,6 +127,8 @@ await check('assessment generation returns a usable assessment', async () => {
 // rather than falling through to the SPA shell.
 for (const [name, path] of [
   ['administrator', '/admin/system/summary'],
+  ['instructor invite', '/admin/instructors/invite'],
+  ['instructor approval review', '/admin/instructors/review'],
   ['faculty PDF import', '/faculty/pdf/import'],
 ]) {
   await check(`${name} endpoint refuses anonymous callers`, async () => {
