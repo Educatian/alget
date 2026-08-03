@@ -34,6 +34,23 @@ ALGET lets an instructor connect one Google Doc, inspect a generated course expe
 - Documents must currently be shared as **Anyone with the link can view**. ALGET never writes to or modifies the source Google Doc.
 - Imports are capped at 250,000 characters and reject non-Google URLs, short documents, HTML login responses, and redirects to Google Accounts.
 
+### Live authenticated smoke
+
+Use a short-lived instructor session token outside the repository. The helper
+does not print or persist the token and accepts either or both source paths:
+
+```powershell
+$env:ALGET_INSTRUCTOR_TOKEN = '<short-lived access token>'
+$env:ALGET_FACULTY_COURSE_ID = 'my-course'
+$env:ALGET_GOOGLE_DOC_URL = 'https://docs.google.com/document/d/<id>/edit'
+$env:ALGET_PDF_PATH = 'C:\path\to\course-source.pdf'
+node scripts/faculty_authenticated_smoke.mjs
+```
+
+The command only verifies that each import returns a faculty-owned
+`shadow_draft` with source metadata and at least one generated section; it does
+not publish or mutate a course.
+
 ## Persistence
 
 Migration `20260730110000_faculty_evidence_partnership.sql` adds RLS-protected faculty pilots, evidence briefs, and impact reports. Migration `20260730220826_harden_instructor_course_access.sql` adds the instructor-approved publishing terminus and course-assignment policies. Each pilot records the canonical source URL, source hash, generated draft, objectives, and governance settings. Only assigned instructors can manage a publication; only learners enrolled in that course can read it.

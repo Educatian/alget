@@ -102,6 +102,10 @@ for (const contract of [
 ]) {
   requireText(facultyRuntimeTest, contract, `Authenticated faculty import contract ${contract}`)
 }
+const facultySmoke = read('scripts/faculty_authenticated_smoke.mjs')
+for (const contract of ['ALGET_INSTRUCTOR_TOKEN', '/faculty/google-docs/import', '/faculty/pdf/import', 'shadow_draft', 'never written to disk']) {
+  requireText(facultySmoke, contract, 'Authenticated faculty smoke helper contract')
+}
 for (const contract of ['privacy-deletion-v1', 'incident', 'evaluation', 'decision ledger']) {
   requireText(roadmapMigration, contract, `Roadmap contract ${contract}`)
 }
