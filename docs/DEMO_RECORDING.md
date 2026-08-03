@@ -51,7 +51,6 @@ PDF ingestion needs `PyPDF2` (`pip install -r requirements.txt`); without it
 VITE_E2E_AUTH_BYPASS=true
 VITE_API_BASE=/api
 VITE_LLM_API_BASE=/api
-VITE_ADMIN_TOKEN=local-demo-admin-token
 ```
 
 `VITE_E2E_AUTH_BYPASS` is the application's own end-to-end affordance. It
@@ -64,6 +63,10 @@ appears in a production bundle.
 ```bash
 cd frontend && npm run dev -- --port 5173 --strictPort
 ```
+
+The recorder supplies `X-Alget-Admin-Token` as a browser-context header for
+the local PDF ingestion endpoint; no privileged token is placed in the
+frontend bundle.
 
 ### 3. Record
 

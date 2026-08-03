@@ -225,13 +225,11 @@ export async function importPdfCourseDraft({ courseId, file }) {
     const form = new FormData()
     form.append('file', file)
     form.append('course_id', courseId)
-    const localAdminToken = import.meta.env.VITE_ADMIN_TOKEN || ''
     const response = await fetch(`${LLM_API_BASE}/faculty/pdf/import`, {
         method: 'POST',
         // FormData supplies its own multipart boundary; setting Content-Type breaks it.
         headers: {
             ...(token ? { Authorization: `Bearer ${token}` } : {}),
-            ...(localAdminToken ? { 'X-Alget-Admin-Token': localAdminToken } : {}),
         },
         body: form,
     })
