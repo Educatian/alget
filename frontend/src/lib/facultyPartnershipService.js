@@ -144,6 +144,24 @@ export async function loadFacultyWorkspace(courseId) {
     }
 }
 
+export async function loadPilotEventExport(courseId) {
+    if (!isSupabaseConfigured) return []
+    const { data, error } = await supabase
+        .from('research_pilot_event_export')
+        .select('id, actor_hash, session_id, course_id, section_id, event_type, event_ts, client_seq, payload')
+        .eq('course_id', courseId)
+        .order('event_ts', { ascending: true })
+        .limit(5000)
+    if (error) throw institutionalStorageError(error)
+    return data || []
+}
+
+export function pilotEventsToCsv(events = []) {
+    const columns = ['id', 'actor_hash', 'session_id', 'course_id', 'section_id', 'event_type', 'event_ts', 'client_seq', 'payload']
+    const escape = (value) => `"${String(value ?? '').replace(/"/g, '""')}"`
+    return [columns.join(','), ...events.map((event) => columns.map((column) => escape(column === 'payload' ? JSON.stringify(event[column] || {}) : event[column])).join(','))].join('\n')
+}
+
 export function clearFacultyPartnershipCache() {
     try {
         localStorage.removeItem(STORAGE_KEY)
