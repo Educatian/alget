@@ -36,7 +36,7 @@ const redirects = read('frontend/public/_redirects')
 requireText(redirects, '/*  /index.html  200', 'SPA fallback')
 
 const worker = read('cloudflare/llm-proxy/src/index.js')
-for (const safeguard of ['/health', 'adaptation_emergency_pause', '/(pause|resume)', "suppressionReason = 'emergency_pause'", '/agentic/learner-plan', '/agentic/interventions/propose', 'execution_not_implemented']) {
+for (const safeguard of ['/health', 'adaptation_emergency_pause', '/(pause|resume)', "suppressionReason = 'emergency_pause'", '/agentic/learner-plan', '/agentic/interventions/propose', 'execution_not_implemented', 'citation_verification', 'openstax-retrieved']) {
   requireText(worker, safeguard, 'Worker release safeguard')
 }
 for (const roadmapContract of ['/roadmap/manifest', '/roadmap/runtime-package', '/roadmap/decision-ledger', '/roadmap/interoperability/caliper', '/roadmap/interoperability/oneroster', '/roadmap/interoperability/case', '/roadmap/interoperability/lti13', '/roadmap/model-registry', '/roadmap/privacy/export', '/roadmap/privacy/delete', '/roadmap/incidents', '/roadmap/evaluation-manifest', 'published_requires_human_approval']) {
@@ -61,6 +61,21 @@ requireText(agenticMigration, 'agent_workflow_events', 'Agentic LMS audit trail'
 const roadmapMigration = read('supabase/migrations/20260802000000_agentic_roadmap_contracts.sql')
 for (const table of ['course_runtime_packages', 'agent_decision_ledger', 'roadmap_interop_events', 'agent_model_registry', 'roadmap_incidents', 'roadmap_privacy_requests', 'roadmap_evaluation_manifests']) {
   requireText(roadmapMigration, `alter table public.${table} enable row level security`, `Roadmap RLS for ${table}`)
+}
+
+const pilotMigration = read('supabase/migrations/20260803000000_pilot_event_export_contract.sql')
+for (const contract of ['research_pilot_event_export', 'actor_hash', 'jsonb_strip_nulls', 'alget-pilot-v1']) {
+  requireText(pilotMigration, contract, `Pilot export contract ${contract}`)
+}
+
+const pilotSchema = read('frontend/src/lib/pilotEventSchema.js')
+for (const contract of ['alget-pilot-events-v1', 'sanitizePilotPayload', 'buildPilotEvent']) {
+  requireText(pilotSchema, contract, `Pilot event schema ${contract}`)
+}
+
+const liveSmoke = read('scripts/post_deploy_smoke.mjs')
+for (const contract of ['elapsedMs', 'withinBudget', '/admin/instructors/invite', '/admin/instructors/review']) {
+  requireText(liveSmoke, contract, `Production smoke contract ${contract}`)
 }
 for (const contract of ['privacy-deletion-v1', 'incident', 'evaluation', 'decision ledger']) {
   requireText(roadmapMigration, contract, `Roadmap contract ${contract}`)
