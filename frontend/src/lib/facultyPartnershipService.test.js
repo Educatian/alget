@@ -52,7 +52,11 @@ describe('facultyPartnershipService', () => {
             moduleName: 'Evaluating AI evidence',
             sourceName: 'course.doc',
             learningObjectives: ['Evaluate a claim'],
-            generationDraft: { sections: [{ title: 'Evidence evaluation', reading: { content: 'Inspect the source.', estimated_minutes: 6 } }] },
+            generationDraft: {
+                source: { title: 'Course source' },
+                references: [{ title: 'Canonical source', url: 'https://example.edu/source', license_url: 'https://example.edu/license' }],
+                sections: [{ title: 'Evidence evaluation', reading: { content: 'Inspect the source.', estimated_minutes: 6 }, references: [{ title: 'Canonical source', url: 'https://example.edu/source' }] }],
+            },
         })
         const result = await publishFacultyPilot(pilot, 'local')
         const route = `${result.published.id}-1`
@@ -60,7 +64,10 @@ describe('facultyPartnershipService', () => {
 
         expect(result.pilot.status).toBe('active')
         expect(section.meta).toMatchObject({ chapter: 'published', title: 'Evidence evaluation' })
-        expect(section.content).toBe('Inspect the source.')
+        expect(section.meta.references).toHaveLength(1)
+        expect(section.meta.source_status).toBe('context_attached')
+        expect(section.content).toContain('Inspect the source.')
+        expect(section.content).toContain('Related open textbook reading')
     })
 
     it('exports an evidence-limited course improvement report', () => {

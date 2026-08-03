@@ -134,7 +134,7 @@ export default function StudentDashboard({ user }) {
         return (
             <div className="editorial-shell min-h-screen">
                 <div className="ath-container py-12">
-                    <p className="text-[var(--ath-text-sm)] text-[var(--ath-muted)]">Loading your dashboard...</p>
+                    <p className="text-[length:var(--ath-text-sm)] text-[var(--ath-muted)]">Loading your dashboard...</p>
                 </div>
             </div>
         )
@@ -146,7 +146,7 @@ export default function StudentDashboard({ user }) {
         <div className="student-dashboard ath-learner-shell editorial-shell ath-open-layout ath-density-compact min-h-screen">
             <div className="ath-container flex flex-col gap-5 pb-10">
                 <header className="pt-5">
-                    <div className="flex flex-wrap items-center gap-2 text-[var(--ath-text-xs)] font-semibold text-[var(--ath-secondary)]">
+                    <div className="flex flex-wrap items-center gap-2 text-[length:var(--ath-text-xs)] font-semibold text-[var(--ath-secondary)]">
                         <button
                             type="button"
                             onClick={() => navigate(-1)}
@@ -179,12 +179,12 @@ export default function StudentDashboard({ user }) {
                 </header>
 
                 {isDemoUser && (
-                    <section className="card-surface px-4 py-2.5 text-[var(--ath-text-sm)] text-[var(--ath-text)]">
+                    <section className="card-surface px-4 py-2.5 text-[length:var(--ath-text-sm)] text-[var(--ath-text)]">
                         <span className="font-semibold text-[var(--ath-info)]">Demo mode</span> / sign in to persist mastery, kindred readers, and retention checks
                         <button
                             type="button"
                             onClick={() => navigate('/')}
-                            className="ml-3 text-[var(--ath-text-xs)] font-semibold text-[var(--ath-info)] underline-offset-4 hover:underline"
+                            className="ml-3 text-[length:var(--ath-text-xs)] font-semibold text-[var(--ath-info)] underline-offset-4 hover:underline"
                         >
                             Sign in
                         </button>
@@ -193,13 +193,13 @@ export default function StudentDashboard({ user }) {
 
                 {retentionDue.length > 0 && (
                     <section className="card-surface px-4 py-3">
-                        <div className="flex flex-wrap items-center gap-2 text-[var(--ath-text-xs)] font-semibold text-[var(--ath-warning)]">
+                        <div className="flex flex-wrap items-center gap-2 text-[length:var(--ath-text-xs)] font-semibold text-[var(--ath-warning)]">
                             <span className="uppercase tracking-[0.18em]">Retention due</span>
                             {retentionDue.map((entry) => (
                                 <button
                                     key={entry.course}
                                     type="button"
-                                    className="rounded-full border border-[var(--ath-warning)] bg-[var(--ath-warning-soft)] px-2.5 py-0.5 text-[var(--ath-text-2xs)] font-semibold text-[var(--ath-warning)] hover:bg-[var(--ath-warning)] hover:text-[var(--ath-background)]"
+                                    className="rounded-full border border-[var(--ath-warning)] bg-[var(--ath-warning-soft)] px-2.5 py-0.5 text-[length:var(--ath-text-2xs)] font-semibold text-[var(--ath-warning)] hover:bg-[var(--ath-warning)] hover:text-[var(--ath-background)]"
                                     onClick={() => navigate(`/diagnostic/${entry.course}?phase=retention`)}
                                 >
                                     {entry.course} / 5 min
@@ -216,10 +216,10 @@ export default function StudentDashboard({ user }) {
                 />
 
                 <section>
-                    <div className="flex flex-wrap items-center gap-2 text-[var(--ath-text-2xs)] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">
+                    <div className="flex flex-wrap items-center gap-2 text-[length:var(--ath-text-2xs)] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">
                         <span>Today's focus · 20 min</span>
                         {streak.count > 0 && (
-                            <span className="ml-auto inline-flex items-center gap-1 rounded-full border border-[var(--ath-warning)] bg-[var(--ath-warning-soft)] px-2 py-0.5 text-[var(--ath-text-2xs)] font-bold text-[var(--ath-warning)]">
+                            <span className="ml-auto inline-flex items-center gap-1 rounded-full border border-[var(--ath-warning)] bg-[var(--ath-warning-soft)] px-2 py-0.5 text-[length:var(--ath-text-2xs)] font-bold text-[var(--ath-warning)]">
                                 <Flame className="h-3 w-3" />
                                 <span className="ath-stat">{streak.count}</span>-day streak
                             </span>
@@ -235,20 +235,20 @@ export default function StudentDashboard({ user }) {
                         >
                             <div className="flex items-center gap-2 text-[var(--ath-primary)]">
                                 <Target className="h-4 w-4" />
-                                <span className="text-[var(--ath-text-2xs)] font-bold uppercase tracking-[0.18em]">Review · 5 min</span>
+                                <span className="text-[length:var(--ath-text-2xs)] font-bold uppercase tracking-[0.18em]">Review · 5 min</span>
                             </div>
                             {weakConcepts[0] ? (
                                 <>
-                                    <p className="font-headline text-[var(--ath-text-lg)] font-semibold text-[var(--ath-text)] line-clamp-2">{prettify(weakConcepts[0].concept_id)}</p>
-                                    <p className="text-[var(--ath-text-xs)] text-[var(--ath-muted)]">
+                                    <p className="font-headline text-[length:var(--ath-text-lg)] font-semibold text-[var(--ath-text)] line-clamp-2">{prettify(weakConcepts[0].concept_id)}</p>
+                                    <p className="text-[length:var(--ath-text-xs)] text-[var(--ath-muted)]">
                                         <span className="ath-stat">{Math.round(Number(weakConcepts[0].mastery_score ?? weakConcepts[0].p_known ?? 0) * 100)}%</span> mastery · review the section that introduces it
                                     </p>
-                                    <span className="mt-auto inline-flex items-center gap-1 text-[var(--ath-text-xs)] font-semibold text-[var(--ath-primary)] group-hover:gap-2">
+                                    <span className="mt-auto inline-flex items-center gap-1 text-[length:var(--ath-text-xs)] font-semibold text-[var(--ath-primary)] group-hover:gap-2">
                                         Open section <ArrowRight className="h-3 w-3" />
                                     </span>
                                 </>
                             ) : (
-                                <p className="mt-auto text-[var(--ath-text-xs)] text-[var(--ath-muted)]">No weak concept right now, keep practicing.</p>
+                                <p className="mt-auto text-[length:var(--ath-text-xs)] text-[var(--ath-muted)]">No weak concept right now, keep practicing.</p>
                             )}
                         </button>
 
@@ -261,18 +261,18 @@ export default function StudentDashboard({ user }) {
                         >
                             <div className="flex items-center gap-2 text-[var(--ath-primary)]">
                                 <BookOpen className="h-4 w-4" />
-                                <span className="text-[var(--ath-text-2xs)] font-bold uppercase tracking-[0.18em]">Resume · 5 min</span>
+                                <span className="text-[length:var(--ath-text-2xs)] font-bold uppercase tracking-[0.18em]">Resume · 5 min</span>
                             </div>
                             {recentSection ? (
                                 <>
-                                    <p className="font-headline text-[var(--ath-text-lg)] font-semibold text-[var(--ath-text)] line-clamp-2">{recentSection.title || `${recentSection.course} ${recentSection.chapter}.${recentSection.section}`}</p>
-                                    <p className="text-[var(--ath-text-xs)] text-[var(--ath-muted)]"><span className="ath-stat">{recentSection.chapter}.{recentSection.section}</span> · pick up where you left off</p>
-                                    <span className="mt-auto inline-flex items-center gap-1 text-[var(--ath-text-xs)] font-semibold text-[var(--ath-primary)] group-hover:gap-2">
+                                    <p className="font-headline text-[length:var(--ath-text-lg)] font-semibold text-[var(--ath-text)] line-clamp-2">{recentSection.title || `${recentSection.course} ${recentSection.chapter}.${recentSection.section}`}</p>
+                                    <p className="text-[length:var(--ath-text-xs)] text-[var(--ath-muted)]"><span className="ath-stat">{recentSection.chapter}.{recentSection.section}</span> · pick up where you left off</p>
+                                    <span className="mt-auto inline-flex items-center gap-1 text-[length:var(--ath-text-xs)] font-semibold text-[var(--ath-primary)] group-hover:gap-2">
                                         Continue <ArrowRight className="h-3 w-3" />
                                     </span>
                                 </>
                             ) : (
-                                <p className="mt-auto text-[var(--ath-text-xs)] text-[var(--ath-muted)]">No recent section. Open a course to get started.</p>
+                                <p className="mt-auto text-[length:var(--ath-text-xs)] text-[var(--ath-muted)]">No recent section. Open a course to get started.</p>
                             )}
                         </button>
 
@@ -285,22 +285,22 @@ export default function StudentDashboard({ user }) {
                         >
                             <div className="flex items-center gap-2 text-[var(--ath-primary)]">
                                 <NotebookPen className="h-4 w-4" />
-                                <span className="text-[var(--ath-text-2xs)] font-bold uppercase tracking-[0.18em]">Trace · 5 min</span>
+                                <span className="text-[length:var(--ath-text-2xs)] font-bold uppercase tracking-[0.18em]">Trace · 5 min</span>
                             </div>
                             {latestExitTicket ? (
                                 <>
-                                    <p className="font-headline text-[var(--ath-text-lg)] font-semibold text-[var(--ath-text)] line-clamp-2">
+                                    <p className="font-headline text-[length:var(--ath-text-lg)] font-semibold text-[var(--ath-text)] line-clamp-2">
                                         {latestExitTicket.title || `${latestExitTicket.course} ${latestExitTicket.chapter}.${latestExitTicket.section}`}
                                     </p>
-                                    <p className="text-[var(--ath-text-xs)] leading-5 text-[var(--ath-muted)] line-clamp-3">
+                                    <p className="text-[length:var(--ath-text-xs)] leading-5 text-[var(--ath-muted)] line-clamp-3">
                                         {latestExitTicket.text}
                                     </p>
-                                    <span className="mt-auto inline-flex items-center gap-1 text-[var(--ath-text-xs)] font-semibold text-[var(--ath-primary)] group-hover:gap-2">
+                                    <span className="mt-auto inline-flex items-center gap-1 text-[length:var(--ath-text-xs)] font-semibold text-[var(--ath-primary)] group-hover:gap-2">
                                         Reopen trace <ArrowRight className="h-3 w-3" />
                                     </span>
                                 </>
                             ) : (
-                                <p className="mt-auto text-[var(--ath-text-xs)] text-[var(--ath-muted)]">Write an exit ticket at the end of a section to create a reusable trace.</p>
+                                <p className="mt-auto text-[length:var(--ath-text-xs)] text-[var(--ath-muted)]">Write an exit ticket at the end of a section to create a reusable trace.</p>
                             )}
                         </button>
 
@@ -313,18 +313,18 @@ export default function StudentDashboard({ user }) {
                         >
                             <div className="flex items-center gap-2 text-[var(--ath-primary)]">
                                 <Flame className="h-4 w-4" />
-                                <span className="text-[var(--ath-text-2xs)] font-bold uppercase tracking-[0.18em]">Retention · 5 min</span>
+                                <span className="text-[length:var(--ath-text-2xs)] font-bold uppercase tracking-[0.18em]">Retention · 5 min</span>
                             </div>
                             {retentionDue[0] ? (
                                 <>
-                                    <p className="font-headline text-[var(--ath-text-lg)] font-semibold text-[var(--ath-text)] line-clamp-2">{prettify(retentionDue[0].course)} check</p>
-                                    <p className="text-[var(--ath-text-xs)] text-[var(--ath-muted)]">A delayed probe to lock in last week's learning</p>
-                                    <span className="mt-auto inline-flex items-center gap-1 text-[var(--ath-text-xs)] font-semibold text-[var(--ath-primary)] group-hover:gap-2">
+                                    <p className="font-headline text-[length:var(--ath-text-lg)] font-semibold text-[var(--ath-text)] line-clamp-2">{prettify(retentionDue[0].course)} check</p>
+                                    <p className="text-[length:var(--ath-text-xs)] text-[var(--ath-muted)]">A delayed probe to lock in last week's learning</p>
+                                    <span className="mt-auto inline-flex items-center gap-1 text-[length:var(--ath-text-xs)] font-semibold text-[var(--ath-primary)] group-hover:gap-2">
                                         Take check <ArrowRight className="h-3 w-3" />
                                     </span>
                                 </>
                             ) : (
-                                <p className="mt-auto text-[var(--ath-text-xs)] text-[var(--ath-muted)]">All retention checks current.</p>
+                                <p className="mt-auto text-[length:var(--ath-text-xs)] text-[var(--ath-muted)]">All retention checks current.</p>
                             )}
                         </button>
                     </div>
@@ -334,10 +334,10 @@ export default function StudentDashboard({ user }) {
                     <section>
                         <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
                             <div>
-                                <p className="text-[var(--ath-text-2xs)] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Recent learning traces</p>
-                                <h2 className="font-headline text-[var(--ath-text-xl)] font-semibold text-[var(--ath-text)]">Turn reflections into the next study move</h2>
+                                <p className="text-[length:var(--ath-text-2xs)] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Recent learning traces</p>
+                                <h2 className="font-headline text-[length:var(--ath-text-xl)] font-semibold text-[var(--ath-text)]">Turn reflections into the next study move</h2>
                             </div>
-                            <p className="text-[var(--ath-text-xs)] text-[var(--ath-muted)]">
+                            <p className="text-[length:var(--ath-text-xs)] text-[var(--ath-muted)]">
                                 {exitTickets.length} saved trace{exitTickets.length === 1 ? '' : 's'}
                             </p>
                         </div>
@@ -351,30 +351,30 @@ export default function StudentDashboard({ user }) {
                                         className="card-actionable flex min-h-[13rem] flex-col gap-3 p-4"
                                     >
                                         <div className="flex items-start justify-between gap-3">
-                                            <span className="rounded-full border border-[var(--ath-line)] bg-white px-2 py-0.5 text-[var(--ath-text-2xs)] font-bold uppercase tracking-[0.14em] text-[var(--ath-secondary)]">
+                                            <span className="rounded-full border border-[var(--ath-line)] bg-white px-2 py-0.5 text-[length:var(--ath-text-2xs)] font-bold uppercase tracking-[0.14em] text-[var(--ath-secondary)]">
                                                 {ticket.chapter}.{ticket.section}
                                             </span>
-                                            <span className="text-right text-[var(--ath-text-2xs)] font-semibold text-[var(--ath-muted)]">
+                                            <span className="text-right text-[length:var(--ath-text-2xs)] font-semibold text-[var(--ath-muted)]">
                                                 {formatTraceUpdatedAt(ticket.updatedAt)}
                                             </span>
                                         </div>
                                         <div>
-                                            <h3 className="font-headline text-[var(--ath-text-lg)] font-semibold leading-tight text-[var(--ath-text)] line-clamp-2">
+                                            <h3 className="font-headline text-[length:var(--ath-text-lg)] font-semibold leading-tight text-[var(--ath-text)] line-clamp-2">
                                                 {title}
                                             </h3>
-                                            <p className="mt-2 text-[var(--ath-text-xs)] leading-5 text-[var(--ath-muted)] line-clamp-3">
+                                            <p className="mt-2 text-[length:var(--ath-text-xs)] leading-5 text-[var(--ath-muted)] line-clamp-3">
                                                 {ticket.text}
                                             </p>
                                         </div>
                                         <div className="mt-auto flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
                                             <div className="min-w-0">
-                                                <p className="text-[var(--ath-text-xs)] font-semibold text-[var(--ath-primary)]">{cue.label}</p>
-                                                <p className="mt-1 text-[var(--ath-text-2xs)] leading-4 text-[var(--ath-muted)] line-clamp-2">{cue.detail}</p>
+                                                <p className="text-[length:var(--ath-text-xs)] font-semibold text-[var(--ath-primary)]">{cue.label}</p>
+                                                <p className="mt-1 text-[length:var(--ath-text-2xs)] leading-4 text-[var(--ath-muted)] line-clamp-2">{cue.detail}</p>
                                             </div>
                                             <button
                                                 type="button"
                                                 onClick={() => navigate(`/book/${ticket.course}/${ticket.chapter}/${ticket.section}`)}
-                                                className="editorial-button shrink-0 px-3 py-2 text-[var(--ath-text-xs)]"
+                                                className="editorial-button shrink-0 px-3 py-2 text-[length:var(--ath-text-xs)]"
                                             >
                                                 Open trace
                                             </button>
@@ -388,7 +388,7 @@ export default function StudentDashboard({ user }) {
 
                 <section className="grid gap-4 lg:grid-cols-2">
                     <div className="content-card p-5">
-                        <h2 className="font-headline text-[var(--ath-text-xl)] font-semibold text-[var(--ath-text)]">Weakest concepts</h2>
+                        <h2 className="font-headline text-[length:var(--ath-text-xl)] font-semibold text-[var(--ath-text)]">Weakest concepts</h2>
                         {weakConcepts.length === 0 ? (
                             hasSyncedMastery ? (
                                 <EmptyState
@@ -417,15 +417,15 @@ export default function StudentDashboard({ user }) {
                                             className="flex items-center justify-between rounded-[var(--ath-radius)] border border-[var(--ath-line)] bg-[var(--ath-panel)] px-3 py-2 transition-colors hover:border-[var(--ath-primary-soft)]"
                                         >
                                             <div>
-                                                <p className="text-[var(--ath-text-sm)] font-semibold text-[var(--ath-text)]">{prettify(row.concept_id)}</p>
-                                                <p className="text-[var(--ath-text-xs)] text-[var(--ath-muted)]">
+                                                <p className="text-[length:var(--ath-text-sm)] font-semibold text-[var(--ath-text)]">{prettify(row.concept_id)}</p>
+                                                <p className="text-[length:var(--ath-text-xs)] text-[var(--ath-muted)]">
                                                     Mastery <span className="ath-stat">{Math.round(score * 100)}%</span> / attempts <span className="ath-stat">{row.attempts_count || 0}</span>
                                                 </p>
                                             </div>
                                             <button
                                                 type="button"
                                                 onClick={() => handleConceptOpen(row.concept_id)}
-                                                className="editorial-button px-3 py-1 text-[var(--ath-text-xs)]"
+                                                className="editorial-button px-3 py-1 text-[length:var(--ath-text-xs)]"
                                             >
                                                 Review
                                             </button>
@@ -437,10 +437,10 @@ export default function StudentDashboard({ user }) {
 
                         {troubleSpots.length > 0 && (
                             <div className="mt-4 rounded-[var(--ath-radius)] border border-dashed border-[var(--ath-line-strong)] bg-[var(--ath-surface)] p-3">
-                                <p className="text-[var(--ath-text-2xs)] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">
+                                <p className="text-[length:var(--ath-text-2xs)] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">
                                     Recent trouble spots (this browser)
                                 </p>
-                                <p className="mt-1 text-[var(--ath-text-xs)] text-[var(--ath-muted)]">
+                                <p className="mt-1 text-[length:var(--ath-text-xs)] text-[var(--ath-muted)]">
                                     Based on your recent check answers stored locally on this device — not yet part of your synced learner model.
                                 </p>
                                 <ul className="mt-2 space-y-2">
@@ -455,15 +455,15 @@ export default function StudentDashboard({ user }) {
                                                 className="flex items-center justify-between gap-3 rounded-[var(--ath-radius)] border border-[var(--ath-line)] bg-[var(--ath-panel)] px-3 py-2"
                                             >
                                                 <div className="min-w-0">
-                                                    <p className="truncate text-[var(--ath-text-sm)] font-semibold text-[var(--ath-text)]">{label}</p>
-                                                    <p className="text-[var(--ath-text-xs)] text-[var(--ath-muted)]">
+                                                    <p className="truncate text-[length:var(--ath-text-sm)] font-semibold text-[var(--ath-text)]">{label}</p>
+                                                    <p className="text-[length:var(--ath-text-xs)] text-[var(--ath-muted)]">
                                                         <span className="ath-stat">{spot.correct}</span>/<span className="ath-stat">{spot.attempts}</span> correct on recent checks
                                                     </p>
                                                 </div>
                                                 <button
                                                     type="button"
                                                     onClick={() => navigate(`/book/${spot.sectionId}`)}
-                                                    className="editorial-button shrink-0 px-3 py-1 text-[var(--ath-text-xs)]"
+                                                    className="editorial-button shrink-0 px-3 py-1 text-[length:var(--ath-text-xs)]"
                                                 >
                                                     Review
                                                 </button>
@@ -476,7 +476,7 @@ export default function StudentDashboard({ user }) {
                     </div>
 
                     <div className="content-card p-5">
-                        <h2 className="font-headline text-[var(--ath-text-xl)] font-semibold text-[var(--ath-text)]">Misconception patterns</h2>
+                        <h2 className="font-headline text-[length:var(--ath-text-xl)] font-semibold text-[var(--ath-text)]">Misconception patterns</h2>
                         {recentMisconceptions.length === 0 ? (
                             <EmptyState
                                 className="mt-4"
@@ -490,10 +490,10 @@ export default function StudentDashboard({ user }) {
                                 {recentMisconceptions.map((entry) => (
                                     <li
                                         key={entry.type}
-                                        className="rounded-[var(--ath-radius)] border border-[var(--ath-line)] bg-[var(--ath-panel)] px-3 py-2 text-[var(--ath-text-sm)]"
+                                        className="rounded-[var(--ath-radius)] border border-[var(--ath-line)] bg-[var(--ath-panel)] px-3 py-2 text-[length:var(--ath-text-sm)]"
                                     >
                                         <p className="font-semibold text-[var(--ath-text)]">{prettify(entry.type)}</p>
-                                        <p className="text-[var(--ath-text-xs)] text-[var(--ath-muted)]"><span className="ath-stat">{entry.count}</span> occurrence(s) recently</p>
+                                        <p className="text-[length:var(--ath-text-xs)] text-[var(--ath-muted)]"><span className="ath-stat">{entry.count}</span> occurrence(s) recently</p>
                                     </li>
                                 ))}
                             </ul>
@@ -502,7 +502,7 @@ export default function StudentDashboard({ user }) {
                 </section>
 
                 <section className="content-card p-5">
-                    <h2 className="font-headline text-[var(--ath-text-xl)] font-semibold text-[var(--ath-text)]">Strong concepts</h2>
+                    <h2 className="font-headline text-[length:var(--ath-text-xl)] font-semibold text-[var(--ath-text)]">Strong concepts</h2>
                     {strongConcepts.length === 0 ? (
                         <EmptyState
                             className="mt-4"
@@ -516,7 +516,7 @@ export default function StudentDashboard({ user }) {
                             {strongConcepts.map((row) => (
                                 <li
                                     key={row.concept_id}
-                                    className="rounded-[var(--ath-radius)] border border-[var(--ath-success)] bg-[var(--ath-success-soft)] px-3 py-2 text-[var(--ath-text-sm)] text-[var(--ath-text)]"
+                                    className="rounded-[var(--ath-radius)] border border-[var(--ath-success)] bg-[var(--ath-success-soft)] px-3 py-2 text-[length:var(--ath-text-sm)] text-[var(--ath-text)]"
                                 >
                                     {prettify(row.concept_id)}
                                 </li>

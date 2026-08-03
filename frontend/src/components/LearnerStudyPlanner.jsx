@@ -78,14 +78,14 @@ export default function LearnerStudyPlanner({ user, mastery = [], courseId = '' 
             <div className="flex flex-wrap items-start justify-between gap-3">
                 <div className="max-w-3xl">
                     <p className="editorial-kicker">PLAN WITH EVIDENCE</p>
-                    <h2 id="agentic-plan-title" className="mt-1 font-headline text-[var(--ath-text-xl)] font-semibold text-[var(--ath-text)]">
+                    <h2 id="agentic-plan-title" className="mt-1 font-headline text-[length:var(--ath-text-xl)] font-semibold text-[var(--ath-text)]">
                         Turn a learning goal into a plan you control
                     </h2>
-                    <p className="mt-1 text-[var(--ath-text-sm)] leading-6 text-[var(--ath-muted)]">
+                    <p className="mt-1 text-[length:var(--ath-text-sm)] leading-6 text-[var(--ath-muted)]">
                         BigAL uses mastery evidence, available time, and your deadline. Nothing starts until you approve it.
                     </p>
                 </div>
-                <span className="inline-flex items-center gap-1.5 text-[var(--ath-text-xs)] font-semibold text-[var(--ath-primary)]">
+                <span className="inline-flex items-center gap-1.5 text-[length:var(--ath-text-xs)] font-semibold text-[var(--ath-primary)]">
                     <ShieldCheck className="h-4 w-4" /> Learner-owned memory
                 </span>
             </div>
@@ -121,17 +121,17 @@ function PlanPreview({ plan, busy, onReview }) {
     return (
         <div className="mt-4">
             <div className="flex flex-wrap items-center gap-2">
-                <h3 className="font-headline text-[var(--ath-text-lg)] font-semibold text-[var(--ath-text)]">
+                <h3 className="font-headline text-[length:var(--ath-text-lg)] font-semibold text-[var(--ath-text)]">
                     This week · {sessions.length} focused session{sessions.length === 1 ? '' : 's'}
                 </h3>
-                <span className={`ml-auto text-[var(--ath-text-2xs)] font-bold uppercase tracking-[0.16em] ${awaiting ? 'text-[var(--ath-warning)]' : 'text-[var(--ath-success)]'}`}>
+                <span className={`ml-auto text-[length:var(--ath-text-2xs)] font-bold uppercase tracking-[0.16em] ${awaiting ? 'text-[var(--ath-warning)]' : 'text-[var(--ath-success)]'}`}>
                     {String(plan.status).replaceAll('_', ' ')}
                 </span>
             </div>
             <ol className="mt-3 grid gap-2 bg-[var(--ath-primary-soft)] p-3 sm:grid-cols-2 lg:grid-cols-4">
                 {sessions.slice(0, 4).map((session, index) => (
                     <li key={session.id || index} className="border-l border-[var(--ath-primary)] pl-3">
-                        <p className="text-[var(--ath-text-2xs)] font-bold uppercase tracking-[0.14em] text-[var(--ath-primary)]">{String(index + 1).padStart(2, '0')} · {session.mode}</p>
+                        <p className="text-[length:var(--ath-text-2xs)] font-bold uppercase tracking-[0.14em] text-[var(--ath-primary)]">{String(index + 1).padStart(2, '0')} · {session.mode}</p>
                         <p className="mt-1 text-sm font-semibold text-[var(--ath-text)]">{prettify(session.concept_id)}</p>
                         <p className="mt-1 inline-flex items-center gap-1 text-xs text-[var(--ath-muted)]"><CalendarDays className="h-3 w-3" /> {session.scheduled_for} · {session.minutes} min</p>
                     </li>

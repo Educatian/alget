@@ -27,6 +27,7 @@ import { useCourseProgress } from '../hooks/useCourseProgress'
 import { useSocialPresence } from '../hooks/useSocialPresence'
 import API_BASE from '../lib/apiConfig'
 import { listPublishedCourseModules, loadPublishedCourseSection, mergePublishedModulesIntoToc } from '../lib/facultyPartnershipService'
+import SocialLearningRail from '../components/SocialLearningRail'
 import '../index.css'
 
 const ReadingPane = lazy(() => import('../components/ReadingPane'))
@@ -120,6 +121,9 @@ function findBestReviewAnchor(container, railContext) {
 export default function BookLayout({ user, onLogout }) {
     const { course = 'statics', chapter = '01', section = '01' } = useParams()
     const navigate = useNavigate()
+    // The table-of-contents effect must not re-run on every section change, so
+    // it reads the address it should compare against from here.
+    const addressRef = useRef({ chapter, section })
     const {
         completedSections,
         markCompleted,
@@ -131,6 +135,10 @@ export default function BookLayout({ user, onLogout }) {
         isBookmarked
     } = useCourseProgress(user)
     const sectionPath = `${course}/${chapter}/${section}`
+
+    useEffect(() => {
+        addressRef.current = { chapter, section }
+    }, [chapter, section])
 
     const [toc, setToc] = useState(null)
     const [tocError, setTocError] = useState(null)
@@ -261,32 +269,76 @@ export default function BookLayout({ user, onLogout }) {
     useEffect(() => {
         let cancelled = false
 
-        fetch(`${API_BASE}/book/${course}/toc`)
-            .then((res) => {
-                if (!res.ok) throw new Error(`TOC ${res.status}`)
-                return res.json()
-            })
-            .then(async (data) => {
-                if (cancelled) return
-                try {
-                    const published = await listPublishedCourseModules(course)
-                    if (!cancelled) setToc(mergePublishedModulesIntoToc(data, published))
-                } catch (error) {
-                    console.warn('[BookLayout] published module list unavailable:', error)
-                    if (!cancelled) setToc(data)
+        const loadAuthoredToc = async () => {
+            const response = await fetch(`${API_BASE}/book/${course}/toc`)
+            if (!response.ok) throw new Error(`TOC ${response.status}`)
+            // A course with no authored snapshot is served the SPA shell, so the
+            // parse is what tells us the snapshot is absent.
+            return response.json()
+        }
+
+        const load = async () => {
+            let authored = null
+            let authoredError = null
+            try {
+                authored = await loadAuthoredToc()
+            } catch (error) {
+                authoredError = error
+            }
+
+            let published = []
+            try {
+                published = await listPublishedCourseModules(course)
+            } catch (error) {
+                console.warn('[BookLayout] published module list unavailable:', error)
+            }
+            if (cancelled) return
+
+            // The route defaults to 01/01, which a course made only of published
+            // modules does not have. Send the reader to the first section the
+            // course actually contains rather than an empty address.
+            const openFirstSectionIfMissing = (nextToc) => {
+                const chapters = nextToc?.chapters || []
+                const { chapter: atChapter, section: atSection } = addressRef.current
+                const exists = chapters.some((item) => item.id === atChapter
+                    && (item.sections || []).some((entry) => entry.id === atSection))
+                if (exists) return
+                const firstChapter = chapters.find((item) => (item.sections || []).length > 0)
+                const firstSection = firstChapter?.sections?.[0]
+                if (firstChapter && firstSection) {
+                    navigate(`/book/${course}/${firstChapter.id}/${firstSection.id}`, { replace: true })
                 }
+            }
+
+            if (authored) {
+                const merged = mergePublishedModulesIntoToc(authored, published)
+                setToc(merged)
                 setTocError(null)
-            })
-            .catch((error) => {
-                if (cancelled) return
-                console.error(error)
-                setTocError(error?.message || 'Could not load chapter list')
-            })
+                openFirstSectionIfMissing(merged)
+                return
+            }
+
+            // A course can exist as instructor-published modules alone: a source
+            // document becomes its own course on whatever subject it covers,
+            // with no authored chapters behind it.
+            const generated = mergePublishedModulesIntoToc({ course, chapters: [] }, published)
+            if (generated.chapters?.length) {
+                setToc(generated)
+                setTocError(null)
+                openFirstSectionIfMissing(generated)
+                return
+            }
+
+            console.error(authoredError)
+            setTocError(authoredError?.message || 'Could not load chapter list')
+        }
+
+        load()
 
         return () => {
             cancelled = true
         }
-    }, [course, tocReloadKey])
+    }, [course, tocReloadKey, navigate])
 
     useEffect(() => {
         let cancelled = false
@@ -876,6 +928,20 @@ export default function BookLayout({ user, onLogout }) {
                     {railOpen && (
                         <div className="h-full min-h-[34rem]">
                             <div className="flex h-full flex-col overflow-hidden bg-[rgba(255,255,255,0.86)] backdrop-blur-3xl">
+                                <div className="max-h-[min(52vh,34rem)] min-h-0 shrink-0 overflow-hidden border-b border-[var(--ath-line)]">
+                                    <SocialLearningRail
+                                        connected={socialState.connected}
+                                        peers={socialState.peers}
+                                        sameHeadingPeers={socialState.sameHeadingPeers}
+                                        sameConceptPeers={socialState.sameConceptPeers}
+                                        signalSummary={socialState.signalSummary}
+                                        liveFeed={socialState.liveFeed}
+                                        sectionTitle={sectionData?.meta?.title || sectionData?.title || ''}
+                                        onReaction={socialState.sendReaction}
+                                        onOpenEvidence={() => recordAdaptiveSignal(sectionPath, 'social_evidence_opened', { source: 'social_learning_rail' })}
+                                        onConnect={() => recordAdaptiveSignal(sectionPath, 'social_connection_requested', { source: 'social_learning_rail' })}
+                                    />
+                                </div>
                                 <Suspense fallback={<div className="p-4"><SurfaceFallback label="Loading adaptive support..." compact /></div>}>
                                     <IntelRail
                                         context={railContext?.sectionId === sectionPath ? railContext : null}

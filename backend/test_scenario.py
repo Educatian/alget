@@ -25,4 +25,10 @@ def test_generate_scenario_endpoint_responds():
         timeout=30,
     )
 
+    # The endpoint intentionally refuses to fabricate a scenario when the
+    # local process has no model credential. Keep this optional live-server
+    # probe honest without turning a missing secret into a product failure.
+    if response.status_code == 400 and "GEMINI_API_KEY" in response.text:
+        pytest.skip("Local backend is running without GEMINI_API_KEY.")
+
     assert response.status_code == 200

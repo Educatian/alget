@@ -134,7 +134,11 @@ function BookToc({ toc, currentCourse, currentChapter, currentSection, onNavigat
                                                     }`}
                                             >
                                                 <span className="line-clamp-2">
-                                                    {chapter.id}.{section.id} {section.title}
+                                                    {/* Authored sections carry a numeric address; instructor-published
+                                                        ones are addressed by module id, which would bury the title. */}
+                                                    {/^\d+$/.test(chapter.id) && /^\d+$/.test(section.id)
+                                                        ? `${chapter.id}.${section.id} ${section.title}`
+                                                        : section.title}
                                                 </span>
                                                 {isDone && (
                                                     <span className="ml-2 shrink-0 text-[10px] font-bold text-[var(--ath-success)]">

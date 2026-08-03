@@ -31,6 +31,7 @@ screenshots/sweep/
 frontend/.playwright-cli/
 .playwright-cli/
 frontend/output/
+*.log
 .debug-journal.md
 .fablize/
 probe/

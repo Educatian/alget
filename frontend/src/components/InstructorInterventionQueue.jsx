@@ -97,7 +97,7 @@ function QueueItem({ item, busy, onReview }) {
         <li className="grid gap-4 py-4 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
             <div>
                 <p className="text-sm font-semibold text-[var(--ath-text)]">{item.title}</p>
-                <p className="mt-1 text-[var(--ath-text-2xs)] font-bold uppercase tracking-[0.14em] text-[var(--ath-primary)]">
+                <p className="mt-1 text-[length:var(--ath-text-2xs)] font-bold uppercase tracking-[0.14em] text-[var(--ath-primary)]">
                     {evidence.learner_count || 0} learners · {Math.round(Number(evidence.average_mastery || 0) * 100)}% average · {evidence.urgency || 'monitor'}
                 </p>
                 <p className="mt-2 max-w-3xl text-xs leading-5 text-[var(--ath-muted)]">{proposal.summary}</p>

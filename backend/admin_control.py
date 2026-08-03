@@ -109,11 +109,24 @@ def convert_pdf_bytes(data: bytes, filename: str) -> dict[str, Any]:
         f"## Page {page.page}\n\n{page.text or '[No extractable text]'}" for page in pages
     )
     total_chars = sum(page.characters for page in pages)
+    digest = sha256(data).hexdigest()
+
+    # The edge converter returns this alongside the extraction; the local
+    # runtime returned only the extraction, so an ingested PDF dead-ended at the
+    # governed source record. A source too thin to structure leaves the
+    # extraction usable on its own.
+    # Structure the page text itself; the "## Page N" markers are ingestion
+    # scaffolding and would otherwise be detected as course headings.
+    source_text = "\n\n".join(page.text for page in pages if page.text)
+    try:
+        runtime_draft = build_google_doc_course_draft(source_text, f"pdf:{digest[:24]}", safe_name)
+    except ValueError:
+        runtime_draft = None
 
     return {
         "status": "needs_review" if warnings else "converted",
         "filename": safe_name,
-        "sha256": sha256(data).hexdigest(),
+        "sha256": digest,
         "page_count": page_count,
         "total_characters": total_chars,
         "metadata": {
@@ -123,6 +136,7 @@ def convert_pdf_bytes(data: bytes, filename: str) -> dict[str, Any]:
         },
         "pages": [asdict(page) for page in pages],
         "markdown": markdown,
+        "runtime_draft": runtime_draft,
         "warnings": warnings,
         "quality": {
             "extractable_page_ratio": round(sum(page.characters >= 24 for page in pages) / page_count, 4),

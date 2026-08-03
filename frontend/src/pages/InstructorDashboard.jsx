@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router'
-import { supabase } from '../lib/supabase'
+import { isSupabaseConfigured, supabase } from '../lib/supabase'
 import { fetchRctSnapshot } from '../lib/researchService'
+import { loadAdminState } from '../lib/adminControlService'
 import { inviteLearnerToCourse } from '../lib/facultyPartnershipService'
 import InstructorInterventionQueue from '../components/InstructorInterventionQueue'
 import FacultyPartnershipWorkspace from '../components/FacultyPartnershipWorkspace'
@@ -26,9 +27,22 @@ export default function InstructorDashboard({ user }) {
             setLoading(true)
             setDataError('')
             try {
-                const response = await supabase.from('managed_courses').select('course_key, title, status').neq('status', 'archived').order('title')
-                if (response.error) throw response.error
-                let assigned = response.data || []
+                let assigned
+                try {
+                    const response = await supabase.from('managed_courses').select('course_key, title, status').neq('status', 'archived').order('title')
+                    if (response.error) throw response.error
+                    assigned = response.data || []
+                } catch (error) {
+                    // A configured control plane must surface its failure rather than
+                    // present partial local data. Offline, the stub's error is expected
+                    // and the control plane's managed courses live in browser storage.
+                    if (isSupabaseConfigured) throw error
+                    const { state } = await loadAdminState()
+                    assigned = (state.courses || [])
+                        .filter((course) => course.status !== 'archived')
+                        .map((course) => ({ course_key: course.course_key, title: course.title, status: course.status }))
+                        .sort((a, b) => String(a.title).localeCompare(String(b.title)))
+                }
                 if (user?.id === 'e2e-user' && assigned.length === 0) assigned = [{ course_key: 'e2e-course', title: 'E2E course', status: 'active' }]
                 if (!cancelled) {
                     setCourses(assigned)
@@ -118,8 +132,8 @@ export default function InstructorDashboard({ user }) {
                 <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[var(--ath-secondary)]">
                     <button type="button" onClick={() => navigate(-1)} className="text-[var(--ath-muted)] hover:text-[var(--ath-text)]" aria-label="Go back">← Back</button>
                     <span aria-hidden="true">·</span><span className="uppercase tracking-[0.18em] text-[var(--ath-text)]">Instructor</span><span aria-hidden="true">/</span><span>Cohort heatmap</span>
-                    <label className="ml-auto flex items-center gap-2 text-[11px] uppercase tracking-[0.12em] text-[var(--ath-muted)]">Course
-                        <select value={selectedCourseId} onChange={(event) => setSelectedCourseId(event.target.value)} className="rounded-md border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] px-2 py-1 text-xs normal-case tracking-normal text-[var(--ath-text)]">
+                    <label className="ml-auto flex items-center gap-2 text-[length:var(--ath-text-xs)] uppercase tracking-[0.12em] text-[var(--ath-muted)]">Course
+                        <select aria-label="Course" value={selectedCourseId} onChange={(event) => setSelectedCourseId(event.target.value)} className="rounded-md border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] px-2 py-1 text-xs normal-case tracking-normal text-[var(--ath-text)]">
                             {courses.map((item) => <option key={item.course_key} value={item.course_key}>{item.title || item.course_key}</option>)}
                         </select>
                     </label>
@@ -141,10 +155,10 @@ export default function InstructorDashboard({ user }) {
             <InstructorInterventionQueue user={user} hotSpots={lowMasteryConcepts} courseId={selectedCourseId} />
 
             <section className="mx-auto mt-5 max-w-5xl border-t border-[var(--ath-line)] pt-4">
-                <div className="flex items-baseline justify-between"><h2 className="text-sm font-semibold text-[var(--ath-text)]">Learners &lt; 50% average</h2><span className="text-[10px] text-[var(--ath-secondary)]">named when available</span></div>
+                <div className="flex items-baseline justify-between"><h2 className="font-headline text-[length:var(--ath-text-lg)] font-semibold text-[var(--ath-text)]">Learners &lt; 50% average</h2><span className="text-[length:var(--ath-text-2xs)] text-[var(--ath-secondary)]">named when available</span></div>
                 {strugglers.length === 0 ? <p className="mt-3 text-xs text-[var(--ath-muted)]">None under threshold.</p> : (
                     <ul className="mt-3 space-y-1 text-xs text-[var(--ath-muted)]">
-                        {strugglers.slice(0, 12).map((learner) => <li key={learner.user_id} className="flex justify-between border-b border-[var(--ath-line)] px-1 py-2 last:border-b-0"><span><span className="font-semibold text-[var(--ath-text)]">{learner.displayName || `${learner.user_id.slice(0, 8)}...`}</span>{learner.cohortLabel && <span className="ml-2 text-[10px] uppercase tracking-[0.14em] text-[var(--ath-secondary)]">{learner.cohortLabel}</span>}</span><span>{Math.round(learner.average * 100)}% / {learner.conceptCount} concepts</span></li>)}
+                        {strugglers.slice(0, 12).map((learner) => <li key={learner.user_id} className="flex justify-between border-b border-[var(--ath-line)] px-1 py-2 last:border-b-0"><span><span className="font-semibold text-[var(--ath-text)]">{learner.displayName || `${learner.user_id.slice(0, 8)}...`}</span>{learner.cohortLabel && <span className="ml-2 text-[length:var(--ath-text-2xs)] uppercase tracking-[0.14em] text-[var(--ath-secondary)]">{learner.cohortLabel}</span>}</span><span className="ath-stat">{Math.round(learner.average * 100)}% / {learner.conceptCount}</span><span className="sr-only"> concepts</span></li>)}
                     </ul>
                 )}
             </section>

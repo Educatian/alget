@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import BigALCompanion from './BigALCompanion'
 import AdaptationDesignStudio from './AdaptationDesignStudio'
+import RoadmapGovernancePanel from './RoadmapGovernancePanel'
 import {
     AGENT_MANIFEST,
     approveAgentRun,
@@ -19,25 +20,26 @@ const VIEWS = [
     ['ingestion', 'PDF ingestion'],
     ['agents', 'Agent control'],
     ['adaptation', 'Adaptation'],
+    ['roadmap', 'Roadmap governance'],
     ['cohort', 'Cohort'],
 ]
 
 const STATUS_TONE = {
-    active: 'text-emerald-700',
-    approved: 'text-emerald-700',
-    ready: 'text-emerald-700',
-    published: 'text-emerald-700',
-    failed: 'text-rose-700',
-    blocked: 'text-rose-700',
-    suspended: 'text-rose-700',
-    needs_review: 'text-amber-700',
-    awaiting_approval: 'text-amber-700',
-    pending_approval: 'text-amber-700',
-    rejected: 'text-rose-700',
+    active: 'text-[var(--ath-success)]',
+    approved: 'text-[var(--ath-success)]',
+    ready: 'text-[var(--ath-success)]',
+    published: 'text-[var(--ath-success)]',
+    failed: 'text-[var(--ath-danger)]',
+    blocked: 'text-[var(--ath-danger)]',
+    suspended: 'text-[var(--ath-danger)]',
+    needs_review: 'text-[var(--ath-warning)]',
+    awaiting_approval: 'text-[var(--ath-warning)]',
+    pending_approval: 'text-[var(--ath-warning)]',
+    rejected: 'text-[var(--ath-danger)]',
 }
 
 function Status({ children }) {
-    return <span className={`text-[10px] font-semibold uppercase tracking-[0.12em] ${STATUS_TONE[children] || 'text-[var(--ath-secondary)]'}`}>{String(children).replaceAll('_', ' ')}</span>
+    return <span className={`text-[length:var(--ath-text-2xs)] font-semibold uppercase tracking-[0.12em] ${STATUS_TONE[children] || 'text-[var(--ath-secondary)]'}`}>{String(children).replaceAll('_', ' ')}</span>
 }
 
 export default function AdminControlPlane({ cohortContent, onBack, onResearcher }) {
@@ -119,7 +121,7 @@ export default function AdminControlPlane({ cohortContent, onBack, onResearcher 
 
                 <main className="min-w-0">
                     {(error || message) && (
-                        <div role={error ? 'alert' : 'status'} className={`mb-4 border-l-2 px-3 py-2 text-sm ${error ? 'border-rose-500 text-rose-700' : 'border-emerald-500 text-emerald-700'}`}>
+                        <div role={error ? 'alert' : 'status'} className={`mb-4 border-l-2 px-3 py-2 text-sm ${error ? 'border-[var(--ath-danger)] text-[var(--ath-danger)]' : 'border-[var(--ath-success)] text-[var(--ath-success)]'}`}>
                             {error || message}
                         </div>
                     )}
@@ -131,6 +133,7 @@ export default function AdminControlPlane({ cohortContent, onBack, onResearcher 
                             {view === 'ingestion' && <Ingestion state={state} busy={busy} runAction={runAction} persistence={persistence} />}
                             {view === 'agents' && <Agents state={state} busy={busy} runAction={runAction} persistence={persistence} />}
                             {view === 'adaptation' && <AdaptationDesignStudio state={state} busy={busy} runAction={runAction} persistence={persistence} />}
+                            {view === 'roadmap' && <RoadmapGovernancePanel />}
                             {view === 'cohort' && cohortContent}
                         </>
                     )}

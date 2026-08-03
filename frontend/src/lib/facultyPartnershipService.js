@@ -199,6 +199,55 @@ export async function importGoogleDocCourseDraft({ courseId, documentUrl }) {
     return body.draft
 }
 
+export async function importPdfCourseDraft({ courseId, file }) {
+    const looksLikePdf = file && (file.type === 'application/pdf' || file.name?.toLowerCase().endsWith('.pdf'))
+    if (!looksLikePdf) throw new Error('Choose a PDF file')
+    const { data } = await supabase.auth.getSession()
+    const token = data?.session?.access_token || ''
+    const form = new FormData()
+    form.append('file', file)
+    form.append('course_id', courseId)
+    const localAdminToken = import.meta.env.VITE_ADMIN_TOKEN || ''
+    const response = await fetch(`${LLM_API_BASE}/faculty/pdf/import`, {
+        method: 'POST',
+        // FormData supplies its own multipart boundary; setting Content-Type breaks it.
+        headers: {
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+            ...(localAdminToken ? { 'X-Alget-Admin-Token': localAdminToken } : {}),
+        },
+        body: form,
+    })
+    const body = await response.json().catch(() => ({}))
+    if (!response.ok) throw new Error(body.detail || `PDF import failed (${response.status})`)
+    return body.draft
+}
+
+export async function loadAssignedIngestionSources(courseId) {
+    if (!isSupabaseConfigured) {
+        const { loadAdminState } = await import('./adminControlService')
+        const { state } = await loadAdminState()
+        const course = (state.courses || []).find((item) => item.course_key === courseId)
+        return (state.ingestionJobs || []).filter((job) => job.course_id === course?.id && job.quality_report?.runtime_package?.sections?.length)
+    }
+
+    const { data: course, error: courseError } = await supabase
+        .from('managed_courses')
+        .select('id')
+        .eq('course_key', courseId)
+        .maybeSingle()
+    if (courseError) throw courseError
+    if (!course?.id) return []
+
+    const { data, error } = await supabase
+        .from('content_ingestion_jobs')
+        .select('*')
+        .eq('course_id', course.id)
+        .order('created_at', { ascending: false })
+        .limit(20)
+    if (error) throw error
+    return (data || []).filter((job) => job.quality_report?.runtime_package?.sections?.length)
+}
+
 export async function inviteLearnerToCourse({ courseId, email, displayName, cohortId = '', cohortLabel = '' }) {
     const { data } = await supabase.auth.getSession()
     const token = data?.session?.access_token || ''
@@ -325,6 +374,23 @@ export function mergePublishedModulesIntoToc(toc, modules = []) {
     return { ...toc, chapters: [...chapters, { id: 'published', title: 'Instructor-published modules', sections }] }
 }
 
+/**
+ * Render retrieved open-textbook citations under a generated section.
+ *
+ * The licence of each cited passage is shown with it: OpenStax books are not
+ * uniformly licensed, and a reader following the link should know what they may
+ * reuse. Only the citation travels here, never the passage's full text.
+ */
+function appendOpenStaxReferences(body, references) {
+    if (!Array.isArray(references) || references.length === 0) return body
+    const lines = references.slice(0, 6).map((reference) => {
+        const book = reference.book ? ` — ${reference.book}` : ''
+        const licence = reference.license_url ? ` ([licence](${reference.license_url}))` : ''
+        return `- [${reference.title}](${reference.url})${book}${licence}`
+    })
+    return `${body}\n\n## Related open textbook reading\n\n${lines.join('\n')}\n`
+}
+
 export async function loadPublishedCourseSection(courseId, routeSectionId) {
     const match = String(routeSectionId).match(/^([0-9a-f-]{36}|published-[^-]+(?:-[^-]+)*)-(\d+)$/i)
     if (!match) throw new Error('Published section address is invalid.')
@@ -336,7 +402,8 @@ export async function loadPublishedCourseSection(courseId, routeSectionId) {
     if (!module || !generated) throw new Error('Published section is unavailable for this course.')
     const objectives = generated.learning_objectives || module.generation_draft?.learning_objectives || []
     const reading = generated.reading || {}
-    const content = reading.content || reading.markdown || generated.source_excerpt || ''
+    const body = reading.content || reading.markdown || generated.source_excerpt || ''
+    const content = appendOpenStaxReferences(body, generated.references)
     return {
         meta: {
             course: courseId,
@@ -345,6 +412,9 @@ export async function loadPublishedCourseSection(courseId, routeSectionId) {
             title: generated.title || module.module_name,
             description: generated.description || `Instructor-published module: ${module.module_name}`,
             learning_objectives: objectives,
+            references: generated.references || module.generation_draft?.references || [],
+            source_status: generated.source_status || module.generation_draft?.source_status || (generated.references?.length ? 'context_attached' : ''),
+            source_title: module.generation_draft?.source?.title || module.title || null,
             concept_ids: generated.concept_ids || [],
             estimated_time_minutes: reading.estimated_minutes || 8,
         },

@@ -8,9 +8,18 @@ A release candidate is ready to deploy only when GitHub CI is green and the prod
 
 1. Apply the reviewed Supabase migrations, including the admin control plane and agentic LMS runtime.
 2. Deploy `cloudflare/llm-proxy` so new APIs exist before the UI references them.
-3. Deploy `frontend/dist` to Cloudflare Pages.
-4. Verify `/health`, the Pages security headers, the learner reading route, and the administrator route.
+3. Deploy `frontend/dist` to Cloudflare Pages. Run `wrangler pages deploy dist` from `frontend/`, not from the repository root: wrangler discovers `functions/` relative to the working directory, and deploying from elsewhere uploads the assets without the Pages Functions. The access-code endpoint then answers POST with a static-asset 405, which disables every pathway unlock and the researcher console.
+4. Run `node scripts/post_deploy_smoke.mjs` and require every check to pass. It exercises the deployed artifact — app shell, security headers, the access-code Function, Worker health, assessment generation, and anonymous refusal on the administrator and faculty endpoints. Point it elsewhere with `ALGET_APP_URL` / `ALGET_WORKER_URL` to smoke a preview first.
 5. Draft and cancel one learner plan; draft and reject one instructor intervention. Confirm both decisions create workflow events and neither triggers delivery or grading.
+
+## Roadmap contracts
+
+- Verify `/roadmap/manifest` reports all three horizons and `roadmap-runtime-v1`.
+- Create one shadow runtime package and confirm source hash, section references, and `student_visible=false`.
+- Record one instructor `modify` decision and confirm the evidence IDs and rationale are present in the decision ledger.
+- Export one subject's data, review the deletion plan, and require explicit confirmation before deletion.
+- Register a draft model, reject production registration without an approver, and open/triage/contain one incident.
+- Validate one Caliper event, OneRoster user payload, CASE competency, and evaluation manifest before institutional export.
 6. Confirm the GitHub commit deployed to both production surfaces.
 
 ## Adaptation incident response
