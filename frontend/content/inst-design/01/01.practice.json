@@ -17,7 +17,10 @@
         "Selecting the newest technology so the course feels modern"
       ],
       "correct_index": 1,
-      "explanation": "Instructional design is the systematic process of analyzing learner needs and designing experiences that improve performance, not just packaging information."
+      "explanation": "Instructional design is the systematic process of analyzing learner needs and designing experiences that improve performance, not just packaging information.",
+      "learning_objective_ids": [
+        "inst-design-01-01-lo-01"
+      ]
     },
     {
       "id": "id_foundations_behaviorism",
@@ -36,7 +39,11 @@
         "Humanism"
       ],
       "correct_index": 1,
-      "explanation": "Behaviorism emphasizes stimulus, response, and reinforcement. Immediate rewards after correct actions are classic behaviorist design."
+      "explanation": "Behaviorism emphasizes stimulus, response, and reinforcement. Immediate rewards after correct actions are classic behaviorist design.",
+      "learning_objective_ids": [
+        "inst-design-01-01-lo-02",
+        "inst-design-01-01-lo-03"
+      ]
     },
     {
       "id": "id_foundations_cognitivism",
@@ -55,7 +62,10 @@
         "To avoid defining explicit learning objectives"
       ],
       "correct_index": 2,
-      "explanation": "Cognitivism focuses on internal information processing. Sequencing and chunking help learners process information without overload."
+      "explanation": "Cognitivism focuses on internal information processing. Sequencing and chunking help learners process information without overload.",
+      "learning_objective_ids": [
+        "inst-design-01-01-lo-02"
+      ]
     },
     {
       "id": "id_foundations_constructivism",
@@ -74,7 +84,10 @@
         "A one-page checklist that tells learners exactly what sentence to repeat"
       ],
       "correct_index": 2,
-      "explanation": "Constructivism emphasizes meaning-making through experience, interpretation, discussion, and schema revision."
+      "explanation": "Constructivism emphasizes meaning-making through experience, interpretation, discussion, and schema revision.",
+      "learning_objective_ids": [
+        "inst-design-01-01-lo-02"
+      ]
     }
   ]
 }

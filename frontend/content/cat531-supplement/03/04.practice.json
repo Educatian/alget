@@ -20,6 +20,9 @@
         "cat531_supplement_ai_literacy_for_teachers",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-04-lo-03"
       ]
     },
     {
@@ -42,6 +45,11 @@
         "cat531_supplement_ai_literacy_for_teachers",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-04-lo-01",
+        "cat531-supplement-03-04-lo-02",
+        "cat531-supplement-03-04-lo-04"
       ]
     },
     {
@@ -64,6 +72,9 @@
         "cat531_supplement_ai_literacy_for_teachers",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-04-lo-02"
       ]
     },
     {
@@ -86,6 +97,9 @@
         "cat531_supplement_ai_literacy_for_teachers",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-04-lo-02"
       ]
     }
   ]

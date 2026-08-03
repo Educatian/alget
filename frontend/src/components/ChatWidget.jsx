@@ -6,6 +6,8 @@ import { LLM_API_BASE } from '../lib/apiConfig'
 import { getCourseTitle } from '../lib/courseCatalog'
 import { LearnIntentCard, EvaluateIntentCard, BrainstormIntentCard, ScaffoldingIntentCard, IllustrateIntentCard, SimulateIntentCard, ErrorIntentCard } from './IntentCards'
 import GenerationTrace from './GenerationTrace'
+import BigALCompanion from './BigALCompanion'
+import { Sparkles, Square, Trash2, Volume2 } from 'lucide-react'
 
 // Stable per-message id so React keys and the read-aloud "which bubble is
 // speaking" state survive list mutations (history load replacing optimistic
@@ -222,6 +224,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                     section_title: context?.sectionTitle || '',
                     content_version: context?.contentVersion || null,
                     current_content: context?.pageContent ? context.pageContent.substring(0, 2000) : "",
+                    tutor_config: context?.tutorConfig || null,
                     history: messages.slice(-10), // Send more history for better context
                     is_highlight: isHighlight,
                     api_key: apiKey
@@ -334,9 +337,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                     {/* Header */}
                     <div className="relative flex items-center justify-between overflow-hidden bg-[var(--ath-panel-muted)] px-6 py-5 shadow-md">
                         <div className="flex items-center gap-4 relative z-10">
-                            <div aria-hidden="true" className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--ath-line)] bg-[var(--ath-primary)] text-xl text-[var(--ath-background)] shadow-inner">
-                                🐘
-                            </div>
+                            <BigALCompanion state={loading ? 'notice' : 'rest'} size={40} className="shrink-0" />
                             <div>
                                 <h3 className="text-lg font-bold leading-tight tracking-tight text-[var(--ath-text)]">BigAL Tutor</h3>
                                 <p className="text-xs font-medium tracking-wide text-[var(--ath-muted)]">
@@ -352,7 +353,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                                     className="flex h-11 w-11 items-center justify-center rounded-full text-base text-[var(--ath-muted)] hover:text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)]"
                                     title="Clear history"
                                 >
-                                    <span aria-hidden="true">🗑️</span>
+                                    <Trash2 className="h-4 w-4" aria-hidden="true" />
                                 </button>
                             )}
                             <button
@@ -377,8 +378,8 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                     >
                         {messages.length === 0 && (
                             <div className="h-full flex flex-col items-center justify-center text-center px-6 animate-fade-in">
-                                <div aria-hidden="true" className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--ath-surface-strong)] shadow-sm ring-1 ring-[var(--ath-line)]">
-                                    <span className="text-3xl">✨</span>
+                                <div aria-hidden="true" className="mb-4 flex h-14 w-14 items-center justify-center rounded-[var(--ath-radius-lg)] bg-[var(--ath-primary-soft)] text-[var(--ath-primary)]">
+                                    <Sparkles className="h-6 w-6" />
                                 </div>
                                 <h4 className="mb-2 text-lg font-bold text-[var(--ath-text)]">How can I help you today?</h4>
                                 <p className="text-sm leading-relaxed text-[var(--ath-muted)]">
@@ -429,7 +430,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                                                         aria-pressed={isSpeaking}
                                                         className="inline-flex items-center gap-1 rounded-full border border-[var(--ath-line)] px-2 py-0.5 text-[11px] font-medium text-[var(--ath-muted)] transition-colors hover:text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)]"
                                                     >
-                                                        <span aria-hidden="true">{isSpeaking ? '■' : '🔊'}</span>
+                                                        {isSpeaking ? <Square className="h-3 w-3" aria-hidden="true" /> : <Volume2 className="h-3 w-3" aria-hidden="true" />}
                                                         <span>{isSpeaking ? 'Stop' : 'Listen'}</span>
                                                     </button>
                                                 </div>

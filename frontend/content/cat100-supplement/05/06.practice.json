@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "Correct attribution names the real source and license for the media and discloses AI assistance where required.",
       "difficulty": "easy",
-      "misconception_id": "cat100_supplement_5_6_citation_and_attribution_image_no_credit"
+      "misconception_id": "cat100_supplement_5_6_citation_and_attribution_image_no_credit",
+      "learning_objective_ids": [
+        "cat100-supplement-05-06-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_5_6_citation_and_attribution_annotation_signal",
@@ -37,7 +40,11 @@
       "correct_index": 1,
       "explanation": "The note names a specific mismatch between the claim and the linked source, so feedback can verify it.",
       "difficulty": "medium",
-      "misconception_id": "cat100_supplement_5_6_citation_and_attribution_citation_is_decoration"
+      "misconception_id": "cat100_supplement_5_6_citation_and_attribution_citation_is_decoration",
+      "learning_objective_ids": [
+        "cat100-supplement-05-06-lo-01",
+        "cat100-supplement-05-06-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_5_6_citation_and_attribution_ai_boundary",
@@ -56,7 +63,10 @@
       "correct_index": 1,
       "explanation": "AI can format references you provide, but you must verify the source and disclose AI use; fabricated citations are an integrity violation.",
       "difficulty": "hard",
-      "misconception_id": "cat100_supplement_5_6_citation_and_attribution_ai_not_disclosed"
+      "misconception_id": "cat100_supplement_5_6_citation_and_attribution_ai_not_disclosed",
+      "learning_objective_ids": [
+        "cat100-supplement-05-06-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_5_6_citation_and_attribution_calibration",
@@ -74,7 +84,10 @@
       ],
       "correct_index": 1,
       "explanation": "A verifiable citation names author, title, year, and points to the exact location of the claim, not a bare link.",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-05-06-lo-03"
+      ]
     }
   ]
 }

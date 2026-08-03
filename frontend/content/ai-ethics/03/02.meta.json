@@ -1,33 +1,61 @@
 {
-    "course": "ai-ethics",
-    "chapter": "03",
-    "section": "02",
-    "chapter_title": "Transparency and Accountability",
-    "title": "Module 2: Accountability and Liability",
-    "description": "Address the responsibility gap by distributing accountability across developer, deployer, operator, and user; recognize when human-in-the-loop is structural fig leaf; and apply engineering practices (audit trails, model cards, versioning, incident response) that make accountability real.",
-    "learning_objectives": [
-        "Explain the responsibility gap and why it cannot be closed by attributing responsibility to the AI system itself.",
-        "Distribute accountability across four roles (developer, deployer, operator, user) with role-specific failure ownership.",
-        "Distinguish meaningful human oversight from rubber-stamping using the capacity-time-authority-information test.",
-        "Identify five engineering practices (audit trails, model cards, versioning, incident response, whistleblower channels) that operationalize accountability."
+  "course": "ai-ethics",
+  "chapter": "03",
+  "section": "02",
+  "chapter_title": "Transparency and Accountability",
+  "title": "Module 2: Accountability and Liability",
+  "description": "Address the responsibility gap by distributing accountability across developer, deployer, operator, and user; recognize when human-in-the-loop is structural fig leaf; and apply engineering practices (audit trails, model cards, versioning, incident response) that make accountability real.",
+  "learning_objectives": [
+    {
+      "id": "ai-ethics-03-02-lo-01",
+      "statement": "Explain the responsibility gap and why it cannot be closed by attributing responsibility to the AI system itself"
+    },
+    {
+      "id": "ai-ethics-03-02-lo-02",
+      "statement": "Distribute accountability across four roles (developer, deployer, operator, user) with role-specific failure ownership"
+    },
+    {
+      "id": "ai-ethics-03-02-lo-03",
+      "statement": "Distinguish meaningful human oversight from rubber-stamping using the capacity-time-authority-information test"
+    },
+    {
+      "id": "ai-ethics-03-02-lo-04",
+      "statement": "Identify five engineering practices (audit trails, model cards, versioning, incident response, whistleblower channels) that operationalize accountability"
+    }
+  ],
+  "concept_ids": [
+    "responsibility_gap",
+    "accountability_distribution",
+    "human_in_the_loop",
+    "model_cards",
+    "audit_trails",
+    "incident_response"
+  ],
+  "prereq_section_ids": [
+    "ai-ethics/03/01"
+  ],
+  "practice_ids": [
+    "accountability_responsibility_gap",
+    "accountability_hitl_test",
+    "accountability_engineering_real",
+    "accountability_documentation"
+  ],
+  "estimated_time_minutes": 13,
+  "order": 2,
+  "lo_practice_map": {
+    "ai-ethics-03-02-lo-01": [
+      "accountability_responsibility_gap"
     ],
-    "concept_ids": [
-        "responsibility_gap",
-        "accountability_distribution",
-        "human_in_the_loop",
-        "model_cards",
-        "audit_trails",
-        "incident_response"
+    "ai-ethics-03-02-lo-02": [
+      "accountability_responsibility_gap"
     ],
-    "prereq_section_ids": [
-        "ai-ethics/03/01"
+    "ai-ethics-03-02-lo-03": [
+      "accountability_hitl_test"
     ],
-    "practice_ids": [
-        "accountability_responsibility_gap",
-        "accountability_hitl_test",
-        "accountability_engineering_real",
-        "accountability_documentation"
-    ],
-    "estimated_time_minutes": 13,
-    "order": 2
+    "ai-ethics-03-02-lo-04": [
+      "accountability_engineering_real",
+      "accountability_documentation"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

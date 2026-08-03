@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "Confident phrasing does not make a claim true. Verify factual details against a trustworthy source such as the official page.",
       "misconception_id": "cat100_supplement_1_4_prompting_with_verification_confident_means_correct",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-01-04-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_1_4_prompting_with_verification_annotation_signal",
@@ -37,7 +40,11 @@
       "correct_index": 1,
       "explanation": "A strong prompt names the role, task, audience, format, and even asks the model to flag uncertainty, all of which make verification easier.",
       "misconception_id": "cat100_supplement_1_4_prompting_with_verification_vague_prompt",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-01-04-lo-01",
+        "cat100-supplement-01-04-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_1_4_prompting_with_verification_ai_boundary",
@@ -57,7 +64,10 @@
       "correct_index": 1,
       "explanation": "AI can invent realistic but fake citations. If you cannot locate the real source, drop both the citation and the claim it supports.",
       "misconception_id": "cat100_supplement_1_4_prompting_with_verification_fake_citation",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-01-04-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_1_4_prompting_with_verification_calibration",
@@ -76,7 +86,10 @@
       "correct_index": 1,
       "explanation": "A defensible verification record ties each claim to a checked source and shows what survived. Counts and screenshots alone do not show your judgment.",
       "misconception_id": "cat100_supplement_1_4_prompting_with_verification_confident_means_correct",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-01-04-lo-02"
+      ]
     }
   ]
 }

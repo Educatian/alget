@@ -3,10 +3,22 @@
   "title": "Module 6 Completion Studio",
   "description": "AIL 606 textbook section connecting module 6 completion studio to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Treat a six-component capstone package as one argument and list every cross-component claim it makes.",
-    "Reconcile contradictory claims by correcting the inaccurate component toward the recorded evidence, not by inflating the log.",
-    "Verify any AI-assembled package summary against each underlying artifact before submitting.",
-    "Write a reflective synthesis naming how your design judgment changed across the module."
+    {
+      "id": "ail606-supplement-06-08-lo-01",
+      "statement": "Treat a six-component capstone package as one argument and list every cross-component claim it makes"
+    },
+    {
+      "id": "ail606-supplement-06-08-lo-02",
+      "statement": "Reconcile contradictory claims by correcting the inaccurate component toward the recorded evidence, not by inflating the log"
+    },
+    {
+      "id": "ail606-supplement-06-08-lo-03",
+      "statement": "Verify any AI-assembled package summary against each underlying artifact before submitting"
+    },
+    {
+      "id": "ail606-supplement-06-08-lo-04",
+      "statement": "Write a reflective synthesis naming how your design judgment changed across the module"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_refined_prototype_and_capstone_defense",
@@ -28,5 +40,21 @@
     "ail606_supplement_6_8_module_6_completion_studio_annotation_signal",
     "ail606_supplement_6_8_module_6_completion_studio_ai_boundary",
     "ail606_supplement_6_8_module_6_completion_studio_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-06-08-lo-01": [
+      "ail606_supplement_6_8_module_6_completion_studio_ai_boundary",
+      "ail606_supplement_6_8_module_6_completion_studio_artifact_signal"
+    ],
+    "ail606-supplement-06-08-lo-02": [
+      "ail606_supplement_6_8_module_6_completion_studio_annotation_signal"
+    ],
+    "ail606-supplement-06-08-lo-03": [
+      "ail606_supplement_6_8_module_6_completion_studio_ai_boundary"
+    ],
+    "ail606-supplement-06-08-lo-04": [
+      "ail606_supplement_6_8_module_6_completion_studio_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

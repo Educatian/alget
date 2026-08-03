@@ -31,6 +31,7 @@ const EMPTY_STATE = {
     courses: [],
     ingestionJobs: [],
     agentRuns: [],
+    workflows: [],
     auditEvents: [],
     adaptationPolicies: [],
     adaptationControls: {},
@@ -69,6 +70,7 @@ async function loadRemoteState() {
         ['courses', 'managed_courses'],
         ['ingestionJobs', 'content_ingestion_jobs'],
         ['agentRuns', 'agent_control_runs'],
+        ['workflows', 'agent_workflows'],
         ['auditEvents', 'admin_audit_events'],
     ]
     const responses = await Promise.all(tables.map(([, table]) => supabase.from(table).select('*').order('created_at', { ascending: false }).limit(100)))
@@ -193,8 +195,10 @@ export async function loadAdminState() {
     try {
         return { state: await loadRemoteState(), persistence: 'supabase' }
     } catch (error) {
-        console.warn('[AdminControl] using local fallback:', error)
-        return { state: readLocalState(), persistence: 'local' }
+        // Never silently downgrade a configured institutional control plane to
+        // browser storage. A transient Supabase failure must be visible to the
+        // operator rather than presenting stale or incomplete authorization data.
+        throw new Error(`Cloud control-plane data is unavailable. Nothing was loaded locally. ${error?.message || 'Please retry.'}`)
     }
 }
 
@@ -249,6 +253,26 @@ export async function registerInstructor(payload, persistence = 'local') {
     return record
 }
 
+export async function reviewInstructorApplication(profile, decision, note = '', persistence = 'local') {
+    if (persistence === 'supabase') {
+        const accessToken = await getAccessToken()
+        const response = await fetch(`${LLM_API_BASE}/admin/instructors/review`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}) },
+            body: JSON.stringify({ profile_id: profile.id, decision, note }),
+        })
+        const payload = await response.json().catch(() => ({}))
+        if (!response.ok) throw new Error(payload.detail || 'Instructor review failed')
+        return { ...profile, status: payload.status }
+    }
+    const state = readLocalState()
+    const status = decision === 'approve' ? 'active' : 'rejected'
+    state.instructors = state.instructors.map((item) => item.id === profile.id ? { ...item, status } : item)
+    state.auditEvents.unshift({ id: localId('audit'), action: `instructor.${decision}d`, entity_type: 'instructor', entity_id: profile.id, created_at: new Date().toISOString() })
+    writeLocalState(state)
+    return state.instructors.find((item) => item.id === profile.id)
+}
+
 export async function createManagedCourse(payload, persistence = 'local') {
     const row = {
         course_key: payload.courseKey.trim().toLowerCase(),
@@ -297,7 +321,7 @@ export async function convertCoursePdf(file, course, persistence = 'local') {
         source_sha256: result.sha256,
         page_count: result.page_count,
         status: result.status,
-        quality_report: result.quality,
+        quality_report: { ...(result.quality || {}), runtime_package: result.runtime_draft || null },
         warnings: result.warnings,
     }
     if (persistence === 'supabase') {

@@ -3,10 +3,22 @@
   "title": "Ethical Reporting of AI Use",
   "description": "AIL 606 textbook section connecting ethical reporting of ai use to AI-USE disclosure excerpt tied to one bounded design-support decision, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Distinguish a vague disclosure (\"AI was used\") from a bounded one that names the decision, the AI contribution, and the verification.",
-    "Reject accountability-shedding language (the output is \"objective\" because AI made it) and keep responsibility with the human.",
-    "Document accept/reject calls on AI suggestions, with the reason for each.",
-    "Decide the right granularity of disclosure: enough for a reviewer to judge provenance, not a full transcript."
+    {
+      "id": "ail606-supplement-07-07-lo-01",
+      "statement": "Distinguish a vague disclosure (\"AI was used\") from a bounded one that names the decision, the AI contribution, and the verification"
+    },
+    {
+      "id": "ail606-supplement-07-07-lo-02",
+      "statement": "Reject accountability-shedding language (the output is \"objective\" because AI made it) and keep responsibility with the human"
+    },
+    {
+      "id": "ail606-supplement-07-07-lo-03",
+      "statement": "Document accept/reject calls on AI suggestions, with the reason for each"
+    },
+    {
+      "id": "ail606-supplement-07-07-lo-04",
+      "statement": "Decide the right granularity of disclosure: enough for a reviewer to judge provenance, not a full transcript"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_research_translation_for_learning_design",
@@ -28,5 +40,20 @@
     "ail606_supplement_7_7_ethical_reporting_of_ai_use_annotation_signal",
     "ail606_supplement_7_7_ethical_reporting_of_ai_use_ai_boundary",
     "ail606_supplement_7_7_ethical_reporting_of_ai_use_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-07-07-lo-01": [
+      "ail606_supplement_7_7_ethical_reporting_of_ai_use_artifact_signal"
+    ],
+    "ail606-supplement-07-07-lo-02": [
+      "ail606_supplement_7_7_ethical_reporting_of_ai_use_annotation_signal"
+    ],
+    "ail606-supplement-07-07-lo-03": [
+      "ail606_supplement_7_7_ethical_reporting_of_ai_use_ai_boundary"
+    ],
+    "ail606-supplement-07-07-lo-04": [
+      "ail606_supplement_7_7_ethical_reporting_of_ai_use_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

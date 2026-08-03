@@ -17,7 +17,10 @@
       ],
       "correct_index": 1,
       "explanation": "These three properties capture the line. Defensible educational AI chooses bounded scope, learner-visible records, and real opt-out for non-essential streams.",
-      "misconception_id": "all_recording_is_monitoring"
+      "misconception_id": "all_recording_is_monitoring",
+      "learning_objective_ids": [
+        "ai-ethics-06-02-lo-01"
+      ]
     },
     {
       "id": "edu_engagement_motivation",
@@ -37,7 +40,10 @@
       ],
       "correct_index": 1,
       "explanation": "SDT distinguishes autonomous motivation (volitional engagement aligned with values) from controlled motivation (compliance under pressure). Engagement metrics conflate them.",
-      "misconception_id": "engagement_is_motivation"
+      "misconception_id": "engagement_is_motivation",
+      "learning_objective_ids": [
+        "ai-ethics-06-02-lo-03"
+      ]
     },
     {
       "id": "edu_dark_pattern_recognize",
@@ -56,7 +62,10 @@
       ],
       "correct_index": 1,
       "explanation": "Variable-ratio reinforcement is the slot-machine pattern. Its deployment on minors is hard to justify pedagogically; learning impact is far less clear than session-length impact.",
-      "misconception_id": "gamification_is_always_pedagogy"
+      "misconception_id": "gamification_is_always_pedagogy",
+      "learning_objective_ids": [
+        "ai-ethics-06-02-lo-02"
+      ]
     },
     {
       "id": "edu_autonomy_design",
@@ -76,7 +85,11 @@
       ],
       "correct_index": 1,
       "explanation": "Autonomy under SDT requires volition. Learner-visible records, granular control, and real exit ramps make volition real rather than nominal.",
-      "misconception_id": "autonomy_is_no_design"
+      "misconception_id": "autonomy_is_no_design",
+      "learning_objective_ids": [
+        "ai-ethics-06-02-lo-03",
+        "ai-ethics-06-02-lo-04"
+      ]
     }
   ]
 }

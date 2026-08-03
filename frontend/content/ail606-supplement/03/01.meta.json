@@ -3,10 +3,22 @@
   "title": "Storyboard Frames as Claims",
   "description": "AIL 606 textbook section connecting storyboard frames as claims to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Convert a descriptive storyboard caption into a four-slot frame claim: prior state, predicted action with a learner verb, warrant tying a feature to a Mayer or cognitive-load principle, and disconfirming evidence.",
-    "Apply the three falsifiability tests (action, warrant, disconfirmation) to diagnose a frame claim.",
-    "Verify claim-chaining so that frame N's predicted action becomes frame N+1's prior state.",
-    "Judge an AI suggestion against the warrant standard, accepting or rejecting it with a stated reason."
+    {
+      "id": "ail606-supplement-03-01-lo-01",
+      "statement": "Convert a descriptive storyboard caption into a four-slot frame claim: prior state, predicted action with a learner verb, warrant tying a feature to a Mayer or cognitive-load principle, and disconfirming evidence"
+    },
+    {
+      "id": "ail606-supplement-03-01-lo-02",
+      "statement": "Apply the three falsifiability tests (action, warrant, disconfirmation) to diagnose a frame claim"
+    },
+    {
+      "id": "ail606-supplement-03-01-lo-03",
+      "statement": "Verify claim-chaining so that frame N's predicted action becomes frame N+1's prior state"
+    },
+    {
+      "id": "ail606-supplement-03-01-lo-04",
+      "statement": "Judge an AI suggestion against the warrant standard, accepting or rejecting it with a stated reason"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_multimedia_storyboarding_and_ai_asset_generation",
@@ -28,5 +40,21 @@
     "ail606_supplement_3_1_storyboard_frames_as_claims_annotation_signal",
     "ail606_supplement_3_1_storyboard_frames_as_claims_ai_boundary",
     "ail606_supplement_3_1_storyboard_frames_as_claims_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-03-01-lo-01": [
+      "ail606_supplement_3_1_storyboard_frames_as_claims_artifact_signal",
+      "ail606_supplement_3_1_storyboard_frames_as_claims_calibration"
+    ],
+    "ail606-supplement-03-01-lo-02": [
+      "ail606_supplement_3_1_storyboard_frames_as_claims_annotation_signal"
+    ],
+    "ail606-supplement-03-01-lo-03": [
+      "ail606_supplement_3_1_storyboard_frames_as_claims_annotation_signal"
+    ],
+    "ail606-supplement-03-01-lo-04": [
+      "ail606_supplement_3_1_storyboard_frames_as_claims_ai_boundary"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

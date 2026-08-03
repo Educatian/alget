@@ -6,10 +6,22 @@
   "title": "ETHOBOT CAT100 Orientation",
   "description": "CAT 100 textbook section connecting ethobot cat100 orientation to AI critique log showing accepted, modified, and rejected suggestions, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Bring a draft of your own to the tutor instead of asking it to generate from scratch.",
-    "Record each tutor suggestion as accepted, modified, or rejected with a one-line reason.",
-    "Keep rejected suggestions in the log so the trail shows what you turned down.",
-    "Use the tutor to sharpen claims without letting it invent facts or inflate them."
+    {
+      "id": "cat100-supplement-01-03-lo-01",
+      "statement": "Bring a draft of your own to the tutor instead of asking it to generate from scratch"
+    },
+    {
+      "id": "cat100-supplement-01-03-lo-02",
+      "statement": "Record each tutor suggestion as accepted, modified, or rejected with a one-line reason"
+    },
+    {
+      "id": "cat100-supplement-01-03-lo-03",
+      "statement": "Keep rejected suggestions in the log so the trail shows what you turned down"
+    },
+    {
+      "id": "cat100-supplement-01-03-lo-04",
+      "statement": "Use the tutor to sharpen claims without letting it invent facts or inflate them"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_digital_citizenship_and_ai_readiness",
@@ -29,5 +41,22 @@
     "cat100_supplement_1_3_ethobot_cat100_orientation_ai_boundary",
     "cat100_supplement_1_3_ethobot_cat100_orientation_calibration",
     "cat100_supplement_1_3_ethobot_cat100_orientation_modify_path"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-01-03-lo-01": [
+      "cat100_supplement_1_3_ethobot_cat100_orientation_artifact_signal"
+    ],
+    "cat100-supplement-01-03-lo-02": [
+      "cat100_supplement_1_3_ethobot_cat100_orientation_calibration",
+      "cat100_supplement_1_3_ethobot_cat100_orientation_modify_path"
+    ],
+    "cat100-supplement-01-03-lo-03": [
+      "cat100_supplement_1_3_ethobot_cat100_orientation_calibration",
+      "cat100_supplement_1_3_ethobot_cat100_orientation_annotation_signal"
+    ],
+    "cat100-supplement-01-03-lo-04": [
+      "cat100_supplement_1_3_ethobot_cat100_orientation_ai_boundary"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

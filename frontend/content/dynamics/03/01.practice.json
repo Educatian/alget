@@ -12,6 +12,9 @@
       "difficulty": "easy",
       "concept_ids": [
         "angular_velocity"
+      ],
+      "learning_objective_ids": [
+        "dynamics-03-01-lo-02"
       ]
     },
     {
@@ -27,6 +30,10 @@
       "concept_ids": [
         "rigid_body_kinematics",
         "angular_velocity"
+      ],
+      "learning_objective_ids": [
+        "dynamics-03-01-lo-01",
+        "dynamics-03-01-lo-04"
       ]
     },
     {
@@ -42,6 +49,9 @@
       "concept_ids": [
         "angular_acceleration",
         "rigid_body_kinematics"
+      ],
+      "learning_objective_ids": [
+        "dynamics-03-01-lo-01"
       ]
     },
     {
@@ -57,6 +67,9 @@
       "concept_ids": [
         "rotation_about_fixed_axis",
         "angular_velocity"
+      ],
+      "learning_objective_ids": [
+        "dynamics-03-01-lo-03"
       ]
     },
     {
@@ -76,7 +89,10 @@
         "rigid_body_kinematics",
         "angular_velocity"
       ],
-      "misconception_id": "same_speed_all_points"
+      "misconception_id": "same_speed_all_points",
+      "learning_objective_ids": [
+        "dynamics-03-01-lo-01"
+      ]
     },
     {
       "id": "rigid_body_kinematics_steps",
@@ -108,6 +124,9 @@
         "rigid_body_kinematics",
         "angular_velocity",
         "angular_acceleration"
+      ],
+      "learning_objective_ids": [
+        "dynamics-03-01-lo-02"
       ]
     }
   ]

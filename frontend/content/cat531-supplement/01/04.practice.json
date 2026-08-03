@@ -20,6 +20,9 @@
         "cat531_supplement_balancing_efficiency_and_equity",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-01-04-lo-02"
       ]
     },
     {
@@ -40,6 +43,9 @@
       "concept_ids": [
         "cat531_supplement_balancing_efficiency_and_equity",
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-01-04-lo-02"
       ]
     },
     {
@@ -60,6 +66,9 @@
       "concept_ids": [
         "ai_supported_learning",
         "cat531_supplement_balancing_efficiency_and_equity"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-01-04-lo-03"
       ]
     },
     {
@@ -80,6 +89,11 @@
       "concept_ids": [
         "cat531_supplement_balancing_efficiency_and_equity",
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-01-04-lo-01",
+        "cat531-supplement-01-04-lo-02",
+        "cat531-supplement-01-04-lo-04"
       ]
     }
   ]

@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "The audience (hiring panel) and purpose (earn an interview) drive a tight 3-slide scope sized to the 3-minute limit.",
       "difficulty": "easy",
-      "misconception_id": "cat100_supplement_5_1_presentation_purpose_and_audience_one_size_deck"
+      "misconception_id": "cat100_supplement_5_1_presentation_purpose_and_audience_one_size_deck",
+      "learning_objective_ids": [
+        "cat100-supplement-05-01-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_5_1_presentation_purpose_and_audience_annotation_signal",
@@ -37,7 +40,11 @@
       "correct_index": 1,
       "explanation": "The strong note names audience, purpose, and the specific slide that may not serve them, so feedback can be exact.",
       "difficulty": "medium",
-      "misconception_id": "cat100_supplement_5_1_presentation_purpose_and_audience_audience_mismatch"
+      "misconception_id": "cat100_supplement_5_1_presentation_purpose_and_audience_audience_mismatch",
+      "learning_objective_ids": [
+        "cat100-supplement-05-01-lo-01",
+        "cat100-supplement-05-01-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_5_1_presentation_purpose_and_audience_ai_boundary",
@@ -56,7 +63,11 @@
       "correct_index": 1,
       "explanation": "AI surfaces candidate audience questions; you keep authorship of which question each slide actually serves.",
       "difficulty": "hard",
-      "misconception_id": "cat100_supplement_5_1_presentation_purpose_and_audience_polish_over_fit"
+      "misconception_id": "cat100_supplement_5_1_presentation_purpose_and_audience_polish_over_fit",
+      "learning_objective_ids": [
+        "cat100-supplement-05-01-lo-02",
+        "cat100-supplement-05-01-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_5_1_presentation_purpose_and_audience_calibration",
@@ -74,7 +85,10 @@
       ],
       "correct_index": 1,
       "explanation": "A testable purpose names the audience, the time, and the exact judgment they should be able to make.",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-05-01-lo-01"
+      ]
     }
   ]
 }

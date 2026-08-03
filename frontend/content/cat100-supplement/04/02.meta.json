@@ -6,10 +6,22 @@
   "title": "Scenario-Based AI Dialogue",
   "description": "CAT 100 textbook section connecting scenario-based AI dialogue to a labeled three-move dialogue transcript (SET CONTEXT, NARROW, STRESS-TEST) with an embedded accept/reject note, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Plan and label a three-move scenario dialogue (SET CONTEXT, NARROW, STRESS-TEST) so each turn changes exactly one thing.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Log at least one accepted and one rejected AI suggestion inside the labeled dialogue transcript.",
-    "Attribute each change in the AI's output to the labeled turn that caused it."
+    {
+      "id": "cat100-supplement-04-02-lo-01",
+      "statement": "Plan and label a three-move scenario dialogue (SET CONTEXT, NARROW, STRESS-TEST) so each turn changes exactly one thing"
+    },
+    {
+      "id": "cat100-supplement-04-02-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "cat100-supplement-04-02-lo-03",
+      "statement": "Log at least one accepted and one rejected AI suggestion inside the labeled dialogue transcript"
+    },
+    {
+      "id": "cat100-supplement-04-02-lo-04",
+      "statement": "Attribute each change in the AI's output to the labeled turn that caused it"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_ai_conversations_as_a_teacher",
@@ -28,5 +40,22 @@
     "cat100_supplement_4_2_scenario_based_ai_dialogue_annotation_signal",
     "cat100_supplement_4_2_scenario_based_ai_dialogue_ai_boundary",
     "cat100_supplement_4_2_scenario_based_ai_dialogue_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-04-02-lo-01": [
+      "cat100_supplement_4_2_scenario_based_ai_dialogue_calibration",
+      "cat100_supplement_4_2_scenario_based_ai_dialogue_artifact_signal",
+      "cat100_supplement_4_2_scenario_based_ai_dialogue_annotation_signal"
+    ],
+    "cat100-supplement-04-02-lo-02": [
+      "cat100_supplement_4_2_scenario_based_ai_dialogue_calibration"
+    ],
+    "cat100-supplement-04-02-lo-03": [
+      "cat100_supplement_4_2_scenario_based_ai_dialogue_ai_boundary"
+    ],
+    "cat100-supplement-04-02-lo-04": [
+      "cat100_supplement_4_2_scenario_based_ai_dialogue_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

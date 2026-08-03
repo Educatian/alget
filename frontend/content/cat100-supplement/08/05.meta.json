@@ -6,10 +6,22 @@
   "title": "Peer Showcase Feedback",
   "description": "CAT 100 textbook section connecting peer showcase feedback to AI critique log showing accepted, modified, and rejected suggestions, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Triage each showcase suggestion into accept, modify, reject, or not-loggable, and justify the decision against what the artifact means rather than who suggested it.",
-    "Reject a plausible-sounding suggestion that would misrepresent the data, and record an auditable reason (the meaning guard).",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    {
+      "id": "cat100-supplement-08-05-lo-01",
+      "statement": "Triage each showcase suggestion into accept, modify, reject, or not-loggable, and justify the decision against what the artifact means rather than who suggested it"
+    },
+    {
+      "id": "cat100-supplement-08-05-lo-02",
+      "statement": "Reject a plausible-sounding suggestion that would misrepresent the data, and record an auditable reason (the meaning guard)"
+    },
+    {
+      "id": "cat100-supplement-08-05-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat100-supplement-08-05-lo-04",
+      "statement": "Use feedback, support requests, and revision notes to improve the artifact before sharing it"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_course_completion_and_transfer",
@@ -29,5 +41,22 @@
     "cat100_supplement_8_5_peer_showcase_feedback_ai_boundary",
     "cat100_supplement_8_5_peer_showcase_feedback_calibration",
     "cat100_supplement_8_5_feedback_integration_log_modify_case"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-08-05-lo-01": [
+      "cat100_supplement_8_5_feedback_integration_log_modify_case",
+      "cat100_supplement_8_5_peer_showcase_feedback_artifact_signal",
+      "cat100_supplement_8_5_peer_showcase_feedback_calibration"
+    ],
+    "cat100-supplement-08-05-lo-02": [
+      "cat100_supplement_8_5_peer_showcase_feedback_ai_boundary"
+    ],
+    "cat100-supplement-08-05-lo-03": [
+      "cat100_supplement_8_5_peer_showcase_feedback_ai_boundary"
+    ],
+    "cat100-supplement-08-05-lo-04": [
+      "cat100_supplement_8_5_peer_showcase_feedback_annotation_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

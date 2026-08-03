@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "The studio integrates the whole module: resume, bio, LinkedIn, portfolio, and the AI-use log that shows your judgment across them. One isolated file is not a package.",
       "misconception_id": "cat100_supplement_2_8_one_artifact_is_package",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-02-08-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_2_8_module_2_branding_studio_annotation_signal",
@@ -38,7 +41,10 @@
       "correct_index": 1,
       "explanation": "Contradictory facts (two different graduation dates) break trust the moment a recruiter cross-checks. Font and color differences are cosmetic by comparison.",
       "misconception_id": "cat100_supplement_2_8_cosmetic_over_factual",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-02-08-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_2_8_module_2_branding_studio_ai_boundary",
@@ -58,7 +64,10 @@
       "correct_index": 2,
       "explanation": "Accountable use means the tool helped within a bounded task while you made and recorded the judgments: what you chose, what you rejected, and why. The log shows your voice on top of the tool's help.",
       "misconception_id": "cat100_supplement_2_8_ai_does_the_package",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-02-08-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_2_8_module_2_branding_studio_calibration",
@@ -78,7 +87,11 @@
       "correct_index": 1,
       "explanation": "Readiness in this studio is consistency plus accountability: the artifacts agree on the facts, and the AI-use log makes your judgment visible. Polish and length alone do not prove either.",
       "misconception_id": "cat100_supplement_2_8_polish_means_ready",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-02-08-lo-01",
+        "cat100-supplement-02-08-lo-02"
+      ]
     }
   ]
 }

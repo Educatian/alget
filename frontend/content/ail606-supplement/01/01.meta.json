@@ -3,10 +3,22 @@
   "title": "Cognitive Architecture for Multimedia Learning",
   "description": "AIL 606 textbook section connecting cognitive architecture for multimedia learning to cognitive load diagnosis table with intrinsic/extraneous/germane load evidence, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence shows a defensible decision in AIL 606.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    {
+      "id": "ail606-supplement-01-01-lo-01",
+      "statement": "Analyze how the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence shows a defensible decision in AIL 606"
+    },
+    {
+      "id": "ail606-supplement-01-01-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "ail606-supplement-01-01-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "ail606-supplement-01-01-lo-04",
+      "statement": "Use annotations, support requests, and revision notes to decide what help or design change should come next"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_foundations_of_interactive_multimedia_learning",
@@ -26,5 +38,22 @@
     "ail606_supplement_1_1_cognitive_architecture_for_multimedia_learning_annotation_signal",
     "ail606_supplement_1_1_cognitive_architecture_for_multimedia_learning_ai_boundary",
     "ail606_supplement_1_1_cognitive_architecture_for_multimedia_learning_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-01-01-lo-01": [
+      "ail606_supplement_1_1_cognitive_architecture_for_multimedia_learning_germane_casualty",
+      "ail606_supplement_1_1_cognitive_architecture_for_multimedia_learning_artifact_signal",
+      "ail606_supplement_1_1_cognitive_architecture_for_multimedia_learning_calibration"
+    ],
+    "ail606-supplement-01-01-lo-02": [
+      "ail606_supplement_1_1_cognitive_architecture_for_multimedia_learning_ai_boundary"
+    ],
+    "ail606-supplement-01-01-lo-03": [
+      "ail606_supplement_1_1_cognitive_architecture_for_multimedia_learning_annotation_signal"
+    ],
+    "ail606-supplement-01-01-lo-04": [
+      "ail606_supplement_1_1_cognitive_architecture_for_multimedia_learning_germane_casualty"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

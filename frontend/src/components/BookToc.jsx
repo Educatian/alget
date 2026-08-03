@@ -72,7 +72,7 @@ function BookToc({ toc, currentCourse, currentChapter, currentSection, onNavigat
     const summary = getCourseSummary(toc?.chapters || [])
 
     return (
-        <div className="px-3 pb-5 pt-2">
+        <div className="ath-book-toc px-3 pb-5 pt-2">
             <div className="px-1">
                 <p className="editorial-kicker">Course Navigation</p>
                 <h2 className="mt-1 text-lg font-semibold tracking-tight text-[var(--ath-text)]">
@@ -134,7 +134,11 @@ function BookToc({ toc, currentCourse, currentChapter, currentSection, onNavigat
                                                     }`}
                                             >
                                                 <span className="line-clamp-2">
-                                                    {chapter.id}.{section.id} {section.title}
+                                                    {/* Authored sections carry a numeric address; instructor-published
+                                                        ones are addressed by module id, which would bury the title. */}
+                                                    {/^\d+$/.test(chapter.id) && /^\d+$/.test(section.id)
+                                                        ? `${chapter.id}.${section.id} ${section.title}`
+                                                        : section.title}
                                                 </span>
                                                 {isDone && (
                                                     <span className="ml-2 shrink-0 text-[10px] font-bold text-[var(--ath-success)]">

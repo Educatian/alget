@@ -1,18 +1,59 @@
 {
-    "course": "bio-inspired",
-    "chapter": "05",
-    "section": "01",
-    "title": "Module 5: Structural Colors & Optics",
-    "description": "How the Morpho butterfly manipulates light through nano-scale architecture rather than chemical pigments to create brilliant colors.",
-    "order": 5,
-    "chapter_title": "Structural Color and Optical Surfaces",
-    "prereq_section_ids": [
-        "bio-inspired/04/01"
+  "course": "bio-inspired",
+  "chapter": "05",
+  "section": "01",
+  "title": "Module 5: Structural Colors & Optics",
+  "description": "How the Morpho butterfly manipulates light through nano-scale architecture rather than chemical pigments to create brilliant colors.",
+  "order": 5,
+  "chapter_title": "Structural Color and Optical Surfaces",
+  "prereq_section_ids": [
+    "bio-inspired/04/01"
+  ],
+  "practice_ids": [
+    "bio_structural_color_core",
+    "bio_morpho_interference",
+    "bio_optical_design_transfer",
+    "bio_nanostructure_signal"
+  ],
+  "learning_objectives": [
+    {
+      "id": "bio-inspired-05-01-lo-01",
+      "statement": "Distinguish pigmentary color from structural color and explain why one fades while the other does not"
+    },
+    {
+      "id": "bio-inspired-05-01-lo-02",
+      "statement": "Describe the nano-scale lamellar architecture of the Morpho wing scale as a multilayer interference stack"
+    },
+    {
+      "id": "bio-inspired-05-01-lo-03",
+      "statement": "Apply the thin-film and multilayer Bragg conditions to predict which wavelength a given layer spacing reflects"
+    },
+    {
+      "id": "bio-inspired-05-01-lo-04",
+      "statement": "Calculate the layer thickness needed to produce a target color, and predict how the color shifts with viewing angle"
+    },
+    {
+      "id": "bio-inspired-05-01-lo-05",
+      "statement": "Translate the optical function (durable, wavelength-selective reflection) into engineering applications such as displays, coatings, and anti-counterfeiting marks"
+    }
+  ],
+  "lo_practice_map": {
+    "bio-inspired-05-01-lo-01": [
+      "bio_structural_color_core"
     ],
-    "practice_ids": [
-        "bio_structural_color_core",
-        "bio_morpho_interference",
-        "bio_optical_design_transfer",
-        "bio_nanostructure_signal"
+    "bio-inspired-05-01-lo-02": [
+      "bio_structural_color_core"
+    ],
+    "bio-inspired-05-01-lo-03": [
+      "bio_morpho_interference"
+    ],
+    "bio-inspired-05-01-lo-04": [
+      "bio_structural_color_core"
+    ],
+    "bio-inspired-05-01-lo-05": [
+      "bio_optical_design_transfer",
+      "bio_nanostructure_signal"
     ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

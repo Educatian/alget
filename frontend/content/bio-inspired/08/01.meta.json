@@ -1,20 +1,61 @@
 {
-    "course": "bio-inspired",
-    "chapter": "08",
-    "section": "01",
-    "title": "Module 8: Swarm Intelligence & Autonomous Robotics",
-    "description": "Understanding how ant colonies and bird flocks execute highly complex global tasks using simple local rules, and how this applies to autonomous drone swarms.",
-    "order": 8,
-    "chapter_title": "Swarm Intelligence and Distributed Systems",
-    "prereq_section_ids": [
-        "bio-inspired/07/01"
+  "course": "bio-inspired",
+  "chapter": "08",
+  "section": "01",
+  "title": "Module 8: Swarm Intelligence & Autonomous Robotics",
+  "description": "Understanding how ant colonies and bird flocks execute highly complex global tasks using simple local rules, and how this applies to autonomous drone swarms.",
+  "order": 8,
+  "chapter_title": "Swarm Intelligence and Distributed Systems",
+  "prereq_section_ids": [
+    "bio-inspired/07/01"
+  ],
+  "practice_ids": [
+    "bio_swarm_no_central_commander",
+    "bio_stigmergy_logic",
+    "bio_local_rules_reynolds",
+    "bio_autonomous_robotics_tradeoff",
+    "bio_swarm_analogical_transfer",
+    "bio_fixation_avoidance"
+  ],
+  "learning_objectives": [
+    {
+      "id": "bio-inspired-08-01-lo-01",
+      "statement": "Explain why centralized control creates a single point of failure, and how biological swarms avoid it"
+    },
+    {
+      "id": "bio-inspired-08-01-lo-02",
+      "statement": "State the three Reynolds boid rules as local vector operations and compute a steering vector by hand"
+    },
+    {
+      "id": "bio-inspired-08-01-lo-03",
+      "statement": "Derive why ant stigmergy converges on the shortest path using the pheromone deposition and evaporation equations"
+    },
+    {
+      "id": "bio-inspired-08-01-lo-04",
+      "statement": "Translate a biological coordination strategy into a formal local-rule algorithm using the four-step transfer template"
+    },
+    {
+      "id": "bio-inspired-08-01-lo-05",
+      "statement": "Evaluate when a real engineered swarm will stay robust and when local rules break down"
+    }
+  ],
+  "lo_practice_map": {
+    "bio-inspired-08-01-lo-01": [
+      "bio_autonomous_robotics_tradeoff"
     ],
-    "practice_ids": [
-        "bio_swarm_no_central_commander",
-        "bio_stigmergy_logic",
-        "bio_local_rules_reynolds",
-        "bio_autonomous_robotics_tradeoff",
-        "bio_swarm_analogical_transfer",
-        "bio_fixation_avoidance"
+    "bio-inspired-08-01-lo-02": [
+      "bio_local_rules_reynolds"
+    ],
+    "bio-inspired-08-01-lo-03": [
+      "bio_stigmergy_logic"
+    ],
+    "bio-inspired-08-01-lo-04": [
+      "bio_swarm_analogical_transfer",
+      "bio_fixation_avoidance"
+    ],
+    "bio-inspired-08-01-lo-05": [
+      "bio_swarm_no_central_commander"
     ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

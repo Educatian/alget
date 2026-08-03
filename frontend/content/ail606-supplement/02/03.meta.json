@@ -3,10 +3,22 @@
   "title": "Interaction Patterns for Learning Software",
   "description": "AIL 606 textbook section connecting interaction patterns for learning software to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Match a cognitive operation (compare, sequence, decide, observe) to the interaction pattern whose structure enacts it (interaction-cognition fit).",
-    "Diagnose an interaction for split attention, seductive detail, or interaction-cost asymmetry.",
-    "Verify that an interaction closes its loop with a visible consequence and stays equitable for keyboard and screen-reader learners.",
-    "Defend a pattern choice with behavioral evidence and a named rejected alternative rather than production value."
+    {
+      "id": "ail606-supplement-02-03-lo-01",
+      "statement": "Match a cognitive operation (compare, sequence, decide, observe) to the interaction pattern whose structure enacts it (interaction-cognition fit)"
+    },
+    {
+      "id": "ail606-supplement-02-03-lo-02",
+      "statement": "Diagnose an interaction for split attention, seductive detail, or interaction-cost asymmetry"
+    },
+    {
+      "id": "ail606-supplement-02-03-lo-03",
+      "statement": "Verify that an interaction closes its loop with a visible consequence and stays equitable for keyboard and screen-reader learners"
+    },
+    {
+      "id": "ail606-supplement-02-03-lo-04",
+      "statement": "Defend a pattern choice with behavioral evidence and a named rejected alternative rather than production value"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_learning_experience_design_and_software_technology",
@@ -28,5 +40,21 @@
     "ail606_supplement_2_3_interaction_patterns_for_learning_software_annotation_signal",
     "ail606_supplement_2_3_interaction_patterns_for_learning_software_ai_boundary",
     "ail606_supplement_2_3_interaction_patterns_for_learning_software_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-02-03-lo-01": [
+      "ail606_supplement_2_3_interaction_patterns_for_learning_software_equity_cost",
+      "ail606_supplement_2_3_interaction_patterns_for_learning_software_artifact_signal"
+    ],
+    "ail606-supplement-02-03-lo-02": [
+      "ail606_supplement_2_3_interaction_patterns_for_learning_software_annotation_signal"
+    ],
+    "ail606-supplement-02-03-lo-03": [
+      "ail606_supplement_2_3_interaction_patterns_for_learning_software_ai_boundary"
+    ],
+    "ail606-supplement-02-03-lo-04": [
+      "ail606_supplement_2_3_interaction_patterns_for_learning_software_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

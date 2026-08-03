@@ -18,7 +18,11 @@
       ],
       "correct_index": 1,
       "explanation": "Machines are not moral agents under any major framework. The gap is closed by structured human accountability, not by anthropomorphizing the system.",
-      "misconception_id": "ai_is_morally_responsible"
+      "misconception_id": "ai_is_morally_responsible",
+      "learning_objective_ids": [
+        "ai-ethics-03-02-lo-01",
+        "ai-ethics-03-02-lo-02"
+      ]
     },
     {
       "id": "accountability_hitl_test",
@@ -37,7 +41,10 @@
       ],
       "correct_index": 1,
       "explanation": "EU AI Act Art. 14 and the oversight literature agree on these four conditions. Without them, the human-in-the-loop is structural fig leaf.",
-      "misconception_id": "any_human_satisfies_oversight"
+      "misconception_id": "any_human_satisfies_oversight",
+      "learning_objective_ids": [
+        "ai-ethics-03-02-lo-03"
+      ]
     },
     {
       "id": "accountability_engineering_real",
@@ -57,7 +64,10 @@
       ],
       "correct_index": 1,
       "explanation": "Audit trails are the artifact accountability lives in. Without them, post-hoc accountability claims are unverifiable.",
-      "misconception_id": "logs_are_optional"
+      "misconception_id": "logs_are_optional",
+      "learning_objective_ids": [
+        "ai-ethics-03-02-lo-04"
+      ]
     },
     {
       "id": "accountability_documentation",
@@ -76,7 +86,10 @@
       ],
       "correct_index": 1,
       "explanation": "Model cards and datasheets operationalize the failure-to-warn doctrine and let deployers make informed decisions about fit-for-purpose.",
-      "misconception_id": "model_cards_are_marketing"
+      "misconception_id": "model_cards_are_marketing",
+      "learning_objective_ids": [
+        "ai-ethics-03-02-lo-04"
+      ]
     }
   ]
 }

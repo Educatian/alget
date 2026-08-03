@@ -6,10 +6,22 @@
   "title": "LinkedIn and Portfolio Alignment",
   "description": "CAT 100 textbook section connecting linkedin and portfolio alignment to resume before-after revision with truthful evidence, role fit, and AI-use note, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Run a cross-platform alignment audit (inventory, detect, reconcile, diff) on one role across resume, LinkedIn, and portfolio, anchoring to the truthful version.",
-    "Identify the four anchors (display name, current title or role, dates, headline accomplishment) and verify they do not contradict across platforms.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    {
+      "id": "cat100-supplement-02-04-lo-01",
+      "statement": "Run a cross-platform alignment audit (inventory, detect, reconcile, diff) on one role across resume, LinkedIn, and portfolio, anchoring to the truthful version"
+    },
+    {
+      "id": "cat100-supplement-02-04-lo-02",
+      "statement": "Identify the four anchors (display name, current title or role, dates, headline accomplishment) and verify they do not contradict across platforms"
+    },
+    {
+      "id": "cat100-supplement-02-04-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat100-supplement-02-04-lo-04",
+      "statement": "Use feedback, support requests, and revision notes to improve the artifact before sharing it"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_resume_branding_and_ai_brainstorming",
@@ -27,6 +39,24 @@
     "cat100_supplement_2_4_linkedin_and_portfolio_alignment_artifact_signal",
     "cat100_supplement_2_4_linkedin_and_portfolio_alignment_annotation_signal",
     "cat100_supplement_2_4_linkedin_and_portfolio_alignment_ai_boundary",
-    "cat100_supplement_2_4_linkedin_and_portfolio_alignment_calibration"
-  ]
+    "cat100_supplement_2_4_linkedin_and_portfolio_alignment_calibration",
+    "cat100-supplement_02_04_lo_03_direct_check"
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-02-04-lo-01": [
+      "cat100_supplement_2_4_linkedin_and_portfolio_alignment_artifact_signal",
+      "cat100_supplement_2_4_linkedin_and_portfolio_alignment_annotation_signal",
+      "cat100_supplement_2_4_linkedin_and_portfolio_alignment_ai_boundary"
+    ],
+    "cat100-supplement-02-04-lo-02": [
+      "cat100_supplement_2_4_linkedin_and_portfolio_alignment_calibration"
+    ],
+    "cat100-supplement-02-04-lo-03": [
+      "cat100-supplement_02_04_lo_03_direct_check"
+    ],
+    "cat100-supplement-02-04-lo-04": [
+      "cat100-supplement_02_04_lo_03_direct_check"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

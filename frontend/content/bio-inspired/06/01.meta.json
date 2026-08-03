@@ -1,32 +1,56 @@
 {
-    "course": "bio-inspired",
-    "chapter": "06",
-    "section": "01",
-    "title": "Module 6: Thermal Regulation & Architecture",
-    "description": "Analyze how termite mounds use thermal mass and pressure-driven airflow, then translate those principles into passive architectural cooling strategies.",
-    "order": 6,
-    "chapter_title": "Thermal Regulation and Environmental Control",
-    "learning_objectives": [
-        "Explain how the stack effect contributes to passive thermal regulation.",
-        "Identify the roles of vent geometry, thermal mass, and distributed airflow in termite mounds.",
-        "Translate termite-inspired regulation principles into building or engineering design heuristics."
+  "course": "bio-inspired",
+  "chapter": "06",
+  "section": "01",
+  "title": "Module 6: Thermal Regulation & Architecture",
+  "description": "Analyze how termite mounds use thermal mass and pressure-driven airflow, then translate those principles into passive architectural cooling strategies.",
+  "order": 6,
+  "chapter_title": "Thermal Regulation and Environmental Control",
+  "learning_objectives": [
+    {
+      "id": "bio-inspired-06-01-lo-01",
+      "statement": "Explain how the stack effect contributes to passive thermal regulation"
+    },
+    {
+      "id": "bio-inspired-06-01-lo-02",
+      "statement": "Identify the roles of vent geometry, thermal mass, and distributed airflow in termite mounds"
+    },
+    {
+      "id": "bio-inspired-06-01-lo-03",
+      "statement": "Translate termite-inspired regulation principles into building or engineering design heuristics"
+    }
+  ],
+  "concept_ids": [
+    "stack_effect",
+    "thermal_mass",
+    "passive_cooling",
+    "biomimetic_architecture"
+  ],
+  "estimated_time_minutes": 13,
+  "prereq_section_ids": [
+    "bio-inspired/05/01"
+  ],
+  "practice_ids": [
+    "bio_stack_effect_core",
+    "bio_thermal_mass_role",
+    "bio_passive_cooling_transfer",
+    "bio_architecture_environment_fit",
+    "bio_problem_to_biology_translation",
+    "bio_asknature_entry_logic"
+  ],
+  "lo_practice_map": {
+    "bio-inspired-06-01-lo-01": [
+      "bio_stack_effect_core"
     ],
-    "concept_ids": [
-        "stack_effect",
-        "thermal_mass",
-        "passive_cooling",
-        "biomimetic_architecture"
+    "bio-inspired-06-01-lo-02": [
+      "bio_passive_cooling_transfer",
+      "bio_thermal_mass_role",
+      "bio_asknature_entry_logic"
     ],
-    "estimated_time_minutes": 13,
-    "prereq_section_ids": [
-        "bio-inspired/05/01"
-    ],
-    "practice_ids": [
-        "bio_stack_effect_core",
-        "bio_thermal_mass_role",
-        "bio_passive_cooling_transfer",
-        "bio_architecture_environment_fit",
-        "bio_problem_to_biology_translation",
-        "bio_asknature_entry_logic"
+    "bio-inspired-06-01-lo-03": [
+      "bio_problem_to_biology_translation",
+      "bio_architecture_environment_fit"
     ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

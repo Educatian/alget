@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "A publishable studio deliverable is the actual file tree (lowercase index.html, linked pages, assets) committed to the correctly named repo, not a mockup or a document.",
       "misconception_id": "cat100_supplement_6_8_mockup_counts_as_published",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-06-08-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_6_8_module_6_website_studio_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "The module integrates accessibility (alt text), privacy (no secrets or personal data committed), and publishing (a verified live URL). All three together signal mastery.",
       "misconception_id": "cat100_supplement_6_8_one_skill_stands_in_for_all",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-06-08-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_6_8_module_6_website_studio_ai_boundary",
@@ -57,7 +63,10 @@
       "correct_index": 1,
       "explanation": "The module's standard is a concise AI-use note that discloses where AI assisted and affirms you checked the output and remain responsible for the result. Naming the specific tool (and version, if known) and following your course's GenAI disclosure policy makes the note auditable.",
       "misconception_id": "cat100_supplement_6_8_ai_use_left_undisclosed",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-06-08-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_6_8_module_6_website_studio_calibration",
@@ -77,7 +86,11 @@
       "correct_index": 1,
       "explanation": "A single end-to-end test on the live URL from another device exercises accessibility, publishing, and privacy at once, which is the integrated outcome the studio targets.",
       "misconception_id": "cat100_supplement_6_8_effort_mistaken_for_outcome",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-06-08-lo-02",
+        "cat100-supplement-06-08-lo-04"
+      ]
     }
   ]
 }

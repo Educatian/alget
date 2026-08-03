@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "Strong contrast, alt text, and non-color-only encoding together meet the core accessibility requirements.",
       "difficulty": "easy",
-      "misconception_id": "cat100_supplement_5_7_accessibility_checks_for_slides_low_contrast"
+      "misconception_id": "cat100_supplement_5_7_accessibility_checks_for_slides_low_contrast",
+      "learning_objective_ids": [
+        "cat100-supplement-05-07-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_5_7_accessibility_checks_for_slides_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "The note names a specific color-only encoding problem so feedback can target a labeling fix.",
       "difficulty": "medium",
-      "misconception_id": "cat100_supplement_5_7_accessibility_checks_for_slides_color_only_meaning"
+      "misconception_id": "cat100_supplement_5_7_accessibility_checks_for_slides_color_only_meaning",
+      "learning_objective_ids": [
+        "cat100-supplement-05-07-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_5_7_accessibility_checks_for_slides_ai_boundary",
@@ -56,7 +62,10 @@
       "correct_index": 1,
       "explanation": "AI can draft alt text, but you must verify it describes the real image and still confirm contrast yourself.",
       "difficulty": "hard",
-      "misconception_id": "cat100_supplement_5_7_accessibility_checks_for_slides_no_alt_text"
+      "misconception_id": "cat100_supplement_5_7_accessibility_checks_for_slides_no_alt_text",
+      "learning_objective_ids": [
+        "cat100-supplement-05-07-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_5_7_accessibility_checks_for_slides_calibration",
@@ -74,7 +83,10 @@
       ],
       "correct_index": 1,
       "explanation": "Contrast is fixed by adjusting the color values to meet the ratio, not by resizing or animating the text.",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-05-07-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_5_7_accessibility_in_design_large_text_threshold",
@@ -93,6 +105,20 @@
       "difficulty": "medium",
       "concept_ids": [
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat100-supplement-05-07-lo-01"
+      ]
+    },
+    {
+      "id": "cat100-supplement_05_07_lo_03_direct_check",
+      "type": "conceptual",
+      "stem": "Provide a concise response that demonstrates this learning objective: Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "expected_answer": "The response accurately demonstrates the section objective: Document a bounded AI/software support move with accepted and rejected suggestions, using relevant section concepts, evidence, or calculations.",
+      "explanation": "This direct-evidence item is used when no closed-response item adequately samples the objective. Score it with the section concepts and worked examples as the rubric.",
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-05-07-lo-03"
       ]
     }
   ]

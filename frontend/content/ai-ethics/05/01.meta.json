@@ -1,34 +1,61 @@
 {
-    "course": "ai-ethics",
-    "chapter": "05",
-    "section": "01",
-    "chapter_title": "Safety, Alignment, and Governance",
-    "title": "Module 1: AI Safety and Alignment Foundations",
-    "description": "Distinguish near-term safety from long-term alignment, recognize specification gaming and reward hacking, and identify five classes of intervention (better specification, interpretability, oversight, capability control, governance).",
-    "learning_objectives": [
-        "Explain why goals expressed in code, reward functions, or natural language are lossy compressions of intent.",
-        "Identify specification gaming, reward hacking, Goodhart's law, and recommender feedback loops as expressions of the same underlying problem.",
-        "Distinguish capability from alignment and recognize why the two properties scale independently.",
-        "Match each safety/alignment intervention class to the failure mode it addresses, and explain why no single class is sufficient."
+  "course": "ai-ethics",
+  "chapter": "05",
+  "section": "01",
+  "chapter_title": "Safety, Alignment, and Governance",
+  "title": "Module 1: AI Safety and Alignment Foundations",
+  "description": "Distinguish near-term safety from long-term alignment, recognize specification gaming and reward hacking, and identify five classes of intervention (better specification, interpretability, oversight, capability control, governance).",
+  "learning_objectives": [
+    {
+      "id": "ai-ethics-05-01-lo-01",
+      "statement": "Explain why goals expressed in code, reward functions, or natural language are lossy compressions of intent"
+    },
+    {
+      "id": "ai-ethics-05-01-lo-02",
+      "statement": "Identify specification gaming, reward hacking, Goodhart's law, and recommender feedback loops as expressions of the same underlying problem"
+    },
+    {
+      "id": "ai-ethics-05-01-lo-03",
+      "statement": "Distinguish capability from alignment and recognize why the two properties scale independently"
+    },
+    {
+      "id": "ai-ethics-05-01-lo-04",
+      "statement": "Match each safety/alignment intervention class to the failure mode it addresses, and explain why no single class is sufficient"
+    }
+  ],
+  "concept_ids": [
+    "ai_safety",
+    "ai_alignment",
+    "specification_gaming",
+    "reward_hacking",
+    "goodharts_law",
+    "distributional_shift",
+    "capability_vs_alignment"
+  ],
+  "prereq_section_ids": [
+    "ai-ethics/04/02"
+  ],
+  "practice_ids": [
+    "safety_spec_gaming",
+    "safety_goodhart",
+    "safety_capability_alignment",
+    "safety_intervention_combo"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 1,
+  "lo_practice_map": {
+    "ai-ethics-05-01-lo-01": [
+      "safety_spec_gaming"
     ],
-    "concept_ids": [
-        "ai_safety",
-        "ai_alignment",
-        "specification_gaming",
-        "reward_hacking",
-        "goodharts_law",
-        "distributional_shift",
-        "capability_vs_alignment"
+    "ai-ethics-05-01-lo-02": [
+      "safety_goodhart"
     ],
-    "prereq_section_ids": [
-        "ai-ethics/04/02"
+    "ai-ethics-05-01-lo-03": [
+      "safety_capability_alignment"
     ],
-    "practice_ids": [
-        "safety_spec_gaming",
-        "safety_goodhart",
-        "safety_capability_alignment",
-        "safety_intervention_combo"
-    ],
-    "estimated_time_minutes": 14,
-    "order": 1
+    "ai-ethics-05-01-lo-04": [
+      "safety_intervention_combo"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

@@ -1,31 +1,53 @@
 {
-    "course": "inst-design",
-    "chapter": "04",
-    "section": "01",
-    "title": "Module 4: Motivation, Engagement & The ARCS Model",
-    "description": "Understanding how to generate intrinsic and extrinsic motivation in adult learners using Keller's ARCS model and Game-Based Learning mechanics.",
-    "chapter_title": "Motivation and Learner-Centered Design",
-    "learning_objectives": [
-        "Use the ARCS model to diagnose attention, relevance, confidence, and satisfaction gaps.",
-        "Distinguish motivation from surface-level activity or entertainment.",
-        "Design engagement moves that strengthen persistence without overwhelming learners."
+  "course": "inst-design",
+  "chapter": "04",
+  "section": "01",
+  "title": "Module 4: Motivation, Engagement & The ARCS Model",
+  "description": "Understanding how to generate intrinsic and extrinsic motivation in adult learners using Keller's ARCS model and Game-Based Learning mechanics.",
+  "chapter_title": "Motivation and Learner-Centered Design",
+  "learning_objectives": [
+    {
+      "id": "inst-design-04-01-lo-01",
+      "statement": "Use the ARCS model to diagnose attention, relevance, confidence, and satisfaction gaps"
+    },
+    {
+      "id": "inst-design-04-01-lo-02",
+      "statement": "Distinguish motivation from surface-level activity or entertainment"
+    },
+    {
+      "id": "inst-design-04-01-lo-03",
+      "statement": "Design engagement moves that strengthen persistence without overwhelming learners"
+    }
+  ],
+  "concept_ids": [
+    "arcs_model",
+    "learner_motivation",
+    "engagement_design",
+    "intrinsic_motivation",
+    "game_based_learning"
+  ],
+  "prereq_section_ids": [
+    "inst-design/03/01"
+  ],
+  "practice_ids": [
+    "arcs_attention",
+    "arcs_relevance_case",
+    "arcs_confidence",
+    "overjustification_effect"
+  ],
+  "estimated_time_minutes": 12,
+  "order": 4,
+  "lo_practice_map": {
+    "inst-design-04-01-lo-01": [
+      "arcs_attention",
+      "arcs_confidence"
     ],
-    "concept_ids": [
-        "arcs_model",
-        "learner_motivation",
-        "engagement_design",
-        "intrinsic_motivation",
-        "game_based_learning"
+    "inst-design-04-01-lo-02": [
+      "overjustification_effect"
     ],
-    "prereq_section_ids": [
-        "inst-design/03/01"
-    ],
-    "practice_ids": [
-        "arcs_attention",
-        "arcs_relevance_case",
-        "arcs_confidence",
-        "overjustification_effect"
-    ],
-    "estimated_time_minutes": 12,
-    "order": 4
+    "inst-design-04-01-lo-03": [
+      "arcs_relevance_case"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

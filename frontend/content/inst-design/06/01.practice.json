@@ -17,7 +17,10 @@
         "Collaboration matters only after mastery is complete"
       ],
       "correct_index": 1,
-      "explanation": "Social constructivism emphasizes that people develop understanding through interaction, language, modeling, and shared problem solving."
+      "explanation": "Social constructivism emphasizes that people develop understanding through interaction, language, modeling, and shared problem solving.",
+      "learning_objective_ids": [
+        "inst-design-06-01-lo-01"
+      ]
     },
     {
       "id": "zpd_peer_support",
@@ -37,7 +40,10 @@
         "Because collaboration automatically removes all anxiety"
       ],
       "correct_index": 1,
-      "explanation": "Peer scaffolding can be powerful because the support is often well calibrated to the learner's current state."
+      "explanation": "Peer scaffolding can be powerful because the support is often well calibrated to the learner's current state.",
+      "learning_objective_ids": [
+        "inst-design-06-01-lo-02"
+      ]
     },
     {
       "id": "community_of_practice",
@@ -56,7 +62,10 @@
         "It guarantees equal contribution from every member"
       ],
       "correct_index": 1,
-      "explanation": "Communities of practice support learning through legitimate participation, observation, and increasing responsibility in real or realistic work."
+      "explanation": "Communities of practice support learning through legitimate participation, observation, and increasing responsibility in real or realistic work.",
+      "learning_objective_ids": [
+        "inst-design-06-01-lo-03"
+      ]
     },
     {
       "id": "collaboration_design_quality",
@@ -75,7 +84,10 @@
         "Grading only attendance and not the quality of the interaction"
       ],
       "correct_index": 1,
-      "explanation": "Effective collaboration usually needs structure: a meaningful task, roles, prompts, and visible output."
+      "explanation": "Effective collaboration usually needs structure: a meaningful task, roles, prompts, and visible output.",
+      "learning_objective_ids": [
+        "inst-design-06-01-lo-01"
+      ]
     }
   ]
 }

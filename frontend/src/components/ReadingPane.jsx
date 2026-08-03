@@ -5,6 +5,7 @@ import { EXIT_TICKET_MIN_CHARS, getExitTicketStorageKey, readExitTicket, writeEx
 import PeerPulse from './PeerPulse'
 import BlockErrorBoundary from './BlockErrorBoundary'
 import CalibrationPanel from './CalibrationPanel'
+import EvidenceTrail from './EvidenceTrail'
 
 // Embedded labs are lazy-loaded so their code (and the model-viewer runtime they
 // pull) stays out of the ReadingPane chunk that every one of the 256 sections
@@ -60,6 +61,9 @@ const DEFAULT_READY_CHECKS = {
     transfer: false
 }
 
+const READER_MODE_STORAGE_KEY = 'alget_reader_mode_v1'
+const READER_PAGE_LABELS = ['Read', 'Explore', 'Reflect', 'Practice', 'Finish']
+
 function PanelFallback({ label }) {
     return (
         <div className="rounded-[1.75rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.78)] p-6 shadow-sm">
@@ -100,6 +104,18 @@ function formatRecentTimestamp(value) {
     })
 }
 
+function normalizeLearningObjectives(objectives) {
+    if (!Array.isArray(objectives)) return []
+
+    return objectives
+        .map((objective) => {
+            if (typeof objective === 'string') return objective.trim()
+            if (objective && typeof objective.statement === 'string') return objective.statement.trim()
+            return ''
+        })
+        .filter(Boolean)
+}
+
 function ReadingPane({
     sectionData,
     loading,
@@ -119,6 +135,11 @@ function ReadingPane({
     const sectionId = sectionData?.meta ? `${sectionData.meta.course}/${sectionData.meta.chapter}/${sectionData.meta.section}` : null
     const [showSimulation, setShowSimulation] = useState(false)
     const [showIllustration, setShowIllustration] = useState(false)
+    const [readerMode, setReaderMode] = useState(() => {
+        if (typeof window === 'undefined') return 'scroll'
+        return window.localStorage.getItem(READER_MODE_STORAGE_KEY) === 'paged' ? 'paged' : 'scroll'
+    })
+    const [readerPageState, setReaderPageState] = useState({ sectionId, page: 0 })
     const [readyCheckDraft, setReadyCheckDraft] = useState({ sectionId, value: DEFAULT_READY_CHECKS })
     const [exitTicketDraft, setExitTicketDraft] = useState(() => ({
         sectionId,
@@ -146,6 +167,14 @@ function ReadingPane({
         }
     }, [exitTicketStorageKey, exitTicket, sectionData?.meta, sectionId])
 
+    useEffect(() => {
+        if (typeof document === 'undefined') return
+        const resetScroll = () => document.getElementById('main-content')?.scrollTo({ top: 0, behavior: 'auto' })
+        resetScroll()
+        const timeoutId = window.setTimeout(resetScroll, 1000)
+        return () => window.clearTimeout(timeoutId)
+    }, [readerMode, sectionId])
+
     const handleToggleSimulation = () => {
         const newState = !showSimulation
         setShowSimulation(newState)
@@ -159,6 +188,11 @@ function ReadingPane({
     }
 
     const jumpToStage = (targetId) => {
+        const pageIndex = SECTION_PATH_STEPS.findIndex((step) => step.id === targetId)
+        if (isPaged && pageIndex >= 0) {
+            goToReaderPage(pageIndex)
+            return
+        }
         if (typeof document === 'undefined') return
         document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
         logInteraction('section_path_jump', targetId, sectionId)
@@ -254,6 +288,7 @@ function ReadingPane({
     }
 
     const { meta, content, simulation, illustration, practice } = sectionData
+    const learningObjectives = normalizeLearningObjectives(meta?.learning_objectives)
     const workProduct = inferWorkProduct(meta)
     const contentHasLearningTargets = /(^|\n)##\s+Learning (?:Targets|Objectives)\b/.test(content || '')
     const contentHasEmbeddedCheck = /<(?:inline-check|interactive-quiz)\b/i.test(content || '')
@@ -265,9 +300,26 @@ function ReadingPane({
     const exitTicketReady = exitTicketLength >= EXIT_TICKET_MIN_CHARS
     const completionReady = readyCount === READY_CHECK_ITEMS.length && exitTicketReady
 
+    const isPaged = readerMode === 'paged'
+    const readerPage = readerPageState.sectionId === sectionId ? readerPageState.page : 0
+    const isVisibleOnPage = (page) => !isPaged || readerPage === page
+    const setMode = (mode) => {
+        setReaderMode(mode)
+        if (typeof window !== 'undefined') window.localStorage.setItem(READER_MODE_STORAGE_KEY, mode)
+        logInteraction('reader_mode_changed', mode, sectionId)
+    }
+    const goToReaderPage = (page) => {
+        const nextPage = Math.max(0, Math.min(READER_PAGE_LABELS.length - 1, page))
+        setReaderPageState({ sectionId, page: nextPage })
+        if (typeof document !== 'undefined') {
+            document.getElementById('main-content')?.scrollTo({ top: 0, behavior: 'smooth' })
+        }
+        logInteraction('reader_page_changed', `${nextPage + 1}`, sectionId)
+    }
+
     return (
-        <div className="mx-auto w-full max-w-[min(78rem,100%)] px-4 py-4 sm:px-7 sm:py-5">
-            <header className="mb-4">
+        <div className="ath-reader-pane mx-auto w-full max-w-[min(78rem,100%)] px-4 py-4 sm:px-7 sm:py-5">
+            <header className="ath-reader-pane-header mb-4">
                 <div className="mb-2 flex items-center justify-between gap-3">
                     <p className="editorial-kicker">
                         Chapter {meta?.chapter} / Section {meta?.section}
@@ -290,17 +342,23 @@ function ReadingPane({
                     </div>
                 </div>
 
-                {meta?.learning_objectives?.length > 0 && !contentHasLearningTargets && (
+                <EvidenceTrail
+                    references={meta?.references}
+                    sourceStatus={meta?.source_status}
+                    sourceTitle={meta?.source_title || meta?.title}
+                />
+
+                {learningObjectives.length > 0 && !contentHasLearningTargets && (
                     <details className="group mt-3 border-b border-[var(--ath-line)] px-1 py-2">
                         <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-xs font-semibold text-[var(--ath-secondary)]">
-                            <span>Learning objectives · {meta.learning_objectives.length}</span>
+                            <span>Learning objectives · {learningObjectives.length}</span>
                             <span className="transition-transform group-open:rotate-90" aria-hidden="true">›</span>
                         </summary>
                         <ul className="mt-2 space-y-1.5">
-                            {meta.learning_objectives.map((obj, i) => (
+                            {learningObjectives.map((objective, i) => (
                                 <li key={i} className="flex items-start gap-2.5 text-sm leading-6 text-[var(--ath-text)]">
                                     <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[var(--ath-primary)]" aria-hidden="true" />
-                                    <span>{obj}</span>
+                                    <span>{objective}</span>
                                 </li>
                             ))}
                         </ul>
@@ -330,25 +388,45 @@ function ReadingPane({
                             </button>
                         )}
                     </div>
-                    <ol className="mt-1.5 flex gap-1 overflow-x-auto text-[10px] font-semibold uppercase tracking-[0.08em] text-[var(--ath-secondary)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:grid sm:grid-cols-5 sm:overflow-visible">
+                    <ol className="mt-1.5 grid grid-cols-5 gap-px text-[9px] font-semibold uppercase tracking-[0.06em] text-[var(--ath-secondary)] sm:text-[10px] sm:tracking-[0.08em]">
                         {SECTION_PATH_STEPS.map((step, index) => (
-                            <li key={step.id} className="min-w-[6.5rem] sm:min-w-0">
+                            <li key={step.id} className="min-w-0">
                                 <button
                                     type="button"
                                     onClick={() => jumpToStage(step.id)}
-                                    className="flex min-h-8 w-full items-center gap-1.5 px-1 py-1 text-left transition-colors hover:text-[var(--ath-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
+                                    className="flex min-h-11 w-full flex-col items-center justify-center gap-0.5 px-0.5 py-1 text-center transition-colors hover:text-[var(--ath-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_36%,transparent)] sm:flex-row sm:gap-1.5 sm:px-1 sm:text-left"
                                     aria-label={`Jump to ${step.label}`}
                                 >
                                     <span className="shrink-0 font-mono text-[9px] text-[var(--ath-primary)]">0{index + 1}</span>
-                                    <span className="truncate text-[var(--ath-text)]">{step.label}</span>
+                                    <span className="w-full truncate text-[var(--ath-text)] sm:w-auto">{step.label}</span>
                                 </button>
                             </li>
                         ))}
                     </ol>
+                    <div className="mt-3 flex flex-wrap items-center justify-between gap-2 rounded-[var(--ath-radius-md)] bg-[color-mix(in_srgb,var(--ath-panel)_55%,transparent)] px-3 py-2">
+                        <div className="flex items-center gap-2 text-xs text-[var(--ath-muted)]">
+                            <span className="font-semibold text-[var(--ath-text)]">Reading flow</span>
+                            <span aria-live="polite">{isPaged ? `${readerPage + 1} / ${READER_PAGE_LABELS.length} · ${READER_PAGE_LABELS[readerPage]}` : 'Continuous scroll'}</span>
+                        </div>
+                        <div className="flex items-center gap-1 rounded-full border border-[var(--ath-line)] bg-[var(--ath-surface)] p-0.5" role="group" aria-label="Reading flow mode">
+                            <button
+                                type="button"
+                                onClick={() => setMode('scroll')}
+                                aria-pressed={!isPaged}
+                                className={`rounded-full px-2.5 py-1 text-[length:var(--ath-text-2xs)] font-semibold transition-colors ${!isPaged ? 'bg-[var(--ath-primary)] text-[var(--ath-on-primary)]' : 'text-[var(--ath-muted)] hover:text-[var(--ath-text)]'}`}
+                            >Scroll</button>
+                            <button
+                                type="button"
+                                onClick={() => setMode('paged')}
+                                aria-pressed={isPaged}
+                                className={`rounded-full px-2.5 py-1 text-[length:var(--ath-text-2xs)] font-semibold transition-colors ${isPaged ? 'bg-[var(--ath-primary)] text-[var(--ath-on-primary)]' : 'text-[var(--ath-muted)] hover:text-[var(--ath-text)]'}`}
+                            >Pages</button>
+                        </div>
+                    </div>
                 </div>
             </header>
 
-            <section id="section-reading" className="scroll-mt-28">
+            <section id="section-reading" className={`scroll-mt-28 ${isVisibleOnPage(0) ? '' : 'hidden'}`}>
                 <Suspense fallback={<PanelFallback label="Loading Reading Narrative..." />}>
                     <ReadingNarrative
                         content={content}
@@ -363,7 +441,7 @@ function ReadingPane({
                 </Suspense>
             </section>
 
-            {EMBEDDED_LABS[sectionId] && (() => {
+            {isVisibleOnPage(1) && EMBEDDED_LABS[sectionId] && (() => {
                 const EmbeddedLab = EMBEDDED_LABS[sectionId]
                 // Isolate the lab: a crash inside it (WebGL/model-viewer/iframe/math
                 // edge case) must degrade to a block-level fallback, not escalate to
@@ -377,7 +455,7 @@ function ReadingPane({
                 )
             })()}
 
-            {peerPulse && (
+            {isVisibleOnPage(1) && peerPulse && (
                 <PeerPulse
                     connected={peerPulse.connected}
                     peers={peerPulse.peers}
@@ -390,7 +468,7 @@ function ReadingPane({
             )}
 
             {(simulation || illustration) && (
-                <div className="mb-8 mt-10 space-y-4">
+                <div className={`mb-8 mt-10 space-y-4 ${isVisibleOnPage(1) ? '' : 'hidden'}`}>
                     {simulation && (
                         <div className="content-card overflow-hidden">
                             <button
@@ -459,7 +537,7 @@ function ReadingPane({
             )}
 
             {meta?.concept_ids?.length > 0 && (
-                <div className="mb-10">
+                <div className={`mb-10 ${isVisibleOnPage(1) ? '' : 'hidden'}`}>
                     <p className="editorial-kicker">Key Concepts</p>
                     <div className="mt-4 flex flex-wrap gap-2.5">
                         {meta.concept_ids.map((concept, i) => (
@@ -474,7 +552,7 @@ function ReadingPane({
                 </div>
             )}
 
-            <details id="section-reflect" className="group my-7 scroll-mt-28 border-y border-[var(--ath-line)]">
+            <details id="section-reflect" className={`group my-7 scroll-mt-28 border-y border-[var(--ath-line)] ${isVisibleOnPage(2) ? '' : 'hidden'}`}>
                 <summary className="flex cursor-pointer list-none items-center justify-between py-3 text-sm font-semibold text-[var(--ath-text)]">
                     <span><span className="mr-2 font-mono text-[10px] text-[var(--ath-primary)]">02</span>Reflect and discuss</span>
                     <span className="text-xs font-medium text-[var(--ath-muted)]">Optional · opens here <span className="ml-2 inline-block transition-transform group-open:rotate-90">›</span></span>
@@ -499,7 +577,7 @@ function ReadingPane({
             </details>
 
             {contentHasEmbeddedCheck ? (
-                <details id="section-check" className="group my-7 scroll-mt-28 border-y border-[var(--ath-line)]">
+                <details id="section-check" className={`group my-7 scroll-mt-28 border-y border-[var(--ath-line)] ${isVisibleOnPage(2) ? '' : 'hidden'}`}>
                     <summary className="flex cursor-pointer list-none items-center justify-between py-3 text-sm font-semibold text-[var(--ath-text)]">
                         <span><span className="mr-2 font-mono text-[10px] text-[var(--ath-primary)]">03</span>Additional knowledge check</span>
                         <span className="text-xs font-medium text-[var(--ath-muted)]">Optional · section checks already included <span className="ml-2 inline-block transition-transform group-open:rotate-90">›</span></span>
@@ -512,7 +590,7 @@ function ReadingPane({
                                 sectionId={sectionId}
                                 sectionTitle={meta?.title}
                                 contentVersion={sectionData?.content_version || null}
-                                learningObjectives={meta?.learning_objectives}
+                                learningObjectives={learningObjectives}
                                 conceptIds={meta?.concept_ids}
                                 onNeedsReview={onNeedsReview}
                             />
@@ -520,7 +598,7 @@ function ReadingPane({
                     </div>
                 </details>
             ) : (
-                <section id="section-check" className="scroll-mt-28">
+                <section id="section-check" className={`scroll-mt-28 ${isVisibleOnPage(2) ? '' : 'hidden'}`}>
                     <Suspense fallback={<PanelFallback label="Loading Knowledge Check..." />}>
                         <KnowledgeCheck
                             bioContext={content}
@@ -528,7 +606,7 @@ function ReadingPane({
                             sectionId={sectionId}
                             sectionTitle={meta?.title}
                             contentVersion={sectionData?.content_version || null}
-                            learningObjectives={meta?.learning_objectives}
+                            learningObjectives={learningObjectives}
                             conceptIds={meta?.concept_ids}
                             onNeedsReview={onNeedsReview}
                         />
@@ -536,7 +614,7 @@ function ReadingPane({
                 </section>
             )}
 
-            <details id="section-practice" className="group my-7 scroll-mt-28 border-y border-[var(--ath-line)]">
+            <details id="section-practice" className={`group my-7 scroll-mt-28 border-y border-[var(--ath-line)] ${isVisibleOnPage(3) ? '' : 'hidden'}`}>
                 <summary className="flex cursor-pointer list-none items-center justify-between py-3 text-sm font-semibold text-[var(--ath-text)]">
                     <span><span className="mr-2 font-mono text-[10px] text-[var(--ath-primary)]">04</span>Additional practice</span>
                     <span className="text-xs font-medium text-[var(--ath-muted)]">Open when you need another attempt <span className="ml-2 inline-block transition-transform group-open:rotate-90">›</span></span>
@@ -553,7 +631,7 @@ function ReadingPane({
                 </div>
             </details>
 
-            <section id="section-finish" className="mb-8 mt-9 scroll-mt-28 border-t border-[var(--ath-line)] pt-5">
+            <section id="section-finish" className={`mb-8 mt-9 scroll-mt-28 border-t border-[var(--ath-line)] pt-5 ${isVisibleOnPage(4) ? '' : 'hidden'}`}>
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                     <div>
                         <div className="flex items-center gap-2 text-[var(--ath-primary)]">
@@ -626,6 +704,26 @@ function ReadingPane({
                 </div>
                 <CalibrationPanel sectionId={sectionId} />
             </section>
+
+            {isPaged && (
+                <div className="mb-4 flex items-center justify-between gap-3 rounded-[var(--ath-radius-lg)] border border-[var(--ath-line)] bg-[var(--ath-surface)] px-4 py-3" data-testid="reader-page-navigator">
+                    <button
+                        type="button"
+                        onClick={() => goToReaderPage(readerPage - 1)}
+                        disabled={readerPage === 0}
+                        className="text-sm font-semibold text-[var(--ath-secondary)] transition-colors hover:text-[var(--ath-text)] disabled:cursor-not-allowed disabled:opacity-40"
+                    >← Previous page</button>
+                    <span className="text-xs font-semibold text-[var(--ath-primary)]" aria-live="polite">
+                        {String(readerPage + 1).padStart(2, '0')} · {String(READER_PAGE_LABELS.length).padStart(2, '0')}
+                    </span>
+                    <button
+                        type="button"
+                        onClick={() => goToReaderPage(readerPage + 1)}
+                        disabled={readerPage === READER_PAGE_LABELS.length - 1}
+                        className="text-sm font-semibold text-[var(--ath-primary)] transition-colors hover:text-[var(--ath-text)] disabled:cursor-not-allowed disabled:opacity-40"
+                    >Next page →</button>
+                </div>
+            )}
 
             <div className="mb-4 grid border-t border-[var(--ath-line)] pt-4 md:grid-cols-2 md:divide-x md:divide-[var(--ath-line)]">
                 <button

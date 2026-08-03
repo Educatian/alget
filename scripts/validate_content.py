@@ -195,6 +195,63 @@ def cross_checks(section_label, meta, practice, misc):
     problems = (practice or {}).get("problems", []) if isinstance(practice, dict) else []
     problem_ids = [p.get("id") for p in problems if isinstance(p, dict)]
 
+    # Every section objective has a stable ID, every problem links to at least
+    # one objective, and all references are bidirectionally consistent.
+    objectives = (meta or {}).get("learning_objectives", []) if isinstance(meta, dict) else []
+    objective_ids = [
+        objective.get("id") for objective in objectives
+        if isinstance(objective, dict) and objective.get("id")
+    ]
+    if not objectives:
+        hard.append(f"{section_label} [meta]: learning_objectives is empty")
+    elif len(objective_ids) != len(objectives):
+        hard.append(
+            f"{section_label} [meta]: every learning objective must be an object with an id"
+        )
+    if len(objective_ids) != len(set(objective_ids)):
+        hard.append(f"{section_label} [meta]: duplicate learning objective id")
+
+    assessed_objectives = set()
+    for problem in problems:
+        if not isinstance(problem, dict):
+            continue
+        links = problem.get("learning_objective_ids") or []
+        if not links:
+            hard.append(
+                f"{section_label} [practice]: problem '{problem.get('id')}' has no learning_objective_ids"
+            )
+            continue
+        for objective_id in links:
+            if objective_id not in objective_ids:
+                hard.append(
+                    f"{section_label} [practice]: problem '{problem.get('id')}' references "
+                    f"unknown learning objective '{objective_id}'"
+                )
+            else:
+                assessed_objectives.add(objective_id)
+    for objective_id in objective_ids:
+        if objective_id not in assessed_objectives:
+            hard.append(
+                f"{section_label} [alignment]: learning objective '{objective_id}' is not assessed"
+            )
+
+    explicit_map = (meta or {}).get("lo_practice_map") if isinstance(meta, dict) else None
+    if not isinstance(explicit_map, dict):
+        hard.append(f"{section_label} [meta]: lo_practice_map is missing")
+    else:
+        for objective_id in objective_ids:
+            mapped = explicit_map.get(objective_id) or []
+            if not mapped:
+                hard.append(
+                    f"{section_label} [meta]: lo_practice_map has no items for '{objective_id}'"
+                )
+            for problem_id in mapped:
+                if problem_id not in problem_ids:
+                    hard.append(
+                        f"{section_label} [meta]: lo_practice_map references unknown problem "
+                        f"'{problem_id}'"
+                    )
+
     # duplicate problem ids
     dups = [pid for pid, n in collections.Counter(problem_ids).items() if pid and n > 1]
     for d in dups:
@@ -315,10 +372,9 @@ def prereq_graph_checks(section_metas):
 def alignment_checks(section_label, meta, practice):
     """Constructive-alignment soft-check.
 
-    Fires only when (a) practice_ids are populated for the section AND (b) a
-    learning-objective linkage convention is present, so it produces no false
-    positives on the current corpus (LOs are plain strings with no id linkage and
-    most sections have empty practice_ids). Two linkage conventions are accepted:
+    This legacy soft-check remains for backward-compatible diagnostics. The
+    current corpus is governed by the hard bidirectional checks in cross_checks.
+    Two linkage conventions are accepted:
 
       * learning_objectives entries are objects carrying an `id`, and practice
         problems carry `learning_objective_id` / `learning_objective_ids` / `lo_id`.

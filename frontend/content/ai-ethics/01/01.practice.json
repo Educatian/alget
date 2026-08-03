@@ -20,7 +20,11 @@
       ],
       "correct_index": 1,
       "explanation": "The combination of scale, encoded ethical decisions, invisible stakeholders, and generative/autonomous behavior is what makes AI ethics a distinct subject.",
-      "misconception_id": "ai_ethics_is_just_general_ethics"
+      "misconception_id": "ai_ethics_is_just_general_ethics",
+      "learning_objective_ids": [
+        "ai-ethics-01-01-lo-01",
+        "ai-ethics-01-01-lo-03"
+      ]
     },
     {
       "id": "ai_ethics_stakeholders",
@@ -39,7 +43,10 @@
       ],
       "correct_index": 1,
       "explanation": "AI systems typically affect four stakeholder groups: decision-maker, decision subject, data subject, and bystanders. A user-only frame misses three of the four.",
-      "misconception_id": "user_only_stakeholder_frame"
+      "misconception_id": "user_only_stakeholder_frame",
+      "learning_objective_ids": [
+        "ai-ethics-01-01-lo-02"
+      ]
     },
     {
       "id": "ai_ethics_encoded_decisions",
@@ -58,7 +65,10 @@
       ],
       "correct_index": 2,
       "explanation": "Technical choices like target variable, data distribution, and threshold are themselves ethical decisions. The model encodes the policy.",
-      "misconception_id": "ethics_is_a_review_phase"
+      "misconception_id": "ethics_is_a_review_phase",
+      "learning_objective_ids": [
+        "ai-ethics-01-01-lo-04"
+      ]
     },
     {
       "id": "ai_ethics_law_vs_ethics",
@@ -77,7 +87,10 @@
       ],
       "correct_index": 1,
       "explanation": "Law operationalizes some ethical norms but leaves many open. Compliance is necessary, not sufficient.",
-      "misconception_id": "legal_implies_ethical"
+      "misconception_id": "legal_implies_ethical",
+      "learning_objective_ids": [
+        "ai-ethics-01-01-lo-04"
+      ]
     }
   ]
 }

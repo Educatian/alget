@@ -18,7 +18,10 @@
         "Write assessment items before defining the gap"
       ],
       "correct_index": 1,
-      "explanation": "The analysis phase begins by diagnosing the actual problem. Training is not the right answer if the issue is environmental, motivational, or operational."
+      "explanation": "The analysis phase begins by diagnosing the actual problem. Training is not the right answer if the issue is environmental, motivational, or operational.",
+      "learning_objective_ids": [
+        "inst-design-02-01-lo-03"
+      ]
     },
     {
       "id": "design_objectives_alignment",
@@ -38,7 +41,11 @@
         "They are mainly useful after the course has already launched"
       ],
       "correct_index": 1,
-      "explanation": "Objectives function like design constraints. They tell you what evidence of learning matters and keep instruction aligned."
+      "explanation": "Objectives function like design constraints. They tell you what evidence of learning matters and keep instruction aligned.",
+      "learning_objective_ids": [
+        "inst-design-02-01-lo-02",
+        "inst-design-02-01-lo-03"
+      ]
     },
     {
       "id": "learner_analysis_case",
@@ -57,7 +64,10 @@
         "How many quiz items should be printed on paper?"
       ],
       "correct_index": 1,
-      "explanation": "Learner analysis focuses on the audience: what they already know, what they need, and what conditions affect their success."
+      "explanation": "Learner analysis focuses on the audience: what they already know, what they need, and what conditions affect their success.",
+      "learning_objective_ids": [
+        "inst-design-02-01-lo-03"
+      ]
     },
     {
       "id": "task_analysis_function",
@@ -75,7 +85,10 @@
         "To replace all SME input with analytics"
       ],
       "correct_index": 0,
-      "explanation": "Task analysis breaks expert performance into teachable parts so instruction can target the real components of the work."
+      "explanation": "Task analysis breaks expert performance into teachable parts so instruction can target the real components of the work.",
+      "learning_objective_ids": [
+        "inst-design-02-01-lo-01"
+      ]
     }
   ]
 }

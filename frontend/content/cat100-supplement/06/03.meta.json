@@ -6,10 +6,22 @@
   "title": "GitHub Repository Setup",
   "description": "CAT 100 textbook section connecting github repository setup to GitHub Pages file tree with accessibility, privacy, and publishing checks, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Predict whether a given repository name publishes at the root user-site URL (username.github.io) or at a /repo subpath.",
-    "Explain why a committed credential must be rotated, not just deleted, and how .gitignore prevents the exposure in the first place.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    {
+      "id": "cat100-supplement-06-03-lo-01",
+      "statement": "Predict whether a given repository name publishes at the root user-site URL (username.github.io) or at a /repo subpath"
+    },
+    {
+      "id": "cat100-supplement-06-03-lo-02",
+      "statement": "Explain why a committed credential must be rotated, not just deleted, and how .gitignore prevents the exposure in the first place"
+    },
+    {
+      "id": "cat100-supplement-06-03-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat100-supplement-06-03-lo-04",
+      "statement": "Use feedback, support requests, and revision notes to improve the artifact before sharing it"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_github_pages_personal_website",
@@ -28,5 +40,21 @@
     "cat100_supplement_6_3_github_repository_setup_annotation_signal",
     "cat100_supplement_6_3_github_repository_setup_ai_boundary",
     "cat100_supplement_6_3_github_repository_setup_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-06-03-lo-01": [
+      "cat100_supplement_6_3_github_repository_setup_artifact_signal",
+      "cat100_supplement_6_3_github_repository_setup_annotation_signal"
+    ],
+    "cat100-supplement-06-03-lo-02": [
+      "cat100_supplement_6_3_github_repository_setup_calibration"
+    ],
+    "cat100-supplement-06-03-lo-03": [
+      "cat100_supplement_6_3_github_repository_setup_ai_boundary"
+    ],
+    "cat100-supplement-06-03-lo-04": [
+      "cat100_supplement_6_3_github_repository_setup_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

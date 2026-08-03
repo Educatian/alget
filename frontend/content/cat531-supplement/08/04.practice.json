@@ -20,6 +20,9 @@
         "rubric_design",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-08-04-lo-02"
       ]
     },
     {
@@ -40,6 +43,10 @@
       "concept_ids": [
         "rubric_design",
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-08-04-lo-01",
+        "cat531-supplement-08-04-lo-04"
       ]
     },
     {
@@ -60,6 +67,9 @@
       "concept_ids": [
         "rubric_design",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-08-04-lo-03"
       ]
     },
     {
@@ -80,6 +90,9 @@
       "concept_ids": [
         "rubric_design",
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-08-04-lo-02"
       ]
     }
   ]

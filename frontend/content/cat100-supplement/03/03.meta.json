@@ -6,10 +6,22 @@
   "title": "Charts That Answer Questions",
   "description": "CAT 100 textbook section connecting charts that answer questions to Excel pivot-table finding with unit labels, source note, and claim-first chart title, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Select a chart type (bar, line, pie, scatter) that matches the question the chart must answer.",
-    "Apply the zero-baseline rule so bar and column lengths stay proportional, and recognize a truncated value axis as misleading.",
-    "Write a claim-first chart title that states the finding the chart supports.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions."
+    {
+      "id": "cat100-supplement-03-03-lo-01",
+      "statement": "Select a chart type (bar, line, pie, scatter) that matches the question the chart must answer"
+    },
+    {
+      "id": "cat100-supplement-03-03-lo-02",
+      "statement": "Apply the zero-baseline rule so bar and column lengths stay proportional, and recognize a truncated value axis as misleading"
+    },
+    {
+      "id": "cat100-supplement-03-03-lo-03",
+      "statement": "Write a claim-first chart title that states the finding the chart supports"
+    },
+    {
+      "id": "cat100-supplement-03-03-lo-04",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_data_storytelling_with_excel",
@@ -27,6 +39,23 @@
     "cat100_supplement_3_3_charts_that_answer_questions_artifact_signal",
     "cat100_supplement_3_3_charts_that_answer_questions_annotation_signal",
     "cat100_supplement_3_3_charts_that_answer_questions_ai_boundary",
-    "cat100_supplement_3_3_charts_that_answer_questions_calibration"
-  ]
+    "cat100_supplement_3_3_charts_that_answer_questions_calibration",
+    "cat100-supplement_03_03_lo_04_direct_check"
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-03-03-lo-01": [
+      "cat100_supplement_3_3_charts_that_answer_questions_calibration",
+      "cat100_supplement_3_3_charts_that_answer_questions_artifact_signal"
+    ],
+    "cat100-supplement-03-03-lo-02": [
+      "cat100_supplement_3_3_charts_that_answer_questions_annotation_signal"
+    ],
+    "cat100-supplement-03-03-lo-03": [
+      "cat100_supplement_3_3_charts_that_answer_questions_ai_boundary"
+    ],
+    "cat100-supplement-03-03-lo-04": [
+      "cat100-supplement_03_03_lo_04_direct_check"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

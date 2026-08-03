@@ -1,32 +1,54 @@
 {
-    "course": "inst-design",
-    "chapter": "02",
-    "section": "04",
-    "chapter_title": "ID Process Models",
-    "title": "Module 4: Beyond ADDIE — Comparing ID Process Models",
-    "description": "Compare Dick and Carey, the Kemp model, Smith and Ragan, SAM, and Agile/Lean ID, then learn when to choose each.",
-    "learning_objectives": [
-        "Distinguish at least four ID process models by their distinguishing emphasis.",
-        "Match a project's risk, uncertainty, and audience to an appropriate model choice.",
-        "Explain why mature designers combine an alignment model with a delivery model."
+  "course": "inst-design",
+  "chapter": "02",
+  "section": "04",
+  "chapter_title": "ID Process Models",
+  "title": "Module 4: Beyond ADDIE — Comparing ID Process Models",
+  "description": "Compare Dick and Carey, the Kemp model, Smith and Ragan, SAM, and Agile/Lean ID, then learn when to choose each.",
+  "learning_objectives": [
+    {
+      "id": "inst-design-02-04-lo-01",
+      "statement": "Distinguish at least four ID process models by their distinguishing emphasis"
+    },
+    {
+      "id": "inst-design-02-04-lo-02",
+      "statement": "Match a project's risk, uncertainty, and audience to an appropriate model choice"
+    },
+    {
+      "id": "inst-design-02-04-lo-03",
+      "statement": "Explain why mature designers combine an alignment model with a delivery model"
+    }
+  ],
+  "concept_ids": [
+    "id_models",
+    "dick_and_carey_model",
+    "kemp_model",
+    "smith_and_ragan_model",
+    "successive_approximation_model",
+    "agile_id"
+  ],
+  "prereq_section_ids": [
+    "inst-design/02/03"
+  ],
+  "practice_ids": [
+    "id_models_dnc_strength",
+    "id_models_kemp_pattern",
+    "id_models_sam_fit",
+    "id_models_combine"
+  ],
+  "estimated_time_minutes": 12,
+  "order": 4,
+  "lo_practice_map": {
+    "inst-design-02-04-lo-01": [
+      "id_models_dnc_strength"
     ],
-    "concept_ids": [
-        "id_models",
-        "dick_and_carey_model",
-        "kemp_model",
-        "smith_and_ragan_model",
-        "successive_approximation_model",
-        "agile_id"
+    "inst-design-02-04-lo-02": [
+      "id_models_kemp_pattern",
+      "id_models_sam_fit"
     ],
-    "prereq_section_ids": [
-        "inst-design/02/03"
-    ],
-    "practice_ids": [
-        "id_models_dnc_strength",
-        "id_models_kemp_pattern",
-        "id_models_sam_fit",
-        "id_models_combine"
-    ],
-    "estimated_time_minutes": 12,
-    "order": 4
+    "inst-design-02-04-lo-03": [
+      "id_models_combine"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

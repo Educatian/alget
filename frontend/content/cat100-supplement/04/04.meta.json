@@ -1,32 +1,60 @@
 {
-    "course":  "cat100-supplement",
-    "chapter":  "04",
-    "section":  "04",
-    "chapter_title":  "AI Conversations as a Teacher",
-    "title":  "Classroom Communication Drafts",
-    "description":  "CAT 100 textbook section connecting classroom communication drafts to a before-after email revision, reader notes, support moments, and revision evidence.",
-    "learning_objectives":  [
-                                "Analyze how classroom communication drafts show a defensible decision in CAT 100.",
-                                "Distinguish artifact polish from evidence-based revision.",
-                                "Document a bounded AI/software support move with accepted and rejected suggestions.",
-                                "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
-                            ],
-    "concept_ids":  [
-                        "cat100_supplement_ai_conversations_as_a_teacher",
-                        "cat100_supplement_classroom_communication_drafts",
-                        "evidence_based_revision",
-                        "ai_supported_learning"
-                    ],
-    "estimated_time_minutes":  14,
-    "order":  4,
-    "top_tier_hardened":  false,
-    "prereq_section_ids":  [
-                               "cat100-supplement/04/03"
-                           ],
-    "practice_ids":  [
-                         "cat100_supplement_4_4_classroom_communication_drafts_artifact_signal",
-                         "cat100_supplement_4_4_classroom_communication_drafts_annotation_signal",
-                         "cat100_supplement_4_4_classroom_communication_drafts_ai_boundary",
-                         "cat100_supplement_4_4_classroom_communication_drafts_calibration"
-                     ]
+  "course": "cat100-supplement",
+  "chapter": "04",
+  "section": "04",
+  "chapter_title": "AI Conversations as a Teacher",
+  "title": "Classroom Communication Drafts",
+  "description": "CAT 100 textbook section connecting classroom communication drafts to a before-after email revision, reader notes, support moments, and revision evidence.",
+  "learning_objectives": [
+    {
+      "id": "cat100-supplement-04-04-lo-01",
+      "statement": "Analyze how classroom communication drafts show a defensible decision in CAT 100"
+    },
+    {
+      "id": "cat100-supplement-04-04-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "cat100-supplement-04-04-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat100-supplement-04-04-lo-04",
+      "statement": "Use feedback, support requests, and revision notes to improve the artifact before sharing it"
+    }
+  ],
+  "concept_ids": [
+    "cat100_supplement_ai_conversations_as_a_teacher",
+    "cat100_supplement_classroom_communication_drafts",
+    "evidence_based_revision",
+    "ai_supported_learning"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 4,
+  "top_tier_hardened": false,
+  "prereq_section_ids": [
+    "cat100-supplement/04/03"
+  ],
+  "practice_ids": [
+    "cat100_supplement_4_4_classroom_communication_drafts_artifact_signal",
+    "cat100_supplement_4_4_classroom_communication_drafts_annotation_signal",
+    "cat100_supplement_4_4_classroom_communication_drafts_ai_boundary",
+    "cat100_supplement_4_4_classroom_communication_drafts_calibration"
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-04-04-lo-01": [
+      "cat100_supplement_4_4_classroom_communication_drafts_artifact_signal",
+      "cat100_supplement_4_4_classroom_communication_drafts_annotation_signal"
+    ],
+    "cat100-supplement-04-04-lo-02": [
+      "cat100_supplement_4_4_classroom_communication_drafts_calibration"
+    ],
+    "cat100-supplement-04-04-lo-03": [
+      "cat100_supplement_4_4_classroom_communication_drafts_ai_boundary"
+    ],
+    "cat100-supplement-04-04-lo-04": [
+      "cat100_supplement_4_4_classroom_communication_drafts_artifact_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

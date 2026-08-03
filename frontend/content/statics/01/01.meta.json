@@ -1,27 +1,58 @@
 {
-    "title": "Equilibrium Conditions",
-    "chapter_title": "Equilibrium of Particles",
-    "course": "statics",
-    "chapter": "01",
-    "section": "01",
-    "estimated_time_minutes": 28,
-    "learning_objectives": [
-        "Define equilibrium for a particle",
-        "Apply the condition ΣF = 0 to solve for unknown forces",
-        "Construct and interpret free body diagrams",
-        "Calculate tension and reaction forces in particle-equilibrium problems"
+  "title": "Equilibrium Conditions",
+  "chapter_title": "Equilibrium of Particles",
+  "course": "statics",
+  "chapter": "01",
+  "section": "01",
+  "estimated_time_minutes": 28,
+  "learning_objectives": [
+    {
+      "id": "statics-01-01-lo-01",
+      "statement": "Define equilibrium for a particle"
+    },
+    {
+      "id": "statics-01-01-lo-02",
+      "statement": "Apply the condition ΣF = 0 to solve for unknown forces"
+    },
+    {
+      "id": "statics-01-01-lo-03",
+      "statement": "Construct and interpret free body diagrams"
+    },
+    {
+      "id": "statics-01-01-lo-04",
+      "statement": "Calculate tension and reaction forces in particle-equilibrium problems"
+    }
+  ],
+  "concept_ids": [
+    "equilibrium",
+    "sum_of_forces",
+    "free_body_diagram",
+    "tension"
+  ],
+  "prereq_section_ids": [],
+  "practice_ids": [
+    "statics_eq_vertical_tension",
+    "statics_eq_inclined_tension",
+    "statics_eq_component_rule",
+    "statics_eq_second_vertical",
+    "statics_01_01_lo_03_direct_check"
+  ],
+  "lo_practice_map": {
+    "statics-01-01-lo-01": [
+      "statics_eq_component_rule"
     ],
-    "concept_ids": [
-        "equilibrium",
-        "sum_of_forces",
-        "free_body_diagram",
-        "tension"
+    "statics-01-01-lo-02": [
+      "statics_eq_component_rule"
     ],
-    "prereq_section_ids": [],
-    "practice_ids": [
-        "statics_eq_vertical_tension",
-        "statics_eq_inclined_tension",
-        "statics_eq_component_rule",
-        "statics_eq_second_vertical"
+    "statics-01-01-lo-03": [
+      "statics_01_01_lo_03_direct_check"
+    ],
+    "statics-01-01-lo-04": [
+      "statics_eq_component_rule",
+      "statics_eq_vertical_tension",
+      "statics_eq_inclined_tension",
+      "statics_eq_second_vertical"
     ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

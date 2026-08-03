@@ -6,10 +6,22 @@
   "title": "Resume Claims and Evidence",
   "description": "CAT 100 textbook section connecting resume claims and evidence to resume before-after revision with truthful evidence, role fit, and AI-use note, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Convert a duty-list resume bullet into an accomplishment using the action + scope + result pattern, backed by a verifiable fact.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Diagnose which failure mode a weak bullet has (vague, inflated, or borrowed) and apply the matching fix without inventing facts."
+    {
+      "id": "cat100-supplement-02-01-lo-01",
+      "statement": "Convert a duty-list resume bullet into an accomplishment using the action + scope + result pattern, backed by a verifiable fact"
+    },
+    {
+      "id": "cat100-supplement-02-01-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "cat100-supplement-02-01-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat100-supplement-02-01-lo-04",
+      "statement": "Diagnose which failure mode a weak bullet has (vague, inflated, or borrowed) and apply the matching fix without inventing facts"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_resume_branding_and_ai_brainstorming",
@@ -28,5 +40,20 @@
     "cat100_supplement_2_1_resume_claims_and_evidence_annotation_signal",
     "cat100_supplement_2_1_resume_claims_and_evidence_ai_boundary",
     "cat100_supplement_2_1_resume_claims_and_evidence_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-02-01-lo-01": [
+      "cat100_supplement_2_1_resume_claims_and_evidence_artifact_signal"
+    ],
+    "cat100-supplement-02-01-lo-02": [
+      "cat100_supplement_2_1_resume_claims_and_evidence_calibration"
+    ],
+    "cat100-supplement-02-01-lo-03": [
+      "cat100_supplement_2_1_resume_claims_and_evidence_ai_boundary"
+    ],
+    "cat100-supplement-02-01-lo-04": [
+      "cat100_supplement_2_1_resume_claims_and_evidence_annotation_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

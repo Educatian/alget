@@ -3,10 +3,22 @@
   "title": "AI-Assisted Authoring With Codex",
   "description": "AIL 606 textbook section connecting AI-assisted authoring to a prompt specification that fixes every instructional decision, a pedagogy audit of the generated code, and a log of accepted and rejected suggestions, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Specify the instructional interaction precisely enough that the tool implements your design, not its defaults.",
-    "Keep design decisions (sequence, feedback, separation of content) with the human author.",
-    "Audit generated code for encoded pedagogy errors, not just for whether it runs.",
-    "Document each accepted and rejected suggestion with the instructional reason."
+    {
+      "id": "ail606-supplement-04-06-lo-01",
+      "statement": "Specify the instructional interaction precisely enough that the tool implements your design, not its defaults"
+    },
+    {
+      "id": "ail606-supplement-04-06-lo-02",
+      "statement": "Keep design decisions (sequence, feedback, separation of content) with the human author"
+    },
+    {
+      "id": "ail606-supplement-04-06-lo-03",
+      "statement": "Audit generated code for encoded pedagogy errors, not just for whether it runs"
+    },
+    {
+      "id": "ail606-supplement-04-06-lo-04",
+      "statement": "Document each accepted and rejected suggestion with the instructional reason"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_design_draft_and_theory_to_prototype_alignment",
@@ -28,5 +40,21 @@
     "ail606_supplement_4_6_ai_assisted_authoring_with_codex_annotation_signal",
     "ail606_supplement_4_6_ai_assisted_authoring_with_codex_ai_boundary",
     "ail606_supplement_4_6_ai_assisted_authoring_with_codex_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-04-06-lo-01": [
+      "ail606_supplement_4_6_ai_assisted_authoring_with_codex_artifact_signal",
+      "ail606_supplement_4_6_ai_assisted_authoring_with_codex_calibration"
+    ],
+    "ail606-supplement-04-06-lo-02": [
+      "ail606_supplement_4_6_ai_assisted_authoring_with_codex_annotation_signal"
+    ],
+    "ail606-supplement-04-06-lo-03": [
+      "ail606_supplement_4_6_ai_assisted_authoring_with_codex_artifact_signal"
+    ],
+    "ail606-supplement-04-06-lo-04": [
+      "ail606_supplement_4_6_ai_assisted_authoring_with_codex_ai_boundary"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

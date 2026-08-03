@@ -17,6 +17,10 @@
       "difficulty": "easy",
       "concept_ids": [
         "prompting_practice"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-03-06-lo-01",
+        "ail606-supplement-03-06-lo-02"
       ]
     },
     {
@@ -36,6 +40,9 @@
       "difficulty": "medium",
       "concept_ids": [
         "prompting_practice"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-03-06-lo-03"
       ]
     },
     {
@@ -55,6 +62,9 @@
       "difficulty": "medium",
       "concept_ids": [
         "prompting_practice"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-03-06-lo-01"
       ]
     },
     {
@@ -74,6 +84,9 @@
       "difficulty": "hard",
       "concept_ids": [
         "prompting_practice"
+      ],
+      "learning_objective_ids": [
+        "ail606-supplement-03-06-lo-04"
       ]
     }
   ]

@@ -18,7 +18,10 @@
       ],
       "correct_index": 1,
       "explanation": "Dick and Carey's signature contribution is alignment discipline across objectives, assessment, and strategy — drift between any two is treated as a defect to fix.",
-      "misconception_id": "addie_is_the_only_model"
+      "misconception_id": "addie_is_the_only_model",
+      "learning_objective_ids": [
+        "inst-design-02-04-lo-01"
+      ]
     },
     {
       "id": "id_models_kemp_pattern",
@@ -38,7 +41,10 @@
       ],
       "correct_index": 1,
       "explanation": "Kemp's non-linear arrangement reflects how real design work iterates and re-enters earlier elements as the project progresses.",
-      "misconception_id": "non_linear_means_unsystematic"
+      "misconception_id": "non_linear_means_unsystematic",
+      "learning_objective_ids": [
+        "inst-design-02-04-lo-02"
+      ]
     },
     {
       "id": "id_models_sam_fit",
@@ -58,7 +64,10 @@
       ],
       "correct_index": 1,
       "explanation": "SAM thrives where requirements are uncertain and rework is cheaper than over-specification. High-stakes regulated content is a poor SAM fit.",
-      "misconception_id": "sam_replaces_all_analysis"
+      "misconception_id": "sam_replaces_all_analysis",
+      "learning_objective_ids": [
+        "inst-design-02-04-lo-02"
+      ]
     },
     {
       "id": "id_models_combine",
@@ -78,7 +87,10 @@
       ],
       "correct_index": 1,
       "explanation": "Combining an alignment-focused model with an execution-focused model is the practical move that gives both rigor and speed.",
-      "misconception_id": "one_model_must_win"
+      "misconception_id": "one_model_must_win",
+      "learning_objective_ids": [
+        "inst-design-02-04-lo-03"
+      ]
     }
   ]
 }

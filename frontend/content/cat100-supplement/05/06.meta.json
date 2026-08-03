@@ -1,4 +1,4 @@
-﻿{
+{
   "course": "cat100-supplement",
   "chapter": "05",
   "section": "06",
@@ -6,10 +6,22 @@
   "title": "Citation and Attribution",
   "description": "CAT 100 textbook section on citation and attribution, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Apply the four attribution obligations (trace the source, check the license, verify the exact figure or quote location, disclose AI authorship) to a borrowed chart, a quotation, and an AI-generated asset.",
-    "Distinguish citation (making a borrowed fact or asset checkable) from AI-use disclosure (making your own slide's authorship honest), and distinguish public-domain government works from CC-licensed third-party assets.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    {
+      "id": "cat100-supplement-05-06-lo-01",
+      "statement": "Apply the four attribution obligations (trace the source, check the license, verify the exact figure or quote location, disclose AI authorship) to a borrowed chart, a quotation, and an AI-generated asset"
+    },
+    {
+      "id": "cat100-supplement-05-06-lo-02",
+      "statement": "Distinguish citation (making a borrowed fact or asset checkable) from AI-use disclosure (making your own slide's authorship honest), and distinguish public-domain government works from CC-licensed third-party assets"
+    },
+    {
+      "id": "cat100-supplement-05-06-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat100-supplement-05-06-lo-04",
+      "statement": "Use feedback, support requests, and revision notes to improve the artifact before sharing it"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_ai_enhanced_presentation_development",
@@ -28,5 +40,21 @@
     "cat100_supplement_5_6_citation_and_attribution_annotation_signal",
     "cat100_supplement_5_6_citation_and_attribution_ai_boundary",
     "cat100_supplement_5_6_citation_and_attribution_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-05-06-lo-01": [
+      "cat100_supplement_5_6_citation_and_attribution_annotation_signal",
+      "cat100_supplement_5_6_citation_and_attribution_ai_boundary"
+    ],
+    "cat100-supplement-05-06-lo-02": [
+      "cat100_supplement_5_6_citation_and_attribution_artifact_signal"
+    ],
+    "cat100-supplement-05-06-lo-03": [
+      "cat100_supplement_5_6_citation_and_attribution_calibration"
+    ],
+    "cat100-supplement-05-06-lo-04": [
+      "cat100_supplement_5_6_citation_and_attribution_annotation_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

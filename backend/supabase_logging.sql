@@ -59,7 +59,7 @@ CREATE POLICY "Users can manage own sessions" ON user_sessions
 -- 4. HELPER VIEW FOR SEQUENTIAL ANALYSIS
 -- ============================================================================
 DROP VIEW IF EXISTS session_event_sequence;
-CREATE OR REPLACE VIEW session_event_sequence AS
+CREATE OR REPLACE VIEW session_event_sequence WITH (security_invoker = true) AS
 SELECT 
     s.id AS session_id,
     s.user_id,
@@ -77,6 +77,7 @@ FROM user_sessions s
 JOIN event_logs e ON s.id = e.session_id
 ORDER BY s.id, e.sequence_num;
 
+REVOKE ALL ON session_event_sequence FROM anon;
 GRANT SELECT ON session_event_sequence TO authenticated;
 
 -- Success

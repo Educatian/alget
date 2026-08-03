@@ -1,4 +1,4 @@
-import { supabase } from './supabase'
+import { isSupabaseConfigured, supabase } from './supabase'
 import { safeLocalStorageGet, safeLocalStorageSet } from './browserStorage'
 import { readCohortLearner } from './cohortLearner'
 
@@ -152,7 +152,12 @@ export async function createSocialPresenceChannel({
             }
 
             await channel.track(snapshot)
-            await persistPresenceSnapshot(snapshot)
+            // Anonymous readers still participate in the Realtime channel, but
+            // Supabase RLS intentionally only permits authenticated users to
+            // persist rows. Avoid a noisy, expected insert failure for guests.
+            if (user?.id) {
+                await persistPresenceSnapshot(snapshot)
+            }
         }
     })
 
@@ -173,7 +178,9 @@ export async function updatePresenceSnapshot(channel, snapshot) {
         }
 
         await channel.track(nextSnapshot)
-        await persistPresenceSnapshot(nextSnapshot)
+        if (nextSnapshot.userId) {
+            await persistPresenceSnapshot(nextSnapshot)
+        }
     } catch (error) {
         console.warn('[Social] Presence update failed:', error)
     }
@@ -190,7 +197,7 @@ export async function disconnectSocialPresence(channel) {
 }
 
 export async function persistPresenceSnapshot(snapshot) {
-    if (!snapshot?.presenceKey || !snapshot?.sectionId || !snapshot?.alias) {
+    if (!isSupabaseConfigured || !snapshot?.presenceKey || !snapshot?.sectionId || !snapshot?.alias) {
         return false
     }
 
@@ -224,7 +231,7 @@ export async function persistPresenceSnapshot(snapshot) {
 }
 
 export async function clearPresenceSnapshot(presenceKey) {
-    if (!presenceKey) {
+    if (!isSupabaseConfigured || !presenceKey) {
         return
     }
 
@@ -256,6 +263,10 @@ export async function broadcastSocialSignal(channel, payload) {
 }
 
 export async function persistSocialSignal(signal) {
+    // Broadcast signals are useful to anonymous readers in-session, while the
+    // durable social_signals table is protected by authenticated-user RLS.
+    if (!isSupabaseConfigured || !signal?.user_id) return false
+
     try {
         const { error } = await supabase.from('social_signals').insert([signal])
         if (error) {
@@ -270,7 +281,7 @@ export async function persistSocialSignal(signal) {
 }
 
 export async function fetchSocialSignals(sectionId) {
-    if (!sectionId) return []
+    if (!isSupabaseConfigured || !sectionId) return []
 
     const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
 
@@ -296,6 +307,8 @@ export async function fetchSocialSignals(sectionId) {
 }
 
 export async function fetchLivePresenceSnapshots(windowMinutes = 5) {
+    if (!isSupabaseConfigured) return []
+
     const since = new Date(Date.now() - windowMinutes * 60 * 1000).toISOString()
 
     try {

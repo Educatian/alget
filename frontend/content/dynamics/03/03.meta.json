@@ -1,45 +1,75 @@
 {
-    "chapter": "03",
-    "section": "03",
-    "title": "Work-Energy for Rigid Bodies",
-    "course": "dynamics",
-    "learning_objectives": [
-        "Calculate rotational kinetic energy",
-        "Apply work-energy to rotating systems",
-        "Analyze rolling motion using energy",
-        "Combine translational and rotational energy"
+  "chapter": "03",
+  "section": "03",
+  "title": "Work-Energy for Rigid Bodies",
+  "course": "dynamics",
+  "learning_objectives": [
+    {
+      "id": "dynamics-03-03-lo-01",
+      "statement": "Calculate rotational kinetic energy"
+    },
+    {
+      "id": "dynamics-03-03-lo-02",
+      "statement": "Apply work-energy to rotating systems"
+    },
+    {
+      "id": "dynamics-03-03-lo-03",
+      "statement": "Analyze rolling motion using energy"
+    },
+    {
+      "id": "dynamics-03-03-lo-04",
+      "statement": "Combine translational and rotational energy"
+    }
+  ],
+  "concept_ids": [
+    "rotational_kinetic_energy",
+    "rolling_motion",
+    "conservation_of_energy"
+  ],
+  "physics_prereqs": [
+    "work_energy",
+    "rigid_body_kinetics"
+  ],
+  "math_prereqs": [
+    "integrals"
+  ],
+  "units_focus": [
+    "J",
+    "rad/s"
+  ],
+  "common_errors": [
+    "rolling_constraint",
+    "energy_terms"
+  ],
+  "estimated_time_minutes": 50,
+  "prereq_section_ids": [
+    "dynamics/03/02",
+    "dynamics/02/02"
+  ],
+  "practice_ids": [
+    "rolling_speed_numeric",
+    "rotational_ke_numeric",
+    "rigid_body_total_ke_numeric",
+    "rolling_constraint_concept",
+    "rolling_energy_steps",
+    "translation_rotation_concept"
+  ],
+  "lo_practice_map": {
+    "dynamics-03-03-lo-01": [
+      "rotational_ke_numeric",
+      "rigid_body_total_ke_numeric"
     ],
-    "concept_ids": [
-        "rotational_kinetic_energy",
-        "rolling_motion",
-        "conservation_of_energy"
+    "dynamics-03-03-lo-02": [
+      "rotational_ke_numeric"
     ],
-    "physics_prereqs": [
-        "work_energy",
-        "rigid_body_kinetics"
+    "dynamics-03-03-lo-03": [
+      "rolling_energy_steps",
+      "rolling_speed_numeric",
+      "translation_rotation_concept"
     ],
-    "math_prereqs": [
-        "integrals"
-    ],
-    "units_focus": [
-        "J",
-        "rad/s"
-    ],
-    "common_errors": [
-        "rolling_constraint",
-        "energy_terms"
-    ],
-    "estimated_time_minutes": 50,
-    "prereq_section_ids": [
-        "dynamics/03/02",
-        "dynamics/02/02"
-    ],
-    "practice_ids": [
-        "rolling_speed_numeric",
-        "rotational_ke_numeric",
-        "rigid_body_total_ke_numeric",
-        "rolling_constraint_concept",
-        "rolling_energy_steps",
-        "translation_rotation_concept"
+    "dynamics-03-03-lo-04": [
+      "rolling_constraint_concept"
     ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

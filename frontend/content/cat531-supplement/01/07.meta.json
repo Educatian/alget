@@ -6,10 +6,22 @@
   "chapter": "01",
   "section": "07",
   "learning_objectives": [
-    "Build a portfolio evidence entry that pairs an early and a later artifact, annotates the reasoning delta between them, and states the competency claim as a testable hypothesis.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible."
+    {
+      "id": "cat531-supplement-01-07-lo-01",
+      "statement": "Build a portfolio evidence entry that pairs an early and a later artifact, annotates the reasoning delta between them, and states the competency claim as a testable hypothesis"
+    },
+    {
+      "id": "cat531-supplement-01-07-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "cat531-supplement-01-07-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat531-supplement-01-07-lo-04",
+      "statement": "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible"
+    }
   ],
   "concept_ids": [
     "cat531_supplement_foundations_of_cbi_and_design_tensions",
@@ -28,5 +40,22 @@
   ],
   "estimated_time_minutes": 14,
   "order": 7,
-  "top_tier_hardened": false
+  "top_tier_hardened": false,
+  "lo_practice_map": {
+    "cat531-supplement-01-07-lo-01": [
+      "cat531_supplement_1_7_portfolio_evidence_setup_calibration",
+      "cat531_supplement_1_7_portfolio_evidence_setup_artifact_signal",
+      "cat531_supplement_1_7_portfolio_evidence_setup_ai_boundary"
+    ],
+    "cat531-supplement-01-07-lo-02": [
+      "cat531_supplement_1_7_portfolio_evidence_setup_annotation_signal"
+    ],
+    "cat531-supplement-01-07-lo-03": [
+      "cat531_supplement_1_7_portfolio_evidence_setup_annotation_signal"
+    ],
+    "cat531-supplement-01-07-lo-04": [
+      "cat531_supplement_1_7_portfolio_evidence_setup_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

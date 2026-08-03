@@ -6,10 +6,22 @@
   "title": "Presentation Purpose and Audience",
   "description": "CAT 100 textbook section connecting presentation purpose and audience to presentation storyboard with audience constraint and slide-level evidence, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Derive a presentation's slide count and slide-level evidence from a named audience's time budget, prior knowledge, and the decision they own.",
-    "Justify each slide by the audience question it answers, and identify at least one slide cut because it served no audience question.",
-    "Document which AI suggestion (such as adding a metric or a slide) you accepted versus rejected against the audience time budget.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    {
+      "id": "cat100-supplement-05-01-lo-01",
+      "statement": "Derive a presentation's slide count and slide-level evidence from a named audience's time budget, prior knowledge, and the decision they own"
+    },
+    {
+      "id": "cat100-supplement-05-01-lo-02",
+      "statement": "Justify each slide by the audience question it answers, and identify at least one slide cut because it served no audience question"
+    },
+    {
+      "id": "cat100-supplement-05-01-lo-03",
+      "statement": "Document which AI suggestion (such as adding a metric or a slide) you accepted versus rejected against the audience time budget"
+    },
+    {
+      "id": "cat100-supplement-05-01-lo-04",
+      "statement": "Use feedback, support requests, and revision notes to improve the artifact before sharing it"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_ai_enhanced_presentation_development",
@@ -28,5 +40,22 @@
     "cat100_supplement_5_1_presentation_purpose_and_audience_annotation_signal",
     "cat100_supplement_5_1_presentation_purpose_and_audience_ai_boundary",
     "cat100_supplement_5_1_presentation_purpose_and_audience_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-05-01-lo-01": [
+      "cat100_supplement_5_1_presentation_purpose_and_audience_annotation_signal",
+      "cat100_supplement_5_1_presentation_purpose_and_audience_calibration"
+    ],
+    "cat100-supplement-05-01-lo-02": [
+      "cat100_supplement_5_1_presentation_purpose_and_audience_ai_boundary"
+    ],
+    "cat100-supplement-05-01-lo-03": [
+      "cat100_supplement_5_1_presentation_purpose_and_audience_ai_boundary",
+      "cat100_supplement_5_1_presentation_purpose_and_audience_artifact_signal"
+    ],
+    "cat100-supplement-05-01-lo-04": [
+      "cat100_supplement_5_1_presentation_purpose_and_audience_annotation_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

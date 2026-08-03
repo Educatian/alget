@@ -3,10 +3,22 @@
   "title": "Cognitive Load Analysis in the Draft",
   "description": "AIL 606 textbook section connecting cognitive load analysis in the draft to cognitive load diagnosis table with intrinsic/extraneous/germane load evidence, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Classify a screen's demand into intrinsic, extraneous, and germane load with evidence.",
-    "Attribute each load source to a specific feature, not a vague overall feeling.",
-    "Prescribe the type-appropriate move (segment, remove, protect) for each source.",
-    "Recognize when a \"reduce load\" suggestion would actually cut germane processing."
+    {
+      "id": "ail606-supplement-04-04-lo-01",
+      "statement": "Classify a screen's demand into intrinsic, extraneous, and germane load with evidence"
+    },
+    {
+      "id": "ail606-supplement-04-04-lo-02",
+      "statement": "Attribute each load source to a specific feature, not a vague overall feeling"
+    },
+    {
+      "id": "ail606-supplement-04-04-lo-03",
+      "statement": "Prescribe the type-appropriate move (segment, remove, protect) for each source"
+    },
+    {
+      "id": "ail606-supplement-04-04-lo-04",
+      "statement": "Recognize when a \"reduce load\" suggestion would actually cut germane processing"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_design_draft_and_theory_to_prototype_alignment",
@@ -29,5 +41,22 @@
     "ail606_supplement_4_4_cognitive_load_analysis_in_the_draft_annotation_signal",
     "ail606_supplement_4_4_cognitive_load_analysis_in_the_draft_ai_boundary",
     "ail606_supplement_4_4_cognitive_load_analysis_in_the_draft_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-04-04-lo-01": [
+      "ail606_supplement_4_4_cognitive_load_analysis_in_the_draft_ai_boundary",
+      "ail606_supplement_4_4_cognitive_load_analysis_in_the_draft_artifact_signal",
+      "ail606_supplement_4_4_cognitive_load_analysis_in_the_draft_calibration"
+    ],
+    "ail606-supplement-04-04-lo-02": [
+      "ail606_supplement_4_4_cognitive_load_analysis_in_the_draft_ai_boundary"
+    ],
+    "ail606-supplement-04-04-lo-03": [
+      "ail606_supplement_4_4_cognitive_load_analysis_in_the_draft_ai_boundary"
+    ],
+    "ail606-supplement-04-04-lo-04": [
+      "ail606_supplement_4_4_cognitive_load_analysis_in_the_draft_annotation_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

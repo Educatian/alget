@@ -20,6 +20,9 @@
         "cat531_supplement_cost_and_sustainability",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-05-04-lo-04"
       ]
     },
     {
@@ -40,6 +43,9 @@
       "concept_ids": [
         "cat531_supplement_educational_technology_evaluation",
         "cat531_supplement_cost_and_sustainability"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-05-04-lo-04"
       ]
     },
     {
@@ -60,6 +66,9 @@
       "concept_ids": [
         "ai_supported_learning",
         "cat531_supplement_cost_and_sustainability"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-05-04-lo-01"
       ]
     },
     {
@@ -80,6 +89,21 @@
       "concept_ids": [
         "evidence_based_revision",
         "cat531_supplement_cost_and_sustainability"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-05-04-lo-01",
+        "cat531-supplement-05-04-lo-02"
+      ]
+    },
+    {
+      "id": "cat531-supplement_05_04_lo_03_direct_check",
+      "type": "conceptual",
+      "stem": "Provide a concise response that demonstrates this learning objective: Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "expected_answer": "The response accurately demonstrates the section objective: Document a bounded AI/software support move with accepted and rejected suggestions, using relevant section concepts, evidence, or calculations.",
+      "explanation": "This direct-evidence item is used when no closed-response item adequately samples the objective. Score it with the section concepts and worked examples as the rubric.",
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat531-supplement-05-04-lo-03"
       ]
     }
   ]

@@ -5,19 +5,34 @@
 <p align="center">
   <img src="assets/hero.png" alt="ALGET — Alabama Generative Intelligent Textbook system architecture" width="100%">
 </p>
-<p align="center"><em>System architecture at a glance — an open textbook on the desk feeds five course slabs (Statics · Dynamics · Bio-Inspired · Instructional Design · AI Ethics), which feed a multi-agent knowledge graph above. The crimson trace is one learner's active path.</em></p>
+<p align="center"><em>A generative textbook where source-grounded content, learner evidence, and accountable human decisions remain connected.</em></p>
+
+<p align="center">
+  <a href="https://github.com/Educatian/alget/actions/workflows/ci.yml"><img src="https://github.com/Educatian/alget/actions/workflows/ci.yml/badge.svg?branch=significant-upgrade" alt="CI status"></a>
+  <a href="https://alget.pages.dev"><img src="https://img.shields.io/badge/live-Cloudflare%20Pages-F38020?logo=cloudflare&logoColor=white" alt="Live on Cloudflare Pages"></a>
+  <img src="https://img.shields.io/badge/tests-241%20frontend%20%7C%20110%20backend-176B55" alt="Test counts">
+  <img src="https://img.shields.io/badge/runtime-human--governed-0F4C5C" alt="Human-governed agentic runtime">
+</p>
+
+<p align="center">
+  <a href="https://alget.pages.dev"><strong>Live app</strong></a> ·
+  <a href="#3-a-tour-of-the-surfaces"><strong>Product tour</strong></a> ·
+  <a href="#4-architecture"><strong>Architecture</strong></a> ·
+  <a href="docs/AGENTIC_LMS_RUNTIME.md"><strong>Agentic LMS contract</strong></a>
+  · <a href="docs/FACULTY_PARTNERSHIP_PIPELINE.md"><strong>Faculty partnership pipeline</strong></a>
+</p>
 
 ALGET pairs canonical engineering and instructional-design content with a learning environment that responds to each learner — pace, confusions, strong concepts, weak ones — while staying grounded in source material through a debate loop of specialist agents and a peer-review validator. It is the reference implementation for the system paper currently being prepared (`paper_draft.md`).
 
-```
-┌─────────────────┐         ┌──────────────────────┐         ┌──────────────────┐
-│  Vercel Frontend│  HTTPS  │   Render Backend     │  HTTPS  │  Supabase (PG13) │
-│  React 19 · Vite│ ──────▶ │  FastAPI · Gunicorn  │ ──────▶ │  RLS · Realtime  │
-│  Tailwind v4    │         │  15 LLM agents       │         │  6 SQL schemas   │
-└─────────────────┘         └──────────────────────┘         └──────────────────┘
-        ▲                            ▲
-        │ @supabase/supabase-js      │ google-genai (Gemini 2.0 Flash)
-        └────────────────────────────┘
+```mermaid
+flowchart LR
+    U["Learner · Instructor · Admin"] --> P["Cloudflare Pages<br/>React 19 · static course snapshots"]
+    P --> W["ALGET Worker<br/>AI · grading · agentic planning"]
+    P --> S["Supabase<br/>Auth · Postgres · RLS · Realtime"]
+    W --> O["OpenRouter<br/>Gemini 2.5 Flash"]
+    W --> A["Adaptive-policy Worker<br/>evidence → bounded next action"]
+    W --> S
+    F["FastAPI parity runtime<br/>local development · research · contract tests"] -.-> W
 ```
 
 ---
@@ -25,7 +40,7 @@ ALGET pairs canonical engineering and instructional-design content with a learni
 ## Table of contents
 
 1. [What ALGET is](#1-what-alget-is)
-2. [Five courses](#2-five-courses)
+2. [Eight courses](#2-eight-courses)
 3. [A tour of the surfaces](#3-a-tour-of-the-surfaces)
 4. [Architecture](#4-architecture)
 5. [Multi-agent system](#5-multi-agent-system)
@@ -44,7 +59,7 @@ ALGET pairs canonical engineering and instructional-design content with a learni
 
 ## 1. What ALGET is
 
-ALGET is **not a chatbot wrapped around a textbook**. It is a generative intelligent textbook (GIT) — meaning the content itself is composed at the moment of learning, constrained by a RAG-grounded source corpus, validated by a peer-review agent, and shaped by an evolving model of what each learner has mastered. Three commitments drive the design:
+ALGET is **not a chatbot wrapped around a textbook**. It combines a versioned canonical course corpus with source-grounded explanations, practice, scenarios, and plans generated at the point of need. Every adaptive or agentic proposal is shaped by inspectable learning evidence and bounded by explicit learner, instructor, or administrator authority. Three commitments drive the design:
 
 - **Learner variability is the design condition** (UDL). Multiple paths through the same idea are first-class.
 - **Active retrieval, not passive reading.** Embedded checks, generated practice, and spaced retention are the load-bearing surfaces.
@@ -54,17 +69,20 @@ This repository contains: the running app, the content corpus, the multi-agent b
 
 ---
 
-## 2. Five courses
+## 2. Eight courses
 
 | Course | Anchor textbook / framework | Sections |
 |---|---|---|
-| **Engineering Statics** | Hibbeler, *Engineering Mechanics: Statics* | 4 parts |
-| **Engineering Dynamics** | Beer, Johnston et al., *Vector Mechanics for Engineers* | 10 chapters |
-| **Bio-Inspired Design** | Benyus's *Biomimicry*; Vincent, Bhushan | 7 chapters |
-| **Foundations of Instructional Design** | Smith & Ragan; Gagné, Briggs & Wager; Reiser & Dempsey | 8 chapters |
-| **AI & Ethics** | NIST AI RMF + EU AI Act + Anthropic / NIST RMF crosswalk | seeded |
+| **Engineering Statics** | Hibbeler, *Engineering Mechanics: Statics* | 6 chapters / 14 sections |
+| **Engineering Dynamics** | Beer, Johnston et al., *Vector Mechanics for Engineers* | 3 chapters / 11 sections |
+| **Bio-Inspired Design** | Benyus's *Biomimicry*; Vincent, Bhushan | 8 chapters / 10 sections |
+| **Foundations of Instructional Design** | Smith & Ragan; Gagné, Briggs & Wager; Reiser & Dempsey | 8 chapters / 17 sections |
+| **AI & Ethics** | NIST AI RMF + EU AI Act crosswalk | 6 chapters / 12 sections |
+| **AIL 606 Supplement** | Multimedia learning, LXD, AI-assisted authoring | 8 chapters / 64 sections |
+| **CAT 531 Supplement** | Technology and teaching, policy, equity, evaluation | 8 chapters / 64 sections |
+| **CAT 100 Supplement** | Digital citizenship, Excel, presentations, portfolios | 8 chapters / 64 sections |
 
-All section narratives ship as MDX with sidecar JSON for learning objectives, misconceptions, and practice items. Total ~60+ sections, ~14.5 hours of paced learning per the content guide.
+All section narratives ship as MDX with sidecar JSON for stable learning objectives, misconceptions, and aligned practice items. The canonical corpus contains 256 sections; app catalog counts are generated from the same source files at build time.
 
 ```
 frontend/content/<course>/<chapter>/<section>/
@@ -79,49 +97,35 @@ frontend/content/<course>/<chapter>/<section>/
 
 ## 3. A tour of the surfaces
 
-Real screenshots captured from the running app via Playwright (1280×800 @ 2× DPR, see `capture_screenshots.py` + `capture_highlight.py`).
+Real screenshots captured from the current app via Playwright (1280×800 @ 2× DPR). Agentic examples are deterministic fixtures generated by `capture_screenshots.py`; they contain no learner records.
 
 <table>
 <tr>
 <td width="33%" align="center">
-  <a href="screenshots/02_course_chooser.png"><img src="screenshots/02_course_chooser.png" alt="Course chooser at /learn"></a>
-  <br><sub><b>Course chooser</b> — <code>/learn</code><br>five tracks behind access codes</sub>
+  <a href="screenshots/03_book_reader.png"><img src="screenshots/03_book_reader.png" alt="ALGET reader with course navigation, live presence, and an embedded decision activity"></a>
+  <br><sub><b>Reading workspace</b> — <code>/book/&lt;course&gt;/&lt;ch&gt;/&lt;sec&gt;</code><br>source-grounded narrative · inline decisions · live presence</sub>
 </td>
 <td width="33%" align="center">
-  <a href="screenshots/03_book_reader.png"><img src="screenshots/03_book_reader.png" alt="Reader at /book/bio-inspired/01/03"></a>
-  <br><sub><b>Reader</b> — <code>/book/&lt;course&gt;/&lt;ch&gt;/&lt;sec&gt;</code><br>narrative + inline checks + objectives</sub>
+  <a href="screenshots/06_student_dashboard.png"><img src="screenshots/06_student_dashboard.png" alt="Learner dashboard showing an evidence-based weekly plan awaiting learner approval"></a>
+  <br><sub><b>Learner-owned planner</b> — <code>/dashboard</code><br>mastery evidence → editable plan → explicit approval</sub>
 </td>
 <td width="33%" align="center">
-  <a href="screenshots/04_intel_rail_open.png"><img src="screenshots/04_intel_rail_open.png" alt="Reader with BigAL Support Rail open"></a>
-  <br><sub><b>Intel Rail</b><br>Explain · Reframe · Practice · Ask</sub>
+  <a href="screenshots/07_instructor_dashboard.png"><img src="screenshots/07_instructor_dashboard.png" alt="Instructor intervention queue showing evidence, proposal, and human approval controls"></a>
+  <br><sub><b>Instructor intervention queue</b> — <code>/instructor</code><br>evidence → bounded proposal → human decision</sub>
 </td>
 </tr>
 <tr>
 <td width="33%" align="center">
-  <a href="screenshots/05_chat_widget.png"><img src="screenshots/05_chat_widget.png" alt="BigAL floating tutor chat"></a>
-  <br><sub><b>BigAL chat</b><br>floating tutor; Socratic by design</sub>
+  <a href="screenshots/02_course_chooser.png"><img src="screenshots/02_course_chooser.png" alt="Course chooser at /learn"></a>
+  <br><sub><b>Course pathways</b> — <code>/learn</code><br>eight engineering and education pathways</sub>
 </td>
 <td width="33%" align="center">
   <a href="screenshots/09_highlight_popover.png"><img src="screenshots/09_highlight_popover.png" alt="Highlight popover with Highlight, Add Note, Ask AI"></a>
-  <br><sub><b>Selection popover</b><br>Highlight · Add Note · Ask AI</sub>
-</td>
-<td width="33%" align="center">
-  <a href="screenshots/06_student_dashboard.png"><img src="screenshots/06_student_dashboard.png" alt="Student dashboard"></a>
-  <br><sub><b>Student dashboard</b> — <code>/dashboard</code><br>weakest concepts · misconceptions · live map</sub>
-</td>
-</tr>
-<tr>
-<td width="33%" align="center">
-  <a href="screenshots/07_instructor_dashboard.png"><img src="screenshots/07_instructor_dashboard.png" alt="Instructor cohort heatmap"></a>
-  <br><sub><b>Instructor dashboard</b> — <code>/instructor</code><br>cohort heatmap · at-risk · hot-spots</sub>
+  <br><sub><b>Social annotation</b><br>Highlight · Add Note · Ask AI · evidence trace</sub>
 </td>
 <td width="33%" align="center">
   <a href="screenshots/08_analytics.png"><img src="screenshots/08_analytics.png" alt="Research console"></a>
-  <br><sub><b>Research console</b> — <code>/analytics</code><br>RCT-grade telemetry · 8 metrics</sub>
-</td>
-<td width="33%" align="center">
-  <a href="screenshots/01_landing.png"><img src="screenshots/01_landing.png" alt="Landing page"></a>
-  <br><sub><b>Landing</b> — <code>/</code><br>access entry; demo mode available</sub>
+  <br><sub><b>Research console</b> — <code>/analytics</code><br>RCT-grade telemetry · decision provenance · retention</sub>
 </td>
 </tr>
 </table>
@@ -132,7 +136,52 @@ Real screenshots captured from the running app via Playwright (1280×800 @ 2× D
 
 ## 4. Architecture
 
-### 4.1 API surface (FastAPI)
+### 4.1 Production topology
+
+```mermaid
+flowchart TB
+    subgraph Client["Cloudflare Pages · browser"]
+      UI["React learning workspace"]
+      C["256 static MDX-derived content snapshots"]
+      L["Local-first demo fallback"]
+    end
+
+    subgraph Edge["Cloudflare edge"]
+      W["alget-llm Worker"]
+      AP["adaptive-recommendation Worker"]
+      KV["Adaptation policy KV"]
+    end
+
+    subgraph Data["Supabase"]
+      Auth["Auth"]
+      DB["Postgres + RLS"]
+      RT["Realtime presence"]
+      RPC["Role-checked workflow RPCs"]
+    end
+
+    UI --> C
+    UI --> W
+    UI --> Auth
+    UI --> DB
+    UI --> RT
+    W --> AP
+    W --> KV
+    W --> OR["OpenRouter · Gemini 2.5 Flash"]
+    W --> RPC
+    RPC --> DB
+    L -. "offline/demo parity" .-> UI
+    PY["FastAPI + pytest"] -. "shared contracts for local development and research validation" .-> W
+```
+
+| Layer | Production responsibility | Failure boundary |
+|---|---|---|
+| **Cloudflare Pages** | SPA, fonts, diagrams, reference images, immutable course JSON | Core reading remains available without an AI response. |
+| **ALGET Worker** | Tutor calls, deterministic grading, agentic plan proposals, Google Docs/PDF ingestion APIs | Returns bounded fallbacks; it does not own learner authorization state. |
+| **Adaptive Worker + KV** | Low-latency support selection and versioned course policy | Emergency pause suppresses interventions without blocking reading. |
+| **Supabase** | Identity, RLS-governed records, Realtime, workflow events and reviewed RPCs | Tables are read-only to clients where approval integrity matters. |
+| **FastAPI parity runtime** | Local development, research experiments, Python contract tests | Not required for the Cloudflare production reading path. |
+
+### 4.2 Dynamic API surface (Worker + FastAPI parity)
 
 
 
@@ -148,9 +197,14 @@ Real screenshots captured from the running app via Playwright (1280×800 @ 2× D
 | `/api/book/{course}/toc` | GET | Course TOC |
 | `/api/diagnostic/questions/{course_id}` | GET | Pre-test items |
 | `/api/access/validate` | POST | Scope-gated unlock (engineering / education / researcher) |
+| `/api/agentic/tools` | GET | Governed tool registry with risk and approval requirements |
+| `/api/agentic/tools/evaluate` | POST | Default-deny permission and execution policy check |
+| `/api/agentic/workflows/transition-check` | POST | Validate a workflow state transition before persistence |
+| `/api/agentic/learner-plan` | POST | Draft an evidence-linked, learner-approved study plan |
+| `/api/agentic/interventions/propose` | POST | Draft a bounded instructor intervention; never sends or grades |
 | `/api/chat`, `/api/log-events` | POST | BigAL chat + telemetry beacon |
 
-### 4.2 Frontend routes (React Router 7)
+### 4.3 Frontend routes (React Router 7)
 
 | Route | Component | Gate |
 |---|---|---|
@@ -159,12 +213,13 @@ Real screenshots captured from the running app via Playwright (1280×800 @ 2× D
 | `/diagnostic/:course` | DiagnosticAssessment | user |
 | `/book/:course` | BookLayout (TOC) | user |
 | `/book/:course/:chapter/:section` | BookLayout (reader + IntelRail + ChatWidget) | user |
-| `/dashboard` | StudentDashboard | user |
-| `/instructor` | InstructorDashboard (cohort heatmap) | `alget_instructor_access` |
+| `/dashboard` | StudentDashboard + learner-owned study planner | user |
+| `/instructor` | Course-scoped faculty pilot, approved reader publication, evidence brief, impact report, intervention queue | server-issued `instructor`, `course_admin`, or `admin` role + course-assignment RLS |
+| `/admin` | AdminControlPlane (ingestion, agents, policy, audit) | admin / course admin |
 | `/lab` | GenerativeLab (CurriculumAgent module gen) | researcher |
 | `/analytics` | AnalyticsDashboard (research console) | researcher |
 
-### 4.3 Data model — `backend/supabase_*.sql`
+### 4.4 Data and approval model
 
 Six SQL schemas, all RLS-gated:
 
@@ -175,7 +230,27 @@ Six SQL schemas, all RLS-gated:
 - `supabase_social_features.sql` — social_presence, collaboration_groups, highlight_reactions, highlight_replies, kindred-readers view
 - `supabase_all_in_one.sql` — single bundled deploy file
 
+The timestamped migration `supabase/migrations/20260730100000_agentic_lms_runtime.sql` adds durable workflows, workflow events, learner goals/plans, and instructor intervention review queues. Proposals are separated from effects: learner plans and instructor interventions remain `awaiting_approval` until the accountable person acts. Messaging, publishing, enrollment changes, and final-grade execution are not exposed as autonomous actions. See `docs/AGENTIC_LMS_RUNTIME.md`.
+
+The roadmap migration `supabase/migrations/20260802000000_agentic_roadmap_contracts.sql` adds durable runtime packages, agent decision ledgers, LTI 1.3/Caliper/OneRoster/CASE event envelopes, model registry, incident response, privacy requests, and evaluation manifests. The API contract is exposed at `/api/roadmap/*` on FastAPI and `/roadmap/*` on the Cloudflare Worker. Production models require an approver; privacy deletion requires explicit confirmation; generated course packages remain shadow drafts until human approval.
+
 The four-way join `experiment_assignments × interaction_events × intervention_traces/recommendation_decisions × evaluation_runs/evaluation_responses` is what makes RCT, off-policy evaluation, item diagnostics, and forgetting-rate estimation tractable directly from production data.
+
+### 4.5 Agentic workflow lifecycle
+
+```mermaid
+stateDiagram-v2
+    [*] --> Draft
+    Draft --> AwaitingApproval: evidence-linked proposal
+    AwaitingApproval --> Active: accountable person approves
+    AwaitingApproval --> Cancelled: learner cancels / instructor rejects
+    Active --> Paused: learner pauses
+    Paused --> Active: learner resumes
+    Active --> Completed: bounded plan finishes
+    Active --> Cancelled: accountable person stops it
+```
+
+Every transition writes an `agent_workflow_events` record. Approval changes workflow state only: autonomous messaging, publishing, enrollment changes, and final-grade execution remain unavailable by policy.
 
 ---
 
@@ -330,9 +405,12 @@ backend/supabase_logging.sql
 backend/supabase_learning_features.sql
 backend/supabase_research_schema.sql
 backend/supabase_social_features.sql
+supabase/migrations/20260730090000_admin_control_plane.sql
+supabase/migrations/20260730100000_agentic_lms_runtime.sql
+supabase/migrations/20260802000000_agentic_roadmap_contracts.sql
 ```
 
-Or run `backend/supabase_all_in_one.sql` for a single-shot deploy. This bundle is the complete, idempotent superset of every feature schema (all 37 tables, including the social-annotation, highlight-social, RAG, and artifact-revision-score layers), so you do not need to run the individual files alongside it. Every table is created with `if not exists` guards, has row-level security enabled, and carries owner plus visibility policies (re-running drops and recreates each policy safely). Use the per-file list above only if you want to apply a single layer in isolation.
+The timestamped migrations add the administrative, agentic, and roadmap runtime layers and must be applied after the legacy schema bundle. Every new table is RLS-gated; security-definer RPCs and API boundaries perform identity and role checks before creating, reviewing, exporting, or deleting records.
 
 ### 9.5 Demo flow
 
@@ -460,6 +538,7 @@ alget/
 | `paper_draft.md` | researchers | system paper in progress |
 | `backend/SYSTEM_DESIGN_HISTORY.md` | maintainers | 5-stage evolution narrative |
 | `backend/agents/MULTI_AGENT_GENERATIVE_DESIGN.md` | maintainers | per-agent contract + debate-loop spec |
+| `docs/AGENTIC_LMS_RUNTIME.md` | maintainers / reviewers | workflow states, permission policy, human approval boundaries, deployment checks |
 | `backend/engineering_text_fidelity_rubric.md` | content authors | 6-dim scoring rubric (concept clarity, quantitative rigor, eng-translation, constraint awareness, learner support, voice) |
 | `backend/content_audit_report.md` + `content_priority_plan.md` | content authors | gap audit (42 sections, severity 0) + Tier 1–4 plan |
 | `REMOTION_ANIMATION_MAP.md` + `NOTEBOOKLM_REMOTION_INTEGRATION.md` | maintainers | per-section animation priority + audio/video pipeline |
@@ -469,21 +548,21 @@ alget/
 
 ## 12. Deployment
 
-### 12.1 Backend — Render
+### 12.1 Frontend and static content — Cloudflare Pages
 
-`render.yaml` → `gunicorn server:app -w 1 -k uvicorn.workers.UvicornWorker --timeout 120`. Single worker is intentional: free tier memory ceiling + in-memory RAG index consistency. Required env vars: `GEMINI_API_KEY`, optional access codes (see `DEPLOYMENT_ENV.md`).
+The Vite production build publishes the React SPA, security headers, SPA fallback, course snapshots, reference images, and fonts to `https://alget.pages.dev`. Reading does not wait for a model or a Python server.
 
-### 12.2 Frontend — Vercel
+### 12.2 Dynamic compute — Cloudflare Workers
 
-`vercel.json` provides SPA fallback + (legacy) `/api/*` rewrite. Production build calls Render directly via `apiConfig.js` → `https://alget.onrender.com/api` to bypass Vercel's 15-s timeout (commit `fd82b97`).
+`cloudflare/llm-proxy` serves tutor, grading, research-validation, admin/PDF, and governed agentic-planning endpoints at `https://alget-llm.jewoong-moon.workers.dev`. The adaptive recommendation policy runs in a second Worker through a service binding; policy versions and emergency controls use KV.
 
-### 12.3 Cold-start mitigation
+### 12.3 Identity and durable state — Supabase
 
-`App.jsx:36-37` pings `/book/inst-design/toc` on mount to wake the Render free-tier worker before the user clicks anything. Cold-start latency: ~10–30 s when the in-memory RAG index re-builds.
+Supabase provides Auth, PostgreSQL, Realtime, and reviewed workflow RPCs. RLS is enabled on every application table. Agentic workflow tables expose read-only client grants; state changes occur through role-checked RPCs that append audit events.
 
-### 12.4 Database — Supabase
+### 12.4 Release order
 
-PostgreSQL 13 + Realtime. RLS active on every table. `learner_concept_state` is mirrored from BKT on every grade call (commit `c3ec51c`).
+Apply reviewed forward migrations first, then deploy Workers before Pages. The blocking gate is `node scripts/release_readiness.mjs`; the operational sequence and rollback evidence are defined in [`RELEASE_RUNBOOK.md`](RELEASE_RUNBOOK.md).
 
 ---
 
@@ -491,11 +570,13 @@ PostgreSQL 13 + Realtime. RLS active on every table. `learner_concept_state` is 
 
 **Frontend** — React 19.2 · React Router 7.11 · Vite 7.2 · Tailwind v4 (`@tailwindcss/vite`) · `react-markdown 10.1` + `remark-math` + `rehype-katex` + KaTeX 0.16 · `@supabase/supabase-js 2.89` · Radix UI (popover, tooltip) · `lucide-react` · `@remotion/player` 4.0 · Vitest 3.2 + Testing Library + jsdom.
 
-**Backend** — Python 3.11 · FastAPI · Pydantic v2 · Gunicorn + Uvicorn workers · `google-genai` (Gemini 2.0 Flash) · pytest 9.
+**Edge runtime** — Cloudflare Workers · Wrangler 4 · service bindings · KV · OpenRouter API · `unpdf`.
+
+**Python parity/runtime research** — Python 3.11 · FastAPI · Pydantic v2 · Uvicorn · 15 specialist-agent modules · pytest 9.
 
 **Data** — Supabase (PostgreSQL 13, Realtime, RLS).
 
-**LLM** — Gemini 2.0 Flash, `response_mime_type="application/json"` for structured output, per-agent temperatures (`ValidationAgent=0.3` strictest, `BiologyAgent=0.7`, `NarrativeAgent=0.8` most generative).
+**LLM** — Gemini 2.5 Flash through OpenRouter in production. Structured outputs, bounded prompts, deterministic policy checks, and human approval gates constrain model-generated proposals.
 
 ---
 

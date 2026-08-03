@@ -129,6 +129,21 @@ async function persistCohortRosterRow(authUser, profile) {
     }
 }
 
+export async function markInvitedLearnerActive(authUser) {
+    if (!authUser?.id || !isSupabaseConfigured) return
+    const metadata = authUser.user_metadata || {}
+    if (!metadata.course_id || !metadata.cohort_id || !metadata.learner_hash) return
+    const { error } = await supabase
+        .from('cohort_learners')
+        .update({
+            status: 'active',
+            accepted_at: new Date().toISOString(),
+            last_seen_at: new Date().toISOString(),
+        })
+        .eq('user_id', authUser.id)
+    if (error) console.warn('[CohortLearner] Could not activate invited learner:', error)
+}
+
 function buildDisplayUser(authUser, profile) {
     return {
         ...(authUser || {}),

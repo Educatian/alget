@@ -1,50 +1,62 @@
 {
-    "problems": [
-        {
-            "id": "relative_1d",
-            "type": "numeric",
-            "stem": "Car A moves east at 30 m/s, Car B moves east at 20 m/s. Find the velocity of B relative to A.",
-            "final_answer": {
-                "value": -10,
-                "unit": "m/s",
-                "tolerance": 0.1
-            },
-            "difficulty": "easy",
-            "concept_ids": [
-                "relative_velocity",
-                "galilean_transform"
-            ]
-        },
-        {
-            "id": "relative_approach",
-            "type": "numeric",
-            "stem": "Train A moves north at 40 m/s, Train B moves south at 35 m/s. At what speed do they approach each other?",
-            "final_answer": {
-                "value": 75,
-                "unit": "m/s",
-                "tolerance": 0.1
-            },
-            "difficulty": "medium",
-            "concept_ids": [
-                "relative_velocity",
-                "reference_frame"
-            ]
-        },
-        {
-            "id": "relative_2d",
-            "type": "numeric",
-            "stem": "An airplane has airspeed 250 m/s north. Wind is 80 m/s east. Find the ground speed magnitude.",
-            "final_answer": {
-                "value": 262.5,
-                "unit": "m/s",
-                "tolerance": 1
-            },
-            "difficulty": "hard",
-            "concept_ids": [
-                "relative_velocity",
-                "reference_frame",
-                "galilean_transform"
-            ]
-        }
-    ]
+  "problems": [
+    {
+      "id": "relative_1d",
+      "type": "numeric",
+      "stem": "Car A moves east at 30 m/s, Car B moves east at 20 m/s. Find the velocity of B relative to A.",
+      "final_answer": {
+        "value": -10,
+        "unit": "m/s",
+        "tolerance": 0.1
+      },
+      "difficulty": "easy",
+      "concept_ids": [
+        "relative_velocity",
+        "galilean_transform"
+      ],
+      "learning_objective_ids": [
+        "dynamics-01-03-lo-01",
+        "dynamics-01-03-lo-02",
+        "dynamics-01-03-lo-03",
+        "dynamics-01-03-lo-04"
+      ]
+    },
+    {
+      "id": "relative_approach",
+      "type": "numeric",
+      "stem": "Train A moves north at 40 m/s, Train B moves south at 35 m/s. At what speed do they approach each other?",
+      "final_answer": {
+        "value": 75,
+        "unit": "m/s",
+        "tolerance": 0.1
+      },
+      "difficulty": "medium",
+      "concept_ids": [
+        "relative_velocity",
+        "reference_frame"
+      ],
+      "learning_objective_ids": [
+        "dynamics-01-03-lo-01"
+      ]
+    },
+    {
+      "id": "relative_2d",
+      "type": "numeric",
+      "stem": "An airplane has airspeed 250 m/s north. Wind is 80 m/s east. Find the ground speed magnitude.",
+      "final_answer": {
+        "value": 262.5,
+        "unit": "m/s",
+        "tolerance": 1
+      },
+      "difficulty": "hard",
+      "concept_ids": [
+        "relative_velocity",
+        "reference_frame",
+        "galilean_transform"
+      ],
+      "learning_objective_ids": [
+        "dynamics-01-03-lo-01"
+      ]
+    }
+  ]
 }

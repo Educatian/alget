@@ -17,7 +17,10 @@
       "concept_ids": [
         "stack_effect"
       ],
-      "misconception_id": "passive_means_no_control"
+      "misconception_id": "passive_means_no_control",
+      "learning_objective_ids": [
+        "bio-inspired-06-01-lo-01"
+      ]
     },
     {
       "id": "bio_thermal_mass_role",
@@ -36,7 +39,10 @@
       "concept_ids": [
         "thermal_mass"
       ],
-      "misconception_id": "thermal_mass_always_cools"
+      "misconception_id": "thermal_mass_always_cools",
+      "learning_objective_ids": [
+        "bio-inspired-06-01-lo-02"
+      ]
     },
     {
       "id": "bio_passive_cooling_transfer",
@@ -55,7 +61,10 @@
       "concept_ids": [
         "passive_cooling"
       ],
-      "misconception_id": "passive_means_no_control"
+      "misconception_id": "passive_means_no_control",
+      "learning_objective_ids": [
+        "bio-inspired-06-01-lo-02"
+      ]
     },
     {
       "id": "bio_architecture_environment_fit",
@@ -74,7 +83,10 @@
       "concept_ids": [
         "biomimetic_architecture"
       ],
-      "misconception_id": "termite_mound_shape_only"
+      "misconception_id": "termite_mound_shape_only",
+      "learning_objective_ids": [
+        "bio-inspired-06-01-lo-03"
+      ]
     },
     {
       "id": "bio_problem_to_biology_translation",
@@ -93,7 +105,10 @@
       "concept_ids": [
         "problem_translation"
       ],
-      "misconception_id": "asknature_is_picture_search"
+      "misconception_id": "asknature_is_picture_search",
+      "learning_objective_ids": [
+        "bio-inspired-06-01-lo-03"
+      ]
     },
     {
       "id": "bio_asknature_entry_logic",
@@ -112,7 +127,10 @@
       "concept_ids": [
         "asknature_indexing"
       ],
-      "misconception_id": "asknature_is_picture_search"
+      "misconception_id": "asknature_is_picture_search",
+      "learning_objective_ids": [
+        "bio-inspired-06-01-lo-02"
+      ]
     }
   ]
 }

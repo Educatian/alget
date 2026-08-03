@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "Good alt text describes what the image shows and why it matters. A filename or the word 'image' tells the reader nothing.",
       "misconception_id": "cat100_supplement_1_6_accessibility_basics_filename_as_alt",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-01-06-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_1_6_accessibility_basics_annotation_signal",
@@ -37,7 +40,11 @@
       "correct_index": 1,
       "explanation": "Use real heading styles (Heading 1, Heading 2) or tags (h1, h2). Visual size alone does not create the structure assistive tools depend on.",
       "misconception_id": "cat100_supplement_1_6_accessibility_basics_bold_not_heading",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-01-06-lo-02",
+        "cat100-supplement-01-06-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_1_6_accessibility_basics_ai_boundary",
@@ -57,7 +64,10 @@
       "correct_index": 1,
       "explanation": "AI-generated alt text is a starting point. You must verify it describes the real content; vague output does not meet the need.",
       "misconception_id": "cat100_supplement_1_6_accessibility_basics_filename_as_alt",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-01-06-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_1_6_accessibility_basics_calibration",
@@ -76,7 +86,10 @@
       "correct_index": 1,
       "explanation": "Color alone can hide meaning from users who cannot distinguish it. Pair color with text or an icon so the cue is reliable.",
       "misconception_id": "cat100_supplement_1_6_accessibility_basics_color_only_meaning",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-01-06-lo-03"
+      ]
     }
   ]
 }

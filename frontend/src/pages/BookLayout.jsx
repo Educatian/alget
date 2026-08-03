@@ -26,6 +26,8 @@ import { recordAdaptiveSignal } from '../lib/knowledgeService'
 import { useCourseProgress } from '../hooks/useCourseProgress'
 import { useSocialPresence } from '../hooks/useSocialPresence'
 import API_BASE from '../lib/apiConfig'
+import { listPublishedCourseModules, loadPublishedCourseSection, mergePublishedModulesIntoToc } from '../lib/facultyPartnershipService'
+import SocialLearningRail from '../components/SocialLearningRail'
 import '../index.css'
 
 const ReadingPane = lazy(() => import('../components/ReadingPane'))
@@ -119,6 +121,9 @@ function findBestReviewAnchor(container, railContext) {
 export default function BookLayout({ user, onLogout }) {
     const { course = 'statics', chapter = '01', section = '01' } = useParams()
     const navigate = useNavigate()
+    // The table-of-contents effect must not re-run on every section change, so
+    // it reads the address it should compare against from here.
+    const addressRef = useRef({ chapter, section })
     const {
         completedSections,
         markCompleted,
@@ -130,6 +135,10 @@ export default function BookLayout({ user, onLogout }) {
         isBookmarked
     } = useCourseProgress(user)
     const sectionPath = `${course}/${chapter}/${section}`
+
+    useEffect(() => {
+        addressRef.current = { chapter, section }
+    }, [chapter, section])
 
     const [toc, setToc] = useState(null)
     const [tocError, setTocError] = useState(null)
@@ -260,26 +269,76 @@ export default function BookLayout({ user, onLogout }) {
     useEffect(() => {
         let cancelled = false
 
-        fetch(`${API_BASE}/book/${course}/toc`)
-            .then((res) => {
-                if (!res.ok) throw new Error(`TOC ${res.status}`)
-                return res.json()
-            })
-            .then((data) => {
-                if (cancelled) return
-                setToc(data)
+        const loadAuthoredToc = async () => {
+            const response = await fetch(`${API_BASE}/book/${course}/toc`)
+            if (!response.ok) throw new Error(`TOC ${response.status}`)
+            // A course with no authored snapshot is served the SPA shell, so the
+            // parse is what tells us the snapshot is absent.
+            return response.json()
+        }
+
+        const load = async () => {
+            let authored = null
+            let authoredError = null
+            try {
+                authored = await loadAuthoredToc()
+            } catch (error) {
+                authoredError = error
+            }
+
+            let published = []
+            try {
+                published = await listPublishedCourseModules(course)
+            } catch (error) {
+                console.warn('[BookLayout] published module list unavailable:', error)
+            }
+            if (cancelled) return
+
+            // The route defaults to 01/01, which a course made only of published
+            // modules does not have. Send the reader to the first section the
+            // course actually contains rather than an empty address.
+            const openFirstSectionIfMissing = (nextToc) => {
+                const chapters = nextToc?.chapters || []
+                const { chapter: atChapter, section: atSection } = addressRef.current
+                const exists = chapters.some((item) => item.id === atChapter
+                    && (item.sections || []).some((entry) => entry.id === atSection))
+                if (exists) return
+                const firstChapter = chapters.find((item) => (item.sections || []).length > 0)
+                const firstSection = firstChapter?.sections?.[0]
+                if (firstChapter && firstSection) {
+                    navigate(`/book/${course}/${firstChapter.id}/${firstSection.id}`, { replace: true })
+                }
+            }
+
+            if (authored) {
+                const merged = mergePublishedModulesIntoToc(authored, published)
+                setToc(merged)
                 setTocError(null)
-            })
-            .catch((error) => {
-                if (cancelled) return
-                console.error(error)
-                setTocError(error?.message || 'Could not load chapter list')
-            })
+                openFirstSectionIfMissing(merged)
+                return
+            }
+
+            // A course can exist as instructor-published modules alone: a source
+            // document becomes its own course on whatever subject it covers,
+            // with no authored chapters behind it.
+            const generated = mergePublishedModulesIntoToc({ course, chapters: [] }, published)
+            if (generated.chapters?.length) {
+                setToc(generated)
+                setTocError(null)
+                openFirstSectionIfMissing(generated)
+                return
+            }
+
+            console.error(authoredError)
+            setTocError(authoredError?.message || 'Could not load chapter list')
+        }
+
+        load()
 
         return () => {
             cancelled = true
         }
-    }, [course, tocReloadKey])
+    }, [course, tocReloadKey, navigate])
 
     useEffect(() => {
         let cancelled = false
@@ -287,14 +346,17 @@ export default function BookLayout({ user, onLogout }) {
         logPageView(sectionPath)
         recordAdaptiveSignal(sectionPath, 'page_view')
 
-        fetch(`${API_BASE}/book/${course}/${chapter}/${section}`)
-            .then((res) => {
+        const request = chapter === 'published'
+            ? loadPublishedCourseSection(course, section)
+            : fetch(`${API_BASE}/book/${course}/${chapter}/${section}`).then((res) => {
                 // Distinguish a transient network/server failure from a genuinely
                 // missing section: 404 is "not found", anything else thrown is a
                 // load error that gets a retry affordance (not a dead "Not Found").
                 if (!res.ok) throw new Error(res.status === 404 ? 'not-found' : `Section ${res.status}`)
                 return res.json()
             })
+
+        request
             .then((data) => {
                 if (cancelled) return
                 setSectionData(data)
@@ -341,6 +403,14 @@ export default function BookLayout({ user, onLogout }) {
             estimatedTimeMinutes: sectionData.meta.estimated_time_minutes || null
         })
     }, [chapter, course, markRecentSection, section, sectionData])
+
+    useEffect(() => {
+        if (!sectionData?.analytics) return
+        recordAdaptiveSignal(sectionPath, 'runtime_package_loaded', {
+            configuredEvents: sectionData.analytics.events || [],
+            masteryConcepts: sectionData.analytics.mastery_concepts || [],
+        })
+    }, [sectionData, sectionPath])
 
     useEffect(() => {
         if (!railOpen || !railContext || railContext.sectionId !== sectionPath) {
@@ -479,12 +549,12 @@ export default function BookLayout({ user, onLogout }) {
     }, [handleNavigate, nextSection, previousSection, railOpen, tocOpen])
 
     return (
-        <div className="editorial-shell ath-open-layout flex h-screen flex-col overflow-hidden selection:bg-[rgba(200,226,236,0.35)]">
+        <div className="editorial-shell ath-open-layout ath-reader-density flex h-screen flex-col overflow-hidden selection:bg-[rgba(200,226,236,0.35)]">
             <a href="#main-content" className="skip-to-content-link">Skip to reading content</a>
             <OnboardingTour />
             <RetentionBanner course={course} />
 
-            <header className="sticky top-0 z-50 flex items-center gap-3 border-b border-[var(--ath-line)] bg-[rgba(248,246,241,0.94)] px-3 py-1.5 backdrop-blur-3xl sm:px-4">
+            <header className="ath-reader-header sticky top-0 z-50 flex items-center gap-3 border-b border-[var(--ath-line)] bg-[rgba(248,246,241,0.94)] px-3 py-1.5 backdrop-blur-3xl sm:px-4">
                 <div className="flex shrink-0 items-center gap-2 sm:min-w-0 sm:flex-1 sm:justify-between sm:gap-3">
                     <button
                         type="button"
@@ -568,7 +638,9 @@ export default function BookLayout({ user, onLogout }) {
                                             signalSummary={socialState.signalSummary}
                                             liveFeed={socialState.liveFeed}
                                             onReaction={socialState.sendReaction}
+                                            onStartRound={() => recordAdaptiveSignal(sectionPath, 'social_round_started', { type: 'evidence_compare' })}
                                             sectionTitle={sectionData?.meta?.title || sectionData?.title || ''}
+                                            socialDynamics={sectionData?.social_dynamics || null}
                                         />
                                     </Suspense>
                                 </Popover.Content>
@@ -688,7 +760,7 @@ export default function BookLayout({ user, onLogout }) {
             </header>
 
             <div className="relative flex min-h-0 flex-1 overflow-hidden">
-                <aside className="hidden min-h-0 shrink-0 overflow-y-auto bg-[rgba(240,237,230,0.5)] backdrop-blur-3xl lg:block lg:w-52">
+                <aside className="ath-reader-rail hidden min-h-0 shrink-0 overflow-y-auto bg-[rgba(240,237,230,0.5)] backdrop-blur-3xl lg:block lg:w-52">
                     {tocError ? (
                         <div className="m-4 rounded-2xl border border-[rgba(220,38,38,0.25)] bg-[rgba(254,242,242,0.85)] p-4 text-sm">
                             <p className="font-semibold text-[var(--ath-text)]">Couldn't load chapter list</p>
@@ -782,7 +854,7 @@ export default function BookLayout({ user, onLogout }) {
                             sits on the confidence prompt / exit-ticket textarea. */}
                         <div
                             key={sectionPath}
-                            className={`mx-auto min-h-full w-full max-w-[var(--ath-container-reading)] px-[var(--ath-gutter)] xl:pb-24 ${transitionDirection === 'backward' ? 'animate-section-backward' : 'animate-section-forward'}`}
+                            className={`ath-reader-main-shell mx-auto min-h-full w-full max-w-[var(--ath-container-reading)] px-[var(--ath-gutter)] xl:pb-24 ${transitionDirection === 'backward' ? 'animate-section-backward' : 'animate-section-forward'}`}
                         >
                             <Suspense fallback={<div className="mx-auto max-w-4xl px-8 py-12 xl:max-w-5xl"><SurfaceFallback label="Loading reading surface..." /></div>}>
                                 <HighlightableContent
@@ -856,6 +928,20 @@ export default function BookLayout({ user, onLogout }) {
                     {railOpen && (
                         <div className="h-full min-h-[34rem]">
                             <div className="flex h-full flex-col overflow-hidden bg-[rgba(255,255,255,0.86)] backdrop-blur-3xl">
+                                <div className="max-h-[min(52vh,34rem)] min-h-0 shrink-0 overflow-hidden border-b border-[var(--ath-line)]">
+                                    <SocialLearningRail
+                                        connected={socialState.connected}
+                                        peers={socialState.peers}
+                                        sameHeadingPeers={socialState.sameHeadingPeers}
+                                        sameConceptPeers={socialState.sameConceptPeers}
+                                        signalSummary={socialState.signalSummary}
+                                        liveFeed={socialState.liveFeed}
+                                        sectionTitle={sectionData?.meta?.title || sectionData?.title || ''}
+                                        onReaction={socialState.sendReaction}
+                                        onOpenEvidence={() => recordAdaptiveSignal(sectionPath, 'social_evidence_opened', { source: 'social_learning_rail' })}
+                                        onConnect={() => recordAdaptiveSignal(sectionPath, 'social_connection_requested', { source: 'social_learning_rail' })}
+                                    />
+                                </div>
                                 <Suspense fallback={<div className="p-4"><SurfaceFallback label="Loading adaptive support..." compact /></div>}>
                                     <IntelRail
                                         context={railContext?.sectionId === sectionPath ? railContext : null}
@@ -914,7 +1000,9 @@ export default function BookLayout({ user, onLogout }) {
                         sectionTitle: sectionData?.title || '',
                         contentVersion: sectionData?.content_version || null,
                         conceptIds: sectionData?.meta?.concept_ids || [],
-                        course
+                        course,
+                        tutorConfig: sectionData?.tutor || null,
+                        socialDynamics: sectionData?.social_dynamics || null,
                     }}
                 />
             </Suspense>

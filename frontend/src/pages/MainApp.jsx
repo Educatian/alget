@@ -23,6 +23,7 @@ import API_BASE from '../lib/apiConfig'
 import { safeLocalStorageGet, safeLocalStorageRemove, safeLocalStorageSet } from '../lib/browserStorage'
 import { readCohortLearner } from '../lib/cohortLearner'
 import { getEvaluationStatus } from '../lib/researchService'
+import { CONTENT_COUNTS } from '../generated/contentManifest'
 import '../index.css'
 
 function CourseMark(props) {
@@ -42,8 +43,7 @@ const engineeringCourses = [
         icon: <StaticsIllustration />,
         description: 'Core mechanics pathway for equilibrium, free-body diagrams, moments, friction, trusses, centroids, and distributed loads.',
         topics: ['Equilibrium', 'FBDs', 'Moments', 'Trusses'],
-        chapters: 6,
-        sections: 14,
+        ...CONTENT_COUNTS.statics,
         duration: '15 weeks',
         level: 'Core Requirement',
         gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
@@ -55,8 +55,7 @@ const engineeringCourses = [
         icon: <CourseMark Icon={Atom} />,
         description: 'Foundational curriculum for motion, force relationships, energy, and momentum with adaptive reading and practice support.',
         topics: ['Kinematics', 'Kinetics', 'Work & Energy', 'Impulse & Momentum'],
-        chapters: 10,
-        sections: 45,
+        ...CONTENT_COUNTS.dynamics,
         duration: '15 weeks',
         level: 'Core Requirement',
         gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
@@ -68,8 +67,7 @@ const engineeringCourses = [
         icon: <BioInspiredIllustration />,
         description: 'Applied biomimicry sequence connecting natural mechanisms to engineering concepts, generation labs, and design reasoning.',
         topics: ['Biomimicry', 'Natural Structures', 'Filtration', 'Adhesion'],
-        chapters: 7,
-        sections: 21,
+        ...CONTENT_COUNTS['bio-inspired'],
         duration: 'Studio-paced',
         level: 'Advanced Track',
         gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
@@ -84,8 +82,7 @@ const educationCourses = [
         icon: <CourseMark Icon={GraduationCap} />,
         description: 'Instructional design theory, pedagogy, assessment, and learner-centered strategy within an adaptive textbook workflow.',
         topics: ['Learning Theories', 'ADDIE', 'Assessment', 'Pedagogy'],
-        chapters: 8,
-        sections: 32,
+        ...CONTENT_COUNTS['inst-design'],
         duration: '12 weeks',
         level: 'Core Requirement',
         gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
@@ -97,8 +94,7 @@ const educationCourses = [
         icon: <CourseMark Icon={Scale} />,
         description: 'Responsible AI design and deployment: bias and fairness, transparency, accountability, privacy, governance frameworks, and AI in education.',
         topics: ['Bias & Fairness', 'Accountability', 'Privacy', 'AI in Education'],
-        chapters: 6,
-        sections: 12,
+        ...CONTENT_COUNTS['ai-ethics'],
         duration: '8 weeks',
         level: 'Cross-disciplinary',
         gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
@@ -110,8 +106,7 @@ const educationCourses = [
         icon: <CourseMark Icon={Code2} />,
         description: 'Summer 2026 supplemental pathway for multimedia learning, LXD, AI-assisted authoring, usability testing, and capstone prototype defense.',
         topics: ['LXD', 'Multimedia Learning', 'Prototype Testing', 'AI Disclosure'],
-        chapters: 8,
-        sections: 64,
+        ...CONTENT_COUNTS['ail606-supplement'],
         duration: '5-week intensive',
         level: 'Graduate Supplement',
         gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
@@ -123,8 +118,7 @@ const educationCourses = [
         icon: <CourseMark Icon={School} />,
         description: 'Pre-service teacher pathway connecting DTS, TeachGen@i, Ethobot, AI policy reasoning, edtech evaluation, and final professional vision.',
         topics: ['DTS', 'TeachGen@i', 'Ethobot', 'EdTech Evaluation'],
-        chapters: 8,
-        sections: 64,
+        ...CONTENT_COUNTS['cat531-supplement'],
         duration: '5-week intensive',
         level: 'Teacher Education',
         gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
@@ -136,8 +130,7 @@ const educationCourses = [
         icon: <CourseMark Icon={FileSpreadsheet} />,
         description: 'Undergraduate support pathway for digital citizenship, AI-assisted resume revision, Excel data stories, presentations, and GitHub Pages portfolios.',
         topics: ['Digital Skills', 'Excel', 'AI Critique', 'GitHub Pages'],
-        chapters: 8,
-        sections: 64,
+        ...CONTENT_COUNTS['cat100-supplement'],
         duration: '5-week intensive',
         level: 'Undergraduate',
         gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
@@ -214,11 +207,23 @@ export default function MainApp({ user, onLogout }) {
                 })
             })
 
+            if (response.status === 503) {
+                setError('This pathway is not configured yet. Ask your instructor for a valid code.')
+                setPasscode('')
+                return
+            }
+
             if (!response.ok) {
                 throw new Error(`Access validation failed: ${response.status}`)
             }
 
             const data = await response.json()
+            if (data.error === 'access_code_not_configured') {
+                setError('This pathway is not configured yet. Ask your instructor for a valid code.')
+                setPasscode('')
+                return
+            }
+
             if (!data.valid) {
                 setError('Invalid access code')
                 setPasscode('')
@@ -256,7 +261,7 @@ export default function MainApp({ user, onLogout }) {
     }
 
     return (
-        <div className="editorial-shell ath-open-layout ath-density-compact min-h-screen">
+        <div className="ath-pathway-shell editorial-shell ath-open-layout ath-density-compact min-h-screen">
             <a href="#main-content" className="skip-to-content-link">Skip to main content</a>
 
             <header className="sticky top-0 z-50 border-b border-[var(--ath-line)] bg-[rgba(248,246,241,0.84)] backdrop-blur-2xl">
@@ -317,13 +322,13 @@ export default function MainApp({ user, onLogout }) {
                         <h2 className="mt-6 text-center text-3xl font-semibold tracking-tight text-[var(--ath-text)]">
                             Open your cohort track
                         </h2>
-                        <p className="mt-2 text-center text-sm text-[var(--ath-muted)]">
-                            Pick a track + enter the code your instructor sent.
+                        <p className="mt-2 text-center text-base leading-6 text-[var(--ath-muted)]">
+                            Choose your course track, then enter the access code from your instructor.
                         </p>
 
                         <form onSubmit={handleUnlock} className="mt-6 space-y-4 border-y border-[var(--ath-line)] py-5">
                             <div>
-                                <label htmlFor="pathway-track" className="text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Track</label>
+                                <label htmlFor="pathway-track" className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--ath-secondary)]">Track</label>
                                 <select
                                     id="pathway-track"
                                     value={selectedMode}
@@ -336,23 +341,27 @@ export default function MainApp({ user, onLogout }) {
                             </div>
 
                             <div>
-                                <label htmlFor="pathway-passcode" className="text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Access code</label>
+                                <label htmlFor="pathway-passcode" className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--ath-secondary)]">Access code</label>
                                 <input
                                     id="pathway-passcode"
                                     type="password"
                                     value={passcode}
                                     onChange={(event) => setPasscode(event.target.value)}
                                     placeholder="••••••"
+                                    autoComplete="one-time-code"
+                                    aria-describedby="pathway-code-help"
                                     className="editorial-input mt-1.5 tracking-[0.2em]"
                                 />
-                                <p className="mt-1.5 text-[11px] text-[var(--ath-secondary)]">
-                                    Demo code for <span className="font-semibold">{selectedMode === 'engineering' ? 'Engineering' : 'Education'}</span>:
-                                    <span className="ml-1 rounded bg-[var(--ath-panel-muted)] px-1.5 py-0.5 font-mono font-semibold tracking-normal text-[var(--ath-text)]">{selectedMode === 'engineering' ? 'eng123' : 'edu123'}</span>
+                                <p id="pathway-code-help" className="mt-1.5 text-sm leading-5 text-[var(--ath-secondary)]">
+                                    Your instructor or cohort coordinator provides this code.
+                                    {import.meta.env.DEV && (
+                                        <span className="ml-1">Local demo: <code className="rounded bg-[var(--ath-panel-muted)] px-1.5 py-0.5 font-mono font-semibold tracking-normal text-[var(--ath-text)]">{selectedMode === 'engineering' ? 'eng123' : 'edu123'}</code></span>
+                                    )}
                                 </p>
                             </div>
 
                             {error && (
-                                <div className="rounded-xl border border-[color-mix(in_srgb,var(--ath-danger)_32%,transparent)] bg-[color-mix(in_srgb,var(--ath-danger)_12%,var(--ath-panel))] px-3 py-2 text-xs font-medium text-[var(--ath-danger)]">
+                                <div role="alert" aria-live="assertive" className="rounded-xl border border-[color-mix(in_srgb,var(--ath-danger)_32%,transparent)] bg-[color-mix(in_srgb,var(--ath-danger)_12%,var(--ath-panel))] px-3 py-2 text-sm leading-5 font-medium text-[var(--ath-danger)]">
                                     {error}
                                 </div>
                             )}
@@ -367,7 +376,7 @@ export default function MainApp({ user, onLogout }) {
                             </button>
                         </form>
 
-                        <p className="mt-3 flex items-center justify-center gap-1 text-[10px] text-[var(--ath-secondary)]">
+                        <p className="mt-3 flex items-center justify-center gap-1 text-xs text-[var(--ath-secondary)]">
                             <LockKeyhole className="h-3 w-3" />
                             Server-validated / no client-side bypass
                         </p>

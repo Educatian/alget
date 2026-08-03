@@ -28,7 +28,7 @@ export const FormativeSummativeDiagram = () => {
                     </button>
                     <button
                         onClick={() => setView('summative')}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${view === 'summative' ? 'bg-indigo-600 text-white' : 'bg-[var(--ath-panel-muted)] text-[var(--ath-muted)] hover:bg-[var(--ath-line)]'}`}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${view === 'summative' ? 'bg-[var(--ath-primary)] text-white' : 'bg-[var(--ath-panel-muted)] text-[var(--ath-muted)] hover:bg-[var(--ath-line)]'}`}
                     >
                         Summative
                     </button>
@@ -112,7 +112,7 @@ export const FormativeSummativeDiagram = () => {
                 <span className="font-bold text-[var(--ath-text)]">{VIEW_LABEL[view]}</span>
             </div>
             {(view === 'formative' || view === 'both') && <div className="absolute top-0 left-0 w-64 h-64 bg-pink-500/10 rounded-full blur-[60px] pointer-events-none"></div>}
-            {(view === 'summative' || view === 'both') && <div className="absolute bottom-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-[60px] pointer-events-none"></div>}
+            {(view === 'summative' || view === 'both') && <div className="absolute bottom-0 right-0 w-64 h-64 bg-[color-mix(in_srgb,var(--ath-primary)_10%,transparent)] rounded-full blur-[60px] pointer-events-none"></div>}
         </div>
     );
 };

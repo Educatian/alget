@@ -62,10 +62,11 @@ if (isSupabaseConfigured) {
 export { supabase }
 
 // Auth helpers
-export async function signUp(email, password) {
+export async function signUp(email, password, metadata = {}) {
     const { data, error } = await supabase.auth.signUp({
         email,
         password,
+        options: { data: metadata },
     })
     return { data, error }
 }

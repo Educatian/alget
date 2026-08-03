@@ -18,7 +18,10 @@
       ],
       "correct_index": 1,
       "explanation": "Validity is a property of inferences, not items. The same test can support a valid inference in one context and an invalid inference in another.",
-      "misconception_id": "validity_is_property_of_items"
+      "misconception_id": "validity_is_property_of_items",
+      "learning_objective_ids": [
+        "inst-design-02-07-lo-01"
+      ]
     },
     {
       "id": "assessment_distractor_quality",
@@ -38,7 +41,10 @@
       ],
       "correct_index": 1,
       "explanation": "Strong distractors are misconception-targeted. A distractor nobody believes contributes nothing diagnostically.",
-      "misconception_id": "distractors_are_filler"
+      "misconception_id": "distractors_are_filler",
+      "learning_objective_ids": [
+        "inst-design-02-07-lo-04"
+      ]
     },
     {
       "id": "assessment_alignment_audit",
@@ -58,7 +64,10 @@
       ],
       "correct_index": 1,
       "explanation": "Constructive alignment requires the assessment to operate at the objective's cognitive level. MC recognition cannot validate a Create-level objective.",
-      "misconception_id": "any_item_validates_any_objective"
+      "misconception_id": "any_item_validates_any_objective",
+      "learning_objective_ids": [
+        "inst-design-02-07-lo-03"
+      ]
     },
     {
       "id": "assessment_reliability_relationship",
@@ -78,7 +87,10 @@
       ],
       "correct_index": 1,
       "explanation": "Reliability is necessary but not sufficient for validity. A consistent measurement of the wrong construct is reliable but invalid.",
-      "misconception_id": "reliability_implies_validity"
+      "misconception_id": "reliability_implies_validity",
+      "learning_objective_ids": [
+        "inst-design-02-07-lo-02"
+      ]
     }
   ]
 }

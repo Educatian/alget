@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "Alignment means the same role is described consistently across platforms. A recruiter cross-checking your resume, LinkedIn, and portfolio should find the same facts, not three different stories.",
       "misconception_id": "cat100_supplement_2_4_platforms_independent",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-02-04-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_2_4_linkedin_and_portfolio_alignment_annotation_signal",
@@ -38,7 +41,10 @@
       "correct_index": 2,
       "explanation": "A portfolio's job is to let someone verify your work. A live link or repository is the strongest evidence; screenshots alone cannot be inspected or confirmed.",
       "misconception_id": "cat100_supplement_2_4_screenshots_without_links",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-02-04-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_2_4_linkedin_and_portfolio_alignment_ai_boundary",
@@ -58,7 +64,10 @@
       "correct_index": 2,
       "explanation": "A headline that contradicts your actual record breaks alignment and trust the moment someone checks. The honest headline matches what your resume and portfolio can prove.",
       "misconception_id": "cat100_supplement_2_4_ai_inflated_headline",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-02-04-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_2_4_linkedin_and_portfolio_alignment_calibration",
@@ -78,7 +87,22 @@
       "correct_index": 1,
       "explanation": "Alignment is about consistent facts across platforms: same title, same dates, same headline accomplishment. Visual variety and length are not what a cross-checking recruiter cares about.",
       "misconception_id": "cat100_supplement_2_4_alignment_is_visual",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-02-04-lo-02"
+      ]
+    },
+    {
+      "id": "cat100-supplement_02_04_lo_03_direct_check",
+      "type": "conceptual",
+      "stem": "Provide a concise response that demonstrates this learning objective: Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "expected_answer": "The response accurately demonstrates the section objective: Document a bounded AI/software support move with accepted and rejected suggestions, using relevant section concepts, evidence, or calculations.",
+      "explanation": "This direct-evidence item is used when no closed-response item adequately samples the objective. Score it with the section concepts and worked examples as the rubric.",
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-02-04-lo-03",
+        "cat100-supplement-02-04-lo-04"
+      ]
     }
   ]
 }

@@ -1,4 +1,4 @@
-﻿{
+{
   "course": "cat100-supplement",
   "chapter": "01",
   "section": "07",
@@ -6,10 +6,22 @@
   "title": "Evidence of Digital Citizenship",
   "description": "CAT 100 textbook section connecting evidence of digital citizenship to digital citizenship evidence portfolio, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Map a chosen artifact to a specific digital-citizenship competency.",
-    "Write a caption that states which skill the artifact demonstrates and how.",
-    "Add a before-after note that shows growth, not just a finished state.",
-    "Curate: choose the few strongest pieces of evidence rather than collecting everything."
+    {
+      "id": "cat100-supplement-01-07-lo-01",
+      "statement": "Map a chosen artifact to a specific digital-citizenship competency"
+    },
+    {
+      "id": "cat100-supplement-01-07-lo-02",
+      "statement": "Write a caption that states which skill the artifact demonstrates and how"
+    },
+    {
+      "id": "cat100-supplement-01-07-lo-03",
+      "statement": "Add a before-after note that shows growth, not just a finished state"
+    },
+    {
+      "id": "cat100-supplement-01-07-lo-04",
+      "statement": "Curate: choose the few strongest pieces of evidence rather than collecting everything"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_digital_citizenship_and_ai_readiness",
@@ -28,5 +40,21 @@
     "cat100_supplement_1_7_evidence_of_digital_citizenship_annotation_signal",
     "cat100_supplement_1_7_evidence_of_digital_citizenship_ai_boundary",
     "cat100_supplement_1_7_evidence_of_digital_citizenship_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-01-07-lo-01": [
+      "cat100_supplement_1_7_evidence_of_digital_citizenship_annotation_signal"
+    ],
+    "cat100-supplement-01-07-lo-02": [
+      "cat100_supplement_1_7_evidence_of_digital_citizenship_artifact_signal",
+      "cat100_supplement_1_7_evidence_of_digital_citizenship_ai_boundary"
+    ],
+    "cat100-supplement-01-07-lo-03": [
+      "cat100_supplement_1_7_evidence_of_digital_citizenship_calibration"
+    ],
+    "cat100-supplement-01-07-lo-04": [
+      "cat100_supplement_1_7_evidence_of_digital_citizenship_annotation_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

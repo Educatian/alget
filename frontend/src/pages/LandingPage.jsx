@@ -58,7 +58,7 @@ export default function LandingPage({ onLogin, user, onLogout }) {
     const userLabel = formatUserLabel(user)
 
     return (
-        <div className="editorial-shell relative flex min-h-screen flex-col overflow-hidden text-[var(--ath-text)]">
+        <div className="ath-landing-shell editorial-shell relative flex min-h-screen flex-col overflow-hidden text-[var(--ath-text)]">
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
                 <div className="glow-orb left-[-8rem] top-6 h-72 w-72 bg-[color-mix(in_srgb,var(--ath-primary)_18%,transparent)]"></div>
                 <div className="glow-orb right-[-7rem] top-[8%] h-80 w-80 bg-[color-mix(in_srgb,var(--ath-accent)_12%,transparent)]"></div>

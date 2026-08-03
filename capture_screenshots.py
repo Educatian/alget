@@ -56,6 +56,54 @@ async def shoot(page, name, **opts):
     print(f"  -> {path.name}")
 
 
+async def seed_agentic_demo(page):
+    """Seed approval-gated agentic examples for reproducible README captures."""
+    await page.evaluate(
+        """
+        () => {
+          const authKey = Object.keys(localStorage).find((key) => key.startsWith('sb-') && key.endsWith('-auth-token'))
+          let auth = {}
+          try { auth = JSON.parse(localStorage.getItem(authKey) || '{}') } catch { auth = {} }
+          const userId = auth?.user?.id || auth?.currentSession?.user?.id || auth?.session?.user?.id || 'demo-learner'
+          const now = new Date().toISOString()
+          const workflow = {
+            id: 'workflow-readme-plan', owner_id: userId, course_id: 'bio-inspired', workflow_type: 'learner_plan',
+            status: 'awaiting_approval', risk_level: 'low', goal: 'Master directional adhesion for Friday', created_at: now, updated_at: now,
+          }
+          const plan = {
+            id: 'plan-readme', workflow_id: workflow.id, user_id: userId, status: 'awaiting_approval', created_at: now, updated_at: now,
+            agent_workflows: workflow,
+            plan: {
+              sessions: [
+                { id: 's1', concept_id: 'directional_adhesion', mode: 'worked-example', scheduled_for: '2026-08-01', minutes: 30, why_now: 'Current mastery evidence is 38%, below the 80% learner goal.' },
+                { id: 's2', concept_id: 'preload_sensitivity', mode: 'retrieval-practice', scheduled_for: '2026-08-03', minutes: 25 },
+                { id: 's3', concept_id: 'dry_adhesion_constraints', mode: 'teach-back', scheduled_for: '2026-08-05', minutes: 30 },
+              ],
+              learner_control: { requires_approval: true, can_edit: true, can_pause: true, can_cancel: true, memory_scope: 'learner-owned' },
+            },
+          }
+          const interventionWorkflow = {
+            id: 'workflow-readme-intervention', owner_id: userId, course_id: 'statics', workflow_type: 'instructor_intervention',
+            status: 'awaiting_approval', risk_level: 'medium', goal: 'Re-teach force vectors', created_at: now, updated_at: now,
+          }
+          const intervention = {
+            id: 'intervention-readme', workflow_id: interventionWorkflow.id, course_id: 'statics', concept_id: 'force_vectors',
+            title: 'Re-teach force vectors', status: 'awaiting_approval', risk_level: 'medium', created_at: now, updated_at: now,
+            agent_workflows: interventionWorkflow,
+            proposal: {
+              summary: 'Prepare a short compare-and-correct activity; review the next evidence snapshot before further action.',
+              evidence: { learner_count: 8, average_mastery: 0.38, urgency: 'urgent', causal_claim: false },
+              delivery: { executed: false, requires_instructor_approval: true },
+            },
+          }
+          localStorage.setItem('alget_agentic_lms_v1', JSON.stringify({
+            goals: [], workflows: [workflow, interventionWorkflow], studyPlans: [plan], interventions: [intervention], events: [],
+          }))
+        }
+        """
+    )
+
+
 async def main():
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
@@ -77,6 +125,7 @@ async def main():
         await page.evaluate(
             "localStorage.setItem('alget_onboarding_completed_v1','true')"
         )
+        await seed_agentic_demo(page)
 
         # 2. /learn (course chooser)
         print("[2] Course chooser /learn")
@@ -104,16 +153,20 @@ async def main():
 
         # 4. Book reader with IntelRail explicitly opened (Get Help button)
         print("[4] Reader with IntelRail open")
+        rail_opened = False
         try:
             help_btn = page.get_by_role("button", name="Get Help")
             await help_btn.click()
             await page.wait_for_timeout(800)
+            rail_opened = True
         except Exception:
-            print("  (rail may already be open)")
-        await shoot(page, "04_intel_rail_open")
+            print("  (rail unavailable at this viewport; preserving existing capture)")
+        if rail_opened:
+            await shoot(page, "04_intel_rail_open")
 
         # 5. Floating chat — find launcher (the bottom-right floating bubble) and open
         print("[5] Floating ChatWidget")
+        chat_opened = False
         # Close the rail first if open, for a cleaner shot.
         try:
             close_help = page.get_by_role("button", name="Close Help")
@@ -129,9 +182,11 @@ async def main():
             ).first
             await chat_btn.click(timeout=4000)
             await page.wait_for_timeout(1000)
+            chat_opened = True
         except Exception as e:
-            print(f"  (chat launcher not found: {e})")
-        await shoot(page, "05_chat_widget")
+            print(f"  (chat launcher unavailable; preserving existing capture: {e})")
+        if chat_opened:
+            await shoot(page, "05_chat_widget")
 
         # 6. Mastery / brain network — try /dashboard
         print("[6] Student dashboard /dashboard")

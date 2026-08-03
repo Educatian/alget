@@ -4,33 +4,50 @@
       "id": "fbd_inclined_block",
       "type": "numeric",
       "difficulty": "medium",
-      "concept_ids": ["free_body_diagram", "force_components", "reaction_forces"],
+      "concept_ids": [
+        "free_body_diagram",
+        "force_components",
+        "reaction_forces"
+      ],
       "stem": "A 30 kg block rests on a smooth inclined plane at 40 degrees to the horizontal. Calculate the normal force exerted by the surface on the block.",
       "final_answer": {
         "value": 225.4,
         "unit": "N",
         "tolerance": 0.5
       },
-      "hint": "The normal force balances the component of weight perpendicular to the surface."
+      "hint": "The normal force balances the component of weight perpendicular to the surface.",
+      "learning_objective_ids": [
+        "statics-01-02-lo-01"
+      ]
     },
     {
       "id": "fbd_pulley_tension",
       "type": "numeric",
       "difficulty": "easy",
-      "concept_ids": ["free_body_diagram", "reaction_forces"],
+      "concept_ids": [
+        "free_body_diagram",
+        "reaction_forces"
+      ],
       "stem": "A 25 kg mass hangs from a rope that passes over a frictionless pulley. What is the tension in the rope?",
       "final_answer": {
         "value": 245.25,
         "unit": "N",
         "tolerance": 0.5
       },
-      "hint": "For the hanging mass at rest, the only vertical forces are tension and weight."
+      "hint": "For the hanging mass at rest, the only vertical forces are tension and weight.",
+      "learning_objective_ids": [
+        "statics-01-02-lo-01"
+      ]
     },
     {
       "id": "fbd_contact_force_identify",
       "type": "multiple_choice",
       "difficulty": "easy",
-      "concept_ids": ["free_body_diagram", "force_identification", "reaction_forces"],
+      "concept_ids": [
+        "free_body_diagram",
+        "force_identification",
+        "reaction_forces"
+      ],
       "stem": "A block rests on a smooth horizontal table. Which contact force must appear on its free body diagram?",
       "options": [
         "Only friction",
@@ -39,13 +56,19 @@
         "No contact force at all"
       ],
       "correct_index": 1,
-      "explanation": "A smooth contact surface provides a normal reaction perpendicular to the surface."
+      "explanation": "A smooth contact surface provides a normal reaction perpendicular to the surface.",
+      "learning_objective_ids": [
+        "statics-01-02-lo-02"
+      ]
     },
     {
       "id": "fbd_weight_direction",
       "type": "multiple_choice",
       "difficulty": "easy",
-      "concept_ids": ["free_body_diagram", "force_identification"],
+      "concept_ids": [
+        "free_body_diagram",
+        "force_identification"
+      ],
       "stem": "Which statement about weight on a free body diagram is correct?",
       "options": [
         "Weight acts perpendicular to the supporting surface",
@@ -55,7 +78,22 @@
       ],
       "correct_index": 2,
       "explanation": "Weight always acts vertically downward, regardless of nearby surface orientation.",
-      "misconception_id": "forget_weight_on_fbd"
+      "misconception_id": "forget_weight_on_fbd",
+      "learning_objective_ids": [
+        "statics-01-02-lo-01"
+      ]
+    },
+    {
+      "id": "statics_01_02_lo_03_direct_check",
+      "type": "conceptual",
+      "stem": "Provide a concise response that demonstrates this learning objective: Apply the systematic 6-step FBD procedure.",
+      "expected_answer": "The response accurately demonstrates the section objective: Apply the systematic 6-step FBD procedure, using relevant section concepts, evidence, or calculations.",
+      "explanation": "This direct-evidence item is used when no closed-response item adequately samples the objective. Score it with the section concepts and worked examples as the rubric.",
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "statics-01-02-lo-03",
+        "statics-01-02-lo-04"
+      ]
     }
   ]
 }

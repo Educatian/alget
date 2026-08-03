@@ -1,7 +1,8 @@
 # AI Help for Excel Debugging
 
-![AI Help for Excel Debugging textbook visual](/course-art/deep-exemplars/cat100-supplement/03-05-ai-help-for-excel-debugging.png)
-
+<figure-block caption="Organizational reference model connecting AI Help For Excel Debugging, Evidence Based Revision, and AI Supported Learning to an evidence-based revision decision." conceptid="cat100_supplement_data_storytelling_with_excel" purpose="organizational" source="ALGET original instructional diagram" license="Project-authored; repository license">
+  <img src="/course-art/deep-exemplars/cat100-supplement/03-05-ai-help-for-excel-debugging.png" alt="Three connected concept cards for AI Help for Excel Debugging: AI Help For Excel Debugging, Evidence Based Revision, and AI Supported Learning, followed by an evidence-to-revision transfer prompt." loading="lazy" decoding="async" />
+</figure-block>
 An AI assistant can write an Excel formula faster than you can type it, but it cannot know whether the formula is right for your data. It does not see your sheet; it only sees the words in your prompt. So the value you get from AI debugging depends almost entirely on two things you control: how precisely you describe the problem, and how rigorously you verify the answer before you trust it.
 
 This section treats AI as a fast assistant that is sometimes confidently wrong; surveys of LLM hallucination document that models state incorrect facts and code with high fluency and confidence (Zhang et al., 2023), which is exactly why the known-answer-row gate below exists. The discipline it teaches is a loop: read the actual error code to diagnose the cause, write a prompt that names the exact cells and the behavior you want, then verify the returned formula on a row whose answer you already know. Skipping the diagnosis or the verification is how a plausible-looking AI formula ships a hidden bug.

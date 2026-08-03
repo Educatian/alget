@@ -1,30 +1,52 @@
 {
-    "course": "inst-design",
-    "chapter": "01",
-    "section": "03",
-    "chapter_title": "Introduction to Instructional Design",
-    "title": "Module 3: Constructivism & Active Learning",
-    "description": "Use constructivist theory, the Zone of Proximal Development, and scaffolding principles to design more active and meaning-rich learning experiences.",
-    "learning_objectives": [
-        "Describe how constructivism changes instructional design decisions.",
-        "Explain the role of the Zone of Proximal Development in digital learning support.",
-        "Audit a learning activity for active meaning-making and timely scaffolding."
+  "course": "inst-design",
+  "chapter": "01",
+  "section": "03",
+  "chapter_title": "Introduction to Instructional Design",
+  "title": "Module 3: Constructivism & Active Learning",
+  "description": "Use constructivist theory, the Zone of Proximal Development, and scaffolding principles to design more active and meaning-rich learning experiences.",
+  "learning_objectives": [
+    {
+      "id": "inst-design-01-03-lo-01",
+      "statement": "Describe how constructivism changes instructional design decisions"
+    },
+    {
+      "id": "inst-design-01-03-lo-02",
+      "statement": "Explain the role of the Zone of Proximal Development in digital learning support"
+    },
+    {
+      "id": "inst-design-01-03-lo-03",
+      "statement": "Audit a learning activity for active meaning-making and timely scaffolding"
+    }
+  ],
+  "concept_ids": [
+    "constructivism",
+    "zone_of_proximal_development",
+    "scaffolding",
+    "active_learning"
+  ],
+  "prereq_section_ids": [
+    "inst-design/01/01",
+    "inst-design/01/02"
+  ],
+  "practice_ids": [
+    "constructivism_meaning_making",
+    "zpd_identification",
+    "scaffolding_function",
+    "active_learning_design"
+  ],
+  "estimated_time_minutes": 12,
+  "lo_practice_map": {
+    "inst-design-01-03-lo-01": [
+      "active_learning_design"
     ],
-    "concept_ids": [
-        "constructivism",
-        "zone_of_proximal_development",
-        "scaffolding",
-        "active_learning"
+    "inst-design-01-03-lo-02": [
+      "scaffolding_function",
+      "zpd_identification"
     ],
-    "prereq_section_ids": [
-        "inst-design/01/01",
-        "inst-design/01/02"
-    ],
-    "practice_ids": [
-        "constructivism_meaning_making",
-        "zpd_identification",
-        "scaffolding_function",
-        "active_learning_design"
-    ],
-    "estimated_time_minutes": 12
+    "inst-design-01-03-lo-03": [
+      "constructivism_meaning_making"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

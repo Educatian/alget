@@ -6,10 +6,22 @@
   "chapter": "07",
   "section": "05",
   "learning_objectives": [
-    "Distinguish performative feedback (claps, popularity) from feedback that can change a decision.",
-    "Gather voice in a form that lets dissent survive, anonymous and specific rather than public and general.",
-    "Refuse to average a subgroup's critical signal away, and document the subgroup split.",
-    "Close the loop: show how feedback changed the lesson and report the change back to students."
+    {
+      "id": "cat531-supplement-07-05-lo-01",
+      "statement": "Distinguish performative feedback (claps, popularity) from feedback that can change a decision"
+    },
+    {
+      "id": "cat531-supplement-07-05-lo-02",
+      "statement": "Gather voice in a form that lets dissent survive, anonymous and specific rather than public and general"
+    },
+    {
+      "id": "cat531-supplement-07-05-lo-03",
+      "statement": "Refuse to average a subgroup's critical signal away, and document the subgroup split"
+    },
+    {
+      "id": "cat531-supplement-07-05-lo-04",
+      "statement": "Close the loop: show how feedback changed the lesson and report the change back to students"
+    }
   ],
   "concept_ids": [
     "cat531_supplement_field_based_transfer_and_coaching",
@@ -28,5 +40,21 @@
   ],
   "estimated_time_minutes": 14,
   "order": 5,
-  "top_tier_hardened": false
+  "top_tier_hardened": false,
+  "lo_practice_map": {
+    "cat531-supplement-07-05-lo-01": [
+      "cat531_supplement_7_5_student_voice_and_feedback_calibration"
+    ],
+    "cat531-supplement-07-05-lo-02": [
+      "cat531_supplement_7_5_student_voice_and_feedback_artifact_signal"
+    ],
+    "cat531-supplement-07-05-lo-03": [
+      "cat531_supplement_7_5_student_voice_and_feedback_annotation_signal"
+    ],
+    "cat531-supplement-07-05-lo-04": [
+      "cat531_supplement_7_5_student_voice_and_feedback_artifact_signal",
+      "cat531_supplement_7_5_student_voice_and_feedback_ai_boundary"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

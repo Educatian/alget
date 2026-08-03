@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "The tutor helps you prepare and revise; it does not set the official grade. Ask for actionable feedback, not a verdict.",
       "misconception_id": "cat100_supplement_1_3_ethobot_cat100_orientation_tutor_grades",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-01-03-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_1_3_ethobot_cat100_orientation_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "A useful request states the goal, includes the artifact, and names what you want checked. Vague prompts get vague answers.",
       "misconception_id": "cat100_supplement_1_3_ethobot_cat100_orientation_vague_request",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-01-03-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_1_3_ethobot_cat100_orientation_ai_boundary",
@@ -56,7 +62,10 @@
       "correct_index": 1,
       "explanation": "Asking for targeted feedback you then act on keeps the work and judgment yours. Asking the tutor to author or submit it does not.",
       "misconception_id": "cat100_supplement_1_3_ethobot_cat100_orientation_answer_machine",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-01-03-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_1_3_ethobot_cat100_orientation_calibration",
@@ -75,7 +84,11 @@
       "correct_index": 1,
       "explanation": "A complete log shows accepted, modified, and rejected suggestions with reasons, so a reader can audit your judgment.",
       "misconception_id": "cat100_supplement_1_3_ethobot_cat100_orientation_log_skips_rejections",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-01-03-lo-02",
+        "cat100-supplement-01-03-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_1_3_ethobot_cat100_orientation_modify_path",
@@ -94,6 +107,9 @@
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat100-supplement-01-03-lo-02"
       ]
     }
   ]

@@ -1,45 +1,74 @@
 {
-    "chapter": "02",
-    "section": "03",
-    "title": "Impulse and Momentum",
-    "course": "dynamics",
-    "learning_objectives": [
-        "Define linear momentum and impulse",
-        "Apply the impulse-momentum theorem",
-        "Use conservation of momentum for collisions",
-        "Distinguish elastic and inelastic collisions"
+  "chapter": "02",
+  "section": "03",
+  "title": "Impulse and Momentum",
+  "course": "dynamics",
+  "learning_objectives": [
+    {
+      "id": "dynamics-02-03-lo-01",
+      "statement": "Define linear momentum and impulse"
+    },
+    {
+      "id": "dynamics-02-03-lo-02",
+      "statement": "Apply the impulse-momentum theorem"
+    },
+    {
+      "id": "dynamics-02-03-lo-03",
+      "statement": "Use conservation of momentum for collisions"
+    },
+    {
+      "id": "dynamics-02-03-lo-04",
+      "statement": "Distinguish elastic and inelastic collisions"
+    }
+  ],
+  "concept_ids": [
+    "linear_momentum",
+    "impulse_momentum",
+    "conservation_of_momentum",
+    "collision"
+  ],
+  "physics_prereqs": [
+    "newtons_second_law"
+  ],
+  "math_prereqs": [
+    "integrals"
+  ],
+  "units_focus": [
+    "kg·m/s",
+    "N·s"
+  ],
+  "common_errors": [
+    "sign",
+    "vector",
+    "average_vs_impulse"
+  ],
+  "estimated_time_minutes": 55,
+  "prereq_section_ids": [
+    "dynamics/02/01"
+  ],
+  "practice_ids": [
+    "momentum_numeric_basic",
+    "impulse_numeric_basic",
+    "collision_stick_numeric",
+    "impulse_momentum_steps",
+    "collision_type_concept",
+    "system_boundary_concept"
+  ],
+  "lo_practice_map": {
+    "dynamics-02-03-lo-01": [
+      "impulse_momentum_steps",
+      "momentum_numeric_basic",
+      "system_boundary_concept"
     ],
-    "concept_ids": [
-        "linear_momentum",
-        "impulse_momentum",
-        "conservation_of_momentum",
-        "collision"
+    "dynamics-02-03-lo-02": [
+      "impulse_numeric_basic"
     ],
-    "physics_prereqs": [
-        "newtons_second_law"
+    "dynamics-02-03-lo-03": [
+      "collision_stick_numeric"
     ],
-    "math_prereqs": [
-        "integrals"
-    ],
-    "units_focus": [
-        "kg·m/s",
-        "N·s"
-    ],
-    "common_errors": [
-        "sign",
-        "vector",
-        "average_vs_impulse"
-    ],
-    "estimated_time_minutes": 55,
-    "prereq_section_ids": [
-        "dynamics/02/01"
-    ],
-    "practice_ids": [
-        "momentum_numeric_basic",
-        "impulse_numeric_basic",
-        "collision_stick_numeric",
-        "impulse_momentum_steps",
-        "collision_type_concept",
-        "system_boundary_concept"
+    "dynamics-02-03-lo-04": [
+      "collision_type_concept"
     ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

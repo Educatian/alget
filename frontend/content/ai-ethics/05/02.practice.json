@@ -18,7 +18,11 @@
       ],
       "correct_index": 1,
       "explanation": "Govern (institutional foundation), Map (identify risks), Measure (quantify them), Manage (treat them) is the canonical structure.",
-      "misconception_id": "rmf_is_optional_paperwork"
+      "misconception_id": "rmf_is_optional_paperwork",
+      "learning_objective_ids": [
+        "ai-ethics-05-02-lo-01",
+        "ai-ethics-05-02-lo-04"
+      ]
     },
     {
       "id": "gov_eu_act_education",
@@ -38,7 +42,10 @@
       ],
       "correct_index": 1,
       "explanation": "Annex III lists educational evaluation as high-risk. The Brussels effect applies extraterritorially: any system whose output is used in the EU is in scope.",
-      "misconception_id": "eu_act_doesnt_reach_us_companies"
+      "misconception_id": "eu_act_doesnt_reach_us_companies",
+      "learning_objective_ids": [
+        "ai-ethics-05-02-lo-02"
+      ]
     },
     {
       "id": "gov_unesco_distinct",
@@ -57,7 +64,10 @@
       ],
       "correct_index": 1,
       "explanation": "Transparency, accountability, and human oversight appear in all three frameworks. UNESCO's distinctive contributions are environmental sustainability, equity, and AI literacy as global public goods.",
-      "misconception_id": "frameworks_are_redundant"
+      "misconception_id": "frameworks_are_redundant",
+      "learning_objective_ids": [
+        "ai-ethics-05-02-lo-03"
+      ]
     },
     {
       "id": "gov_iso_42001_role",
@@ -77,7 +87,10 @@
       ],
       "correct_index": 1,
       "explanation": "ISO 42001 is to AI what ISO 27001 is to information security: an auditable management system that operationalizes broader frameworks for enterprise compliance.",
-      "misconception_id": "iso_replaces_law"
+      "misconception_id": "iso_replaces_law",
+      "learning_objective_ids": [
+        "ai-ethics-05-02-lo-03"
+      ]
     }
   ]
 }

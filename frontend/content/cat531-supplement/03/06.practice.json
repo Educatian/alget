@@ -20,6 +20,9 @@
         "cat531_supplement_school_policy_interpretation",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-06-lo-01"
       ]
     },
     {
@@ -42,6 +45,9 @@
         "cat531_supplement_school_policy_interpretation",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-06-lo-01"
       ]
     },
     {
@@ -64,6 +70,10 @@
         "cat531_supplement_school_policy_interpretation",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-06-lo-01",
+        "cat531-supplement-03-06-lo-02"
       ]
     },
     {
@@ -86,6 +96,20 @@
         "cat531_supplement_school_policy_interpretation",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-03-06-lo-04"
+      ]
+    },
+    {
+      "id": "cat531-supplement_03_06_lo_03_direct_check",
+      "type": "conceptual",
+      "stem": "Provide a concise response that demonstrates this learning objective: Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "expected_answer": "The response accurately demonstrates the section objective: Document a bounded AI/software support move with accepted and rejected suggestions, using relevant section concepts, evidence, or calculations.",
+      "explanation": "This direct-evidence item is used when no closed-response item adequately samples the objective. Score it with the section concepts and worked examples as the rubric.",
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat531-supplement-03-06-lo-03"
       ]
     }
   ]

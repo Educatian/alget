@@ -3,10 +3,22 @@
   "title": "Observation Protocols",
   "description": "AIL 606 textbook section connecting observation protocols to moderated usability test script with observation-to-revision trace, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the moderated usability test script with observation-to-revision trace shows a defensible decision in AIL 606.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    {
+      "id": "ail606-supplement-05-05-lo-01",
+      "statement": "Analyze how the moderated usability test script with observation-to-revision trace shows a defensible decision in AIL 606"
+    },
+    {
+      "id": "ail606-supplement-05-05-lo-02",
+      "statement": "Distinguish artifact polish from evidence-based revision"
+    },
+    {
+      "id": "ail606-supplement-05-05-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "ail606-supplement-05-05-lo-04",
+      "statement": "Use annotations, support requests, and revision notes to decide what help or design change should come next"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_usability_testing_and_learning_evidence",
@@ -27,6 +39,25 @@
     "ail606_supplement_5_5_observation_protocols_artifact_signal",
     "ail606_supplement_5_5_observation_protocols_annotation_signal",
     "ail606_supplement_5_5_observation_protocols_ai_boundary",
-    "ail606_supplement_5_5_observation_protocols_calibration"
-  ]
+    "ail606_supplement_5_5_observation_protocols_calibration",
+    "ail606-supplement_05_05_lo_02_direct_check",
+    "ail606-supplement_05_05_lo_03_direct_check"
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-05-05-lo-01": [
+      "ail606_supplement_5_5_observation_protocols_ai_boundary",
+      "ail606_supplement_5_5_observation_protocols_annotation_signal"
+    ],
+    "ail606-supplement-05-05-lo-02": [
+      "ail606-supplement_05_05_lo_02_direct_check"
+    ],
+    "ail606-supplement-05-05-lo-03": [
+      "ail606-supplement_05_05_lo_03_direct_check"
+    ],
+    "ail606-supplement-05-05-lo-04": [
+      "ail606_supplement_5_5_observation_protocols_artifact_signal",
+      "ail606_supplement_5_5_observation_protocols_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

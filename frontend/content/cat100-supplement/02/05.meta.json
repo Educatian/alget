@@ -6,10 +6,22 @@
   "title": "AI Feedback You Should Reject",
   "description": "CAT 100 textbook section connecting ai feedback you should reject to AI critique log showing accepted, modified, and rejected suggestions, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Apply the defensibility test to decide whether to keep or reject an AI resume suggestion.",
-    "Classify a failed AI suggestion as fabrication, inflation, keyword stuffing, or identity guessing.",
-    "Audit a whole-document AI rewrite line by line and log each rejection with its reason in the critique log.",
-    "Explain the asymmetric-cost rule: default to leaving out a flattering claim you could not defend."
+    {
+      "id": "cat100-supplement-02-05-lo-01",
+      "statement": "Apply the defensibility test to decide whether to keep or reject an AI resume suggestion"
+    },
+    {
+      "id": "cat100-supplement-02-05-lo-02",
+      "statement": "Classify a failed AI suggestion as fabrication, inflation, keyword stuffing, or identity guessing"
+    },
+    {
+      "id": "cat100-supplement-02-05-lo-03",
+      "statement": "Audit a whole-document AI rewrite line by line and log each rejection with its reason in the critique log"
+    },
+    {
+      "id": "cat100-supplement-02-05-lo-04",
+      "statement": "Explain the asymmetric-cost rule: default to leaving out a flattering claim you could not defend"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_resume_branding_and_ai_brainstorming",
@@ -29,5 +41,22 @@
     "cat100_supplement_2_5_ai_feedback_you_should_reject_ai_boundary",
     "cat100_supplement_2_5_ai_feedback_you_should_reject_calibration",
     "cat100_supplement_2_5_ai_feedback_you_should_reject_identity_guessing"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-02-05-lo-01": [
+      "cat100_supplement_2_5_ai_feedback_you_should_reject_calibration",
+      "cat100_supplement_2_5_ai_feedback_you_should_reject_identity_guessing"
+    ],
+    "cat100-supplement-02-05-lo-02": [
+      "cat100_supplement_2_5_ai_feedback_you_should_reject_artifact_signal"
+    ],
+    "cat100-supplement-02-05-lo-03": [
+      "cat100_supplement_2_5_ai_feedback_you_should_reject_ai_boundary"
+    ],
+    "cat100-supplement-02-05-lo-04": [
+      "cat100_supplement_2_5_ai_feedback_you_should_reject_calibration",
+      "cat100_supplement_2_5_ai_feedback_you_should_reject_annotation_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

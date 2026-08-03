@@ -17,7 +17,10 @@
       "concept_ids": [
         "directional_adhesion"
       ],
-      "misconception_id": "more_sticky_every_direction"
+      "misconception_id": "more_sticky_every_direction",
+      "learning_objective_ids": [
+        "bio-inspired-01-03-lo-03"
+      ]
     },
     {
       "id": "bio_vdw_area",
@@ -36,7 +39,11 @@
       "concept_ids": [
         "van_der_waals"
       ],
-      "misconception_id": "gecko_uses_suction"
+      "misconception_id": "gecko_uses_suction",
+      "learning_objective_ids": [
+        "bio-inspired-01-03-lo-01",
+        "bio-inspired-01-03-lo-02"
+      ]
     },
     {
       "id": "bio_dry_adhesive_use_case",
@@ -55,7 +62,10 @@
       "concept_ids": [
         "gecko"
       ],
-      "misconception_id": "copy_hair_shape_only"
+      "misconception_id": "copy_hair_shape_only",
+      "learning_objective_ids": [
+        "bio-inspired-01-03-lo-02"
+      ]
     },
     {
       "id": "bio_spatial_geometry_contact",
@@ -74,7 +84,10 @@
       "concept_ids": [
         "spatial_geometry"
       ],
-      "misconception_id": "copy_hair_shape_only"
+      "misconception_id": "copy_hair_shape_only",
+      "learning_objective_ids": [
+        "bio-inspired-01-03-lo-03"
+      ]
     }
   ]
 }

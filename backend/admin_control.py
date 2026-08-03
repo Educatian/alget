@@ -9,11 +9,15 @@ from pathlib import Path
 import re
 from typing import Any
 
-from pypdf import PdfReader
+try:
+    from pypdf import PdfReader
+except ImportError:  # PDF ingestion is optional for content-only local runs
+    PdfReader = None
 
 
 MAX_PDF_BYTES = 25 * 1024 * 1024
 MAX_PDF_PAGES = 500
+MAX_GOOGLE_DOC_CHARACTERS = 250_000
 
 
 AGENT_MANIFEST = [
@@ -61,6 +65,8 @@ def _heading_candidates(text: str) -> list[str]:
 
 def convert_pdf_bytes(data: bytes, filename: str) -> dict[str, Any]:
     """Convert a validated PDF into a reviewable, page-addressable text package."""
+    if PdfReader is None:
+        raise RuntimeError("PDF ingestion requires the optional pypdf dependency.")
     if not data or len(data) > MAX_PDF_BYTES:
         raise ValueError(f"PDF must be between 1 byte and {MAX_PDF_BYTES} bytes")
     if not data.startswith(b"%PDF-"):
@@ -103,11 +109,24 @@ def convert_pdf_bytes(data: bytes, filename: str) -> dict[str, Any]:
         f"## Page {page.page}\n\n{page.text or '[No extractable text]'}" for page in pages
     )
     total_chars = sum(page.characters for page in pages)
+    digest = sha256(data).hexdigest()
+
+    # The edge converter returns this alongside the extraction; the local
+    # runtime returned only the extraction, so an ingested PDF dead-ended at the
+    # governed source record. A source too thin to structure leaves the
+    # extraction usable on its own.
+    # Structure the page text itself; the "## Page N" markers are ingestion
+    # scaffolding and would otherwise be detected as course headings.
+    source_text = "\n\n".join(page.text for page in pages if page.text)
+    try:
+        runtime_draft = build_google_doc_course_draft(source_text, f"pdf:{digest[:24]}", safe_name)
+    except ValueError:
+        runtime_draft = None
 
     return {
         "status": "needs_review" if warnings else "converted",
         "filename": safe_name,
-        "sha256": sha256(data).hexdigest(),
+        "sha256": digest,
         "page_count": page_count,
         "total_characters": total_chars,
         "metadata": {
@@ -117,6 +136,7 @@ def convert_pdf_bytes(data: bytes, filename: str) -> dict[str, Any]:
         },
         "pages": [asdict(page) for page in pages],
         "markdown": markdown,
+        "runtime_draft": runtime_draft,
         "warnings": warnings,
         "quality": {
             "extractable_page_ratio": round(sum(page.characters >= 24 for page in pages) / page_count, 4),
@@ -144,4 +164,83 @@ def build_governed_course_plan(course_id: str, source_id: str) -> dict[str, Any]
         "status": "planned",
         "release_gate": "human_approval_required",
         "stages": stages,
+    }
+
+
+def extract_google_doc_id(url: str) -> str:
+    """Return a Google Docs document id without accepting arbitrary fetch URLs."""
+    match = re.fullmatch(
+        r"https://docs\.google\.com/document/d/([A-Za-z0-9_-]{20,})/(?:edit|view)(?:[?#].*)?",
+        (url or "").strip(),
+    )
+    if not match:
+        raise ValueError("Enter a standard Google Docs document link")
+    return match.group(1)
+
+
+def build_google_doc_course_draft(text: str, document_id: str, title: str = "") -> dict[str, Any]:
+    """Create a review-only course draft from source-grounded Google Doc text."""
+    cleaned = _clean_text(text or "")
+    if len(cleaned) < 80:
+        raise ValueError("Google Doc contains too little readable course material")
+    if len(cleaned) > MAX_GOOGLE_DOC_CHARACTERS:
+        cleaned = cleaned[:MAX_GOOGLE_DOC_CHARACTERS]
+
+    lines = [line.strip() for line in cleaned.splitlines() if line.strip()]
+    headings = _heading_candidates(cleaned)
+    if not headings:
+        headings = [title.strip() or lines[0][:100] or "Course module"]
+    sections: list[dict[str, Any]] = []
+    cursor = 0
+    for index, heading in enumerate(headings[:8], start=1):
+        start = cleaned.lower().find(heading.lower(), cursor)
+        if start < 0:
+            start = cursor
+        next_heading = headings[index] if index < len(headings) else None
+        end = cleaned.lower().find(next_heading.lower(), start + len(heading)) if next_heading else len(cleaned)
+        if end < 0:
+            end = min(len(cleaned), start + 5000)
+        excerpt = cleaned[start + len(heading):end].strip()[:1200] or cleaned[start:start + 1200]
+        cursor = max(end, start + len(heading))
+        sections.append({
+            "section_id": f"draft-{index:02d}",
+            "title": heading,
+            "source_excerpt": excerpt,
+            "reading": {
+                "estimated_minutes": max(4, min(18, round(len(excerpt.split()) / 180))),
+                "purpose": f"Build source-grounded understanding of {heading}.",
+            },
+            "activity": {
+                "type": "claim-evidence-revision",
+                "prompt": f"Identify one claim about {heading}, attach evidence from the reading, and revise the claim after critique.",
+                "evidence_collected": ["initial_claim", "source_evidence", "revision_rationale"],
+            },
+            "simulation": {
+                "status": "proposed",
+                "concept": heading,
+                "interaction": "Change one input, predict the effect, observe the response, and explain the discrepancy.",
+                "variables": ["input", "response", "constraint"],
+                "evidence_collected": ["prediction", "observation", "explanation"],
+            },
+        })
+
+    source_hash = sha256(cleaned.encode("utf-8")).hexdigest()
+    return {
+        "schema_version": "google-doc-course-draft-v1",
+        "source": {
+            "kind": "google_doc",
+            "document_id": document_id,
+            "title": title.strip() or headings[0],
+            "sha256": source_hash,
+            "characters": len(cleaned),
+        },
+        "learning_objectives": [f"Explain and apply the central ideas in {heading}." for heading in headings[:5]],
+        "sections": sections,
+        "quality": {
+            "source_grounded": True,
+            "human_approval_required": True,
+            "student_visible": False,
+            "automatic_publish": False,
+            "warnings": [] if len(sections) >= 2 else ["Only one section was detected; review the document heading structure."],
+        },
     }

@@ -6,10 +6,22 @@
   "chapter": "03",
   "section": "03",
   "learning_objectives": [
-    "Identify training-data bias, proxy variables, and aggregate masking in an educational AI tool.",
-    "Match the standard of proof for an AI decision to the stakes of its errors, using disaggregated subgroup performance.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible."
+    {
+      "id": "cat531-supplement-03-03-lo-01",
+      "statement": "Identify training-data bias, proxy variables, and aggregate masking in an educational AI tool"
+    },
+    {
+      "id": "cat531-supplement-03-03-lo-02",
+      "statement": "Match the standard of proof for an AI decision to the stakes of its errors, using disaggregated subgroup performance"
+    },
+    {
+      "id": "cat531-supplement-03-03-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat531-supplement-03-03-lo-04",
+      "statement": "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible"
+    }
   ],
   "concept_ids": [
     "cat531_supplement_ai_in_education",
@@ -28,5 +40,21 @@
   ],
   "estimated_time_minutes": 14,
   "order": 3,
-  "top_tier_hardened": false
+  "top_tier_hardened": false,
+  "lo_practice_map": {
+    "cat531-supplement-03-03-lo-01": [
+      "cat531_supplement_3_3_bias_data_and_classroom_consequences_annotation_signal"
+    ],
+    "cat531-supplement-03-03-lo-02": [
+      "cat531_supplement_3_3_bias_data_and_classroom_consequences_ai_boundary"
+    ],
+    "cat531-supplement-03-03-lo-03": [
+      "cat531_supplement_3_3_bias_data_and_classroom_consequences_calibration"
+    ],
+    "cat531-supplement-03-03-lo-04": [
+      "cat531_supplement_3_3_bias_data_and_classroom_consequences_calibration",
+      "cat531_supplement_3_3_bias_data_and_classroom_consequences_artifact_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

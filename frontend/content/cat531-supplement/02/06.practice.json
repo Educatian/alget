@@ -20,6 +20,9 @@
         "cat531_supplement_teacher_noticing_and_revision",
         "evidence_based_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-02-06-lo-02"
       ]
     },
     {
@@ -40,6 +43,10 @@
       "concept_ids": [
         "cat531_supplement_teacher_noticing_and_revision",
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-02-06-lo-03",
+        "cat531-supplement-02-06-lo-04"
       ]
     },
     {
@@ -60,6 +67,9 @@
       "concept_ids": [
         "cat531_supplement_teacher_noticing_and_revision",
         "ai_supported_learning"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-02-06-lo-02"
       ]
     },
     {
@@ -80,6 +90,9 @@
       "concept_ids": [
         "cat531_supplement_teacher_noticing_and_revision",
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat531-supplement-02-06-lo-01"
       ]
     }
   ]

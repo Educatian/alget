@@ -3,10 +3,22 @@
   "title": "Telemetry and Privacy Boundaries",
   "description": "AIL 606 textbook section connecting telemetry and privacy boundaries to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Apply data minimization: derive the logging plan from a stated question rather than from technical capability.",
-    "Distinguish direct identifiers, indirect identifiers, and pseudonymous keys, and explain how combinations enable re-identification.",
-    "Set purpose limitation and a retention window that match the consent learners actually gave.",
-    "Reject \"collect now, decide later\" requests and state the harm they create."
+    {
+      "id": "ail606-supplement-07-03-lo-01",
+      "statement": "Apply data minimization: derive the logging plan from a stated question rather than from technical capability"
+    },
+    {
+      "id": "ail606-supplement-07-03-lo-02",
+      "statement": "Distinguish direct identifiers, indirect identifiers, and pseudonymous keys, and explain how combinations enable re-identification"
+    },
+    {
+      "id": "ail606-supplement-07-03-lo-03",
+      "statement": "Set purpose limitation and a retention window that match the consent learners actually gave"
+    },
+    {
+      "id": "ail606-supplement-07-03-lo-04",
+      "statement": "Reject \"collect now, decide later\" requests and state the harm they create"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_research_translation_for_learning_design",
@@ -28,5 +40,20 @@
     "ail606_supplement_7_3_telemetry_and_privacy_boundaries_annotation_signal",
     "ail606_supplement_7_3_telemetry_and_privacy_boundaries_ai_boundary",
     "ail606_supplement_7_3_telemetry_and_privacy_boundaries_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-07-03-lo-01": [
+      "ail606_supplement_7_3_telemetry_and_privacy_boundaries_artifact_signal"
+    ],
+    "ail606-supplement-07-03-lo-02": [
+      "ail606_supplement_7_3_telemetry_and_privacy_boundaries_annotation_signal"
+    ],
+    "ail606-supplement-07-03-lo-03": [
+      "ail606_supplement_7_3_telemetry_and_privacy_boundaries_calibration"
+    ],
+    "ail606-supplement-07-03-lo-04": [
+      "ail606_supplement_7_3_telemetry_and_privacy_boundaries_ai_boundary"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

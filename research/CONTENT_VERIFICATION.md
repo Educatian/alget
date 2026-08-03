@@ -1,5 +1,15 @@
 # ALGET Content-Trust Verification Report
 
+> **Remediation update — 2026-07-30:** All 12 originally flagged atoms have now
+> been repaired in the active corpus. The Dynamics answer keys, CAT 100 Excel
+> example, dates/attributions, stray MDX tags, triangular-load wording, and
+> citation identifiers were corrected. The Selwyn identifier had propagated to
+> 40 CAT 531 files (41 occurrences), not one section as originally reported; all
+> are now normalized to the 2014 Routledge ebook record
+> `https://doi.org/10.4324/9781315886350`. Content schemas now require
+> machine-auditable learning-objective coverage through stable IDs and explicit
+> practice mappings. The original report below is retained as audit history.
+
 **Date:** 2026-05-28
 **Scope:** Full content corpus across 8 courses (statics, dynamics, bio-inspired, ai-ethics, inst-design, ail606-supplement, cat531-supplement, cat100-supplement). MDX worked examples (`\boxed{}`) and `.practice.json` problems (`final_answer`/`expected_value`), plus all named citations, incidents, laws/standards, and embedded media.
 

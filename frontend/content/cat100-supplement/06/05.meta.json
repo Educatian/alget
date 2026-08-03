@@ -6,10 +6,22 @@
   "title": "Debugging With AI Assistance",
   "description": "CAT 100 textbook section connecting debugging with ai assistance to AI critique log showing accepted, modified, and rejected suggestions, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Write a verifiable debugging prompt that states the symptom and includes the relevant code, and contrast it with a prompt the AI can only guess at.",
-    "Classify each AI debugging suggestion as accept, modify, or reject using a match check, a scope check, and a browser verify check, recording the reason.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    {
+      "id": "cat100-supplement-06-05-lo-01",
+      "statement": "Write a verifiable debugging prompt that states the symptom and includes the relevant code, and contrast it with a prompt the AI can only guess at"
+    },
+    {
+      "id": "cat100-supplement-06-05-lo-02",
+      "statement": "Classify each AI debugging suggestion as accept, modify, or reject using a match check, a scope check, and a browser verify check, recording the reason"
+    },
+    {
+      "id": "cat100-supplement-06-05-lo-03",
+      "statement": "Document a bounded AI/software support move with accepted and rejected suggestions"
+    },
+    {
+      "id": "cat100-supplement-06-05-lo-04",
+      "statement": "Use feedback, support requests, and revision notes to improve the artifact before sharing it"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_github_pages_personal_website",
@@ -28,5 +40,21 @@
     "cat100_supplement_6_5_debugging_with_ai_assistance_annotation_signal",
     "cat100_supplement_6_5_debugging_with_ai_assistance_ai_boundary",
     "cat100_supplement_6_5_debugging_with_ai_assistance_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-06-05-lo-01": [
+      "cat100_supplement_6_5_debugging_with_ai_assistance_annotation_signal"
+    ],
+    "cat100-supplement-06-05-lo-02": [
+      "cat100_supplement_6_5_debugging_with_ai_assistance_ai_boundary",
+      "cat100_supplement_6_5_debugging_with_ai_assistance_artifact_signal"
+    ],
+    "cat100-supplement-06-05-lo-03": [
+      "cat100_supplement_6_5_debugging_with_ai_assistance_ai_boundary"
+    ],
+    "cat100-supplement-06-05-lo-04": [
+      "cat100_supplement_6_5_debugging_with_ai_assistance_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

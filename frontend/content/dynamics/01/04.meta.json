@@ -1,34 +1,62 @@
 {
-    "course": "dynamics",
-    "chapter": "01",
-    "section": "04",
-    "chapter_title": "Foundational Kinematics",
-    "title": "Module 4: Curvilinear Motion — n-t and Polar Coordinates",
-    "description": "Choose between normal-tangential coordinates (path-known motion) and polar/cylindrical coordinates (origin-anchored motion); decompose velocity and acceleration in each, including the rotating-unit-vector cross terms.",
-    "learning_objectives": [
-        "Decide when n-t coordinates or polar coordinates simplify a curvilinear-motion problem.",
-        "Decompose velocity and acceleration in n-t coordinates with tangential and normal components a_t = dv/dt and a_n = v²/ρ.",
-        "Compute polar-coordinate acceleration including the cross terms a_r = r̈ - rθ̇² and a_θ = rθ̈ + 2ṙθ̇.",
-        "Recognize centripetal direction and apply it correctly in equilibrium of forces."
+  "course": "dynamics",
+  "chapter": "01",
+  "section": "04",
+  "chapter_title": "Foundational Kinematics",
+  "title": "Module 4: Curvilinear Motion — n-t and Polar Coordinates",
+  "description": "Choose between normal-tangential coordinates (path-known motion) and polar/cylindrical coordinates (origin-anchored motion); decompose velocity and acceleration in each, including the rotating-unit-vector cross terms.",
+  "learning_objectives": [
+    {
+      "id": "dynamics-01-04-lo-01",
+      "statement": "Decide when n-t coordinates or polar coordinates simplify a curvilinear-motion problem"
+    },
+    {
+      "id": "dynamics-01-04-lo-02",
+      "statement": "Decompose velocity and acceleration in n-t coordinates with tangential and normal components at = dv/dt and an = v²/ρ"
+    },
+    {
+      "id": "dynamics-01-04-lo-03",
+      "statement": "Compute polar-coordinate acceleration including the cross terms ar = r̈ - rθ̇² and aθ = rθ̈ + 2ṙθ̇"
+    },
+    {
+      "id": "dynamics-01-04-lo-04",
+      "statement": "Recognize centripetal direction and apply it correctly in equilibrium of forces"
+    }
+  ],
+  "concept_ids": [
+    "curvilinear_motion",
+    "normal_tangential_coordinates",
+    "polar_coordinates",
+    "cylindrical_coordinates",
+    "centripetal_acceleration",
+    "radius_of_curvature"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 4,
+  "prereq_section_ids": [
+    "dynamics/01/01"
+  ],
+  "practice_ids": [
+    "curvilinear_constant_speed_circle",
+    "curvilinear_coord_choice",
+    "curvilinear_polar_cross_terms",
+    "curvilinear_normal_direction",
+    "curvilinear_combined_acceleration"
+  ],
+  "lo_practice_map": {
+    "dynamics-01-04-lo-01": [
+      "curvilinear_coord_choice"
     ],
-    "concept_ids": [
-        "curvilinear_motion",
-        "normal_tangential_coordinates",
-        "polar_coordinates",
-        "cylindrical_coordinates",
-        "centripetal_acceleration",
-        "radius_of_curvature"
+    "dynamics-01-04-lo-02": [
+      "curvilinear_combined_acceleration",
+      "curvilinear_normal_direction"
     ],
-    "estimated_time_minutes": 14,
-    "order": 4,
-    "prereq_section_ids": [
-        "dynamics/01/01"
+    "dynamics-01-04-lo-03": [
+      "curvilinear_polar_cross_terms"
     ],
-    "practice_ids": [
-        "curvilinear_constant_speed_circle",
-        "curvilinear_coord_choice",
-        "curvilinear_polar_cross_terms",
-        "curvilinear_normal_direction",
-        "curvilinear_combined_acceleration"
+    "dynamics-01-04-lo-04": [
+      "curvilinear_constant_speed_circle"
     ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

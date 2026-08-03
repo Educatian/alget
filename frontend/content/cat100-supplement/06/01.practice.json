@@ -18,7 +18,10 @@
       "correct_index": 0,
       "explanation": "A hiring-manager audience needs to reach evidence of your work fast: a short, predictable set of pages (About, Projects, Resume, Contact) maps directly to what they came to verify.",
       "misconception_id": "cat100_supplement_6_1_more_pages_is_better",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-06-01-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_6_1_website_purpose_and_information_architecture_annotation_signal",
@@ -38,7 +41,10 @@
       "correct_index": 1,
       "explanation": "A descriptive heading that names the category of work lets a scanner predict the content and decide to read on. 'Stuff' and 'Things' carry no orienting information.",
       "misconception_id": "cat100_supplement_6_1_label_clarity_optional",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-06-01-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_6_1_website_purpose_and_information_architecture_ai_boundary",
@@ -58,7 +64,10 @@
       "correct_index": 1,
       "explanation": "The AI proposal is a draft for a business, not a student. You judge it against your purpose and audience, keep the fitting pages, and document why you removed the rest.",
       "misconception_id": "cat100_supplement_6_1_ai_sitemap_as_authority",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-06-01-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_6_1_website_purpose_and_information_architecture_calibration",
@@ -77,7 +86,10 @@
       "correct_index": 1,
       "explanation": "Cards with titles, summaries, and per-project links let a visitor scan, predict, and jump straight to the one project they want, which is the core job of information architecture.",
       "misconception_id": "cat100_supplement_6_1_more_pages_is_better",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-06-01-lo-02"
+      ]
     }
   ]
 }

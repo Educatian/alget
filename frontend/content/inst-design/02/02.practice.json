@@ -18,7 +18,11 @@
         "Defining high-level business goals before audience analysis"
       ],
       "correct_index": 1,
-      "explanation": "Development is where the blueprint becomes real through assets, scripts, interfaces, assessments, and prototypes."
+      "explanation": "Development is where the blueprint becomes real through assets, scripts, interfaces, assessments, and prototypes.",
+      "learning_objective_ids": [
+        "inst-design-02-02-lo-01",
+        "inst-design-02-02-lo-03"
+      ]
     },
     {
       "id": "implementation_phase_focus",
@@ -38,7 +42,10 @@
         "Whether no revisions should ever be made after launch"
       ],
       "correct_index": 0,
-      "explanation": "Implementation is about delivery readiness: facilitators, platform setup, deployment logistics, and the conditions under which learners will actually use the instruction."
+      "explanation": "Implementation is about delivery readiness: facilitators, platform setup, deployment logistics, and the conditions under which learners will actually use the instruction.",
+      "learning_objective_ids": [
+        "inst-design-02-02-lo-02"
+      ]
     },
     {
       "id": "sam_iteration_logic",
@@ -58,7 +65,10 @@
         "Because SMEs are usually unnecessary once a prototype exists"
       ],
       "correct_index": 1,
-      "explanation": "Rapid prototyping exposes design flaws early, which reduces the cost of revision and increases responsiveness to learner feedback."
+      "explanation": "Rapid prototyping exposes design flaws early, which reduces the cost of revision and increases responsiveness to learner feedback.",
+      "learning_objective_ids": [
+        "inst-design-02-02-lo-03"
+      ]
     },
     {
       "id": "qa_in_id",
@@ -77,7 +87,10 @@
         "Because QA only checks file naming conventions"
       ],
       "correct_index": 1,
-      "explanation": "A course can fail through broken interactions, confusing language, poor accessibility, or flawed pedagogy. Development QA must check both technical and instructional integrity."
+      "explanation": "A course can fail through broken interactions, confusing language, poor accessibility, or flawed pedagogy. Development QA must check both technical and instructional integrity.",
+      "learning_objective_ids": [
+        "inst-design-02-02-lo-01"
+      ]
     }
   ]
 }

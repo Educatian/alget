@@ -3,10 +3,22 @@
   "title": "Image Generation for Instruction",
   "description": "AIL 606 textbook section connecting image generation for instruction to an instructional image commission-and-verification trace: the one-sentence image function, rejected generations with the gate each failed, and verification notes, plus reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "State the representational function of an instructional image in one sentence before prompting.",
-    "Apply the function, coherence, and accuracy three-gate screen to a generated image and reject at the first failed gate.",
-    "Verify generated image content (labels, counts, proportions, and social representation) against an authoritative source, documenting an accepted and a rejected AI suggestion.",
-    "Distinguish prompt-craft polish from a function-first, verified image decision."
+    {
+      "id": "ail606-supplement-03-03-lo-01",
+      "statement": "State the representational function of an instructional image in one sentence before prompting"
+    },
+    {
+      "id": "ail606-supplement-03-03-lo-02",
+      "statement": "Apply the function, coherence, and accuracy three-gate screen to a generated image and reject at the first failed gate"
+    },
+    {
+      "id": "ail606-supplement-03-03-lo-03",
+      "statement": "Verify generated image content (labels, counts, proportions, and social representation) against an authoritative source, documenting an accepted and a rejected AI suggestion"
+    },
+    {
+      "id": "ail606-supplement-03-03-lo-04",
+      "statement": "Distinguish prompt-craft polish from a function-first, verified image decision"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_multimedia_storyboarding_and_ai_asset_generation",
@@ -28,5 +40,22 @@
     "ail606_supplement_3_3_image_generation_for_instruction_annotation_signal",
     "ail606_supplement_3_3_image_generation_for_instruction_ai_boundary",
     "ail606_supplement_3_3_image_generation_for_instruction_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-03-03-lo-01": [
+      "ail606_supplement_3_3_image_generation_for_instruction_calibration",
+      "ail606_supplement_3_3_image_generation_for_instruction_artifact_signal"
+    ],
+    "ail606-supplement-03-03-lo-02": [
+      "ail606_supplement_3_3_image_generation_for_instruction_calibration"
+    ],
+    "ail606-supplement-03-03-lo-03": [
+      "ail606_supplement_3_3_image_generation_for_instruction_ai_boundary",
+      "ail606_supplement_3_3_image_generation_for_instruction_annotation_signal"
+    ],
+    "ail606-supplement-03-03-lo-04": [
+      "ail606_supplement_3_3_image_generation_for_instruction_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

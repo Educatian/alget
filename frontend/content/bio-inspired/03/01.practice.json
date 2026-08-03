@@ -17,7 +17,10 @@
       "concept_ids": [
         "wing_serrations"
       ],
-      "misconception_id": "serrations_are_mufflers"
+      "misconception_id": "serrations_are_mufflers",
+      "learning_objective_ids": [
+        "bio-inspired-03-01-lo-01"
+      ]
     },
     {
       "id": "bio_aeroacoustics_focus",
@@ -36,7 +39,10 @@
       "concept_ids": [
         "aeroacoustics"
       ],
-      "misconception_id": "serrations_are_mufflers"
+      "misconception_id": "serrations_are_mufflers",
+      "learning_objective_ids": [
+        "bio-inspired-03-01-lo-01"
+      ]
     },
     {
       "id": "bio_microturbulence_breakdown",
@@ -55,7 +61,10 @@
       "concept_ids": [
         "turbulence"
       ],
-      "misconception_id": "more_serrations_always_better"
+      "misconception_id": "more_serrations_always_better",
+      "learning_objective_ids": [
+        "bio-inspired-03-01-lo-02"
+      ]
     },
     {
       "id": "bio_propeller_transfer",
@@ -74,7 +83,10 @@
       "concept_ids": [
         "drone_propellers"
       ],
-      "misconception_id": "copy_feather_surface_only"
+      "misconception_id": "copy_feather_surface_only",
+      "learning_objective_ids": [
+        "bio-inspired-03-01-lo-03"
+      ]
     }
   ]
 }

@@ -3,10 +3,22 @@
   "title": "Small-N Testing and Design Claims",
   "description": "AIL 606 textbook section connecting small-n testing and design claims to moderated usability test script with observation-to-revision trace, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Explain why small-N moderated testing is strong for surfacing usability problems but weak for outcome claims.",
-    "Convert an overreaching efficacy claim into a scoped problem-and-revision claim the sample can support.",
-    "Use observation frequency (e.g., 4 of 5) to prioritize revisions and to flag low-frequency signals for watching rather than acting.",
-    "Reject outcome language (\"improves learning\") when no comparison or baseline exists."
+    {
+      "id": "ail606-supplement-07-04-lo-01",
+      "statement": "Explain why small-N moderated testing is strong for surfacing usability problems but weak for outcome claims"
+    },
+    {
+      "id": "ail606-supplement-07-04-lo-02",
+      "statement": "Convert an overreaching efficacy claim into a scoped problem-and-revision claim the sample can support"
+    },
+    {
+      "id": "ail606-supplement-07-04-lo-03",
+      "statement": "Use observation frequency (e.g., 4 of 5) to prioritize revisions and to flag low-frequency signals for watching rather than acting"
+    },
+    {
+      "id": "ail606-supplement-07-04-lo-04",
+      "statement": "Reject outcome language (\"improves learning\") when no comparison or baseline exists"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_research_translation_for_learning_design",
@@ -28,5 +40,21 @@
     "ail606_supplement_7_4_small_n_testing_and_design_claims_annotation_signal",
     "ail606_supplement_7_4_small_n_testing_and_design_claims_ai_boundary",
     "ail606_supplement_7_4_small_n_testing_and_design_claims_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-07-04-lo-01": [
+      "ail606_supplement_7_4_small_n_testing_and_design_claims_artifact_signal",
+      "ail606_supplement_7_4_small_n_testing_and_design_claims_annotation_signal"
+    ],
+    "ail606-supplement-07-04-lo-02": [
+      "ail606_supplement_7_4_small_n_testing_and_design_claims_ai_boundary"
+    ],
+    "ail606-supplement-07-04-lo-03": [
+      "ail606_supplement_7_4_small_n_testing_and_design_claims_calibration"
+    ],
+    "ail606-supplement-07-04-lo-04": [
+      "ail606_supplement_7_4_small_n_testing_and_design_claims_artifact_signal"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

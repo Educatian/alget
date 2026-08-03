@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "A critique log demonstrates judgment, not obedience. Rejecting or modifying a poor suggestion, with a reason, is itself evidence of skill.",
       "misconception_id": "cat100_supplement_8_5_accept_all_suggestions",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-08-05-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_8_5_peer_showcase_feedback_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "Actionable feedback names a specific artifact element and the problem. A missing <label> is something you can fix and log; 'looks great' is not.",
       "misconception_id": "cat100_supplement_8_5_vague_feedback_given",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-08-05-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_8_5_peer_showcase_feedback_ai_boundary",
@@ -56,7 +62,11 @@
       "correct_index": 1,
       "explanation": "You judge the AI suggestion against the actual formula. Since the column is not profit, the correct, documented move is to reject the rename with a reason.",
       "misconception_id": "cat100_supplement_8_5_accept_all_suggestions",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-08-05-lo-02",
+        "cat100-supplement-08-05-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_8_5_peer_showcase_feedback_calibration",
@@ -75,7 +85,10 @@
       "correct_index": 1,
       "explanation": "A closed-loop row names the suggestion, the decision, the exact edit (file and line), and the re-test, so a reviewer can verify the change happened.",
       "misconception_id": "cat100_supplement_8_5_log_no_outcome",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-08-05-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_8_5_feedback_integration_log_modify_case",
@@ -94,6 +107,9 @@
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"
+      ],
+      "learning_objective_ids": [
+        "cat100-supplement-08-05-lo-01"
       ]
     }
   ]

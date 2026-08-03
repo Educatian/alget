@@ -1,31 +1,61 @@
 {
-    "chapter": "01",
-    "section": "02",
-    "title": "Free Body Diagrams",
-    "course": "statics",
-    "learning_objectives": [
-        "Draw complete and accurate free body diagrams",
-        "Identify all forces acting on an isolated body",
-        "Apply the systematic 6-step FBD procedure",
-        "Recognize common FBD errors and how to avoid them"
+  "chapter": "01",
+  "section": "02",
+  "title": "Free Body Diagrams",
+  "course": "statics",
+  "learning_objectives": [
+    {
+      "id": "statics-01-02-lo-01",
+      "statement": "Draw complete and accurate free body diagrams"
+    },
+    {
+      "id": "statics-01-02-lo-02",
+      "statement": "Identify all forces acting on an isolated body"
+    },
+    {
+      "id": "statics-01-02-lo-03",
+      "statement": "Apply the systematic 6-step FBD procedure"
+    },
+    {
+      "id": "statics-01-02-lo-04",
+      "statement": "Recognize common FBD errors and how to avoid them"
+    }
+  ],
+  "concept_ids": [
+    "free_body_diagram",
+    "force_identification",
+    "particle_model",
+    "reaction_forces"
+  ],
+  "prerequisites": [
+    "equilibrium_condition"
+  ],
+  "prereq_section_ids": [
+    "statics/01/01"
+  ],
+  "practice_ids": [
+    "fbd_inclined_block",
+    "fbd_pulley_tension",
+    "fbd_contact_force_identify",
+    "fbd_weight_direction",
+    "statics_01_02_lo_03_direct_check"
+  ],
+  "estimated_time_minutes": 45,
+  "lo_practice_map": {
+    "statics-01-02-lo-01": [
+      "fbd_pulley_tension",
+      "fbd_inclined_block",
+      "fbd_weight_direction"
     ],
-    "concept_ids": [
-        "free_body_diagram",
-        "force_identification",
-        "particle_model",
-        "reaction_forces"
+    "statics-01-02-lo-02": [
+      "fbd_contact_force_identify"
     ],
-    "prerequisites": [
-        "equilibrium_condition"
+    "statics-01-02-lo-03": [
+      "statics_01_02_lo_03_direct_check"
     ],
-    "prereq_section_ids": [
-        "statics/01/01"
-    ],
-    "practice_ids": [
-        "fbd_inclined_block",
-        "fbd_pulley_tension",
-        "fbd_contact_force_identify",
-        "fbd_weight_direction"
-    ],
-    "estimated_time_minutes": 45
+    "statics-01-02-lo-04": [
+      "statics_01_02_lo_03_direct_check"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

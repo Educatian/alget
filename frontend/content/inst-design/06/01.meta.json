@@ -1,32 +1,54 @@
 {
-    "course": "inst-design",
-    "chapter": "06",
-    "section": "01",
-    "title": "Module 6: Collaborative & Social Learning",
-    "description": "Exploring Vygotsky's Zone of Proximal Development (ZPD) and Communities of Practice in modern, networked learning environments.",
-    "chapter_title": "Motivation and Learner-Centered Design",
-    "learning_objectives": [
-        "Explain how collaborative interaction can accelerate understanding and transfer.",
-        "Use the Zone of Proximal Development to design peer support and coaching structures.",
-        "Apply communities-of-practice thinking to online or blended learning environments."
+  "course": "inst-design",
+  "chapter": "06",
+  "section": "01",
+  "title": "Module 6: Collaborative & Social Learning",
+  "description": "Exploring Vygotsky's Zone of Proximal Development (ZPD) and Communities of Practice in modern, networked learning environments.",
+  "chapter_title": "Motivation and Learner-Centered Design",
+  "learning_objectives": [
+    {
+      "id": "inst-design-06-01-lo-01",
+      "statement": "Explain how collaborative interaction can accelerate understanding and transfer"
+    },
+    {
+      "id": "inst-design-06-01-lo-02",
+      "statement": "Use the Zone of Proximal Development to design peer support and coaching structures"
+    },
+    {
+      "id": "inst-design-06-01-lo-03",
+      "statement": "Apply communities-of-practice thinking to online or blended learning environments"
+    }
+  ],
+  "concept_ids": [
+    "collaborative_learning",
+    "social_learning",
+    "zone_of_proximal_development",
+    "communities_of_practice",
+    "peer_scaffolding"
+  ],
+  "prereq_section_ids": [
+    "inst-design/01/03",
+    "inst-design/05/01"
+  ],
+  "practice_ids": [
+    "social_learning_premise",
+    "zpd_peer_support",
+    "community_of_practice",
+    "collaboration_design_quality"
+  ],
+  "estimated_time_minutes": 11,
+  "order": 6,
+  "lo_practice_map": {
+    "inst-design-06-01-lo-01": [
+      "social_learning_premise",
+      "collaboration_design_quality"
     ],
-    "concept_ids": [
-        "collaborative_learning",
-        "social_learning",
-        "zone_of_proximal_development",
-        "communities_of_practice",
-        "peer_scaffolding"
+    "inst-design-06-01-lo-02": [
+      "zpd_peer_support"
     ],
-    "prereq_section_ids": [
-        "inst-design/01/03",
-        "inst-design/05/01"
-    ],
-    "practice_ids": [
-        "social_learning_premise",
-        "zpd_peer_support",
-        "community_of_practice",
-        "collaboration_design_quality"
-    ],
-    "estimated_time_minutes": 11,
-    "order": 6
+    "inst-design-06-01-lo-03": [
+      "community_of_practice"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

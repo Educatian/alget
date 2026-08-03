@@ -3,10 +3,22 @@
   "title": "Accessibility and WCAG Checks",
   "description": "AIL 606 textbook section connecting accessibility and WCAG checks to a WCAG 2.2 audit in which every change cites a success criterion and a reproducible result, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Audit a screen against specific WCAG 2.2 AA success criteria, not general \"looks accessible\" impressions.",
-    "Compute and check color contrast against the 4.5:1 threshold for normal text.",
-    "Write alt text that conveys the information an image carries, not the word \"image.\"",
-    "Ensure no status or meaning is communicated by color alone."
+    {
+      "id": "ail606-supplement-04-05-lo-01",
+      "statement": "Audit a screen against specific WCAG 2.2 AA success criteria, not general \"looks accessible\" impressions"
+    },
+    {
+      "id": "ail606-supplement-04-05-lo-02",
+      "statement": "Compute and check color contrast against the 4.5:1 threshold for normal text"
+    },
+    {
+      "id": "ail606-supplement-04-05-lo-03",
+      "statement": "Write alt text that conveys the information an image carries, not the word \"image.\""
+    },
+    {
+      "id": "ail606-supplement-04-05-lo-04",
+      "statement": "Ensure no status or meaning is communicated by color alone"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_design_draft_and_theory_to_prototype_alignment",
@@ -28,5 +40,21 @@
     "ail606_supplement_4_5_accessibility_and_wcag_checks_annotation_signal",
     "ail606_supplement_4_5_accessibility_and_wcag_checks_ai_boundary",
     "ail606_supplement_4_5_accessibility_and_wcag_checks_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-04-05-lo-01": [
+      "ail606_supplement_4_5_accessibility_and_wcag_checks_artifact_signal"
+    ],
+    "ail606-supplement-04-05-lo-02": [
+      "ail606_supplement_4_5_accessibility_and_wcag_checks_artifact_signal"
+    ],
+    "ail606-supplement-04-05-lo-03": [
+      "ail606_supplement_4_5_accessibility_and_wcag_checks_annotation_signal",
+      "ail606_supplement_4_5_accessibility_and_wcag_checks_ai_boundary"
+    ],
+    "ail606-supplement-04-05-lo-04": [
+      "ail606_supplement_4_5_accessibility_and_wcag_checks_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

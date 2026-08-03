@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "The policy allows brainstorming but requires disclosure. A specific note of what AI did, and when, meets the rule even though the words are your own.",
       "misconception_id": "cat100_supplement_1_2_responsible_ai_use_in_coursework_paraphrase_avoids_disclosure",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "learning_objective_ids": [
+        "cat100-supplement-01-02-lo-02"
+      ]
     },
     {
       "id": "cat100_supplement_1_2_responsible_ai_use_in_coursework_annotation_signal",
@@ -37,7 +40,10 @@
       "correct_index": 1,
       "explanation": "AI rules are set per assignment and syllabus. A rule from one course does not transfer; follow this course's stated policy and ask when unclear.",
       "misconception_id": "cat100_supplement_1_2_responsible_ai_use_in_coursework_policy_is_uniform",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-01-02-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_1_2_responsible_ai_use_in_coursework_ai_boundary",
@@ -56,7 +62,11 @@
       "correct_index": 1,
       "explanation": "Proofreading was allowed; generating a new thesis was not. Accept the permitted edits and reject the part that crosses the boundary.",
       "misconception_id": "cat100_supplement_1_2_responsible_ai_use_in_coursework_editing_vs_generating",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "learning_objective_ids": [
+        "cat100-supplement-01-02-lo-01",
+        "cat100-supplement-01-02-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_1_2_responsible_ai_use_in_coursework_calibration",
@@ -75,7 +85,10 @@
       "correct_index": 1,
       "explanation": "Disclosure tracks the source of the ideas and drafting help, not surface wording. Rewording does not erase the AI's contribution to the content.",
       "misconception_id": "cat100_supplement_1_2_responsible_ai_use_in_coursework_paraphrase_avoids_disclosure",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-01-02-lo-02"
+      ]
     }
   ]
 }

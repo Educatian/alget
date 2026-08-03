@@ -3,10 +3,22 @@
   "title": "Module 4 Design Draft Clinic",
   "description": "AIL 606 textbook section connecting module 4 design draft clinic to the prioritized evidence-ranked revision plan, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Synthesize the module's artifacts (problem statement, load diagnosis, accessibility pass, traceability) into one plan.",
-    "Rank revisions by evidenced impact on the problem statement's named outcome.",
-    "Filter generic AI critique down to claims you can substantiate against your own evidence.",
-    "Defend a prioritization, not just a list of changes."
+    {
+      "id": "ail606-supplement-04-08-lo-01",
+      "statement": "Synthesize the module's artifacts (problem statement, load diagnosis, accessibility pass, traceability) into one plan"
+    },
+    {
+      "id": "ail606-supplement-04-08-lo-02",
+      "statement": "Rank revisions by evidenced impact on the problem statement's named outcome"
+    },
+    {
+      "id": "ail606-supplement-04-08-lo-03",
+      "statement": "Filter generic AI critique down to claims you can substantiate against your own evidence"
+    },
+    {
+      "id": "ail606-supplement-04-08-lo-04",
+      "statement": "Defend a prioritization, not just a list of changes"
+    }
   ],
   "concept_ids": [
     "ail606_supplement_design_draft_and_theory_to_prototype_alignment",
@@ -28,5 +40,22 @@
     "ail606_supplement_4_8_module_4_design_draft_clinic_annotation_signal",
     "ail606_supplement_4_8_module_4_design_draft_clinic_ai_boundary",
     "ail606_supplement_4_8_module_4_design_draft_clinic_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "ail606-supplement-04-08-lo-01": [
+      "ail606_supplement_4_8_module_4_design_draft_clinic_calibration",
+      "ail606_supplement_4_8_module_4_design_draft_clinic_artifact_signal",
+      "ail606_supplement_4_8_module_4_design_draft_clinic_annotation_signal"
+    ],
+    "ail606-supplement-04-08-lo-02": [
+      "ail606_supplement_4_8_module_4_design_draft_clinic_calibration"
+    ],
+    "ail606-supplement-04-08-lo-03": [
+      "ail606_supplement_4_8_module_4_design_draft_clinic_ai_boundary"
+    ],
+    "ail606-supplement-04-08-lo-04": [
+      "ail606_supplement_4_8_module_4_design_draft_clinic_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }

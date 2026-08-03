@@ -18,7 +18,11 @@
       ],
       "correct_index": 1,
       "explanation": "Without an explicit objective, learners cannot mobilize the right strategies or self-monitor. This is the missing event 2.",
-      "misconception_id": "objective_is_optional"
+      "misconception_id": "objective_is_optional",
+      "learning_objective_ids": [
+        "inst-design-02-06-lo-01",
+        "inst-design-02-06-lo-02"
+      ]
     },
     {
       "id": "gagne_recall_purpose",
@@ -38,7 +42,10 @@
       ],
       "correct_index": 1,
       "explanation": "Stimulating recall is a deliberate retrieval move. Without active prior knowledge, the new content has no schema to attach to.",
-      "misconception_id": "recall_is_warmup_trivia"
+      "misconception_id": "recall_is_warmup_trivia",
+      "learning_objective_ids": [
+        "inst-design-02-06-lo-02"
+      ]
     },
     {
       "id": "gagne_practice_vs_paraphrase",
@@ -58,7 +65,10 @@
       ],
       "correct_index": 1,
       "explanation": "Eliciting performance means attempting the objective's verb. Paraphrasing or clicking 'I understand' is metacognitive talk, not the performance.",
-      "misconception_id": "paraphrase_counts_as_practice"
+      "misconception_id": "paraphrase_counts_as_practice",
+      "learning_objective_ids": [
+        "inst-design-02-06-lo-02"
+      ]
     },
     {
       "id": "gagne_transfer_signature",
@@ -78,7 +88,10 @@
       ],
       "correct_index": 2,
       "explanation": "High in-session score with poor downstream transfer is the classic signature of a missing or weak Event 9.",
-      "misconception_id": "passing_score_means_durable_learning"
+      "misconception_id": "passing_score_means_durable_learning",
+      "learning_objective_ids": [
+        "inst-design-02-06-lo-03"
+      ]
     }
   ]
 }

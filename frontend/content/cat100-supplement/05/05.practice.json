@@ -18,7 +18,10 @@
       "correct_index": 1,
       "explanation": "You act on the specific flags, slow the rushed part, and keep meaningful pauses rather than blindly chasing one number.",
       "difficulty": "easy",
-      "misconception_id": "cat100_supplement_5_5_self_recording_with_ai_coaching_metric_chasing"
+      "misconception_id": "cat100_supplement_5_5_self_recording_with_ai_coaching_metric_chasing",
+      "learning_objective_ids": [
+        "cat100-supplement-05-05-lo-01"
+      ]
     },
     {
       "id": "cat100_supplement_5_5_self_recording_with_ai_coaching_annotation_signal",
@@ -37,7 +40,11 @@
       "correct_index": 1,
       "explanation": "The note names a concrete tension (filler reduction versus natural pacing) so feedback can be specific.",
       "difficulty": "medium",
-      "misconception_id": "cat100_supplement_5_5_self_recording_with_ai_coaching_one_take"
+      "misconception_id": "cat100_supplement_5_5_self_recording_with_ai_coaching_one_take",
+      "learning_objective_ids": [
+        "cat100-supplement-05-05-lo-02",
+        "cat100-supplement-05-05-lo-04"
+      ]
     },
     {
       "id": "cat100_supplement_5_5_self_recording_with_ai_coaching_ai_boundary",
@@ -56,7 +63,10 @@
       "correct_index": 1,
       "explanation": "The AI provides targeted signals; you verify improvements through playback and human judgment.",
       "difficulty": "hard",
-      "misconception_id": "cat100_supplement_5_5_self_recording_with_ai_coaching_coach_as_judge"
+      "misconception_id": "cat100_supplement_5_5_self_recording_with_ai_coaching_coach_as_judge",
+      "learning_objective_ids": [
+        "cat100-supplement-05-05-lo-03"
+      ]
     },
     {
       "id": "cat100_supplement_5_5_self_recording_with_ai_coaching_calibration",
@@ -74,7 +84,10 @@
       ],
       "correct_index": 1,
       "explanation": "Logging the flag, the fix, and the human check turns practice into inspectable improvement evidence.",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "learning_objective_ids": [
+        "cat100-supplement-05-05-lo-03"
+      ]
     }
   ]
 }

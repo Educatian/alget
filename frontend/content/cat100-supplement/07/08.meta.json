@@ -1,4 +1,4 @@
-﻿{
+{
   "course": "cat100-supplement",
   "chapter": "07",
   "section": "08",
@@ -6,10 +6,22 @@
   "title": "Workflow Studio",
   "description": "CAT 100 textbook section connecting workflow studio to published workflow site with revision trace, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Name the homepage `index.html` so the site resolves at its root instead of returning a 404.",
-    "Use relative image paths so images load for every visitor, not just on your computer.",
-    "Enable publishing in the host's settings, since pushing files alone does not make a site live.",
-    "Close every HTML tag so the browser renders the content as intended."
+    {
+      "id": "cat100-supplement-07-08-lo-01",
+      "statement": "Name the homepage index.html so the site resolves at its root instead of returning a 404"
+    },
+    {
+      "id": "cat100-supplement-07-08-lo-02",
+      "statement": "Use relative image paths so images load for every visitor, not just on your computer"
+    },
+    {
+      "id": "cat100-supplement-07-08-lo-03",
+      "statement": "Enable publishing in the host's settings, since pushing files alone does not make a site live"
+    },
+    {
+      "id": "cat100-supplement-07-08-lo-04",
+      "statement": "Close every HTML tag so the browser renders the content as intended"
+    }
   ],
   "concept_ids": [
     "cat100_supplement_productivity_and_workflow_automation",
@@ -28,5 +40,20 @@
     "cat100_supplement_7_8_workflow_studio_annotation_signal",
     "cat100_supplement_7_8_workflow_studio_ai_boundary",
     "cat100_supplement_7_8_workflow_studio_calibration"
-  ]
+  ],
+  "lo_practice_map": {
+    "cat100-supplement-07-08-lo-01": [
+      "cat100_supplement_7_8_workflow_studio_artifact_signal"
+    ],
+    "cat100-supplement-07-08-lo-02": [
+      "cat100_supplement_7_8_workflow_studio_annotation_signal"
+    ],
+    "cat100-supplement-07-08-lo-03": [
+      "cat100_supplement_7_8_workflow_studio_ai_boundary"
+    ],
+    "cat100-supplement-07-08-lo-04": [
+      "cat100_supplement_7_8_workflow_studio_calibration"
+    ]
+  },
+  "alignment_method": "deterministic lexical mapping v2 with direct-evidence fallback; instructor review required"
 }
