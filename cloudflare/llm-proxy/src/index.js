@@ -37,6 +37,63 @@ function cleanExcerpt(value, limit = 280) {
   return String(value || '').replace(/\s+/g, ' ').trim().slice(0, limit)
 }
 
+// A model response is an external dependency even when response_format is
+// requested. Keep the learner-facing assessment route usable if a provider
+// returns truncated or otherwise invalid JSON: the fallback is deliberately
+// generic and evidence-labelled, never a fabricated claim about the source.
+function buildAssessmentFallback(body = {}) {
+  const title = cleanExcerpt(body.section_title || 'this section', 120) || 'this section'
+  const retrieved = Array.isArray(body.retrieved_context) ? body.retrieved_context : []
+  const firstSource = retrieved.find((item) => cleanExcerpt(item?.content))
+  const contextText = firstSource
+    ? cleanExcerpt(firstSource.content, 180)
+    : cleanExcerpt(body.current_content || body.biology_context || body.engineering_context, 180)
+  const sourceId = firstSource?.source_id || (contextText ? 'provided-context' : null)
+  const evidence = sourceId && contextText
+    ? [{ source_id: sourceId, passage_index: 1, excerpt: contextText }]
+    : []
+  const conceptId = Array.isArray(body.concept_ids) && body.concept_ids[0]
+    ? String(body.concept_ids[0])
+    : 'evidence_based_reasoning'
+
+  return {
+    mcq_questions: [
+      {
+        question: `Which learner move best demonstrates evidence-based reasoning in "${title}"?`,
+        options: [
+          { id: 'A', text: 'State a claim, identify the supporting evidence, and explain the connection.' },
+          { id: 'B', text: 'Choose the first fluent answer without checking its source.' },
+          { id: 'C', text: 'Replace the claim with an unrelated example.' },
+          { id: 'D', text: 'Treat confidence as proof that the claim is correct.' },
+        ],
+        correct_option_id: 'A',
+        explanation: 'A strong learning move makes the claim–evidence relationship explicit so it can be checked and revised.',
+        concept_id: conceptId,
+        evidence,
+      },
+      {
+        question: `What should a learner do next when the evidence in "${title}" is not sufficient?`,
+        options: [
+          { id: 'A', text: 'Add a stronger source or narrow the claim before revising.' },
+          { id: 'B', text: 'Hide the uncertainty from the reader.' },
+          { id: 'C', text: 'Keep the claim unchanged because it sounds plausible.' },
+          { id: 'D', text: 'Use a decorative example instead of evidence.' },
+        ],
+        correct_option_id: 'A',
+        explanation: 'Insufficient evidence is a signal to improve the source or scope of the claim, not to present the draft as settled.',
+        concept_id: conceptId,
+        evidence,
+      },
+    ],
+    summary_question: {
+      question: `Write one claim about "${title}" and name the evidence you would use to support or revise it.`,
+      concept_id: conceptId,
+      rubric: 'Names a specific claim, identifies relevant evidence, and explains whether the evidence supports or changes the claim.',
+      evidence,
+    },
+  }
+}
+
 function normalizeContentVersion(value) {
   if (!value) return null
   if (typeof value === 'string') return value
@@ -1547,9 +1604,11 @@ Tutoring pedagogy policy — follow it on every turn:
         const concepts = (Array.isArray(body.concept_ids) ? body.concept_ids : []).join(', ') || 'infer from context'
         const retrieved = (Array.isArray(body.retrieved_context) ? body.retrieved_context : []).slice(0, 5)
         const retrievedText = retrieved.map((item, index) => `[${index + 1}] ${String(item.content || '').slice(0, 1200)} (source: ${item.source_id || 'section-context'})`).join('\n\n') || 'No retrieved passages supplied; use only the provided section context.'
-        const assessment = await openrouterJSON(key, [
-          { role: 'system', content: 'You are an expert educator generating formative assessments aligned to learning objectives. Return ONLY a JSON object — no prose, no markdown.' },
-          { role: 'user', content: `Section title: "${body.section_title || 'this section'}".
+        let assessment
+        try {
+          assessment = await openrouterJSON(key, [
+            { role: 'system', content: 'You are an expert educator generating formative assessments aligned to learning objectives. Return ONLY a JSON object — no prose, no markdown.' },
+            { role: 'user', content: `Section title: "${body.section_title || 'this section'}".
 Context: ${(body.biology_context || '') + ' ' + (body.engineering_context || '')}
 Learning objectives:\n${objs}
 Target concepts (use when applicable): [${concepts}]
@@ -1558,7 +1617,11 @@ Retrieved source passages (every item must be grounded in one or more of these):
 Return EXACTLY this JSON shape, fitting THIS section's actual topic. Evidence must cite a retrieved passage index and a short verbatim excerpt (max 180 chars):
 {"mcq_questions":[{"question":"...","options":[{"id":"A","text":"..."},{"id":"B","text":"..."},{"id":"C","text":"..."},{"id":"D","text":"..."}],"correct_option_id":"A","explanation":"why correct & others wrong","concept_id":"...","evidence":[{"source_id":"...","passage_index":1,"excerpt":"..."}]}],"summary_question":{"question":"a generative short-answer prompt","concept_id":"...","rubric":"key points expected","evidence":[{"source_id":"...","passage_index":1,"excerpt":"..."}]}}
 Exactly 2 items in mcq_questions and exactly 1 summary_question.` },
-        ], { model, temperature: 0.5, maxTokens: 1500 })
+          ], { model, temperature: 0.5, maxTokens: 1500 })
+        } catch (error) {
+          console.warn('[Assessment] provider response was not valid JSON; serving evidence-labelled fallback:', error?.message || error)
+          assessment = buildAssessmentFallback(body)
+        }
         const generation_trace = await buildGenerationTrace({
           body,
           output: assessment,
