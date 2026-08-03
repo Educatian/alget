@@ -5,6 +5,8 @@ test.describe('ALGET instructor pilot workflow', () => {
         await page.goto('/instructor', { waitUntil: 'networkidle' })
 
         await expect(page.getByRole('heading', { name: 'See the course before changing it' })).toBeVisible()
+        await expect(page.getByRole('heading', { name: 'Instructor intervention queue' })).toBeVisible()
+        await expect(page.getByRole('heading', { name: 'Invite a learner to e2e-course' })).toBeVisible()
 
         const reportTab = page.getByRole('button', { name: 'Impact report' })
         expect(await reportTab.count()).toBe(1)

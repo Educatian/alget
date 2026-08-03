@@ -17,13 +17,14 @@ controls.
 | Reading surface | yes | yes |
 | Study planner: draft → awaiting approval → active | yes | needs a signed-in Supabase user |
 | Adaptation control plane | yes | needs a real administrator |
-| Instructor intervention queue | **no** — see below | needs role + cohort evidence |
+| Instructor intervention queue | yes — course-scoped queue is visible; it stays empty until evidence crosses the drafting threshold | needs role + cohort evidence for a proposal |
 
-The instructor intervention queue is unreachable in both configurations today.
-`InstructorDashboard` returns "No assigned course yet" whenever
-`courses.length === 0`, and that list comes from Supabase — so it is empty in
-the offline local stack. On the deployed site it additionally needs cohort
-mastery evidence before any proposal crosses the drafting threshold.
+The instructor intervention queue is now reachable in the local E2E path: the
+course-scoped dashboard supplies an `e2e-course` fallback when the demo identity
+has no remote assignment. It correctly shows an empty evidence state until
+course-scoped mastery evidence crosses the drafting threshold. A deployed
+instructor still needs an assigned course and real cohort evidence before a
+proposal can be created.
 
 ## Local full tour (the working path)
 
