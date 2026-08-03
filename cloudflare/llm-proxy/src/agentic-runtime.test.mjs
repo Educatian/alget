@@ -55,6 +55,11 @@ test('Google Docs course drafting keeps generated experiences in shadow review',
   assert.equal(draft.quality.automatic_publish, false)
 })
 
+test('source grounding exposes citation verification state instead of implying verification', () => {
+  const draft = buildGoogleDocCourseDraft(`Course Foundations\n${'A source-grounded explanation of evidence evaluation and revision. '.repeat(5)}`, '12345678901234567890', 'Course Foundations')
+  assert.ok(['not-verified', 'openstax-retrieved'].includes(draft.quality.citation_verification))
+})
+
 test('roadmap manifest exposes all three horizons and default human gates', () => {
   const manifest = roadmapManifest()
   assert.equal(manifest.roadmap_contract, 'roadmap-runtime-v1')
