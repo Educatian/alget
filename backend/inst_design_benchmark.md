@@ -1,101 +1,61 @@
 # Instructional Design Course Benchmark
 
-This benchmark uses the current local course library as the comparison set. The closest internal comparators are:
+This benchmark is generated from the current `frontend/content` tree and is
+intended as a human-readable companion to `backend/content_audit_report.md`.
+The audit report is the release gate; this document explains what the numbers
+mean for the adaptive textbook experience. Last refreshed: **2026-08-03**.
 
-- `dynamics`: strongest current benchmark for full learning-loop completeness
-- `bio-inspired`: strongest benchmark for narrative richness and embedded scenario/quiz storytelling
+## Current course-level comparison
 
-The goal is not to mimic either course exactly, but to identify where `inst-design` is structurally weaker than a well-rounded adaptive textbook.
+| Course | Sections | Avg words | Avg headings | Avg inline quizzes | Avg dynamic scenarios | Practice coverage | Misconception coverage |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| inst-design | 17 | 3455.6 | 19.1 | 1.06 | 1.18 | 100% | 100% |
+| dynamics | 11 | 3521.9 | 26.3 | 1.82 | 1.00 | 100% | 100% |
+| bio-inspired | 10 | 3762.6 | 20.2 | 1.40 | 1.10 | 100% | 100% |
 
-## Course-Level Comparison
+The comparison set is deliberately internal: `dynamics` is the strongest
+structural benchmark, while `bio-inspired` is the strongest narrative and
+scenario benchmark. `inst-design` now has a complete learning loop rather
+than the older article-library profile described in the superseded report.
 
-| Course | Sections | Avg words | Avg headings | Avg quizzes/section | Avg scenarios/section | Avg diagrams/section | Practice coverage | Misconception coverage |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| inst-design | 12 | 919.7 | 6.9 | 1.08 | 1.25 | 1.50 | 0% | 0% |
-| dynamics | 9 | 952.7 | 17.3 | 2.00 | 1.00 | 0.44 | 100% | 77.8% |
-| bio-inspired | 10 | 856.9 | 6.7 | 1.20 | 1.00 | 1.00 | 0% | 0% |
+## What the current evidence supports
 
-## What The Comparison Means
+- All 17 `inst-design` sections have a narrative, metadata, practice bank, and
+  misconception bank.
+- Every section contains an inline formative quiz and a dynamic application
+  scenario; `01/01` has three scenarios and `05/01` has two quizzes.
+- The content sufficiency audit scans 256 sections across eight courses with
+  zero high-priority gaps, zero missing practice banks, and zero missing
+  misconception banks.
+- Static snapshot validation, duplication linting, and boilerplate linting
+  are separate release checks; passing this benchmark does not replace them.
 
-`inst-design` is already healthy in three areas:
+## Section-level profile (`inst-design`)
 
-- Narrative length is competitive with the strongest local course.
-- Scenario and quiz embedding is already comparable to other polished courses.
-- Visual anchors are present across the course.
+| Section | Words | Headings | Quizzes | Scenarios | Practice | Misconceptions |
+| --- | ---: | ---: | ---: | ---: | :---: | :---: |
+| 01/01 | 3518 | 16 | 1 | 3 | Yes | Yes |
+| 01/02 | 3757 | 13 | 1 | 2 | Yes | Yes |
+| 01/03 | 3445 | 19 | 1 | 1 | Yes | Yes |
+| 02/01 | 3205 | 17 | 1 | 1 | Yes | Yes |
+| 02/02 | 2740 | 17 | 1 | 1 | Yes | Yes |
+| 02/03 | 3004 | 23 | 1 | 1 | Yes | Yes |
+| 02/04 | 3439 | 18 | 1 | 1 | Yes | Yes |
+| 02/05 | 3242 | 16 | 1 | 1 | Yes | Yes |
+| 02/06 | 3460 | 27 | 1 | 1 | Yes | Yes |
+| 02/07 | 3749 | 17 | 1 | 1 | Yes | Yes |
+| 02/08 | 3415 | 19 | 1 | 1 | Yes | Yes |
+| 03/01 | 3671 | 16 | 1 | 1 | Yes | Yes |
+| 04/01 | 3468 | 18 | 1 | 1 | Yes | Yes |
+| 05/01 | 3637 | 26 | 2 | 1 | Yes | Yes |
+| 06/01 | 3588 | 16 | 1 | 1 | Yes | Yes |
+| 07/01 | 3560 | 21 | 1 | 1 | Yes | Yes |
+| 08/01 | 3848 | 26 | 1 | 1 | Yes | Yes |
 
-`inst-design` is weak in the areas that make the system truly adaptive:
+## Remaining design work (not a release defect)
 
-- There are no practice banks in any section.
-- There are no misconception banks in any section.
-- Several sections have weaker structure or scanability than the course average.
-
-In other words: the course reads well, but it still behaves more like a smart article library than a complete intelligent textbook.
-
-## Section-Level Crawl Table
-
-| Section | Words | Headings | Lists | Quiz count | Scenario count | Diagram count | Practice | Misconceptions | Benchmark reading |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- | --- |
-| 01/01 | 1431 | 7 | 14 | 1 | 3 | 4 | No | No | Rich flagship section; missing only assessment and remediation assets |
-| 01/02 | 1124 | 5 | 9 | 1 | 2 | 2 | No | No | Strong content body; needs practice and misconception coverage |
-| 01/03 | 719 | 7 | 19 | 1 | 1 | 1 | No | No | Slightly thin compared with top sections; still structurally healthy |
-| 02/01 | 1056 | 7 | 6 | 1 | 1 | 2 | No | No | Good body and structure; missing learning-loop assets |
-| 02/02 | 878 | 5 | 5 | 1 | 1 | 2 | No | No | Adequate body; should gain practice and misconception layers |
-| 02/03 | 1013 | 5 | 2 | 1 | 1 | 1 | No | No | Content is solid but scanability is weak due to sparse list cues |
-| 03/01 | 934 | 8 | 3 | 1 | 1 | 1 | No | No | Near target; mostly lacks practice and misconception assets |
-| 04/01 | 827 | 9 | 12 | 1 | 1 | 1 | No | No | Well structured; missing assessment/remediation |
-| 05/01 | 774 | 15 | 11 | 2 | 1 | 1 | No | No | Interaction-rich section; should be one of the easiest to complete |
-| 06/01 | 763 | 5 | 4 | 1 | 1 | 1 | No | No | Borderline thin, but acceptable once practice/remediation are added |
-| 07/01 | 830 | 4 | 9 | 1 | 1 | 1 | No | No | Structurally shallow; highest-priority rewrite inside this course |
-| 08/01 | 687 | 6 | 3 | 1 | 1 | 1 | No | No | Thinnest ending section; needs more depth and stronger closure work |
-
-## Where To Reinforce
-
-### Tier 1: Add the missing adaptive-learning layer everywhere
-
-These are course-wide deficits, not isolated defects.
-
-| Need | Scope | Why it matters |
-| --- | --- | --- |
-| Practice banks | All 12 sections | Without practice, the learner cannot convert conceptual understanding into observable performance |
-| Misconception banks | All 12 sections | Without misconception tagging, the support rail has weak evidence for targeted remediation |
-
-### Tier 2: Fix the structurally weakest sections
-
-| Section | Why it stands out | Recommended reinforcement |
-| --- | --- | --- |
-| 07/01 | Only 4 headings; flagged as high-priority in the audit | Add one more conceptual subdivision, a comparison block, and a practice set tied to WCAG/UDL tradeoffs |
-| 08/01 | Thinnest section in the course at 687 words | Expand future-facing cases, add one more scenario branch, and attach a summative practice bank |
-| 01/03 | Slightly thin relative to course leaders | Add a short worked comparison or decision rubric so learners can test theory selection |
-| 02/03 | Strong word count but poor scanability with only 2 list cues | Add a clearer framework list, method table, and structured practice prompts |
-
-### Tier 3: Convert strong narrative sections into strong instructional sections
-
-These are already content-rich, so the right move is not rewriting them from scratch.
-
-| Section | Current strength | Best next move |
-| --- | --- | --- |
-| 01/01 | Excellent overview, multiple scenarios, multiple diagrams | Add a theory-selection practice bank and misconception set |
-| 02/01 | Clear diagnostic framing | Add case-based practice items with distractors around analysis mistakes |
-| 05/01 | Strong interaction density | Add adult-learning misconception patterns and application tasks |
-
-## Recommended Build Order
-
-1. Build a reusable `inst-design` practice template for all sections.
-2. Add misconception banks alongside each new practice set.
-3. Expand `07/01` and `08/01` before touching already strong sections.
-4. After that, backfill `01/03` and `02/03` for clarity and scanability.
-
-## Practical Interpretation
-
-Compared with `dynamics`, `inst-design` does **not** have a narrative problem. It has an assessment and remediation problem.
-
-Compared with `bio-inspired`, `inst-design` already has comparable embedded storytelling and interaction, but it still shares the same biggest weakness:
-
-- no formal practice layer
-- no misconception layer
-
-That makes the reinforcement plan straightforward:
-
-- do **not** start with a full rewrite
-- start with practice and misconception coverage across the course
-- then strengthen the few sections that are structurally thinner than the rest
+The course is release-ready on structural content gates. Continued research
+work can still improve item discrimination, misconception specificity, and
+scenario branching based on pilot data. Those are evaluation hypotheses, not
+claims that the current course is missing its core practice or remediation
+layer.

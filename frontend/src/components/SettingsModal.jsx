@@ -3,6 +3,7 @@ import { Key, X, Check, Eye, EyeOff, BookOpen, RotateCcw } from 'lucide-react'
 import { safeLocalStorageGet, safeLocalStorageRemove, safeLocalStorageSet } from '../lib/browserStorage'
 import { useFocusTrap } from '../hooks/useFocusTrap'
 import { useTheme } from '../lib/themeContext'
+import { resetOnboardingTour } from '../lib/onboarding'
 import {
     FONT_SCALE_OPTIONS,
     LINE_HEIGHT_OPTIONS,
@@ -68,6 +69,11 @@ export default function SettingsModal({ isOpen, onClose }) {
             setApiKey('')
             setSaved(true)
         }
+    }
+
+    const handleReplayTour = () => {
+        resetOnboardingTour({ replay: true })
+        onClose()
     }
 
     if (!isOpen) return null
@@ -204,6 +210,20 @@ export default function SettingsModal({ isOpen, onClose }) {
                             getOptionValue={(o) => o.value}
                             getOptionLabel={(o) => o.label}
                         />
+                    </div>
+
+                    <div className="mt-5 border-t border-[var(--ath-line)] pt-4">
+                        <p className="text-xs leading-relaxed text-[var(--ath-muted)]">
+                            Want a quick refresher on the reading pane, help rail, tutor chat, and concept map?
+                        </p>
+                        <button
+                            type="button"
+                            onClick={handleReplayTour}
+                            className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--ath-primary)] transition-colors hover:underline"
+                        >
+                            <RotateCcw className="h-3.5 w-3.5" aria-hidden="true" />
+                            Replay product tour
+                        </button>
                     </div>
                 </div>
 

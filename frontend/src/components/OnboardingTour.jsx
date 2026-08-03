@@ -2,6 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import { logEvent } from '../lib/loggingService'
 import { safeLocalStorageGet, safeLocalStorageSet } from '../lib/browserStorage'
 import { useReducedMotion } from '../lib/motion'
+import { ONBOARDING_REPLAY_EVENT, ONBOARDING_TOUR_KEY } from '../lib/onboarding'
 
 /**
  * OnboardingTour - 5-step in-app tour shown on first visit to /book/*.
@@ -18,11 +19,8 @@ import { useReducedMotion } from '../lib/motion'
  * target and stays centered.
  *
  * LXD principle: keep it short. Five steps, dismissible at any time,
- * never re-shown unless the learner clicks "show tour again" in
- * Settings (not yet wired - placeholder).
+ * never re-shown unless the learner clicks "Replay product tour" in Settings.
  */
-
-const TOUR_KEY = 'alget_onboarding_completed_v1'
 
 const STEPS = [
     {
@@ -95,7 +93,7 @@ export default function OnboardingTour() {
     const current = useMemo(() => STEPS[step] || null, [step])
 
     useEffect(() => {
-        if (safeLocalStorageGet(TOUR_KEY) === 'done') return
+        if (safeLocalStorageGet(ONBOARDING_TOUR_KEY) === 'done') return
         // Tiny delay so the page can paint before the overlay appears.
         const timer = setTimeout(() => {
             setActive(true)
@@ -104,12 +102,24 @@ export default function OnboardingTour() {
         return () => clearTimeout(timer)
     }, [])
 
+    // Settings can request a replay without remounting the whole reader.
+    useEffect(() => {
+        const replay = () => {
+            setStep(0)
+            setRect(null)
+            setActive(true)
+            logEvent('onboarding_tour_started', null, { reason: 'settings_replay' })
+        }
+        window.addEventListener(ONBOARDING_REPLAY_EVENT, replay)
+        return () => window.removeEventListener(ONBOARDING_REPLAY_EVENT, replay)
+    }, [])
+
     // Esc-to-skip on the tour overlay (a11y).
     useEffect(() => {
         if (!active) return
         const onKeyDown = (event) => {
             if (event.key === 'Escape') {
-                safeLocalStorageSet(TOUR_KEY, 'done')
+                safeLocalStorageSet(ONBOARDING_TOUR_KEY, 'done')
                 logEvent('onboarding_tour_finished', null, { reason: 'esc', step_reached: step })
                 setActive(false)
             }
@@ -246,7 +256,7 @@ export default function OnboardingTour() {
     if (!active || !current) return null
 
     const finish = (reason) => {
-        safeLocalStorageSet(TOUR_KEY, 'done')
+        safeLocalStorageSet(ONBOARDING_TOUR_KEY, 'done')
         logEvent('onboarding_tour_finished', null, { reason, step_reached: step })
         setActive(false)
     }
