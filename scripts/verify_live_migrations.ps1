@@ -8,7 +8,7 @@ if (-not $Linked) {
   throw "This verifier is intentionally linked-project only. Use the Supabase CLI against the reviewed production project."
 }
 
-$sql = "select to_regclass('public.openstax_sections') as openstax_sections, to_regclass('public.course_runtime_packages') as course_runtime_packages, to_regclass('public.agent_decision_ledger') as agent_decision_ledger, to_regprocedure('public.search_openstax_sections(text,integer,text[])') as search_openstax_sections;"
+$sql = "select to_regclass('public.openstax_sections') as openstax_sections, to_regclass('public.course_runtime_packages') as course_runtime_packages, to_regclass('public.agent_decision_ledger') as agent_decision_ledger, to_regclass('public.research_pilot_event_export') as research_pilot_event_export, to_regprocedure('public.search_openstax_sections(text,integer,text[])') as search_openstax_sections;"
 
 $previousErrorActionPreference = $ErrorActionPreference
 $ErrorActionPreference = "Continue"
@@ -34,6 +34,7 @@ $required = @(
   'openstax_sections',
   'course_runtime_packages',
   'agent_decision_ledger',
+  'research_pilot_event_export',
   'search_openstax_sections'
 )
 $missing = [System.Collections.Generic.List[string]]::new()
