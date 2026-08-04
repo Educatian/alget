@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Check, Download, Eye, FileSearch, ShieldCheck } from 'lucide-react'
+import { Check, CheckCircle2, CircleAlert, Download, Eye, FileSearch, ShieldCheck } from 'lucide-react'
 import {
     buildEvidenceBrief,
     buildImpactReport,
+    acknowledgePilotWarnings,
     impactReportToMarkdown,
     importGoogleDocCourseDraft,
     importPdfCourseDraft,
@@ -17,6 +18,7 @@ import {
     saveShadowPilot,
     setPilotStatus,
 } from '../lib/facultyPartnershipService'
+import { evaluatePilotReadiness } from '../lib/pilotReadiness'
 
 const VIEWS = [
     { id: 'brief', label: 'Weekly brief' },
@@ -51,6 +53,7 @@ export default function FacultyPartnershipWorkspace({ courseId, hotSpots = [], s
     }), [courseId, hotSpots, rct.interventionOutcomes, strugglers])
 
     const activePilot = workspace.pilots[0] || null
+    const readiness = useMemo(() => evaluatePilotReadiness(activePilot, generationDraft), [activePilot, generationDraft])
     const report = useMemo(() => buildImpactReport({
         courseId,
         pilot: activePilot,
@@ -206,6 +209,10 @@ export default function FacultyPartnershipWorkspace({ courseId, hotSpots = [], s
 
     const markReady = async () => {
         if (!activePilot) return
+        if (!readiness.ready) {
+            setMessage('Complete every release readiness check before sending this pilot for approval.')
+            return
+        }
         setBusy('ready')
         setMessage('')
         try {
@@ -219,8 +226,28 @@ export default function FacultyPartnershipWorkspace({ courseId, hotSpots = [], s
         }
     }
 
+    const acknowledgeWarnings = async () => {
+        if (!activePilot || !generationDraft || readiness.warningCount === 0 || readiness.warningsAcknowledged) return
+        setBusy('acknowledge')
+        setMessage('')
+        try {
+            const updated = await acknowledgePilotWarnings(activePilot, generationDraft, workspace.persistence)
+            setGenerationDraft(updated.generation_draft)
+            setWorkspace((current) => ({ ...current, pilots: current.pilots.map((item) => item.id === updated.id ? updated : item) }))
+            setMessage('Generation review notes acknowledged. The remaining release checks are still required.')
+        } catch (error) {
+            setMessage(error.message || 'Could not acknowledge the review notes.')
+        } finally {
+            setBusy('')
+        }
+    }
+
     const publishPilot = async () => {
         if (!activePilot) return
+        if (!readiness.ready) {
+            setMessage('This pilot is missing a release readiness check. Review the checklist before publishing.')
+            return
+        }
         setBusy('publish')
         setMessage('')
         try {
@@ -416,6 +443,7 @@ export default function FacultyPartnershipWorkspace({ courseId, hotSpots = [], s
                                 </ul>
                             </div>
                         )}
+                        <PilotReadinessCard readiness={readiness} onAcknowledge={acknowledgeWarnings} busy={busy === 'acknowledge'} />
                     </form>
                     <aside className="border-l border-[var(--ath-line)] pl-5">
                         <div className="flex items-center gap-2 text-sm font-semibold text-[var(--ath-text)]"><Eye className="h-4 w-4 text-[var(--ath-primary)]" />Student visibility stays off</div>
@@ -430,8 +458,8 @@ export default function FacultyPartnershipWorkspace({ courseId, hotSpots = [], s
                                 <p className="text-xs font-semibold text-[var(--ath-text)]">Current pilot</p>
                                 <p className="mt-1 text-sm text-[var(--ath-text)]">{activePilot.module_name}</p>
                                 <p className="mt-1 text-[11px] uppercase tracking-[0.13em] text-[var(--ath-primary)]">{activePilot.status}</p>
-                                {activePilot.status === 'shadow' && <button type="button" onClick={markReady} disabled={Boolean(busy)} className="editorial-button-secondary mt-3 px-3 py-2 text-xs"><Check className="mr-1 inline h-3.5 w-3.5" />Mark ready for review</button>}
-                                {activePilot.status === 'ready' && <button type="button" onClick={publishPilot} disabled={Boolean(busy)} className="editorial-button mt-3 px-3 py-2 text-xs"><Check className="mr-1 inline h-3.5 w-3.5" />{busy === 'publish' ? 'Publishing…' : 'Approve & publish'}</button>}
+                                {activePilot.status === 'shadow' && <button type="button" onClick={markReady} disabled={Boolean(busy) || !readiness.ready} title={readiness.ready ? 'Send this pilot for instructor approval' : 'Complete every readiness check first'} className="editorial-button-secondary mt-3 px-3 py-2 text-xs"><Check className="mr-1 inline h-3.5 w-3.5" />Mark ready for review</button>}
+                                {activePilot.status === 'ready' && <button type="button" onClick={publishPilot} disabled={Boolean(busy) || !readiness.ready} title={readiness.ready ? 'Publish the approved pilot' : 'Complete every readiness check first'} className="editorial-button mt-3 px-3 py-2 text-xs"><Check className="mr-1 inline h-3.5 w-3.5" />{busy === 'publish' ? 'Publishing…' : 'Approve & publish'}</button>}
                                 {activePilot.status === 'active' && workspace.published[0]?.generation_draft?.sections?.length > 0 && <a href={`/book/${courseId}/published/${publishedSectionRoute(workspace.published[0].id, 0)}`} className="mt-3 inline-block text-xs font-semibold text-[var(--ath-primary)] underline-offset-4 hover:underline">Open in learner reader →</a>}
                             </div>
                         )}
@@ -460,6 +488,33 @@ export default function FacultyPartnershipWorkspace({ courseId, hotSpots = [], s
                     <p className="mt-5 max-w-3xl border-l-2 border-[var(--ath-line-strong)] pl-3 text-xs leading-5 text-[var(--ath-muted)]">{report.interpretation}</p>
                 </div>
             )}
+        </section>
+    )
+}
+
+function PilotReadinessCard({ readiness, onAcknowledge, busy }) {
+    return (
+        <section aria-labelledby="pilot-readiness-title" className="border-t border-[var(--ath-line)] pt-4">
+            <div className="flex items-start justify-between gap-3">
+                <div>
+                    <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--ath-secondary)]">Release gate</p>
+                    <h2 id="pilot-readiness-title" className="mt-1 text-sm font-semibold text-[var(--ath-text)]">Pilot readiness</h2>
+                </div>
+                <span className={`text-xs font-semibold ${readiness.ready ? 'text-emerald-700' : 'text-[var(--ath-secondary)]'}`}>{readiness.passed}/{readiness.total} checks</span>
+            </div>
+            <ul className="mt-3 space-y-2" aria-label="Pilot release readiness checks">
+                {readiness.checks.map((check) => (
+                    <li key={check.id} className="flex items-start gap-2 text-xs leading-4">
+                        {check.ok ? <CheckCircle2 aria-hidden="true" className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-700" /> : <CircleAlert aria-hidden="true" className="mt-0.5 h-3.5 w-3.5 shrink-0 text-amber-700" />}
+                        <span>
+                            <span className={check.ok ? 'text-[var(--ath-muted)]' : 'font-semibold text-[var(--ath-text)]'}>{check.label}</span>
+                            {!check.ok && <span className="mt-0.5 block text-[11px] leading-4 text-[var(--ath-secondary)]">{check.detail}</span>}
+                        </span>
+                    </li>
+                ))}
+            </ul>
+            {readiness.warningCount > 0 && !readiness.warningsAcknowledged && <button type="button" onClick={onAcknowledge} disabled={busy} className="editorial-button-secondary mt-3 px-3 py-2 text-xs">{busy ? 'Saving review…' : `Acknowledge ${readiness.warningCount} review note${readiness.warningCount === 1 ? '' : 's'}`}</button>}
+            {!readiness.ready && <p className="mt-3 border-l-2 border-amber-500 pl-3 text-[11px] leading-4 text-amber-800">Resolve every check before requesting approval or publishing. Student visibility stays off.</p>}
         </section>
     )
 }

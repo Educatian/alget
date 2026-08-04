@@ -10,6 +10,7 @@ import {
     impactReportToMarkdown,
     loadFacultyWorkspace,
     loadPublishedCourseSection,
+    acknowledgePilotWarnings,
     publishFacultyPilot,
     saveEvidenceBrief,
     saveShadowPilot,
@@ -42,7 +43,7 @@ describe('facultyPartnershipService', () => {
 
         const workspace = await loadFacultyWorkspace('ail-606')
         expect(workspace.pilots).toHaveLength(1)
-        expect(workspace.pilots[0]).toMatchObject({ status: 'shadow', settings: { student_visible: false, automatic_grading: false } })
+        expect(workspace.pilots[0]).toMatchObject({ status: 'shadow', settings: { student_visible: false, automatic_publish: false, automatic_grading: false } })
     })
 
     it('publishes an approved generated draft into the learner reader format', async () => {
@@ -53,9 +54,11 @@ describe('facultyPartnershipService', () => {
             sourceName: 'course.doc',
             learningObjectives: ['Evaluate a claim'],
             generationDraft: {
-                source: { title: 'Course source' },
+                source: { title: 'Course source', sha256: 'sha256:course-source' },
                 references: [{ title: 'Canonical source', url: 'https://example.edu/source', license_url: 'https://example.edu/license' }],
                 sections: [{ title: 'Evidence evaluation', reading: { content: 'Inspect the source.', estimated_minutes: 6 }, references: [{ title: 'Canonical source', url: 'https://example.edu/source' }] }],
+                runtime_package: { generated: ['reading', 'activity', 'simulation', 'tutor', 'analytics', 'social_dynamics'] },
+                quality: { warnings: [] },
             },
         })
         const result = await publishFacultyPilot(pilot, 'local')
@@ -68,6 +71,37 @@ describe('facultyPartnershipService', () => {
         expect(section.meta.source_status).toBe('context_attached')
         expect(section.content).toContain('Inspect the source.')
         expect(section.content).toContain('Related open textbook reading')
+    })
+
+    it('persists instructor acknowledgement of generation review notes', async () => {
+        const pilot = await saveShadowPilot({
+            courseId: 'ail-606',
+            title: 'Faculty evidence partnership',
+            moduleName: 'Review notes',
+            learningObjectives: ['Inspect warnings'],
+            generationDraft: {
+                source: { sha256: 'sha256:review-notes' },
+                sections: [{ title: 'Review notes' }],
+                runtime_package: { generated: ['reading', 'activity', 'simulation', 'tutor', 'analytics', 'social_dynamics'] },
+                quality: { warnings: ['Review this deterministic fallback.'] },
+            },
+        })
+        const updated = await acknowledgePilotWarnings(pilot, pilot.generation_draft, 'local')
+        expect(updated.settings.quality_warnings_acknowledged).toBe(true)
+        expect(updated.generation_draft.quality.warnings_acknowledged).toBe(true)
+        const workspace = await loadFacultyWorkspace('ail-606')
+        expect(workspace.pilots[0].generation_draft.quality.warnings_acknowledged).toBe(true)
+    })
+
+    it('rejects publishing a draft that has not passed the release gate', async () => {
+        await expect(publishFacultyPilot({
+            id: 'pilot-incomplete',
+            course_id: 'ail-606',
+            module_name: 'Incomplete module',
+            generation_draft: { sections: [{ title: 'Draft section' }] },
+            learning_objectives: [],
+            settings: { student_visible: false, automatic_publish: false, automatic_messaging: false, automatic_grading: false, instructor_approval_required: true },
+        }, 'local')).rejects.toThrow(/not release-ready/i)
     })
 
     it('exports an evidence-limited course improvement report', () => {

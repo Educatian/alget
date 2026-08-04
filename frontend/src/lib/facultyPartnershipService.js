@@ -1,5 +1,6 @@
 import { isSupabaseConfigured, supabase } from './supabase'
 import { LLM_API_BASE } from './apiConfig'
+import { evaluatePilotReadiness } from './pilotReadiness'
 
 const STORAGE_KEY = 'alget_faculty_partnership_v1'
 
@@ -183,9 +184,11 @@ export async function saveShadowPilot(payload, persistence = 'local') {
         status: 'shadow',
         settings: {
             student_visible: false,
+            automatic_publish: false,
             automatic_messaging: false,
             automatic_grading: false,
             instructor_approval_required: true,
+            quality_warnings_acknowledged: payload.generationDraft?.quality?.warnings_acknowledged === true,
         },
     }
     if (persistence === 'supabase') {
@@ -289,6 +292,7 @@ export async function inviteLearnerToCourse({ courseId, email, displayName, coho
 
 export async function setPilotStatus(pilot, status, persistence = 'local') {
     if (!['shadow', 'ready', 'active', 'completed'].includes(status)) throw new Error('Invalid pilot status')
+    if (['ready', 'active'].includes(status)) assertPilotReady(pilot)
     if (persistence === 'supabase') {
         const { data, error } = await supabase.from('faculty_pilots').update({ status }).eq('id', pilot.id).select().single()
         if (error) throw error
@@ -298,6 +302,33 @@ export async function setPilotStatus(pilot, status, persistence = 'local') {
     const target = state.pilots.find((item) => item.id === pilot.id)
     if (!target) throw new Error('Pilot not found')
     target.status = status
+    target.updated_at = new Date().toISOString()
+    writeLocalState(state)
+    return target
+}
+
+export async function acknowledgePilotWarnings(pilot, generationDraft, persistence = 'local') {
+    if (!pilot?.id || !generationDraft) throw new Error('A saved pilot draft is required before acknowledging review notes.')
+    const nextDraft = {
+        ...generationDraft,
+        quality: { ...(generationDraft.quality || {}), warnings_acknowledged: true },
+    }
+    const nextSettings = { ...(pilot.settings || {}), quality_warnings_acknowledged: true }
+    if (persistence === 'supabase') {
+        const { data, error } = await supabase
+            .from('faculty_pilots')
+            .update({ generation_draft: nextDraft, settings: nextSettings })
+            .eq('id', pilot.id)
+            .select()
+            .single()
+        if (error) throw error
+        return data
+    }
+    const state = readLocalState()
+    const target = state.pilots.find((item) => item.id === pilot.id)
+    if (!target) throw new Error('Pilot not found')
+    target.generation_draft = nextDraft
+    target.settings = nextSettings
     target.updated_at = new Date().toISOString()
     writeLocalState(state)
     return target
@@ -331,6 +362,7 @@ export async function saveEvidenceBrief(brief, persistence = 'local') {
 }
 
 export async function publishFacultyPilot(pilot, persistence = 'local') {
+    assertPilotReady(pilot)
     const sections = pilot?.generation_draft?.sections
     if (!pilot?.id || !pilot?.course_id || !Array.isArray(sections) || sections.length === 0) {
         throw new Error('Review and save at least one generated section before publishing.')
@@ -360,6 +392,13 @@ export async function publishFacultyPilot(pilot, persistence = 'local') {
     target.updated_at = new Date().toISOString()
     writeLocalState(state)
     return { published, pilot: target }
+}
+
+function assertPilotReady(pilot) {
+    const readiness = evaluatePilotReadiness(pilot)
+    if (readiness.ready) return
+    const missing = readiness.checks.filter((check) => !check.ok).map((check) => check.label).join('; ')
+    throw new Error(`Pilot is not release-ready. Resolve: ${missing}`)
 }
 
 export async function listPublishedCourseModules(courseId) {

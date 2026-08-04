@@ -222,6 +222,19 @@ def build_google_doc_course_draft(text: str, document_id: str, title: str = "") 
                 "variables": ["input", "response", "constraint"],
                 "evidence_collected": ["prediction", "observation", "explanation"],
             },
+            "tutor": {
+                "mode": "evidence_coach",
+                "prompt": f"Ask the learner to explain the evidence behind one claim about {heading} before giving a hint.",
+                "guardrail": "Do not provide a final answer or grade the learner.",
+            },
+            "analytics": {
+                "events": ["reading_completed", "claim_submitted", "evidence_attached", "revision_submitted"],
+                "aggregation": "pseudonymous_cohort",
+            },
+            "social_dynamics": {
+                "cues": ["peer_presence", "same_concept_peers", "share_one_evidence_based_revision"],
+                "privacy": "pseudonymous-cohort-aggregate",
+            },
         })
 
     source_hash = sha256(cleaned.encode("utf-8")).hexdigest()
@@ -236,6 +249,11 @@ def build_google_doc_course_draft(text: str, document_id: str, title: str = "") 
         },
         "learning_objectives": [f"Explain and apply the central ideas in {heading}." for heading in headings[:5]],
         "sections": sections,
+        "runtime_package": {
+            "version": "course-runtime-v1",
+            "generated": ["reading", "activity", "simulation", "tutor", "analytics", "social_dynamics"],
+            "approval_required": True,
+        },
         "quality": {
             "source_grounded": True,
             "human_approval_required": True,

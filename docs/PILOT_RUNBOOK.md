@@ -41,7 +41,11 @@ Start the pilot only when all six items are true:
 4. Inspect the shadow draft's source hash, section objectives, references,
    warnings, formative assessment, tutor configuration, and social-cue rules.
    Correct unsupported or off-topic claims before approval.
-5. Approve the draft, then publish exactly one module. Verify the published URL
+5. In the **Pilot readiness** release gate, resolve all seven checks. If the
+   draft contains review notes, use **Acknowledge review notes** only after the
+   instructor has inspected them. The gate must show `7/7 checks` before the
+   approval or publish action becomes available.
+6. Approve the draft, then publish exactly one module. Verify the published URL
    in a signed-out learner session and confirm that the source remains course-
    scoped.
 

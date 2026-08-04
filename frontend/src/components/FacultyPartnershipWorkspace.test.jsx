@@ -101,7 +101,14 @@ describe('FacultyPartnershipWorkspace', () => {
         const pilot = {
             id: 'pilot-1', course_id: 'ail-606', title: 'AI evidence', module_name: 'Evidence evaluation',
             status: 'ready', learning_objectives: ['Evaluate claims'],
-            generation_draft: { sections: [{ section_id: 'draft-01', title: 'Restored reading', reading: { estimated_minutes: 5 } }] },
+            source_revision: 'sha256:restored',
+            settings: { student_visible: false, automatic_publish: false, automatic_messaging: false, automatic_grading: false, instructor_approval_required: true },
+            generation_draft: {
+                source: { sha256: 'sha256:restored' },
+                sections: [{ section_id: 'draft-01', title: 'Restored reading', reading: { estimated_minutes: 5 } }],
+                runtime_package: { generated: ['reading', 'activity', 'simulation', 'tutor', 'analytics', 'social_dynamics'] },
+                quality: { warnings: [] },
+            },
         }
         loadFacultyWorkspace.mockResolvedValue({ pilots: [pilot], briefs: [], reports: [], published: [], persistence: 'local' })
         publishFacultyPilot.mockResolvedValue({ pilot: { ...pilot, status: 'active' }, published: { id: 'published-1', generation_draft: pilot.generation_draft } })
@@ -112,5 +119,19 @@ describe('FacultyPartnershipWorkspace', () => {
         fireEvent.click(screen.getByRole('button', { name: 'Approve & publish' }))
         await waitFor(() => expect(publishFacultyPilot).toHaveBeenCalledWith(pilot, 'local'))
         expect(await screen.findByText(/Published to the learner reader/i)).toBeInTheDocument()
+    })
+
+    it('keeps approval disabled until the release checklist passes', async () => {
+        const pilot = {
+            id: 'pilot-1', course_id: 'ail-606', title: 'AI evidence', module_name: 'Evidence evaluation',
+            status: 'shadow', generation_draft: { sections: [] },
+            settings: { student_visible: false, automatic_publish: false, automatic_messaging: false, automatic_grading: false, instructor_approval_required: true },
+        }
+        loadFacultyWorkspace.mockResolvedValue({ pilots: [pilot], briefs: [], reports: [], published: [], persistence: 'local' })
+        render(<FacultyPartnershipWorkspace courseId="ail-606" rct={{}} />)
+
+        fireEvent.click(screen.getByRole('button', { name: 'Shadow pilot' }))
+        expect(await screen.findByText('3/7 checks')).toBeInTheDocument()
+        expect(screen.getByRole('button', { name: 'Mark ready for review' })).toBeDisabled()
     })
 })
