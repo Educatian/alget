@@ -14,7 +14,7 @@ const readyPilot = {
         instructor_approval_required: true,
     },
     generation_draft: {
-        sections: [{ section_id: '01' }],
+        sections: [{ section_id: '01', reading: { content: 'A source-grounded lesson with enough prose to make the generated section reviewable and useful for learners. It explains the central idea, shows the evidence boundary, and prompts a learner to test and revise the interpretation.', }, knowledge_base: { chunks: [{ text: 'evidence' }] }, practice: { problems: [{ id: 'p1' }] } }],
         runtime_package: { generated: ['reading', 'activity', 'simulation', 'tutor', 'analytics', 'social_dynamics'] },
         quality: { warnings: [] },
     },
@@ -24,7 +24,7 @@ describe('pilot readiness gate', () => {
     it('passes only when the source, objectives, runtime package, and governance policy are complete', () => {
         const result = evaluatePilotReadiness(readyPilot)
 
-        expect(result).toMatchObject({ passed: 7, total: 7, ready: true })
+        expect(result).toMatchObject({ passed: 8, total: 8, ready: true })
         expect(result.checks.every((check) => check.ok)).toBe(true)
     })
 
@@ -38,7 +38,7 @@ describe('pilot readiness gate', () => {
 
         expect(result.ready).toBe(false)
         expect(result.checks.filter((check) => !check.ok).map((check) => check.id)).toEqual([
-            'source', 'sections', 'objectives', 'runtime', 'governance',
+            'source', 'sections', 'objectives', 'runtime', 'learning-assets', 'governance',
         ])
     })
 

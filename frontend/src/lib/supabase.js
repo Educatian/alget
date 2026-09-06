@@ -38,6 +38,7 @@ if (isSupabaseConfigured) {
             unsubscribe: noOp,
         }),
         removeChannel: noOp,
+        rpc: noOp,
         from: () => {
             const chain = {
                 insert: () => chain,

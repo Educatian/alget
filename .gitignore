@@ -6,6 +6,7 @@ temp2.json
 frontend/.env
 **/.env
 **/.env.*
+!/.env.example
 __pycache__/
 *.py[cod]
 .pytest_cache/

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { logEvent } from '../lib/loggingService'
 
 /**
  * BranchingScenario - an interactive decision scenario for ethics and
@@ -30,7 +31,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
  *  - Terminal nodes are announced as an ending; the path trail uses an ordered
  *    list so position in the decision tree is conveyed.
  */
-export default function BranchingScenario({ tree }) {
+export default function BranchingScenario({ tree, sectionId = null, course = null }) {
     const model = useMemo(() => normalizeTree(tree), [tree])
     // path is an array of { nodeId, choiceLabel?, feedback? } entries; the first
     // entry is the start node (no incoming choice).
@@ -61,6 +62,14 @@ export default function BranchingScenario({ tree }) {
     const handleChoose = (choice) => {
         const target = model.nodes[choice.next]
         if (!target) return
+        const nextChoices = Array.isArray(target.choices) ? target.choices : []
+        logEvent('branch_choice', 'branching-scenario', {
+            course: course || null,
+            node_id: current.nodeId,
+            choice_index: choices.indexOf(choice),
+            path_depth: path.length,
+            terminal: nextChoices.length === 0,
+        }, sectionId)
         setPath((prev) => [
             ...prev,
             { nodeId: choice.next, choiceLabel: choice.label, feedback: choice.feedback || target.feedback || '' },
@@ -68,10 +77,19 @@ export default function BranchingScenario({ tree }) {
     }
 
     const handleBack = () => {
+        if (path.length <= 1) return
+        logEvent('branch_back', 'branching-scenario', {
+            course: course || null,
+            path_depth: path.length,
+        }, sectionId)
         setPath((prev) => (prev.length > 1 ? prev.slice(0, -1) : prev))
     }
 
     const handleRestart = () => {
+        logEvent('branch_restart', 'branching-scenario', {
+            course: course || null,
+            path_depth: path.length,
+        }, sectionId)
         setPath([{ nodeId: model.start }])
     }
 

@@ -21,12 +21,18 @@ import ChapterPassport from '../components/ChapterPassport'
 import RetentionBanner from '../components/RetentionBanner'
 import OnboardingTour from '../components/OnboardingTour'
 import ThemeToggle from '../components/ThemeToggle'
-import { logPageView, logStuckEvent } from '../lib/loggingService'
+import { logEvent, logPageView, logStuckEvent } from '../lib/loggingService'
 import { recordAdaptiveSignal } from '../lib/knowledgeService'
 import { useCourseProgress } from '../hooks/useCourseProgress'
 import { useSocialPresence } from '../hooks/useSocialPresence'
-import API_BASE from '../lib/apiConfig'
+import { fetchStaticJson, isSectionPayload, isTocPayload, RuntimeContractError } from '../lib/runtimeContract'
 import { listPublishedCourseModules, loadPublishedCourseSection, mergePublishedModulesIntoToc } from '../lib/facultyPartnershipService'
+import {
+    COMPARISON_ARM,
+    initialStudyCondition,
+    isEngineeringStudyLearner,
+    loadStudyCondition,
+} from '../lib/studyCondition'
 import SocialLearningRail from '../components/SocialLearningRail'
 import '../index.css'
 
@@ -121,6 +127,11 @@ function findBestReviewAnchor(container, railContext) {
 export default function BookLayout({ user, onLogout }) {
     const { course = 'statics', chapter = '01', section = '01' } = useParams()
     const navigate = useNavigate()
+    const [studyCondition, setStudyCondition] = useState(() => initialStudyCondition(user, course))
+    const isStudyLearner = isEngineeringStudyLearner(user, course)
+    const studySupportReady = !isStudyLearner
+        || (studyCondition.status === 'ready' && studyCondition.mode === 'research')
+    const isComparisonArm = studyCondition.assignmentArm === COMPARISON_ARM
     // The table-of-contents effect must not re-run on every section change, so
     // it reads the address it should compare against from here.
     const addressRef = useRef({ chapter, section })
@@ -157,6 +168,24 @@ export default function BookLayout({ user, onLogout }) {
     const chatWidgetRef = useRef(null)
     const mainScrollRef = useRef(null)
     const loading = loadedSectionPath !== sectionPath
+
+    useEffect(() => {
+        let cancelled = false
+        loadStudyCondition(user, course).then((condition) => {
+            if (cancelled) return
+            setStudyCondition(condition)
+            if (condition.status !== 'ready') setRailOpen(false)
+            if (condition.mode === 'research') {
+                logEvent('study_assignment_loaded', 'study_runtime', {
+                    experiment_key: condition.experimentKey,
+                    assignment_ready: condition.status === 'ready',
+                    assignment_arm: condition.assignmentArm,
+                    diagnostic_code: condition.diagnosticCode || null,
+                }, `${course}/study`)
+            }
+        })
+        return () => { cancelled = true }
+    }, [user, course])
 
     const flatSections = useMemo(() => {
         if (!toc?.chapters) return []
@@ -243,6 +272,23 @@ export default function BookLayout({ user, onLogout }) {
         ],
     )
 
+    // Instructor-published sections carry a source-only retrieval index with
+    // the generated runtime package. Keep the payload small and normalize the
+    // chunk shape at the reader boundary so BigAL can cite the same evidence
+    // that the learner sees in the reading and practice blocks.
+    const retrievedContext = useMemo(
+        () => (sectionData?.knowledge_base?.chunks || [])
+            .slice(0, 5)
+            .map((chunk, index) => ({
+                content: String(chunk?.text || chunk?.content || '').trim().slice(0, 1200),
+                source_id: chunk?.source_id || chunk?.id || `${sectionPath}:chunk-${index + 1}`,
+                chunk_index: index,
+                section: chunk?.section || sectionData?.title || null,
+            }))
+            .filter((chunk) => chunk.content.length > 40),
+        [sectionData, sectionPath],
+    )
+
     const [tocReloadKey, setTocReloadKey] = useState(0)
     const retryToc = useCallback(() => {
         setTocError(null)
@@ -270,11 +316,10 @@ export default function BookLayout({ user, onLogout }) {
         let cancelled = false
 
         const loadAuthoredToc = async () => {
-            const response = await fetch(`${API_BASE}/book/${course}/toc`)
-            if (!response.ok) throw new Error(`TOC ${response.status}`)
-            // A course with no authored snapshot is served the SPA shell, so the
-            // parse is what tells us the snapshot is absent.
-            return response.json()
+            return fetchStaticJson(`/book/${course}/toc`, {
+                label: `Course ${course} chapter list`,
+                validate: isTocPayload,
+            })
         }
 
         const load = async () => {
@@ -330,7 +375,9 @@ export default function BookLayout({ user, onLogout }) {
             }
 
             console.error(authoredError)
-            setTocError(authoredError?.message || 'Could not load chapter list')
+            setTocError(authoredError instanceof RuntimeContractError
+                ? 'Course content is unavailable from the configured content service. Try again or choose another course.'
+                : (authoredError?.message || 'Could not load chapter list'))
         }
 
         load()
@@ -348,12 +395,9 @@ export default function BookLayout({ user, onLogout }) {
 
         const request = chapter === 'published'
             ? loadPublishedCourseSection(course, section)
-            : fetch(`${API_BASE}/book/${course}/${chapter}/${section}`).then((res) => {
-                // Distinguish a transient network/server failure from a genuinely
-                // missing section: 404 is "not found", anything else thrown is a
-                // load error that gets a retry affordance (not a dead "Not Found").
-                if (!res.ok) throw new Error(res.status === 404 ? 'not-found' : `Section ${res.status}`)
-                return res.json()
+            : fetchStaticJson(`/book/${course}/${chapter}/${section}`, {
+                label: `Section ${course}/${chapter}/${section}`,
+                validate: isSectionPayload,
             })
 
         request
@@ -367,7 +411,12 @@ export default function BookLayout({ user, onLogout }) {
                 if (cancelled) return
                 console.error(error)
                 setSectionData(null)
-                setSectionError(error?.message === 'not-found' ? null : (error?.message || 'Could not load this section'))
+                const isMissing = error?.status === 404 || error?.message === 'not-found'
+                setSectionError(isMissing
+                    ? null
+                    : error instanceof RuntimeContractError
+                        ? 'This section is unavailable from the configured content service. Try again.'
+                        : (error?.message || 'Could not load this section'))
                 setLoadedSectionPath(sectionPath)
             })
 
@@ -471,7 +520,7 @@ export default function BookLayout({ user, onLogout }) {
             problemId: event.problemId,
             reason: event.reason
         })
-        setRailOpen(true)
+        if (studySupportReady) setRailOpen(true)
         logStuckEvent(event.problemId, event.reason, 0, sectionPath)
         recordAdaptiveSignal(sectionPath, 'stuck_event', {
             problemId: event.problemId,
@@ -497,7 +546,7 @@ export default function BookLayout({ user, onLogout }) {
             reason: reviewReason
         })
         setRailContext(nextContext)
-        setRailOpen(true)
+        if (studySupportReady) setRailOpen(true)
 
         logStuckEvent(event.problemId || 'review', reviewReason, 0, sectionPath)
         recordAdaptiveSignal(sectionPath, 'review_request', {
@@ -506,9 +555,10 @@ export default function BookLayout({ user, onLogout }) {
             question: event.question || ''
         })
         void socialState.recordHelpOpen()
-    }, [sectionPath, socialState])
+    }, [sectionPath, socialState, studySupportReady])
 
     const toggleRail = () => {
+        if (!studySupportReady) return
         if (!railOpen) {
             recordAdaptiveSignal(sectionPath, 'manual_help_open')
             void socialState.recordHelpOpen()
@@ -553,6 +603,16 @@ export default function BookLayout({ user, onLogout }) {
             <a href="#main-content" className="skip-to-content-link">Skip to reading content</a>
             <OnboardingTour />
             <RetentionBanner course={course} />
+            {isStudyLearner && !studySupportReady && (
+                <div
+                    role="alert"
+                    className="border-b border-amber-300 bg-amber-50 px-4 py-2 text-center text-sm font-semibold text-amber-900"
+                >
+                    {studyCondition.status === 'loading' || studyCondition.mode !== 'research'
+                        ? 'Verifying your concealed study assignment before support is enabled...'
+                        : studyCondition.reason || 'Study support remains disabled until assignment verification succeeds.'}
+                </div>
+            )}
 
             <header className="ath-reader-header sticky top-0 z-50 flex items-center gap-3 border-b border-[var(--ath-line)] bg-[rgba(248,246,241,0.94)] px-3 py-1.5 backdrop-blur-3xl sm:px-4">
                 <div className="flex shrink-0 items-center gap-2 sm:min-w-0 sm:flex-1 sm:justify-between sm:gap-3">
@@ -671,8 +731,9 @@ export default function BookLayout({ user, onLogout }) {
 
                         <button
                             onClick={toggleRail}
+                            disabled={!studySupportReady}
                             data-onboarding="help-rail-button"
-                            className={`flex h-11 w-11 items-center justify-center rounded-lg text-sm font-semibold transition-all duration-200 md:h-9 md:w-9 ${railOpen
+                            className={`flex h-11 w-11 items-center justify-center rounded-lg text-sm font-semibold transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-40 md:h-9 md:w-9 ${railOpen
                                 ? 'bg-[var(--ath-panel-muted)] text-[var(--ath-muted)]'
                                 : 'bg-[rgba(200,226,236,0.35)] text-[var(--ath-primary)]'
                                 }`}
@@ -888,7 +949,7 @@ export default function BookLayout({ user, onLogout }) {
                     </main>
 
                     {(previousSection || nextSection) && (
-                        <div className="pointer-events-none absolute inset-x-0 bottom-4 z-30 hidden justify-center gap-2 opacity-0 transition-opacity duration-200 xl:flex xl:group-hover/nav:opacity-100 xl:focus-within:opacity-100">
+                        <nav aria-label="Section navigation" className="pointer-events-none absolute inset-x-0 bottom-4 z-30 hidden justify-center gap-2 opacity-0 transition-opacity duration-200 xl:flex xl:group-hover/nav:opacity-100 xl:focus-within:opacity-100">
                             {previousSection && (
                                 <button
                                     type="button"
@@ -916,7 +977,7 @@ export default function BookLayout({ user, onLogout }) {
                                     <ChevronRight className="h-4 w-4" />
                                 </button>
                             )}
-                        </div>
+                        </nav>
                     )}
                 </div>
 
@@ -944,6 +1005,7 @@ export default function BookLayout({ user, onLogout }) {
                                 </div>
                                 <Suspense fallback={<div className="p-4"><SurfaceFallback label="Loading adaptive support..." compact /></div>}>
                                     <IntelRail
+                                        studyArm={studyCondition.assignmentArm}
                                         context={railContext?.sectionId === sectionPath ? railContext : null}
                                         stuckEvent={railContext?.sectionId === sectionPath ? stuckEvent : null}
                                         sectionInfo={{
@@ -952,7 +1014,8 @@ export default function BookLayout({ user, onLogout }) {
                                             conceptIds: sectionData?.meta?.concept_ids || [],
                                             currentHeading: activeHeading,
                                             pageContent: sectionData?.raw || '',
-                                            contentVersion: sectionData?.content_version || null
+                                            contentVersion: sectionData?.content_version || null,
+                                            retrievedContext,
                                         }}
                                         onClose={() => setRailOpen(false)}
                                     />
@@ -967,6 +1030,7 @@ export default function BookLayout({ user, onLogout }) {
                         <div className="pointer-events-auto mx-auto h-[min(72vh,42rem)] max-w-xl overflow-hidden rounded-[2rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.9)] shadow-[0_24px_80px_rgba(15,23,42,0.18)] backdrop-blur-3xl">
                             <Suspense fallback={<div className="p-4"><SurfaceFallback label="Loading adaptive support..." compact /></div>}>
                                 <IntelRail
+                                    studyArm={studyCondition.assignmentArm}
                                     context={railContext?.sectionId === sectionPath ? railContext : null}
                                     stuckEvent={railContext?.sectionId === sectionPath ? stuckEvent : null}
                                     sectionInfo={{
@@ -975,7 +1039,8 @@ export default function BookLayout({ user, onLogout }) {
                                         conceptIds: sectionData?.meta?.concept_ids || [],
                                         currentHeading: activeHeading,
                                         pageContent: sectionData?.raw || '',
-                                        contentVersion: sectionData?.content_version || null
+                                        contentVersion: sectionData?.content_version || null,
+                                        retrievedContext,
                                     }}
                                     onClose={() => setRailOpen(false)}
                                 />
@@ -985,8 +1050,9 @@ export default function BookLayout({ user, onLogout }) {
                 )}
             </div>
 
-            <Suspense fallback={null}>
-                <ChatWidget
+            {studySupportReady && !isComparisonArm && (
+                <Suspense fallback={null}>
+                    <ChatWidget
                     key={sectionPath}
                     ref={chatWidgetRef}
                     initialQuestion={highlightQuestion}
@@ -1003,9 +1069,11 @@ export default function BookLayout({ user, onLogout }) {
                         course,
                         tutorConfig: sectionData?.tutor || null,
                         socialDynamics: sectionData?.social_dynamics || null,
+                        retrievedContext,
                     }}
-                />
-            </Suspense>
+                    />
+                </Suspense>
+            )}
 
             {settingsOpen && (
                 <Suspense fallback={null}>

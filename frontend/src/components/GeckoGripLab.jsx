@@ -7,10 +7,27 @@
  * required for its simulation Web Worker + WebGPU — while staying sandboxed away
  * from the textbook's session.
  */
+import { useRef } from 'react'
 import { useIframeSimTelemetry } from '../lib/simTelemetry'
 
+const WEBGPU_URL = 'https://geckogrip-lab.pages.dev/'
+const UNITY_URL = import.meta.env.VITE_GECKOGRIP_UNITY_URL || 'https://geckogrip-lab-unity.pages.dev/'
+
+function withParentOrigin(url) {
+    const parsed = new URL(url)
+    parsed.searchParams.set('parentOrigin', window.location.origin)
+    return parsed.toString()
+}
+
 export default function GeckoGripLab() {
-    useIframeSimTelemetry('bio-inspired/04/01', 'geckogrip')
+    const iframeRef = useRef(null)
+    const src = UNITY_URL ? withParentOrigin(UNITY_URL) : WEBGPU_URL
+    const simId = UNITY_URL ? 'geckogrip-unity' : 'geckogrip'
+    useIframeSimTelemetry('bio-inspired/04/01', simId, {
+        iframeRef,
+        src,
+        allowedSources: UNITY_URL ? ['GeckoGripLab'] : [],
+    })
     return (
         <div className="content-card my-10 overflow-hidden">
             <div className="bg-[linear-gradient(180deg,rgba(255,255,255,0.78),rgba(240,237,230,0.72))] px-5 py-4">
@@ -27,7 +44,8 @@ export default function GeckoGripLab() {
             </div>
             <div className="border-t border-[var(--ath-line)] bg-[#0c0f14]">
                 <iframe
-                    src="https://geckogrip-lab.pages.dev/"
+                    ref={iframeRef}
+                    src={src}
                     title="GeckoGrip Lab: design a bio-inspired dry adhesive"
                     sandbox="allow-scripts allow-same-origin"
                     allow="accelerometer; gyroscope"
@@ -36,9 +54,9 @@ export default function GeckoGripLab() {
                 />
             </div>
             <p className="bg-[var(--ath-panel)] px-5 py-3 text-xs leading-5 text-[var(--ath-muted)]">
-                Renders with WebGPU — best in a recent Chrome or Edge browser.{' '}
+                {UNITY_URL ? 'Unity WebGL' : 'WebGPU'} requires a current desktop browser.{' '}
                 <a
-                    href="https://geckogrip-lab.pages.dev/"
+                    href={src}
                     target="_blank"
                     rel="noreferrer"
                     className="font-semibold text-[var(--ath-primary)] underline-offset-2 hover:underline"

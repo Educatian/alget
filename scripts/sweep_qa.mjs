@@ -10,8 +10,12 @@ const ROOT = join(__dirname, '..')
 const require = createRequire(import.meta.url)
 const { chromium } = require(join(ROOT, 'frontend', 'node_modules', 'playwright'))
 const B = process.env.SWEEP_BASE || 'http://127.0.0.1:5175'
-const OUT = join(ROOT, 'screenshots', 'sweep')
+const OUT = join(ROOT, process.env.SWEEP_OUT || join('screenshots', 'sweep'))
 const SHOT = process.argv.includes('--shots')
+// Long single-browser sweeps can exhaust Windows ephemeral sockets while the
+// dev server is serving dynamic imports. Run one course per fresh Node
+// process when SWEEP_COURSE is supplied, without changing the assertions.
+const COURSE_FILTER = process.env.SWEEP_COURSE || ''
 mkdirSync(OUT, { recursive: true })
 
 // enumerate sections from the content tree
@@ -19,6 +23,7 @@ const CONTENT = join(ROOT, 'frontend', 'content')
 const routes = []
 for (const course of readdirSync(CONTENT)) {
   const cdir = join(CONTENT, course)
+  if (COURSE_FILTER && course !== COURSE_FILTER) continue
   if (!existsSync(cdir) || course.startsWith('_')) continue
   let chapters
   try { chapters = readdirSync(cdir) } catch { continue }

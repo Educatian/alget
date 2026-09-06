@@ -56,7 +56,7 @@ describe('facultyPartnershipService', () => {
             generationDraft: {
                 source: { title: 'Course source', sha256: 'sha256:course-source' },
                 references: [{ title: 'Canonical source', url: 'https://example.edu/source', license_url: 'https://example.edu/license' }],
-                sections: [{ title: 'Evidence evaluation', reading: { content: 'Inspect the source.', estimated_minutes: 6 }, references: [{ title: 'Canonical source', url: 'https://example.edu/source' }] }],
+                sections: [{ title: 'Evidence evaluation', reading: { content: 'Inspect the source. Identify a bounded claim, and explain which source detail supports or revises that interpretation before you move to the activity.', estimated_minutes: 6 }, references: [{ title: 'Canonical source', url: 'https://example.edu/source' }], knowledge_base: { chunks: [{ text: 'source' }] }, practice: { problems: [{ id: 'p1' }] } }],
                 runtime_package: { generated: ['reading', 'activity', 'simulation', 'tutor', 'analytics', 'social_dynamics'] },
                 quality: { warnings: [] },
             },
@@ -71,6 +71,8 @@ describe('facultyPartnershipService', () => {
         expect(section.meta.source_status).toBe('context_attached')
         expect(section.content).toContain('Inspect the source.')
         expect(section.content).toContain('Related open textbook reading')
+        expect(section.practice.problems).toHaveLength(1)
+        expect(section.knowledge_base.chunks[0].text).toBe('source')
     })
 
     it('persists instructor acknowledgement of generation review notes', async () => {

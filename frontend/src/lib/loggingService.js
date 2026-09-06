@@ -2,10 +2,10 @@
  * ALGET Logging Service
  * Research-grade behavioral logging with sequential analysis support
  */
-import { supabase, supabaseConfig, isSupabaseConfigured } from './supabase'
+import { supabase, isSupabaseConfigured } from './supabase'
 import { safeLocalStorageGet, safeLocalStorageSet } from './browserStorage'
-import { getCohortGuestCredentials, readCohortLearner } from './cohortLearner'
-import API_BASE, { LLM_API_BASE } from './apiConfig'
+import { getCohortGuestCredentials, readCohortLearner, toPrivacySafeLearnerProfile } from './cohortLearner'
+import { LLM_API_BASE } from './apiConfig'
 
 // Session state
 let sessionId = null
@@ -85,13 +85,7 @@ export async function initSession(user) {
         screenHeight: window.screen.height,
         language: navigator.language,
         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-        learnerProfile: cohortLearner ? {
-            fullName: cohortLearner.fullName,
-            cohortId: cohortLearner.cohortId,
-            cohortLabel: cohortLearner.cohortLabel,
-            courseId: cohortLearner.courseId,
-            learnerHash: cohortLearner.learnerHash,
-        } : null,
+        learnerProfile: toPrivacySafeLearnerProfile(cohortLearner),
     }
 
     // Create session in database
@@ -200,9 +194,11 @@ export function logEvent(eventType, eventTarget, eventData = {}, sectionId = nul
 }
 
 function toInteractionEvent(event) {
+    const [courseId = null] = String(event.section_id || '').split('/')
     return {
         user_id: event.user_id,
         session_id: event.session_id,
+        course_id: courseId || null,
         section_id: event.section_id,
         item_id: event.event_data?.problem_id || event.event_target || null,
         event_type: event.event_type,
@@ -261,6 +257,18 @@ function toArtifactRevisionScore(event) {
         },
         privacy_policy: 'score-derived-only-v1',
         scorer_version: event.event_data?.revision_score_validation?.policy_version || 'artifact-revision-scorer-v1',
+    }
+}
+
+/**
+ * Construct the unload relay body without exposing Supabase configuration or
+ * raw browser-only fields. The Worker validates and sanitizes the events
+ * before applying the user's bearer token to its own RLS-protected writes.
+ */
+export function buildUnloadBeaconPayload(events = [], accessToken = null) {
+    return {
+        events: Array.isArray(events) ? events.slice(-500) : [],
+        access_token: typeof accessToken === 'string' && accessToken.trim() ? accessToken.trim() : null,
     }
 }
 
@@ -592,18 +600,17 @@ export async function endSession() {
  */
 function handleUnload() {
     if (eventQueue.length === 0 || !userId || !navigator.sendBeacon) return
-    if (!isSupabaseConfigured || !supabaseConfig.url || !supabaseConfig.anonKey) return
+    if (!isSupabaseConfigured) return
 
-    const payload = JSON.stringify({
-        events: eventQueue,
-        supabase_url: supabaseConfig.url,
-        supabase_anon_key: supabaseConfig.anonKey,
-        access_token: cachedAccessToken,
-    })
+    const payload = JSON.stringify(buildUnloadBeaconPayload(eventQueue, cachedAccessToken))
 
     try {
         const blob = new Blob([payload], { type: 'application/json' })
-        navigator.sendBeacon(`${API_BASE}/log-events`, blob)
+        // sendBeacon cannot set an Authorization header. The Worker accepts the
+        // short-lived access token in this body and uses its own Supabase
+        // environment configuration; endpoint ownership must stay dynamic, not
+        // fall through to the Pages SPA shell.
+        navigator.sendBeacon(`${LLM_API_BASE}/log-events`, blob)
     } catch (err) {
         console.warn('[Logging] sendBeacon failed:', err)
     }

@@ -64,6 +64,7 @@ const SequenceBuilder = lazy(() => import('./SequenceBuilder'))
 const BranchingScenario = lazy(() => import('./BranchingScenario'))
 const ConceptMapMini = lazy(() => import('./ConceptMapMini'))
 const SelfExplain = lazy(() => import('./SelfExplain'))
+const GuidedSimulationLab = lazy(() => import('./GuidedSimulationLab'))
 
 const TorqueDiagram = lazy(() => import('./TorqueDiagram').then((module) => ({ default: module.TorqueDiagram })))
 const MicroTurbulenceDiagram = lazy(() => import('./AeroacousticsDiagram').then((module) => ({ default: module.MicroTurbulenceDiagram })))
@@ -158,7 +159,7 @@ function createAnchorId(prefix, value) {
 // learner). If a rendered text node still contains one of these opening tags,
 // the tag was NOT parsed, so we swap the leaked source for a neutral
 // placeholder instead of showing raw markup.
-const UNPARSED_INTERACTIVE_RE = /<(self-explain|inline-check|step-reveal)[\s/>]/i
+const UNPARSED_INTERACTIVE_RE = /<(self-explain|inline-check|step-reveal|guided-lab)[\s/>]/i
 
 function UnparsedInteractiveFallback() {
     return (
@@ -315,6 +316,7 @@ function ReadingNarrative({
                     <DynamicScenario
                         {...props}
                         course={course || 'bio-inspired'}
+                        sectionId={sectionId}
                     />
                 </Suspense>
             </BlockErrorBoundary>
@@ -389,13 +391,25 @@ function ReadingNarrative({
         // log interactions or resolve the concept registry.
         'parameter-explorer': (props) => renderBreakoutLazyModule(ParameterExplorer, props),
         'step-reveal': (props) => renderBreakoutLazyModule(StepReveal, props),
-        'sequence-builder': (props) => renderBreakoutLazyModule(SequenceBuilder, props),
-        'branching-scenario': (props) => renderBreakoutLazyModule(BranchingScenario, props),
+        'sequence-builder': (props) => renderBreakoutLazyModule(SequenceBuilder, {
+            ...props,
+            sectionId,
+            course: course || undefined,
+        }),
+        'branching-scenario': (props) => renderBreakoutLazyModule(BranchingScenario, {
+            ...props,
+            sectionId,
+            course: course || undefined,
+        }),
         'concept-map': (props) => renderBreakoutLazyModule(ConceptMapMini, { course: course || undefined, ...props }),
         'self-explain': ({ conceptid, ...props }) => renderBreakoutLazyModule(SelfExplain, {
             ...props,
             sectionId,
             conceptId: conceptid || conceptIds?.[0] || null,
+        }),
+        'guided-lab': ({ lab }) => renderLazyMarkdownModule(GuidedSimulationLab, {
+            lab,
+            sectionId,
         }),
         // Typed SEMANTIC content nodes (PreTeXt semantic blocks + Torus purpose
         // vocabulary). Additive: existing presentational markdown is unchanged;

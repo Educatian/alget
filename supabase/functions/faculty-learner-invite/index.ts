@@ -46,8 +46,16 @@ Deno.serve(async (request: Request) => {
   const courseId = String(payload.course_id || "").trim();
   const cohortId = String(payload.cohort_id || `${courseId}-instructor`).trim();
   const cohortLabel = String(payload.cohort_label || "Instructor roster").trim();
+  const isEngineeringStudy = courseId === "bio-inspired" && cohortId === "bio-inspired-intervention-2026";
+  const studyId = String(payload.study_id || "").trim().toLowerCase();
   if (!/^\S+@\S+\.\S+$/.test(email) || displayName.length < 2 || displayName.length > 120 || !/^[a-z0-9][a-z0-9-]{1,79}$/.test(courseId) || cohortId.length < 2 || cohortId.length > 120 || cohortLabel.length < 2 || cohortLabel.length > 120) {
     return json({ detail: "Valid learner name, email, course, and cohort are required" }, 422);
+  }
+  if (isEngineeringStudy && !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(studyId)) {
+    return json({ detail: "A valid random UUIDv4 Study ID is required for the engineering study" }, 422);
+  }
+  if (isEngineeringStudy && role === "instructor") {
+    return json({ detail: "Only an accountable research administrator may bind Study IDs to invited accounts" }, 403);
   }
 
   if (role === "instructor") {
@@ -66,10 +74,37 @@ Deno.serve(async (request: Request) => {
     return json({ detail: "This learner is already assigned to another course. Ask an administrator to manage cross-course enrollment." }, 409);
   }
 
-  const learnerHash = crypto.randomUUID().replaceAll("-", "").slice(0, 20);
+  let learnerHash = crypto.randomUUID().replaceAll("-", "").slice(0, 20);
+  if (isEngineeringStudy) {
+    const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(`alget-study-link-v1:${studyId}`));
+    const studyLinkHash = Array.from(new Uint8Array(digest)).map((value) => value.toString(16).padStart(2, "0")).join("");
+    const scheduleResponse = await rest(
+      supabaseUrl,
+      serviceKey,
+      `engineering_study_allocation_schedule?study_link_hash=eq.${studyLinkHash}&experiment_key=eq.alget-bio-inspired-agentic-rct-v1&course_id=eq.bio-inspired&select=study_link_hash,claimed_user_id&limit=1`,
+    );
+    const schedule = await scheduleResponse.json().catch(() => []);
+    if (!scheduleResponse.ok || !Array.isArray(schedule) || schedule.length !== 1) {
+      return json({ detail: "The Study ID does not have a pre-provisioned concealed allocation" }, 409);
+    }
+    if (schedule[0].claimed_user_id) {
+      return json({ detail: "The Study ID allocation is already bound to an account" }, 409);
+    }
+    const duplicateResponse = await rest(
+      supabaseUrl,
+      serviceKey,
+      `cohort_learners?cohort_id=eq.bio-inspired-intervention-2026&learner_hash=eq.${encodeURIComponent(studyId)}&select=user_id&limit=1`,
+    );
+    const duplicate = await duplicateResponse.json().catch(() => []);
+    if (!duplicateResponse.ok || (Array.isArray(duplicate) && duplicate.length)) {
+      return json({ detail: "The Study ID is already present in the restricted roster" }, 409);
+    }
+    learnerHash = studyId;
+  }
+  const researchAlias = `Study Learner ${crypto.randomUUID().replaceAll("-", "").slice(0, 6).toUpperCase()}`;
   const inviteBody = {
     email,
-    data: { display_name: displayName, course_id: courseId, cohort_id: cohortId, cohort_label: cohortLabel, learner_hash: learnerHash },
+    data: { display_name: isEngineeringStudy ? researchAlias : displayName, course_id: courseId, cohort_id: cohortId, cohort_label: cohortLabel, learner_hash: learnerHash },
     redirect_to: String(payload.redirect_url || `${supabaseUrl}/`),
   };
   const adminHeaders = headers(serviceKey);
@@ -82,7 +117,7 @@ Deno.serve(async (request: Request) => {
     method: "POST",
     headers: { Prefer: "resolution=merge-duplicates,return=representation" },
     body: JSON.stringify({
-      user_id: invitedUser.id, email, display_name: displayName, cohort_id: cohortId, cohort_label: cohortLabel,
+      user_id: invitedUser.id, email, display_name: isEngineeringStudy ? researchAlias : displayName, cohort_id: cohortId, cohort_label: cohortLabel,
       course_id: courseId, learner_hash: learnerHash, status: "invited", invited_by: operator.id, invited_at: new Date().toISOString(),
       profile: { source: "instructor-invite" },
     }),

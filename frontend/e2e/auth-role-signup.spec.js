@@ -6,6 +6,9 @@ test.describe('ALGET role-aware onboarding', () => {
 
         await page.getByRole('button', { name: 'Sign out', exact: true }).click()
         await page.getByRole('button', { name: 'Sign in', exact: true }).click()
+        // The auth surface opens on the course-learner path. Choose the
+        // account path before asserting the sign-in dialog contract.
+        await page.getByRole('button', { name: /^ALGET account/ }).click()
 
         const dialog = page.getByRole('dialog', { name: 'Welcome Back' })
         await expect(dialog).toBeVisible()

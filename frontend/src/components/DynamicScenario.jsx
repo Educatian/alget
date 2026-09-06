@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { ArrowRight, CheckCircle2, Crosshair, RefreshCw, Sparkles } from 'lucide-react'
 import { pickScenario } from '../lib/scenarioBank'
+import { logEvent } from '../lib/loggingService'
 import ParametricSim from './ParametricSim'
 
 function ScenarioVisual({ scenario, topic }) {
@@ -18,7 +19,7 @@ function ScenarioVisual({ scenario, topic }) {
 
             <div className="relative z-10">
                 <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/80">{visual.motif}</p>
-                <h5 className="mt-2 max-w-[16rem] text-lg font-semibold leading-tight text-white">{scenario.learnerRole}</h5>
+                <h3 className="mt-2 max-w-[16rem] text-lg font-semibold leading-tight text-white">{scenario.learnerRole}</h3>
             </div>
 
             <div className="relative z-10 grid grid-cols-3 gap-2">
@@ -52,7 +53,7 @@ function MiniList({ title, items }) {
     )
 }
 
-export default function DynamicScenario({ topic, prompt, context, userContext, course = 'bio-inspired' }) {
+export default function DynamicScenario({ topic, prompt, context, userContext, course = 'bio-inspired', sectionId = null }) {
     const [variant, setVariant] = useState(0)
     const [revealedChoice, setRevealedChoice] = useState(0)
     const resolvedTopic = topic || prompt || 'Applied learning scenario'
@@ -71,8 +72,24 @@ export default function DynamicScenario({ topic, prompt, context, userContext, c
     const activeChoice = scenario.choices?.[revealedChoice] || scenario.choices?.[0]
 
     const refreshScenario = () => {
+        logEvent('dynamic_scenario_shuffle', 'dynamic-scenario', {
+            course,
+            scenario_id: scenario.sim || scenario.id || 'curated',
+            next_variant: variant + 1,
+        }, sectionId)
         setVariant((value) => value + 1)
         setRevealedChoice(0)
+    }
+
+    const handleChoice = (index) => {
+        logEvent('dynamic_scenario_choice', 'dynamic-scenario', {
+            course,
+            scenario_id: scenario.sim || scenario.id || 'curated',
+            choice_index: index,
+            choice_count: scenario.choices?.length || 0,
+            variant,
+        }, sectionId)
+        setRevealedChoice(index)
     }
 
     return (
@@ -146,7 +163,7 @@ export default function DynamicScenario({ topic, prompt, context, userContext, c
                                 <button
                                     key={choice.label}
                                     type="button"
-                                    onClick={() => setRevealedChoice(index)}
+                                    onClick={() => handleChoice(index)}
                                     className={`group rounded-lg border p-3 text-left transition-colors ${revealedChoice === index
                                         ? 'border-[var(--ath-primary)] bg-[var(--ath-surface-strong)]'
                                         : 'border-[var(--ath-line)] bg-[var(--ath-surface-strong)] hover:border-[var(--ath-line-strong)]'

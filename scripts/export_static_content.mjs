@@ -10,8 +10,18 @@ const API = 'http://127.0.0.1:8000/api'
 const OUT = join(ROOT, 'frontend', 'public', 'api')
 const CONTENT = join(ROOT, 'frontend', 'content')
 
+const requestedCourseIndex = process.argv.indexOf('--course')
+const requestedCourse = requestedCourseIndex >= 0 ? process.argv[requestedCourseIndex + 1] : null
+if (requestedCourseIndex >= 0 && !requestedCourse) {
+  throw new Error('--course requires a course directory name')
+}
+
 const isDir = (p) => { try { return statSync(p).isDirectory() } catch { return false } }
-const courses = readdirSync(CONTENT).filter((c) => !c.startsWith('_') && isDir(join(CONTENT, c)))
+const allCourses = readdirSync(CONTENT).filter((c) => !c.startsWith('_') && isDir(join(CONTENT, c)))
+const courses = requestedCourse ? allCourses.filter((course) => course === requestedCourse) : allCourses
+if (requestedCourse && courses.length === 0) {
+  throw new Error(`Unknown course: ${requestedCourse}`)
+}
 
 async function save(routePath, data) {
   const file = join(OUT, routePath)

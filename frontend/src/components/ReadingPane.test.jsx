@@ -1,7 +1,6 @@
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import ReadingPane from './ReadingPane'
-import { logEvent } from '../lib/loggingService'
 
 afterEach(() => {
     cleanup()
@@ -15,7 +14,12 @@ vi.mock('../lib/loggingService', () => ({
 }))
 
 vi.mock('./ReadingNarrative', () => ({
-    default: () => <div>Reading narrative loaded</div>,
+    default: ({ content, sectionId }) => (
+        <div data-testid="reading-narrative" data-section-id={sectionId}>
+            <span>Reading narrative loaded</span>
+            <pre>{content}</pre>
+        </div>
+    ),
 }))
 
 vi.mock('./PracticeBlock', () => ({
@@ -219,7 +223,7 @@ describe('ReadingPane continuity cues', () => {
     })
 })
 
-describe('ReadingPane embedded labs', () => {
+describe('ReadingPane authored simulation contract', () => {
     const baseProps = {
         loading: false,
         isBookmarked: false,
@@ -231,101 +235,37 @@ describe('ReadingPane embedded labs', () => {
         recentSection: null,
     }
 
-    // The embedded labs are lazy() now (code-split), so they mount asynchronously
-    // behind Suspense — use findBy* (which waits) instead of the synchronous getBy*.
-    it('embeds the GeckoGrip Lab on the dry-adhesion section (bio-inspired/04/01)', async () => {
+    it('passes an authored mid-text lab tag and section id to ReadingNarrative', async () => {
         render(
             <ReadingPane
                 {...baseProps}
                 sectionData={{
                     meta: { course: 'bio-inspired', chapter: '04', section: '01', title: 'Gecko-Inspired Dry Adhesion' },
-                    content: '# Gecko-Inspired Dry Adhesion',
+                    content: '# Gecko-Inspired Dry Adhesion\n\nMechanism\n\n<guided-lab lab="geckogrip"></guided-lab>\n\nApplications',
                     practice: [],
                 }}
             />,
         )
-        const frame = await screen.findByTitle(/GeckoGrip Lab/i)
-        expect(frame).toBeInTheDocument()
-        expect(frame.getAttribute('src')).toContain('geckogrip-lab.pages.dev')
+
+        const narrative = await screen.findByTestId('reading-narrative')
+        expect(narrative).toHaveAttribute('data-section-id', 'bio-inspired/04/01')
+        expect(narrative).toHaveTextContent('<guided-lab lab="geckogrip"></guided-lab>')
     })
 
-    it('embeds the Nacre Lab on bio-inspired/01/02', async () => {
+    it('does not append a lab from section metadata when content has no lab tag', async () => {
         render(
             <ReadingPane
                 {...baseProps}
-                sectionData={{ meta: { course: 'bio-inspired', chapter: '01', section: '02', title: 'Hierarchical Structures' }, content: '# x', practice: [] }}
+                sectionData={{
+                    meta: { course: 'bio-inspired', chapter: '04', section: '01', title: 'Gecko-Inspired Dry Adhesion' },
+                    content: '# Gecko-Inspired Dry Adhesion\n\nNo lab tag in this fixture.',
+                    practice: [],
+                }}
             />,
         )
-        const frame = await screen.findByTitle(/Nacre Lab/i)
-        expect(frame.getAttribute('src')).toContain('nacre-lab.pages.dev')
-    })
 
-    it('embeds the Riblet Lab on bio-inspired/02/01', async () => {
-        render(
-            <ReadingPane
-                {...baseProps}
-                sectionData={{ meta: { course: 'bio-inspired', chapter: '02', section: '01', title: 'Fluid Dynamics' }, content: '# x', practice: [] }}
-            />,
-        )
-        const frame = await screen.findByTitle(/Riblet Lab/i)
-        expect(frame.getAttribute('src')).toContain('riblet-lab.pages.dev')
-    })
-
-    it('embeds the serration optimizer on bio-inspired/03/01', async () => {
-        render(
-            <ReadingPane
-                {...baseProps}
-                sectionData={{ meta: { course: 'bio-inspired', chapter: '03', section: '01', title: 'Aeroacoustics' }, content: '# x', practice: [] }}
-            />,
-        )
-        expect(await screen.findByText(/Quiet-Blade Serration Optimizer/i)).toBeInTheDocument()
-    })
-
-    it('embeds the stack-effect designer on bio-inspired/06/01', async () => {
-        render(
-            <ReadingPane
-                {...baseProps}
-                sectionData={{ meta: { course: 'bio-inspired', chapter: '06', section: '01', title: 'Thermal Regulation' }, content: '# x', practice: [] }}
-            />,
-        )
-        expect(await screen.findByText(/Stack-Effect Ventilation Designer/i)).toBeInTheDocument()
-    })
-
-    it.each([
-        ['01', '01', /Relative-Density Trade-Off Explorer/i],
-        ['01', '03', /Peel-Angle Switch/i],
-        ['05', '01', /Structural-Color Multilayer Designer/i],
-        ['07', '01', /Self-Healing Capsule Designer/i],
-        ['08', '01', /Swarm Flocking Lab/i],
-    ])('embeds a sim on bio-inspired/%s/%s', async (chapter, section, re) => {
-        render(
-            <ReadingPane
-                {...baseProps}
-                sectionData={{ meta: { course: 'bio-inspired', chapter, section, title: 'Section' }, content: '# x', practice: [] }}
-            />,
-        )
-        expect(await screen.findByText(re)).toBeInTheDocument()
-    })
-
-    it('fires research telemetry (sim_open) when a sim mounts', async () => {
-        logEvent.mockClear()
-        render(
-            <ReadingPane
-                {...baseProps}
-                sectionData={{ meta: { course: 'bio-inspired', chapter: '06', section: '01', title: 'Thermal' }, content: '# x', practice: [] }}
-            />,
-        )
-        // Lazy lab — wait for it to mount before asserting its mount telemetry.
-        await screen.findByText(/Stack-Effect Ventilation Designer/i)
-        const opened = logEvent.mock.calls.some(
-            (c) => c[0] === 'sim_open' && c[3] === 'bio-inspired/06/01',
-        )
-        expect(opened).toBe(true)
-    })
-
-    it('does not embed any lab on unrelated sections', () => {
-        render(<ReadingPane {...baseProps} sectionData={sectionData} />)
+        const narrative = await screen.findByTestId('reading-narrative')
+        expect(narrative).not.toHaveTextContent('<guided-lab')
         expect(screen.queryByTitle(/GeckoGrip Lab/i)).not.toBeInTheDocument()
-        expect(screen.queryByText(/Serration Optimizer|Stack-Effect/i)).not.toBeInTheDocument()
     })
 })

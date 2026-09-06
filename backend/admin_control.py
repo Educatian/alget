@@ -119,7 +119,7 @@ def convert_pdf_bytes(data: bytes, filename: str) -> dict[str, Any]:
     # scaffolding and would otherwise be detected as course headings.
     source_text = "\n\n".join(page.text for page in pages if page.text)
     try:
-        runtime_draft = build_google_doc_course_draft(source_text, f"pdf:{digest[:24]}", safe_name)
+        runtime_draft = build_google_doc_course_draft(source_text, f"pdf:{digest[:24]}", safe_name, source_kind="pdf")
     except ValueError:
         runtime_draft = None
 
@@ -178,8 +178,114 @@ def extract_google_doc_id(url: str) -> str:
     return match.group(1)
 
 
-def build_google_doc_course_draft(text: str, document_id: str, title: str = "") -> dict[str, Any]:
-    """Create a review-only course draft from source-grounded Google Doc text."""
+_CONTENT_STOPWORDS = {
+    "about", "after", "also", "because", "being", "between", "could", "from",
+    "have", "into", "more", "most", "other", "over", "should", "than", "that",
+    "their", "these", "this", "those", "through", "under", "using", "what",
+    "when", "where", "which", "while", "with", "would", "your", "learners",
+}
+
+
+def _slug(value: str) -> str:
+    slug = re.sub(r"[^a-z0-9]+", "_", (value or "").lower()).strip("_")
+    return slug[:80] or "course_concept"
+
+
+def _concept_ids(heading: str, excerpt: str) -> list[str]:
+    """Select a small, deterministic concept set for the learner knowledge graph."""
+    terms: list[str] = []
+    for raw in re.findall(r"[A-Za-z][A-Za-z-]{3,}", f"{heading} {excerpt}"):
+        term = raw.lower().strip("-")
+        if term in _CONTENT_STOPWORDS or term in terms:
+            continue
+        terms.append(term)
+        if len(terms) == 3:
+            break
+    primary = _slug(heading)
+    return list(dict.fromkeys([primary, *(_slug(term) for term in terms)]))[:4]
+
+
+def _build_learning_assets(heading: str, excerpt: str, source_id: str, source_title: str) -> dict[str, Any]:
+    """Build source-grounded reading, retrieval assets, and formative checks.
+
+    This is intentionally deterministic and reviewable. When an AI provider is
+    available its richer lesson can replace the reading prose, but the source
+    chunk, concepts, and formative checks remain explicit in the draft so an
+    instructor can inspect exactly what will be embedded in the runtime.
+    """
+    concepts = _concept_ids(heading, excerpt)
+    clean_excerpt = re.sub(r"^#{1,6}\s+", "", excerpt.strip(), flags=re.MULTILINE)[:1200]
+    reading_content = (
+        f"## {heading}\n\n"
+        f"### What this section is for\n\n"
+        f"This section builds a source-grounded model of **{heading}**. Read the excerpt, "
+        "then test your interpretation with the evidence and activity below. Keep the "
+        "scope of your claim no broader than the source supports.\n\n"
+        f"### Source-grounded reading\n\n{clean_excerpt}\n\n"
+        "### Make the idea usable\n\n"
+        "1. Name the central claim in one sentence.\n"
+        "2. Point to the sentence, example, or data in the source that supports it.\n"
+        "3. Record one boundary or unanswered question before you revise the claim.\n\n"
+        "The tutor, practice item, and social cue all use this same source chunk. "
+        "They are suggestions for learning and require instructor review before release."
+    )
+    reference = {
+        "id": f"source-{_slug(source_id)}",
+        "kind": "source_document",
+        "title": source_title or "Instructor source",
+        "locator": source_id,
+        "verified": False,
+    }
+    practice = {
+        "schema_version": "formative-assessment-v1",
+        "problems": [
+            {
+                "id": f"draft_{_slug(source_id)}_{_slug(heading)}_mcq",
+                "type": "multiple_choice",
+                "difficulty": "easy",
+                "stem": f"Which move best demonstrates understanding of {heading}?",
+                "options": [
+                    "State a bounded claim and connect it to evidence from the source.",
+                    "Repeat the heading without checking the source.",
+                    "Treat a confident opinion as proof.",
+                    "Add an unrelated example to make the answer longer.",
+                ],
+                "correct_index": 0,
+                "explanation": "A defensible interpretation makes the claim–evidence connection visible and keeps the scope bounded.",
+                "concept_ids": concepts,
+                "source_evidence": {"source_id": source_id, "excerpt": clean_excerpt[:360]},
+            },
+            {
+                "id": f"draft_{_slug(source_id)}_{_slug(heading)}_teachback",
+                "type": "conceptual",
+                "difficulty": "medium",
+                "stem": f"Explain {heading} in your own words and cite one source detail that would change your explanation.",
+                "expected_answer": "A bounded explanation names the idea, cites a relevant source detail, and states how the detail supports or revises the explanation.",
+                "explanation": "This is a low-stakes teach-back check; it should be reviewed with the section rubric rather than auto-graded.",
+                "concept_ids": concepts,
+                "source_evidence": {"source_id": source_id, "excerpt": clean_excerpt[:360]},
+            },
+        ],
+    }
+    knowledge_base = {
+        "schema_version": "knowledge-base-v1",
+        "retrieval_scope": "source-only-until-instructor-approval",
+        "nodes": [
+            {"id": concept, "label": concept.replace("_", " ").title(), "source_ids": [source_id], "evidence": clean_excerpt[:360]}
+            for concept in concepts
+        ],
+        "chunks": [{"id": f"{_slug(source_id)}-chunk-1", "text": clean_excerpt, "source_id": source_id, "section": heading}],
+    }
+    return {"reading_content": reading_content, "concepts": concepts, "reference": reference, "practice": practice, "knowledge_base": knowledge_base}
+
+
+def build_google_doc_course_draft(text: str, document_id: str, title: str = "", source_kind: str = "google_doc") -> dict[str, Any]:
+    """Create a review-only course draft from source-grounded document text.
+
+    The output is a complete *shadow* runtime package: lesson prose, a
+    source-only knowledge base, formative checks, and the tutor/analytics/social
+    contracts. Nothing becomes learner-visible until the instructor approves it.
+    """
     cleaned = _clean_text(text or "")
     if len(cleaned) < 80:
         raise ValueError("Google Doc contains too little readable course material")
@@ -202,13 +308,18 @@ def build_google_doc_course_draft(text: str, document_id: str, title: str = "") 
             end = min(len(cleaned), start + 5000)
         excerpt = cleaned[start + len(heading):end].strip()[:1200] or cleaned[start:start + 1200]
         cursor = max(end, start + len(heading))
+        source_id = str(document_id or "source")
+        assets = _build_learning_assets(heading, excerpt, source_id, title.strip() or headings[0])
         sections.append({
             "section_id": f"draft-{index:02d}",
             "title": heading,
             "source_excerpt": excerpt,
+            "concept_ids": assets["concepts"],
+            "references": [assets["reference"]],
             "reading": {
                 "estimated_minutes": max(4, min(18, round(len(excerpt.split()) / 180))),
                 "purpose": f"Build source-grounded understanding of {heading}.",
+                "content": assets["reading_content"],
             },
             "activity": {
                 "type": "claim-evidence-revision",
@@ -235,13 +346,15 @@ def build_google_doc_course_draft(text: str, document_id: str, title: str = "") 
                 "cues": ["peer_presence", "same_concept_peers", "share_one_evidence_based_revision"],
                 "privacy": "pseudonymous-cohort-aggregate",
             },
+            "practice": assets["practice"],
+            "knowledge_base": assets["knowledge_base"],
         })
 
     source_hash = sha256(cleaned.encode("utf-8")).hexdigest()
     return {
         "schema_version": "google-doc-course-draft-v1",
         "source": {
-            "kind": "google_doc",
+            "kind": source_kind if source_kind in {"google_doc", "pdf", "url"} else "google_doc",
             "document_id": document_id,
             "title": title.strip() or headings[0],
             "sha256": source_hash,
@@ -251,14 +364,17 @@ def build_google_doc_course_draft(text: str, document_id: str, title: str = "") 
         "sections": sections,
         "runtime_package": {
             "version": "course-runtime-v1",
-            "generated": ["reading", "activity", "simulation", "tutor", "analytics", "social_dynamics"],
+            "generated": ["reading", "activity", "simulation", "tutor", "analytics", "social_dynamics", "knowledge_base", "formative_assessment"],
             "approval_required": True,
+            "retrieval_scope": "source-only-until-instructor-approval",
         },
         "quality": {
             "source_grounded": True,
             "human_approval_required": True,
             "student_visible": False,
             "automatic_publish": False,
+            "content_pipeline": "deterministic-source-grounded-v1",
+            "citation_verification": "not-verified",
             "warnings": [] if len(sections) >= 2 else ["Only one section was detected; review the document heading structure."],
         },
     }

@@ -7,34 +7,6 @@ import BlockErrorBoundary from './BlockErrorBoundary'
 import CalibrationPanel from './CalibrationPanel'
 import EvidenceTrail from './EvidenceTrail'
 
-// Embedded labs are lazy-loaded so their code (and the model-viewer runtime they
-// pull) stays out of the ReadingPane chunk that every one of the 256 sections
-// loads — only the ~10 bio-inspired sections that actually use a lab pay for it.
-const GeckoGripLab = lazy(() => import('./GeckoGripLab'))
-const NacreLab = lazy(() => import('./NacreLab'))
-const RibletLab = lazy(() => import('./RibletLab'))
-const SerrationOptimizer = lazy(() => import('./SerrationOptimizer'))
-const StackEffectDesigner = lazy(() => import('./StackEffectDesigner'))
-const RelativeDensityExplorer = lazy(() => import('./RelativeDensityExplorer'))
-const PeelAsymmetryExplorer = lazy(() => import('./PeelAsymmetryExplorer'))
-const BraggColorDesigner = lazy(() => import('./BraggColorDesigner'))
-const CapsuleHealingExplorer = lazy(() => import('./CapsuleHealingExplorer'))
-const SwarmFlockingLab = lazy(() => import('./SwarmFlockingLab'))
-
-// Sections that embed a dedicated interactive lab below the reading narrative.
-const EMBEDDED_LABS = {
-    'bio-inspired/01/01': RelativeDensityExplorer,
-    'bio-inspired/01/02': NacreLab,
-    'bio-inspired/01/03': PeelAsymmetryExplorer,
-    'bio-inspired/02/01': RibletLab,
-    'bio-inspired/03/01': SerrationOptimizer,
-    'bio-inspired/04/01': GeckoGripLab,
-    'bio-inspired/05/01': BraggColorDesigner,
-    'bio-inspired/06/01': StackEffectDesigner,
-    'bio-inspired/07/01': CapsuleHealingExplorer,
-    'bio-inspired/08/01': SwarmFlockingLab
-}
-
 const ReadingNarrative = lazy(() => import('./ReadingNarrative'))
 const PracticeBlock = lazy(() => import('./PracticeBlock'))
 const KnowledgeCheck = lazy(() => import('./KnowledgeCheck'))
@@ -440,20 +412,6 @@ function ReadingPane({
                     />
                 </Suspense>
             </section>
-
-            {isVisibleOnPage(1) && EMBEDDED_LABS[sectionId] && (() => {
-                const EmbeddedLab = EMBEDDED_LABS[sectionId]
-                // Isolate the lab: a crash inside it (WebGL/model-viewer/iframe/math
-                // edge case) must degrade to a block-level fallback, not escalate to
-                // the app-root boundary and blank the whole reader.
-                return (
-                    <BlockErrorBoundary>
-                        <Suspense fallback={null}>
-                            <EmbeddedLab />
-                        </Suspense>
-                    </BlockErrorBoundary>
-                )
-            })()}
 
             {isVisibleOnPage(1) && peerPulse && (
                 <PeerPulse

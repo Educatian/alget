@@ -431,13 +431,14 @@ export default function FacultyPartnershipWorkspace({ courseId, hotSpots = [], s
                                     </ul>
                                 )}
                                 <div className="mt-2 flex flex-wrap gap-1.5 text-[10px] font-bold uppercase tracking-[0.1em] text-[var(--ath-primary)]">
-                                    {['Reading', 'Activity', 'Simulation', 'Tutor', 'Analytics', 'Social cues'].map((label) => <span key={label} className="rounded-full bg-[color-mix(in_srgb,var(--ath-primary)_10%,var(--ath-panel))] px-2 py-1">{label}</span>)}
+                                    {['Reading', 'Activity', 'Simulation', 'Tutor', 'Knowledge base', 'Formative check', 'Analytics', 'Social cues'].map((label) => <span key={label} className="rounded-full bg-[color-mix(in_srgb,var(--ath-primary)_10%,var(--ath-panel))] px-2 py-1">{label}</span>)}
                                 </div>
                                 <ul className="mt-2 divide-y divide-[var(--ath-line)] border-y border-[var(--ath-line)]">
                                     {generationDraft.sections.slice(0, 5).map((section) => (
                                         <li key={section.section_id} className="py-3">
                                             <p className="text-sm font-semibold text-[var(--ath-text)]">{section.title}</p>
                                             <p className="mt-1 text-xs text-[var(--ath-muted)]">Reading · {section.reading?.estimated_minutes || 0} min · {prettify(section.activity?.type || 'activity')} · simulation proposed</p>
+                                            <p className="mt-1 text-[11px] leading-4 text-[var(--ath-secondary)]">{section.reading?.content ? 'Lesson text embedded' : 'Lesson text missing'} · {section.knowledge_base?.chunks?.length || 0} source chunk{section.knowledge_base?.chunks?.length === 1 ? '' : 's'} · {section.practice?.problems?.length || 0} formative item{section.practice?.problems?.length === 1 ? '' : 's'}</p>
                                         </li>
                                     ))}
                                 </ul>

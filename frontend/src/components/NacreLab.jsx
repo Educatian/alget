@@ -4,10 +4,14 @@
  * (nacre-lab.pages.dev). Cross-origin iframe keeps its own origin for the sim's
  * worker + WebGPU while staying sandboxed from the textbook session.
  */
+import { useRef } from 'react'
 import { useIframeSimTelemetry } from '../lib/simTelemetry'
 
+const NACRE_URL = 'https://nacre-lab.pages.dev/'
+
 export default function NacreLab() {
-    useIframeSimTelemetry('bio-inspired/01/02', 'nacre')
+    const iframeRef = useRef(null)
+    useIframeSimTelemetry('bio-inspired/01/02', 'nacre', { iframeRef, src: NACRE_URL })
     return (
         <div className="content-card my-10 overflow-hidden">
             <div className="bg-[linear-gradient(180deg,rgba(255,255,255,0.78),rgba(240,237,230,0.72))] px-5 py-4">
@@ -24,7 +28,8 @@ export default function NacreLab() {
             </div>
             <div className="border-t border-[var(--ath-line)] bg-[#0c0f14]">
                 <iframe
-                    src="https://nacre-lab.pages.dev/"
+                    ref={iframeRef}
+                    src={NACRE_URL}
                     title="Nacre Lab: design a brick-and-mortar composite"
                     sandbox="allow-scripts allow-same-origin"
                     loading="lazy"

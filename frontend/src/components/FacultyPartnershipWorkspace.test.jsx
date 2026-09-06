@@ -105,7 +105,7 @@ describe('FacultyPartnershipWorkspace', () => {
             settings: { student_visible: false, automatic_publish: false, automatic_messaging: false, automatic_grading: false, instructor_approval_required: true },
             generation_draft: {
                 source: { sha256: 'sha256:restored' },
-                sections: [{ section_id: 'draft-01', title: 'Restored reading', reading: { estimated_minutes: 5 } }],
+                sections: [{ section_id: 'draft-01', title: 'Restored reading', reading: { estimated_minutes: 5, content: 'Inspect the source, identify a bounded claim, and explain which source detail supports or revises that interpretation before you move to the activity.' }, knowledge_base: { chunks: [{ text: 'source' }] }, practice: { problems: [{ id: 'p1' }] } }],
                 runtime_package: { generated: ['reading', 'activity', 'simulation', 'tutor', 'analytics', 'social_dynamics'] },
                 quality: { warnings: [] },
             },
@@ -131,7 +131,7 @@ describe('FacultyPartnershipWorkspace', () => {
         render(<FacultyPartnershipWorkspace courseId="ail-606" rct={{}} />)
 
         fireEvent.click(screen.getByRole('button', { name: 'Shadow pilot' }))
-        expect(await screen.findByText('3/7 checks')).toBeInTheDocument()
+        expect(await screen.findByText('3/8 checks')).toBeInTheDocument()
         expect(screen.getByRole('button', { name: 'Mark ready for review' })).toBeDisabled()
     })
 })

@@ -458,7 +458,7 @@ export async function loadPublishedCourseSection(courseId, routeSectionId) {
     const objectives = generated.learning_objectives || module.generation_draft?.learning_objectives || []
     const reading = generated.reading || {}
     const body = reading.content || reading.markdown || generated.source_excerpt || ''
-    const content = appendOpenStaxReferences(body, generated.references)
+    const content = appendOpenStaxReferences(body, generated.references || module.generation_draft?.references)
     return {
         meta: {
             course: courseId,
@@ -482,7 +482,8 @@ export async function loadPublishedCourseSection(courseId, routeSectionId) {
         analytics: generated.analytics || module.generation_draft?.analytics || null,
         social_dynamics: generated.social_dynamics || module.generation_draft?.social_dynamics || null,
         runtime_package: module.generation_draft?.runtime_package || null,
-        practice: generated.practice || null,
+        practice: generated.practice || module.generation_draft?.practice || null,
+        knowledge_base: generated.knowledge_base || module.generation_draft?.knowledge_base || null,
         content_version: module.published_at || module.updated_at || null,
     }
 }

@@ -104,7 +104,7 @@ def main() -> None:
             continue
         title = meta.get("title", f"Section {chapter}.{section}")
         concepts = ", ".join(str(value).replace("_", " ") for value in meta.get("concept_ids", [])[:3])
-        block = f'''\n<figure-block id="{marker}" caption="Learning map for {title}: principle, evidence, and transfer." purpose="organizational" source="ALGET original instructional diagram" license="Project-authored; repository license">\n  <img src="/course-art/section-anchors/{course}/{chapter}-{section}.svg" alt="Learning map for {title}, connecting {concepts or 'the section concepts'} to evidence and transfer." loading="lazy" decoding="async" />\n</figure-block>\n'''
+        block = f'''\n<figure-block id="{marker}" caption="Learning map for {title}: principle, evidence, and transfer." purpose="organizational" source="ALGET original instructional diagram" license="Project-authored; all rights reserved pending project license decision">\n  <img src="/course-art/section-anchors/{course}/{chapter}-{section}.svg" alt="Learning map for {title}, connecting {concepts or 'the section concepts'} to evidence and transfer." loading="lazy" decoding="async" />\n</figure-block>\n'''
         heading = re.search(r"^# .+$", text, flags=re.MULTILINE)
         if heading:
             end = heading.end()

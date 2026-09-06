@@ -7,10 +7,11 @@ import { CURRENT_STUDENT_COHORTS, signInCohortLearner } from '../lib/cohortLearn
 
 export default function AuthModal({ isOpen, onClose, onSuccess }) {
     const [mode, setMode] = useState('signin')
+    const [entryMode, setEntryMode] = useState('course')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [studentName, setStudentName] = useState('')
-    const [studentCohort, setStudentCohort] = useState(CURRENT_STUDENT_COHORTS[0].id)
+    const [studentCohort, setStudentCohort] = useState(CURRENT_STUDENT_COHORTS.find((cohort) => !cohort.requiresStudyId)?.id || CURRENT_STUDENT_COHORTS[0].id)
     const [accountType, setAccountType] = useState('learner')
     const [fullName, setFullName] = useState('')
     const [loading, setLoading] = useState(false)
@@ -38,12 +39,18 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
             action: 'Send Reset Link'
         }
     }), [])
-
     if (!isOpen) return null
 
     const switchMode = (nextMode) => {
         setMode(nextMode)
         setError('')
+        setMessage('')
+    }
+
+    const chooseEntryMode = (nextMode) => {
+        setEntryMode(nextMode)
+        setError('')
+        setStudentError('')
         setMessage('')
     }
 
@@ -65,6 +72,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
             const user = await signInCohortLearner({
                 cohortId: studentCohort,
                 fullName: studentName,
+                studyId: '',
             })
             onSuccess?.(user, { redirectTo: '/learn' })
         } catch (err) {
@@ -149,8 +157,12 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
                     <div className="flex items-start justify-between gap-4">
                         <div>
                             <p className="editorial-kicker">The Scholarly Editorial</p>
-                            <h2 id="auth-modal-title" className="mt-2 text-2xl font-semibold tracking-tight text-[var(--ath-text)]">{copy[mode].title}</h2>
-                            <p className="mt-1.5 text-sm leading-6 text-[var(--ath-muted)]">{copy[mode].subtitle}</p>
+                            <h2 id="auth-modal-title" className="mt-2 text-2xl font-semibold tracking-tight text-[var(--ath-text)]">
+                                {entryMode === 'course' ? 'Open your course' : entryMode === 'demo' ? 'Preview ALGET' : copy[mode].title}
+                            </h2>
+                            <p className="mt-1.5 text-sm leading-6 text-[var(--ath-muted)]">
+                                {entryMode === 'course' ? 'Choose your cohort and continue to the assigned learning path.' : entryMode === 'demo' ? 'Explore the workspace with sample learner data.' : copy[mode].subtitle}
+                            </p>
                         </div>
                         <button
                             onClick={onClose}
@@ -165,14 +177,39 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
                 <div className="px-6 py-5">
                     {!isSupabaseConfigured && (
                         <div className="mb-4 border-l-2 border-[var(--ath-primary)] bg-[var(--ath-panel-muted)] px-3 py-2.5 text-sm leading-6 text-[var(--ath-primary-deep)]">
-                            Local demo mode is active. Cloud authentication is not configured in this environment, so the fastest path is to continue with a sample learner.
+                            Cloud authentication is not configured in this environment. Course entry and preview mode are available locally; account sign-in requires the hosted auth service.
                         </div>
                     )}
 
-                    <form onSubmit={handleStudentEntry} className="mb-5 border-b border-[var(--ath-line)] pb-5">
+                    <div className="mb-5">
+                        <p className="editorial-label">Choose how to continue</p>
+                        <div className="mt-3 grid gap-2 sm:grid-cols-3" role="group" aria-label="Choose how to continue">
+                            {[
+                                ['course', 'Course learner', 'Name + cohort'],
+                                ['account', 'ALGET account', 'Email + password'],
+                                ['demo', 'Preview demo', 'No account needed'],
+                            ].map(([value, label, detail]) => (
+                                <button
+                                    key={value}
+                                    type="button"
+                                    aria-pressed={entryMode === value}
+                                    onClick={() => chooseEntryMode(value)}
+                                    className={`rounded-[1.1rem] border px-3 py-3 text-left transition-colors ${entryMode === value
+                                        ? 'border-[var(--ath-primary)] bg-[var(--ath-panel-muted)] text-[var(--ath-primary-deep)]'
+                                        : 'border-[var(--ath-line)] bg-[var(--ath-surface-strong)] text-[var(--ath-secondary)] hover:bg-white'
+                                        }`}
+                                >
+                                    <span className="block text-sm font-semibold">{label}</span>
+                                    <span className="mt-1 block text-xs text-[var(--ath-muted)]">{detail}</span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    {entryMode === 'course' && <form onSubmit={handleStudentEntry} className="mb-5 border-b border-[var(--ath-line)] pb-5">
                         <p className="editorial-label">Current students</p>
                         <p className="mt-2 text-sm leading-6 text-[var(--ath-muted)]">
-                            CAT 531 and CAT 100 summer students can enter with their name so progress is tied to the right learner.
+                            Enter your name and course cohort to open the assigned learning path. Research participants should use the invitation-bound account supplied by the research coordinator instead.
                         </p>
                         <div className="mt-3 flex flex-wrap gap-2 text-xs font-semibold">
                             <a
@@ -214,7 +251,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
                                     onChange={(event) => setStudentCohort(event.target.value)}
                                     className="editorial-input"
                                 >
-                                    {CURRENT_STUDENT_COHORTS.map((cohort) => (
+                                    {CURRENT_STUDENT_COHORTS.filter((cohort) => !cohort.requiresStudyId).map((cohort) => (
                                         <option key={cohort.id} value={cohort.id}>{cohort.label}</option>
                                     ))}
                                 </select>
@@ -232,9 +269,14 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
                         >
                             {studentLoading ? 'Opening course...' : 'Enter my course'}
                         </button>
-                    </form>
+                    </form>}
 
-                    <form onSubmit={handleSubmit} className="space-y-4">
+                    {entryMode === 'account' && <form onSubmit={handleSubmit} className="space-y-4">
+                        <p className="editorial-label">Account sign in</p>
+                        <p className="text-sm leading-6 text-[var(--ath-muted)]">
+                            Research participants must use the invitation-bound account supplied by the coordinator. Do not create a second account for the study.
+                            Contact fields are excluded from outcomes and telemetry; approved gift-card delivery details belong only in the separate compensation form.
+                        </p>
                         <div>
                             <label htmlFor="auth-email" className="editorial-label mb-2 block">Email</label>
                             <input
@@ -311,9 +353,23 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
                         >
                             {loading ? 'Working...' : copy[mode].action}
                         </button>
-                    </form>
+                    </form>}
 
-                    <div className="mt-5 border-t border-[var(--ath-line)] pt-4">
+                    {entryMode === 'demo' && <div className="rounded-[1.2rem] border border-[var(--ath-line)] bg-[var(--ath-panel-muted)] p-4">
+                        <p className="editorial-label">Preview only</p>
+                        <p className="mt-2 text-sm leading-6 text-[var(--ath-muted)]">
+                            Explore the learner workspace with sample data. Demo progress is local to this browser and is not a participant or course record.
+                        </p>
+                        <button
+                            type="button"
+                            onClick={enterDemoMode}
+                            className="editorial-button mt-4 w-full px-4 py-3 text-sm"
+                        >
+                            Continue in Demo Mode
+                        </button>
+                    </div>}
+
+                    {entryMode === 'account' && <div className="mt-5 border-t border-[var(--ath-line)] pt-4">
                         <p className="editorial-label">Testing and demo</p>
                         <div className="mt-3 flex flex-wrap gap-3">
                             <button
@@ -335,7 +391,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
                                 Fill Sample Credentials
                             </button>
                         </div>
-                    </div>
+                    </div>}
 
                     <div className="mt-6 text-center text-sm">
                         {mode === 'signin' && (

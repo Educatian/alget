@@ -8,6 +8,10 @@ vi.mock('../lib/loggingService', () => ({
     logTimeOnTask: vi.fn(),
 }))
 
+vi.mock('./GuidedSimulationLab', () => ({
+    default: ({ lab, sectionId }) => <div data-testid="guided-simulation">{lab}:{sectionId}</div>,
+}))
+
 describe('ReadingNarrative markdown extension contract', () => {
     beforeEach(() => {
         globalThis.IntersectionObserver = vi.fn(() => ({
@@ -76,5 +80,31 @@ describe('ReadingNarrative markdown extension contract', () => {
         const frame = await screen.findByTitle('Universal Design for Learning and CAST')
         expect(frame).toHaveAttribute('src', expect.stringContaining('youtube-nocookie.com/embed/PHOJwnSV6t4'))
         expect(screen.getByText(/compare the section's design language/i)).toBeInTheDocument()
+    })
+
+    it('renders a guided simulation exactly where its markdown tag appears', async () => {
+        render(
+            <ReadingNarrative
+                sectionId="bio-inspired/04/01"
+                course="bio-inspired"
+                conceptIds={['dry_adhesion']}
+                content={`# Dry adhesion
+
+Mechanism explanation before the lab.
+
+<guided-lab lab="geckogrip"></guided-lab>
+
+Engineering applications after the lab.`}
+            />,
+        )
+
+        const narrative = screen.getByRole('article')
+        expect(await screen.findByTestId('guided-simulation')).toHaveTextContent('geckogrip:bio-inspired/04/01')
+        const blocks = Array.from(narrative.querySelectorAll('p, [data-testid="guided-simulation"]'))
+        expect(blocks.map((block) => block.textContent)).toEqual([
+            'Mechanism explanation before the lab.',
+            'geckogrip:bio-inspired/04/01',
+            'Engineering applications after the lab.',
+        ])
     })
 })

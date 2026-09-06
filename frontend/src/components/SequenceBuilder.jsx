@@ -1,5 +1,6 @@
 import { useId, useMemo, useRef, useState } from 'react'
 import { Check, ChevronDown, ChevronUp, X } from 'lucide-react'
+import { logEvent } from '../lib/loggingService'
 
 /**
  * SequenceBuilder - a drag-to-order / match activity for process content.
@@ -23,7 +24,7 @@ import { Check, ChevronDown, ChevronUp, X } from 'lucide-react'
  *    only) and reports an overall result via aria-live.
  *  - Respects prefers-reduced-motion (no transition when the user opts out).
  */
-export default function SequenceBuilder({ items, mode = 'order' }) {
+export default function SequenceBuilder({ items, mode = 'order', sectionId = null, course = null }) {
     const resolvedMode = mode === 'match' ? 'match' : 'order'
     const correct = useMemo(() => normalizeItems(items, resolvedMode), [items, resolvedMode])
     const baseId = useId()
@@ -33,15 +34,15 @@ export default function SequenceBuilder({ items, mode = 'order' }) {
     }
 
     return resolvedMode === 'match' ? (
-        <MatchActivity correct={correct} baseId={baseId} />
+        <MatchActivity correct={correct} baseId={baseId} sectionId={sectionId} course={course} />
     ) : (
-        <OrderActivity correct={correct} baseId={baseId} />
+        <OrderActivity correct={correct} baseId={baseId} sectionId={sectionId} course={course} />
     )
 }
 
 /* ----------------------------- order mode ----------------------------- */
 
-function OrderActivity({ correct, baseId }) {
+function OrderActivity({ correct, baseId, sectionId, course }) {
     // correct is an array of { id, label }; initial order is a deterministic
     // shuffle so the activity is non-trivial yet stable across renders/tests.
     const [order, setOrder] = useState(() => stableShuffle(correct))
@@ -50,6 +51,7 @@ function OrderActivity({ correct, baseId }) {
     const dragIndexRef = useRef(null)
     const [grabbedIndex, setGrabbedIndex] = useState(null)
     const itemRefs = useRef([])
+    const attemptsRef = useRef(0)
 
     const correctById = useMemo(() => {
         const map = new Map()
@@ -75,6 +77,16 @@ function OrderActivity({ correct, baseId }) {
 
     const handleCheck = () => {
         const wrong = order.filter((item, index) => correctById.get(item.id) !== index).length
+        attemptsRef.current += 1
+        logEvent('sequence_check', 'sequence-builder', {
+            mode: 'order',
+            course: course || null,
+            item_count: order.length,
+            correct_count: order.length - wrong,
+            incorrect_count: wrong,
+            complete: wrong === 0,
+            attempt_number: attemptsRef.current,
+        }, sectionId)
         setChecked(true)
         setStatus(
             wrong === 0
@@ -87,6 +99,11 @@ function OrderActivity({ correct, baseId }) {
         setOrder(stableShuffle(correct))
         setChecked(false)
         setStatus('')
+        logEvent('sequence_reset', 'sequence-builder', {
+            mode: 'order',
+            course: course || null,
+            item_count: correct.length,
+        }, sectionId)
     }
 
     const onDragStart = (index) => (event) => {
@@ -231,7 +248,7 @@ function OrderActivity({ correct, baseId }) {
 
 /* ----------------------------- match mode ----------------------------- */
 
-function MatchActivity({ correct, baseId }) {
+function MatchActivity({ correct, baseId, sectionId, course }) {
     // correct: array of { id, label (term), definition }. The learner assigns
     // one definition to each term via a labeled <select> (fully keyboard
     // operable and screen-reader friendly, no drag dependency).
@@ -242,6 +259,7 @@ function MatchActivity({ correct, baseId }) {
     const [assignments, setAssignments] = useState(() => correct.map(() => ''))
     const [checked, setChecked] = useState(false)
     const [status, setStatus] = useState('')
+    const attemptsRef = useRef(0)
 
     const handleSelect = (rowIndex) => (event) => {
         const value = event.target.value
@@ -256,6 +274,16 @@ function MatchActivity({ correct, baseId }) {
 
     const handleCheck = () => {
         const wrong = correct.filter((item, index) => assignments[index] !== item.id).length
+        attemptsRef.current += 1
+        logEvent('sequence_check', 'sequence-builder', {
+            mode: 'match',
+            course: course || null,
+            item_count: correct.length,
+            correct_count: correct.length - wrong,
+            incorrect_count: wrong,
+            complete: wrong === 0,
+            attempt_number: attemptsRef.current,
+        }, sectionId)
         setChecked(true)
         setStatus(
             wrong === 0
@@ -268,6 +296,11 @@ function MatchActivity({ correct, baseId }) {
         setAssignments(correct.map(() => ''))
         setChecked(false)
         setStatus('')
+        logEvent('sequence_reset', 'sequence-builder', {
+            mode: 'match',
+            course: course || null,
+            item_count: correct.length,
+        }, sectionId)
     }
 
     const labelId = `${baseId}-match-label`

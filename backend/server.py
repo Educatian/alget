@@ -229,7 +229,7 @@ class OrchestrateRequest(BaseModel):
     section_title: str = ""
     content_version: Any = None
     api_key: str = ""
-    retrieved_context: list[dict[str, Any]] = []
+    retrieved_context: list[dict[str, Any]] = Field(default_factory=list, max_length=5)
 
 class ModuleInfo(BaseModel):
     icon: str
@@ -250,6 +250,7 @@ class ExplainRequest(BaseModel):
     content_version: Any = None
     problem_id: Optional[str] = None
     stuck_reason: Optional[str] = None
+    retrieved_context: list[dict[str, Any]] = Field(default_factory=list, max_length=5)
     api_key: str = ""
 
 class RepresentRequest(BaseModel):
@@ -258,6 +259,7 @@ class RepresentRequest(BaseModel):
     page_content: str = ""
     content_version: Any = None
     representation_type: str  # mindmap, analogy, visual, formula
+    retrieved_context: list[dict[str, Any]] = Field(default_factory=list, max_length=5)
     api_key: str = ""
 
 class ScenarioRequest(BaseModel):
@@ -2004,6 +2006,17 @@ async def root():
     return {"status": "ok", "message": "UA Intelligent Textbook API v2.0"}
 
 
+@app.get("/api/warmup")
+async def warmup():
+    """Keep the local FastAPI contract aligned with the Cloudflare worker.
+
+    The client sends this lightweight probe on startup so a deployed worker can
+    avoid a cold-start race. Returning a successful no-op locally prevents a
+    noisy 404 on every reader route and gives browser QA a clean console.
+    """
+    return {"ok": True}
+
+
 @app.get("/api/modules/{grade_level}")
 async def get_modules(grade_level: str):
     """Get module titles for a grade level."""
@@ -2255,6 +2268,7 @@ async def orchestrate_query(request: OrchestrateRequest):
             is_highlight=request.is_highlight,
             grade_level=request.grade_level,
             interest=request.interest,
+            retrieved_context=request.retrieved_context,
         )
         normalized = normalize_orchestrator_response(result)
         normalized.generation_trace = build_generation_trace(
@@ -3500,6 +3514,17 @@ async def grade_submission(problem_id: str, request: GradeRequest):
 # ASSIST API (Rail)
 # ============================================================================
 
+def _source_context_text(items: list[dict[str, Any]] | None, limit: int = 3200) -> str:
+    """Format instructor-approved retrieval chunks for a bounded tutor prompt."""
+    rows = []
+    for index, item in enumerate(items or [], start=1):
+        text = str((item or {}).get("content") or (item or {}).get("text") or "").strip()
+        if len(text) < 20:
+            continue
+        source_id = str((item or {}).get("source_id") or (item or {}).get("id") or "section-context")
+        rows.append(f"[{index}] {text[:900]} (source: {source_id})")
+    return "\n\n".join(rows)[:limit]
+
 @app.post("/api/assist/explain")
 async def explain_easier(request: ExplainRequest):
     """Generate an easier explanation for the current concept."""
@@ -3514,8 +3539,13 @@ async def explain_easier(request: ExplainRequest):
             
             prompt = f"""
             A student is stuck on section: {request.section_id}
+            Section title: {request.section_title or 'not provided'}
             Problem: {request.problem_id or 'General concept'}
             Stuck reason: {request.stuck_reason or 'Unknown'}
+
+            Use only the supplied section evidence when making claims:
+            {request.page_content[:1600] or 'No page excerpt was supplied.'}
+            {_source_context_text(request.retrieved_context) or 'No retrieval chunks were supplied.'}
             
             Please provide a simpler, step-by-step explanation suitable for a struggling student.
             Use analogies and real-world examples. Be encouraging.
@@ -3533,7 +3563,13 @@ async def explain_easier(request: ExplainRequest):
             
             explanation = response.text
         else:
-            explanation = "Let's break this down step by step:\n\n1. First, identify all forces acting on the object.\n2. Draw a free body diagram.\n3. Apply the equilibrium conditions (ΣF = 0).\n4. Solve for the unknown.\n\nRemember: when an object is in equilibrium, all forces must balance!"
+            explanation = (
+                "Let's work from the reading evidence step by step:\n\n"
+                "1. State the section's central claim in your own words.\n"
+                "2. Point to one sentence, example, or data point that supports it.\n"
+                "3. Name one boundary or question before extending the claim.\n\n"
+                "Your tutor is offline, so this is a source-grounded scaffold rather than a final answer."
+            )
 
         generation_trace = build_generation_trace(
             output=explanation,
@@ -3558,56 +3594,39 @@ async def represent_differently(request: RepresentRequest):
     try:
         representations = {
             "mindmap": """
-**Equilibrium Concept Map:**
+**Concept Map:**
 
-                    EQUILIBRIUM
+                    CENTRAL IDEA
                         |
             +-----------+-----------+
             |           |           |
-        ΣFx = 0     ΣFy = 0     ΣM = 0
+        Claim       Evidence     Boundary
             |           |           |
-        Horizontal  Vertical    Moments
-        Balance     Balance     Balance
+        What it says  What supports it  What it cannot establish
             """,
             "analogy": """
 **Real-World Analogy:**
 
-Think of equilibrium like a game of tug-of-war where nobody moves.
+Think of a claim like a trail marker: the evidence is the visible path that
 
-🧍⟵ ← → ⟶🧍
-
-When both teams pull with equal force, the rope stays still.
-That's equilibrium! The net force is zero.
-
-In engineering, we use this principle to design safe structures.
+lets another learner follow it, and the boundary is the point where the trail
+ends. A good explanation names all three.
             """,
             "visual": """
 **Visual Summary:**
 
-    ↑ T (Tension)
-    |
-    |  θ
-    +------ → 
-    |
-    ↓ W (Weight)
-
-• Vertical: T·sin(θ) = W
-• Horizontal: T·cos(θ) = Reaction
+    CENTRAL CLAIM
+          |
+       EVIDENCE  →  INTERPRETATION
+          |
+       BOUNDARY / NEXT QUESTION
             """,
             "formula": """
 **Key Formulas:**
 
-1. **Equilibrium Conditions:**
-   ΣFx = 0 (horizontal forces balance)
-   ΣFy = 0 (vertical forces balance)
-   ΣM = 0 (moments balance)
-
-2. **For inclined cables:**
-   Fx = T·cos(θ)
-   Fy = T·sin(θ)
-
-3. **Weight:**
-   W = m·g = mass × 9.81 m/s²
+1. **Claim:** what the source supports.
+2. **Evidence:** the exact detail used to support the claim.
+3. **Boundary:** what the evidence does not establish.
             """
         }
         
@@ -3615,6 +3634,9 @@ In engineering, we use this principle to design safe structures.
             request.representation_type,
             "Representation type not supported."
         )
+        source_context = _source_context_text(request.retrieved_context)
+        if source_context and request.representation_type in {"mindmap", "analogy", "visual", "formula"}:
+            content = f"{content}\n\n_Source evidence to anchor this representation:_\n{source_context[:900]}"
         
         generation_trace = build_generation_trace(
             output=content,

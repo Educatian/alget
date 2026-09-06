@@ -11,12 +11,14 @@ const CONTENT = join(ROOT, 'frontend', 'content')
 const API = join(ROOT, 'frontend', 'public', 'api')
 const BOOK = join(API, 'book')
 const EXPECTED_SECTIONS = 256
+const FRESHNESS_COURSES = new Set(['statics', 'dynamics', 'bio-inspired'])
 
 const errors = []
 const isDir = (p) => {
   try { return statSync(p).isDirectory() } catch { return false }
 }
 const readJson = (p) => JSON.parse(readFileSync(p, 'utf8'))
+const normalizeNewlines = (value) => String(value).replace(/\r\n/g, '\n').replace(/\r/g, '\n')
 
 function fail(message) {
   errors.push(message)
@@ -70,6 +72,12 @@ for (const { course, chapter, section } of sourceSections) {
   }
   if (!data?.meta?.title) fail(`missing meta.title in /api/book/${course}/${chapter}/${section}`)
   if (!data?.content || typeof data.content !== 'string') fail(`missing content in /api/book/${course}/${chapter}/${section}`)
+  if (typeof data?.content === 'string' && FRESHNESS_COURSES.has(course)) {
+    const authored = readFileSync(join(CONTENT, course, chapter, `${section}.mdx`), 'utf8')
+    if (normalizeNewlines(data.content) !== normalizeNewlines(authored)) {
+      fail(`stale MDX in static section /api/book/${course}/${chapter}/${section}; rerun scripts/export_static_content.mjs`)
+    }
+  }
   if (!Array.isArray(data?.practice?.problems)) fail(`missing practice.problems in /api/book/${course}/${chapter}/${section}`)
   if (!Array.isArray(data?.misconceptions)) fail(`missing baked misconceptions in /api/book/${course}/${chapter}/${section}`)
   if (!data?.content_version?.content_version || !data?.content_version?.algorithm) {

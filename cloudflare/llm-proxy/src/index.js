@@ -194,6 +194,142 @@ function supabaseHeaders(env, authorization = '') {
   }
 }
 
+const TELEMETRY_PRIVATE_KEY = /^(?:text|content|query|answer|student_answer|prompt|message|excerpt|email|name|label|feedback|rationale|reflection|explanation|description|note|response|output|setting|choice)$/i
+const TELEMETRY_SAFE_STRING_KEY = /^(?:course|mode|scenario_id|node_id|concept_id|problem_id|section_id|phase|action|reason|reason_code|support_move|judgment|studio_mode|artifact_type|status|variant|arm|experiment_key|trace_id|schema_version|provider|model|prompt_version|content_version|source_status|review_status|event_source|diagnostic_code|assignment_arm|choice_id|intervention_action|event_name|type|category|target|source_table|policy_version|source_id|source_ids)$/i
+
+// Unload telemetry is a last-chance path and does not pass through the normal
+// client-side research validator. Keep it deliberately score/interaction
+// oriented: known free-text keys are removed and long strings become lengths,
+// so a browser queue cannot turn this relay into a raw-response store.
+function sanitizeTelemetryValue(value, key = '', depth = 0) {
+  if (depth > 3 || value === null || value === undefined) return value === null ? null : undefined
+  if (typeof value === 'string') {
+    if (TELEMETRY_PRIVATE_KEY.test(key)) return undefined
+    // Preserve small categorical values used by analytics; convert every
+    // unrecognised string to a length marker so short free text is not leaked.
+    return TELEMETRY_SAFE_STRING_KEY.test(key)
+      ? value.slice(0, 240)
+      : `${value.length}_chars`
+  }
+  if (typeof value === 'number') return Number.isFinite(value) ? value : undefined
+  if (typeof value === 'boolean') return value
+  if (Array.isArray(value)) {
+    return value.slice(0, 20)
+      .map((item) => sanitizeTelemetryValue(item, key, depth + 1))
+      .filter((item) => item !== undefined)
+  }
+  if (typeof value === 'object') {
+    const output = {}
+    for (const [childKey, childValue] of Object.entries(value)) {
+      const clean = sanitizeTelemetryValue(childValue, childKey, depth + 1)
+      if (clean !== undefined) output[childKey] = clean
+    }
+    return output
+  }
+  return undefined
+}
+
+function isUuid(value) {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(String(value || ''))
+}
+
+function normalizeUnloadEvents(events) {
+  if (!Array.isArray(events)) return []
+  return events.slice(0, 500).map((event, index) => {
+    if (!event || typeof event !== 'object') return null
+    const userId = String(event.user_id || '')
+    const sessionId = String(event.session_id || '')
+    const eventType = String(event.event_type || '').trim().slice(0, 80)
+    if (!isUuid(userId) || !isUuid(sessionId) || !eventType) return null
+    const sequence = Number(event.sequence_num)
+    const clientDate = new Date(event.client_ts || '')
+    return {
+      user_id: userId,
+      session_id: sessionId,
+      sequence_num: Number.isInteger(sequence) && sequence >= 0 ? sequence : index + 1,
+      event_type: eventType,
+      event_target: event.event_target ? String(event.event_target).slice(0, 160) : null,
+      event_data: sanitizeTelemetryValue(event.event_data && typeof event.event_data === 'object' ? event.event_data : {}) || {},
+      section_id: event.section_id ? String(event.section_id).slice(0, 240) : null,
+      client_ts: Number.isNaN(clientDate.getTime()) ? new Date().toISOString() : clientDate.toISOString(),
+    }
+  }).filter(Boolean)
+}
+
+function toUnloadInteractionEvent(event) {
+  const [courseId = null] = String(event.section_id || '').split('/')
+  return {
+    user_id: event.user_id,
+    session_id: event.session_id,
+    course_id: courseId || null,
+    section_id: event.section_id,
+    item_id: event.event_data?.problem_id || event.event_target || null,
+    event_type: event.event_type,
+    event_ts: event.client_ts,
+    client_seq: event.sequence_num,
+    payload: {
+      target: event.event_target,
+      data: event.event_data || {},
+      source_table: 'event_logs',
+      source: 'unload_relay',
+    },
+  }
+}
+
+async function persistUnloadEvents(env, body, authorization = '') {
+  const bodyToken = typeof body?.access_token === 'string' ? body.access_token.trim() : ''
+  const auth = String(authorization || (bodyToken ? `Bearer ${bodyToken.replace(/^Bearer\s+/i, '')}` : '')).trim()
+  if (!auth.toLowerCase().startsWith('bearer ')) {
+    return json({ detail: 'Learner session required for telemetry relay' }, 401)
+  }
+  if (!env.SUPABASE_URL || !env.SUPABASE_PUBLISHABLE_KEY) {
+    return json({ detail: 'Telemetry storage is not configured' }, 503)
+  }
+  if (!Array.isArray(body?.events)) {
+    return json({ detail: 'events must be an array', persisted_count: 0 }, 422)
+  }
+
+  const events = normalizeUnloadEvents(body.events)
+  if (events.length === 0) {
+    return json({ detail: 'No valid telemetry events supplied', persisted_count: 0, rejected_count: body.events.length }, 422)
+  }
+
+  const base = String(env.SUPABASE_URL).replace(/\/$/, '')
+  try {
+    const eventResponse = await fetch(`${base}/rest/v1/event_logs`, {
+      method: 'POST',
+      headers: { ...supabaseHeaders(env, auth), Prefer: 'return=minimal' },
+      body: JSON.stringify(events),
+    })
+    if (!eventResponse.ok) {
+      return json({ detail: 'Telemetry storage rejected the event batch', persisted_count: 0 }, 502)
+    }
+
+    let canonicalMirror = { persisted: false, count: 0, reason: 'not_attempted' }
+    try {
+      const canonicalResponse = await fetch(`${base}/rest/v1/interaction_events`, {
+        method: 'POST',
+        headers: { ...supabaseHeaders(env, auth), Prefer: 'return=minimal' },
+        body: JSON.stringify(events.map(toUnloadInteractionEvent)),
+      })
+      canonicalMirror = canonicalResponse.ok
+        ? { persisted: true, count: events.length }
+        : { persisted: false, count: 0, reason: `supabase_${canonicalResponse.status}` }
+    } catch {
+      canonicalMirror = { persisted: false, count: 0, reason: 'supabase_unavailable' }
+    }
+
+    return json({
+      schema_version: 'telemetry-relay-v1',
+      persisted_count: events.length,
+      rejected_count: body.events.length - events.length,
+      canonical_mirror: canonicalMirror,
+    })
+  } catch {
+    return json({ detail: 'Telemetry storage unavailable', persisted_count: 0 }, 503)
+  }
+}
+
 async function persistRoadmapRow(env, authorization, table, row) {
   if (!env.SUPABASE_URL || !authorization) return { persisted: false, reason: 'supabase_session_required' }
   try {
@@ -264,6 +400,40 @@ async function requireFacultyInstructor(request, env) {
   return { authorization, operator: { role, subject: user.id } }
 }
 
+async function requireEngineeringStudyTreatment(request, env, body = {}) {
+  const enforcement = String(env.ENGINEERING_STUDY_ENFORCEMENT || 'off').toLowerCase()
+  const course = String(body.course || body.section_id || '').split('/')[0]
+  if (enforcement !== 'strict' || course !== 'bio-inspired') return { enforced: false }
+
+  const authorization = request.headers.get('authorization') || ''
+  if (!authorization.toLowerCase().startsWith('bearer ') || !env.SUPABASE_URL || !env.SUPABASE_PUBLISHABLE_KEY) {
+    return { error: json({ detail: 'Authenticated study assignment required' }, 401) }
+  }
+
+  const query = new URLSearchParams({
+    select: 'assignment_hash,experiment_arms!inner(arm_key),experiments!inner(experiment_key)',
+    'experiments.experiment_key': 'eq.alget-bio-inspired-agentic-rct-v1',
+    limit: '1',
+  })
+  let response
+  try {
+    response = await fetch(`${String(env.SUPABASE_URL).replace(/\/$/, '')}/rest/v1/experiment_assignments?${query}`, {
+      headers: supabaseHeaders(env, authorization),
+    })
+  } catch {
+    return { error: json({ detail: 'Study assignment service unavailable' }, 503) }
+  }
+  if (response.status === 401) return { error: json({ detail: 'Invalid or expired learner session' }, 401) }
+  if (!response.ok) return { error: json({ detail: 'Study assignment verification failed' }, 503) }
+
+  const rows = await response.json()
+  const arm = Array.isArray(rows) ? rows[0]?.experiment_arms?.arm_key : null
+  if (arm !== 'treatment_annotation_adaptive') {
+    return { error: json({ detail: 'Adaptive support is unavailable in this assigned study condition' }, 403) }
+  }
+  return { enforced: true, arm, assignmentHash: rows[0]?.assignment_hash || null }
+}
+
 function governedCoursePlan(courseId, sourceId) {
   return {
     course_id: courseId,
@@ -300,13 +470,86 @@ function pdfHeadingCandidates(text) {
   return headings
 }
 
+const CONTENT_STOPWORDS = new Set([
+  'about', 'after', 'also', 'because', 'being', 'between', 'could', 'from', 'have',
+  'into', 'more', 'most', 'other', 'over', 'should', 'than', 'that', 'their',
+  'these', 'this', 'those', 'through', 'under', 'using', 'what', 'when', 'where',
+  'which', 'while', 'with', 'would', 'your', 'learners',
+])
+
+function slug(value) {
+  return String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '').slice(0, 80) || 'course_concept'
+}
+
+function conceptIds(heading, excerpt) {
+  const terms = []
+  for (const raw of String(`${heading} ${excerpt}`).match(/[A-Za-z][A-Za-z-]{3,}/g) || []) {
+    const term = raw.toLowerCase().replace(/^-+|-+$/g, '')
+    if (CONTENT_STOPWORDS.has(term) || terms.includes(term)) continue
+    terms.push(term)
+    if (terms.length === 3) break
+  }
+  return [...new Set([slug(heading), ...terms.map(slug)])].slice(0, 4)
+}
+
+function buildLearningAssets(heading, excerpt, sourceId, sourceTitle) {
+  const concepts = conceptIds(heading, excerpt)
+  const cleanExcerpt = String(excerpt || '').replace(/^#{1,6}\s+/gm, '').trim().slice(0, 1200)
+  const readingContent = [
+    `## ${heading}`,
+    '',
+    '### What this section is for',
+    '',
+    `This section builds a source-grounded model of **${heading}**. Read the excerpt, then test your interpretation with the evidence and activity below. Keep the scope of your claim no broader than the source supports.`,
+    '',
+    '### Source-grounded reading',
+    '',
+    cleanExcerpt,
+    '',
+    '### Make the idea usable',
+    '',
+    '1. Name the central claim in one sentence.',
+    '2. Point to the sentence, example, or data in the source that supports it.',
+    '3. Record one boundary or unanswered question before you revise the claim.',
+    '',
+    'The tutor, practice item, and social cue all use this same source chunk. They are suggestions for learning and require instructor review before release.',
+  ].join('\n')
+  const reference = { id: `source-${slug(sourceId)}`, kind: 'source_document', title: sourceTitle || 'Instructor source', locator: sourceId, verified: false }
+  const practice = {
+    schema_version: 'formative-assessment-v1',
+    problems: [
+      {
+        id: `draft_${slug(sourceId)}_${slug(heading)}_mcq`, type: 'multiple_choice', difficulty: 'easy',
+        stem: `Which move best demonstrates understanding of ${heading}?`,
+        options: ['State a bounded claim and connect it to evidence from the source.', 'Repeat the heading without checking the source.', 'Treat a confident opinion as proof.', 'Add an unrelated example to make the answer longer.'],
+        correct_index: 0,
+        explanation: 'A defensible interpretation makes the claim–evidence connection visible and keeps the scope bounded.',
+        concept_ids: concepts, source_evidence: { source_id: sourceId, excerpt: cleanExcerpt.slice(0, 360) },
+      },
+      {
+        id: `draft_${slug(sourceId)}_${slug(heading)}_teachback`, type: 'conceptual', difficulty: 'medium',
+        stem: `Explain ${heading} in your own words and cite one source detail that would change your explanation.`,
+        expected_answer: 'A bounded explanation names the idea, cites a relevant source detail, and states how the detail supports or revises the explanation.',
+        explanation: 'This is a low-stakes teach-back check; review it with the section rubric rather than auto-grading it.',
+        concept_ids: concepts, source_evidence: { source_id: sourceId, excerpt: cleanExcerpt.slice(0, 360) },
+      },
+    ],
+  }
+  const knowledgeBase = {
+    schema_version: 'knowledge-base-v1', retrieval_scope: 'source-only-until-instructor-approval',
+    nodes: concepts.map((concept) => ({ id: concept, label: concept.replace(/_/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase()), source_ids: [sourceId], evidence: cleanExcerpt.slice(0, 360) })),
+    chunks: [{ id: `${slug(sourceId)}-chunk-1`, text: cleanExcerpt, source_id: sourceId, section: heading }],
+  }
+  return { readingContent, concepts, reference, practice, knowledgeBase }
+}
+
 function extractGoogleDocId(value) {
   const match = String(value || '').trim().match(/^https:\/\/docs\.google\.com\/document\/d\/([A-Za-z0-9_-]{20,})\/(?:edit|view)(?:[?#].*)?$/)
   if (!match) throw new Error('Enter a standard Google Docs document link')
   return match[1]
 }
 
-function buildGoogleDocCourseDraft(text, documentId, title = '') {
+function buildGoogleDocCourseDraft(text, documentId, title = '', sourceKind = 'google_doc') {
   const cleaned = cleanPdfText(text).slice(0, MAX_GOOGLE_DOC_CHARACTERS)
   if (cleaned.length < 80) throw new Error('Google Doc contains too little readable course material')
   const headings = pdfHeadingCandidates(cleaned)
@@ -317,6 +560,8 @@ function buildGoogleDocCourseDraft(text, documentId, title = '') {
     const nextIndex = next ? cleaned.toLowerCase().indexOf(next.toLowerCase(), start + heading.length) : cleaned.length
     const end = nextIndex > start ? nextIndex : Math.min(cleaned.length, start + 5000)
     const excerpt = (cleaned.slice(start + heading.length, end).trim() || cleaned.slice(start, start + 1200)).slice(0, 1200)
+    const sourceId = String(documentId || 'source')
+    const assets = buildLearningAssets(heading, excerpt, sourceId, title || headings[0])
     const runtime = {
       tutor: {
         persona: 'BigAL source-grounded course tutor',
@@ -340,7 +585,9 @@ function buildGoogleDocCourseDraft(text, documentId, title = '') {
       section_id: `draft-${String(index + 1).padStart(2, '0')}`,
       title: heading,
       source_excerpt: excerpt,
-      reading: { estimated_minutes: Math.max(4, Math.min(18, Math.round(excerpt.split(/\s+/).length / 180))), purpose: `Build source-grounded understanding of ${heading}.` },
+      concept_ids: assets.concepts,
+      references: [assets.reference],
+      reading: { estimated_minutes: Math.max(4, Math.min(18, Math.round(excerpt.split(/\s+/).length / 180))), purpose: `Build source-grounded understanding of ${heading}.`, content: assets.readingContent },
       activity: {
         type: 'claim-evidence-revision',
         prompt: `Identify one claim about ${heading}, attach evidence from the reading, and revise the claim after critique.`,
@@ -351,17 +598,20 @@ function buildGoogleDocCourseDraft(text, documentId, title = '') {
         interaction: 'Change one input, predict the effect, observe the response, and explain the discrepancy.',
         variables: ['input', 'response', 'constraint'], evidence_collected: ['prediction', 'observation', 'explanation'],
       },
+      practice: assets.practice,
+      knowledge_base: assets.knowledgeBase,
       ...runtime,
     }
   })
   return {
     schema_version: 'google-doc-course-runtime-package-v1',
-    source: { kind: 'google_doc', document_id: documentId, title: title || headings[0], characters: cleaned.length },
+    source: { kind: ['google_doc', 'pdf', 'url'].includes(sourceKind) ? sourceKind : 'google_doc', document_id: documentId, title: title || headings[0], characters: cleaned.length },
     learning_objectives: headings.slice(0, 5).map((heading) => `Explain and apply the central ideas in ${heading}.`),
     sections,
-    runtime_package: { version: 'course-runtime-v1', generated: ['reading', 'activity', 'simulation', 'tutor', 'analytics', 'social_dynamics'], approval_required: true },
+    runtime_package: { version: 'course-runtime-v1', generated: ['reading', 'activity', 'simulation', 'tutor', 'analytics', 'social_dynamics', 'knowledge_base', 'formative_assessment'], approval_required: true, retrieval_scope: 'source-only-until-instructor-approval' },
     quality: {
       source_grounded: true, citation_verification: 'not-verified', human_approval_required: true, student_visible: false, automatic_publish: false,
+      content_pipeline: 'deterministic-source-grounded-v1',
       warnings: sections.length >= 2 ? [] : ['Only one section was detected; review the document heading structure.'],
     },
   }
@@ -383,13 +633,21 @@ function normalizeGeneratedCourseDraft(generated, fallback) {
       tutor: { ...fallbackSection.tutor, ...(section.tutor || {}) },
       analytics: { ...fallbackSection.analytics, ...(section.analytics || {}) },
       social_dynamics: { ...fallbackSection.social_dynamics, ...(section.social_dynamics || {}) },
+      concept_ids: Array.isArray(section.concept_ids) && section.concept_ids.length ? section.concept_ids.slice(0, 12) : fallbackSection.concept_ids,
+      references: Array.isArray(section.references) && section.references.length ? section.references : fallbackSection.references,
+      practice: section.practice || fallbackSection.practice,
+      knowledge_base: section.knowledge_base || fallbackSection.knowledge_base,
     }
   })
   return {
     ...fallback,
     learning_objectives: Array.isArray(generated.learning_objectives) ? generated.learning_objectives.slice(0, 8).map((item) => cleanExcerpt(item, 220)).filter(Boolean) : fallback.learning_objectives,
     sections,
-    runtime_package: generated.runtime_package || fallback.runtime_package,
+    runtime_package: {
+      ...fallback.runtime_package,
+      ...(generated.runtime_package || {}),
+      generated: [...new Set([...(fallback.runtime_package?.generated || []), ...((generated.runtime_package || {}).generated || [])])],
+    },
   }
 }
 
@@ -434,7 +692,7 @@ async function convertPdfAtEdge(request) {
   const filename = String(file.name || 'course-source.pdf').split(/[\\/]/).pop()
   const markdown = pages.map((page) => `## Page ${page.page}\n\n${page.text || '[No extractable text]'}`).join('\n\n')
   let runtimeDraft = null
-  try { runtimeDraft = buildGoogleDocCourseDraft(markdown, `pdf:${hash.slice(0, 24)}`, filename) } catch { /* extraction remains usable; faculty can review before generation */ }
+  try { runtimeDraft = buildGoogleDocCourseDraft(markdown, `pdf:${hash.slice(0, 24)}`, filename, 'pdf') } catch { /* extraction remains usable; faculty can review before generation */ }
   return json({
     status: warnings.length ? 'needs_review' : 'converted',
     filename,
@@ -610,7 +868,7 @@ async function handleFacultyRequest(request, env, path) {
     try { source = await readPdfSourceText(file) } catch (error) { return json({ detail: error.message || 'PDF could not be parsed' }, 422) }
     const filename = String(file.name || 'course-source.pdf').split(/[\\/]/).pop()
     let pdfDraft
-    try { pdfDraft = buildGoogleDocCourseDraft(source.text, `pdf:${source.sha256.slice(0, 24)}`, filename) } catch (error) { return json({ detail: error.message }, 422) }
+    try { pdfDraft = buildGoogleDocCourseDraft(source.text, `pdf:${source.sha256.slice(0, 24)}`, filename, 'pdf') } catch (error) { return json({ detail: error.message }, 422) }
     pdfDraft.source.sha256 = source.sha256
     pdfDraft.source.page_count = source.pageCount
     pdfDraft.source.title = filename
@@ -1449,6 +1707,8 @@ export {
   summarizeRoadmapSocial,
   roadmapCaliper,
   roadmapLti13,
+  normalizeUnloadEvents,
+  persistUnloadEvents,
 }
 
 export default {
@@ -1498,6 +1758,18 @@ export default {
     if (request.method === 'POST') {
       try { body = await request.json() } catch { body = {} }
     }
+
+    // Last-chance browser telemetry uses sendBeacon, which cannot attach an
+    // Authorization header. The client supplies its short-lived access token
+    // in the body; regular requests should still prefer the header. This route
+    // is intentionally owned by the dynamic Worker, never by Pages /api.
+    if (path === '/log-events' && request.method === 'POST') {
+      const headerAuth = request.headers.get('authorization') || ''
+      const bodyToken = typeof body.access_token === 'string' ? body.access_token.trim() : ''
+      const authorization = headerAuth || (bodyToken ? `Bearer ${bodyToken.replace(/^Bearer\s+/i, '')}` : '')
+      return persistUnloadEvents(env, body, authorization)
+    }
+
     // Server key by default; allow a per-user OpenRouter key via the request.
     const key = (body.api_key && String(body.api_key).trim()) || env.OPENROUTER_API_KEY || ''
     const model = env.OPENROUTER_MODEL || DEFAULT_MODEL
@@ -1517,9 +1789,24 @@ export default {
       if (path === '/assist/explain') {
         if (!key) return json({ explanation: noKeyMsg })
         const topic = body.section_title || body.section_id || 'this section'
+        const retrieved = (Array.isArray(body.retrieved_context) ? body.retrieved_context : [])
+          .slice(0, 5)
+          .map((item, index) => {
+            const text = String(item?.content || item?.text || '').trim().slice(0, 900)
+            const source = item?.source_id || item?.id || 'section-context'
+            return text ? `[${index + 1}] ${text} (source: ${source})` : ''
+          })
+          .filter(Boolean)
+          .join('\n\n')
         const explanation = await openrouter(key, [
-          { role: 'system', content: 'You are BigAL, a warm, concise tutor inside an interactive textbook. Explain clearly for a struggling learner using an everyday analogy and a concrete example. Keep it under 200 words. Markdown allowed. Explain the actual topic given by its TITLE — do not reinterpret it from a URL slug or assume a different subject.' },
-          { role: 'user', content: `Section title: "${topic}" (id: ${body.section_id || 'n/a'}). Problem: ${body.problem_id || 'general concept'}. The student is stuck (reason: ${body.stuck_reason || 'unknown'}). Give a simpler, step-by-step explanation of THIS topic.` },
+          { role: 'system', content: 'You are BigAL, a warm, concise tutor inside an interactive textbook. Explain clearly for a struggling learner using an everyday analogy and a concrete example. Keep it under 200 words. Markdown allowed. Explain the actual topic given by its TITLE — do not reinterpret it from a URL slug or assume a different subject. Ground factual claims in the supplied source evidence and label uncertainty.' },
+          { role: 'user', content: `Section title: "${topic}" (id: ${body.section_id || 'n/a'}). Problem: ${body.problem_id || 'general concept'}. The student is stuck (reason: ${body.stuck_reason || 'unknown'}).
+Section excerpt:
+${String(body.page_content || '').slice(0, 1600) || 'No section excerpt supplied.'}
+Instructor-approved source chunks:
+${retrieved || 'No retrieval chunks supplied.'}
+
+Give a simpler, step-by-step explanation of THIS topic.` },
         ], { model, temperature: 0.7, maxTokens: 500 })
         const generation_trace = await buildGenerationTrace({
           body,
@@ -1541,9 +1828,22 @@ export default {
           formula: 'the key formulas or rules, each with a one-line plain-language explanation',
         }[type] || 'a concise alternate representation'
         const topic = body.section_title || body.section_id || 'this section'
+        const retrieved = (Array.isArray(body.retrieved_context) ? body.retrieved_context : [])
+          .slice(0, 5)
+          .map((item, index) => {
+            const text = String(item?.content || item?.text || '').trim().slice(0, 900)
+            const source = item?.source_id || item?.id || 'section-context'
+            return text ? `[${index + 1}] ${text} (source: ${source})` : ''
+          })
+          .filter(Boolean)
+          .join('\n\n')
         const content = await openrouter(key, [
-          { role: 'system', content: 'You produce concise alternate representations of textbook concepts. Be specific to the actual topic given by its TITLE; do not reinterpret it from a URL slug, and never assume statics/equilibrium. Markdown allowed.' },
-          { role: 'user', content: `For the section titled "${topic}" (id: ${body.section_id || 'n/a'}), produce ${guide}.` },
+          { role: 'system', content: 'You produce concise alternate representations of textbook concepts. Be specific to the actual topic given by its TITLE; do not reinterpret it from a URL slug, and never assume statics/equilibrium. Ground factual claims in supplied source evidence and label uncertainty. Markdown allowed.' },
+          { role: 'user', content: `For the section titled "${topic}" (id: ${body.section_id || 'n/a'}), produce ${guide}.
+Section excerpt:
+${String(body.page_content || '').slice(0, 1200) || 'No section excerpt supplied.'}
+Instructor-approved source chunks:
+${retrieved || 'No retrieval chunks supplied.'}` },
         ], { model, temperature: 0.6, maxTokens: 600 })
         const generation_trace = await buildGenerationTrace({
           body,
@@ -1563,6 +1863,16 @@ export default {
       if (path === '/orchestrate') {
         if (!key) return json({ intent: 'legacy', text: noKeyMsg })
         const ctx = body.current_content ? `\n\nSection context (excerpt):\n${String(body.current_content).slice(0, 2000)}` : ''
+        const retrieved = (Array.isArray(body.retrieved_context) ? body.retrieved_context : [])
+          .slice(0, 5)
+          .map((item, index) => {
+            const text = String(item?.content || item?.text || '').trim().slice(0, 900)
+            const source = item?.source_id || item?.id || 'section-context'
+            return text ? `[${index + 1}] ${text} (source: ${source})` : ''
+          })
+          .filter(Boolean)
+          .join('\n\n')
+        const retrievedContext = retrieved ? `\n\nInstructor-approved source chunks (use these before general knowledge):\n${retrieved}` : ''
         const generatedTutorConfig = body.tutor_config ? `\n\nInstructor-approved tutor configuration (follow within these bounds):\n${JSON.stringify(body.tutor_config).slice(0, 3000)}` : ''
         const pedagogyPolicy = `
 
@@ -1572,7 +1882,7 @@ Tutoring pedagogy policy — follow it on every turn:
 (c) Never state the complete final answer to a practice or quiz problem the learner is currently working on. Guide them to produce it themselves; you may confirm or correct the steps of their own attempt.
 (d) End every turn with one short check question that tests whether the learner can take the next step on their own.`
         const messages = [
-          { role: 'system', content: `You are BigAL, a friendly, rigorous tutor embedded in an interactive textbook (course: ${body.course || 'general'}). Answer the learner's question clearly and concisely, grounded in the section context when relevant. Use Markdown. If the learner highlighted a passage, explain it.${pedagogyPolicy}${generatedTutorConfig}${ctx}` },
+          { role: 'system', content: `You are BigAL, a friendly, rigorous tutor embedded in an interactive textbook (course: ${body.course || 'general'}). Answer the learner's question clearly and concisely, grounded in the instructor-approved source chunks and section context when relevant. Do not invent claims that are absent from the supplied evidence; label uncertainty and ask the learner to check the source. Use Markdown. If the learner highlighted a passage, explain it.${pedagogyPolicy}${generatedTutorConfig}${ctx}${retrievedContext}` },
           ...historyToMessages(body.history),
           { role: 'user', content: String(body.query || '') },
         ]
@@ -1757,6 +2067,8 @@ Return EXACTLY: {"content_score":0.0-1.0,"wording_score":0.0-1.0,"sub_scores":{"
 
       // --- Adaptive recommendation (deterministic; policy via dedicated worker) ---
       if (path === '/adaptive_recommendation') {
+        const studyAccess = await requireEngineeringStudyTreatment(request, env, body)
+        if (studyAccess.error) return studyAccess.error
         const t = body.telemetry || {}
         const ti = (k) => Math.max(0, Number(t[k]) || 0)
         const lp = body.learner_profile || {}
@@ -2007,3 +2319,5 @@ Return EXACTLY: {"content_score":0.0-1.0,"wording_score":0.0-1.0,"sub_scores":{"
     }
   },
 }
+
+export { requireEngineeringStudyTreatment }

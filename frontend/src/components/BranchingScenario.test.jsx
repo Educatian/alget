@@ -1,8 +1,14 @@
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
+import { logEvent } from '../lib/loggingService'
 import BranchingScenario from './BranchingScenario'
 
-afterEach(() => cleanup())
+vi.mock('../lib/loggingService', () => ({ logEvent: vi.fn() }))
+
+afterEach(() => {
+    cleanup()
+    vi.clearAllMocks()
+})
 
 const TREE = JSON.stringify({
     title: 'AI integrity dilemma',
@@ -48,6 +54,20 @@ describe('BranchingScenario', () => {
         // Choice-level feedback takes precedence over the node's own feedback.
         expect(screen.getByText(/You escalated immediately/i)).toBeInTheDocument()
         expect(screen.getByText(/reached an ending/i)).toBeInTheDocument()
+    })
+
+    it('logs branch choices without storing prompt or choice text', () => {
+        render(<BranchingScenario tree={TREE} sectionId="inst-design/02/08" course="inst-design" />)
+        fireEvent.click(screen.getByRole('button', { name: /Report it to the office/i }))
+        expect(logEvent).toHaveBeenCalledWith(
+            'branch_choice',
+            'branching-scenario',
+            expect.objectContaining({ node_id: 'n1', choice_index: 0, path_depth: 1, terminal: true }),
+            'inst-design/02/08',
+        )
+        const data = logEvent.mock.calls[0][2]
+        expect(data).not.toHaveProperty('prompt')
+        expect(data).not.toHaveProperty('label')
     })
 
     it('tracks the path and lets the learner back up to try another branch', () => {

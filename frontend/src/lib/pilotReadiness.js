@@ -50,6 +50,16 @@ export function evaluatePilotReadiness(pilot, draftOverride = null) {
             ok: REQUIRED_RUNTIME.every((name) => generated.includes(name)),
         },
         {
+            id: 'learning-assets',
+            label: 'Lesson text, knowledge chunks, and formative checks are embedded',
+            detail: 'Every generated section needs learner-readable prose, source-scoped retrieval chunks, and at least one reviewable practice item.',
+            ok: sections.length > 0 && sections.every((section) => (
+                String(section?.reading?.content || section?.reading?.markdown || '').trim().length >= 120
+                && Array.isArray(section?.knowledge_base?.chunks) && section.knowledge_base.chunks.length > 0
+                && Array.isArray(section?.practice?.problems) && section.practice.problems.length > 0
+            )),
+        },
+        {
             id: 'quality',
             label: 'Generation review notes are acknowledged',
             detail: warnings.length > 0 ? (warningsAcknowledged ? `${warnings.length} review note(s) acknowledged by the instructor.` : warnings[0]) : 'The draft has no blocking quality warnings.',

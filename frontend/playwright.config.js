@@ -29,6 +29,7 @@ export default defineConfig({
             cwd: '..',
             env: {
                 ...process.env,
+                ALGET_DEMO_MODE: 'true',
             },
             url: 'http://127.0.0.1:8000/api/book/inst-design/toc',
             reuseExistingServer: true,
@@ -39,6 +40,7 @@ export default defineConfig({
             env: {
                 ...process.env,
                 VITE_E2E_AUTH_BYPASS: 'true',
+                VITE_ALGET_DEMO_MODE: 'true',
             },
             url: 'http://127.0.0.1:5179',
             reuseExistingServer: true,

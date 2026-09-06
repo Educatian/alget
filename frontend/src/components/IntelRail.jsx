@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { LLM_API_BASE } from '../lib/apiConfig'
 import { getAdaptiveRecommendation, recordAdaptiveSignal } from '../lib/knowledgeService'
 import { logEvent, logGenerationTrace } from '../lib/loggingService'
@@ -10,6 +10,7 @@ import {
 import WhySupportNow from './WhySupportNow'
 import BigALCompanion from './BigALCompanion'
 import GenerationTrace from './GenerationTrace'
+import { COMPARISON_ARM } from '../lib/studyCondition'
 
 const ACTION_TO_TAB = {
     explain: 'explain',
@@ -40,7 +41,7 @@ const SHOW_SUPPORT_AUDIT = import.meta.env.DEV
 
 const SUPPORT_OFFLINE_MESSAGE = 'Support is offline or unavailable right now. Your reading, checks, and notes all still work — try again in a bit.'
 
-export default function IntelRail({ context, stuckEvent, sectionInfo, onClose }) {
+export default function IntelRail({ context, stuckEvent, sectionInfo, onClose, studyArm = null }) {
     const [activeTab, setActiveTab] = useState('explain')
     const [loading, setLoading] = useState(false)
     const [recommendationLoading, setRecommendationLoading] = useState(false)
@@ -64,14 +65,44 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
     const resolvedHeading = sectionInfo?.currentHeading || resolvedSectionTitle
     const resolvedStuckReason = context?.reason || stuckEvent?.reason || null
     const preferredTab = context?.preferredTab || null
+    const isComparisonArm = studyArm === COMPARISON_ARM
+    const availableTabs = isComparisonArm ? TABS.filter((tab) => tab.id === 'practice') : TABS
+    const fixedRecommendation = useMemo(() => ({
+        primary_recommendation: {
+            action: 'practice',
+            title: 'Continue with the fixed practice sequence',
+            rationale: 'This study condition uses the same prespecified practice prompt in every section and does not adapt support from your learning trace.',
+            focus_concepts: sectionInfo?.conceptIds || [],
+            evidence: [],
+        },
+        secondary_recommendations: [],
+        policy_mode: 'fixed_practice_only_v1',
+        reasoning: null,
+    }), [sectionInfo?.conceptIds])
 
     useEffect(() => {
+        if (isComparisonArm) {
+            setActiveTab('practice')
+            return
+        }
         if (!preferredTab) return
         setActiveTab(ACTION_TO_TAB[preferredTab] || preferredTab)
-    }, [preferredTab])
+    }, [isComparisonArm, preferredTab])
 
     useEffect(() => {
         let cancelled = false
+
+        if (isComparisonArm) {
+            setRecommendation(fixedRecommendation)
+            setRecommendationLoading(false)
+            setActiveTraceId(null)
+            setSupportAudit(null)
+            logEvent('study_fixed_support_displayed', 'intel_rail', {
+                assignment_arm: COMPARISON_ARM,
+                policy_mode: 'fixed_practice_only_v1',
+            }, resolvedSectionId)
+            return () => { cancelled = true }
+        }
 
         const loadRecommendation = async () => {
             setRecommendationLoading(true)
@@ -119,6 +150,8 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
         resolvedSectionTitle,
         resolvedStuckReason,
         context,
+        isComparisonArm,
+        fixedRecommendation,
     ])
 
     const requestExplanation = async () => {
@@ -152,6 +185,9 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                     stuck_reason: resolvedStuckReason,
                     page_content: sectionInfo?.pageContent?.substring(0, 2000) || '',
                     content_version: sectionInfo?.contentVersion || null,
+                    retrieved_context: Array.isArray(sectionInfo?.retrievedContext)
+                        ? sectionInfo.retrievedContext.slice(0, 5)
+                        : [],
                     api_key: apiKey
                 })
             })
@@ -212,6 +248,9 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                     representation_type: type,
                     page_content: sectionInfo?.pageContent?.substring(0, 2000) || '',
                     content_version: sectionInfo?.contentVersion || null,
+                    retrieved_context: Array.isArray(sectionInfo?.retrievedContext)
+                        ? sectionInfo.retrievedContext.slice(0, 5)
+                        : [],
                     api_key: apiKey
                 })
             })
@@ -259,7 +298,9 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
             action,
             accepted,
             trace_id: activeTraceId,
-            surface: 'recommendation_card'
+            surface: 'recommendation_card',
+            assignment_arm: studyArm,
+            policy_mode: isComparisonArm ? 'fixed_practice_only_v1' : 'adaptive',
         }, resolvedSectionId)
         if (activeTraceId) {
             appendInterventionTrace(activeTraceId, {
@@ -392,8 +433,8 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                 )}
             </div>
 
-            <div className="flex border-b border-[var(--ath-line)] bg-[rgba(240,237,230,0.6)]" role="tablist" aria-label="Adaptive support">
-                {TABS.map((tab) => (
+            <div className="flex border-b border-[var(--ath-line)] bg-[rgba(240,237,230,0.6)]" role="tablist" aria-label={isComparisonArm ? 'Fixed practice support' : 'Adaptive support'}>
+                {availableTabs.map((tab) => (
                     <button
                         key={tab.id}
                         role="tab"
@@ -532,7 +573,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                                 ))}
                             </div>
 
-                            {primaryRecommendation && (
+                            {primaryRecommendation && !isComparisonArm && (
                                 <details className="group mt-3 border-t border-[var(--ath-line)] pt-2">
                                     <summary className="flex cursor-pointer list-none items-center justify-between text-xs font-semibold text-[var(--ath-secondary)]">
                                         <span>Why this support · {Math.round((reasoning?.confidence || 0) * 100)}% confidence</span>
@@ -603,7 +644,9 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                             <h4 className="font-semibold text-[var(--ath-success)]">Recommended focus</h4>
                             <p className="mt-2 text-sm leading-relaxed text-[var(--ath-muted)]">
                                 Return to the practice problems and focus on {prettyConcept(primaryRecommendation?.focus_concepts?.[0])}.
-                                If the next attempt still feels shaky, come back here and open Explain or Ask.
+                                {isComparisonArm
+                                    ? ' Follow the same prespecified sequence shown for every section in this study condition.'
+                                    : ' If the next attempt still feels shaky, come back here and open Explain or Ask.'}
                             </p>
                         </div>
 
@@ -805,7 +848,9 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
             {activeTab !== 'ask' && (
                 <div className="border-t border-[var(--ath-line)] bg-[rgba(240,237,230,0.56)] p-4">
                     <p className="text-center text-xs text-[var(--ath-secondary)]">
-                        Adaptive support blends mastery, practice friction, and learner feedback for this section.
+                        {isComparisonArm
+                            ? 'Fixed support follows a prespecified practice-only sequence and does not use your learning trace.'
+                            : 'Adaptive support blends mastery, practice friction, and learner feedback for this section.'}
                     </p>
                 </div>
             )}

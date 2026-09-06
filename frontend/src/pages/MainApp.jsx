@@ -22,6 +22,7 @@ import { useCourseProgress } from '../hooks/useCourseProgress'
 import API_BASE from '../lib/apiConfig'
 import { safeLocalStorageGet, safeLocalStorageRemove, safeLocalStorageSet } from '../lib/browserStorage'
 import { readCohortLearner } from '../lib/cohortLearner'
+import { isEngineeringStudySurveyPortalEnabled, isEngineeringStudySurveyUser } from '../lib/engineeringStudySurvey'
 import { getEvaluationStatus } from '../lib/researchService'
 import { CONTENT_COUNTS } from '../generated/contentManifest'
 import '../index.css'
@@ -170,10 +171,17 @@ function formatPathwayLabel(value) {
         .join(' ')
 }
 
+// Keep the learner-facing demo hint aligned with the backend's explicit
+// local demo flag. A plain Vite development build is not enough to guarantee
+// that the API will accept the demo code, so do not advertise it unless the
+// local launch profile opts in on both sides.
+const LOCAL_DEMO_ENABLED = import.meta.env.DEV && import.meta.env.VITE_ALGET_DEMO_MODE === 'true'
+
 export default function MainApp({ user, onLogout }) {
     const navigate = useNavigate()
     const { recentSection, bookmarks } = useCourseProgress(user)
     const cohortLearner = readCohortLearner()
+    const showStudySurveyPortal = isEngineeringStudySurveyUser(user) && isEngineeringStudySurveyPortalEnabled()
 
     const [unlockedMode, setUnlockedMode] = useState(() => cohortLearner?.track || readStoredUnlockedTrack())
     const [selectedMode, setSelectedMode] = useState(() => cohortLearner?.track || readStoredUnlockedTrack() || 'engineering')
@@ -354,7 +362,7 @@ export default function MainApp({ user, onLogout }) {
                                 />
                                 <p id="pathway-code-help" className="mt-1.5 text-sm leading-5 text-[var(--ath-secondary)]">
                                     Your instructor or cohort coordinator provides this code.
-                                    {import.meta.env.DEV && (
+                                    {LOCAL_DEMO_ENABLED && (
                                         <span className="ml-1">Local demo: <code className="rounded bg-[var(--ath-panel-muted)] px-1.5 py-0.5 font-mono font-semibold tracking-normal text-[var(--ath-text)]">{selectedMode === 'engineering' ? 'eng123' : 'edu123'}</code></span>
                                     )}
                                 </p>
@@ -530,6 +538,37 @@ export default function MainApp({ user, onLogout }) {
                             </section>
                         )}
 
+                        {showStudySurveyPortal && (
+                            <section className="mt-10 editorial-surface p-8">
+                                <div className="flex flex-wrap items-center justify-between gap-4">
+                                    <div>
+                                        <p className="editorial-kicker">Engineering study</p>
+                                        <h3 className="mt-3 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">Approved survey touchpoints</h3>
+                                        <p className="mt-3 max-w-3xl text-sm leading-6 text-[var(--ath-muted)]">Open only the form assigned by the research team. Outcome forms use the random Study ID; direct contact information belongs only in the separate gift-card form.</p>
+                                    </div>
+                                    <div className="editorial-chip">Invitation-bound</div>
+                                </div>
+                                <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
+                                    {[
+                                        ['pre', 'Pre-survey'],
+                                        ['post', 'Post-survey'],
+                                        ['posttest', 'Post-test'],
+                                        ['gift-card', 'Gift card'],
+                                        ['retention', 'Retention'],
+                                    ].map(([phase, label]) => (
+                                        <button
+                                            key={phase}
+                                            type="button"
+                                            onClick={() => navigate(`/study-survey/${phase}`)}
+                                            className="flex min-h-12 items-center justify-between rounded-xl border border-[var(--ath-line)] bg-[var(--ath-panel)] px-4 py-3 text-left text-sm font-semibold text-[var(--ath-text)] transition hover:border-[var(--ath-primary)]"
+                                        >
+                                            {label}<ArrowRight className="h-4 w-4 text-[var(--ath-primary)]" />
+                                        </button>
+                                    ))}
+                                </div>
+                            </section>
+                        )}
+
                         {evaluationPrompts.length > 0 && (
                             <section className="mt-10 editorial-surface p-8">
                                 <div className="flex items-center justify-between gap-4">
@@ -644,6 +683,13 @@ export default function MainApp({ user, onLogout }) {
                                     </div>
                                 ))}
                             </div>
+                            <button
+                                type="button"
+                                onClick={() => navigate('/class/lms-exemplar')}
+                                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--ath-primary)] hover:underline"
+                            >
+                                Preview the Introduction to LMS class path <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                            </button>
                         </section>
                     </>
                 )}

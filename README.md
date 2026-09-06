@@ -10,7 +10,7 @@
 <p align="center">
   <a href="https://github.com/Educatian/alget/actions/workflows/ci.yml"><img src="https://github.com/Educatian/alget/actions/workflows/ci.yml/badge.svg?branch=significant-upgrade" alt="CI status"></a>
   <a href="https://alget.pages.dev"><img src="https://img.shields.io/badge/live-Cloudflare%20Pages-F38020?logo=cloudflare&logoColor=white" alt="Live on Cloudflare Pages"></a>
-  <img src="https://img.shields.io/badge/tests-241%20frontend%20%7C%20110%20backend-176B55" alt="Test counts">
+  <img src="https://img.shields.io/badge/tests-283%20frontend%20%7C%20126%20backend-176B55" alt="Test counts">
   <img src="https://img.shields.io/badge/runtime-human--governed-0F4C5C" alt="Human-governed agentic runtime">
 </p>
 
@@ -18,7 +18,8 @@
   <a href="https://alget.pages.dev"><strong>Live app</strong></a> ·
   <a href="#3-a-tour-of-the-surfaces"><strong>Product tour</strong></a> ·
   <a href="#4-architecture"><strong>Architecture</strong></a> ·
-  <a href="docs/AGENTIC_LMS_RUNTIME.md"><strong>Agentic LMS contract</strong></a>
+  <a href="docs/AGENTIC_LMS_RUNTIME.md"><strong>Agentic LMS contract</strong></a> ·
+  <a href="docs/ALGET_RUNTIME_CONTRACT.md"><strong>Runtime contract</strong></a>
   · <a href="docs/FACULTY_PARTNERSHIP_PIPELINE.md"><strong>Faculty partnership pipeline</strong></a>
 </p>
 
@@ -329,6 +330,12 @@ Mastery is mirrored from in-memory state into `learner_concept_state(mastery_pro
 
 ## 8. Research design
 
+The engineering intervention package is documented in [`docs/ENGINEERING_INTERVENTION_STUDY_PROTOCOL.md`](docs/ENGINEERING_INTERVENTION_STUDY_PROTOCOL.md). Unity WebGL embedding, privacy-safe event transport, simulation export, and learner-model extraction are documented in [`docs/UNITY_ENGINEERING_LAB_INTEGRATION.md`](docs/UNITY_ENGINEERING_LAB_INTEGRATION.md). These are development protocols; confirmatory enrollment remains gated on IRB approval and measurement validation.
+
+Install the tested Python 3.11 research, model, and IRB-document dependencies with `py -3.11 -m pip install -r research/requirements.txt`. Synthetic smoke reports verify execution and privacy contracts only; they are not empirical study results.
+
+The trial workflow includes concealed permuted-block allocation in [`research/prepare_engineering_randomization.py`](research/prepare_engineering_randomization.py), privacy-safe ITT dataset assembly in [`research/build_engineering_analysis_dataset.py`](research/build_engineering_analysis_dataset.py), and the preregistered HC3 ANCOVA runner in [`research/analyze_engineering_trial.py`](research/analyze_engineering_trial.py). Assignment comes from the authoritative allocation schedule rather than observed app usage, so randomized learners with zero ALGET or Unity events remain in the ITT roster.
+
 ALGET is also a **research instrument**.
 
 ### 8.1 Dual-panel Cognitive Walkthrough
@@ -539,6 +546,8 @@ alget/
 | `backend/SYSTEM_DESIGN_HISTORY.md` | maintainers | 5-stage evolution narrative |
 | `backend/agents/MULTI_AGENT_GENERATIVE_DESIGN.md` | maintainers | per-agent contract + debate-loop spec |
 | `docs/AGENTIC_LMS_RUNTIME.md` | maintainers / reviewers | workflow states, permission policy, human approval boundaries, deployment checks |
+| `docs/ALGET_RUNTIME_CONTRACT.md` | maintainers / class designers | Pages → Worker → Supabase ownership, learner evidence path, LMS exemplar telemetry |
+| `docs/ALGET_LMS_CLASS_READINESS_AUDIT_2026-09-04.md` | class/research reviewers | 120/180-minute exemplar, artifact/log/reflection contract, readiness limits |
 | `backend/engineering_text_fidelity_rubric.md` | content authors | 6-dim scoring rubric (concept clarity, quantitative rigor, eng-translation, constraint awareness, learner support, voice) |
 | `backend/content_audit_report.md` + `content_priority_plan.md` | content authors | gap audit (42 sections, severity 0) + Tier 1–4 plan |
 | `REMOTION_ANIMATION_MAP.md` + `NOTEBOOKLM_REMOTION_INTEGRATION.md` | maintainers | per-section animation priority + audio/video pipeline |
@@ -596,7 +605,7 @@ Apply reviewed forward migrations first, then deploy Workers before Pages. The b
 
 ## 15. License & acknowledgments
 
-License: see `LICENSE` (TBD; current default treatment is research / non-commercial use until the system paper is published).
+License decision: **pending**. No `LICENSE` file currently grants reuse. Treat project-authored code, content, and visual assets as all rights reserved unless a file or third-party notice states otherwise; “research/non-commercial use” is not itself a software or content license. Resolve ownership and select explicit code/content/asset licenses before public distribution.
 
 ALGET draws on the work of: **Janine Benyus** (biomimicry), **Mayer** (cognitive theory of multimedia learning), **Roediger & Karpicke** (testing effect), **Cepeda et al.** (spacing effect), **Bjork & Bjork** (desirable difficulties), **Smith & Ragan / Gagné** (instructional design), **CAST** (UDL), **Reiser & Dempsey** (instructional-design canon), **Hibbeler / Beer / Vincent / Bhushan** (engineering and bio-inspired source texts). The dual-panel Cognitive Walkthrough method follows **Wharton et al. 1994** with **Benson & Ssemugabi 2007** e-learning extensions.
 

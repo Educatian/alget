@@ -4,6 +4,7 @@ import { MemoryRouter, Route, Routes } from 'react-router'
 import StudentDashboard from './StudentDashboard'
 import { writeExitTicket } from '../lib/exitTickets'
 import { recordCalibrationSample } from '../lib/calibration'
+import { LMS_QUALITATIVE_ARTIFACTS_KEY } from '../lib/lmsQualitativeArtifactStore'
 
 vi.mock('../components/CohortLiveMap', () => ({
     default: () => <div data-testid="cohort-live-map" />
@@ -37,7 +38,9 @@ vi.mock('../lib/supabase', () => ({
 afterEach(() => {
     cleanup()
     window.localStorage.clear()
+    window.sessionStorage.clear()
     masteryFixture.rows = []
+    vi.unstubAllGlobals()
     vi.clearAllMocks()
 })
 
@@ -49,6 +52,18 @@ function renderDashboard(user = DEMO_USER) {
             <Routes>
                 <Route path="/dashboard" element={<StudentDashboard user={user} />} />
                 <Route path="/book/:course/:chapter/:section" element={<div>Section route opened</div>} />
+            </Routes>
+        </MemoryRouter>
+    )
+}
+
+function renderFixtureDashboard(fixture) {
+    return render(
+        <MemoryRouter initialEntries={[`/dashboard?course=inst-design&section=02/08&fixture=${fixture}`]}>
+            <Routes>
+                <Route path="/dashboard" element={<StudentDashboard user={{ id: 'e2e-user' }} />} />
+                <Route path="/book/:course/:chapter/:section" element={<div>Section route opened</div>} />
+                <Route path="/diagnostic/:course" element={<div>Retention route opened</div>} />
             </Routes>
         </MemoryRouter>
     )
@@ -132,5 +147,81 @@ describe('StudentDashboard', () => {
         renderDashboard()
         expect(await screen.findByText('Weakest concepts')).toBeInTheDocument()
         expect(screen.queryByText('Recent trouble spots (this browser)')).not.toBeInTheDocument()
+    })
+
+    it('lets a learner ask BigAL to explain the evidence and receive a bounded next move', async () => {
+        masteryFixture.rows = [
+            { concept_id: 'interaction_design', p_known: 0.35, mastery_score: 0.35, attempts_count: 3, correct_count: 1 },
+        ]
+        vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
+            ok: true,
+            status: 200,
+            headers: { get: () => 'application/json' },
+            json: async () => ({ text: 'Review interaction design, then decide whether the explanation changed your reasoning.' }),
+        }))
+
+        renderDashboard({ id: 'real-user-1' })
+        fireEvent.click(await screen.findByRole('button', { name: /Explain and suggest one move/i }))
+
+        expect(await screen.findByText(/Review interaction design/i)).toBeInTheDocument()
+        expect(globalThis.fetch).toHaveBeenCalledWith(
+            expect.stringContaining('/orchestrate'),
+            expect.objectContaining({ method: 'POST' }),
+        )
+    })
+
+    it('runs the synthetic weak learner through response, modify decision, reason metadata, and export join', async () => {
+        vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
+            ok: true,
+            status: 200,
+            headers: { get: () => 'application/json' },
+            json: async () => ({ text: 'Review the weakest concept and compare the interaction evidence.' }),
+        }))
+
+        renderFixtureDashboard('intro-lms-weak')
+        expect(await screen.findByText(/Synthetic learner A/)).toBeInTheDocument()
+        expect(screen.getByText(/Participant scope: participant-01/)).toBeInTheDocument()
+        expect(screen.getByText(/Synced concept records: 2/)).toBeInTheDocument()
+        fireEvent.click(screen.getByRole('button', { name: /Explain and suggest one move/i }))
+        expect(await screen.findByText(/Evidence anchor/)).toBeInTheDocument()
+
+        fireEvent.click(screen.getByRole('button', { name: 'Modify suggestion' }))
+        fireEvent.change(screen.getByLabelText('Why this choice?'), { target: { value: 'I will revise the mode after checking the peer evidence.' } })
+        fireEvent.change(screen.getByLabelText('Your modified next move'), { target: { value: 'Rebuild the activity with a peer comparison checkpoint.' } })
+        fireEvent.change(screen.getByLabelText('Short reflection'), { target: { value: 'The score is an estimate, so I want one more check before deciding.' } })
+        fireEvent.click(screen.getByRole('button', { name: 'Save decision' }))
+        expect(await screen.findByText(/Decision recorded: modify/)).toBeInTheDocument()
+        expect(screen.getByText(/Behavior join: analytics_coach_decision.*participant-01.*ltps210-intro-lms-fa26/)).toBeInTheDocument()
+        const trace = JSON.parse(window.sessionStorage.getItem('alget:lms-fixture-trace:intro-lms-weak'))
+        expect(trace.participant_id).toBe('participant-01')
+        expect(trace.events.some((row) => row.event_type === 'analytics_coach_decision')).toBe(true)
+        expect(JSON.stringify(trace)).not.toContain('I will revise')
+        const qualitative = JSON.parse(window.localStorage.getItem(LMS_QUALITATIVE_ARTIFACTS_KEY))
+        expect(qualitative).toHaveLength(1)
+        expect(qualitative[0]).toMatchObject({ participant_id: 'participant-01', decision: 'modify', modified_proposal_text: 'Rebuild the activity with a peer comparison checkpoint.' })
+        expect(qualitative[0].reflection_text).toContain('score is an estimate')
+
+        fireEvent.click(screen.getByRole('button', { name: 'Review the weakest observed concept' }))
+        expect(await screen.findByText(/Follow-up opened: Online & Distance Learning Design/)).toBeInTheDocument()
+        fireEvent.click(screen.getByRole('button', { name: 'Open follow-up activity' }))
+        expect(await screen.findByText('Section route opened')).toBeInTheDocument()
+    })
+
+    it('keeps the synthetic ready learner isolated and gives it a distinct agent response', async () => {
+        vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
+            ok: true,
+            status: 200,
+            headers: { get: () => 'application/json' },
+            json: async () => ({ text: 'Run one retrieval check to confirm transfer.' }),
+        }))
+
+        renderFixtureDashboard('intro-lms-ready')
+        expect(await screen.findByText(/Synthetic learner B/)).toBeInTheDocument()
+        expect(screen.getByText(/Participant scope: participant-02/)).toBeInTheDocument()
+        expect(screen.getByText(/Synced concept records: 2/)).toBeInTheDocument()
+        expect(screen.getByText('No weak concepts')).toBeInTheDocument()
+        fireEvent.click(screen.getByRole('button', { name: /Explain and suggest one move/i }))
+        expect(await screen.findByText(/Evidence anchor/)).toBeInTheDocument()
+        expect(screen.getAllByText(/retention check/i).length).toBeGreaterThan(0)
     })
 })

@@ -1,8 +1,14 @@
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
+import { logEvent } from '../lib/loggingService'
 import DynamicScenario from './DynamicScenario'
 
-afterEach(() => cleanup())
+vi.mock('../lib/loggingService', () => ({ logEvent: vi.fn() }))
+
+afterEach(() => {
+    cleanup()
+    vi.clearAllMocks()
+})
 
 describe('DynamicScenario curated bank', () => {
     it('renders a structured scenario with a generated visual panel without calling the API', () => {
@@ -36,6 +42,31 @@ describe('DynamicScenario curated bank', () => {
         expect(screen.getByText('Scene')).toBeInTheDocument()
         expect(screen.getByText('Feedback')).toBeInTheDocument()
         expect(screen.getAllByRole('button').length).toBeGreaterThan(1)
+    })
+
+    it('logs scenario choices and shuffles with stable identifiers', () => {
+        render(
+            <DynamicScenario
+                topic="Needs Analysis"
+                context="A warehouse safety team asks for a compliance video before diagnosing the cause."
+                course="inst-design"
+                sectionId="inst-design/02/08"
+            />,
+        )
+        fireEvent.click(screen.getByText('Choose a move').parentElement.querySelector('button'))
+        fireEvent.click(screen.getByRole('button', { name: /Shuffle/i }))
+        expect(logEvent).toHaveBeenCalledWith(
+            'dynamic_scenario_choice',
+            'dynamic-scenario',
+            expect.objectContaining({ course: 'inst-design', choice_index: 0 }),
+            'inst-design/02/08',
+        )
+        expect(logEvent).toHaveBeenCalledWith(
+            'dynamic_scenario_shuffle',
+            'dynamic-scenario',
+            expect.objectContaining({ course: 'inst-design', next_variant: 1 }),
+            'inst-design/02/08',
+        )
     })
 
     it('renders nothing when no curated case matches the section', () => {

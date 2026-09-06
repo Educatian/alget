@@ -57,15 +57,17 @@ const ADAPTIVE_RESPONSE = {
 }
 
 async function installResearchApiMocks(page) {
-    await page.route('**/api/research/artifact-revision/score', async (route) => {
+    // Match both the local /api proxy and the configured Cloudflare Worker
+    // path. The test should assert the scoring contract, not the host.
+    await page.route('**/research/artifact-revision/score', async (route) => {
         await route.fulfill({ json: SCORE_RESPONSE })
     })
 
-    await page.route('**/api/research/artifact-trace/validate', async (route) => {
+    await page.route('**/research/artifact-trace/validate', async (route) => {
         await route.fulfill({ json: TRACE_VALIDATE_RESPONSE })
     })
 
-    await page.route('**/api/adaptive_recommendation', async (route) => {
+    await page.route('**/adaptive_recommendation', async (route) => {
         await route.fulfill({ json: ADAPTIVE_RESPONSE })
     })
 }

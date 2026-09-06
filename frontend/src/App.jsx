@@ -8,7 +8,7 @@ import { clearStreak } from './lib/streak'
 import { clearFacultyPartnershipCache } from './lib/facultyPartnershipService'
 import { safeSessionStorageGet, safeLocalStorageGet, safeLocalStorageRemove } from './lib/browserStorage'
 import { DEMO_SESSION_KEY } from './lib/demoSession'
-import { clearCohortLearner, formatUserLabel, markInvitedLearnerActive, readCohortLearner } from './lib/cohortLearner'
+import { buildInvitedCohortProfile, clearCohortLearner, formatUserLabel, markInvitedLearnerActive, persistCohortLearner, readCohortLearner } from './lib/cohortLearner'
 import { ToastProvider } from './lib/toast.jsx'
 import { ThemeProvider } from './lib/theme.jsx'
 import GlobalClickLogger from './components/GlobalClickLogger'
@@ -25,8 +25,10 @@ const DiagnosticAssessment = lazy(() => import('./pages/DiagnosticAssessment'))
 const GenerativeLab = lazy(() => import('./pages/GenerativeLab'))
 const AnalyticsDashboard = lazy(() => import('./pages/AnalyticsDashboard'))
 const StudentDashboard = lazy(() => import('./pages/StudentDashboard'))
+const LmsClassPreview = lazy(() => import('./pages/LmsClassPreview'))
 const InstructorDashboard = lazy(() => import('./pages/InstructorDashboard'))
 const AdminDashboard = lazy(() => import('./pages/AdminDashboard'))
+const StudySurvey = lazy(() => import('./pages/StudySurvey'))
 
 const E2E_USER = import.meta.env.VITE_E2E_AUTH_BYPASS === 'true'
   ? { id: 'e2e-user', email: 'e2e@alget.test' }
@@ -45,7 +47,7 @@ function readDemoUser() {
 
 function readStoredCohortUser() {
   const profile = readCohortLearner()
-  if (!profile) return null
+  if (!profile || profile.track === 'research') return null
   return {
     id: `cohort-${profile.cohortId}-${profile.learnerHash}`,
     email: `${profile.fullName} · ${profile.cohortLabel}`,
@@ -66,7 +68,9 @@ function readStoredCohortUser() {
 }
 
 function enrichCohortUser(authUser) {
-  const profile = readCohortLearner()
+  const invitedProfile = buildInvitedCohortProfile(authUser)
+  if (invitedProfile) persistCohortLearner(invitedProfile)
+  const profile = invitedProfile
   if (!authUser || !profile) return authUser
   return {
     ...authUser,
@@ -133,7 +137,7 @@ export default function App() {
     // Persisted demo session: stay signed in as the demo user without Supabase,
     // and do NOT let getSession() overwrite it with null. (loading is already
     // initialized false when a demo session exists, so no setState needed here.)
-    if (readDemoUser() || (readCohortLearner() && !isSupabaseConfigured)) {
+    if (readDemoUser() || (readStoredCohortUser() && !isSupabaseConfigured)) {
       return undefined
     }
 
@@ -181,7 +185,8 @@ export default function App() {
     // demo identity on reload (readDemoUser would otherwise win and mask it,
     // misattributing all subsequent writes to the demo user id).
     safeLocalStorageRemove(DEMO_SESSION_KEY)
-    if (!user?.isCohortLearner) {
+    const enrichedUser = enrichCohortUser(user)
+    if (!enrichedUser?.isCohortLearner) {
       clearCohortLearner()
     }
     // Wipe the previous identity's unscoped local caches (mastery, adaptive
@@ -191,8 +196,8 @@ export default function App() {
     clearResearchCaches()
     clearFacultyPartnershipCache()
     clearStreak()
-    setUser(user)
-    initSession(user)
+    setUser(enrichedUser)
+    initSession(enrichedUser)
   }
 
   const handleLogout = async () => {
@@ -303,6 +308,10 @@ export default function App() {
                 }
               />
               <Route
+                path="/class/lms-exemplar"
+                element={<LmsClassPreview user={user} />}
+              />
+              <Route
                 path="/instructor"
                 element={
                   user ? (
@@ -325,6 +334,16 @@ export default function App() {
                     ) : (
                       <Navigate to="/analytics?return=admin" replace />
                     )
+                  ) : (
+                    <Navigate to="/" replace />
+                  )
+                }
+              />
+              <Route
+                path="/study-survey/:phase"
+                element={
+                  user ? (
+                    <StudySurvey user={user} />
                   ) : (
                     <Navigate to="/" replace />
                   )

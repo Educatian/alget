@@ -649,11 +649,14 @@ export const getAdaptiveRecommendation = async ({
             telemetry
         })
 
+        const requestHeaders = { 'Content-Type': 'application/json' }
+        if (session?.access_token) requestHeaders.Authorization = `Bearer ${session.access_token}`
         const response = await fetch(`${LLM_API_BASE}/adaptive_recommendation`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: requestHeaders,
             body: JSON.stringify({
                 section_id: sectionId,
+                course: sectionId.split('/')[0] || null,
                 section_title: sectionTitle,
                 concept_ids: conceptIds,
                 current_heading: currentHeading,

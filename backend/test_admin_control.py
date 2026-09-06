@@ -52,6 +52,10 @@ class AdminControlTests(unittest.TestCase):
 
         self.assertGreaterEqual(len(result["sections"]), 1)
         self.assertEqual(result["sections"][0]["simulation"]["status"], "proposed")
+        self.assertTrue(result["sections"][0]["reading"]["content"])
+        self.assertGreaterEqual(len(result["sections"][0]["practice"]["problems"]), 2)
+        self.assertGreaterEqual(len(result["sections"][0]["knowledge_base"]["chunks"]), 1)
+        self.assertIn("formative_assessment", result["runtime_package"]["generated"])
         self.assertFalse(result["quality"]["student_visible"])
         self.assertFalse(result["quality"]["automatic_publish"])
 

@@ -58,7 +58,9 @@ export function getSocialIdentity(user) {
     const cohortLearner = readCohortLearner()
     if (cohortLearner?.fullName) {
         return {
-            alias: cohortLearner.fullName,
+            alias: cohortLearner.track === 'research'
+                ? `Study Learner ${cohortLearner.learnerHash.slice(-4).toUpperCase()}`
+                : cohortLearner.fullName,
             colorToken: COLOR_TOKENS[parseInt(cohortLearner.learnerHash, 36) % COLOR_TOKENS.length] || COLOR_TOKENS[0],
             userKey: user?.id || `${cohortLearner.cohortId}-${cohortLearner.learnerHash}`
         }

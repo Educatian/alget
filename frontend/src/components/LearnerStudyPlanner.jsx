@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { CalendarDays, PauseCircle, ShieldCheck, Target } from 'lucide-react'
-import { ALL_COURSE_IDS } from '../lib/courseCatalog'
+import { ALL_COURSE_IDS, getCourseTitle } from '../lib/courseCatalog'
 import { draftLearnerPlan, loadLearnerPlans, reviewLearnerPlan } from '../lib/agenticLmsService'
 
 function defaultTargetDate() {
@@ -9,7 +9,7 @@ function defaultTargetDate() {
     return value.toISOString().slice(0, 10)
 }
 
-export default function LearnerStudyPlanner({ user, mastery = [], courseId = '' }) {
+export default function LearnerStudyPlanner({ user, mastery = [], courseId = '', courseTitle = '' }) {
     const [plans, setPlans] = useState([])
     const [loading, setLoading] = useState(true)
     const [busy, setBusy] = useState('')
@@ -95,7 +95,7 @@ export default function LearnerStudyPlanner({ user, mastery = [], courseId = '' 
                 <input id="agentic-goal" required minLength={3} value={form.title} onChange={(event) => setForm({ ...form, title: event.target.value })} className="editorial-input" placeholder="Learning goal" />
                 <label className="sr-only" htmlFor="agentic-course">Course</label>
                 <select id="agentic-course" value={form.courseId} onChange={(event) => setForm({ ...form, courseId: event.target.value })} className="editorial-input">
-                    {ALL_COURSE_IDS.map((course) => <option key={course} value={course}>{course}</option>)}
+                    {ALL_COURSE_IDS.map((course) => <option key={course} value={course}>{course === courseId && courseTitle ? courseTitle : getCourseTitle(course)}</option>)}
                 </select>
                 <label className="sr-only" htmlFor="agentic-date">Target date</label>
                 <input id="agentic-date" required type="date" min={new Date().toISOString().slice(0, 10)} value={form.targetDate} onChange={(event) => setForm({ ...form, targetDate: event.target.value })} className="editorial-input" />

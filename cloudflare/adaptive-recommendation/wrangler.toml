@@ -12,6 +12,7 @@
 name = "alget-adaptive-recommendation"
 main = "src/index.ts"
 compatibility_date = "2025-05-01"
+workers_dev = false
 
 # No [vars] needed for v1: SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are
 # provided as secrets. If non-secret config is added later, declare it here.

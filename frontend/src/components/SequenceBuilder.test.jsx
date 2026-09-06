@@ -1,8 +1,14 @@
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react'
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
+import { logEvent } from '../lib/loggingService'
 import SequenceBuilder from './SequenceBuilder'
 
-afterEach(() => cleanup())
+vi.mock('../lib/loggingService', () => ({ logEvent: vi.fn() }))
+
+afterEach(() => {
+    cleanup()
+    vi.clearAllMocks()
+})
 
 const ADDIE = '["Analysis","Design","Development","Implementation","Evaluation"]'
 
@@ -21,6 +27,17 @@ describe('SequenceBuilder - order mode', () => {
         fireEvent.click(screen.getByRole('button', { name: 'Check' }))
         const status = screen.getByRole('status')
         expect(status).toHaveTextContent(/out of place/i)
+    })
+
+    it('logs a privacy-safe check summary with section context', () => {
+        render(<SequenceBuilder items={ADDIE} mode="order" sectionId="inst-design/02/08" course="inst-design" />)
+        fireEvent.click(screen.getByRole('button', { name: 'Check' }))
+        expect(logEvent).toHaveBeenCalledWith(
+            'sequence_check',
+            'sequence-builder',
+            expect.objectContaining({ mode: 'order', item_count: 5, complete: false, attempt_number: 1 }),
+            'inst-design/02/08',
+        )
     })
 
     it('marks all positions correct (not color-only) once the learner sorts it', () => {

@@ -225,6 +225,12 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                     content_version: context?.contentVersion || null,
                     current_content: context?.pageContent ? context.pageContent.substring(0, 2000) : "",
                     tutor_config: context?.tutorConfig || null,
+                    // Source chunks come from the instructor-approved module
+                    // package. The edge/backend tutor uses these for grounded
+                    // responses without exposing the entire course corpus.
+                    retrieved_context: Array.isArray(context?.retrievedContext)
+                        ? context.retrievedContext.slice(0, 5)
+                        : [],
                     history: messages.slice(-10), // Send more history for better context
                     is_highlight: isHighlight,
                     api_key: apiKey

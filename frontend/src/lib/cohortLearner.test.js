@@ -1,11 +1,13 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import {
     buildCohortLearnerProfile,
+    buildInvitedCohortProfile,
     clearCohortLearner,
     getCohortGuestCredentials,
     persistCohortLearner,
     readCohortLearner,
     signInCohortLearner,
+    toPrivacySafeLearnerProfile,
 } from './cohortLearner'
 
 vi.mock('./supabase', () => ({
@@ -57,5 +59,62 @@ describe('cohortLearner', () => {
             courseId: 'cat100-supplement',
             isCohortLearner: true,
         })
+    })
+
+    it('uses a random UUID study ID for research linkage, excludes the name, and never derives guest credentials', () => {
+        const profile = buildCohortLearnerProfile({
+            cohortId: 'bio-inspired-intervention-2026',
+            fullName: 'This Name Must Be Ignored',
+            studyId: '8b8d53f0-6c58-4f2a-91c6-b8eb3b42cf65',
+        })
+
+        expect(profile.fullName).toBe('Study Learner')
+        expect(profile.learnerHash).toBe('8b8d53f0-6c58-4f2a-91c6-b8eb3b42cf65')
+        expect(toPrivacySafeLearnerProfile(profile)).toEqual({
+            cohortId: 'bio-inspired-intervention-2026',
+            cohortLabel: 'Bio-Inspired Design Study',
+            courseId: 'bio-inspired',
+        })
+        persistCohortLearner(profile)
+        expect(window.localStorage.getItem('alget_social_alias')).toBe('Study Learner')
+        expect(getCohortGuestCredentials(profile)).toBeNull()
+        const sameProfile = buildCohortLearnerProfile({
+            cohortId: 'bio-inspired-intervention-2026',
+            fullName: 'A Different Name',
+            studyId: '8b8d53f0-6c58-4f2a-91c6-b8eb3b42cf65',
+        })
+        expect(sameProfile.fullName).toBe(profile.fullName)
+        expect(() => buildCohortLearnerProfile({
+            cohortId: 'bio-inspired-intervention-2026',
+            fullName: 'Research Learner',
+            studyId: 'name@example.edu',
+        })).toThrow(/UUID study ID/)
+    })
+
+    it('hydrates only an invitation-bound research profile and blocks self-signup', async () => {
+        const invited = buildInvitedCohortProfile({
+            user_metadata: {
+                cohort_id: 'bio-inspired-intervention-2026',
+                course_id: 'bio-inspired',
+                learner_hash: '8b8d53f0-6c58-4f2a-91c6-b8eb3b42cf65',
+            },
+        })
+        expect(invited).toMatchObject({
+            fullName: 'Study Learner',
+            learnerHash: '8b8d53f0-6c58-4f2a-91c6-b8eb3b42cf65',
+            invitationBound: true,
+        })
+        expect(buildInvitedCohortProfile({
+            user_metadata: {
+                cohort_id: 'bio-inspired-intervention-2026',
+                course_id: 'bio-inspired',
+                learner_hash: 'not-a-study-id',
+            },
+        })).toBeNull()
+        await expect(signInCohortLearner({
+            cohortId: 'bio-inspired-intervention-2026',
+            fullName: '',
+            studyId: '8b8d53f0-6c58-4f2a-91c6-b8eb3b42cf65',
+        })).rejects.toThrow(/invitation-only/)
     })
 })

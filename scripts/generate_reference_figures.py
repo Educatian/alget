@@ -223,7 +223,7 @@ def figure_markup(src: str, meta: dict, objective_id: str, caption: str, alt: st
         "conceptid": concept_id,
         "purpose": "organizational",
         "source": "ALGET original instructional diagram",
-        "license": "Project-authored; repository license",
+        "license": "Project-authored; all rights reserved pending project license decision",
     }
     attr_text = " ".join(f'{key}="{html.escape(value, quote=True)}"' for key, value in attrs.items() if value)
     return (
@@ -300,7 +300,7 @@ def main() -> None:
                 "alt": alt,
                 "caption": caption,
                 "source": "ALGET original instructional diagram",
-                "license": "Project-authored; repository license",
+                "license": "Project-authored; all rights reserved pending project license decision",
                 "sha256": sha256(image_path),
             }
         )

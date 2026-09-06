@@ -64,6 +64,7 @@ class OrchestratorAgent:
         is_highlight: bool = False,
         grade_level: str = "Undergraduate",
         interest: str = "Bio-Inspired Design",
+        retrieved_context: list = None,
     ) -> dict:
         """
         Main orchestration method:
@@ -109,12 +110,18 @@ class OrchestratorAgent:
         intent = self._classify_intent(query, history)
         logger.info(f"Classified Intent: {intent}")
         
-        # Retrieve context from RAG Service
+        # Prefer the instructor-approved section chunks supplied by the
+        # reader, then add the platform corpus as a secondary source. This
+        # keeps published course material grounded while retaining the legacy
+        # RAG fallback for authored courses.
+        provided_contexts = [item for item in (retrieved_context or []) if isinstance(item, dict)]
         rag_contexts = rag_service.retrieve_context(query, top_k=2)
+        context_candidates = provided_contexts[:5] + (rag_contexts or [])
         background_knowledge = "\n\n".join([
-            f"Excerpt from {c['metadata'].get('filename', 'Textbook')}:\n{c['content']}" 
-            for c in rag_contexts
-        ]) if rag_contexts else ""
+            f"Excerpt from {(c.get('metadata') or {}).get('filename', c.get('source_id', 'Textbook'))}:\n{c.get('content') or c.get('text') or ''}"
+            for c in context_candidates
+            if (c.get('content') or c.get('text'))
+        ]) if context_candidates else ""
         
         # Branch for non-bio courses
         if course != "bio-inspired":

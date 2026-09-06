@@ -18,6 +18,10 @@ compatibility_date = "2025-05-01"
 OPENROUTER_MODEL = "google/gemini-2.5-flash"
 SUPABASE_URL = "https://tyyjkkykcggukfbkwpia.supabase.co"
 SUPABASE_PUBLISHABLE_KEY = "sb_publishable_mMb65EEINC5Zd7tG45OgCQ_8Qo4TL9_"
+# Set to "strict" only on the IRB-approved study deployment after the
+# allocation schedule and claim migration are loaded. In strict mode every
+# Bio-Inspired adaptive-policy request requires a persisted treatment arm.
+ENGINEERING_STUDY_ENFORCEMENT = "off"
 
 # Internal binding to the adaptive-policy Worker (reliable worker-to-worker;
 # avoids the same-account public *.workers.dev subrequest restriction).

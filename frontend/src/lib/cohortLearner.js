@@ -22,6 +22,13 @@ export const CURRENT_STUDENT_COHORTS = [
         courseId: 'cat100-supplement',
         track: 'education',
     },
+    {
+        id: 'bio-inspired-intervention-2026',
+        label: 'Bio-Inspired Design Study',
+        courseId: 'bio-inspired',
+        track: 'research',
+        requiresStudyId: true,
+    },
 ]
 
 function hashString(value = '') {
@@ -35,6 +42,14 @@ function hashString(value = '') {
 
 function normalizeName(value = '') {
     return value.trim().replace(/\s+/g, ' ')
+}
+
+function normalizeStudyId(value = '') {
+    return value.trim().toLowerCase()
+}
+
+function isValidStudyId(value = '') {
+    return /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(value)
 }
 
 function findCohort(cohortId) {
@@ -64,11 +79,17 @@ export function clearCohortLearner() {
     safeLocalStorageRemove(COHORT_LEARNER_KEY)
 }
 
-export function buildCohortLearnerProfile({ cohortId, fullName }) {
+export function buildCohortLearnerProfile({ cohortId, fullName, studyId = '' }) {
     const cohort = findCohort(cohortId)
-    const cleanName = normalizeName(fullName)
+    const cleanStudyId = normalizeStudyId(studyId)
+    if (cohort.requiresStudyId && !isValidStudyId(cleanStudyId)) {
+        throw new Error('Enter the UUID study ID provided by the research team.')
+    }
+    const cleanName = cohort.requiresStudyId
+        ? 'Study Learner'
+        : normalizeName(fullName)
     const keySeed = `${cohort.id}:${cleanName.toLocaleLowerCase()}`
-    const learnerHash = hashString(keySeed)
+    const learnerHash = cohort.requiresStudyId ? cleanStudyId : hashString(keySeed)
 
     return {
         cohortId: cohort.id,
@@ -81,17 +102,56 @@ export function buildCohortLearnerProfile({ cohortId, fullName }) {
     }
 }
 
+export function toPrivacySafeLearnerProfile(profile) {
+    if (!profile) return null
+    const safe = {
+        cohortId: profile.cohortId,
+        cohortLabel: profile.cohortLabel,
+        courseId: profile.courseId,
+    }
+    if (profile.track !== 'research') safe.learnerHash = profile.learnerHash
+    return safe
+}
+
 export function persistCohortLearner(profile) {
     safeLocalStorageSet(COHORT_LEARNER_KEY, JSON.stringify(profile))
-    safeLocalStorageSet('alget_social_alias', profile.fullName)
+    const socialAlias = profile.track === 'research'
+        ? profile.fullName
+        : profile.fullName
+    safeLocalStorageSet('alget_social_alias', socialAlias)
 }
 
 export function getCohortGuestCredentials(profile = readCohortLearner()) {
     if (!profile?.cohortId || !profile?.learnerHash) return null
+    if (profile.track === 'research') return null
 
     return {
         guestEmail: `student-${profile.cohortId}-${profile.learnerHash}@alget.test`,
         guestPassword: `Alget-${profile.cohortId}-${profile.learnerHash}-2026!`,
+    }
+}
+
+export function buildInvitedCohortProfile(authUser) {
+    const metadata = authUser?.user_metadata || {}
+    const cohort = CURRENT_STUDENT_COHORTS.find((candidate) => candidate.id === metadata.cohort_id)
+    if (!cohort || metadata.course_id !== cohort.courseId) return null
+    const learnerHash = cohort.requiresStudyId
+        ? normalizeStudyId(metadata.learner_hash)
+        : String(metadata.learner_hash || '').trim()
+    if (!learnerHash || (cohort.requiresStudyId && !isValidStudyId(learnerHash))) return null
+    const invitedName = normalizeName(metadata.display_name || metadata.full_name || '')
+    if (!cohort.requiresStudyId && invitedName.length < 2) return null
+    return {
+        cohortId: cohort.id,
+        cohortLabel: cohort.label,
+        courseId: cohort.courseId,
+        track: cohort.track,
+        fullName: cohort.requiresStudyId
+            ? (/^Study Learner [A-Z0-9]{4,10}$/.test(invitedName) ? invitedName : 'Study Learner')
+            : invitedName,
+        learnerHash,
+        enteredAt: new Date().toISOString(),
+        invitationBound: true,
     }
 }
 
@@ -112,7 +172,9 @@ async function persistCohortRosterRow(authUser, profile) {
         .from('cohort_learners')
         .upsert({
             user_id: authUser.id,
-            display_name: profile.fullName,
+            display_name: profile.track === 'research'
+                ? profile.fullName
+                : profile.fullName,
             cohort_id: profile.cohortId,
             cohort_label: profile.cohortLabel,
             course_id: profile.courseId,
@@ -145,6 +207,14 @@ export async function markInvitedLearnerActive(authUser) {
 }
 
 function buildDisplayUser(authUser, profile) {
+    const safeMetadata = {
+        ...(authUser?.user_metadata || {}),
+        cohort_id: profile.cohortId,
+        cohort_label: profile.cohortLabel,
+        course_id: profile.courseId,
+        learner_hash: profile.learnerHash,
+    }
+    if (profile.track !== 'research') safeMetadata.full_name = profile.fullName
     return {
         ...(authUser || {}),
         id: authUser?.id || `cohort-${profile.cohortId}-${profile.learnerHash}`,
@@ -155,21 +225,18 @@ function buildDisplayUser(authUser, profile) {
         courseId: profile.courseId,
         track: profile.track,
         isCohortLearner: true,
-        user_metadata: {
-            ...(authUser?.user_metadata || {}),
-            full_name: profile.fullName,
-            cohort_id: profile.cohortId,
-            cohort_label: profile.cohortLabel,
-            course_id: profile.courseId,
-            learner_hash: profile.learnerHash,
-        },
+        user_metadata: safeMetadata,
     }
 }
 
-export async function signInCohortLearner({ cohortId, fullName }) {
-    const profile = buildCohortLearnerProfile({ cohortId, fullName })
+export async function signInCohortLearner({ cohortId, fullName, studyId = '' }) {
+    const profile = buildCohortLearnerProfile({ cohortId, fullName, studyId })
     if (!profile.fullName || profile.fullName.length < 2) {
         throw new Error('Enter your name before opening the course.')
+    }
+
+    if (profile.track === 'research') {
+        throw new Error('Research access is invitation-only. Sign in below with the email account invited by the research coordinator; the Study ID is verified from the locked roster.')
     }
 
     persistCohortLearner(profile)
@@ -180,12 +247,12 @@ export async function signInCohortLearner({ cohortId, fullName }) {
 
     const { guestEmail, guestPassword } = getCohortGuestCredentials(profile)
     const userMetadata = {
-        full_name: profile.fullName,
         cohort_id: profile.cohortId,
         cohort_label: profile.cohortLabel,
         course_id: profile.courseId,
         learner_hash: profile.learnerHash,
     }
+    if (profile.track !== 'research') userMetadata.full_name = profile.fullName
 
     const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
         email: guestEmail,
