@@ -3,7 +3,7 @@
 > **A research-grade generative intelligent textbook (GIT) for university engineering and instructional-design education, built around a multi-agent tutoring architecture, Bayesian knowledge tracing, and a dual-panel Cognitive Walkthrough study design.**
 
 <p align="center">
-  <img src="assets/hero.png" alt="ALGET — Alabama Generative Intelligent Textbook system architecture" width="100%">
+  <img src="assets/architecture-latest.svg" alt="ALGET source-to-textbook architecture" width="100%">
 </p>
 <p align="center"><em>A generative textbook where source-grounded content, learner evidence, and accountable human decisions remain connected.</em></p>
 
