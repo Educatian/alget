@@ -1,0 +1,65 @@
+{
+  "generated_at": "2026-09-06T11:44:48.000Z",
+  "commit": "8f350f8",
+  "base": "http://127.0.0.1:5173",
+  "viewport": { "width": 1440, "height": 900, "device_scale_factor": 1 },
+  "captures": [
+    {
+      "name": "01_landing",
+      "route": "/",
+      "file": "screenshots\\latest\\01_landing.png",
+      "captured_at": "2026-09-06T11:40:29.489Z"
+    },
+    {
+      "name": "02_course_chooser",
+      "route": "/learn",
+      "file": "screenshots\\latest\\02_course_chooser.png",
+      "captured_at": "2026-09-06T11:40:31.395Z"
+    },
+    {
+      "name": "03_book_reader",
+      "route": "/book/statics/01/01",
+      "file": "screenshots\\latest\\03_book_reader.png",
+      "captured_at": "2026-09-06T11:40:34.256Z"
+    },
+    {
+      "name": "04_intel_rail_open",
+      "route": "/book/statics/01/01",
+      "state": "ai-help-open",
+      "file": "screenshots\\latest\\04_intel_rail_open.png",
+      "captured_at": "2026-09-06T11:40:38.000Z"
+    },
+    {
+      "name": "05_chat_widget",
+      "route": "/book/statics/01/01",
+      "state": "tutor-chat-open",
+      "file": "screenshots\\latest\\05_chat_widget.png",
+      "captured_at": "2026-09-06T11:44:19.000Z"
+    },
+    {
+      "name": "06_student_dashboard",
+      "route": "/dashboard",
+      "file": "screenshots\\latest\\06_student_dashboard.png",
+      "captured_at": "2026-09-06T11:40:42.840Z"
+    },
+    {
+      "name": "07_instructor_dashboard",
+      "route": "/instructor",
+      "file": "screenshots\\latest\\07_instructor_dashboard.png",
+      "captured_at": "2026-09-06T11:40:44.763Z"
+    },
+    {
+      "name": "08_analytics",
+      "route": "/analytics",
+      "file": "screenshots\\latest\\08_analytics.png",
+      "captured_at": "2026-09-06T11:40:46.654Z"
+    },
+    {
+      "name": "09_highlight_popover",
+      "route": "/book/statics/01/01",
+      "state": "text-selection",
+      "file": "screenshots\\latest\\09_highlight_popover.png",
+      "captured_at": "2026-09-06T11:44:48.000Z"
+    }
+  ]
+}
