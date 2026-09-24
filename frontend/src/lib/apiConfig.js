@@ -7,6 +7,6 @@
  */
 
 const API_BASE = import.meta.env.VITE_API_BASE
-  || (import.meta.env.DEV ? '/api' : 'https://alget.onrender.com/api')
+  || (import.meta.env.DEV ? '/api' : 'https://alget-backend.jewoong-moon.workers.dev/api')
 
 export default API_BASE
