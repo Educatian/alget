@@ -1,8 +1,8 @@
 import json
 
 try:
-    from google import genai
-    from google.genai import types
+    from openrouter_client import OpenRouterClient
+    from openrouter_client import types
     GENAI_AVAILABLE = True
 except ImportError:
     GENAI_AVAILABLE = False
@@ -22,7 +22,7 @@ class IllustrationAgent:
     def __init__(self, api_key: str):
         self.api_key = api_key
         if GENAI_AVAILABLE and api_key:
-            self.client = genai.Client(api_key=api_key)
+            self.client = OpenRouterClient(api_key=api_key)
         else:
             self.client = None
 
@@ -33,7 +33,7 @@ class IllustrationAgent:
         if not self.client:
             return {
                 "illustration_title": "API Key Required",
-                "conceptual_design": "Please provide a valid Gemini API Key to generate an illustration.",
+                "conceptual_design": "Please provide a valid OpenRouter API Key to generate an illustration.",
                 "image_prompt": "",
                 "ui_elements": []
             }

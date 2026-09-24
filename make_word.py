@@ -1,4 +1,4 @@
-﻿import docx
+import docx
 from docx.shared import Pt, Inches, RGBColor
 from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
 
@@ -10,9 +10,9 @@ p = doc.add_paragraph('ALGET operates on a modern, decoupled architecture design
 p.style.font.size = Pt(11)
 
 doc.add_paragraph('• Client Interface (Frontend): A rich, interactive React application providing the structural textbook experience, formative assessments, and an Open Learner Model (OLM) Dashboard.', style='List Bullet')
-doc.add_paragraph('• Intelligent Services (FastAPI Backend): A Python-based server that orchestrates a multi-agent framework utilizing Google Gemini models for real-time Socratic tutoring, contextual assessments, and narrative generation.', style='List Bullet')
+doc.add_paragraph('• Intelligent Services (FastAPI Backend): A Python-based server that orchestrates a multi-agent framework utilizing OpenRouter models for real-time Socratic tutoring, contextual assessments, and narrative generation.', style='List Bullet')
 doc.add_paragraph('• Data & Identity Infrastructure (Supabase): A managed PostgreSQL cloud database handling continuous telemetry streams, knowledge tracing records, and anonymous session authentication.', style='List Bullet')
-doc.add_paragraph('• External Intelligence (Google GenAI): Integration with Gemini 2.0 architectures for generative pedagogical affordances.', style='List Bullet')
+doc.add_paragraph('• External Intelligence (Google GenAI): Integration with OpenRouter 2.0 architectures for generative pedagogical affordances.', style='List Bullet')
 
 doc.add_heading('2. Core Subsystems', level=1)
 
@@ -26,7 +26,7 @@ doc.add_paragraph('4. Batch Dispatch: Events are buffered locally and dispatched
 doc.add_heading('B. The Context-Aware Assessment & Knowledge Tracing System', level=2)
 p = doc.add_paragraph('Unlike static quiz arrays, ALGET evaluation loop is dynamic:')
 doc.add_paragraph('1. Generation: The client passes current context to the backend.', style='List Number')
-doc.add_paragraph('2. Agentic Synthesis: The Assessment Agent queries Gemini to formulate questions.', style='List Number')
+doc.add_paragraph('2. Agentic Synthesis: The Assessment Agent queries OpenRouter to formulate questions.', style='List Number')
 doc.add_paragraph('3. Local Knowledge Tracing: Calculates mastery using an Exponential Moving Average algorithm mapping correct/incorrect outcomes to a fluid 0.0 to 1.0 spectrum.', style='List Number')
 doc.add_paragraph('4. Database Persistence: Mastery nodes are securely tied to the learner avoiding FK violations via invisible guest-auth.', style='List Number')
 

@@ -1,0 +1,19 @@
+{
+  "name": "alget-cloudflare-backend",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "bootstrap": "wrangler deploy --config wrangler.bootstrap.jsonc",
+    "deploy": "wrangler deploy",
+    "bootstrap:staging": "wrangler deploy --config wrangler.staging.bootstrap.jsonc",
+    "deploy:staging": "wrangler deploy --config wrangler.staging.jsonc",
+    "types": "wrangler types"
+  },
+  "dependencies": {
+    "@cloudflare/containers": "0.3.7"
+  },
+  "devDependencies": {
+    "wrangler": "4.139.0"
+  }
+}

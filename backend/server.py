@@ -2,7 +2,7 @@
 """
 FastAPI server providing:
 - Module and hooks data
-- Gemini content generation (narrative, activity, simulation)
+- OpenRouter content generation (narrative, activity, simulation)
 - Book content API (MDX sections)
 - Grading API (solver-based)
 - Assist API (Rail)
@@ -28,12 +28,12 @@ logger = logging.getLogger(__name__)
 from dotenv import load_dotenv
 load_dotenv()  # only fills in vars that are not already set
 
-from google import genai
-from google.genai import types as genai_types
+from openrouter_client import OpenRouterClient
+from openrouter_client import types as genai_types
 
 # Load environment variable for API key
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
-print(f"[INFO] GEMINI_API_KEY loaded: {'Yes' if GEMINI_API_KEY else 'No'}")
+OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
+print(f"[INFO] OPENROUTER_API_KEY loaded: {'Yes' if OPENROUTER_API_KEY else 'No'}")
 
 def get_api_key(request=None):
     """Get API key at request time: request body > env var > cached module var."""
@@ -45,20 +45,15 @@ def get_api_key(request=None):
             return req_key
             
     # 2. Next, try environment variables (but ignore dummy values like "NOT_FOUND")
-    env_gemini = os.environ.get("GEMINI_API_KEY", "").strip()
-    if env_gemini and len(env_gemini) > 20:
-        print("[AUTH] Using API key from GEMINI_API_KEY env var")
-        return env_gemini
-        
-    env_google = os.environ.get("GOOGLE_API_KEY", "").strip()
-    if env_google and len(env_google) > 20:
-        print("[AUTH] Using API key from GOOGLE_API_KEY env var")
-        return env_google
+    env_openrouter = os.environ.get("OPENROUTER_API_KEY", "").strip()
+    if env_openrouter and len(env_openrouter) > 20:
+        print("[AUTH] Using API key from OPENROUTER_API_KEY env var")
+        return env_openrouter
         
     # 3. Fallback to module level variable
-    if GEMINI_API_KEY and len(GEMINI_API_KEY) > 20:
+    if OPENROUTER_API_KEY and len(OPENROUTER_API_KEY) > 20:
         print("[AUTH] Using API key from cached module var")
-        return GEMINI_API_KEY
+        return OPENROUTER_API_KEY
         
     print("[AUTH WARNING] No valid API key found!")
     return None
@@ -101,6 +96,12 @@ app = FastAPI(
     version="2.0.0",
     lifespan=app_lifespan,
 )
+
+
+@app.get("/healthz")
+async def healthz():
+    """Minimal process health endpoint for Cloudflare Container readiness checks."""
+    return {"status": "ok"}
 
 # CORS for React frontend
 app.add_middleware(
@@ -2045,10 +2046,10 @@ async def generate_scenario(request: ScenarioRequest):
     try:
         api_key = get_api_key(request)
         if not api_key:
-            raise HTTPException(status_code=400, detail="GEMINI_API_KEY is not set on the server or provided in the request.")
+            raise HTTPException(status_code=400, detail="OPENROUTER_API_KEY is not set on the server or provided in the request.")
         
         import json
-        client = genai.Client(api_key=api_key)
+        client = OpenRouterClient(api_key=api_key)
 
         prompt = f"""
         You are an expert instructional designer. Generate an interactive, scan-friendly learning scenario for the following theory/topic and context.
@@ -2064,7 +2065,7 @@ async def generate_scenario(request: ScenarioRequest):
         """
         
         response = client.models.generate_content(
-            model='gemini-2.0-flash',
+            model='google/gemini-3.1-flash-lite',
             contents=prompt,
             config=genai_types.GenerateContentConfig(
                 temperature=0.4,
@@ -2422,13 +2423,13 @@ async def grade_submission(problem_id: str, request: GradeRequest):
 async def explain_easier(request: ExplainRequest):
     """Generate an easier explanation for the current concept."""
     try:
-        # Use Gemini to generate explanation
+        # Use OpenRouter to generate explanation
         _key = get_api_key()
         if _key:
-            from google import genai
-            from google.genai import types
+            from openrouter_client import OpenRouterClient
+            from openrouter_client import types
             
-            client = genai.Client(api_key=_key)
+            client = OpenRouterClient(api_key=_key)
             
             prompt = f"""
             A student is stuck on section: {request.section_id}
@@ -2441,9 +2442,9 @@ async def explain_easier(request: ExplainRequest):
             """
             
             response = client.models.generate_content(
-                model='gemini-2.0-flash',
+                model='google/gemini-3.1-flash-lite',
                 contents=prompt,
-                config=types.GenerateContentConfig(
+                config=genai_types.GenerateContentConfig(
                     temperature=0.7,
                     max_output_tokens=500
                 )
@@ -2560,12 +2561,12 @@ async def generate_and_insert_peer_note_task(req: PeerNoteRequest):
         # 2. Check API Key
         _key = get_api_key(req)
         if not _key:
-            print(f"[AI PEER ERR] No Gemini API Key configured. Skipping peer note.")
+            print(f"[AI PEER ERR] No OpenRouter API Key configured. Skipping peer note.")
             return
 
-        # 3. Generate content via GenAI SDK
-        from google import genai
-        client = genai.Client(api_key=_key)
+        # 3. Generate content via OpenRouter
+        from openrouter_client import OpenRouterClient
+        client = OpenRouterClient(api_key=_key)
         
         prompt = f"""You are acting as a fellow student 'Alex' taking this course at the University of Alabama.
         A student just highlighted the following text in the textbook:
@@ -2578,7 +2579,7 @@ async def generate_and_insert_peer_note_task(req: PeerNoteRequest):
         Keep it natural, conversational, and under 2 sentences. DO NOT sound like a robot."""
         
         response = client.models.generate_content(
-            model='gemini-2.0-flash',
+            model='google/gemini-3.1-flash-lite',
             contents=prompt
         )
         ai_note = response.text.strip()
@@ -2713,23 +2714,23 @@ RESPONSE GUIDELINES:
 
 {persona_name}:"""
 
-    # Configure Gemini API — accept request-provided key, fall back to env vars
+    # Configure OpenRouter API — accept request-provided key, fall back to env vars
     _key = get_api_key(request)
     if not _key:
         print("[CHAT ERROR] No API key configured!")
         return {
             "response": (
                 "The tutor is not configured yet on this server. "
-                "Set GEMINI_API_KEY on the backend or provide a key in the client."
+                "Set OPENROUTER_API_KEY on the backend or provide a key in the client."
             ),
             "error": "no_api_key",
         }
 
     try:
-        print("[CHAT] Calling Gemini API with RAG context...")
-        client = genai.Client(api_key=_key)
+        print("[CHAT] Calling OpenRouter API with RAG context...")
+        client = OpenRouterClient(api_key=_key)
         response = client.models.generate_content(
-            model='gemini-2.0-flash',
+            model='google/gemini-3.1-flash-lite',
             contents=prompt,
             config=genai_types.GenerateContentConfig(temperature=0.7)
         )
@@ -2739,13 +2740,26 @@ RESPONSE GUIDELINES:
         # Surface the failure class so the UI can distinguish auth vs network vs
         # model errors instead of always blaming the network.
         msg = str(exc)
-        if "API_KEY_INVALID" in msg or "API key not valid" in msg or "API Key not found" in msg:
+        if (
+            "API_KEY_INVALID" in msg
+            or "API key not valid" in msg
+            or "API Key not found" in msg
+            or "HTTP 401" in msg
+            or "unauthorized" in msg.lower()
+        ):
             print(f"[CHAT ERROR] Auth failure: {msg[:200]}")
             return {
                 "response": "The tutor's credentials are not valid. The administrator needs to update the API key.",
                 "error": "auth_failed",
             }
-        if "RESOURCE_EXHAUSTED" in msg or "quota" in msg.lower() or "rate" in msg.lower():
+        if (
+            "RESOURCE_EXHAUSTED" in msg
+            or "quota" in msg.lower()
+            or "rate" in msg.lower()
+            or "HTTP 402" in msg
+            or "HTTP 429" in msg
+            or "insufficient credits" in msg.lower()
+        ):
             print(f"[CHAT ERROR] Quota/rate limit: {msg[:200]}")
             return {
                 "response": "The tutor is briefly over its usage quota. Please try again in a minute.",
@@ -2757,22 +2771,8 @@ RESPONSE GUIDELINES:
             "error": "upstream_failure",
         }
 
-@app.get("/api/debug_env")
-async def debug_env():
-    """Temporary endpoint to check which env vars exist."""
-    gemini = os.environ.get("GEMINI_API_KEY", "")
-    google = os.environ.get("GOOGLE_API_KEY", "")
-    return {
-        "gemini_len": len(gemini),
-        "gemini_startswith": gemini[:4] if len(gemini) > 4 else gemini,
-        "google_len": len(google)
-    }
-
-
-# debug_env endpoint removed
-
 # ============================================================================
-# IMAGE GENERATION API (Gemini)
+# IMAGE GENERATION API (OpenRouter)
 # ============================================================================
 
 class ImageGenerateRequest(BaseModel):
@@ -2783,23 +2783,20 @@ class ImageGenerateRequest(BaseModel):
 
 @app.post("/api/generate-image")
 async def generate_image(request: ImageGenerateRequest):
-    """Generate a diagram or illustration using Gemini API."""
+    """Generate a diagram or illustration using OpenRouter's Images API."""
     try:
-        _key = get_api_key()
+        _key = get_api_key(request)
         if not _key:
             return {
                 "success": False,
-                "error": "Gemini API key not configured",
+                "error": "OpenRouter API key not configured",
                 "placeholder": True,
-                "message": "Image generation unavailable - please configure GEMINI_API_KEY"
+                "message": "Image generation unavailable - please configure OPENROUTER_API_KEY"
             }
-        
-        from google import genai
-        from google.genai import types
-        import base64
-        
-        client = genai.Client(api_key=_key)
-        
+
+        from openrouter_client import OpenRouterClient, generate_image as generate_openrouter_image
+        client = OpenRouterClient(api_key=_key)
+
         # Build the image generation prompt
         style_guides = {
             "technical": "Create a clean, professional engineering diagram. Use simple lines, clear labels, and minimal colors (black, blue, red for forces). White background.",
@@ -2823,46 +2820,27 @@ Requirements:
 - Use standard engineering notation
 - High readability and clarity
 """
-        
-        # Use Gemini's image generation (Imagen 3)
+
         try:
-            response = client.models.generate_images(
-                model='imagen-3.0-generate-002',
+            image_base64, media_type = generate_openrouter_image(
+                api_key=_key,
                 prompt=full_prompt,
-                config=types.GenerateImagesConfig(
-                    number_of_images=1,
-                    aspect_ratio="16:9",
-                    safety_filter_level="BLOCK_ONLY_HIGH"
-                )
+                aspect_ratio="16:9",
             )
-            
-            # Get the generated image
-            if response.generated_images:
-                image = response.generated_images[0]
-                # Convert to base64 for frontend
-                image_base64 = base64.b64encode(image.image.image_bytes).decode('utf-8')
-                
-                return {
-                    "success": True,
-                    "image_data": f"data:image/png;base64,{image_base64}",
-                    "prompt": request.prompt
-                }
-            else:
-                return {
-                    "success": False,
-                    "error": "No image generated",
-                    "message": "Try a different prompt"
-                }
-                
+            return {
+                "success": True,
+                "image_data": f"data:{media_type};base64,{image_base64}",
+                "prompt": request.prompt,
+            }
         except Exception as img_error:
             # Fallback to text description if image generation fails
             print(f"[IMAGE GEN] Image generation failed: {img_error}")
-            
+
             # Generate a text-based diagram description instead
             response = client.models.generate_content(
-                model='gemini-2.0-flash',
+                model=os.environ.get("OPENROUTER_MODEL", "google/gemini-3.1-flash-lite"),
                 contents=f"Describe in detail what a {request.style} diagram for '{request.prompt}' would look like. Include ASCII art if helpful.",
-                config=types.GenerateContentConfig(
+                config=genai_types.GenerateContentConfig(
                     temperature=0.5,
                     max_output_tokens=500
                 )

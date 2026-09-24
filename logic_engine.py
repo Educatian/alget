@@ -1,6 +1,6 @@
 # logic_engine.py - Content Generation Engine
 """
-Generates educational content using Google Gemini with structured JSON output.
+Generates educational content using OpenRouter with structured JSON output.
 Replaces the PDF-based system with keyword-driven module generation.
 """
 
@@ -15,10 +15,10 @@ from prompts import (
     get_scenario_prompt
 )
 
-# Google GenAI SDK
+# OpenRouter API client
 try:
-    from google import genai
-    from google.genai import types
+    from openrouter_client import OpenRouterClient
+    from openrouter_client import types
     GENAI_AVAILABLE = True
 except ImportError:
     GENAI_AVAILABLE = False
@@ -36,7 +36,7 @@ def generate_narrative(
     api_key: str
 ) -> dict:
     """
-    Generate an engaging narrative using Gemini.
+    Generate an engaging narrative using OpenRouter.
     
     Returns:
         Dict with title, story, key_concepts
@@ -44,16 +44,16 @@ def generate_narrative(
     if not GENAI_AVAILABLE or not api_key:
         return {
             "title": "The Engineering Student's Discovery",
-            "story": "**[API Key Required]**\n\nEnter your Gemini API key in the sidebar to generate personalized narratives.\n\nThis story would feature a UA engineering student discovering the concepts of " + ", ".join(keywords) + " through a real-world scenario at Bryant-Denny Stadium or the Mercedes-Benz plant.",
+            "story": "**[API Key Required]**\n\nEnter your OpenRouter API key in the sidebar to generate personalized narratives.\n\nThis story would feature a UA engineering student discovering the concepts of " + ", ".join(keywords) + " through a real-world scenario at Bryant-Denny Stadium or the Mercedes-Benz plant.",
             "key_concepts": keywords
         }
     
     try:
-        client = genai.Client(api_key=api_key)
+        client = OpenRouterClient(api_key=api_key)
         prompt = get_narrative_prompt(module, keywords, grade_level, interest)
         
         response = client.models.generate_content(
-            model='gemini-2.0-flash',
+            model='google/gemini-3.1-flash-lite',
             contents=prompt,
             config=types.GenerateContentConfig(
                 temperature=0.8,
@@ -81,7 +81,7 @@ def generate_activity(
     api_key: str
 ) -> dict:
     """
-    Generate practice activities using Gemini.
+    Generate practice activities using OpenRouter.
     
     Returns:
         Dict with questions array
@@ -95,17 +95,17 @@ def generate_activity(
                     "question": f"What are the key principles of {keywords[0] if keywords else 'this concept'}?",
                     "options": ["A) Principle 1", "B) Principle 2", "C) Principle 3", "D) Principle 4"],
                     "correct_answer": "A",
-                    "explanation": "Enter your Gemini API key to generate real practice questions."
+                    "explanation": "Enter your OpenRouter API key to generate real practice questions."
                 }
             ]
         }
     
     try:
-        client = genai.Client(api_key=api_key)
+        client = OpenRouterClient(api_key=api_key)
         prompt = get_activity_prompt(module, keywords, grade_level)
         
         response = client.models.generate_content(
-            model='gemini-2.0-flash',
+            model='google/gemini-3.1-flash-lite',
             contents=prompt,
             config=types.GenerateContentConfig(
                 temperature=0.7,
@@ -136,7 +136,7 @@ def generate_simulation(
     api_key: str
 ) -> dict:
     """
-    Generate interactive HTML/JS simulation using Gemini.
+    Generate interactive HTML/JS simulation using OpenRouter.
     
     Returns:
         Dict with description, concepts_shown, html_code
@@ -165,7 +165,7 @@ def generate_simulation(
     <div class="placeholder">
         <div class="icon">🔬</div>
         <h3>Interactive Simulation</h3>
-        <p>Enter your Gemini API key to generate an interactive simulation for:</p>
+        <p>Enter your OpenRouter API key to generate an interactive simulation for:</p>
         <p><strong>""" + ", ".join(keywords) + """</strong></p>
     </div>
 </body>
@@ -255,14 +255,14 @@ def get_standard_response(query: str, pdf_text: Optional[str] = None) -> str:
 def get_scenario_response(query: str, grade_level: str, interest: str, api_key: str) -> str:
     """Legacy scenario generation - still used for chat."""
     if not GENAI_AVAILABLE or not api_key:
-        return "**🔑 API Key Required**\n\nPlease enter your Gemini API key."
+        return "**🔑 API Key Required**\n\nPlease enter your OpenRouter API key."
     
     try:
-        client = genai.Client(api_key=api_key)
+        client = OpenRouterClient(api_key=api_key)
         prompt = get_scenario_prompt(query, grade_level, interest)
         
         response = client.models.generate_content(
-            model='gemini-2.0-flash',
+            model='google/gemini-3.1-flash-lite',
             contents=prompt,
             config=types.GenerateContentConfig(
                 temperature=0.8,

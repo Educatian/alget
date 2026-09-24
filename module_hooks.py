@@ -229,7 +229,7 @@ def get_module_info(module_display_name: str, grade_level: str) -> dict:
 def get_keywords_for_hooks(hook_names: list, module_display_name: str, grade_level: str) -> list:
     """
     Get all keywords associated with selected hooks.
-    Used for building Gemini prompts.
+    Used for building OpenRouter prompts.
     """
     mod = get_module_info(module_display_name, grade_level)
     if not mod:

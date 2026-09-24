@@ -249,7 +249,7 @@ Each new agent's output is logged through `researchService.evaluateSupportConten
 
 ## 9. Open Questions for Future Iterations
 
-- **When to bypass critique for cost.** Critique adds a Gemini call. For very common patterns, a cached critique may suffice. Investigate.
+- **When to bypass critique for cost.** Critique adds a OpenRouter call. For very common patterns, a cached critique may suffice. Investigate.
 - **Multi-agent retention scheduling.** Should the spaced-retrieval scheduler itself be agent-driven (a *PacingAgent* that integrates BKT + forgetting curves)? Likely yes; specify next iteration.
 - **Cross-course concept threading.** Should PracticeGenerationAgent draw from related concepts in *other* ALGET courses for transfer-effect items? Open.
 

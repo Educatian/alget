@@ -46,8 +46,8 @@ Based on the intent, it routes the execution to one of three synergized pipeline
 ## Important Implementation Details for Other Agents
 
 - **JSON Structured Data:** All specialized sub-agents (`BiologyAgent`, `EngineeringAgent`, etc.) have been configured to return **structured JSON** to the Orchestrator.
-- **Error Handling:** If the Gemini API fails or returns malformed JSON, the agents will return a dictionary with an `"error"` key. The frontend/API layer should gracefully handle this.
-- **Dependencies:** All agents depend on the `google-genai` SDK and the `gemini-2.0-flash` model.
+- **Error Handling:** If the OpenRouter API fails or returns malformed JSON, the agents will return a dictionary with an `"error"` key. The frontend/API layer should gracefully handle this.
+- **Dependencies:** Agents call OpenRouter's REST API, defaulting to `google/gemini-3.1-flash-lite`.
 
 ## Next Recommended Steps for UI/Frontend Agents
 

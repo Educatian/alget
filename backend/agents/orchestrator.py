@@ -23,8 +23,8 @@ import logging
 logger = logging.getLogger(__name__)
 
 try:
-    from google import genai
-    from google.genai import types
+    from openrouter_client import OpenRouterClient
+    from openrouter_client import types
     GENAI_AVAILABLE = True
 except ImportError:
     GENAI_AVAILABLE = False
@@ -33,7 +33,7 @@ class OrchestratorAgent:
     def __init__(self, api_key: str):
         self.api_key = api_key
         if GENAI_AVAILABLE and api_key:
-            self.client = genai.Client(api_key=api_key)
+            self.client = OpenRouterClient(api_key=api_key)
         else:
             self.client = None
             
@@ -77,7 +77,7 @@ class OrchestratorAgent:
         if not self.client:
             return {
                 "intent": "error",
-                "error": "Gemini API key is required.",
+                "error": "OpenRouter API key is required.",
                 "biology_context": "N/A",
                 "engineering_application": "N/A",
                 "summary": "API Key is missing."
@@ -250,9 +250,9 @@ class OrchestratorAgent:
 
             # Check if validation failed (Score < 7 or is_valid is False).
             # Short-circuit when the validation output carries a `_schema_error`:
-            # that means the agent itself failed (auth, JSON parse, Gemini error)
+            # that means the agent itself failed (auth, JSON parse, OpenRouter error)
             # and produced a deterministic fallback. Retrying engineering against
-            # a fallback validation just burns more failed Gemini calls.
+            # a fallback validation just burns more failed OpenRouter calls.
             def _validation_says_revise(val: dict) -> bool:
                 if not isinstance(val, dict):
                     return False

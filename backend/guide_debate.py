@@ -1,11 +1,11 @@
 import os
-from google import genai
-from google.genai import types
+from openrouter_client import OpenRouterClient
+from openrouter_client import types
 from dotenv import load_dotenv
 
 load_dotenv()
-api_key = os.environ.get("GEMINI_API_KEY")
-client = genai.Client(api_key=api_key)
+api_key = os.environ.get("OPENROUTER_API_KEY")
+client = OpenRouterClient(api_key=api_key)
 
 prompt = """
 You are acting as a panel of ALGET AI Agents having a meeting to write a "User Guide" for students.
@@ -26,7 +26,7 @@ Format the output cleanly as a script/transcript.
 
 print("Starting User Guide Agent Debate...")
 response = client.models.generate_content(
-    model='gemini-2.0-flash',
+    model='google/gemini-3.1-flash-lite',
     contents=prompt,
     config=types.GenerateContentConfig(temperature=0.7)
 )

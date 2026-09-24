@@ -1,0 +1,10 @@
+.git
+.wrangler
+**/node_modules
+**/__pycache__
+**/.env
+**/.dev.vars
+**/*.pyc
+backend/test_*.py
+backend/*output*.txt
+backend/content_*audit*.md

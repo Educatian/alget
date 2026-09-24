@@ -5,16 +5,16 @@ from dotenv import load_dotenv
 
 # Load env 
 load_dotenv()
-api_key = os.getenv("GEMINI_API_KEY")
+api_key = os.getenv("OPENROUTER_API_KEY")
 
 if not api_key:
-    print("GEMINI_API_KEY not found.")
+    print("OPENROUTER_API_KEY not found.")
     sys.exit(1)
 
-from google import genai
-from google.genai import types
+from openrouter_client import OpenRouterClient
+from openrouter_client import types
 
-client = genai.Client(api_key=api_key)
+client = OpenRouterClient(api_key=api_key)
 
 try:
     with open("frontend/src/pages/GenerativeLab.jsx", "r", encoding="utf-8") as f:
@@ -40,7 +40,7 @@ Provide your response in clear Korean so the user understands how we can collabo
 """
 
 response = client.models.generate_content(
-    model='gemini-2.0-flash',
+    model='google/gemini-3.1-flash-lite',
     contents=prompt,
 )
 

@@ -10,8 +10,8 @@ import json
 import logging
 
 try:
-    from google import genai
-    from google.genai import types
+    from openrouter_client import OpenRouterClient
+    from openrouter_client import types
     GENAI_AVAILABLE = True
 except ImportError:
     GENAI_AVAILABLE = False
@@ -28,7 +28,7 @@ class PracticeGenerationAgent:
     def __init__(self, api_key: str):
         self.api_key = api_key
         if GENAI_AVAILABLE and api_key:
-            self.client = genai.Client(api_key=api_key)
+            self.client = OpenRouterClient(api_key=api_key)
         else:
             self.client = None
 

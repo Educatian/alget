@@ -50,9 +50,9 @@ def test_normalize_orchestrator_response_preserves_error_contract():
         {
             "intent": "error",
             "summary": "API Key is missing.",
-            "error": "Gemini API key is required.",
+            "error": "OpenRouter API key is required.",
         }
     )
 
     assert response.intent == "error"
-    assert response.error == "Gemini API key is required."
+    assert response.error == "OpenRouter API key is required."

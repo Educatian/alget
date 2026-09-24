@@ -16,7 +16,7 @@ ALGET pairs canonical engineering and instructional-design content with a learni
 │  Tailwind v4    │         │  15 LLM agents       │         │  6 SQL schemas   │
 └─────────────────┘         └──────────────────────┘         └──────────────────┘
         ▲                            ▲
-        │ @supabase/supabase-js      │ google-genai (Gemini 2.0 Flash)
+        │ @supabase/supabase-js      │ OpenRouter API (google/gemini-3.1-flash-lite)
         └────────────────────────────┘
 ```
 
@@ -275,7 +275,7 @@ The Supabase research views (`rct_intervention_outcomes`, `rct_evaluation_gains`
 
 - Python 3.11+
 - Node 20+ (or 22)
-- A Gemini API key (`GOOGLE_API_KEY` or `GEMINI_API_KEY`)
+- An OpenRouter API key (`OPENROUTER_API_KEY`)
 - A Supabase project URL + anon key (or run in offline / demo mode)
 
 ### 9.2 Backend
@@ -284,7 +284,7 @@ The Supabase research views (`rct_intervention_outcomes`, `rct_evaluation_gains`
 cd backend
 python -m venv .venv && source .venv/Scripts/activate  # Windows
 pip install -r ../requirements.txt
-export GEMINI_API_KEY=your_key_here  # or set in backend/.env
+export OPENROUTER_API_KEY=your_key_here  # or set in backend/.env
 python -m uvicorn server:app --host 127.0.0.1 --port 8000 --reload
 ```
 
@@ -370,7 +370,7 @@ alget/
 │   ├── prompts.py                     ← system prompts (Mayer multimedia principles)
 │   ├── knowledge_tracing.py           ← BKT + Q-Matrix + telemetry fusion
 │   ├── grading_service.py             ← numeric / units / equilibrium solver
-│   ├── rag_service.py                 ← Gemini embeddings + cosine retrieval
+│   ├── rag_service.py                 ← OpenRouter embeddings + cosine retrieval
 │   ├── content_service.py             ← MDX corpus indexer
 │   ├── content_audit.py + report.md   ← coverage audit pipeline
 │   ├── content_priority_plan.md       ← Tier 1–4 content roadmap
@@ -465,7 +465,7 @@ alget/
 
 ### 12.1 Backend — Render
 
-`render.yaml` → `gunicorn server:app -w 1 -k uvicorn.workers.UvicornWorker --timeout 120`. Single worker is intentional: free tier memory ceiling + in-memory RAG index consistency. Required env vars: `GEMINI_API_KEY`, optional access codes (see `DEPLOYMENT_ENV.md`).
+`render.yaml` → `gunicorn server:app -w 1 -k uvicorn.workers.UvicornWorker --timeout 120`. Single worker is intentional: free tier memory ceiling + in-memory RAG index consistency. Required env vars: `OPENROUTER_API_KEY`, optional access codes (see `DEPLOYMENT_ENV.md`).
 
 ### 12.2 Frontend — Vercel
 
@@ -485,11 +485,11 @@ PostgreSQL 13 + Realtime. RLS active on every table. `learner_concept_state` is 
 
 **Frontend** — React 19.2 · React Router 7.11 · Vite 7.2 · Tailwind v4 (`@tailwindcss/vite`) · `react-markdown 10.1` + `remark-math` + `rehype-katex` + KaTeX 0.16 · `@supabase/supabase-js 2.89` · Radix UI (popover, tooltip) · `lucide-react` · `@remotion/player` 4.0 · Vitest 3.2 + Testing Library + jsdom.
 
-**Backend** — Python 3.11 · FastAPI · Pydantic v2 · Gunicorn + Uvicorn workers · `google-genai` (Gemini 2.0 Flash) · pytest 9.
+**Backend** — Python 3.11 · FastAPI · Pydantic v2 · Gunicorn + Uvicorn workers · OpenRouter REST API (`google/gemini-3.1-flash-lite`) · pytest 9.
 
 **Data** — Supabase (PostgreSQL 13, Realtime, RLS).
 
-**LLM** — Gemini 2.0 Flash, `response_mime_type="application/json"` for structured output, per-agent temperatures (`ValidationAgent=0.3` strictest, `BiologyAgent=0.7`, `NarrativeAgent=0.8` most generative).
+**LLM** — OpenRouter routing to `google/gemini-3.1-flash-lite` for text, `google/gemini-embedding-001` for 768-dimensional RAG vectors, and `google/gemini-2.5-flash-image` for image generation. Model slugs are configurable with `OPENROUTER_*` environment variables.
 
 ---
 

@@ -1,0 +1,43 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "alget-backend",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-24",
+  "containers": [
+    {
+      "class_name": "AlgetBackendContainer",
+      "image": "../../Dockerfile.cloudflare",
+      "image_build_context": "../..",
+      "instance_type": "basic",
+      "max_instances": 2
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "class_name": "AlgetBackendContainer",
+        "name": "ALGET_BACKEND"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "new_sqlite_classes": ["AlgetBackendContainer"],
+      "tag": "v1"
+    }
+  ],
+  "secrets": {
+    "required": [
+      "OPENROUTER_API_KEY",
+      "SUPABASE_URL",
+      "SUPABASE_SERVICE_ROLE_KEY",
+      "ENGINEERING_ACCESS_CODE",
+      "EDUCATION_ACCESS_CODE",
+      "RESEARCHER_ACCESS_CODE"
+    ]
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  }
+}

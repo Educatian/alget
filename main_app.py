@@ -34,6 +34,7 @@ st.set_page_config(
     page_title="Bio-Inspired Design Explorer",
     page_icon="🌿",
     layout="wide",
+)
 # ============================================================================
 # DEPRECATION NOTICE
 # ============================================================================
@@ -538,9 +539,9 @@ with st.sidebar:
     # API Configuration
     st.markdown('<div class="sidebar-title">🔑 API Configuration</div>', unsafe_allow_html=True)
     api_key = st.text_input(
-        "Gemini API Key",
+        "OpenRouter API Key",
         type="password",
-        help="Get free at aistudio.google.com",
+        help="Create a key at openrouter.ai/keys",
         label_visibility="collapsed",
         placeholder="Enter your API key..."
     )
@@ -763,7 +764,7 @@ if app_mode == "AI Orchestrator":
     # Chat Input 
     if query := st.chat_input("Ask a question, propose a design, or brainstorm with the agents..."):
         if not api_key:
-            st.error("Please enter a Gemini API Key in the sidebar.")
+            st.error("Please enter a OpenRouter API Key in the sidebar.")
         else:
             # Render user query right away
             st.session_state.orchestrator_history.append({"role": "user", "content": query})
@@ -779,7 +780,7 @@ if app_mode == "AI Orchestrator":
                         history_payload = st.session_state.orchestrator_history[:-1]
                         result = agent.orchestrate(query, grade_level, interest, history=history_payload)
                         
-                        if "error" in result and result.get("error") != "Gemini API key is required.":
+                        if "error" in result and result.get("error") != "OpenRouter API key is required.":
                             st.error(result["error"])
                         else:
                             st.success(f"Analysis Complete! ({result.get('intent', 'learn').capitalize()} Mode)")
@@ -1080,7 +1081,7 @@ if st.session_state.current_step == 3 and st.session_state.generated_content:
 # ============================================================================
 st.markdown("""
 <div class="footer">
-    <span class="footer-logo">Bio-Inspired Design Explorer</span> • Powered by Google Gemini<br>
+    <span class="footer-logo">Bio-Inspired Design Explorer</span> • Powered by OpenRouter<br>
     Applying Life's Principles to Engineering • 🌿 Nature Knows Best
 </div>
 """, unsafe_allow_html=True)

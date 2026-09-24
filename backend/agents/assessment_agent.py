@@ -3,12 +3,7 @@ import os
 from pydantic import BaseModel, Field
 import typing
 
-try:
-    from google import genai
-    from google.genai import types
-except ImportError:
-    import google.generativeai as legacy_genai
-    genai = None
+from openrouter_client import OpenRouterClient, types
 
 from .config import get as get_config
 
@@ -43,14 +38,8 @@ class AssessmentAgent:
     """Agent for generating formative assessments (MCQs and Short Answer) for knowledge tracing."""
     
     def __init__(self, api_key: str = None):
-        self.api_key = api_key or os.environ.get("GEMINI_API_KEY")
-        
-        if genai:
-            self.client = genai.Client(api_key=self.api_key)
-            self.model_id = "gemini-2.5-flash"
-        else:
-            legacy_genai.configure(api_key=self.api_key)
-            self.model = legacy_genai.GenerativeModel('gemini-2.0-flash')
+        self.api_key = api_key or os.environ.get("OPENROUTER_API_KEY")
+        self.client = OpenRouterClient(api_key=self.api_key) if self.api_key else None
 
     def generate_assessment(self, bio_context: str, eng_context: str, section_title: str, learning_objectives: list[str] = None, concept_ids: list[str] = None) -> dict:
         """Generates a 3-question assessment (2 MCQs, 1 Summary)."""
@@ -80,27 +69,16 @@ class AssessmentAgent:
 
         try:
             cfg = get_config("assessment_generate")
-            if genai:
-                response = self.client.models.generate_content(
-                    model=self.model_id,
-                    contents=prompt,
-                    config=types.GenerateContentConfig(
-                        response_mime_type="application/json",
-                        response_schema=KnowledgeCheckForm,
-                        temperature=cfg.temperature,
-                    ),
-                )
-                return json.loads(response.text)
-            else:
-                # Use legacy SDK
-                response = self.model.generate_content(
-                    prompt,
-                    generation_config=legacy_genai.GenerationConfig(
-                        response_mime_type="application/json",
-                        temperature=cfg.temperature,
-                    )
-                )
-                return json.loads(response.text)
+            response = self.client.models.generate_content(
+                model=cfg.model,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    response_mime_type="application/json",
+                    response_schema=KnowledgeCheckForm,
+                    temperature=cfg.temperature,
+                ),
+            )
+            return json.loads(response.text)
                 
         except Exception as e:
             print(f"[ERROR] AssessmentAgent generation failed: {e}")
@@ -131,26 +109,16 @@ class AssessmentAgent:
         
         try:
             cfg = get_config("assessment_grade")
-            if genai:
-                response = self.client.models.generate_content(
-                    model=self.model_id,
-                    contents=prompt,
-                    config=types.GenerateContentConfig(
-                        response_mime_type="application/json",
-                        response_schema=SummaryGradingFeedback,
-                        temperature=cfg.temperature,
-                    ),
-                )
-                return json.loads(response.text)
-            else:
-                response = self.model.generate_content(
-                    prompt,
-                    generation_config=legacy_genai.GenerationConfig(
-                        response_mime_type="application/json",
-                        temperature=cfg.temperature,
-                    )
-                )
-                return json.loads(response.text)
+            response = self.client.models.generate_content(
+                model=cfg.model,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    response_mime_type="application/json",
+                    response_schema=SummaryGradingFeedback,
+                    temperature=cfg.temperature,
+                ),
+            )
+            return json.loads(response.text)
         except Exception as e:
             print(f"[ERROR] Summary grading failed: {e}")
             return {

@@ -6,7 +6,13 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn server:app -w 1 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT --timeout 120
     envVars:
-      - key: GEMINI_API_KEY
+      - key: OPENROUTER_API_KEY
         sync: false
+      - key: OPENROUTER_MODEL
+        value: google/gemini-3.1-flash-lite
+      - key: OPENROUTER_EMBEDDING_MODEL
+        value: google/gemini-embedding-001
+      - key: OPENROUTER_IMAGE_MODEL
+        value: google/gemini-2.5-flash-image
       - key: PYTHON_VERSION
         value: "3.11"

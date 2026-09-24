@@ -1,6 +1,6 @@
 """Pydantic-backed schema gate for agent responses.
 
-Each agent calls Gemini with a `response_schema` that is enforced at the model
+Each agent calls OpenRouter with a `response_schema` that is enforced at the model
 level, but bad clients, retried calls, or proxy edge-cases can still produce
 malformed payloads. This module re-validates the parsed JSON against an
 authoritative Pydantic model and returns a deterministic fallback when the

@@ -69,7 +69,7 @@ SUMMARY_DICT = {
 def _make_orchestrator():
     """Build an OrchestratorAgent and force-enable client without real API key."""
     orch = OrchestratorAgent(api_key="test-key-not-used")
-    # OrchestratorAgent.__init__ will create a genai.Client. We bypass any
+    # OrchestratorAgent.__init__ will create a OpenRouterClient. We bypass any
     # real network by patching its instance methods downstream.
     return orch
 

@@ -8,4 +8,8 @@ __pycache__/
 .pytest_cache/
 frontend/dist/
 frontend/node_modules/
+**/node_modules/
+**/.wrangler/
+**/.dev.vars
+worker-configuration.d.ts
 

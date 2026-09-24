@@ -3,19 +3,19 @@ import { Key, X, Check, Eye, EyeOff } from 'lucide-react'
 import { safeLocalStorageGet, safeLocalStorageRemove, safeLocalStorageSet } from '../lib/browserStorage'
 
 export default function SettingsModal({ isOpen, onClose }) {
-    const [apiKey, setApiKey] = useState(() => safeLocalStorageGet('gemini_api_key', ''))
+    const [apiKey, setApiKey] = useState(() => safeLocalStorageGet('openrouter_api_key', ''))
     const [saved, setSaved] = useState(false)
     const [showKey, setShowKey] = useState(false)
 
     const handleSave = () => {
         if (apiKey.trim()) {
-            safeLocalStorageSet('gemini_api_key', apiKey.trim())
+            safeLocalStorageSet('openrouter_api_key', apiKey.trim())
             setSaved(true)
             setTimeout(() => {
                 onClose()
             }, 1000)
         } else {
-            safeLocalStorageRemove('gemini_api_key')
+            safeLocalStorageRemove('openrouter_api_key')
             setApiKey('')
             setSaved(true)
         }
@@ -38,10 +38,10 @@ export default function SettingsModal({ isOpen, onClose }) {
 
                 <div className="p-6">
                     <label className="mb-2 block text-sm font-medium text-[var(--ath-text)]">
-                        Google Gemini API Key
+                        OpenRouter API Key
                     </label>
                     <p className="mb-4 text-xs leading-relaxed text-[var(--ath-muted)]">
-                        Enter your Gemini API key to enable AI features like Socratic tutoring, dynamic scenario generation, and image generation. This key is saved locally in your browser.
+                        Enter your OpenRouter API key to enable AI tutoring, scenario generation, and illustrations. The key is saved locally in this browser.
                     </p>
 
                     <div className="relative">
@@ -49,7 +49,7 @@ export default function SettingsModal({ isOpen, onClose }) {
                             type={showKey ? "text" : "password"}
                             value={apiKey}
                             onChange={(e) => setApiKey(e.target.value)}
-                            placeholder="AIzaSy..."
+                            placeholder="sk-or-v1-..."
                             className="w-full rounded-lg border border-[var(--ath-line)] bg-[var(--ath-panel)] px-4 py-2 font-mono text-sm text-[var(--ath-text)] outline-hidden transition-all focus:border-[var(--ath-primary)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--ath-primary)_30%,transparent)]"
                         />
                         <button

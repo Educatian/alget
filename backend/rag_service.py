@@ -10,12 +10,7 @@ import math
 import os
 from typing import Any, Dict, List, Optional
 
-try:
-    from google import genai
-    from google.genai import types as genai_types
-    GENAI_AVAILABLE = True
-except ImportError:
-    GENAI_AVAILABLE = False
+from openrouter_client import OpenRouterClient, types as genai_types
 
 try:
     import httpx
@@ -35,13 +30,12 @@ class RAGService:
     """Pgvector-first RAG with in-memory fallback."""
 
     def __init__(self, api_key: str = None):
-        self.api_key = api_key or os.environ.get("GEMINI_API_KEY")
-        self.embedding_model = "gemini-embedding-001"
+        self.api_key = api_key or os.environ.get("OPENROUTER_API_KEY")
+        self.embedding_model = os.environ.get(
+            "OPENROUTER_EMBEDDING_MODEL", "google/gemini-embedding-001"
+        )
 
-        if GENAI_AVAILABLE and self.api_key:
-            self.client = genai.Client(api_key=self.api_key)
-        else:
-            self.client = None
+        self.client = OpenRouterClient(api_key=self.api_key) if self.api_key else None
 
         self.supabase_url = os.environ.get("SUPABASE_URL", "").rstrip("/")
         self.supabase_key = (
@@ -78,7 +72,12 @@ class RAGService:
                 model=self.embedding_model,
                 contents=content,
             )
-            return list(response.embeddings[0].values)[:EMBEDDING_DIMENSION]
+            values = list(response.embeddings[0].values)
+            if len(values) != EMBEDDING_DIMENSION:
+                raise ValueError(
+                    f"Expected {EMBEDDING_DIMENSION} embedding dimensions; got {len(values)}"
+                )
+            return values
         except Exception as exc:
             print(f"[RAG Service] Embedding call failed: {exc}")
             return None
@@ -165,7 +164,7 @@ class RAGService:
         """Discover .mdx files under content_dir and ensure each is embedded.
 
         With Supabase: skips embedding when the stored checksum matches, so
-        cold starts are O(N file reads) instead of O(N Gemini calls).
+        cold starts are O(N file reads) instead of O(N OpenRouter calls).
         Without Supabase: falls back to one-shot in-memory indexing.
         """
         if self._is_loaded or not self.client:
@@ -206,7 +205,7 @@ class RAGService:
 
     def embed_document(self, doc_id: str, content: str, metadata: dict = None, checksum: str = None) -> bool:
         if not self.client:
-            print("[RAG Service] Error: Gemini client not initialized. Cannot embed.")
+            print("[RAG Service] Error: OpenRouter client not initialized. Cannot embed.")
             return False
 
         embedding = self._embed(content)
@@ -233,7 +232,7 @@ class RAGService:
 
     def retrieve_context(self, query: str, top_k: int = 3) -> List[Dict[str, Any]]:
         if not self.client:
-            print("[RAG Service] Error: Gemini client not initialized. Cannot retrieve.")
+            print("[RAG Service] Error: OpenRouter client not initialized. Cannot retrieve.")
             return []
 
         query_vector = self._embed(query)

@@ -12,7 +12,7 @@ except ImportError:
     pass
 
 def test_illustration_agent_direct():
-    api_key = os.environ.get("GEMINI_API_KEY")
+    api_key = os.environ.get("OPENROUTER_API_KEY")
     if not api_key:
         print("Skipping direct test - no API key found.")
         return
@@ -30,7 +30,7 @@ def test_illustration_agent_direct():
     assert 'image_prompt' in result
 
 def test_orchestrator_illustration_intent():
-    api_key = os.environ.get("GEMINI_API_KEY")
+    api_key = os.environ.get("OPENROUTER_API_KEY")
     if not api_key:
         print("Skipping orchestrator test - no API key found.")
         return

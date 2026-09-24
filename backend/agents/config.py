@@ -8,6 +8,7 @@ module should `from .config import AGENT_CONFIG` and read its own slot.
 from __future__ import annotations
 
 from dataclasses import dataclass
+import os
 
 
 @dataclass(frozen=True)
@@ -18,7 +19,7 @@ class GenerationConfig:
 
 
 # Default model for all agents. Override per-agent below if needed.
-DEFAULT_MODEL = "gemini-2.0-flash"
+DEFAULT_MODEL = os.environ.get("OPENROUTER_MODEL", "google/gemini-3.1-flash-lite")
 
 
 AGENT_CONFIG: dict[str, GenerationConfig] = {

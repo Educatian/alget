@@ -10,10 +10,10 @@ from backend.agents.simulation_agent import SimulationAgent
 
 load_dotenv()
 
-API_KEY = os.environ.get("GEMINI_API_KEY")
+API_KEY = os.environ.get("OPENROUTER_API_KEY")
 
 if not API_KEY:
-    print("Error: GEMINI_API_KEY not found in .env")
+    print("Error: OPENROUTER_API_KEY not found in .env")
     sys.exit(1)
 
 def test_simulation_agent():
