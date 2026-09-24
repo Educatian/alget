@@ -5,6 +5,7 @@ import API_BASE from '../lib/apiConfig'
 import { safeSessionStorageGet, safeSessionStorageRemove, safeSessionStorageSet } from '../lib/browserStorage'
 import { fetchResearchDashboardSnapshot, fetchRctSnapshot, getResearchDashboardSnapshot } from '../lib/researchService'
 import { supabase } from '../lib/supabase'
+import ProcessSequenceMiningPanel from '../components/ProcessSequenceMiningPanel'
 import '../index.css'
 
 const EMPTY_SOCIAL = {
@@ -919,6 +920,8 @@ export default function AnalyticsDashboard() {
                         </div>
                     </div>
                 </section>
+
+                <ProcessSequenceMiningPanel />
 
                 <section className="editorial-section">
                     <header className="editorial-section-header">
