@@ -272,7 +272,7 @@ For ALGET's 22 HIGH-tier clips: Tier A pilot (1-2 clips) → Tier B for the bulk
 
 - **NotebookLM ToS for downstream redistribution.** Audio Overview output is OK for personal/educational use; redistributing as a commercial product needs review with Google's terms. Educational research deployment likely fine but check with the institution's legal.
 - **Voice unfamiliarity.** ALGET learners may notice if the same two NotebookLM hosts narrate every clip. Consider rotating Tier B with Tier D to add variety.
-- **Mobile playback.** Remotion-rendered MP4s are standard codec; play fine in mobile browsers. Test on the deployment Vercel build.
+- **Mobile playback.** Remotion-rendered MP4s are standard codec; play fine in mobile browsers. Test on the deployed Cloudflare Pages site.
 - **Captions and accessibility.** WCAG 2.1 requires captions for educational video. Word-level timing from Whisper is high-quality input for caption files.
 - **Research-data telemetry.** Time-on-clip, replay frequency, and pause-points are all useful signals; instrument via `loggingService.logEvent('clip_play', {...})` on `<Player>` events.
 

@@ -24,7 +24,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-# Load .env file (do NOT override existing env vars — Render sets them at the OS level)
+# Load .env file (do NOT override values provided by the deployment environment)
 from dotenv import load_dotenv
 load_dotenv()  # only fills in vars that are not already set
 
@@ -110,7 +110,7 @@ app.add_middleware(
         "http://localhost:5173",
         "http://127.0.0.1:5173",
         "http://localhost:3000",
-        "https://alget.vercel.app"
+        "https://alget.pages.dev"
     ],
     allow_origin_regex="https?://.*",
     allow_credentials=True,

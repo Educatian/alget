@@ -11,13 +11,13 @@ ALGET pairs canonical engineering and instructional-design content with a learni
 
 ```
 ┌─────────────────┐         ┌──────────────────────┐         ┌──────────────────┐
-│  Vercel Frontend│  HTTPS  │   Render Backend     │  HTTPS  │  Supabase (PG13) │
-│  React 19 · Vite│ ──────▶ │  FastAPI · Gunicorn  │ ──────▶ │  RLS · Realtime  │
-│  Tailwind v4    │         │  15 LLM agents       │         │  6 SQL schemas   │
-└─────────────────┘         └──────────────────────┘         └──────────────────┘
-        ▲                            ▲
-        │ @supabase/supabase-js      │ OpenRouter API (google/gemini-3.1-flash-lite)
-        └────────────────────────────┘
+│ Cloudflare Pages │ HTTPS │ Cloudflare Worker + Container │ HTTPS │ Supabase │
+│ React 19 · Vite  │ ────▶ │ FastAPI · 15 LLM agents       │ ────▶ │ RLS · Realtime │
+│ Tailwind v4      │       │ OpenRouter API                │       │ PostgreSQL + pgvector │
+└──────────────────┘       └───────────────────────────────┘       └────────────────────┘
+        ▲                                   ▲
+        │ @supabase/supabase-js             │ OpenRouter (google/gemini-3.1-flash-lite)
+        └───────────────────────────────────┘
 ```
 
 ---
@@ -361,8 +361,8 @@ alget/
 ├── ui_design_recommendations.md       ← design-system rationale (Korean)
 ├── REMOTION_ANIMATION_MAP.md          ← per-section Remotion priority map
 ├── NOTEBOOKLM_REMOTION_INTEGRATION.md ← audio + video pipeline architecture
-├── render.yaml                        ← Render backend deploy spec
-├── vercel.json                        ← Vercel frontend deploy spec
+├── cloudflare/backend-worker/         ← Cloudflare Worker + Container deployment
+├── Dockerfile.cloudflare              ← Cloudflare Container image
 ├── requirements.txt                   ← Python deps
 │
 ├── backend/
@@ -463,19 +463,15 @@ alget/
 
 ## 12. Deployment
 
-### 12.1 Backend — Render
+### 12.1 Frontend — Cloudflare Pages
 
-`render.yaml` → `gunicorn server:app -w 1 -k uvicorn.workers.UvicornWorker --timeout 120`. Single worker is intentional: free tier memory ceiling + in-memory RAG index consistency. Required env vars: `OPENROUTER_API_KEY`, optional access codes (see `DEPLOYMENT_ENV.md`).
+The production site is `https://alget.pages.dev`, built from the `cloudflare-production` branch. Cloudflare Pages serves the React single-page app, including deep links. `frontend/src/lib/apiConfig.js` uses `/api` through the Vite proxy in development and `https://alget-backend.jewoong-moon.workers.dev/api` in production unless `VITE_API_BASE` is explicitly set.
 
-### 12.2 Frontend — Vercel
+### 12.2 Backend — Cloudflare Workers and Containers
 
-`vercel.json` provides SPA fallback + (legacy) `/api/*` rewrite. Production build calls Render directly via `apiConfig.js` → `https://alget.onrender.com/api` to bypass Vercel's 15-s timeout (commit `fd82b97`).
+The `alget-backend` Worker forwards API requests to the FastAPI application in a Cloudflare Container. Deploy from `cloudflare/backend-worker` using its Wrangler configuration and deployment instructions in [`docs/CLOUDFLARE_BACKEND_MIGRATION.md`](docs/CLOUDFLARE_BACKEND_MIGRATION.md). Configure backend credentials as encrypted Worker secrets; never commit their values. The frontend calls the Worker directly, so Pages does not proxy API requests.
 
-### 12.3 Cold-start mitigation
-
-`App.jsx:36-37` pings `/book/inst-design/toc` on mount to wake the Render free-tier worker before the user clicks anything. Cold-start latency: ~10–30 s when the in-memory RAG index re-builds.
-
-### 12.4 Database — Supabase
+### 12.3 Database — Supabase
 
 PostgreSQL 13 + Realtime. RLS active on every table. `learner_concept_state` is mirrored from BKT on every grade call (commit `c3ec51c`).
 

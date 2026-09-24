@@ -1,7 +1,7 @@
 """Retrieval-Augmented Generation service for ALGET.
 
 Persists embeddings in Supabase pgvector when configured (so the index
-survives Render free-tier cold starts) and falls back to an in-memory
+survives backend container restarts) and falls back to an in-memory
 cosine search when Supabase env vars are missing (local dev / offline).
 """
 import glob

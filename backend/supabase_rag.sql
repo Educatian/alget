@@ -1,6 +1,6 @@
 -- pgvector-backed RAG store for ALGET.
 -- Replaces the in-memory cosine search in rag_service.py with a durable
--- index that survives Render free-tier cold starts.
+-- index that survives backend container restarts.
 
 create extension if not exists vector;
 

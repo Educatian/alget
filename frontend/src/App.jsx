@@ -44,7 +44,7 @@ export default function App() {
   const [loading, setLoading] = useState(!E2E_USER)
 
   useEffect(() => {
-    // Wake up backend immediately (Render free tier sleeps after inactivity)
+    // Load the course table of contents when the app starts.
     fetch(`${API_BASE}/book/inst-design/toc`, { method: 'GET' }).catch(() => {})
 
     if (E2E_USER) {
