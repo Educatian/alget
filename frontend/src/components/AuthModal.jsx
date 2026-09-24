@@ -1,11 +1,12 @@
 import { useMemo, useState } from 'react'
-import { isSupabaseConfigured, resetPassword, signIn, signUp } from '../lib/supabase'
+import { isSupabaseConfigured, resetPassword, signIn, signInWithGoogle, signUp } from '../lib/supabase'
 
 const DEMO_USER = {
     email: 'demo@alget.local',
     id: '00000000-0000-0000-0000-000000000000',
     isDemo: true
 }
+const allowDemoAuth = import.meta.env.DEV || import.meta.env.VITE_ENABLE_DEMO_AUTH === 'true'
 
 export default function AuthModal({ isOpen, onClose, onSuccess }) {
     const [mode, setMode] = useState('signin')
@@ -43,6 +44,20 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
 
     const enterDemoMode = () => {
         onSuccess?.(DEMO_USER)
+    }
+
+    const handleGoogleSignIn = async () => {
+        setLoading(true)
+        setError('')
+        setMessage('')
+
+        try {
+            const { error: signInError } = await signInWithGoogle()
+            if (signInError) throw signInError
+        } catch (err) {
+            setError(err?.message || 'Google sign-in could not be started.')
+            setLoading(false)
+        }
     }
 
     const handleSubmit = async (event) => {
@@ -120,6 +135,25 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
                         </div>
                     )}
 
+                    {mode === 'signin' && isSupabaseConfigured && (
+                        <div className="mb-5 space-y-4">
+                            <button
+                                type="button"
+                                onClick={handleGoogleSignIn}
+                                disabled={loading}
+                                className="editorial-button-secondary flex w-full items-center justify-center gap-3 px-5 py-3.5 text-sm disabled:opacity-60"
+                            >
+                                <span aria-hidden="true" className="font-bold text-base">G</span>
+                                {loading ? 'Connecting to Google…' : 'Continue with Google'}
+                            </button>
+                            <div className="flex items-center gap-3 text-xs uppercase tracking-[0.14em] text-[var(--ath-muted)]">
+                                <span className="h-px flex-1 bg-[var(--ath-line)]" />
+                                <span>or use email</span>
+                                <span className="h-px flex-1 bg-[var(--ath-line)]" />
+                            </div>
+                        </div>
+                    )}
+
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
                             <label className="editorial-label mb-2 block">Email</label>
@@ -180,29 +214,31 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
                         </button>
                     </form>
 
-                    <div className="mt-6 rounded-[1.4rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4">
-                        <p className="editorial-label">Testing and demo</p>
-                        <div className="mt-3 flex flex-wrap gap-3">
-                            <button
-                                type="button"
-                                onClick={enterDemoMode}
-                                className="editorial-button-secondary px-4 py-2 text-sm"
-                            >
-                                Continue in Demo Mode
-                            </button>
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    setEmail('demo@alget.local')
-                                    setPassword('demo1234')
-                                    switchMode('signin')
-                                }}
-                                className="editorial-button-secondary px-4 py-2 text-sm"
-                            >
-                                Fill Sample Credentials
-                            </button>
+                    {allowDemoAuth && (
+                        <div className="mt-6 rounded-[1.4rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4">
+                            <p className="editorial-label">Testing and demo</p>
+                            <div className="mt-3 flex flex-wrap gap-3">
+                                <button
+                                    type="button"
+                                    onClick={enterDemoMode}
+                                    className="editorial-button-secondary px-4 py-2 text-sm"
+                                >
+                                    Continue in Demo Mode
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        setEmail('demo@alget.local')
+                                        setPassword('demo1234')
+                                        switchMode('signin')
+                                    }}
+                                    className="editorial-button-secondary px-4 py-2 text-sm"
+                                >
+                                    Fill Sample Credentials
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    )}
 
                     <div className="mt-6 text-center text-sm">
                         {mode === 'signin' && (
