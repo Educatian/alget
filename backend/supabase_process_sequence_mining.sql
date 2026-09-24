@@ -23,6 +23,13 @@ CREATE TABLE IF NOT EXISTS public.process_mining_reviews (
     UNIQUE (run_id, reviewer_id)
 );
 
+CREATE INDEX IF NOT EXISTS idx_process_mining_runs_created_at
+    ON public.process_mining_runs (created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_process_mining_runs_created_by
+    ON public.process_mining_runs (created_by, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_process_mining_reviews_reviewer
+    ON public.process_mining_reviews (reviewer_id, created_at DESC);
+
 ALTER TABLE public.process_mining_runs ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.process_mining_reviews ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Instructors read process mining runs" ON public.process_mining_runs;
