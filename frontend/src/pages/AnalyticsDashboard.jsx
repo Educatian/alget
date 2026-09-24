@@ -336,6 +336,19 @@ export default function AnalyticsDashboard() {
         }
     }, [isAuthenticated])
 
+    useEffect(() => {
+        let active = true
+        if (typeof supabase.rpc !== 'function') return () => { active = false }
+        supabase.rpc('can_access_research_console')
+            .then(({ data, error: accessError }) => {
+                if (!active || accessError || data !== true) return
+                safeSessionStorageSet('alget_researcher_access', 'granted')
+                setIsAuthenticated(true)
+            })
+            .catch(() => {})
+        return () => { active = false }
+    }, [])
+
     if (!isAuthenticated) {
         return (
             <div className="editorial-shell flex min-h-screen items-center justify-center p-4">

@@ -2,6 +2,9 @@ import { describe, expect, it, beforeEach, afterEach, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import AnalyticsDashboard from './AnalyticsDashboard'
+import { safeSessionStorageGet } from '../lib/browserStorage'
+
+const { canAccessResearchConsole } = vi.hoisted(() => ({ canAccessResearchConsole: vi.fn() }))
 
 vi.mock('../lib/browserStorage', () => ({
     safeSessionStorageGet: vi.fn(() => 'granted'),
@@ -98,6 +101,7 @@ vi.mock('../lib/supabase', () => {
     return {
         isSupabaseConfigured: true,
         supabase: {
+            rpc: canAccessResearchConsole,
             auth: {
                 getSession: async () => ({ data: { session: { user: { id: 'researcher-1' } } } }),
             },
@@ -109,6 +113,7 @@ vi.mock('../lib/supabase', () => {
 describe('AnalyticsDashboard integration', () => {
     beforeEach(() => {
         globalThis.fetch = vi.fn()
+        canAccessResearchConsole.mockResolvedValue({ data: false, error: null })
     })
 
     afterEach(() => {
@@ -129,5 +134,19 @@ describe('AnalyticsDashboard integration', () => {
         expect(screen.getByText(/Signal mix today/i)).toBeInTheDocument()
         expect(screen.getByText(/Artifact revision/i)).toBeInTheDocument()
         expect(screen.getByText('Weak evidence alignment')).toBeInTheDocument()
+    })
+
+    it('unlocks the research console for an authorized instructor or admin account', async () => {
+        safeSessionStorageGet.mockReturnValue(null)
+        canAccessResearchConsole.mockResolvedValue({ data: true, error: null })
+
+        render(
+            <MemoryRouter>
+                <AnalyticsDashboard />
+            </MemoryRouter>,
+        )
+
+        expect(await screen.findByText(/Intervention queue/i)).toBeInTheDocument()
+        expect(canAccessResearchConsole).toHaveBeenCalledWith('can_access_research_console')
     })
 })
