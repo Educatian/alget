@@ -42,7 +42,7 @@ const engineeringCourses = [
         topics: ['Equilibrium', 'FBDs', 'Moments', 'Trusses'],
         chapters: 6,
         sections: 14,
-        duration: '15 weeks',
+        moduleLabel: '6 modules',
         level: 'Core Requirement',
         gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
         badge: 'Core'
@@ -55,7 +55,7 @@ const engineeringCourses = [
         topics: ['Kinematics', 'Kinetics', 'Work & Energy', 'Impulse & Momentum'],
         chapters: 10,
         sections: 45,
-        duration: '15 weeks',
+        moduleLabel: '10 modules',
         level: 'Core Requirement',
         gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
         badge: null
@@ -68,7 +68,7 @@ const engineeringCourses = [
         topics: ['Biomimicry', 'Natural Structures', 'Filtration', 'Adhesion'],
         chapters: 7,
         sections: 21,
-        duration: 'Studio-paced',
+        moduleLabel: '7 modules',
         level: 'Advanced Track',
         gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
         badge: 'Lab-enabled'
@@ -84,7 +84,7 @@ const educationCourses = [
         topics: ['Learning Theories', 'ADDIE', 'Assessment', 'Pedagogy'],
         chapters: 8,
         sections: 32,
-        duration: '12 weeks',
+        moduleLabel: '8 modules',
         level: 'Core Requirement',
         gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
         badge: 'Research-ready'
@@ -97,7 +97,7 @@ const educationCourses = [
         topics: ['Bias & Fairness', 'Accountability', 'Privacy', 'AI in Education'],
         chapters: 6,
         sections: 12,
-        duration: '8 weeks',
+        moduleLabel: '6 modules',
         level: 'Cross-disciplinary',
         gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
         badge: 'New'
@@ -110,7 +110,7 @@ const educationCourses = [
         topics: ['LXD', 'Multimedia Learning', 'Prototype Testing', 'AI Disclosure'],
         chapters: 8,
         sections: 64,
-        duration: '5-week intensive',
+        moduleLabel: '8 modules',
         level: 'Graduate Supplement',
         gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
         badge: 'Summer 2026'
@@ -123,7 +123,7 @@ const educationCourses = [
         topics: ['DTS', 'TeachGen@i', 'Ethobot', 'EdTech Evaluation'],
         chapters: 8,
         sections: 64,
-        duration: '5-week intensive',
+        moduleLabel: '8 modules',
         level: 'Teacher Education',
         gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
         badge: 'Rebuilt'
@@ -136,7 +136,7 @@ const educationCourses = [
         topics: ['Digital Skills', 'Excel', 'AI Critique', 'GitHub Pages'],
         chapters: 8,
         sections: 64,
-        duration: '5-week intensive',
+        moduleLabel: '8 modules',
         level: 'Undergraduate',
         gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
         badge: 'Expanded'
@@ -556,7 +556,7 @@ export default function MainApp({ user, onLogout }) {
                                         <div className="mt-8 flex items-center justify-between border-t border-[var(--ath-line)] pt-5">
                                             <div className="flex items-center gap-2 text-sm font-medium text-[var(--ath-muted)]">
                                                 <BookOpen className="h-4 w-4" />
-                                                <span>{course.duration}</span>
+                                                <span>{course.moduleLabel}</span>
                                             </div>
                                             <span className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--ath-primary)] transition-transform group-hover:translate-x-1">
                                                 Start pathway
