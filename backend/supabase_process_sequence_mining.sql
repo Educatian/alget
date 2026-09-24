@@ -96,7 +96,7 @@ BEGIN
         WHERE e.section_id IS NOT NULL
           AND e.event_type = ANY(v_types)
           AND (p_course_id IS NULL OR split_part(e.section_id, '/', 1) = p_course_id)
-          AND (p_module IS NULL OR split_part(e.section_id, '/', 2) = p_module)
+          AND (p_module IS NULL OR split_part(e.section_id, '/', 2) || '/' || split_part(e.section_id, '/', 3) = p_module)
     )
     SELECT (SELECT count(*) FROM all_events), (SELECT count(*) FROM scoped),
            (SELECT count(DISTINCT user_id) FROM scoped),
@@ -122,18 +122,19 @@ BEGIN
         );
         WITH scoped AS (
             SELECT e.*, split_part(e.section_id, '/', 1) AS course_id,
-                   split_part(e.section_id, '/', 2) AS module_id
+                   split_part(e.section_id, '/', 2) AS module_id,
+                   CASE WHEN p_module IS NULL THEN split_part(e.section_id, '/', 1) ELSE e.section_id END AS analysis_scope
             FROM public.event_logs e
             WHERE e.section_id IS NOT NULL AND e.event_type = ANY(v_types)
               AND (p_from IS NULL OR e.client_ts >= p_from) AND (p_to IS NULL OR e.client_ts < p_to)
               AND (p_course_id IS NULL OR split_part(e.section_id, '/', 1) = p_course_id)
-              AND (p_module IS NULL OR split_part(e.section_id, '/', 2) = p_module)
+              AND (p_module IS NULL OR split_part(e.section_id, '/', 2) || '/' || split_part(e.section_id, '/', 3) = p_module)
         ), eligible AS (
             SELECT * FROM scoped WHERE user_id IN (SELECT DISTINCT user_id FROM scoped)
         ), ordered AS (
-            SELECT *, lag(event_type) OVER (PARTITION BY session_id, section_id ORDER BY sequence_num) AS prev_type,
-                lag(client_ts) OVER (PARTITION BY session_id, section_id ORDER BY sequence_num) AS prev_ts,
-                row_number() OVER (PARTITION BY session_id, section_id ORDER BY sequence_num) AS pos
+            SELECT *, lag(event_type) OVER (PARTITION BY session_id, analysis_scope ORDER BY sequence_num) AS prev_type,
+                lag(client_ts) OVER (PARTITION BY session_id, analysis_scope ORDER BY sequence_num) AS prev_ts,
+                row_number() OVER (PARTITION BY session_id, analysis_scope ORDER BY sequence_num) AS pos
             FROM eligible
         ), dfg AS (
             SELECT prev_type AS source, event_type AS target, count(*) AS transitions,
@@ -143,18 +144,18 @@ BEGIN
             GROUP BY prev_type, event_type HAVING count(DISTINCT user_id) >= p_min_learners
             ORDER BY transitions DESC LIMIT 25
         ), paths AS (
-            SELECT session_id, section_id, user_id, array_agg(event_type ORDER BY sequence_num) AS path
-            FROM eligible GROUP BY session_id, section_id, user_id
+            SELECT session_id, analysis_scope, user_id, array_agg(event_type ORDER BY sequence_num) AS path
+            FROM eligible GROUP BY session_id, analysis_scope, user_id
         ), variants AS (
             SELECT path, count(DISTINCT user_id) AS learners, count(*) AS cases
             FROM paths GROUP BY path HAVING count(DISTINCT user_id) >= p_min_learners
             ORDER BY learners DESC, cases DESC LIMIT 20
         ), ngrams AS (
-            SELECT o.user_id, o.session_id, o.section_id, o.pos,
+            SELECT o.user_id, o.session_id, o.analysis_scope, o.pos,
                    array_agg(n.event_type ORDER BY n.pos) AS sequence
-            FROM ordered o JOIN ordered n ON n.session_id = o.session_id AND n.section_id = o.section_id
+            FROM ordered o JOIN ordered n ON n.session_id = o.session_id AND n.analysis_scope = o.analysis_scope
                 AND n.pos BETWEEN o.pos AND o.pos + p_max_sequence_length - 1
-            GROUP BY o.user_id, o.session_id, o.section_id, o.pos
+            GROUP BY o.user_id, o.session_id, o.analysis_scope, o.pos
             HAVING count(*) >= 2
         ), sequence_support AS (
             SELECT sequence, count(DISTINCT user_id) AS learners, count(*) AS occurrences

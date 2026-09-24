@@ -90,7 +90,7 @@ export default function ProcessSequenceMiningPanel() {
             <header className="editorial-section-header">
                 <p className="editorial-kicker">Learning Process Research</p>
                 <h2 id="process-sequence-title" className="text-base font-semibold text-[var(--ath-text)]">프로세스마이닝 · 시퀀스마이닝</h2>
-                <p className="editorial-section-lead">모듈별 학습 흐름, 자주 나타나는 이벤트 순서, 단계 간 체류시간을 코호트 기준으로 분석하고 독립 검수합니다. 개인별 기록과 식별자는 결과에 포함하지 않습니다.</p>
+                <p className="editorial-section-lead">과목 범위에서는 모듈 간 전이를 연결하고, 모듈 ID(예: 01/02)를 지정하면 해당 모듈만 봅니다. 자주 나타나는 이벤트 순서와 단계 간 체류시간을 코호트 기준으로 분석하고 독립 검수합니다. 개인별 기록과 식별자는 결과에 포함하지 않습니다.</p>
             </header>
 
             <div className="grid gap-6 xl:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)]">
@@ -101,7 +101,7 @@ export default function ProcessSequenceMiningPanel() {
                             <input value={course} onChange={(e) => setCourse(e.target.value)} placeholder="전체 과목 또는 inst-design" className="editorial-input mt-1" />
                         </label>
                         <label className="text-xs font-semibold text-[var(--ath-muted)]">모듈 번호
-                            <input value={module} onChange={(e) => setModule(e.target.value)} placeholder="전체 또는 01" className="editorial-input mt-1" />
+                            <input value={module} onChange={(e) => setModule(e.target.value)} placeholder="전체 또는 01/02" className="editorial-input mt-1" />
                         </label>
                         <label className="text-xs font-semibold text-[var(--ath-muted)]">시작일
                             <input type="date" value={from} onChange={(e) => setFrom(e.target.value)} className="editorial-input mt-1" />
