@@ -124,11 +124,16 @@ test.describe('ALGET full learner workflow', () => {
             await select.selectOption('2')
         }
 
+        // Support rationale is visible before submit, not hidden in a tooltip
+        await expect(page.getByText(/Why this support now: audit/i)).toBeVisible()
+        await expect(page.getByText(/8\/8 fields filled/i)).toBeVisible()
+
         await page.getByRole('button', { name: 'Submit' }).first().click()
 
         await expect(page.getByText(/Revision quality/i)).toBeVisible()
         await expect(page.getByText(/79%/)).toBeVisible()
         await expect(page.getByText(/Next: audit/i)).toBeVisible()
+        await expect(page.getByText(/artifact trace completeness 1\.0/i)).toBeVisible()
 
         expect(failures, failures.join('\n')).toEqual([])
     })

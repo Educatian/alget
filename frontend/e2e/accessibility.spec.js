@@ -21,6 +21,8 @@ test.describe('ALGET accessibility gate', () => {
 
             const results = await new AxeBuilder({ page })
                 .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+                // Third-party player internals are outside ALGET's DOM (iframe title is covered by ReadingNarrative.test).
+                .exclude('iframe[src*="youtube"]')
                 .analyze()
 
             const blockingViolations = results.violations.filter((violation) =>

@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
 import { recordAdaptiveSignal, updateMastery } from '../lib/knowledgeService';
 
-export default function InteractiveQuiz({ question, options, explanation, conceptId, defaultConceptId, sectionId }) {
+export default function InteractiveQuiz({ question, options, explanation, conceptId, conceptid, defaultConceptId, sectionId, ...rest }) {
     const [selectedOption, setSelectedOption] = useState(null);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [feedbackSaved, setFeedbackSaved] = useState(false);
+    // Markdown attributes arrive under the raw HTML name (`correct-index`).
+    const correctIndex = Number(rest['correct-index'] ?? rest.correctIndex ?? -1);
 
     let parsedOptions = [];
     try {
-        parsedOptions = typeof options === 'string' ? JSON.parse(options) : (options || []);
+        const rawOptions = typeof options === 'string' ? JSON.parse(options) : (options || []);
+        // Supplement content uses plain strings + correct-index; other books use {text, isCorrect}.
+        parsedOptions = rawOptions.map((opt, idx) => (
+            typeof opt === 'string'
+                ? { text: opt, isCorrect: idx === correctIndex }
+                : { ...opt, isCorrect: Boolean(opt.isCorrect ?? opt.correct) }
+        ));
     } catch (e) {
         console.error('InteractiveQuiz: Failed to parse options JSON:', e.message, '\nRaw options:', options);
         return (
@@ -30,7 +38,7 @@ export default function InteractiveQuiz({ question, options, explanation, concep
         if (selectedOption === null) return;
         setIsSubmitted(true);
 
-        const resolvedConceptId = conceptId || defaultConceptId || null;
+        const resolvedConceptId = conceptId || conceptid || defaultConceptId || null;
         const wasCorrect = Boolean(parsedOptions[selectedOption]?.isCorrect);
 
         if (sectionId) {

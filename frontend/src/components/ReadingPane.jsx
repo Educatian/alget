@@ -198,6 +198,16 @@ export default function ReadingPane({
                             </li>
                         ))}
                     </ol>
+                    {canResumeRecent && (
+                        <p
+                            aria-label="Returning Learner Check-In"
+                            className="mt-3 rounded-lg bg-[var(--ath-panel)] px-3 py-2 text-xs leading-5 text-[var(--ath-muted)]"
+                        >
+                            <span className="font-semibold text-[var(--ath-text)]">Welcome back.</span>{' '}
+                            You were last in {recentSection.chapter}.{recentSection.section}{recentSection.title ? ` ${recentSection.title}` : ''} ({formatRecentTimestamp(recentSection.updatedAt)}).
+                            Before moving on, recall one AI suggestion you kept or rejected there — judging AI feedback is part of the work.
+                        </p>
+                    )}
                 </div>
             </header>
 

@@ -769,7 +769,7 @@ export default function AnalyticsDashboard() {
                     </div>
                 </section>
 
-                <section className="editorial-surface p-8">
+                <section className="editorial-surface p-8" aria-label="Artifact revision cohort dashboard">
                     <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
                         <div>
                             <h2 className="text-sm font-semibold text-[var(--ath-text)]">Artifact revision / cohort</h2>

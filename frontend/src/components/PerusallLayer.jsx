@@ -255,16 +255,17 @@ export default function PerusallLayer({ sectionId, conceptIds = [] }) {
         setComposing(false)
     }
 
+    const syncDescription = isSupabaseConfigured
+        ? isSynced
+            ? 'Notes are shared with your course'
+            : 'Offline local annotation mode: course sync is unavailable, so new notes are saved on this device'
+        : 'Offline local annotation mode: notes are saved on this device only'
     const syncBadge = (
         <span
             className="inline-flex items-center gap-1 rounded-full bg-[var(--ath-panel)] px-2 py-0.5 text-[10px] font-semibold text-[var(--ath-secondary)]"
-            title={
-                isSupabaseConfigured
-                    ? isSynced
-                        ? 'Annotations sync to the research layer'
-                        : 'Saved locally — will sync when the annotations table is reachable'
-                    : 'Annotations are stored on this device only'
-            }
+            title={syncDescription}
+            aria-label={syncDescription}
+            role="status"
         >
             <span className={`h-1.5 w-1.5 rounded-full ${isSupabaseConfigured && isSynced ? 'bg-emerald-500' : 'bg-amber-400'}`} aria-hidden />
             {isSupabaseConfigured && isSynced ? 'Synced' : 'Local'}

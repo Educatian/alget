@@ -19,19 +19,19 @@ const SUPPORT_MOVES = [
         id: 'explain',
         label: 'Explain',
         icon: Lightbulb,
-        rationale: 'Chosen when the trace is still thin and the learner needs a bounded concept explanation before revising.',
+        rationale: 'Your work so far is still thin, so a short concept explanation comes before revising.',
     },
     {
         id: 'compare',
         label: 'Compare',
         icon: GitCompareArrows,
-        rationale: 'Chosen when the learner has evidence but needs to contrast weak and strong artifact decisions.',
+        rationale: 'You have evidence in place; comparing a weak and a strong version will sharpen your decisions.',
     },
     {
         id: 'audit',
         label: 'Audit',
         icon: ShieldCheck,
-        rationale: 'Chosen when the trace is mostly complete and the learner needs a final quality or risk check.',
+        rationale: 'Your work is nearly complete, so a final quality and risk check is the most useful next step.',
     },
 ]
 
@@ -574,13 +574,12 @@ export default function ArtifactStudio({ artifact, course, section, sectionId, c
                             />
                             <span className="text-[10px] text-[var(--ath-secondary)]">High</span>
                             <span className="rounded-full bg-[var(--ath-panel)] px-2 py-0.5 text-xs font-semibold text-[var(--ath-text)]">{confidence}</span>
-                            <span
-                                className="ml-auto rounded-full border border-[var(--ath-line)] bg-[rgba(200,226,236,0.3)] px-2.5 py-1 text-[10px] font-semibold text-[var(--ath-primary)]"
-                                title={supportRationale}
-                            >
-                                Recommended: {recommendedSupportMove}
-                            </span>
                         </div>
+
+                        <p className="rounded-xl border border-[var(--ath-line)] bg-[rgba(200,226,236,0.3)] px-3 py-2 text-xs leading-5 text-[var(--ath-text)]">
+                            <span className="font-semibold text-[var(--ath-primary)]">Why this support now: {recommendedSupportMove}</span>
+                            {' | '}{traceScore}/8 fields filled. {supportRationale}
+                        </p>
 
                         {revisionScore?.scores && (
                             <div className="rounded-xl border border-[var(--ath-line)] bg-white p-3">

@@ -326,6 +326,10 @@ export default function KnowledgeGraph({
 
     const nodeCount = graphData.nodes.length
     const focusedChapterTitle = graphData.nodes[0]?.chapter_title || ''
+    // Evidence-needed first, then developing: that is where one more annotation pays off most.
+    const nextNode = graphData.nodes.find((node) => !node.is_current && !['mastered', 'emerging'].includes(node.status))
+        || graphData.nodes.find((node) => !node.is_current && node.status === 'emerging')
+    const nextLabel = nextNode ? nextNode.label || humanizeLabel(nextNode.id) : null
 
     return (
         <div className="knowledge-graph-mount bg-slate-950 rounded-2xl p-4 shadow-xl overflow-hidden relative border border-slate-800">
@@ -481,6 +485,21 @@ export default function KnowledgeGraph({
                     drag · scroll to zoom
                 </div>
             </div>
+
+            <details className="mt-3 rounded-xl border border-slate-800 bg-slate-900/70 px-3 py-2 text-xs text-slate-300">
+                <summary className="cursor-pointer list-none">
+                    <span className="font-bold uppercase tracking-[0.16em] text-amber-200">Next action</span>
+                    <span className="ml-2">
+                        {nextLabel
+                            ? <>Open <button type="button" onClick={() => handleNodeClick(nextNode)} className="font-semibold text-white underline decoration-amber-300/60 underline-offset-2">{nextLabel}</button>, annotate one source-backed claim, then revise your work product.</>
+                            : 'Every concept here has evidence. Revise your work product and explain which AI feedback you kept or rejected.'}
+                    </span>
+                </summary>
+                <p className="mt-2 leading-5 text-slate-400">
+                    <span className="font-bold uppercase tracking-[0.16em] text-indigo-200">What this shows</span>{' '}
+                    Node color is not a grade. It reflects how much usable evidence exists for each concept from your reading, annotations, practice, and work product traces.
+                </p>
+            </details>
         </div>
     )
 }

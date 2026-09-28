@@ -69,6 +69,10 @@ describe('ReadingNarrative markdown extension contract', () => {
                 content={`# UDL
 
 <youtube-embed id="PHOJwnSV6t4" title="Universal Design for Learning and CAST" caption="Use this after reading to compare the section's design language with a UDL overview." />
+
+## After The Video
+
+Body text must survive a self-closing custom element.
 `}
             />,
         )
@@ -76,5 +80,27 @@ describe('ReadingNarrative markdown extension contract', () => {
         const frame = await screen.findByTitle('Universal Design for Learning and CAST')
         expect(frame).toHaveAttribute('src', expect.stringContaining('youtube-nocookie.com/embed/PHOJwnSV6t4'))
         expect(screen.getByText(/compare the section's design language/i)).toBeInTheDocument()
+        expect(screen.getByRole('heading', { name: 'After The Video' })).toBeInTheDocument()
+        expect(screen.getByText(/Body text must survive/i)).toBeInTheDocument()
+    })
+
+    it('renders supplement quizzes that use string options with correct-index', async () => {
+        render(
+            <ReadingNarrative
+                sectionId="ail606-supplement/01/01"
+                course="ail606-supplement"
+                conceptIds={['cl']}
+                content={`# Quiz
+
+<interactive-quiz question="Which move helps revision?" options='["Longer text", "Name a decision and cite evidence"]' correct-index="1" conceptid="cl" />
+`}
+            />,
+        )
+
+        const correct = await screen.findByRole('button', { name: 'Name a decision and cite evidence' })
+        expect(screen.getByRole('button', { name: 'Longer text' })).toBeInTheDocument()
+        correct.click()
+        ;(await screen.findByRole('button', { name: 'Check Answer' })).click()
+        expect(await screen.findByText('OK')).toBeInTheDocument()
     })
 })

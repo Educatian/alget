@@ -74,8 +74,15 @@ function createAnchorId(prefix, value) {
     return `${prefix}-${slug || 'section'}`
 }
 
+// HTML parsing (rehype-raw) ignores "/>" on custom elements, so `<youtube-embed ... />` would
+// swallow the rest of the section as its children. Expand to an explicit close tag; the newline
+// keeps it a standalone markdown HTML block instead of inline HTML inside a <p>.
+function expandSelfClosingCustomElements(source) {
+    return source.replace(/<([a-z][a-z0-9]*-[a-z0-9-]*)(\s[^<>]*?)?\s*\/>/gi, '<$1$2>\n</$1>')
+}
+
 function normalizeMarkdownSource(source) {
-    const lines = String(source || '').replace(/\r\n/g, '\n').split('\n')
+    const lines = expandSelfClosingCustomElements(String(source || '').replace(/\r\n/g, '\n')).split('\n')
     const nonEmptyLines = lines.filter((line) => line.trim().length > 0)
     const getIndent = (line) => line.match(/^\s*/)?.[0]?.length || 0
     const commonIndent = nonEmptyLines.reduce((current, line) => {

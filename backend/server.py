@@ -28,6 +28,7 @@ logger = logging.getLogger(__name__)
 from dotenv import load_dotenv
 load_dotenv()  # only fills in vars that are not already set
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from openrouter_client import OpenRouterClient
 from openrouter_client import types as genai_types
 
@@ -58,8 +59,6 @@ def get_api_key(request=None):
     print("[AUTH WARNING] No valid API key found!")
     return None
 
-# Add current directory to path for imports
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from agents.orchestrator import OrchestratorAgent
 from agents.curriculum_agent import CurriculumAgent

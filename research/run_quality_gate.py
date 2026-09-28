@@ -267,12 +267,13 @@ def check_perusall_reading_integration() -> dict:
         and "AxeBuilder" in accessibility_smoke
         and "serious" in accessibility_smoke
         and "critical" in accessibility_smoke,
-        "full_learner_workflow_gate": "add public note" in learner_workflow.lower()
-        and "initial work product draft" in learner_workflow.lower()
+        "full_learner_workflow_gate": "add note" in learner_workflow.lower()
+        and "paste or summarize the current draft" in learner_workflow.lower()
         and "artifact-revision/score" in learner_workflow
         and "artifact-trace/validate" in learner_workflow
-        and "backend policy recommends" in learner_workflow.lower()
-        and "trace completeness 100%" in learner_workflow.lower(),
+        and "why this support now" in learner_workflow.lower()
+        and "next: audit" in learner_workflow.lower()
+        and "artifact trace completeness 1" in learner_workflow.lower(),
         "e2e_auth_offline_mode": "VITE_E2E_AUTH_BYPASS" in app
         and "E2E_USER" in app
         and "e2eAuthBypass" in supabase,
@@ -306,7 +307,8 @@ def check_evidence_loop() -> dict:
         and "artifactQualityScore" in artifact_studio
         and "artifact_quality_score" in artifact_studio
         and "rubric" in artifact_studio,
-        "support_rationale_visible": "Why This Support Now" in artifact_studio
+        "support_rationale_visible": "why this support now" in artifact_studio.lower()
+        and "title={supportRationale}" not in artifact_studio
         and "recommended_support_move" in artifact_studio
         and "support_rationale" in artifact_studio,
         "trusted_research_validators": "/api/research/evaluation/validate" in server
