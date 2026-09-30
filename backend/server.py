@@ -2277,7 +2277,13 @@ async def get_search_index():
 
 @app.post("/api/book/generate_custom_module")
 async def generate_custom_module(request: CurriculumGenerateRequest):
-    """Dynamically generate and write a full textbook module from Lab context."""
+    """Dynamically generate and write a full textbook module from Lab context.
+
+    Disabled unless ALGET_ENABLE_MODULE_GENERATION=1: it writes unreviewed MDX
+    into the shared content tree, and the lab is brainstorm-only for learners.
+    """
+    if os.environ.get("ALGET_ENABLE_MODULE_GENERATION", "").strip() != "1":
+        raise HTTPException(status_code=403, detail="Module generation is disabled.")
     try:
         api_key = get_api_key(request)
         agent = CurriculumAgent(api_key=api_key)
