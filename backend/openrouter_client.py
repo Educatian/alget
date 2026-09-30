@@ -56,6 +56,28 @@ def _schema_dict(schema: Any) -> dict[str, Any] | None:
     raise TypeError("response_schema must be a JSON Schema or Pydantic model")
 
 
+def _normalize_schema_types(value: Any) -> Any:
+    """Lowercase Gemini-style type names ("OBJECT", "STRING") to JSON Schema.
+
+    The agents were written for the Gemini SDK, whose schema dialect uses
+    uppercase types. OpenRouter expects standard JSON Schema, and an uppercase
+    type makes the model return output that fails the agents' schema gate.
+    """
+    if isinstance(value, list):
+        return [_normalize_schema_types(item) for item in value]
+    if not isinstance(value, dict):
+        return value
+    normalized = {}
+    for key, item in value.items():
+        if key == "type" and isinstance(item, str):
+            normalized[key] = item.lower()
+        elif key == "type" and isinstance(item, list):
+            normalized[key] = [t.lower() if isinstance(t, str) else t for t in item]
+        else:
+            normalized[key] = _normalize_schema_types(item)
+    return normalized
+
+
 def _schema_name(schema: dict[str, Any]) -> str:
     name = schema.get("title") or "alget_response"
     return re.sub(r"[^a-zA-Z0-9_-]", "_", name)[:64]
@@ -108,7 +130,7 @@ class _Models:
             schema = _schema_dict(getattr(config, "response_schema", None))
             mime_type = getattr(config, "response_mime_type", None)
             if schema:
-                schema = _inline_schema_refs(schema)
+                schema = _normalize_schema_types(_inline_schema_refs(schema))
                 payload["provider"] = {"require_parameters": True}
                 payload["response_format"] = {
                     "type": "json_schema",
