@@ -50,11 +50,12 @@ export default function SimulationFrame({ htmlCode, description, concepts }) {
             </div>
 
             <div className="relative w-full z-10 bg-black/50" style={{ paddingBottom: '56.25%' }}>
+                {/* AI-generated code: no allow-same-origin, so it cannot read the page's session or storage. */}
                 <iframe
                     ref={iframeRef}
                     title="Generated Physics Simulation"
                     className="absolute top-0 left-0 w-full h-full border-0 bg-slate-50"
-                    sandbox="allow-scripts allow-same-origin"
+                    sandbox="allow-scripts"
                 />
             </div>
 

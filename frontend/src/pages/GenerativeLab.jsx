@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AlertTriangle, ArrowLeft, BookOpen, FileText, Lightbulb } from 'lucide-react';
+import { AlertTriangle, ArrowLeft, FileText, Lightbulb } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import API_BASE from '../lib/apiConfig';
 
@@ -19,7 +19,6 @@ export default function GenerativeLab() {
     const [result, setResult] = useState(null);
     const [error, setError] = useState(null);
     const [history, setHistory] = useState([]);
-    const [generatingCurriculum, setGeneratingCurriculum] = useState(false);
 
     const handleQuerySubmit = async (e) => {
         e.preventDefault();
@@ -80,44 +79,6 @@ export default function GenerativeLab() {
             setError("Failed to generate response. Check your API key or network connection.");
         } finally {
             setLoading(false);
-        }
-    };
-
-    const handleGenerateModule = async () => {
-        if (!result || !result.biology_context || !result.engineering_application) return;
-
-        setGeneratingCurriculum(true);
-        setError(null);
-
-        try {
-            const apiKey = localStorage.getItem('openrouter_api_key') || '';
-            const response = await fetch(`${API_BASE}/book/generate_custom_module`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    biology_context: JSON.stringify(result.biology_context),
-                    engineering_application: JSON.stringify(result.engineering_application),
-                    api_key: apiKey
-                })
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json().catch(() => ({}));
-                throw new Error(errorData.detail || `API error: ${response.status}`);
-            }
-
-            const data = await response.json();
-            if (data.success && data.chapter) {
-                navigate(`/book/${data.course}/${data.chapter}/${data.section}`);
-            } else {
-                setError(data.message || "Failed to generate textbook module.");
-            }
-
-        } catch (err) {
-            console.error(err);
-            setError(`Curriculum generation failed: ${err.message}`);
-        } finally {
-            setGeneratingCurriculum(false);
         }
     };
 
@@ -219,7 +180,7 @@ export default function GenerativeLab() {
                                         : 'glass-panel text-slate-800 prose prose-slate prose-sm max-w-none'
                                         }`}>
                                         {msg.role === 'assistant' ? (
-                                            <div dangerouslySetInnerHTML={{ __html: (typeof msg.content === 'string' ? msg.content : JSON.stringify(msg.content)).replace(/\n/g, '<br />') }} />
+                                            <div className="whitespace-pre-line">{typeof msg.content === 'string' ? msg.content : JSON.stringify(msg.content)}</div>
                                         ) : (
                                             <p className="m-0 text-[15px] font-medium leading-relaxed">{typeof msg.content === 'string' ? msg.content : JSON.stringify(msg.content)}</p>
                                         )}
@@ -234,36 +195,13 @@ export default function GenerativeLab() {
                 {result && (
                     <div className="flex flex-col gap-6 transition-opacity duration-500 pb-16">
 
-                        {/* Intent Badge & Generate Textbook Action */}
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 w-full">
-                            <div className="flex items-center gap-3 bg-white/60 backdrop-blur-md p-3.5 rounded-xl border border-slate-200 shadow-[0_2px_10px_rgb(0,0,0,0.02)] self-start">
-                                <span className="text-slate-500 font-semibold text-sm">Detected Intent:</span>
-                                <span className="px-3 py-1 bg-indigo-50 text-indigo-700 uppercase tracking-widest text-xs font-bold rounded-lg border border-indigo-100">
-                                    {result.intent || 'Unknown'}
-                                </span>
-                            </div>
-
-                            {result.biology_context && result.engineering_application && (
-                                <button
-                                    onClick={handleGenerateModule}
-                                    disabled={generatingCurriculum}
-                                    className="px-5 py-3 bg-linear-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 hover:to-teal-800 text-white font-bold rounded-xl shadow-lg shadow-emerald-900/20 transition-all flex items-center justify-center gap-2 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-                                >
-                                    {generatingCurriculum ? (
-                                        <>
-                                            <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                            </svg>
-                                            Synthesizing Module...
-                                        </>
-                                    ) : (
-                                        <>
-                                            <BookOpen className="h-5 w-5" aria-hidden="true" /> Convert to Textbook Module
-                                        </>
-                                    )}
-                                </button>
-                            )}
+                        {/* Intent Badge. Module generation ("Convert to Textbook Module") was removed:
+                            it wrote unreviewed sections to the shared server. The lab is brainstorm-only. */}
+                        <div className="flex items-center gap-3 bg-white/60 backdrop-blur-md p-3.5 rounded-xl border border-slate-200 shadow-[0_2px_10px_rgb(0,0,0,0.02)] self-start">
+                            <span className="text-slate-500 font-semibold text-sm">Detected Intent:</span>
+                            <span className="px-3 py-1 bg-indigo-50 text-indigo-700 uppercase tracking-widest text-xs font-bold rounded-lg border border-indigo-100">
+                                {result.intent || 'Unknown'}
+                            </span>
                         </div>
 
                         {/* Synthesized Output (Tutor / Activity) */}
@@ -273,7 +211,9 @@ export default function GenerativeLab() {
                                     <FileText className="h-6 w-6" aria-hidden="true" />
                                     <h3 className="text-xl font-bold text-slate-900 m-0">Synthesis</h3>
                                 </div>
-                                <div className="font-medium text-[1.05rem]" dangerouslySetInnerHTML={{ __html: (typeof result.summary === 'string' ? result.summary : (result.summary.synthesis || JSON.stringify(result.summary))).replace(/\n/g, '<br />') }} />
+                                <div className="font-medium text-[1.05rem] whitespace-pre-line">
+                                    {typeof result.summary === 'string' ? result.summary : (result.summary.synthesis || JSON.stringify(result.summary))}
+                                </div>
                                 
                                 {typeof result.summary === 'object' && result.summary.encouragement && (
                                     <p className="mt-6 italic text-slate-600 font-medium">{result.summary.encouragement}</p>

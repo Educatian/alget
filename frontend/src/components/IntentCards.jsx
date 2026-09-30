@@ -321,10 +321,11 @@ export function SimulateIntentCard({ data }) {
                         <div className="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
                         <div className="w-2.5 h-2.5 rounded-full bg-green-400"></div>
                     </div>
+                    {/* AI-generated code: no allow-same-origin, so it cannot read the page's session or storage. */}
                     <iframe
                         srcDoc={simData.html_code}
                         className="w-full h-full border-none pt-6"
-                        sandbox="allow-scripts allow-same-origin"
+                        sandbox="allow-scripts"
                         title="Interactive Simulation"
                     />
                 </div>

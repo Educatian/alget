@@ -160,15 +160,9 @@ export default function App() {
                 path="/lab"
                 element={
                   user ? (
-                    safeSessionStorageGet('alget_researcher_access') === 'granted' ? (
-                      <GenerativeLab />
-                    ) : (
-                      // Generative Lab spawns new MDX modules via CurriculumAgent
-                      // without the engineering_text_fidelity_rubric review pass.
-                      // Gating behind researcher access until a content-provenance
-                      // review workflow exists. Researchers unlock via /analytics.
-                      <Navigate to="/analytics?return=lab" replace />
-                    )
+                    // Brainstorm-only: module generation (unreviewed MDX written to the
+                    // shared server) was removed, so signed-in learners may use the lab.
+                    <GenerativeLab />
                   ) : (
                     <Navigate to="/" replace />
                   )
