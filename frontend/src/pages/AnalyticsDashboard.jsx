@@ -22,6 +22,9 @@ const EMPTY_SOCIAL = {
     signalMix: []
 }
 
+// Only these in-app destinations are honored, so ?return= cannot redirect elsewhere.
+const RETURN_ROUTES = { lab: '/lab', instructor: '/instructor' }
+
 function getInitialAuthState() {
     return safeSessionStorageGet('alget_researcher_access') === 'granted'
 }
@@ -329,6 +332,14 @@ export default function AnalyticsDashboard() {
             setLoading(false)
         }
     }
+
+    // Gated pages (/lab, /instructor) send researchers here with ?return=...;
+    // once access is granted, continue to the page they asked for.
+    useEffect(() => {
+        if (!isAuthenticated) return
+        const key = new URLSearchParams(window.location.search).get('return')
+        if (key && Object.hasOwn(RETURN_ROUTES, key)) navigate(RETURN_ROUTES[key], { replace: true })
+    }, [isAuthenticated, navigate])
 
     useEffect(() => {
         if (isAuthenticated) {
