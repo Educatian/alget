@@ -22,6 +22,7 @@ import { useCourseProgress } from '../hooks/useCourseProgress'
 import API_BASE from '../lib/apiConfig'
 import { getEvaluationStatus } from '../lib/researchService'
 import { enrollInStudy, getStudyEnrollment } from '../lib/studyTrack'
+import { safeSessionStorageGet, safeSessionStorageSet } from '../lib/browserStorage'
 import '../index.css'
 
 function CourseMark(props) {
@@ -170,8 +171,14 @@ export default function MainApp({ user, onLogout }) {
     const navigate = useNavigate()
     const { recentSection, bookmarks } = useCourseProgress(user)
 
+    // Participants only see "Research study". Staff can reveal the other pathways with /learn?pathways=all.
+    const [showAllPathways] = useState(() => {
+        const requested = new URLSearchParams(window.location.search).get('pathways') === 'all'
+        if (requested) safeSessionStorageSet('alget_all_pathways', '1')
+        return requested || safeSessionStorageGet('alget_all_pathways') === '1'
+    })
     const [unlockedMode, setUnlockedMode] = useState(null)
-    const [selectedMode, setSelectedMode] = useState('engineering')
+    const [selectedMode, setSelectedMode] = useState('study')
     const [passcode, setPasscode] = useState('')
     const [error, setError] = useState('')
     const [unlocking, setUnlocking] = useState(false)
@@ -315,7 +322,9 @@ export default function MainApp({ user, onLogout }) {
                             Open your cohort track
                         </h2>
                         <p className="mt-2 text-center text-sm text-[var(--ath-muted)]">
-                            Pick a track + enter the code your instructor sent.
+                            {selectedMode === 'study'
+                                ? 'Enter the Study ID from your invitation email.'
+                                : 'Pick a track + enter the code your instructor sent.'}
                         </p>
 
                         <form onSubmit={handleUnlock} className="mt-8 space-y-4 rounded-2xl border border-[var(--ath-line)] bg-white/85 p-6 shadow-sm">
@@ -324,25 +333,45 @@ export default function MainApp({ user, onLogout }) {
                                 <select
                                     id="pathway-track"
                                     value={selectedMode}
-                                    onChange={(event) => setSelectedMode(event.target.value)}
+                                    onChange={(event) => {
+                                        setSelectedMode(event.target.value)
+                                        setPasscode('')
+                                        setError('')
+                                    }}
                                     className="editorial-input mt-1.5"
                                 >
-                                    <option value="engineering">Engineering</option>
-                                    <option value="education">Education</option>
-                                    <option value="study">Research study (Fall 2026)</option>
+                                    <option value="study">Research study</option>
+                                    {showAllPathways && <option value="engineering">Engineering</option>}
+                                    {showAllPathways && <option value="education">Education</option>}
                                 </select>
                             </div>
 
                             <div>
-                                <label htmlFor="pathway-passcode" className="text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Access code</label>
-                                <input
-                                    id="pathway-passcode"
-                                    type="password"
-                                    value={passcode}
-                                    onChange={(event) => setPasscode(event.target.value)}
-                                    placeholder="••••••"
-                                    className="editorial-input mt-1.5 tracking-[0.2em]"
-                                />
+                                <label htmlFor="pathway-passcode" className="text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">
+                                    {selectedMode === 'study' ? 'Study ID' : 'Access code'}
+                                </label>
+                                {selectedMode === 'study' ? (
+                                    <input
+                                        id="pathway-passcode"
+                                        type="text"
+                                        value={passcode}
+                                        onChange={(event) => setPasscode(event.target.value.toUpperCase())}
+                                        placeholder="e.g. BIO-7K3Q-9MZP"
+                                        autoComplete="off"
+                                        autoCapitalize="characters"
+                                        spellCheck={false}
+                                        className="editorial-input mt-1.5 font-mono tracking-[0.12em]"
+                                    />
+                                ) : (
+                                    <input
+                                        id="pathway-passcode"
+                                        type="password"
+                                        value={passcode}
+                                        onChange={(event) => setPasscode(event.target.value)}
+                                        placeholder="••••••"
+                                        className="editorial-input mt-1.5 tracking-[0.2em]"
+                                    />
+                                )}
                             </div>
 
                             {error && (
