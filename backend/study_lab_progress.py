@@ -22,22 +22,38 @@ LABS = {
 GOAL_RESULTS = re.compile(r"^(pass|passed|balanced|secure_?grip|success|safe)$", re.I)
 EVENT_TYPES = ("sim_lab_chosen", "sim_unity_trial_completed", "sim_unity_final_design_submitted",
                "sim_lab_completed", "sim_lab_stuck")
+INPUT_EVENT = "sim_unity_input_changed"
+PAGE_SIZE = 1000  # Supabase's default maximum rows per request
 
 
 def _norm(value: Any) -> str:
     return re.sub(r"[\s-]+", "_", str(value or "").strip().lower())
 
 
-def compute_lab_progress(trials: list[dict[str, Any]], required_trials: int, extra_types: set[str] = frozenset()) -> dict[str, Any]:
-    """trials: event_data dicts of sim_unity_trial_completed events, oldest first."""
+def compute_lab_progress(events: list[dict[str, Any]], required_trials: int) -> dict[str, Any]:
+    """events: one lab's events, oldest first, each {"event_type", "event_data"}.
+
+    Trial events carry no design settings, so a trial is a new design when an
+    input changed since the previous trial (same rule as labProgress.js).
+    """
+    trials = [e.get("event_data") or {} for e in events if e["event_type"] == "sim_unity_trial_completed"]
     reported_done = max([int(t.get("opportunities_completed") or 0) for t in trials] + [0])
     reported_available = max([int(t.get("opportunities_available") or 0) for t in trials] + [0])
     required = reported_available or required_trials
-    trials_done = max(len(trials), reported_done)
-    signatures = [f"{t.get('input_name', '')}={t.get('input_value', '')}" for t in trials
-                  if "input_name" in t or "input_value" in t]
-    designs_known = bool(signatures)
-    distinct = len(set(signatures)) if designs_known else len(trials)
+    trials_done = reported_done or len(trials)
+
+    designs_known = any(e["event_type"] == INPUT_EVENT for e in events)
+    distinct, changed = 0, False
+    for e in events:
+        if e["event_type"] == INPUT_EVENT:
+            changed = True
+        elif e["event_type"] == "sim_unity_trial_completed":
+            if distinct == 0 or changed:
+                distinct += 1
+            changed = False
+    if not designs_known:
+        distinct = len(trials)
+
     both = [t for t in trials if t.get("prediction") and t.get("result")]
     return {
         "trials_done": trials_done,
@@ -47,7 +63,7 @@ def compute_lab_progress(trials: list[dict[str, Any]], required_trials: int, ext
         "predictions_matched": sum(_norm(t["prediction"]) == _norm(t["result"]) for t in both),
         "predictions_compared": len(both),
         "goal_met": any(GOAL_RESULTS.match(_norm(t.get("result"))) for t in trials),
-        "final_design_submitted": "sim_unity_final_design_submitted" in extra_types,
+        "final_design_submitted": any(e["event_type"] == "sim_unity_final_design_submitted" for e in events),
         "complete": trials_done >= required and (not designs_known or distinct >= min(2, required)),
     }
 
@@ -60,7 +76,9 @@ def summarize(roster: list[dict[str, Any]], events: list[dict[str, Any]]) -> lis
 
     rows = []
     for learner in roster:
-        evs = sorted(by_user.get(learner["user_id"], []), key=lambda e: e.get("client_ts") or "")
+        # Same-millisecond ties: the bridge records a settled input just before its trial.
+        evs = sorted(by_user.get(learner["user_id"], []),
+                     key=lambda e: (e.get("client_ts") or "", e["event_type"] != INPUT_EVENT))
         chosen = [e["event_target"] for e in evs if e["event_type"] == "sim_lab_chosen"]
         row = {
             "study_id": learner["learner_hash"],
@@ -73,15 +91,15 @@ def summarize(roster: list[dict[str, Any]], events: list[dict[str, Any]]) -> lis
         per_lab = {}
         for sim_id, (lab_id, required) in LABS.items():
             lab_evs = [e for e in evs if e["event_target"] == sim_id]
-            trials = [e.get("event_data") or {} for e in lab_evs if e["event_type"] == "sim_unity_trial_completed"]
-            if not trials:
+            trial_idx = [i for i, e in enumerate(lab_evs) if e["event_type"] == "sim_unity_trial_completed"]
+            if not trial_idx:
                 continue
-            progress = compute_lab_progress(trials, required, {e["event_type"] for e in lab_evs})
+            progress = compute_lab_progress(lab_evs, required)
             done_at = None
             if progress["complete"]:  # timestamp of the trial that met the requirement
-                for i in range(1, len(trials) + 1):
-                    if compute_lab_progress(trials[:i], required)["complete"]:
-                        done_at = [e for e in lab_evs if e["event_type"] == "sim_unity_trial_completed"][i - 1]["client_ts"]
+                for i in trial_idx:
+                    if compute_lab_progress(lab_evs[:i + 1], required)["complete"]:
+                        done_at = lab_evs[i]["client_ts"]
                         break
             per_lab[lab_id] = {**progress, "completed_at": done_at}
         pick = next((lab for lab, p in per_lab.items() if p["complete"]), None)
@@ -94,6 +112,19 @@ def summarize(roster: list[dict[str, Any]], events: list[dict[str, Any]]) -> lis
                 row.update({k: p[k] for k in ("trials_done", "required", "distinct_designs", "complete", "completed_at", "goal_met")})
         rows.append(row)
     return sorted(rows, key=lambda r: (r["track"], r["study_id"]))
+
+
+def _fetch_all(admin: SupabaseAdmin, params: dict[str, str]) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    while True:
+        r = admin.http.get(f"{admin.url}/rest/v1/event_logs", headers=admin._headers(),
+                           params={**params, "order": "client_ts.asc,id.asc", "limit": str(PAGE_SIZE), "offset": str(len(rows))})
+        if r.status_code != 200:
+            raise StudyEnrollmentError(502, "Could not load lab activity.")
+        page = r.json()
+        rows += page
+        if len(page) < PAGE_SIZE:
+            return rows
 
 
 def lab_progress_report(access_token: str, admin: SupabaseAdmin) -> list[dict[str, Any]]:
@@ -117,14 +148,10 @@ def lab_progress_report(access_token: str, admin: SupabaseAdmin) -> list[dict[st
     events: list[dict[str, Any]] = []
     ids = [row["user_id"] for row in roster]
     for start in range(0, len(ids), 100):
-        r = admin.http.get(f"{admin.url}/rest/v1/event_logs", headers=admin._headers(), params={
-            "user_id": f"in.({','.join(ids[start:start + 100])})",
-            "event_type": f"in.({','.join(EVENT_TYPES)})",
-            "select": "user_id,event_type,event_target,event_data,client_ts",
-            "order": "client_ts.asc",
-            "limit": "20000",
-        })
-        if r.status_code != 200:
-            raise StudyEnrollmentError(502, "Could not load lab activity.")
-        events.extend(r.json())
+        users = f"in.({','.join(ids[start:start + 100])})"
+        events += _fetch_all(admin, {"user_id": users, "event_type": f"in.({','.join(EVENT_TYPES)})",
+                                     "select": "user_id,event_type,event_target,event_data,client_ts"})
+        # Input changes only matter for their timing, so skip their payloads.
+        events += _fetch_all(admin, {"user_id": users, "event_type": f"eq.{INPUT_EVENT}",
+                                     "select": "user_id,event_type,event_target,client_ts"})
     return summarize(roster, events)

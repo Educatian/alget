@@ -7,18 +7,31 @@ import { logEvent } from './loggingService'
 
 const CHOICE_KEY = 'alget_sim_lab_choice'
 
+// Trials (with their data) plus input changes (timestamps only; there can be many),
+// merged in time order: that is all computeLabProgress needs.
 export async function loadSavedLabEvents(simId) {
     if (!isSupabaseConfigured) return []
     try {
-        const { data, error } = await supabase
-            .from('event_logs')
-            .select('event_type, event_data, client_ts')
-            .eq('event_target', simId)
-            .like('event_type', 'sim_unity_%')
-            .order('client_ts', { ascending: true })
-            .limit(1000)
-        if (error) return []
-        return (data || []).map((row) => ({ type: row.event_type.replace(/^sim_/, ''), data: row.event_data || {} }))
+        const [trials, inputs] = await Promise.all([
+            supabase.from('event_logs')
+                .select('event_type, event_data, client_ts')
+                .eq('event_target', simId)
+                .in('event_type', ['sim_unity_trial_completed', 'sim_unity_final_design_submitted'])
+                .order('client_ts', { ascending: true })
+                .limit(2000),
+            supabase.from('event_logs')
+                .select('event_type, client_ts')
+                .eq('event_target', simId)
+                .eq('event_type', 'sim_unity_input_changed')
+                .order('client_ts', { ascending: true })
+                .limit(20000),
+        ])
+        if (trials.error) return []
+        return [...(trials.data || []), ...(inputs.data || [])]
+            // Same-millisecond ties: the bridge records a settled input just before its trial.
+            .sort((a, b) => String(a.client_ts).localeCompare(String(b.client_ts))
+                || (a.event_type === 'sim_unity_input_changed' ? -1 : 0) - (b.event_type === 'sim_unity_input_changed' ? -1 : 0))
+            .map((row) => ({ type: row.event_type.replace(/^sim_/, ''), data: row.event_data || {} }))
     } catch {
         return []
     }
