@@ -1891,16 +1891,16 @@ async def validate_access(request: AccessValidationRequest):
 
 
 class StudyEnrollRequest(BaseModel):
-    passcode: str = ""
+    study_id: str = ""
 
 
 @app.post("/api/study/enroll")
 def study_enroll(request: StudyEnrollRequest, authorization: str = Header(default="")):
-    """Redeem a Fall 2026 study track code for the signed-in learner (see study_enrollment.py)."""
+    """Redeem a personal Study ID for the signed-in learner (see study_enrollment.py)."""
     import study_enrollment
     token = authorization.removeprefix("Bearer ").strip()
     try:
-        return study_enrollment.enroll(token, request.passcode, study_enrollment.SupabaseAdmin())
+        return study_enrollment.enroll(token, request.study_id, study_enrollment.SupabaseAdmin())
     except study_enrollment.StudyEnrollmentError as exc:
         raise HTTPException(status_code=exc.status_code, detail=exc.detail)
 

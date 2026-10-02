@@ -1,20 +1,20 @@
-"""Fall 2026 study enrollment: track codes -> study track + Study ID.
+"""Study enrollment with personal, one-time Study IDs.
 
-Participants are invited by email with a track code. A signed-in learner
-redeems the code once; the server records the track and a random Study ID
-in the user's Supabase app_metadata (writable only with the service role,
-so learners cannot change their own track) and in public.cohort_learners
-for the research roster. No names or emails are written to the roster.
+The research team pre-generates Study IDs (scripts/generate_study_ids.py),
+loads them into public.study_invites, and emails each participant their own
+ID. The team keeps the name/email <-> Study ID key outside ALGET. A signed-in
+learner redeems their ID once: the server claims the invite row, then records
+the track and Study ID in the user's Supabase app_metadata (writable only with
+the service role, so learners cannot change their own track) and in
+public.cohort_learners for the roster. No names or emails are written by ALGET.
 
-Track codes live in Worker secrets STUDY_BASIC_ACCESS_CODE and
-STUDY_BIO_ACCESS_CODE. There are no fallback codes: an unset code never
-matches, so enrollment stays closed until the secrets are configured.
+Study ID format: BAS-XXXX-XXXX (basic track) or BIO-XXXX-XXXX (bio-inspired),
+using an alphabet without look-alike characters (no I, O, 0, 1).
 """
 from __future__ import annotations
 
-import hmac
 import os
-import uuid
+import re
 from datetime import datetime, timezone
 from typing import Any
 
@@ -22,22 +22,25 @@ import httpx
 
 STUDY_TRACKS: dict[str, dict[str, Any]] = {
     "basic": {
-        "env": "STUDY_BASIC_ACCESS_CODE",
-        "cohort_id": "fall2026-basic",
-        "cohort_label": "Fall 2026 study - basic track",
+        "prefix": "BAS",
+        "cohort_id": "study-basic",
+        "cohort_label": "Research study - basic track",
         "course_id": "statics",
         "courses": ["statics", "dynamics"],
         "lab": False,
     },
     "bio": {
-        "env": "STUDY_BIO_ACCESS_CODE",
-        "cohort_id": "fall2026-bio",
-        "cohort_label": "Fall 2026 study - bio-inspired track",
+        "prefix": "BIO",
+        "cohort_id": "study-bio",
+        "cohort_label": "Research study - bio-inspired track",
         "course_id": "bio-inspired",
         "courses": ["bio-inspired"],
         "lab": True,
     },
 }
+
+ID_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
+STUDY_ID_PATTERN = re.compile(rf"^(BAS|BIO)-[{ID_ALPHABET}]{{4}}-[{ID_ALPHABET}]{{4}}$")
 
 
 class StudyEnrollmentError(Exception):
@@ -47,17 +50,13 @@ class StudyEnrollmentError(Exception):
         self.detail = detail
 
 
-def track_for_code(passcode: str, env: dict[str, str] | None = None) -> str | None:
-    """Return the track whose configured code matches, or None."""
-    env = os.environ if env is None else env
-    candidate = (passcode or "").strip()
-    if not candidate:
+def normalize_study_id(raw: str) -> str | None:
+    """Uppercase, drop spaces, accept missing dashes; return None if malformed."""
+    compact = re.sub(r"[\s-]", "", (raw or "").upper())
+    if len(compact) != 11:
         return None
-    for track, spec in STUDY_TRACKS.items():
-        expected = (env.get(spec["env"]) or "").strip()
-        if expected and hmac.compare_digest(candidate.encode(), expected.encode()):
-            return track
-    return None
+    candidate = f"{compact[:3]}-{compact[3:7]}-{compact[7:]}"
+    return candidate if STUDY_ID_PATTERN.match(candidate) else None
 
 
 def public_enrollment(track: str, study_id: str) -> dict[str, Any]:
@@ -85,6 +84,24 @@ class SupabaseAdmin:
             raise StudyEnrollmentError(401, "Please sign in again.")
         return r.json()
 
+    def get_invite(self, study_id: str) -> dict[str, Any] | None:
+        r = self.http.get(f"{self.url}/rest/v1/study_invites", headers=self._headers(),
+                          params={"study_id": f"eq.{study_id}", "select": "study_id,track,redeemed_by"})
+        if r.status_code != 200:
+            raise StudyEnrollmentError(502, "Could not check the Study ID right now.")
+        rows = r.json()
+        return rows[0] if rows else None
+
+    def claim_invite(self, study_id: str, user_id: str) -> bool:
+        """Atomically claim an unredeemed invite. Returns False if someone else already holds it."""
+        headers = {**self._headers(), "Prefer": "return=representation"}
+        r = self.http.patch(f"{self.url}/rest/v1/study_invites", headers=headers,
+                            params={"study_id": f"eq.{study_id}", "redeemed_by": "is.null"},
+                            json={"redeemed_by": user_id, "redeemed_at": datetime.now(timezone.utc).isoformat()})
+        if r.status_code >= 300:
+            raise StudyEnrollmentError(502, "Could not save study enrollment.")
+        return bool(r.json())
+
     def set_app_metadata(self, user_id: str, app_metadata: dict[str, Any]) -> None:
         r = self.http.put(f"{self.url}/auth/v1/admin/users/{user_id}", headers=self._headers(),
                           json={"app_metadata": app_metadata})
@@ -98,8 +115,8 @@ class SupabaseAdmin:
             raise StudyEnrollmentError(502, "Could not save study roster entry.")
 
 
-def enroll(access_token: str, passcode: str, admin: SupabaseAdmin, env: dict[str, str] | None = None) -> dict[str, Any]:
-    """Redeem a track code for the signed-in user. Idempotent; never switches tracks."""
+def enroll(access_token: str, raw_study_id: str, admin: SupabaseAdmin) -> dict[str, Any]:
+    """Redeem a personal Study ID for the signed-in user. Idempotent; never switches IDs or tracks."""
     if not access_token:
         raise StudyEnrollmentError(401, "Please sign in first.")
     user = admin.get_user(access_token)
@@ -110,12 +127,19 @@ def enroll(access_token: str, passcode: str, admin: SupabaseAdmin, env: dict[str
 
     existing_track, existing_id = meta.get("study_track"), meta.get("study_id")
     if existing_track in STUDY_TRACKS and existing_id:
-        track, study_id = existing_track, existing_id  # already enrolled: keep track, just re-sync roster
+        track, study_id = existing_track, existing_id  # already enrolled: keep it, just re-sync roster
     else:
-        track = track_for_code(passcode, env)
-        if not track:
-            raise StudyEnrollmentError(403, "That study code is not valid.")
-        study_id = str(uuid.uuid4())
+        study_id = normalize_study_id(raw_study_id)
+        if not study_id:
+            raise StudyEnrollmentError(400, "Please check your Study ID. It looks like BIO-7K3Q-9MZP.")
+        invite = admin.get_invite(study_id)
+        if not invite or invite.get("track") not in STUDY_TRACKS:
+            raise StudyEnrollmentError(403, "That Study ID was not found. Please check your invitation email.")
+        if invite.get("redeemed_by") not in (None, user_id):
+            raise StudyEnrollmentError(409, "That Study ID has already been used. Please contact the research team.")
+        if invite.get("redeemed_by") is None and not admin.claim_invite(study_id, user_id):
+            raise StudyEnrollmentError(409, "That Study ID has already been used. Please contact the research team.")
+        track = invite["track"]
         meta.update({"study_track": track, "study_id": study_id,
                      "study_cohort": STUDY_TRACKS[track]["cohort_id"],
                      "study_enrolled_at": datetime.now(timezone.utc).isoformat()})
