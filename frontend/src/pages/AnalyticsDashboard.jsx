@@ -23,7 +23,7 @@ const EMPTY_SOCIAL = {
 }
 
 // Only these in-app destinations are honored, so ?return= cannot redirect elsewhere.
-const RETURN_ROUTES = { lab: '/lab', instructor: '/instructor' }
+const RETURN_ROUTES = { lab: '/lab', instructor: '/instructor', 'study-progress': '/study-progress' }
 
 function getInitialAuthState() {
     return safeSessionStorageGet('alget_researcher_access') === 'granted'
@@ -433,6 +433,12 @@ export default function AnalyticsDashboard() {
                         <span className="text-[var(--ath-line-strong)]">/</span>
                         <span className="text-xs font-medium text-[var(--ath-muted)]">ALGET</span>
                         <div className="ml-auto flex flex-wrap items-center gap-2">
+                            <button
+                                onClick={() => navigate('/study-progress')}
+                                className="rounded-full border border-[var(--ath-line)] bg-white px-3 py-1 text-xs font-semibold text-[var(--ath-primary)] hover:bg-[var(--ath-panel)]"
+                            >
+                                Study progress
+                            </button>
                             <button
                                 onClick={() => fetchDashboardData()}
                                 className="rounded-full border border-[var(--ath-line)] bg-white px-3 py-1 text-xs font-semibold text-[var(--ath-muted)] hover:bg-[var(--ath-panel)]"
