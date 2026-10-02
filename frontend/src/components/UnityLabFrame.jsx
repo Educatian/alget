@@ -31,7 +31,6 @@ export default function UnityLabFrame({ sectionId, simId, source, src, title, on
                 className="block h-[clamp(560px,76vh,780px)] w-full border-0"
             />
             <p className="bg-[var(--ath-panel)] px-5 py-3 text-xs leading-5 text-[var(--ath-muted)]">
-                Laptop or desktop required. Your trials are saved to ALGET automatically; you do not need to export anything.
                 For a bigger view, use the lab&apos;s own Fullscreen button (opening the lab in a separate tab would not save your trials).
             </p>
         </div>

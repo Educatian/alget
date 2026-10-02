@@ -8,7 +8,7 @@ import { loadLabChoice, loadSavedLabEvents, recordLabCompleted, recordLabStuck, 
 import '../index.css'
 
 const HELP_AFTER_MS = 10 * 60 * 1000
-const RESEARCH_EMAIL = 'jmoon19@ua.edu'
+const RESEARCH_EMAIL = 'seabu@crimson.ua.edu' // Stephen handles lab support
 
 function Shell({ children, onBack, backLabel }) {
     return (
@@ -43,7 +43,7 @@ function LabChooser() {
             <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">Pick the simulation you want to explore</h2>
             <p className="mt-3 max-w-3xl text-[var(--ath-muted)]">
                 You only need to complete <strong>one</strong> of these four labs. Each one asks you to predict, test, and
-                improve a bio-inspired design over a few trials. {SIM_LAB_TIME} A laptop or desktop computer is required.
+                improve a bio-inspired design over a few trials. {SIM_LAB_TIME}
             </p>
             <div className="mt-8 grid gap-5 md:grid-cols-2">
                 {SIM_LABS.map((lab) => (

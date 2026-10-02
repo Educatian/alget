@@ -72,6 +72,11 @@ export function normalizeIframeSimMessage(data, expectedSimId, allowedSources = 
     }
 }
 
+// Slider drags emit an input_changed event about every frame (~60/s, ~650 bytes
+// each). Keep only the settled value of each input: log it once the input has
+// been still for this long, or immediately before any other event (e.g. a trial).
+export const INPUT_SETTLE_MS = 700
+
 /**
  * Listen for one embedded lab's events, log them, and pass each accepted event
  * to `onEvent` (used for live progress).
@@ -89,6 +94,23 @@ export function useIframeSimTelemetry(sectionId, simId, options = {}) {
 
     useEffect(() => {
         logSimEvent(sectionId, simId, 'open', {})
+        const pendingInputs = new Map() // input name -> { event, timer }
+
+        function emit(event) {
+            logSimEvent(sectionId, simId, event.type, event.data)
+            onEventRef.current?.(event)
+        }
+        function flushInput(name) {
+            const pending = pendingInputs.get(name)
+            if (!pending) return
+            clearTimeout(pending.timer)
+            pendingInputs.delete(name)
+            emit(pending.event)
+        }
+        function flushAllInputs() {
+            for (const name of [...pendingInputs.keys()]) flushInput(name)
+        }
+
         function onMessage(e) {
             if (expectedOrigin && e.origin !== expectedOrigin) return
             if (iframeRef?.current?.contentWindow && e.source !== iframeRef.current.contentWindow) return
@@ -100,10 +122,19 @@ export function useIframeSimTelemetry(sectionId, simId, options = {}) {
                 seen.current.add(event.dedupKey)
                 if (seen.current.size > 500) seen.current.delete(seen.current.values().next().value)
             }
-            logSimEvent(sectionId, simId, event.type, event.data)
-            onEventRef.current?.(event)
+            if (event.type === 'unity_input_changed') {
+                const name = event.data.input_name || ''
+                clearTimeout(pendingInputs.get(name)?.timer)
+                pendingInputs.set(name, { event, timer: setTimeout(() => flushInput(name), INPUT_SETTLE_MS) })
+                return
+            }
+            flushAllInputs() // settled inputs are recorded before the trial they belong to
+            emit(event)
         }
         window.addEventListener('message', onMessage)
-        return () => window.removeEventListener('message', onMessage)
+        return () => {
+            window.removeEventListener('message', onMessage)
+            flushAllInputs()
+        }
     }, [allowedSourcesKey, expectedOrigin, iframeRef, sectionId, simId])
 }

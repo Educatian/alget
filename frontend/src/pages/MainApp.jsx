@@ -453,7 +453,7 @@ export default function MainApp({ user, onLogout }) {
                                     <p className="editorial-kicker">Simulation Lab</p>
                                     <h3 className="mt-2 text-2xl font-semibold tracking-tight text-[var(--ath-text)]">Choose and complete one 3D simulation lab</h3>
                                     <p className="mt-2 text-sm text-[var(--ath-muted)]">
-                                        FinGrip, Trabecula, GeckoGrip, or PineMorph. Predict, test, and improve a bio-inspired design. Laptop or desktop required.
+                                        FinGrip, Trabecula, GeckoGrip, or PineMorph. Predict, test, and improve a bio-inspired design.
                                     </p>
                                 </div>
                                 <ArrowRight className="h-6 w-6 shrink-0 text-[var(--ath-primary)] transition-transform group-hover:translate-x-1" aria-hidden="true" />
