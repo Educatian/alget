@@ -15,6 +15,9 @@ export class AlgetBackendContainer extends Container {
     ENGINEERING_ACCESS_CODE: env.ENGINEERING_ACCESS_CODE,
     EDUCATION_ACCESS_CODE: env.EDUCATION_ACCESS_CODE,
     RESEARCHER_ACCESS_CODE: env.RESEARCHER_ACCESS_CODE,
+    // Optional: study enrollment stays closed until both track codes are set as secrets.
+    STUDY_BASIC_ACCESS_CODE: env.STUDY_BASIC_ACCESS_CODE || "",
+    STUDY_BIO_ACCESS_CODE: env.STUDY_BIO_ACCESS_CODE || "",
   };
 }
 
