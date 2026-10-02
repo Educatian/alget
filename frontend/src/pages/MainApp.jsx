@@ -443,6 +443,23 @@ export default function MainApp({ user, onLogout }) {
                             </section>
                         )}
 
+                        {showLab && (
+                            <button
+                                type="button"
+                                onClick={() => navigate('/sim-lab')}
+                                className="editorial-surface group mt-6 flex w-full items-center justify-between gap-6 p-6 text-left transition-all hover:-translate-y-0.5"
+                            >
+                                <div>
+                                    <p className="editorial-kicker">Simulation Lab</p>
+                                    <h3 className="mt-2 text-2xl font-semibold tracking-tight text-[var(--ath-text)]">Choose and complete one 3D simulation lab</h3>
+                                    <p className="mt-2 text-sm text-[var(--ath-muted)]">
+                                        FinGrip, Trabecula, GeckoGrip, or PineMorph. Predict, test, and improve a bio-inspired design. Laptop or desktop required.
+                                    </p>
+                                </div>
+                                <ArrowRight className="h-6 w-6 shrink-0 text-[var(--ath-primary)] transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                            </button>
+                        )}
+
                         {(visibleRecentSection || visibleBookmarks.length > 0) && (
                             <section className="mt-10 grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
                                 {visibleRecentSection && (

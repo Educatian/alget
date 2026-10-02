@@ -1905,6 +1905,18 @@ def study_enroll(request: StudyEnrollRequest, authorization: str = Header(defaul
         raise HTTPException(status_code=exc.status_code, detail=exc.detail)
 
 
+@app.get("/api/study/lab-progress")
+def study_lab_progress(authorization: str = Header(default="")):
+    """Researchers only: Simulation Lab progress by Study ID (see study_lab_progress.py)."""
+    import study_enrollment
+    import study_lab_progress
+    token = authorization.removeprefix("Bearer ").strip()
+    try:
+        return {"rows": study_lab_progress.lab_progress_report(token, study_enrollment.SupabaseAdmin())}
+    except study_enrollment.StudyEnrollmentError as exc:
+        raise HTTPException(status_code=exc.status_code, detail=exc.detail)
+
+
 # Failed Study ID sign-ins per client, to slow down guessing (per container instance).
 _STUDY_LOGIN_FAILURES: dict[str, list[float]] = {}
 _STUDY_LOGIN_WINDOW_S = 600

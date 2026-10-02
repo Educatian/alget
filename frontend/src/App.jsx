@@ -18,6 +18,8 @@ const MainApp = lazy(() => import('./pages/MainApp'))
 const BookLayout = lazy(() => import('./pages/BookLayout'))
 const DiagnosticAssessment = lazy(() => import('./pages/DiagnosticAssessment'))
 const GenerativeLab = lazy(() => import('./pages/GenerativeLab'))
+const SimLab = lazy(() => import('./pages/SimLab'))
+const StudyProgress = lazy(() => import('./pages/StudyProgress'))
 const AnalyticsDashboard = lazy(() => import('./pages/AnalyticsDashboard'))
 const StudentDashboard = lazy(() => import('./pages/StudentDashboard'))
 const InstructorDashboard = lazy(() => import('./pages/InstructorDashboard'))
@@ -177,6 +179,33 @@ export default function App() {
                     // shared server) was removed, so signed-in learners may use the lab.
                     // Study participants need a track that includes it.
                     canOpenLab(user) ? <GenerativeLab /> : <Navigate to="/learn" replace />
+                  ) : (
+                    <Navigate to="/" replace />
+                  )
+                }
+              />
+              {['/sim-lab', '/sim-lab/:labId'].map((path) => (
+                <Route
+                  key={path}
+                  path={path}
+                  element={
+                    user ? (
+                      // Unity simulation labs belong to the bio-inspired track (same rule as the lab).
+                      canOpenLab(user) ? <SimLab /> : <Navigate to="/learn" replace />
+                    ) : (
+                      <Navigate to="/" replace />
+                    )
+                  }
+                />
+              ))}
+              <Route
+                path="/study-progress"
+                element={
+                  user ? (
+                    // Researchers only; the server checks research access again.
+                    safeSessionStorageGet('alget_researcher_access') === 'granted'
+                      ? <StudyProgress />
+                      : <Navigate to="/analytics?return=study-progress" replace />
                   ) : (
                     <Navigate to="/" replace />
                   )
