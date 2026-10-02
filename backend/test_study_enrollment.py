@@ -119,6 +119,90 @@ def test_existing_metadata_is_preserved():
     assert fake.app_metadata["provider"] == "email"
 
 
+class FakeAuth(FakeSupabase):
+    """Adds the admin user endpoints used by Study ID sign-in."""
+
+    def __init__(self, invites=None):
+        super().__init__(invites=invites)
+        self.users = {}       # id -> {"id", "email", "password", "app_metadata"}
+        self.created = 0
+
+    def handler(self, request: httpx.Request) -> httpx.Response:
+        path = request.url.path
+        body = json.loads(request.content) if request.content else {}
+        if path == "/auth/v1/admin/users" and request.method == "POST":
+            if any(u["email"] == body["email"] for u in self.users.values()):
+                return httpx.Response(422, json={"msg": "already registered"})
+            self.created += 1
+            uid = f"user-{self.created}"
+            self.users[uid] = {"id": uid, "email": body["email"], "password": body["password"],
+                               "app_metadata": body.get("app_metadata", {})}
+            return httpx.Response(200, json=self.users[uid])
+        if path.startswith("/auth/v1/admin/users/"):
+            uid = path.rsplit("/", 1)[1]
+            user = self.users.get(uid)
+            if not user:
+                return httpx.Response(404, json={})
+            if request.method == "PUT":
+                user.update({k: v for k, v in body.items() if k in ("password", "app_metadata")})
+            return httpx.Response(200, json=user)
+        if path == "/auth/v1/admin/generate_link":
+            user = next((u for u in self.users.values() if u["email"] == body["email"]), None)
+            return httpx.Response(200, json={"user": user}) if user else httpx.Response(404, json={})
+        if path == "/auth/v1/token":
+            ok = any(u["email"] == body["email"] and u["password"] == body["password"] for u in self.users.values())
+            return httpx.Response(200 if ok else 400, json={"access_token": "at", "refresh_token": "rt", "expires_in": 3600})
+        return super().handler(request)
+
+
+def test_first_study_id_login_creates_account_claims_invite_and_returns_session():
+    fake = FakeAuth(invites={BIO_ID: "bio"})
+    result = se.login_with_study_id("bio 7k3q 9mzp", fake.admin())
+
+    assert result["access_token"] == "at" and result["refresh_token"] == "rt"
+    assert result["track"] == "bio" and result["study_id"] == BIO_ID and result["lab"] is True
+    (user,) = fake.users.values()
+    assert user["email"] == "bio-7k3q-9mzp@participants.alget.example.com"
+    assert user["app_metadata"]["study_track"] == "bio" and user["app_metadata"]["study_id"] == BIO_ID
+    assert fake.invites[BIO_ID]["redeemed_by"] == user["id"]
+    assert fake.roster[user["id"]]["learner_hash"] == BIO_ID
+
+
+def test_returning_login_reuses_the_same_account_with_a_new_password():
+    fake = FakeAuth(invites={BAS_ID: "basic"})
+    se.login_with_study_id(BAS_ID, fake.admin())
+    first_password = next(iter(fake.users.values()))["password"]
+    again = se.login_with_study_id(BAS_ID, fake.admin())
+
+    assert fake.created == 1 and again["track"] == "basic" and again["access_token"] == "at"
+    assert next(iter(fake.users.values()))["password"] != first_password
+
+
+def test_login_recovers_when_account_exists_but_invite_was_not_claimed():
+    fake = FakeAuth(invites={BIO_ID: "bio"})
+    fake.users["user-9"] = {"id": "user-9", "email": se.participant_email(BIO_ID), "password": "old", "app_metadata": {}}
+    result = se.login_with_study_id(BIO_ID, fake.admin())
+    assert result["study_id"] == BIO_ID and fake.invites[BIO_ID]["redeemed_by"] == "user-9" and fake.created == 0
+
+
+def test_login_refuses_ids_redeemed_by_an_email_account():
+    fake = FakeAuth(invites={BIO_ID: "bio"})
+    fake.users["staff"] = {"id": "staff", "email": "staff@ua.edu", "password": "keep", "app_metadata": {}}
+    fake.invites[BIO_ID]["redeemed_by"] = "staff"
+    with pytest.raises(se.StudyEnrollmentError) as linked:
+        se.login_with_study_id(BIO_ID, fake.admin())
+    assert linked.value.status_code == 409 and fake.users["staff"]["password"] == "keep"
+
+
+def test_login_rejects_unknown_and_malformed_ids():
+    with pytest.raises(se.StudyEnrollmentError) as unknown:
+        se.login_with_study_id(BIO_ID, FakeAuth().admin())
+    assert unknown.value.status_code == 403
+    with pytest.raises(se.StudyEnrollmentError) as bad:
+        se.login_with_study_id("hello", FakeAuth().admin())
+    assert bad.value.status_code == 400
+
+
 def test_generator_makes_unique_valid_track_prefixed_ids():
     rows = generate({"basic": 50, "bio": 40})
     assert len(rows) == 90 and len({s for s, _ in rows}) == 90

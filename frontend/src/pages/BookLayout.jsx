@@ -15,6 +15,7 @@ import {
     Search
 } from 'lucide-react'
 import { getStreak } from '../lib/streak'
+import { accountLabel } from '../lib/studyTrack'
 import { useToast } from '../lib/toastContext'
 import BookToc from '../components/BookToc'
 import ChapterPassport from '../components/ChapterPassport'
@@ -620,9 +621,9 @@ export default function BookLayout({ user, onLogout }) {
 
                         <div className="flex items-center gap-3 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.75)] px-3 py-1.5 shadow-sm">
                             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--ath-panel-muted)] text-sm font-medium text-[var(--ath-muted)]">
-                                {user?.email ? user.email.charAt(0).toUpperCase() : 'U'}
+                                {accountLabel(user) ? accountLabel(user).charAt(0).toUpperCase() : 'U'}
                             </div>
-                            <span className="hidden text-sm font-medium text-[var(--ath-muted)] sm:block">{user?.email}</span>
+                            <span className="hidden text-sm font-medium text-[var(--ath-muted)] sm:block">{accountLabel(user)}</span>
                         </div>
 
                         <button

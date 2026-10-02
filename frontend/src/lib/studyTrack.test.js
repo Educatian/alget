@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest'
 
 vi.mock('./supabase', () => ({ supabase: { auth: {} } }))
 
-const { canOpenCourse, canOpenLab, getStudyEnrollment } = await import('./studyTrack')
+const { accountLabel, canOpenCourse, canOpenLab, getStudyEnrollment } = await import('./studyTrack')
 
 const basic = { app_metadata: { study_track: 'basic', study_id: 'id-1' } }
 const bio = { app_metadata: { study_track: 'bio', study_id: 'id-2' } }
@@ -25,6 +25,13 @@ describe('studyTrack', () => {
         expect(canOpenCourse(bio, 'statics')).toBe(false)
         expect(canOpenLab(basic)).toBe(false)
         expect(canOpenLab(bio)).toBe(true)
+    })
+
+    it('shows the Study ID instead of the placeholder email for Study ID sign-ins', () => {
+        const participant = { email: 'bio-7k3q-9mzp@participants.alget.example.com', app_metadata: { study_login: 'study_id', study_id: 'BIO-7K3Q-9MZP', study_track: 'bio' } }
+        expect(accountLabel(participant)).toBe('Study ID BIO-7K3Q-9MZP')
+        expect(accountLabel({ email: 'staff@ua.edu', app_metadata: { study_track: 'bio', study_id: 'BIO-7K3Q-9MZP' } })).toBe('staff@ua.edu')
+        expect(accountLabel(null)).toBe('')
     })
 
     it('leaves non-study users unrestricted', () => {

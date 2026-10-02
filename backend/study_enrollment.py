@@ -1,12 +1,20 @@
-"""Study enrollment with personal, one-time Study IDs.
+"""Study enrollment and sign-in with personal Study IDs.
 
-The research team pre-generates Study IDs (scripts/generate_study_ids.py),
-loads them into public.study_invites, and emails each participant their own
-ID. The team keeps the name/email <-> Study ID key outside ALGET. A signed-in
-learner redeems their ID once: the server claims the invite row, then records
-the track and Study ID in the user's Supabase app_metadata (writable only with
-the service role, so learners cannot change their own track) and in
-public.cohort_learners for the roster. No names or emails are written by ALGET.
+The research team pre-generates Study IDs (generate_study_ids.py), loads them
+into public.study_invites, and emails each participant their own ID. The team
+keeps the name/email <-> Study ID key outside ALGET.
+
+Participants sign in with the Study ID alone (login_with_study_id): the first
+time, the server creates a Supabase account with a placeholder address
+(<study-id>@participants.alget.example.com, never emailed) and claims the
+invite; afterwards the same ID signs back into that account from any device.
+The Study ID therefore works like a password. ALGET stores no participant
+names or emails.
+
+Staff who are already signed in with email can still redeem an ID with
+enroll(). Either way the track and Study ID are kept in the account's
+app_metadata (writable only with the service role, so learners cannot change
+their own track) and in public.cohort_learners for the roster.
 
 Study ID format: BAS-XXXX-XXXX (basic track) or BIO-XXXX-XXXX (bio-inspired),
 using an alphabet without look-alike characters (no I, O, 0, 1).
@@ -15,6 +23,7 @@ from __future__ import annotations
 
 import os
 import re
+import secrets
 from datetime import datetime, timezone
 from typing import Any
 
@@ -103,10 +112,48 @@ class SupabaseAdmin:
         return bool(r.json())
 
     def set_app_metadata(self, user_id: str, app_metadata: dict[str, Any]) -> None:
-        r = self.http.put(f"{self.url}/auth/v1/admin/users/{user_id}", headers=self._headers(),
-                          json={"app_metadata": app_metadata})
+        self.update_user(user_id, {"app_metadata": app_metadata})
+
+    def update_user(self, user_id: str, changes: dict[str, Any]) -> dict[str, Any]:
+        r = self.http.put(f"{self.url}/auth/v1/admin/users/{user_id}", headers=self._headers(), json=changes)
         if r.status_code >= 300:
             raise StudyEnrollmentError(502, "Could not save study enrollment.")
+        return r.json()
+
+    def get_user_by_id(self, user_id: str) -> dict[str, Any] | None:
+        r = self.http.get(f"{self.url}/auth/v1/admin/users/{user_id}", headers=self._headers())
+        if r.status_code == 404:
+            return None
+        if r.status_code != 200:
+            raise StudyEnrollmentError(502, "Could not sign in right now.")
+        return r.json()
+
+    def create_user(self, email: str, password: str, app_metadata: dict[str, Any]) -> dict[str, Any] | None:
+        """Create a confirmed account. Returns None if the email is already registered."""
+        r = self.http.post(f"{self.url}/auth/v1/admin/users", headers=self._headers(),
+                           json={"email": email, "password": password, "email_confirm": True,
+                                 "app_metadata": app_metadata})
+        if r.status_code in (409, 422):
+            return None
+        if r.status_code >= 300:
+            raise StudyEnrollmentError(502, "Could not create the study account.")
+        return r.json()
+
+    def find_user_by_email(self, email: str) -> dict[str, Any] | None:
+        """Look up an existing account by email (generate_link returns the user without sending mail)."""
+        r = self.http.post(f"{self.url}/auth/v1/admin/generate_link", headers=self._headers(),
+                           json={"type": "magiclink", "email": email})
+        if r.status_code >= 300:
+            return None
+        data = r.json()
+        return data.get("user") or (data if data.get("id") else None)
+
+    def password_sign_in(self, email: str, password: str) -> dict[str, Any]:
+        r = self.http.post(f"{self.url}/auth/v1/token", headers=self._headers(),
+                           params={"grant_type": "password"}, json={"email": email, "password": password})
+        if r.status_code != 200:
+            raise StudyEnrollmentError(502, "Could not sign in right now.")
+        return r.json()
 
     def upsert_roster(self, row: dict[str, Any]) -> None:
         headers = {**self._headers(), "Prefer": "resolution=merge-duplicates,return=minimal"}
@@ -145,6 +192,11 @@ def enroll(access_token: str, raw_study_id: str, admin: SupabaseAdmin) -> dict[s
                      "study_enrolled_at": datetime.now(timezone.utc).isoformat()})
         admin.set_app_metadata(user_id, meta)
 
+    _sync_roster(admin, user_id, track, study_id)
+    return public_enrollment(track, study_id)
+
+
+def _sync_roster(admin: SupabaseAdmin, user_id: str, track: str, study_id: str) -> None:
     spec = STUDY_TRACKS[track]
     admin.upsert_roster({
         "user_id": user_id,
@@ -155,4 +207,64 @@ def enroll(access_token: str, raw_study_id: str, admin: SupabaseAdmin) -> dict[s
         "learner_hash": study_id,
         "profile": {"study_track": track},
     })
-    return public_enrollment(track, study_id)
+
+
+def participant_email(study_id: str) -> str:
+    """Placeholder account address for a Study ID. example.com is reserved, so nothing is ever delivered."""
+    return f"{study_id.lower()}@participants.alget.example.com"
+
+
+def _study_metadata(track: str, study_id: str) -> dict[str, Any]:
+    return {"study_track": track, "study_id": study_id, "study_cohort": STUDY_TRACKS[track]["cohort_id"],
+            "study_login": "study_id", "study_enrolled_at": datetime.now(timezone.utc).isoformat()}
+
+
+def login_with_study_id(raw_study_id: str, admin: SupabaseAdmin) -> dict[str, Any]:
+    """Sign in (creating the account on first use) with a personal Study ID alone.
+
+    Returns Supabase session tokens plus the enrollment. Each sign-in sets a
+    fresh random password on the participant account and immediately signs in
+    with it, so no password is ever stored or shown; existing sessions on other
+    devices stay valid.
+    """
+    study_id = normalize_study_id(raw_study_id)
+    if not study_id:
+        raise StudyEnrollmentError(400, "Please check your Study ID. It looks like BIO-7K3Q-9MZP.")
+    invite = admin.get_invite(study_id)
+    if not invite or invite.get("track") not in STUDY_TRACKS:
+        raise StudyEnrollmentError(403, "That Study ID was not found. Please check your invitation email.")
+    track = invite["track"]
+    email = participant_email(study_id)
+    password = secrets.token_urlsafe(32)
+
+    user_id = invite.get("redeemed_by")
+    if user_id:
+        user = admin.get_user_by_id(user_id)
+        if not user:
+            raise StudyEnrollmentError(409, "This Study ID needs attention. Please contact the research team.")
+        if (user.get("email") or "").lower() != email:
+            # Redeemed by a staff account signed in with email; that account keeps using email sign-in.
+            raise StudyEnrollmentError(409, "This Study ID is linked to an email account. Please sign in with email.")
+        meta = {**(user.get("app_metadata") or {}), **_study_metadata(track, study_id)}
+        meta["study_enrolled_at"] = (user.get("app_metadata") or {}).get("study_enrolled_at", meta["study_enrolled_at"])
+        admin.update_user(user_id, {"password": password, "app_metadata": meta})
+    else:
+        user = admin.create_user(email, password, _study_metadata(track, study_id))
+        if user is None:  # account exists from an earlier attempt that did not finish claiming
+            user = admin.find_user_by_email(email)
+            if not user or not user.get("id"):
+                raise StudyEnrollmentError(502, "Could not sign in right now. Please try again.")
+            admin.update_user(user["id"], {"password": password,
+                                           "app_metadata": {**(user.get("app_metadata") or {}),
+                                                            **_study_metadata(track, study_id)}})
+        user_id = user["id"]
+        if not admin.claim_invite(study_id, user_id):
+            # Claimed between our read and write. Fine if it was this same account (e.g. a double click).
+            latest = admin.get_invite(study_id) or {}
+            if latest.get("redeemed_by") != user_id:
+                raise StudyEnrollmentError(409, "That Study ID has already been used. Please contact the research team.")
+
+    _sync_roster(admin, user_id, track, study_id)
+    session = admin.password_sign_in(email, password)
+    return {"access_token": session["access_token"], "refresh_token": session["refresh_token"],
+            "expires_in": session.get("expires_in"), **public_enrollment(track, study_id)}

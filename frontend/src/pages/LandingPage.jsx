@@ -4,6 +4,7 @@ import { ArrowRight, Brain, GraduationCap, Layers3, Microscope, ShieldCheck, Spa
 import AuthModal from '../components/AuthModal'
 import GenerativeIllustration from '../components/GenerativeIllustration'
 import ThemeToggle from '../components/ThemeToggle'
+import { accountLabel, loginWithStudyId } from '../lib/studyTrack'
 
 const platformSignals = [
     { value: 'Adaptive', label: 'pathway-aware reading' },
@@ -54,7 +55,24 @@ const workflowSteps = [
 
 export default function LandingPage({ onLogin, user, onLogout }) {
     const [authOpen, setAuthOpen] = useState(false)
+    const [studyId, setStudyId] = useState('')
+    const [studyError, setStudyError] = useState('')
+    const [studyLoading, setStudyLoading] = useState(false)
     const navigate = useNavigate()
+
+    const handleStudyLogin = async (event) => {
+        event.preventDefault()
+        setStudyLoading(true)
+        setStudyError('')
+        try {
+            await loginWithStudyId(studyId)
+            navigate('/learn')
+        } catch (err) {
+            setStudyError(err.message)
+        } finally {
+            setStudyLoading(false)
+        }
+    }
 
     return (
         <div className="editorial-shell relative flex min-h-screen flex-col overflow-hidden text-[var(--ath-text)]">
@@ -85,7 +103,7 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                         <ThemeToggle />
                         {user ? (
                             <>
-                                <span className="hidden text-sm font-medium text-[var(--ath-muted)] sm:inline-block">{user.email}</span>
+                                <span className="hidden text-sm font-medium text-[var(--ath-muted)] sm:inline-block">{accountLabel(user)}</span>
                                 <button
                                     onClick={() => navigate('/learn')}
                                     className="editorial-button px-5 py-2.5 text-sm"
@@ -128,6 +146,39 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                         <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--ath-muted)]">
                             Adaptive reading, tutor support, peer signals, and learner-model visibility for university pathways.
                         </p>
+
+                        {!user && (
+                            <form onSubmit={handleStudyLogin} className="editorial-surface mt-8 max-w-xl p-5">
+                                <label htmlFor="study-id-login" className="editorial-kicker">Research study participants</label>
+                                <p className="mt-2 text-sm text-[var(--ath-muted)]">
+                                    Enter the Study ID from your invitation email. No account or password needed.
+                                </p>
+                                <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+                                    <input
+                                        id="study-id-login"
+                                        type="text"
+                                        value={studyId}
+                                        onChange={(event) => setStudyId(event.target.value.toUpperCase())}
+                                        placeholder="e.g. BIO-7K3Q-9MZP"
+                                        autoComplete="off"
+                                        autoCapitalize="characters"
+                                        spellCheck={false}
+                                        className="editorial-input flex-1 font-mono tracking-[0.12em]"
+                                    />
+                                    <button
+                                        type="submit"
+                                        disabled={studyLoading || !studyId.trim()}
+                                        className="editorial-button px-6 py-3 text-sm disabled:opacity-60"
+                                    >
+                                        {studyLoading ? 'Checking...' : 'Start'}
+                                        <ArrowRight className="h-4 w-4" />
+                                    </button>
+                                </div>
+                                {studyError && (
+                                    <p role="alert" className="mt-3 text-sm font-medium text-[var(--ath-danger)]">{studyError}</p>
+                                )}
+                            </form>
+                        )}
 
                         <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                             {user ? (
