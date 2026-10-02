@@ -10,7 +10,7 @@ FastAPI server providing:
 
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, Header, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
@@ -1888,6 +1888,21 @@ async def validate_access(request: AccessValidationRequest):
     """Validate track or dashboard access without exposing passcodes in the client bundle."""
     is_valid = validate_access_passcode(request.scope, request.passcode)
     return {"valid": is_valid, "scope": request.scope}
+
+
+class StudyEnrollRequest(BaseModel):
+    passcode: str = ""
+
+
+@app.post("/api/study/enroll")
+def study_enroll(request: StudyEnrollRequest, authorization: str = Header(default="")):
+    """Redeem a Fall 2026 study track code for the signed-in learner (see study_enrollment.py)."""
+    import study_enrollment
+    token = authorization.removeprefix("Bearer ").strip()
+    try:
+        return study_enrollment.enroll(token, request.passcode, study_enrollment.SupabaseAdmin())
+    except study_enrollment.StudyEnrollmentError as exc:
+        raise HTTPException(status_code=exc.status_code, detail=exc.detail)
 
 
 @app.post("/api/adaptive_recommendation", response_model=AdaptiveRecommendationResponse)

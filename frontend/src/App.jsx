@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect, useState } from 'react'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-dom'
 import { supabase } from './lib/supabase'
 import { initSession, endSession } from './lib/loggingService'
 import { replayPendingResearchPersists } from './lib/researchService'
@@ -10,6 +10,7 @@ import GlobalClickLogger from './components/GlobalClickLogger'
 import AppErrorBoundary from './components/AppErrorBoundary'
 import GlobalSearch from './components/GlobalSearch'
 import API_BASE from './lib/apiConfig'
+import { canOpenCourse, canOpenLab } from './lib/studyTrack'
 import './index.css'
 
 const LandingPage = lazy(() => import('./pages/LandingPage'))
@@ -37,6 +38,12 @@ function RouteFallback() {
       </div>
     </div>
   )
+}
+
+// Study participants may only open the courses in their track.
+function StudyCourseGuard({ user, children }) {
+  const { course } = useParams()
+  return canOpenCourse(user, course) ? children : <Navigate to="/learn" replace />
 }
 
 export default function App() {
@@ -130,7 +137,9 @@ export default function App() {
                 path="/diagnostic/:course"
                 element={
                   user ? (
-                    <DiagnosticAssessment />
+                    <StudyCourseGuard user={user}>
+                      <DiagnosticAssessment />
+                    </StudyCourseGuard>
                   ) : (
                     <Navigate to="/" replace />
                   )
@@ -140,7 +149,9 @@ export default function App() {
                 path="/book/:course"
                 element={
                   user ? (
-                    <BookLayout key={user?.id || 'guest-book'} user={user} onLogout={handleLogout} />
+                    <StudyCourseGuard user={user}>
+                      <BookLayout key={user?.id || 'guest-book'} user={user} onLogout={handleLogout} />
+                    </StudyCourseGuard>
                   ) : (
                     <Navigate to="/" replace />
                   )
@@ -150,7 +161,9 @@ export default function App() {
                 path="/book/:course/:chapter/:section"
                 element={
                   user ? (
-                    <BookLayout key={user?.id || 'guest-book'} user={user} onLogout={handleLogout} />
+                    <StudyCourseGuard user={user}>
+                      <BookLayout key={user?.id || 'guest-book'} user={user} onLogout={handleLogout} />
+                    </StudyCourseGuard>
                   ) : (
                     <Navigate to="/" replace />
                   )
@@ -162,7 +175,8 @@ export default function App() {
                   user ? (
                     // Brainstorm-only: module generation (unreviewed MDX written to the
                     // shared server) was removed, so signed-in learners may use the lab.
-                    <GenerativeLab />
+                    // Study participants need a track that includes it.
+                    canOpenLab(user) ? <GenerativeLab /> : <Navigate to="/learn" replace />
                   ) : (
                     <Navigate to="/" replace />
                   )

@@ -21,6 +21,7 @@ import ThemeToggle from '../components/ThemeToggle'
 import { useCourseProgress } from '../hooks/useCourseProgress'
 import API_BASE from '../lib/apiConfig'
 import { getEvaluationStatus } from '../lib/researchService'
+import { enrollInStudy, getStudyEnrollment } from '../lib/studyTrack'
 import '../index.css'
 
 function CourseMark(props) {
@@ -53,9 +54,9 @@ const engineeringCourses = [
         icon: <CourseMark Icon={Atom} />,
         description: 'Foundational curriculum for motion, force relationships, energy, and momentum with adaptive reading and practice support.',
         topics: ['Kinematics', 'Kinetics', 'Work & Energy', 'Impulse & Momentum'],
-        chapters: 10,
-        sections: 45,
-        moduleLabel: '10 modules',
+        chapters: 3,
+        sections: 11,
+        moduleLabel: '3 modules',
         level: 'Core Requirement',
         gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
         badge: null
@@ -66,9 +67,9 @@ const engineeringCourses = [
         icon: <BioInspiredIllustration />,
         description: 'Applied biomimicry sequence connecting natural mechanisms to engineering concepts, generation labs, and design reasoning.',
         topics: ['Biomimicry', 'Natural Structures', 'Filtration', 'Adhesion'],
-        chapters: 7,
-        sections: 21,
-        moduleLabel: '7 modules',
+        chapters: 8,
+        sections: 10,
+        moduleLabel: '8 modules',
         level: 'Advanced Track',
         gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
         badge: 'Lab-enabled'
@@ -184,6 +185,20 @@ export default function MainApp({ user, onLogout }) {
         setUnlocking(true)
         setError('')
 
+        if (selectedMode === 'study') {
+            try {
+                // On success the refreshed session updates `user`, which switches this page to the study track.
+                await enrollInStudy(passcode)
+                setPasscode('')
+            } catch (err) {
+                setError(err.message)
+                setPasscode('')
+            } finally {
+                setUnlocking(false)
+            }
+            return
+        }
+
         try {
             const response = await fetch(`${API_BASE}/access/validate`, {
                 method: 'POST',
@@ -215,7 +230,12 @@ export default function MainApp({ user, onLogout }) {
         }
     }
 
-    const visibleCourses = unlockedMode === 'engineering' ? engineeringCourses : educationCourses
+    const studyEnrollment = getStudyEnrollment(user)
+    const activeMode = studyEnrollment ? 'study' : unlockedMode
+    const visibleCourses = studyEnrollment
+        ? engineeringCourses.filter((course) => studyEnrollment.courses.includes(course.id))
+        : unlockedMode === 'engineering' ? engineeringCourses : educationCourses
+    const showLab = studyEnrollment ? studyEnrollment.lab : unlockedMode === 'engineering'
     const visibleCourseIds = new Set(visibleCourses.map((course) => course.id))
     const visibleBookmarks = bookmarks.filter((bookmark) => visibleCourseIds.has(bookmark.course)).slice(0, 3)
     const visibleRecentSection = recentSection && visibleCourseIds.has(recentSection.course) ? recentSection : null
@@ -285,7 +305,7 @@ export default function MainApp({ user, onLogout }) {
             </header>
 
             <main className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
-                {!unlockedMode ? (
+                {!activeMode ? (
                     <div className="mx-auto max-w-md">
                         <div className="editorial-pill mx-auto w-fit">
                             <Sparkles className="h-3.5 w-3.5" />
@@ -309,6 +329,7 @@ export default function MainApp({ user, onLogout }) {
                                 >
                                     <option value="engineering">Engineering</option>
                                     <option value="education">Education</option>
+                                    <option value="study">Research study (Fall 2026)</option>
                                 </select>
                             </div>
 
@@ -350,23 +371,27 @@ export default function MainApp({ user, onLogout }) {
                         <section className="rounded-2xl border border-[var(--ath-line)] bg-white/85 px-5 py-3 shadow-sm">
                             <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[var(--ath-secondary)]">
                                 <span className="text-[var(--ath-text)] uppercase tracking-[0.18em]">
-                                    {unlockedMode === 'engineering' ? 'Engineering' : 'Education'} pathways
+                                    {studyEnrollment
+                                        ? `Research study / ${studyEnrollment.label}`
+                                        : `${unlockedMode === 'engineering' ? 'Engineering' : 'Education'} pathways`}
                                 </span>
                                 <span className="text-[var(--ath-line-strong)]">/</span>
                                 <span>{visibleCourses.length} available</span>
-                                <button
-                                    onClick={() => {
-                                        setUnlockedMode(null)
-                                        setPasscode('')
-                                    }}
-                                    className="ml-auto text-xs font-medium text-[var(--ath-muted)] underline-offset-4 hover:text-[var(--ath-text)] hover:underline"
-                                >
-                                    Change track
-                                </button>
+                                {!studyEnrollment && (
+                                    <button
+                                        onClick={() => {
+                                            setUnlockedMode(null)
+                                            setPasscode('')
+                                        }}
+                                        className="ml-auto text-xs font-medium text-[var(--ath-muted)] underline-offset-4 hover:text-[var(--ath-text)] hover:underline"
+                                    >
+                                        Change track
+                                    </button>
+                                )}
                             </div>
                         </section>
 
-                        {unlockedMode === 'engineering' && (
+                        {showLab && (
                             <section
                                 onClick={() => navigate('/lab')}
                                 className="group relative mt-10 cursor-pointer overflow-hidden rounded-[2.7rem] border border-[rgba(15,81,103,0.12)] bg-[linear-gradient(135deg,_rgba(17,39,49,0.98),_rgba(10,28,36,0.94))] p-8 shadow-[0_24px_60px_rgba(15,23,42,0.14)] transition-all hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(15,23,42,0.16)]"
