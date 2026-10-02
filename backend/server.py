@@ -10,7 +10,7 @@ FastAPI server providing:
 
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, Header, HTTPException
+from fastapi import FastAPI, Header, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
@@ -1902,6 +1902,34 @@ def study_enroll(request: StudyEnrollRequest, authorization: str = Header(defaul
     try:
         return study_enrollment.enroll(token, request.study_id, study_enrollment.SupabaseAdmin())
     except study_enrollment.StudyEnrollmentError as exc:
+        raise HTTPException(status_code=exc.status_code, detail=exc.detail)
+
+
+# Failed Study ID sign-ins per client, to slow down guessing (per container instance).
+_STUDY_LOGIN_FAILURES: dict[str, list[float]] = {}
+_STUDY_LOGIN_WINDOW_S = 600
+_STUDY_LOGIN_MAX_FAILURES = 20
+
+
+@app.post("/api/study/login")
+def study_login(request: StudyEnrollRequest, http_request: Request):
+    """Sign in to the research study with a personal Study ID alone (see study_enrollment.py)."""
+    import time
+    import study_enrollment
+    client = (http_request.headers.get("cf-connecting-ip")
+              or http_request.headers.get("x-forwarded-for", "").split(",")[0].strip()
+              or (http_request.client.host if http_request.client else "unknown"))
+    now = time.time()
+    recent = [t for t in _STUDY_LOGIN_FAILURES.get(client, []) if now - t < _STUDY_LOGIN_WINDOW_S]
+    if len(recent) >= _STUDY_LOGIN_MAX_FAILURES:
+        raise HTTPException(status_code=429, detail="Too many attempts. Please wait a few minutes and try again.")
+    try:
+        result = study_enrollment.login_with_study_id(request.study_id, study_enrollment.SupabaseAdmin())
+        _STUDY_LOGIN_FAILURES.pop(client, None)
+        return result
+    except study_enrollment.StudyEnrollmentError as exc:
+        if exc.status_code in (400, 403):
+            _STUDY_LOGIN_FAILURES[client] = recent + [now]
         raise HTTPException(status_code=exc.status_code, detail=exc.detail)
 
 

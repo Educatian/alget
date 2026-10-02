@@ -21,7 +21,7 @@ import ThemeToggle from '../components/ThemeToggle'
 import { useCourseProgress } from '../hooks/useCourseProgress'
 import API_BASE from '../lib/apiConfig'
 import { getEvaluationStatus } from '../lib/researchService'
-import { enrollInStudy, getStudyEnrollment } from '../lib/studyTrack'
+import { accountLabel, enrollInStudy, getStudyEnrollment } from '../lib/studyTrack'
 import { safeSessionStorageGet, safeSessionStorageSet } from '../lib/browserStorage'
 import '../index.css'
 
@@ -277,9 +277,9 @@ export default function MainApp({ user, onLogout }) {
                     <div className="flex items-center gap-3">
                         <div className="hidden items-center gap-2 rounded-full border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] px-3 py-1.5 shadow-sm sm:flex">
                             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--ath-panel-muted)] text-sm font-medium text-[var(--ath-muted)]">
-                                {user?.email ? user.email.charAt(0).toUpperCase() : 'U'}
+                                {accountLabel(user) ? accountLabel(user).charAt(0).toUpperCase() : 'U'}
                             </div>
-                            <span className="text-sm font-medium text-[var(--ath-muted)]">{user?.email}</span>
+                            <span className="text-sm font-medium text-[var(--ath-muted)]">{accountLabel(user)}</span>
                         </div>
                         <ThemeToggle className="h-10 w-10 rounded-xl" />
 
