@@ -17,6 +17,7 @@ from pydantic import BaseModel, Field
 from typing import Any, List, Literal, Optional
 import json
 import sys
+import hmac
 import os
 import math
 import re
@@ -1248,20 +1249,20 @@ def build_adaptive_recommendation(request: AdaptiveRecommendationRequest) -> Ada
 
 
 def validate_access_passcode(scope: Literal["engineering", "education", "researcher"], passcode: str) -> bool:
+    """Check a pathway access code. Codes live only in Worker secrets; there are no built-in defaults.
+
+    The researcher console no longer accepts a shared code: it opens only for approved staff
+    accounts (public.can_access_research_console), so the "researcher" scope is always refused.
+    """
+    if scope == "researcher":
+        return False
     env_key_by_scope = {
         "engineering": "ENGINEERING_ACCESS_CODE",
         "education": "EDUCATION_ACCESS_CODE",
-        "researcher": "RESEARCHER_ACCESS_CODE",
     }
-    fallback_by_scope = {
-        "engineering": "eng123",
-        "education": "edu123",
-        "researcher": "immersivebama",
-    }
-
-    expected_value = os.environ.get(env_key_by_scope[scope], fallback_by_scope[scope]).strip()
+    expected_value = os.environ.get(env_key_by_scope[scope], "").strip()
     candidate = passcode.strip()
-    return bool(expected_value) and candidate == expected_value
+    return bool(expected_value) and hmac.compare_digest(candidate, expected_value)
 
 
 ARTIFACT_RUBRIC_KEYS = [

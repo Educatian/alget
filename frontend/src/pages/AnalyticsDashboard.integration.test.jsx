@@ -1,5 +1,5 @@
 import { describe, expect, it, beforeEach, afterEach, vi } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { cleanup, render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import AnalyticsDashboard from './AnalyticsDashboard'
 import { safeSessionStorageGet } from '../lib/browserStorage'
@@ -117,10 +117,12 @@ describe('AnalyticsDashboard integration', () => {
     })
 
     afterEach(() => {
+        cleanup()
         vi.restoreAllMocks()
     })
 
     it('renders intervention and concurrency insights from live analytics data', async () => {
+        canAccessResearchConsole.mockResolvedValue({ data: true, error: null })
         render(
             <MemoryRouter>
                 <AnalyticsDashboard />
@@ -128,7 +130,7 @@ describe('AnalyticsDashboard integration', () => {
         )
 
         expect(await screen.findByText(/Intervention queue/i)).toBeInTheDocument()
-        expect(screen.getAllByText('instructional design').length).toBeGreaterThan(0)
+        expect((await screen.findAllByText('instructional design')).length).toBeGreaterThan(0)
         expect(screen.getByText(/Live section concurrency/i)).toBeInTheDocument()
         expect(screen.getAllByText('inst-design/01/01').length).toBeGreaterThan(0)
         expect(screen.getByText(/Signal mix today/i)).toBeInTheDocument()
@@ -148,5 +150,20 @@ describe('AnalyticsDashboard integration', () => {
 
         expect(await screen.findByText(/Intervention queue/i)).toBeInTheDocument()
         expect(canAccessResearchConsole).toHaveBeenCalledWith('can_access_research_console')
+    })
+
+    it('stays locked for an account that is not approved, even with a stale session flag', async () => {
+        safeSessionStorageGet.mockReturnValue('granted')
+        canAccessResearchConsole.mockResolvedValue({ data: false, error: null })
+
+        render(
+            <MemoryRouter>
+                <AnalyticsDashboard />
+            </MemoryRouter>,
+        )
+
+        expect(await screen.findByText(/Research team only/i)).toBeInTheDocument()
+        expect(screen.queryByText(/Intervention queue/i)).not.toBeInTheDocument()
+        expect(screen.queryByPlaceholderText(/access code/i)).not.toBeInTheDocument()
     })
 })

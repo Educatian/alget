@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArrowRight, Brain, GraduationCap, Layers3, Microscope, ShieldCheck, Sparkles } from 'lucide-react'
 import AuthModal from '../components/AuthModal'
 import GenerativeIllustration from '../components/GenerativeIllustration'
 import ThemeToggle from '../components/ThemeToggle'
+import { supabase } from '../lib/supabase'
 import { accountLabel, loginWithStudyId } from '../lib/studyTrack'
 
 const platformSignals = [
@@ -58,6 +59,17 @@ export default function LandingPage({ onLogin, user, onLogout }) {
     const [studyId, setStudyId] = useState('')
     const [studyError, setStudyError] = useState('')
     const [studyLoading, setStudyLoading] = useState(false)
+    const [isResearchStaff, setIsResearchStaff] = useState(false)
+
+    // Show the Research Console link only to approved staff (the database decides).
+    useEffect(() => {
+        let active = true
+        if (!user || typeof supabase.rpc !== 'function') return () => { active = false }
+        supabase.rpc('can_access_research_console')
+            .then(({ data }) => { if (active) setIsResearchStaff(data === true) })
+            .catch(() => {})
+        return () => { active = false }
+    }, [user])
     const navigate = useNavigate()
 
     const handleStudyLogin = async (event) => {
@@ -121,9 +133,9 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                         ) : (
                             <button
                                 onClick={() => setAuthOpen(true)}
-                                className="editorial-button-secondary px-5 py-2.5 text-sm"
+                                className="text-sm font-medium text-[var(--ath-muted)] underline-offset-4 hover:text-[var(--ath-text)] hover:underline"
                             >
-                                Sign in
+                                Research team sign-in
                             </button>
                         )}
                     </div>
@@ -180,8 +192,8 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                             </form>
                         )}
 
-                        <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                            {user ? (
+                        {user && (
+                            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                                 <button
                                     onClick={() => navigate('/learn')}
                                     className="editorial-button px-7 py-4 text-base"
@@ -189,22 +201,16 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                                     Open learning workspace
                                     <ArrowRight className="h-5 w-5" />
                                 </button>
-                            ) : (
-                                <button
-                                    onClick={() => setAuthOpen(true)}
-                                    className="editorial-button px-7 py-4 text-base"
-                                >
-                                    Sign in to start
-                                    <ArrowRight className="h-5 w-5" />
-                                </button>
-                            )}
-                            <button
-                                onClick={() => navigate(user ? '/analytics' : '/')}
-                                className="editorial-button-secondary px-7 py-4 text-base"
-                            >
-                                Explore researcher view
-                            </button>
-                        </div>
+                                {isResearchStaff && (
+                                    <button
+                                        onClick={() => navigate('/analytics')}
+                                        className="editorial-button-secondary px-7 py-4 text-base"
+                                    >
+                                        Research Console
+                                    </button>
+                                )}
+                            </div>
+                        )}
 
                         <div className="mt-10 grid gap-3 sm:grid-cols-3">
                             {platformSignals.map((item) => (
