@@ -23,14 +23,20 @@ export function accountLabel(user) {
     return user?.email || ''
 }
 
+// Participants start learning only after the pre-survey (see studySteps.js), so the
+// baseline is measured before any course or lab use.
+function preSurveyDone(user) {
+    return Boolean(user?.user_metadata?.study_steps?.pre)
+}
+
 export function canOpenCourse(user, courseId) {
     const enrollment = getStudyEnrollment(user)
-    return !enrollment || enrollment.courses.includes(courseId)
+    return !enrollment || (enrollment.courses.includes(courseId) && preSurveyDone(user))
 }
 
 export function canOpenLab(user) {
     const enrollment = getStudyEnrollment(user)
-    return !enrollment || enrollment.lab
+    return !enrollment || (enrollment.lab && preSurveyDone(user))
 }
 
 // Sign in with the personal Study ID alone (the account is created on first use).
