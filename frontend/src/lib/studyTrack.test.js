@@ -4,8 +4,9 @@ vi.mock('./supabase', () => ({ supabase: { auth: {} } }))
 
 const { accountLabel, canOpenCourse, canOpenLab, getStudyEnrollment } = await import('./studyTrack')
 
-const basic = { app_metadata: { study_track: 'basic', study_id: 'id-1' } }
-const bio = { app_metadata: { study_track: 'bio', study_id: 'id-2' } }
+const preDone = { study_steps: { pre: '2026-10-15T10:00:00Z' } }
+const basic = { app_metadata: { study_track: 'basic', study_id: 'id-1' }, user_metadata: preDone }
+const bio = { app_metadata: { study_track: 'bio', study_id: 'id-2' }, user_metadata: preDone }
 const regular = { app_metadata: { provider: 'email' } }
 
 describe('studyTrack', () => {
@@ -25,6 +26,12 @@ describe('studyTrack', () => {
         expect(canOpenCourse(bio, 'statics')).toBe(false)
         expect(canOpenLab(basic)).toBe(false)
         expect(canOpenLab(bio)).toBe(true)
+    })
+
+    it('keeps courses and labs closed until the pre-survey is done', () => {
+        const newBio = { app_metadata: bio.app_metadata }
+        expect(canOpenCourse(newBio, 'bio-inspired')).toBe(false)
+        expect(canOpenLab(newBio)).toBe(false)
     })
 
     it('shows the Study ID instead of the placeholder email for Study ID sign-ins', () => {

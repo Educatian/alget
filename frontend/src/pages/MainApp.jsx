@@ -17,6 +17,7 @@ import {
     Sparkles
 } from 'lucide-react'
 import { BioInspiredIllustration, StaticsIllustration } from '../components/CourseIllustrations'
+import StudySteps from '../components/StudySteps'
 import ThemeToggle from '../components/ThemeToggle'
 import { useCourseProgress } from '../hooks/useCourseProgress'
 import API_BASE from '../lib/apiConfig'
@@ -242,7 +243,9 @@ export default function MainApp({ user, onLogout }) {
     const visibleCourses = studyEnrollment
         ? engineeringCourses.filter((course) => studyEnrollment.courses.includes(course.id))
         : unlockedMode === 'engineering' ? engineeringCourses : educationCourses
-    const showLab = studyEnrollment ? studyEnrollment.lab : unlockedMode === 'engineering'
+    // Participants see their courses and labs once the pre-survey is done (see StudySteps).
+    const learningLocked = Boolean(studyEnrollment) && !user?.user_metadata?.study_steps?.pre
+    const showLab = !learningLocked && (studyEnrollment ? studyEnrollment.lab : unlockedMode === 'engineering')
     const visibleCourseIds = new Set(visibleCourses.map((course) => course.id))
     const visibleBookmarks = bookmarks.filter((bookmark) => visibleCourseIds.has(bookmark.course)).slice(0, 3)
     const visibleRecentSection = recentSection && visibleCourseIds.has(recentSection.course) ? recentSection : null
@@ -420,6 +423,14 @@ export default function MainApp({ user, onLogout }) {
                             </div>
                         </section>
 
+                        {studyEnrollment && <StudySteps user={user} needsLab={studyEnrollment.lab} />}
+
+                        {learningLocked && (
+                            <p className="mt-6 text-sm text-[var(--ath-muted)]">
+                                Your course materials{studyEnrollment.lab ? ' and labs' : ''} open here after you complete the pre-survey.
+                            </p>
+                        )}
+
                         {showLab && (
                             <section
                                 onClick={() => navigate('/lab')}
@@ -460,7 +471,7 @@ export default function MainApp({ user, onLogout }) {
                             </button>
                         )}
 
-                        {(visibleRecentSection || visibleBookmarks.length > 0) && (
+                        {!learningLocked && (visibleRecentSection || visibleBookmarks.length > 0) && (
                             <section className="mt-10 grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
                                 {visibleRecentSection && (
                                     <button
@@ -538,7 +549,7 @@ export default function MainApp({ user, onLogout }) {
                             </section>
                         )}
 
-                        {evaluationPrompts.length > 0 && (
+                        {!learningLocked && evaluationPrompts.length > 0 && (
                             <section className="mt-10 editorial-surface p-8">
                                 <div className="flex items-center justify-between gap-4">
                                     <div>
@@ -578,7 +589,7 @@ export default function MainApp({ user, onLogout }) {
                             </section>
                         )}
 
-                        <section className="mt-10 grid gap-8 lg:grid-cols-2">
+                        {!learningLocked && <section className="mt-10 grid gap-8 lg:grid-cols-2">
                             {visibleCourses.map((course) => (
                                 <button
                                     key={course.id}
@@ -637,7 +648,7 @@ export default function MainApp({ user, onLogout }) {
                                     </div>
                                 </button>
                             ))}
-                        </section>
+                        </section>}
 
                         <section className="editorial-surface mt-10 p-8">
                             <div className="max-w-2xl">

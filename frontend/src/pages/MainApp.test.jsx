@@ -22,6 +22,8 @@ beforeEach(() => {
 
 afterEach(() => {
     cleanup()
+    window.history.replaceState(null, '', '/')
+    window.sessionStorage.clear()
     vi.restoreAllMocks()
 })
 
@@ -38,6 +40,8 @@ describe('MainApp', () => {
     })
 
     it('shows all engineering pathways after engineering access is validated', async () => {
+        // Staff reveal the non-study pathways with /learn?pathways=all.
+        window.history.replaceState(null, '', '/learn?pathways=all')
         render(
             <MemoryRouter>
                 <MainApp user={{ email: 'test@example.com' }} onLogout={vi.fn()} />
@@ -55,6 +59,8 @@ describe('MainApp', () => {
     })
 
     it('shows all education pathways after education access is validated', async () => {
+        // Staff reveal the non-study pathways with /learn?pathways=all.
+        window.history.replaceState(null, '', '/learn?pathways=all')
         render(
             <MemoryRouter>
                 <MainApp user={{ email: 'test@example.com' }} onLogout={vi.fn()} />
@@ -71,5 +77,34 @@ describe('MainApp', () => {
         expect(screen.getByText('CAT 531: Technology and Teaching Supplement')).toBeInTheDocument()
         expect(screen.getByText('CAT 100: Computer Concepts Supplement')).toBeInTheDocument()
         expect(screen.getByText('5 available')).toBeInTheDocument()
+    })
+
+    it('shows a new participant only their study steps until the pre-survey is done', () => {
+        const participant = { email: 'x@participants.alget.example.com', app_metadata: { study_track: 'bio', study_id: 'BIO-7K3Q-9MZP' }, user_metadata: {} }
+        render(
+            <MemoryRouter>
+                <MainApp user={participant} onLogout={vi.fn()} />
+            </MemoryRouter>
+        )
+
+        expect(screen.getByText('Your study steps')).toBeInTheDocument()
+        const link = screen.getByRole('link', { name: /open pre-survey/i })
+        expect(link.getAttribute('href')).toContain('study_id=BIO-7K3Q-9MZP')
+        expect(screen.queryByText('Bio-Inspired Design')).not.toBeInTheDocument()
+        expect(screen.getByText(/open here after you complete the pre-survey/i)).toBeInTheDocument()
+    })
+
+    it('opens the course and labs after the pre-survey', () => {
+        const participant = { email: 'x@participants.alget.example.com', app_metadata: { study_track: 'bio', study_id: 'BIO-7K3Q-9MZP' }, user_metadata: { study_steps: { pre: '2026-10-15T10:00:00Z' } } }
+        render(
+            <MemoryRouter>
+                <MainApp user={participant} onLogout={vi.fn()} />
+            </MemoryRouter>
+        )
+
+        expect(screen.getByText('Bio-Inspired Design')).toBeInTheDocument()
+        expect(screen.getByText(/Choose and complete one 3D simulation lab/i)).toBeInTheDocument()
+        expect(screen.getByText(/Complete one Simulation Lab first/i)).toBeInTheDocument()
+        expect(screen.queryByRole('link', { name: /open knowledge check/i })).not.toBeInTheDocument()
     })
 })
