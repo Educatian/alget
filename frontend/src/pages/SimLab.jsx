@@ -157,9 +157,10 @@ function LabRunner({ lab }) {
                                 Lab complete: you have met the requirement for {lab.title}.
                             </h3>
                             <p className="mt-2 text-sm text-[var(--ath-text)]">
-                                You ran {progress.trialsDone} {lab.trialWord}s
+                                You completed all {progress.required} required {lab.trialWord}s
+                                {progress.runs > progress.required ? ` (${progress.runs} runs in total)` : ''}
                                 {progress.designsKnown ? ` and tried ${progress.distinctDesigns} different designs` : ''}.
-                                {progress.predictionsCompared > 0 && ` Your prediction matched the result in ${progress.predictionsMatched} of ${progress.predictionsCompared}.`}
+                                {progress.predictionsCompared > 0 && ` Your prediction matched the result in ${progress.predictionsMatched} of ${progress.predictionsCompared} runs.`}
                                 {' '}{progress.goalMet
                                     ? 'Your best design met the goal.'
                                     : 'Your designs have not met the goal yet, and that is fine: completing the trials is what counts.'}

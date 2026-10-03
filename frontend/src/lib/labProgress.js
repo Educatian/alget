@@ -47,6 +47,7 @@ export function computeLabProgress(events = [], requiredTrials = 5) {
     const variedDesigns = !designsKnown || distinctDesigns >= Math.min(2, required)
     return {
         trialsDone,
+        runs: trials.length, // every recorded run, including repeats and extra runs after completion
         required,
         distinctDesigns,
         designsKnown,

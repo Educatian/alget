@@ -20,7 +20,7 @@ describe('computeLabProgress', () => {
         const events = [change(30), trial(1), trial(1), change(40), trial(2, { prediction: 'SECURE GRIP', result: 'SECURE GRIP' }),
             change(45), trial(3), change(8), trial(4), trial(4), trial(4)]
         const p = computeLabProgress(events, 4)
-        expect(p).toMatchObject({ complete: true, trialsDone: 4, required: 4, predictionsMatched: 1, goalMet: true })
+        expect(p).toMatchObject({ complete: true, trialsDone: 4, runs: 7, required: 4, predictionsMatched: 1, goalMet: true })
         expect(p.distinctDesigns).toBe(4)
     })
 
