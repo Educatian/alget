@@ -106,5 +106,7 @@ describe('MainApp', () => {
         expect(screen.getByText(/Choose and complete one 3D simulation lab/i)).toBeInTheDocument()
         expect(screen.getByText(/Complete one Simulation Lab first/i)).toBeInTheDocument()
         expect(screen.queryByRole('link', { name: /open knowledge check/i })).not.toBeInTheDocument()
+        // A participant who was stopped early by mistake can reopen the pre-survey.
+        expect(screen.getByRole('link', { name: /open the pre-survey again/i }).getAttribute('href')).toContain('study_id=BIO-7K3Q-9MZP')
     })
 })

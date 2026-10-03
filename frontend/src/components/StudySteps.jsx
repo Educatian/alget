@@ -34,18 +34,27 @@ export default function StudySteps({ user, needsLab }) {
     const [opened, setOpened] = useState({})
     const [saving, setSaving] = useState(null)
     const [error, setError] = useState('')
+    const [endedEarly, setEndedEarly] = useState(null)
 
-    // Qualtrics sends participants back to /learn?survey_done=<step> when they submit.
+    // Qualtrics sends participants back to /learn?survey_done=<step> when a survey ends.
+    // screened=1 means it ended early (consent declined or an eligibility answer), so the
+    // step is not ticked and the participant is told how to reopen it.
     useEffect(() => {
         if (!steps) return
         const params = new URLSearchParams(window.location.search)
         const returned = params.get('survey_done')
         if (!returned) return
+        const screened = params.get('screened') === '1'
         params.delete('survey_done')
+        params.delete('screened')
         const query = params.toString()
         window.history.replaceState(null, '', `${window.location.pathname}${query ? `?${query}` : ''}`)
         const step = steps.find((s) => s.id === returned)
-        if (STEP_IDS.includes(returned) && step?.unlocked && !step.done) {
+        if (!STEP_IDS.includes(returned) || !step) return
+        if (screened) {
+            setEndedEarly(step.id)
+            logEvent('study_step_ended_early', step.id, { step: step.id })
+        } else if (step.unlocked && !step.done) {
             markStepDone(user, returned, 'qualtrics_redirect').catch((err) => setError(err.message))
         }
         // Run once when the page opens with the parameter.
@@ -80,6 +89,13 @@ export default function StudySteps({ user, needsLab }) {
                     Do these in order. Surveys open in a new tab and already include your Study ID.
                 </p>
             )}
+            {endedEarly && (
+                <div role="alert" className="mt-4 rounded-[1.2rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4 text-sm text-[var(--ath-text)]">
+                    The survey ended early because of one of your answers (for example, not agreeing to take part, or an
+                    eligibility question). If you chose an answer by mistake, open the survey again below and answer again.
+                    Otherwise, thank you for your time; you do not need to do anything else.
+                </div>
+            )}
 
             <ol className="mt-6 space-y-3">
                 {steps.map((step, index) => {
@@ -105,6 +121,21 @@ export default function StudySteps({ user, needsLab }) {
                                     </p>
                                     <p className="mt-1 text-sm text-[var(--ath-muted)]">{step.description}</p>
 
+                                    {step.done && step.url && (
+                                        <p className="mt-2 text-xs text-[var(--ath-muted)]">
+                                            Stopped early by mistake?{' '}
+                                            <a
+                                                href={step.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                onClick={() => logEvent('study_step_reopened', step.id, { step: step.id })}
+                                                className="font-semibold text-[var(--ath-primary)] underline"
+                                            >
+                                                Open the {step.title.toLowerCase()} again
+                                            </a>
+                                        </p>
+                                    )}
+
                                     {step.unlocked && !step.done && step.kind === 'survey' && (
                                         step.url ? (
                                             <div className="mt-3 flex flex-wrap items-center gap-3">
@@ -127,8 +158,14 @@ export default function StudySteps({ user, needsLab }) {
                                                         onClick={() => finish(step.id)}
                                                         className="editorial-button-secondary px-5 py-2.5 text-sm disabled:opacity-60"
                                                     >
-                                                        I have submitted it
+                                                        I reached the end of the survey
                                                     </button>
+                                                )}
+                                                {opened[step.id] && (
+                                                    <p className="w-full text-xs text-[var(--ath-muted)]">
+                                                        When you finish, the survey brings you back here and ticks this step for you.
+                                                        Use the button only if that did not happen.
+                                                    </p>
                                                 )}
                                             </div>
                                         ) : (
