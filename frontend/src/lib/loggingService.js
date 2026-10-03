@@ -3,7 +3,6 @@
  * Research-grade behavioral logging with sequential analysis support
  */
 import { supabase, supabaseConfig, isSupabaseConfigured } from './supabase'
-import { safeLocalStorageGet, safeLocalStorageSet } from './browserStorage'
 import API_BASE from './apiConfig'
 
 // Session state
@@ -33,26 +32,6 @@ function generateUUID() {
     })
 }
 
-function ensureGuestCredentials() {
-    let guestId = safeLocalStorageGet('alget_guest_id')
-    let guestPassword = safeLocalStorageGet('alget_guest_password')
-
-    if (!guestId) {
-        guestId = generateUUID().substring(0, 8)
-        safeLocalStorageSet('alget_guest_id', guestId)
-    }
-
-    if (!guestPassword) {
-        guestPassword = generateUUID() + generateUUID()
-        safeLocalStorageSet('alget_guest_password', guestPassword)
-    }
-
-    return {
-        guestEmail: `guest-${guestId}@alget.test`,
-        guestPassword
-    }
-}
-
 /**
  * Initialize a new session
  */
@@ -80,41 +59,9 @@ export async function initSession(user) {
         } catch (err) {
             console.warn('Could not create session:', err)
         }
-    } else {
-        // We must create a real auth.users DB entry or the foreign key will reject all logs
-        const { guestEmail, guestPassword } = ensureGuestCredentials()
-
-        try {
-            // Attempt to create a dummy user to bypass foreign key constraint
-            const { data: authData, error: authError } = await supabase.auth.signUp({
-                email: guestEmail,
-                password: guestPassword
-            });
-
-            if (authError && authError.message.includes('already registered')) {
-                // If already registered, just log them in
-                const { data: signInData } = await supabase.auth.signInWithPassword({
-                    email: guestEmail,
-                    password: guestPassword
-                });
-                userId = signInData?.user?.id || '00000000-0000-0000-0000-000000000000';
-            } else {
-                userId = authData?.user?.id || '00000000-0000-0000-0000-000000000000';
-            }
-
-            // Now insert session with valid foreign key
-            if (userId !== '00000000-0000-0000-0000-000000000000') {
-                await supabase.from('user_sessions').insert({
-                    id: sessionId,
-                    user_id: userId,
-                    device_info: deviceInfo
-                });
-            }
-        } catch (err) {
-            console.warn('Guest login failed. All FK DB requests will fail.', err);
-            userId = '00000000-0000-0000-0000-000000000000';
-        }
     }
+    // No signed-in account: nothing is stored. (Anonymous guest accounts are no longer
+    // created; public sign-up is disabled so only Study IDs and invited staff have accounts.)
 
     // Cache access token for unload-time sendBeacon (which can't await)
     if (isSupabaseConfigured) {

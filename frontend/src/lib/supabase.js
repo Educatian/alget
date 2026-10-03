@@ -61,15 +61,8 @@ if (isSupabaseConfigured) {
 }
 export { supabase }
 
-// Auth helpers
-export async function signUp(email, password) {
-    const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-    })
-    return { data, error }
-}
-
+// Auth helpers. There is deliberately no sign-up helper: staff accounts are created by
+// invitation and participant accounts by the backend from a Study ID.
 export async function signIn(email, password) {
     const { data, error } = await supabase.auth.signInWithPassword({
         email,

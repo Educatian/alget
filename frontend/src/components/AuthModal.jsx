@@ -1,5 +1,8 @@
 import { useMemo, useState } from 'react'
-import { isSupabaseConfigured, resetPassword, signIn, signInWithGoogle, signUp } from '../lib/supabase'
+import { isSupabaseConfigured, resetPassword, signIn, signInWithGoogle } from '../lib/supabase'
+
+// Staff-only sign-in. There is no self sign-up: research team accounts are created by
+// invitation from the Supabase dashboard, and participants use their Study ID instead.
 
 const DEMO_USER = {
     email: 'demo@alget.local',
@@ -18,14 +21,9 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
 
     const copy = useMemo(() => ({
         signin: {
-            title: 'Welcome Back',
-            subtitle: 'Sign in to continue learning',
+            title: 'Research team sign-in',
+            subtitle: 'For approved ALGET research staff only. Study participants: close this and enter your Study ID on the home page.',
             action: 'Sign In'
-        },
-        signup: {
-            title: 'Create Your Workspace',
-            subtitle: 'Start with a learner account or continue in demo mode',
-            action: 'Create Account'
         },
         forgot: {
             title: 'Reset Password',
@@ -79,13 +77,6 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
                 return
             }
 
-            if (mode === 'signup') {
-                const { error: signUpError } = await signUp(email, password)
-                if (signUpError) throw signUpError
-                setMessage('Check your email for a confirmation link before signing in.')
-                return
-            }
-
             const { error: resetError } = await resetPassword(email)
             if (resetError) throw resetError
             setMessage('Password reset email sent. Return here after you update your password.')
@@ -93,9 +84,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
             const errorMessage = err?.message || 'An unexpected authentication error occurred.'
 
             if (errorMessage.includes('Invalid login credentials')) {
-                setError('That email and password do not match. Try again or continue in demo mode.')
-            } else if (errorMessage.includes('User already registered')) {
-                setError('This email is already registered. Sign in instead of creating a new account.')
+                setError('That email and password do not match an approved research team account.')
             } else if (errorMessage.includes('Email not confirmed')) {
                 setError('Please confirm your email first, then return here to sign in.')
             } else if (errorMessage.includes('Supabase not configured')) {
@@ -114,7 +103,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
                 <div className="border-b border-[var(--ath-line)] bg-[var(--ath-panel-muted)] px-8 py-7">
                     <div className="flex items-start justify-between gap-4">
                         <div>
-                            <p className="editorial-kicker">The Scholarly Editorial</p>
+                            <p className="editorial-kicker">ALGET research team</p>
                             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">{copy[mode].title}</h2>
                             <p className="mt-2 text-sm leading-7 text-[var(--ath-muted)]">{copy[mode].subtitle}</p>
                         </div>
@@ -243,26 +232,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
                     <div className="mt-6 text-center text-sm">
                         {mode === 'signin' && (
                             <p className="text-[var(--ath-muted)]">
-                                Need an account?{' '}
-                                <button
-                                    type="button"
-                                    onClick={() => switchMode('signup')}
-                                    className="font-semibold text-[var(--ath-primary)]"
-                                >
-                                    Sign Up
-                                </button>
-                            </p>
-                        )}
-                        {mode === 'signup' && (
-                            <p className="text-[var(--ath-muted)]">
-                                Already have an account?{' '}
-                                <button
-                                    type="button"
-                                    onClick={() => switchMode('signin')}
-                                    className="font-semibold text-[var(--ath-primary)]"
-                                >
-                                    Sign In
-                                </button>
+                                Research team accounts are created by invitation only.
                             </p>
                         )}
                         {mode === 'forgot' && (

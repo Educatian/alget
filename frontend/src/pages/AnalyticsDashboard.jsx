@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Activity, ArrowRight, Brain, Flame, Users } from 'lucide-react'
-import API_BASE from '../lib/apiConfig'
-import { safeSessionStorageGet, safeSessionStorageRemove, safeSessionStorageSet } from '../lib/browserStorage'
+import { Activity, Brain, Flame, Users } from 'lucide-react'
+import { safeSessionStorageRemove, safeSessionStorageSet } from '../lib/browserStorage'
 import { fetchResearchDashboardSnapshot, fetchRctSnapshot, getResearchDashboardSnapshot } from '../lib/researchService'
 import { supabase } from '../lib/supabase'
 import ProcessSequenceMiningPanel from '../components/ProcessSequenceMiningPanel'
@@ -25,9 +24,6 @@ const EMPTY_SOCIAL = {
 // Only these in-app destinations are honored, so ?return= cannot redirect elsewhere.
 const RETURN_ROUTES = { lab: '/lab', instructor: '/instructor', 'study-progress': '/study-progress' }
 
-function getInitialAuthState() {
-    return safeSessionStorageGet('alget_researcher_access') === 'granted'
-}
 
 function summarizeSocialData(signals = [], presenceRows = [], progressRows = []) {
     const reactionCounts = {}
@@ -106,9 +102,10 @@ function formatSignalLabel(signalId) {
 
 export default function AnalyticsDashboard() {
     const navigate = useNavigate()
-    const [passcode, setPasscode] = useState('')
-    const [isAuthenticated, setIsAuthenticated] = useState(getInitialAuthState)
-    const [error, setError] = useState('')
+    // Access comes only from an approved staff account (checked by the database);
+    // there is no shared access code. 'checking' | 'allowed' | 'denied'
+    const [access, setAccess] = useState('checking')
+    const isAuthenticated = access === 'allowed'
     const [loading, setLoading] = useState(false)
     const [masteryData, setMasteryData] = useState([])
     const [socialSignals, setSocialSignals] = useState([])
@@ -238,43 +235,6 @@ export default function AnalyticsDashboard() {
         recentScores: []
     }
 
-    const handleAuthenticate = async (event) => {
-        event.preventDefault()
-        setLoading(true)
-        setError('')
-
-        try {
-            const response = await fetch(`${API_BASE}/access/validate`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    scope: 'researcher',
-                    passcode
-                })
-            })
-
-            if (!response.ok) {
-                throw new Error(`Access validation failed: ${response.status}`)
-            }
-
-            const data = await response.json()
-            if (!data.valid) {
-                setError('Invalid access code')
-                setPasscode('')
-                return
-            }
-
-            safeSessionStorageSet('alget_researcher_access', 'granted')
-            setIsAuthenticated(true)
-            setPasscode('')
-        } catch (err) {
-            console.error('Error validating dashboard access:', err)
-            setError('Unable to validate access right now')
-        } finally {
-            setLoading(false)
-        }
-    }
-
     const fetchDashboardData = async () => {
         setLoading(true)
 
@@ -349,67 +309,48 @@ export default function AnalyticsDashboard() {
 
     useEffect(() => {
         let active = true
-        if (typeof supabase.rpc !== 'function') return () => { active = false }
+        const deny = () => {
+            if (!active) return
+            safeSessionStorageRemove('alget_researcher_access')
+            setAccess('denied')
+        }
+        if (typeof supabase.rpc !== 'function') { deny(); return () => { active = false } }
         supabase.rpc('can_access_research_console')
             .then(({ data, error: accessError }) => {
-                if (!active || accessError || data !== true) return
+                if (accessError || data !== true) return deny()
+                if (!active) return
                 safeSessionStorageSet('alget_researcher_access', 'granted')
-                setIsAuthenticated(true)
+                setAccess('allowed')
             })
-            .catch(() => {})
+            .catch(deny)
         return () => { active = false }
     }, [])
 
     if (!isAuthenticated) {
         return (
             <div className="editorial-shell flex min-h-screen items-center justify-center p-4">
-                <div className="editorial-surface w-full max-w-md p-8">
-                    <div className="mb-8 text-center">
-                        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,var(--ath-primary),var(--ath-primary-deep))] text-white shadow-[0_18px_36px_rgba(9,56,72,0.2)]">
-                            <Brain className="h-8 w-8" />
-                        </div>
-                        <p className="editorial-kicker">Research Console</p>
-                        <h1 className="mt-3 text-4xl font-semibold tracking-tight text-[var(--ath-text)]">Scholarly analytics</h1>
-                        <p className="mt-2 text-sm leading-6 text-[var(--ath-muted)]">
-                            Access Alabama Generative Intelligent Textbook mastery, social pulse, progression, and cohort-level learning signals.
-                        </p>
+                <div className="editorial-surface w-full max-w-md p-8 text-center">
+                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,var(--ath-primary),var(--ath-primary-deep))] text-white shadow-[0_18px_36px_rgba(9,56,72,0.2)]">
+                        <Brain className="h-8 w-8" />
                     </div>
-
-                    <form onSubmit={handleAuthenticate} className="space-y-4">
-                        <input
-                            type="password"
-                            value={passcode}
-                            onChange={(event) => setPasscode(event.target.value)}
-                            placeholder="Enter researcher access code"
-                            className="editorial-input text-center tracking-[0.18em]"
-                            autoFocus
-                        />
-                        {error && <p className="text-center text-sm font-medium text-[#8c1d1d]">{error}</p>}
-                        <button
-                            type="submit"
-                            disabled={loading}
-                            className="editorial-button w-full px-5 py-3.5 text-sm disabled:opacity-60"
-                        >
-                            {loading ? 'Checking access...' : 'Unlock dashboard'}
-                            <ArrowRight className="h-4 w-4" />
-                        </button>
-                    </form>
-
-                    <div className="mt-4 flex items-center justify-center gap-3 text-sm font-medium text-[var(--ath-secondary)]">
-                        <button
-                            onClick={() => navigate(-1)}
-                            className="transition-colors hover:text-[var(--ath-primary)]"
-                        >
-                            ← Back
-                        </button>
-                        <span className="text-[var(--ath-line-strong)]">·</span>
-                        <button
-                            onClick={() => navigate('/')}
-                            className="transition-colors hover:text-[var(--ath-primary)]"
-                        >
-                            Home
-                        </button>
-                    </div>
+                    <p className="editorial-kicker">Research Console</p>
+                    {access === 'checking' ? (
+                        <p className="mt-3 text-sm text-[var(--ath-muted)]">Checking access...</p>
+                    ) : (
+                        <>
+                            <h1 className="mt-3 text-2xl font-semibold tracking-tight text-[var(--ath-text)]">Research team only</h1>
+                            <p className="mt-2 text-sm leading-6 text-[var(--ath-muted)]">
+                                This area is limited to approved members of the ALGET research team. Sign in with your
+                                approved staff account to continue. Study participants do not need this page.
+                            </p>
+                        </>
+                    )}
+                    <button
+                        onClick={() => navigate('/')}
+                        className="editorial-button-secondary mx-auto mt-6 px-5 py-2.5 text-sm"
+                    >
+                        Back to home
+                    </button>
                 </div>
             </div>
         )
@@ -448,7 +389,7 @@ export default function AnalyticsDashboard() {
                             <button
                                 onClick={() => {
                                     safeSessionStorageRemove('alget_researcher_access')
-                                    setIsAuthenticated(false)
+                                    navigate('/')
                                 }}
                                 className="rounded-full border border-[var(--ath-line)] bg-white px-3 py-1 text-xs font-semibold text-[var(--ath-muted)] hover:bg-[var(--ath-panel)]"
                             >
