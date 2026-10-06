@@ -28,9 +28,13 @@ describe('studySteps', () => {
         ])
     })
 
-    it('uses the bio posttest for the bio track and has none yet for the basic track', () => {
-        expect(getStudySteps(bio()).find((s) => s.id === 'posttest').url).toContain('SV_8xjjebrtWhJnpKC')
-        expect(getStudySteps(basic()).find((s) => s.id === 'posttest').url).toBeNull()
+    it('opens the shared posttest with the right cohort for each track', () => {
+        const bioUrl = new URL(getStudySteps(bio()).find((s) => s.id === 'posttest').url)
+        const basicUrl = new URL(getStudySteps(basic()).find((s) => s.id === 'posttest').url)
+        expect(bioUrl.pathname).toContain('SV_8xjjebrtWhJnpKC')
+        expect(basicUrl.pathname).toContain('SV_8xjjebrtWhJnpKC')
+        expect(bioUrl.searchParams.get('cohort')).toBe('study-bio')
+        expect(basicUrl.searchParams.get('cohort')).toBe('study-basic')
     })
 
     it('saves a step once, keeping earlier steps', async () => {
