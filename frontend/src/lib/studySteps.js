@@ -10,7 +10,9 @@ export const QUALTRICS_FORM_BASE = 'https://universityofalabama.az1.qualtrics.co
 
 const SURVEYS = {
     pre: 'SV_5z5mWwX62DyFRCC',
-    bioPosttest: 'SV_8xjjebrtWhJnpKC',
+    // One posttest survey for both tracks: Qualtrics shows the Statics/Dynamics items
+    // when cohort = study-basic and the bio-inspired items otherwise.
+    posttest: 'SV_8xjjebrtWhJnpKC',
     post: 'SV_a33tQxcRlIVJILI',
     gift: 'SV_0oz7vztCdDCiVr8',
 }
@@ -33,7 +35,7 @@ function stepsFor(track) {
                 : 'Work through the Engineering Statics and Engineering Dynamics materials at your own pace.',
         },
         {
-            id: 'posttest', kind: 'survey', surveyId: bio ? SURVEYS.bioPosttest : null, wave: 'post',
+            id: 'posttest', kind: 'survey', surveyId: SURVEYS.posttest, wave: 'post',
             title: 'Knowledge check',
             description: 'A short quiz on what you learned. Take it after you finish the learning step.',
         },
