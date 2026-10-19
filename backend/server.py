@@ -132,6 +132,8 @@ class GenerateRequest(BaseModel):
 class OrchestrateRequest(BaseModel):
     query: str
     course: str = "bio-inspired"
+    section_id: str = ""
+    section_title: str = ""
     current_content: str = ""
     history: list = []
     is_highlight: bool = False
@@ -1782,6 +1784,7 @@ async def orchestrate_query(request: OrchestrateRequest):
             current_content=request.current_content,
             history=request.history,
             is_highlight=request.is_highlight,
+            section_title=request.section_title,
             grade_level=request.grade_level,
             interest=request.interest,
         )

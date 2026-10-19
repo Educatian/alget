@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AlertTriangle, ArrowLeft, FileText, Lightbulb } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { logEvent } from '../lib/loggingService';
 import API_BASE from '../lib/apiConfig';
 
 import BiologyCard from '../components/BiologyCard';
@@ -55,6 +56,7 @@ export default function GenerativeLab() {
 
             const data = await response.json();
             setResult(data);
+            logEvent('generative_lab_query', 'bio-inspired', { intent: data?.intent || null })
 
             // Append assistant response to state memory for the next turn
             let assistantContent = "Responded.";
@@ -83,7 +85,7 @@ export default function GenerativeLab() {
     };
 
     return (
-        <div className="min-h-screen bg-linear-to-b from-slate-50 to-slate-100/50 font-sans selection:bg-[#9E1B32]/20 flex flex-col">
+        <div className="min-h-screen bg-[var(--ath-background)] font-sans selection:bg-[#9E1B32]/20 flex flex-col">
             {/* Premium Header */}
             <header className="bg-white/70 backdrop-blur-2xl border-b border-white/60 shadow-[0_4px_30px_rgb(0,0,0,0.03)] sticky top-0 z-50 transition-all duration-300">
                 <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4">
@@ -118,10 +120,10 @@ export default function GenerativeLab() {
 
                 {/* Generative Input Area - Glassmorphism */}
                 <div className="glass-panel p-8 lg:p-10 border-slate-200 relative overflow-hidden group">
-                    <div className="absolute inset-0 bg-linear-to-r from-purple-50/30 via-transparent to-blue-50/30 pointer-events-none"></div>
+                    <div className="absolute inset-0 bg-transparent pointer-events-none"></div>
                     <div className="relative z-10 w-full">
                         <div className="flex items-center gap-3 mb-4">
-                            <div className="w-10 h-10 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center text-xl shadow-sm border border-purple-200">
+                            <div className="w-10 h-10 bg-[color-mix(in_srgb,var(--ath-accent)_12%,var(--ath-panel))] text-[var(--ath-text)] rounded-lg flex items-center justify-center text-xl shadow-sm border border-[var(--ath-line)]">
                                 <Lightbulb className="h-5 w-5" aria-hidden="true" />
                             </div>
                             <h2 className="text-2xl font-bold text-slate-900 tracking-tight">What do you want to explore?</h2>
@@ -160,7 +162,7 @@ export default function GenerativeLab() {
 
                 {/* Error Handling */}
                 {error && (
-                    <div className="bg-red-50 border-l-4 border-red-500 text-red-800 p-4 rounded-r-xl shadow-sm font-medium flex items-center gap-3">
+                    <div className="bg-[color-mix(in_srgb,var(--ath-danger)_12%,var(--ath-panel))] border-l-4 border-red-500 text-[var(--ath-danger)] p-4 rounded-r-xl shadow-sm font-medium flex items-center gap-3">
                         <AlertTriangle className="h-5 w-5" aria-hidden="true" /> {error}
                     </div>
                 )}
@@ -197,9 +199,9 @@ export default function GenerativeLab() {
 
                         {/* Intent Badge. Module generation ("Convert to Textbook Module") was removed:
                             it wrote unreviewed sections to the shared server. The lab is brainstorm-only. */}
-                        <div className="flex items-center gap-3 bg-white/60 backdrop-blur-md p-3.5 rounded-xl border border-slate-200 shadow-[0_2px_10px_rgb(0,0,0,0.02)] self-start">
+                        <div className="flex items-center gap-3 bg-[var(--ath-panel)] backdrop-blur-md p-3.5 rounded-xl border border-slate-200 shadow-[0_2px_10px_rgb(0,0,0,0.02)] self-start">
                             <span className="text-slate-500 font-semibold text-sm">Detected Intent:</span>
-                            <span className="px-3 py-1 bg-indigo-50 text-indigo-700 uppercase tracking-widest text-xs font-bold rounded-lg border border-indigo-100">
+                            <span className="px-3 py-1 bg-[color-mix(in_srgb,var(--ath-accent)_12%,var(--ath-panel))] text-[var(--ath-text)] uppercase tracking-widest text-xs font-bold rounded-lg border border-[var(--ath-line)]">
                                 {result.intent || 'Unknown'}
                             </span>
                         </div>

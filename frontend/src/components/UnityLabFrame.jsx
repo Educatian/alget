@@ -25,7 +25,7 @@ export default function UnityLabFrame({ sectionId, simId, source, src, title, on
                 ref={iframeRef}
                 src={embeddedSrc}
                 title={title}
-                sandbox="allow-scripts allow-same-origin allow-downloads"
+                sandbox="allow-scripts allow-same-origin"
                 allow="fullscreen"
                 loading="lazy"
                 className="block h-[clamp(560px,76vh,780px)] w-full border-0"

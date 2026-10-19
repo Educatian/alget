@@ -202,7 +202,7 @@ export default function KnowledgeCheck({
             <div className="mt-12 overflow-hidden rounded-[2rem] border border-[var(--ath-line)] bg-[linear-gradient(180deg,rgba(200,226,236,0.18),rgba(255,255,255,0.88))] shadow-[0_24px_60px_rgba(15,23,42,0.06)]">
                 <div className="h-1 w-full bg-[linear-gradient(90deg,var(--ath-primary),#4a7382)]" />
                 <div className="p-8 text-center md:p-10">
-                    <div className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full border border-[rgba(15,81,103,0.12)] bg-white/75 px-4 py-2 text-[0.72rem] font-bold uppercase tracking-[0.2em] text-[var(--ath-primary)]">
+                    <div className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full border border-[var(--ath-line)] bg-white/75 px-4 py-2 text-[0.72rem] font-bold uppercase tracking-[0.2em] text-[var(--ath-primary)]">
                         Knowledge Check
                     </div>
                     <h3 className="text-3xl font-semibold text-[var(--ath-text)]">Stress-Test Your Understanding</h3>
@@ -235,9 +235,9 @@ export default function KnowledgeCheck({
 
     if (status === 'error') {
         return (
-            <div className="mt-12 rounded-[2rem] border border-[rgba(186,26,26,0.12)] bg-[rgba(255,248,247,0.92)] p-8 text-center shadow-sm">
-                <p className="editorial-kicker text-[#8c1d1d]">Knowledge Check</p>
-                <p className="mt-4 text-sm font-medium text-[#8c1d1d]">We could not generate the assessment right now.</p>
+            <div className="mt-12 rounded-[2rem] border border-[color-mix(in_srgb,var(--ath-danger)_30%,transparent)] bg-[color-mix(in_srgb,var(--ath-danger)_10%,var(--ath-panel))] p-8 text-center shadow-sm">
+                <p className="editorial-kicker text-[var(--ath-danger)]">Knowledge Check</p>
+                <p className="mt-4 text-sm font-medium text-[var(--ath-danger)]">We could not generate the assessment right now.</p>
                 <button onClick={() => setStatus('idle')} className="mt-5 text-sm font-semibold text-[var(--ath-primary)]">
                     Try Again
                 </button>
@@ -250,7 +250,7 @@ export default function KnowledgeCheck({
         const missedConcepts = results.filter((result) => !result.isCorrect)
 
         return (
-            <div className="mt-12 rounded-[2rem] border border-[var(--ath-line)] bg-[linear-gradient(180deg,rgba(255,255,255,0.9),rgba(232,245,239,0.85))] p-8 text-center shadow-[0_24px_60px_rgba(15,23,42,0.05)]">
+            <div className="mt-12 rounded-[2rem] border border-[var(--ath-line)] bg-[linear-gradient(180deg,var(--ath-panel),color-mix(in_srgb,var(--ath-primary)_8%,var(--ath-panel)))] p-8 text-center shadow-[0_24px_60px_rgba(15,23,42,0.05)]">
                 <p className="editorial-kicker">Knowledge Check Complete</p>
                 <h3 className="mt-3 text-3xl font-semibold text-[var(--ath-text)]">Assessment Complete</h3>
                 <p className="mt-3 text-sm leading-7 text-[var(--ath-muted)]">
@@ -261,7 +261,7 @@ export default function KnowledgeCheck({
                     {results.map((result, index) => (
                         <span
                             key={`${result.conceptId || 'item'}-${index}`}
-                            className={`h-3 w-3 rounded-full ${result.isCorrect ? 'bg-emerald-500' : 'bg-[#9E1B32]'}`}
+                            className={`h-3 w-3 rounded-full ${result.isCorrect ? 'bg-[color-mix(in_srgb,var(--ath-primary)_12%,var(--ath-panel))]0' : 'bg-[#9E1B32]'}`}
                         />
                     ))}
                 </div>
@@ -335,14 +335,14 @@ export default function KnowledgeCheck({
 
                             if (isAnswered) {
                                 if (isCorrect) {
-                                    optionClasses = 'border-emerald-300 bg-emerald-50 text-emerald-800'
+                                    optionClasses = 'border-[var(--ath-line)] bg-[color-mix(in_srgb,var(--ath-primary)_12%,var(--ath-panel))] text-[var(--ath-primary)]'
                                 } else if (isSelected) {
-                                    optionClasses = 'border-[rgba(186,26,26,0.18)] bg-[rgba(255,218,214,0.72)] text-[#8c1d1d]'
+                                    optionClasses = 'border-[rgba(186,26,26,0.18)] bg-[color-mix(in_srgb,var(--ath-danger)_12%,var(--ath-panel))] text-[var(--ath-danger)]'
                                 } else {
                                     optionClasses = 'border-[var(--ath-line)] bg-white/70 text-[var(--ath-muted)] opacity-70'
                                 }
                             } else if (isSelected) {
-                                optionClasses = 'border-[rgba(15,81,103,0.18)] bg-[rgba(200,226,236,0.35)] text-[var(--ath-text)]'
+                                optionClasses = 'border-[rgba(15,81,103,0.18)] bg-[color-mix(in_srgb,var(--ath-accent)_12%,var(--ath-panel))] text-[var(--ath-text)]'
                             }
 
                             return (
@@ -361,7 +361,7 @@ export default function KnowledgeCheck({
 
                         {isAnswered && (
                             <div className="mt-5 rounded-[1.3rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-5">
-                                <p className={`text-sm font-semibold ${selectedOptionId === currentQuestion.correct_option_id ? 'text-emerald-700' : 'text-[#8c1d1d]'}`}>
+                                <p className={`text-sm font-semibold ${selectedOptionId === currentQuestion.correct_option_id ? 'text-[var(--ath-primary)]' : 'text-[var(--ath-danger)]'}`}>
                                     {selectedOptionId === currentQuestion.correct_option_id ? 'Correct' : 'Needs Another Pass'}
                                 </p>
                                 <p className="mt-3 text-sm leading-7 text-[var(--ath-muted)]">{currentQuestion.explanation}</p>
@@ -443,7 +443,7 @@ export default function KnowledgeCheck({
                         {isAnswered && summaryFeedback && (
                             <div className="rounded-[1.3rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-5">
                                 <div className="flex flex-wrap items-start justify-between gap-3">
-                                    <p className={`text-sm font-semibold ${summaryFeedback.is_passing ? 'text-emerald-700' : 'text-[#8c1d1d]'}`}>
+                                    <p className={`text-sm font-semibold ${summaryFeedback.is_passing ? 'text-[var(--ath-primary)]' : 'text-[var(--ath-danger)]'}`}>
                                         {summaryFeedback.is_passing ? 'Passing Response' : 'Needs More Specificity'}
                                     </p>
                                     <div className="flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--ath-secondary)]">

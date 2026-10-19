@@ -273,10 +273,10 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                         <span className="text-[var(--ath-line-strong)]">/</span>
                         <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.14em] ${
                             currentProblem.difficulty === 'easy'
-                                ? 'bg-emerald-50 text-emerald-700'
+                                ? 'bg-[color-mix(in_srgb,var(--ath-primary)_12%,var(--ath-panel))] text-[var(--ath-primary)]'
                                 : currentProblem.difficulty === 'medium'
-                                    ? 'bg-amber-50 text-amber-700'
-                                    : 'bg-[rgba(255,218,214,0.72)] text-[#8c1d1d]'
+                                    ? 'bg-[color-mix(in_srgb,var(--ath-accent)_12%,var(--ath-panel))] text-[var(--ath-text)]'
+                                    : 'bg-[color-mix(in_srgb,var(--ath-danger)_12%,var(--ath-panel))] text-[var(--ath-danger)]'
                         }`}>{currentProblem.difficulty}</span>
                     </>
                 )}
@@ -294,7 +294,7 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                     onClick={handleHintRequest}
                     title={currentProblem?.hint ? 'Show hint' : 'Ask the tutor for a hint'}
                     aria-label="Get a hint"
-                    className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-white/70 text-[var(--ath-secondary)] shadow-sm transition-all hover:bg-[rgba(255,221,187,0.45)] hover:text-[#8a5b1a]"
+                    className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-white/70 text-[var(--ath-secondary)] shadow-sm transition-all hover:bg-[color-mix(in_srgb,var(--ath-accent)_12%,var(--ath-panel))] hover:text-[#8a5b1a]"
                 >
                     <Lightbulb className="h-4 w-4" />
                 </button>
@@ -331,7 +331,7 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                                             onClick={() => updateAnswer(currentProblem?.id, 'selectedIndex', index)}
                                             className={`group flex w-full items-start gap-3 rounded-xl border px-4 py-3 text-left text-sm leading-6 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)] ${
                                                 isSelected
-                                                    ? 'border-[var(--ath-primary)] bg-[rgba(200,226,236,0.4)] text-[var(--ath-text)] shadow-sm'
+                                                    ? 'border-[var(--ath-primary)] bg-[color-mix(in_srgb,var(--ath-accent)_12%,var(--ath-panel))] text-[var(--ath-text)] shadow-sm'
                                                     : 'border-[var(--ath-line)] bg-white/80 text-[var(--ath-text)] hover:border-[var(--ath-primary-deep)] hover:bg-[rgba(255,255,255,0.95)]'
                                             }`}
                                         >
@@ -400,7 +400,7 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                         </button>
 
                         {showHint && currentProblem?.hint && (
-                            <div className="rounded-xl border border-[rgba(199,137,67,0.18)] bg-[rgba(255,221,187,0.38)] p-3">
+                            <div className="rounded-xl border border-[var(--ath-line)] bg-[color-mix(in_srgb,var(--ath-accent)_12%,var(--ath-panel))] p-3">
                                 <p className="text-sm leading-6 text-[var(--ath-text)]">
                                     <span className="font-semibold">Hint:</span> {currentProblem.hint}
                                 </p>
@@ -410,11 +410,11 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                 ) : (
                     <div className={`mt-6 rounded-[1.3rem] p-5 ${
                         currentResult.is_correct
-                            ? 'border border-emerald-200 bg-emerald-50/70'
-                            : 'border border-[rgba(186,26,26,0.12)] bg-[rgba(255,218,214,0.72)]'
+                            ? 'border border-[var(--ath-line)] bg-[color-mix(in_srgb,var(--ath-primary)_12%,var(--ath-panel))]'
+                            : 'border border-[color-mix(in_srgb,var(--ath-danger)_30%,transparent)] bg-[color-mix(in_srgb,var(--ath-danger)_12%,var(--ath-panel))]'
                     }`}>
                         <div className="flex flex-wrap items-center justify-between gap-3">
-                            <p className={`text-sm font-semibold ${currentResult.is_correct ? 'text-emerald-700' : 'text-[#8c1d1d]'}`}>
+                            <p className={`text-sm font-semibold ${currentResult.is_correct ? 'text-[var(--ath-primary)]' : 'text-[var(--ath-danger)]'}`}>
                                 {currentResult.is_correct ? 'Correct Answer' : 'Not Quite Yet'}
                             </p>
                             {!currentResult.is_correct && (

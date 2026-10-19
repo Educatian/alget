@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react'
 import { CheckCircle2, Circle, ExternalLink, Lock } from 'lucide-react'
 import { getStudySteps, markStepDone, STEP_IDS } from '../lib/studySteps'
 import { logEvent } from '../lib/loggingService'
-import { isSupabaseConfigured, supabase } from '../lib/supabase'
+import { useEventDone } from '../lib/useEventDone'
 
 const RESEARCH_EMAIL = 'seabu@crimson.ua.edu'
+const RESEARCH_CONTACT = 'Stephen Abu'
 
 function formatDate(iso) {
     try {
@@ -14,23 +15,13 @@ function formatDate(iso) {
     }
 }
 
-// Whether this participant has completed a Simulation Lab (recorded by SimLab.jsx).
-function useLabCompleted(enabled) {
-    const [completed, setCompleted] = useState(false)
-    useEffect(() => {
-        if (!enabled || !isSupabaseConfigured) return undefined
-        let active = true
-        supabase.from('event_logs').select('id').eq('event_type', 'sim_lab_completed').limit(1)
-            .then(({ data }) => { if (active) setCompleted((data || []).length > 0) })
-            .catch(() => {})
-        return () => { active = false }
-    }, [enabled])
-    return completed
+function scrollToId(id) {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
 
 export default function StudySteps({ user, needsLab }) {
     const steps = getStudySteps(user)
-    const labCompleted = useLabCompleted(Boolean(steps) && needsLab)
+    const labCompleted = useEventDone('sim_lab_completed', Boolean(steps) && needsLab)
     const [opened, setOpened] = useState({})
     const [saving, setSaving] = useState(null)
     const [error, setError] = useState('')
@@ -88,6 +79,13 @@ export default function StudySteps({ user, needsLab }) {
                 <p className="mt-2 text-sm text-[var(--ath-muted)]">
                     Do these in order. Surveys open in a new tab and already include your Study ID.
                 </p>
+            )}
+            {allDone && (
+                <div className="mt-4 rounded-[1.2rem] border border-[var(--ath-primary)] bg-[var(--ath-panel)] p-4 text-sm text-[var(--ath-text)]">
+                    You have finished every step of the study, and there is nothing else you need to do. You can now
+                    sign out using the button at the top right. If you have any questions about the study or your gift
+                    card, email {RESEARCH_CONTACT} at <a className="font-semibold underline" href={`mailto:${RESEARCH_EMAIL}`}>{RESEARCH_EMAIL}</a>.
+                </div>
             )}
             {endedEarly && (
                 <div role="alert" className="mt-4 rounded-[1.2rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4 text-sm text-[var(--ath-text)]">
@@ -177,6 +175,24 @@ export default function StudySteps({ user, needsLab }) {
 
                                     {step.unlocked && !step.done && step.kind === 'learn' && (
                                         <div className="mt-3">
+                                            <p className="mb-2 text-sm text-[var(--ath-text)]">
+                                                Your course{needsLab ? ' and labs are' : 's are'} listed below this panel.
+                                                {' '}Open them from there, then come back and press the button when you have finished.
+                                            </p>
+                                            <div className="mb-3 flex flex-wrap gap-2">
+                                                <button type="button" onClick={() => scrollToId('study-courses')} className="editorial-button px-4 py-2 text-sm">
+                                                    Go to my course{needsLab ? '' : 's'} ↓
+                                                </button>
+                                                {needsLab && (
+                                                    <button type="button" onClick={() => scrollToId('study-labs')} className="editorial-button-secondary px-4 py-2 text-sm">
+                                                        Go to the labs ↓
+                                                    </button>
+                                                )}
+                                            </div>
+                                            <p className="mb-3 text-xs text-[var(--ath-muted)]">
+                                                The practice questions at the end of each section are optional. We encourage you to try the
+                                                section quizzes and the knowledge check, because they matter most for the study.
+                                            </p>
                                             {learnBlocked && (
                                                 <p className="mb-2 text-sm text-[var(--ath-secondary)]">
                                                     Complete one Simulation Lab first (see below), then come back here.
@@ -201,7 +217,7 @@ export default function StudySteps({ user, needsLab }) {
 
             {error && <p role="alert" className="mt-4 text-sm font-medium text-[var(--ath-danger)]">{error}</p>}
             <p className="mt-5 text-xs text-[var(--ath-muted)]">
-                Questions or problems? Email <a className="underline" href={`mailto:${RESEARCH_EMAIL}`}>{RESEARCH_EMAIL}</a> with your Study ID.
+                Questions or problems? Email {RESEARCH_CONTACT} at <a className="underline" href={`mailto:${RESEARCH_EMAIL}`}>{RESEARCH_EMAIL}</a> with your Study ID.
             </p>
         </section>
     )

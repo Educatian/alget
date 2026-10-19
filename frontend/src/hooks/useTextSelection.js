@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '../lib/supabase'
 import { useToast } from '../lib/toastContext'
 
+const SHOW_PEER_HIGHLIGHTS = false
+
 /**
  * Hook to handle text selection, highlighting, and notes
  */
@@ -33,25 +35,26 @@ export function useTextSelection({ sectionId, userId }) {
                         setHighlights(userHighlights)
                     }
 
-                    // Fetch peer highlights
-                    const { data: others } = await supabase
+                    // Other learners' highlights are not shown (study privacy):
+                    // each participant only sees their own notes.
+                    const others = SHOW_PEER_HIGHLIGHTS ? (await supabase
                         .from('highlights')
                         .select('*')
                         .eq('section_id', sectionId)
                         .neq('user_id', userId)
                         .order('created_at', { ascending: false })
-                        .limit(50) // limit so we don't fetch too many
+                        .limit(50)).data : null
 
                     if (others) {
                         setPeerHighlights(others)
                     }
                 }
 
-                // Fetch popular highlights (from view)
-                const { data: popular } = await supabase
+                // Popular highlights aggregate other learners' highlights; off for the study.
+                const popular = SHOW_PEER_HIGHLIGHTS ? (await supabase
                     .from('popular_highlights')
                     .select('*')
-                    .eq('section_id', sectionId)
+                    .eq('section_id', sectionId)).data : []
 
                 setPopularHighlights(popular || [])
             } catch (err) {
