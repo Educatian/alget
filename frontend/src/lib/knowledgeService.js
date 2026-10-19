@@ -1,5 +1,6 @@
 import API_BASE from './apiConfig';
 import { supabase } from './supabase';
+import { logEvent } from './loggingService';
 import { buildLearnerProfileSnapshot, startInterventionTrace } from './researchService';
 
 const ADAPTIVE_SIGNAL_KEY = 'alget_adaptive_signals_v1';
@@ -175,6 +176,12 @@ export function recordAdaptiveSignal(sectionId, type, payload = {}) {
     ];
 
     writeAdaptiveSignals(nextSignals);
+
+    // Also keep every signal in the study log (Supabase), not only in this browser.
+    // Stuck events are already logged by BookLayout, so they are not duplicated.
+    if (type !== 'stuck_event') {
+        logEvent(`signal_${type}`, payload?.problemId || payload?.conceptId || null, payload, sectionId);
+    }
 }
 
 export function summarizeAdaptiveSignals(sectionId) {

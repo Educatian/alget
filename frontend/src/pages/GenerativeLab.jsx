@@ -56,7 +56,18 @@ export default function GenerativeLab() {
 
             const data = await response.json();
             setResult(data);
-            logEvent('generative_lab_query', 'bio-inspired', { intent: data?.intent || null })
+            // Study log: the student's idea and a text version of the lab's answer.
+            const answerText = typeof data?.summary === 'string'
+                ? data.summary
+                : (data?.summary?.synthesis || data?.scaffolding?.encouraging_remark || data?.activity_brainstorm?.lateral_thinking_prompt || '')
+            logEvent('generative_lab_query', 'bio-inspired', {
+                intent: data?.intent || null,
+                query: userText.slice(0, 4000),
+                turn_number: currentHistory.length,
+                answer_summary: String(answerText).slice(0, 4000),
+                biology_mechanism: data?.biology_context?.primary_mechanism || null,
+                engineering_application: data?.engineering_application?.application_idea || data?.engineering_application?.engineering_principle || null,
+            })
 
             // Append assistant response to state memory for the next turn
             let assistantContent = "Responded.";
@@ -79,6 +90,7 @@ export default function GenerativeLab() {
         } catch (err) {
             console.error(err);
             setError("Failed to generate response. Check your API key or network connection.");
+            logEvent('generative_lab_error', 'bio-inspired', { query: userText.slice(0, 1000), message: String(err?.message || err).slice(0, 300) });
         } finally {
             setLoading(false);
         }
