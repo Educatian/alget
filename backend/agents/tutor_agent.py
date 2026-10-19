@@ -118,7 +118,7 @@ class TutorAgent:
         {val_context_str}
         """
 
-    def general_tutor(self, query: str, course: str, current_content: str, rag_context: str, history: list = None) -> dict:
+    def general_tutor(self, query: str, course: str, current_content: str, rag_context: str, history: list = None, section_title: str = "") -> dict:
         """
         Generic tutoring method for courses other than bio-inspired design.
         """
@@ -140,12 +140,19 @@ class TutorAgent:
         domain_map = {
             "inst-design": "Instructional Design and Educational Technology",
             "ai-ethics": "AI Ethics, Governance, and Responsible Deployment",
+            "statics": "Engineering Statics",
+            "dynamics": "Engineering Dynamics",
         }
         domain = domain_map.get(course, course.replace('-', ' ').title())
         
         prompt = f"""
-        You are a highly knowledgeable Tutor Agent specializing in {domain}.
+        You are BigAL, a highly knowledgeable Tutor Agent specializing in {domain}.
+        The student is reading the section "{section_title or 'current section'}" of the {domain} course.
         A student is asking a question. Synthesize an encouraging, easy-to-understand response based on the context provided.
+
+        Stay within {domain} and this section. Do not bring in other subjects (for example bio-inspired
+        design or biology) unless the student explicitly asks about them. If the student only greets you
+        or asks how to start, welcome them briefly and suggest one or two ways you can help with this section.
         
         Use the conversation history to understand the context of the student's question and personalize your response accordingly.
         

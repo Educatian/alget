@@ -64,6 +64,7 @@ class OrchestratorAgent:
         is_highlight: bool = False,
         grade_level: str = "Undergraduate",
         interest: str = "Bio-Inspired Design",
+        section_title: str = "",
     ) -> dict:
         """
         Main orchestration method:
@@ -105,26 +106,31 @@ class OrchestratorAgent:
             
         logger.info(f"Processing query: {query}")
         
-        # Determine Intent
-        intent = self._classify_intent(query, history)
-        logger.info(f"Classified Intent: {intent}")
-        
-        # Retrieve context from RAG Service
-        rag_contexts = rag_service.retrieve_context(query, top_k=2)
-        background_knowledge = "\n\n".join([
-            f"Excerpt from {c['metadata'].get('filename', 'Textbook')}:\n{c['content']}" 
-            for c in rag_contexts
-        ]) if rag_contexts else ""
-        
-        # Branch for non-bio courses
+        # Non-bio courses (Statics, Dynamics, ...) go straight to the course tutor.
+        # The retrieval index and the specialist agents below are bio-inspired only,
+        # so they must not be used here (they made Statics answers talk about
+        # bio-inspired design).
         if course != "bio-inspired":
             logger.info(f"Routing to general_tutor for course: {course}")
-            final_summary_dict = self.tutor_agent.general_tutor(query, course, current_content, background_knowledge, history)
+            final_summary_dict = self.tutor_agent.general_tutor(
+                query, course, current_content, "", history, section_title=section_title
+            )
             return {
                 "intent": "learn", # Fallback to learn card for generic content
                 "query": query,
                 "summary": final_summary_dict
             }
+
+        # Determine Intent
+        intent = self._classify_intent(query, history)
+        logger.info(f"Classified Intent: {intent}")
+        
+        # Retrieve context from RAG Service (bio-inspired curriculum)
+        rag_contexts = rag_service.retrieve_context(query, top_k=2)
+        background_knowledge = "\n\n".join([
+            f"Excerpt from {c['metadata'].get('filename', 'Textbook')}:\n{c['content']}"
+            for c in rag_contexts
+        ]) if rag_contexts else ""
         
         current_bio_context = current_content # Temporary backwards compatibility
 

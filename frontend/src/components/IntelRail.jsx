@@ -245,7 +245,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
 
     return (
         <div className="flex h-full flex-col">
-            <div className="border-b border-[var(--ath-line)] bg-[linear-gradient(180deg,rgba(248,246,241,0.98),rgba(240,237,230,0.92))] p-5">
+            <div className="border-b border-[var(--ath-line)] bg-[linear-gradient(180deg,var(--ath-panel),var(--ath-panel-muted))] p-5">
                 <div className="mb-2 flex items-start justify-between gap-4">
                     <div>
                         <p className="editorial-kicker">Reading Panel</p>
@@ -260,7 +260,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                     </button>
                 </div>
                 {resolvedStuckReason && (
-                    <div className="rounded-[1rem] border border-[rgba(15,81,103,0.12)] bg-[rgba(200,226,236,0.34)] px-3 py-2 text-sm text-[var(--ath-primary-deep)]">
+                    <div className="rounded-[1rem] border border-[var(--ath-line)] bg-[color-mix(in_srgb,var(--ath-accent)_12%,var(--ath-panel))] px-3 py-2 text-sm text-[var(--ath-primary-deep)]">
                         <span className="font-semibold">Detected:</span> {resolvedStuckReason}
                     </div>
                 )}
@@ -271,7 +271,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                 )}
             </div>
 
-            <div className="flex border-b border-[var(--ath-line)] bg-[rgba(240,237,230,0.6)]">
+            <div className="flex border-b border-[var(--ath-line)] bg-[var(--ath-panel-muted)]">
                 {TABS.map((tab) => (
                     <button
                         key={tab.id}
@@ -287,7 +287,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
             </div>
 
             <div className="flex-1 overflow-y-auto p-4">
-                <div className="mb-4 rounded-[1.5rem] border border-[var(--ath-line)] bg-[linear-gradient(180deg,rgba(255,255,255,0.9),rgba(240,237,230,0.64))] p-4 shadow-sm">
+                <div className="mb-4 rounded-[1.5rem] border border-[var(--ath-line)] bg-[linear-gradient(180deg,var(--ath-panel),var(--ath-panel-muted))] p-4 shadow-sm">
                     <div className="mb-3 flex items-center justify-between gap-3">
                         <div>
                             <p className="editorial-label">Recommended next step</p>
@@ -415,7 +415,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                                 {loading ? 'Generating...' : 'Get a simpler explanation'}
                             </button>
                         ) : (
-                            <div className="rounded-[1.2rem] border border-[rgba(15,81,103,0.12)] bg-[rgba(200,226,236,0.28)] p-4">
+                            <div className="rounded-[1.2rem] border border-[var(--ath-line)] bg-[color-mix(in_srgb,var(--ath-accent)_12%,var(--ath-panel))] p-4">
                                 <h4 className="mb-2 font-semibold text-[var(--ath-primary-deep)]">Simplified explanation</h4>
                                 <p className="whitespace-pre-wrap text-sm leading-6 text-[var(--ath-text)]">{explanation}</p>
                             </div>
@@ -444,7 +444,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                         </div>
 
                         {representation && (
-                            <div className="mt-4 rounded-[1.2rem] border border-[rgba(199,137,67,0.18)] bg-[rgba(255,221,187,0.38)] p-4">
+                            <div className="mt-4 rounded-[1.2rem] border border-[var(--ath-line)] bg-[color-mix(in_srgb,var(--ath-accent)_12%,var(--ath-panel))] p-4">
                                 <p className="whitespace-pre-wrap text-sm leading-6 text-[var(--ath-text)]">{representation}</p>
                             </div>
                         )}
@@ -453,9 +453,9 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
 
                 {activeTab === 'practice' && (
                     <div className="space-y-4">
-                        <div className="rounded-[1.2rem] border border-emerald-200 bg-emerald-50/70 p-4">
-                            <h4 className="font-semibold text-emerald-800">Recommended focus</h4>
-                            <p className="mt-2 text-sm leading-relaxed text-emerald-700">
+                        <div className="rounded-[1.2rem] border border-[var(--ath-line)] bg-[color-mix(in_srgb,var(--ath-primary)_12%,var(--ath-panel))] p-4">
+                            <h4 className="font-semibold text-[var(--ath-primary)]">Recommended focus</h4>
+                            <p className="mt-2 text-sm leading-relaxed text-[var(--ath-primary)]">
                                 Return to the practice problems and focus on {prettyConcept(primaryRecommendation?.focus_concepts?.[0])}.
                                 If the next attempt still feels shaky, come back here and open Explain or Ask.
                             </p>
@@ -530,7 +530,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                             <p className="editorial-label">Pedagogical audit</p>
                             <div className="flex items-center gap-2">
                                 <span className="editorial-chip">{supportAudit.overall}/5</span>
-                                <span className={`editorial-chip ${supportAudit.release_status === 'blocked' ? 'border-rose-200 bg-rose-50 text-rose-700' : supportAudit.release_status === 'review' ? 'border-amber-200 bg-amber-50 text-amber-700' : 'border-emerald-200 bg-emerald-50 text-emerald-700'}`}>
+                                <span className={`editorial-chip ${supportAudit.release_status === 'blocked' ? 'border-[var(--ath-line)] bg-[color-mix(in_srgb,var(--ath-danger)_12%,var(--ath-panel))] text-[var(--ath-danger)]' : supportAudit.release_status === 'review' ? 'border-[var(--ath-line)] bg-[color-mix(in_srgb,var(--ath-accent)_12%,var(--ath-panel))] text-[var(--ath-text)]' : 'border-[var(--ath-line)] bg-[color-mix(in_srgb,var(--ath-primary)_12%,var(--ath-panel))] text-[var(--ath-primary)]'}`}>
                                     {supportAudit.release_status}
                                 </span>
                             </div>
@@ -569,7 +569,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                 )}
 
                 {(learnerState || learnerProfile) && (
-                    <div className="mt-5 rounded-[1.2rem] border border-[var(--ath-line)] bg-[rgba(240,237,230,0.56)] p-4">
+                    <div className="mt-5 rounded-[1.2rem] border border-[var(--ath-line)] bg-[var(--ath-panel-muted)] p-4">
                         <p className="editorial-label">Learner-model snapshot</p>
                         <div className="mt-3 grid grid-cols-2 gap-3 text-xs text-[var(--ath-muted)]">
                             <div className="rounded-xl bg-white/75 px-3 py-2">
@@ -610,7 +610,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
             </div>
 
             {activeTab !== 'ask' && (
-                <div className="border-t border-[var(--ath-line)] bg-[rgba(240,237,230,0.56)] p-4">
+                <div className="border-t border-[var(--ath-line)] bg-[var(--ath-panel-muted)] p-4">
                     <p className="text-center text-xs text-[var(--ath-secondary)]">
                         Adaptive support blends mastery, practice friction, and learner feedback for this section.
                     </p>

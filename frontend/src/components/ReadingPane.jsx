@@ -63,6 +63,8 @@ export default function ReadingPane({
     nextSection,
     recentSection,
     onNavigate,
+    onExitCourse,
+    userId = null,
     peerPulse
 }) {
     const [showSimulation, setShowSimulation] = useState(false)
@@ -151,7 +153,7 @@ export default function ReadingPane({
                 </div>
 
                 {meta?.learning_objectives?.length > 0 && !contentHasLearningTargets && (
-                    <div className="mt-8 rounded-[1.8rem] border-l-4 border-[var(--ath-primary)] bg-[linear-gradient(90deg,rgba(200,226,236,0.42),rgba(255,255,255,0.72))] p-6 shadow-sm">
+                    <div className="mt-8 rounded-[1.8rem] border-l-4 border-[var(--ath-primary)] bg-[linear-gradient(90deg,color-mix(in_srgb,var(--ath-primary)_12%,var(--ath-panel)),var(--ath-panel))] p-6 shadow-sm">
                         <p className="editorial-kicker">Learning Objectives</p>
                         <ul className="mt-4 space-y-3">
                             {meta.learning_objectives.map((obj, i) => (
@@ -173,7 +175,7 @@ export default function ReadingPane({
                             {workProduct}
                         </p>
                         <span className={`rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.18em] ${isCompleted
-                            ? 'bg-emerald-50 text-emerald-700'
+                            ? 'bg-[color-mix(in_srgb,var(--ath-primary)_12%,var(--ath-panel))] text-[var(--ath-primary)]'
                             : 'bg-[var(--ath-panel)] text-[var(--ath-secondary)]'
                             }`}>
                             {isCompleted ? 'Done' : 'Open'}
@@ -332,6 +334,7 @@ export default function ReadingPane({
                 <PerusallLayer
                     key={sectionId}
                     sectionId={sectionId}
+                    userId={userId}
                     sectionTitle={meta?.title || ''}
                     conceptIds={meta?.concept_ids || []}
                 />
@@ -367,7 +370,7 @@ export default function ReadingPane({
                     onClick={markCompleted}
                     disabled={isCompleted}
                     className={`flex items-center gap-3 rounded-[1rem] px-8 py-3.5 text-lg font-semibold transition-all ${isCompleted
-                        ? 'cursor-default border border-emerald-200 bg-emerald-100 text-emerald-700'
+                        ? 'cursor-default border border-[var(--ath-line)] bg-[color-mix(in_srgb,var(--ath-primary)_12%,var(--ath-panel))] text-[var(--ath-primary)]'
                         : 'editorial-button'
                         }`}
                 >
@@ -388,18 +391,26 @@ export default function ReadingPane({
                     <span className="block text-xs font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Previous</span>
                     <span className="mt-1 block text-sm font-semibold">{previousSection ? `${previousSection.chapter}.${previousSection.section} ${previousSection.title}` : 'Start of course'}</span>
                 </button>
-                <button
-                    type="button"
-                    disabled={!nextSection}
-                    onClick={() => nextSection && onNavigate?.(nextSection.chapter, nextSection.section, 'forward')}
-                    className={`rounded-2xl border px-4 py-3 text-right transition-colors ${nextSection
-                        ? 'border-[var(--ath-line)] bg-white text-[var(--ath-text)] hover:bg-[var(--ath-panel)]'
-                        : 'cursor-not-allowed border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-muted)] opacity-60'
-                        }`}
-                >
-                    <span className="block text-xs font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Next</span>
-                    <span className="mt-1 block text-sm font-semibold">{nextSection ? `${nextSection.chapter}.${nextSection.section} ${nextSection.title}` : 'End of course'}</span>
-                </button>
+                {nextSection ? (
+                    <button
+                        type="button"
+                        onClick={() => onNavigate?.(nextSection.chapter, nextSection.section, 'forward')}
+                        className="rounded-2xl border border-[var(--ath-line)] bg-white px-4 py-3 text-right text-[var(--ath-text)] transition-colors hover:bg-[var(--ath-panel)]"
+                    >
+                        <span className="block text-xs font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Next</span>
+                        <span className="mt-1 block text-sm font-semibold">{`${nextSection.chapter}.${nextSection.section} ${nextSection.title}`}</span>
+                    </button>
+                ) : (
+                    // Last section: send the learner back to their study steps / course list.
+                    <button
+                        type="button"
+                        onClick={() => onExitCourse?.()}
+                        className="rounded-2xl border border-[var(--ath-primary)] bg-[var(--ath-primary)] px-4 py-3 text-right text-[var(--ath-background)] transition-opacity hover:opacity-90"
+                    >
+                        <span className="block text-xs font-bold uppercase tracking-[0.18em]">End of course</span>
+                        <span className="mt-1 block text-sm font-semibold">Back to your study steps →</span>
+                    </button>
+                )}
             </div>
         </div>
     )

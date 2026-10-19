@@ -714,6 +714,8 @@ export default function BookLayout({ user, onLogout }) {
                                         nextSection={nextSection}
                                         recentSection={recentSection}
                                         onNavigate={handleNavigate}
+                                        onExitCourse={() => navigate('/learn')}
+                                        userId={user?.id || null}
                                         peerPulse={{
                                             connected: socialState.connected,
                                             peers: socialState.peers,
@@ -821,7 +823,7 @@ export default function BookLayout({ user, onLogout }) {
                     context={{
                         sectionId: sectionPath,
                         pageContent: sectionData?.raw || '',
-                        sectionTitle: sectionData?.title || '',
+                        sectionTitle: sectionData?.meta?.title || sectionData?.title || '',
                         conceptIds: sectionData?.meta?.concept_ids || [],
                         course
                     }}

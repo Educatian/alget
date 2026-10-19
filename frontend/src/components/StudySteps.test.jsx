@@ -31,3 +31,20 @@ describe('StudySteps return from Qualtrics', () => {
         expect(screen.getByRole('link', { name: /open pre-survey/i })).toBeInTheDocument()
     })
 })
+
+describe('StudySteps guidance', () => {
+    it('points to the courses and says practice questions are optional during the learning step', () => {
+        const user = { ...participant, user_metadata: { study_steps: { pre: '2026-10-15T10:00:00Z' } } }
+        render(<StudySteps user={user} needsLab={false} />)
+        expect(screen.getByRole('button', { name: /go to my courses/i })).toBeInTheDocument()
+        expect(screen.getByText(/practice questions at the end of each section are optional/i)).toBeInTheDocument()
+    })
+
+    it('tells the participant they are done and whom to contact', () => {
+        const all = { pre: 'x', learn: 'x', posttest: 'x', post: 'x', gift: 'x' }
+        render(<StudySteps user={{ ...participant, user_metadata: { study_steps: all } }} needsLab={false} />)
+        expect(screen.getByText(/finished every step of the study/i)).toBeInTheDocument()
+        expect(screen.getAllByText(/Stephen Abu/).length).toBeGreaterThan(0)
+    })
+})
+

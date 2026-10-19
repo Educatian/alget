@@ -5,12 +5,37 @@ import { fuseTelemetry, recordAdaptiveSignal } from '../lib/knowledgeService'
 import API_BASE from '../lib/apiConfig'
 import { LearnIntentCard, EvaluateIntentCard, BrainstormIntentCard, ScaffoldingIntentCard, IllustrateIntentCard, SimulateIntentCard, ErrorIntentCard } from './IntentCards'
 
+// What BigAL is about in each course (header + empty state). Keep in sync with the
+// course ids used in /book/:course routes.
+const COURSE_INFO = {
+    statics: { label: 'Engineering Statics', prompt: 'Ask me about forces, moments, free-body diagrams, and equilibrium in this section.' },
+    dynamics: { label: 'Engineering Dynamics', prompt: 'Ask me about motion, forces, energy, and momentum in this section.' },
+    'bio-inspired': { label: 'Bio-Inspired Engineering', prompt: 'Ask me about bridging biological mechanisms into engineering design.' },
+    'inst-design': { label: 'Instructional Design', prompt: 'Ask me about creating effective learning experiences.' },
+}
+
+function courseOf(context) {
+    return context?.course || String(context?.sectionId || '').split('/')[0] || ''
+}
+
+// Plain-text version of a stored message, so old structured answers are not
+// sent back to the model as raw objects.
+function messageText(msg) {
+    if (typeof msg?.content === 'string') return msg.content
+    const c = msg?.content || {}
+    const summary = c.summary
+    return c.text || c.error || (typeof summary === 'string' ? summary : summary?.synthesis || summary?.explanation) || ''
+}
+
 const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, onQuestionSent, userId }, ref) {
     const [isOpen, setIsOpen] = useState(false)
     const [messages, setMessages] = useState([])
     const [inputValue, setInputValue] = useState('')
     const [loading, setLoading] = useState(false)
     const [historyLoaded, setHistoryLoaded] = useState(false)
+    const [earlierCount, setEarlierCount] = useState(0)
+    const course = courseOf(context)
+    const courseInfo = COURSE_INFO[course] || { label: 'Your course', prompt: 'Ask me anything about this section.' }
     const messagesEndRef = useRef(null)
     const lastAutoQuestionRef = useRef(null)
 
@@ -28,6 +53,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
         setInputValue('')
         setLoading(false)
         setHistoryLoaded(false)
+        setEarlierCount(0)
         lastAutoQuestionRef.current = null
     }, [context?.sectionId])
 
@@ -35,6 +61,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
     useEffect(() => {
         if (!userId || !context?.sectionId || historyLoaded) return
 
+        let cancelled = false
         const loadHistory = async () => {
             try {
                 const { data } = await supabase
@@ -44,16 +71,19 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                     .eq('section_id', context.sectionId)
                     .maybeSingle()
 
-                if (data?.messages) {
+                // History is per signed-in account and section (RLS: own rows only).
+                if (!cancelled && Array.isArray(data?.messages)) {
                     setMessages(data.messages)
+                    setEarlierCount(data.messages.length)
                 }
             } catch {
                 // No history yet, that's fine
             }
-            setHistoryLoaded(true)
+            if (!cancelled) setHistoryLoaded(true)
         }
 
         loadHistory()
+        return () => { cancelled = true }
     }, [userId, context?.sectionId, historyLoaded])
 
     // Listen for global open-chat events.
@@ -126,7 +156,8 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
     }, [messages])
 
     const sendMessageWithText = async (text) => {
-        if (!text.trim() || loading) return
+        // Wait for this section's saved history so a new message cannot overwrite it.
+        if (!text.trim() || loading || (userId && !historyLoaded)) return
 
         const userMessage = text.trim()
         const turnNumber = messages.length + 1
@@ -150,9 +181,11 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     query: userMessage,
-                    course: context?.course || "bio-inspired",
+                    course,
+                    section_id: context?.sectionId || '',
+                    section_title: context?.sectionTitle || '',
                     current_content: context?.pageContent ? context.pageContent.substring(0, 2000) : "",
-                    history: messages.slice(-10), // Send more history for better context
+                    history: messages.slice(-10).map((m) => ({ role: m.role, content: messageText(m) })),
                     is_highlight: isHighlight,
                     api_key: apiKey
                 })
@@ -246,7 +279,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                             <div>
                                 <h3 className="text-lg font-bold leading-tight tracking-tight text-[var(--ath-text)]">BigAL Tutor</h3>
                                 <p className="text-xs font-medium tracking-wide text-[var(--ath-muted)]">
-                                    {context?.course === 'inst-design' ? 'Instructional Design' : 'Bio-Inspired Engineering'}
+                                    {courseInfo.label}
                                 </p>
                             </div>
                         </div>
@@ -281,9 +314,14 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                                 </div>
                                 <h4 className="mb-2 text-lg font-bold text-[var(--ath-text)]">How can I help you today?</h4>
                                 <p className="text-sm leading-relaxed text-[var(--ath-muted)]">
-                                    {context?.course === 'inst-design' ? 'Ask me about creating effective learning experiences.' : 'Ask me about bridging biological mechanisms into engineering design.'}
+                                    {courseInfo.prompt}
                                 </p>
                             </div>
+                        )}
+                        {earlierCount > 0 && (
+                            <p className="text-center text-[11px] text-[var(--ath-muted)]">
+                                Your earlier conversation in this section. Only you can see it; use the bin icon to clear it.
+                            </p>
                         )}
                         {messages.map((msg, idx) => {
                             if (msg.role === 'user') {

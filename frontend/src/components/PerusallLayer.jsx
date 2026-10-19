@@ -12,20 +12,24 @@ const TAGS = [
     { id: 'connection', label: 'Connection' },
 ]
 
-function storageKey(sectionId) {
-    return `alget_perusall_annotations_${sectionId || 'unknown'}`
+// Notes are private to each learner: the browser cache is keyed by user, and only
+// the learner's own notes are loaded from the database.
+function storageKey(sectionId, userId) {
+    return userId
+        ? `alget_perusall_annotations_${userId}_${sectionId || 'unknown'}`
+        : `alget_perusall_annotations_${sectionId || 'unknown'}`
 }
 
-function readAnnotations(sectionId) {
+function readAnnotations(sectionId, userId) {
     try {
-        return JSON.parse(safeLocalStorageGet(storageKey(sectionId), '[]') || '[]')
+        return JSON.parse(safeLocalStorageGet(storageKey(sectionId, userId), '[]') || '[]')
     } catch {
         return []
     }
 }
 
-function writeAnnotations(sectionId, annotations) {
-    return safeLocalStorageSet(storageKey(sectionId), JSON.stringify(annotations))
+function writeAnnotations(sectionId, annotations, userId) {
+    return safeLocalStorageSet(storageKey(sectionId, userId), JSON.stringify(annotations))
 }
 
 function mergeAnnotations(localAnnotations, remoteAnnotations) {
@@ -64,8 +68,8 @@ function dbToAnnotation(row, reactionCounts = {}) {
     }
 }
 
-export default function PerusallLayer({ sectionId, conceptIds = [] }) {
-    const [annotations, setAnnotations] = useState(() => readAnnotations(sectionId))
+export default function PerusallLayer({ sectionId, conceptIds = [], userId = null }) {
+    const [annotations, setAnnotations] = useState(() => readAnnotations(sectionId, userId))
     const [quote, setQuote] = useState('')
     const [body, setBody] = useState('')
     const [tag, setTag] = useState('question')
@@ -75,17 +79,17 @@ export default function PerusallLayer({ sectionId, conceptIds = [] }) {
     const [composing, setComposing] = useState(false)
 
     useEffect(() => {
-        writeAnnotations(sectionId, annotations)
-    }, [annotations, sectionId])
+        writeAnnotations(sectionId, annotations, userId)
+    }, [annotations, sectionId, userId])
 
     const loadRemoteAnnotations = useCallback(async () => {
-        if (!isSupabaseConfigured || !sectionId) return
+        if (!isSupabaseConfigured || !sectionId || !userId) return
         try {
             const { data, error } = await supabase
                 .from('section_annotations')
                 .select('id, quote_text, body, annotation_type, created_at')
                 .eq('section_id', sectionId)
-                .eq('visibility', 'course')
+                .eq('user_id', userId)
                 .order('created_at', { ascending: false })
                 .limit(80)
 
@@ -113,7 +117,7 @@ export default function PerusallLayer({ sectionId, conceptIds = [] }) {
             console.warn('[PerusallLayer] remote sync unavailable, falling back to local:', err?.message || err)
             setIsSynced(false)
         }
-    }, [sectionId])
+    }, [sectionId, userId])
 
     useEffect(() => {
         loadRemoteAnnotations()

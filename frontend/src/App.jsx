@@ -98,6 +98,8 @@ export default function App() {
 
   const handleLogout = async () => {
     await endSession()
+    // A personal AI key saved in this browser must not carry over to the next person.
+    try { window.localStorage.removeItem('openrouter_api_key') } catch { /* storage unavailable */ }
     await supabase.auth.signOut()
     setUser(null)
   }

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
     ArrowRight,
+    CheckCircle2,
     Atom,
     BarChart3,
     BookOpen,
@@ -20,6 +21,8 @@ import { BioInspiredIllustration, StaticsIllustration } from '../components/Cour
 import StudySteps from '../components/StudySteps'
 import ThemeToggle from '../components/ThemeToggle'
 import { useCourseProgress } from '../hooks/useCourseProgress'
+import { useEventDone } from '../lib/useEventDone'
+import { supabase } from '../lib/supabase'
 import API_BASE from '../lib/apiConfig'
 import { getEvaluationStatus } from '../lib/researchService'
 import { accountLabel, enrollInStudy, getStudyEnrollment } from '../lib/studyTrack'
@@ -170,7 +173,9 @@ function formatPathwayLabel(value) {
 
 export default function MainApp({ user, onLogout }) {
     const navigate = useNavigate()
-    const { recentSection, bookmarks } = useCourseProgress(user)
+    const { recentSection, bookmarks, completedSections, progressStats } = useCourseProgress(user)
+    const simLabDone = useEventDone('sim_lab_completed', Boolean(user))
+    const generativeLabUsed = useEventDone('generative_lab_query', Boolean(user))
 
     // Participants only see "Research study". Staff can reveal the other pathways with /learn?pathways=all.
     const [showAllPathways] = useState(() => {
@@ -184,7 +189,32 @@ export default function MainApp({ user, onLogout }) {
     const [error, setError] = useState('')
     const [unlocking, setUnlocking] = useState(false)
 
-    const handleCourseSelect = (courseId) => {
+    // The starting quiz is taken once per course. After that, opening the course
+    // resumes reading instead of showing the quiz again.
+    const handleCourseSelect = async (courseId) => {
+        if (recentSection?.course === courseId && recentSection.chapter && recentSection.section) {
+            navigate(`/book/${courseId}/${recentSection.chapter}/${recentSection.section}`)
+            return
+        }
+        try {
+            const { data } = await supabase
+                .from('evaluation_runs')
+                .select('notes')
+                .eq('course_id', courseId)
+                .eq('phase', 'pre')
+                .limit(1)
+            if (data?.length) {
+                const start = data[0]?.notes?.recommended_start || '01/01'
+                navigate(`/book/${courseId}/${start}`)
+                return
+            }
+        } catch {
+            // fall through to the local checks below
+        }
+        if ((completedSections || []).some((id) => id.startsWith(`${courseId}/`))) {
+            navigate(`/book/${courseId}/01/01`)
+            return
+        }
         navigate(`/diagnostic/${courseId}`)
     }
 
@@ -433,6 +463,7 @@ export default function MainApp({ user, onLogout }) {
 
                         {showLab && (
                             <section
+                                id="study-labs"
                                 onClick={() => navigate('/lab')}
                                 className="group relative mt-10 cursor-pointer overflow-hidden rounded-[2.7rem] border border-[rgba(15,81,103,0.12)] bg-[linear-gradient(135deg,_rgba(17,39,49,0.98),_rgba(10,28,36,0.94))] p-8 shadow-[0_24px_60px_rgba(15,23,42,0.14)] transition-all hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(15,23,42,0.16)]"
                             >
@@ -440,7 +471,7 @@ export default function MainApp({ user, onLogout }) {
                                 <div className="relative z-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
                                     <div className="max-w-3xl">
                                         <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-[var(--ath-primary-soft)]">
-                                            Preview lab
+                                            {generativeLabUsed ? <><CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" /> Done</> : 'Preview lab'}
                                         </div>
                                         <h3 className="mt-4 text-4xl font-semibold tracking-tight text-white">Generative Bio-Design Lab</h3>
                                         <p className="mt-3 text-[15px] leading-7 text-white/75">
@@ -461,7 +492,10 @@ export default function MainApp({ user, onLogout }) {
                                 className="editorial-surface group mt-6 flex w-full items-center justify-between gap-6 p-6 text-left transition-all hover:-translate-y-0.5"
                             >
                                 <div>
-                                    <p className="editorial-kicker">Simulation Lab</p>
+                                    <p className="editorial-kicker flex items-center gap-2">
+                                        Simulation Lab
+                                        {simLabDone && <span className="editorial-chip inline-flex items-center gap-1"><CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" /> Completed</span>}
+                                    </p>
                                     <h3 className="mt-2 text-2xl font-semibold tracking-tight text-[var(--ath-text)]">Choose and complete one 3D simulation lab</h3>
                                     <p className="mt-2 text-sm text-[var(--ath-muted)]">
                                         FinGrip, Trabecula, GeckoGrip, or PineMorph. Predict, test, and improve a bio-inspired design.
@@ -589,8 +623,10 @@ export default function MainApp({ user, onLogout }) {
                             </section>
                         )}
 
-                        {!learningLocked && <section className="mt-10 grid gap-8 lg:grid-cols-2">
-                            {visibleCourses.map((course) => (
+                        {!learningLocked && <section id="study-courses" className="mt-10 grid gap-8 lg:grid-cols-2">
+                            {visibleCourses.map((course) => {
+                                const courseDone = (progressStats?.courseBreakdown?.[course.id] || 0) >= course.sections
+                                return (
                                 <button
                                     key={course.id}
                                     type="button"
@@ -610,6 +646,11 @@ export default function MainApp({ user, onLogout }) {
                                                     {course.badge && (
                                                         <span className="rounded-full border border-white/15 bg-black/18 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em] text-white">
                                                             {course.badge}
+                                                        </span>
+                                                    )}
+                                                    {courseDone && (
+                                                        <span className="inline-flex items-center gap-1 rounded-full border border-white/30 bg-white/25 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em] text-white">
+                                                            <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" /> Completed
                                                         </span>
                                                     )}
                                                 </div>
@@ -641,13 +682,14 @@ export default function MainApp({ user, onLogout }) {
                                                 <span>{course.moduleLabel}</span>
                                             </div>
                                             <span className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--ath-primary)] transition-transform group-hover:translate-x-1">
-                                                Start pathway
+                                                {courseDone ? 'Review course' : 'Start pathway'}
                                                 <ArrowRight className="h-4 w-4" />
                                             </span>
                                         </div>
                                     </div>
                                 </button>
-                            ))}
+                                )
+                            })}
                         </section>}
 
                         <section className="editorial-surface mt-10 p-8">
