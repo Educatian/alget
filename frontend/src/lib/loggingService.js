@@ -225,23 +225,41 @@ async function validateResearchEvents(events) {
     return Promise.all(events.map(validateArtifactStudioEvent))
 }
 
+let clickRepeatCount = 0
+
+/** What was clicked, in words a researcher can read (no form values). */
+function describeClickTarget(target) {
+    const el = target?.closest?.('button, a, [role="button"], [role="tab"], [role="menuitem"], input, select, textarea, label, summary') || target
+    const text = (el?.getAttribute?.('aria-label') || el?.innerText || el?.textContent || '').replace(/\s+/g, ' ').trim()
+    const className = typeof el?.className === 'string' ? el.className : ''
+    return {
+        element: el?.tagName?.toLowerCase() || null,
+        role: el?.getAttribute?.('role') || null,
+        label: text ? text.slice(0, 120) : null,
+        href: el?.getAttribute?.('href') || null,
+        id: el?.dataset?.testid || el?.id || className.split(' ')[0] || null,
+    }
+}
+
 /**
- * Log click with merge logic
+ * Log every click with what was clicked. Repeated clicks on the same element are
+ * kept (with a running repeat count) because repetition is itself a study signal.
  */
 export function logClick(target, x, y, sectionId = null) {
     const now = Date.now()
-    const targetClassName = typeof target?.className === 'string' ? target.className : '';
-    const targetId = target?.dataset?.testid || target?.id || targetClassName.split(' ')[0] || 'unknown'
+    const info = describeClickTarget(target)
+    const targetId = info.id || info.label || 'unknown'
 
-    // Merge consecutive clicks on same target
-    if (targetId === lastClickTarget && now - lastClickTime < CLICK_MERGE_MS) {
-        return null
-    }
-
+    clickRepeatCount = targetId === lastClickTarget && now - lastClickTime < CLICK_MERGE_MS * 4 ? clickRepeatCount + 1 : 0
     lastClickTarget = targetId
     lastClickTime = now
 
-    return logEvent('click', targetId, { x, y }, sectionId)
+    return logEvent('click', targetId, {
+        x, y,
+        ...info,
+        repeat_count: clickRepeatCount,
+        path: typeof window !== 'undefined' ? window.location.pathname : null,
+    }, sectionId)
 }
 
 /**

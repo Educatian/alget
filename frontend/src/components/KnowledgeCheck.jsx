@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { logEvent } from '../lib/loggingService'
 import { generateAssessment, updateMastery, gradeSummary, recordAdaptiveSignal } from '../lib/knowledgeService'
 import { annotateMisconceptionSignal, resolveInterventionOutcome, updateLearnerModel } from '../lib/researchService'
 import ConfidenceFeedback from './ConfidenceFeedback'
@@ -35,6 +36,8 @@ export default function KnowledgeCheck({
     const [isGrading, setIsGrading] = useState(false)
     const [confidence, setConfidence] = useState(3)
     const [misconceptionType, setMisconceptionType] = useState('unknown')
+    const shownAtRef = useRef(Date.now())
+    const quizSection = sectionId || sectionTitle || 'knowledge-check'
 
     const currentQuestion = questions[currentQuestionIndex]
 
@@ -59,10 +62,35 @@ export default function KnowledgeCheck({
 
             setQuestions(combined)
             setStatus('active')
+            logEvent('section_quiz_started', sectionId || sectionTitle || 'knowledge-check', {
+                question_count: combined.length,
+                questions: combined.map((q) => ({
+                    id: q.id || null, type: q.type, concept_id: q.concept_id || null,
+                    question: String(q.question || q.stem || '').slice(0, 500),
+                    correct_option_id: q.correct_option_id || null,
+                })),
+            }, sectionId || sectionTitle || 'knowledge-check')
         } catch (error) {
             console.error(error)
             setStatus('error')
         }
+    }
+
+    useEffect(() => { shownAtRef.current = Date.now() }, [currentQuestionIndex, status])
+
+    const logQuizAnswer = (fields) => {
+        logEvent('section_quiz_answer', currentQuestion?.id || `q${currentQuestionIndex + 1}`, {
+            question_index: currentQuestionIndex,
+            question_count: questions.length,
+            question_id: currentQuestion?.id || null,
+            question_type: currentQuestion?.type || 'mcq',
+            concept_id: currentQuestion?.concept_id || null,
+            question: String(currentQuestion?.question || currentQuestion?.stem || '').slice(0, 1000),
+            confidence,
+            misconception_type: misconceptionType,
+            time_spent_ms: Date.now() - shownAtRef.current,
+            ...fields,
+        }, quizSection)
     }
 
     const handleOptionClick = async (optionId) => {
@@ -74,6 +102,15 @@ export default function KnowledgeCheck({
         const isCorrect = optionId === currentQuestion.correct_option_id
         const nextResults = [...results, { isCorrect, conceptId: currentQuestion.concept_id, type: 'mcq' }]
         setResults(nextResults)
+        const optionText = (id) => String(currentQuestion.options?.find((o) => o.id === id)?.text || '').slice(0, 300)
+        logQuizAnswer({
+            options: (currentQuestion.options || []).slice(0, 10).map((o) => `${o.id}: ${String(o.text || '').slice(0, 200)}`),
+            selected_option_id: optionId,
+            selected_option: optionText(optionId),
+            correct_option_id: currentQuestion.correct_option_id,
+            correct_option: optionText(currentQuestion.correct_option_id),
+            is_correct: isCorrect,
+        })
 
         updateMastery({ [currentQuestion.concept_id]: 1.0 }, isCorrect, { sectionId }).catch(console.error)
         recordAdaptiveSignal(sectionId || sectionTitle || 'knowledge-check', 'confidence_report', {
@@ -120,6 +157,13 @@ export default function KnowledgeCheck({
             setSummaryFeedback(data)
             setIsAnswered(true)
             setResults([...results, { isCorrect: data.is_passing, conceptId: currentQuestion.concept_id, type: 'summary' }])
+            logQuizAnswer({
+                written_answer: summaryText.slice(0, 4000),
+                is_correct: Boolean(data.is_passing),
+                score: data.score ?? null,
+                sub_scores: data.sub_scores || null,
+                feedback: String(data.feedback || '').slice(0, 1500),
+            })
 
             if (data.sub_scores && Object.keys(data.sub_scores).length > 0) {
                 updateMastery(data.sub_scores, data.is_passing, { sectionId }).catch(console.error)
@@ -191,6 +235,13 @@ export default function KnowledgeCheck({
         }
 
         setStatus('completed')
+        const correct = results.filter((r) => r.isCorrect).length
+        logEvent('section_quiz_completed', quizSection, {
+            correct,
+            total: results.length,
+            score_pct: results.length ? Math.round((correct / results.length) * 100) : null,
+            items: results.map((r) => ({ concept_id: r.conceptId, type: r.type, is_correct: r.isCorrect })),
+        }, quizSection)
     }
 
     const triggerReview = (question = currentQuestion, sourceReason = 'knowledge check miss') => {

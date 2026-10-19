@@ -4,9 +4,10 @@ import { logEvent } from './loggingService'
 /**
  * Sim telemetry for the embedded Unity labs (ported from agent/ops-hardening).
  * The labs post `learning-event` messages to the parent page; we validate the
- * origin, source, and schema, keep only safe fields, and log them through
- * ALGET's logEvent pipeline (event_logs in Supabase, linked to the account and
- * so to the Study ID). Free-text fields are deliberately dropped.
+ * origin, source, and schema, and log every field the lab sends (bounded in
+ * size) through ALGET's logEvent pipeline (event_logs in Supabase, linked to the
+ * account and so to the Study ID). This includes `detail` and `finalDesign`, which
+ * carry the per-trial design and results that the labs' own CSV export shows.
  */
 
 export function logSimEvent(sectionId, simId, type, data = {}) {
@@ -31,6 +32,8 @@ const SAFE_NUMBER_FIELDS = new Set([
     'normalizedOpportunityProgress', 'inputValue', 'confidence',
     'revisionAttempt', 'competencyScore',
 ])
+
+const LONG_TEXT_FIELDS = ['detail', 'finalDesign']
 
 function boundedText(value, maxLength = 160) {
     if (typeof value !== 'string') return undefined
@@ -64,6 +67,24 @@ export function normalizeIframeSimMessage(data, expectedSimId, allowedSources = 
         if (payload[field] !== undefined && payload[field] !== null && Number.isFinite(value)) normalized[snake(field)] = value
     }
     if (typeof payload.isFinalDesign === 'boolean') normalized.is_final_design = payload.isFinalDesign
+    // Settings sent as a list (e.g. Trabecula: "18.0,0.180,0.85") are not a single number.
+    if (normalized.input_value === undefined && typeof payload.inputValue === 'string') {
+        normalized.input_value_text = boundedText(payload.inputValue, 500)
+    }
+    for (const field of LONG_TEXT_FIELDS) {
+        const value = payload[field]
+        if (typeof value === 'string' && value) normalized[snake(field)] = value.slice(0, 4000)
+        else if (value && typeof value === 'object') normalized[snake(field)] = JSON.stringify(value).slice(0, 4000)
+    }
+    // Keep any other simple field the lab adds later, so nothing is silently lost.
+    const known = new Set([...SAFE_TEXT_FIELDS, ...SAFE_NUMBER_FIELDS, ...LONG_TEXT_FIELDS, 'isFinalDesign'])
+    const extra = {}
+    for (const [key, value] of Object.entries(payload)) {
+        if (known.has(key) || Object.keys(extra).length >= 30) continue
+        if (typeof value === 'number' || typeof value === 'boolean') extra[key] = value
+        else if (typeof value === 'string') extra[key] = value.slice(0, 500)
+    }
+    if (Object.keys(extra).length) normalized.extra = extra
 
     return {
         type: `unity_${eventName}`,

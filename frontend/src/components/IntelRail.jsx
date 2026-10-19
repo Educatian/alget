@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import API_BASE from '../lib/apiConfig'
+import { logEvent } from '../lib/loggingService'
 import { getAdaptiveRecommendation, recordAdaptiveSignal } from '../lib/knowledgeService'
 import {
     appendInterventionTrace,
@@ -29,6 +30,21 @@ function prettyConcept(conceptId) {
 
 export default function IntelRail({ context, stuckEvent, sectionInfo, onClose }) {
     const [activeTab, setActiveTab] = useState('explain')
+
+    // Study log: when the rail opens and why.
+    useEffect(() => {
+        logEvent('support_rail_open', null, {
+            reason: stuckEvent?.reason || null,
+            problem_id: stuckEvent?.problemId || null,
+            section_title: sectionInfo?.title || null,
+        }, context?.sectionId || null)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+    const selectTab = (tabId, how = 'click') => {
+        setActiveTab(tabId)
+        logEvent('support_tab_select', tabId, { tab_id: tabId, how }, context?.sectionId || null)
+    }
     const [loading, setLoading] = useState(false)
     const [recommendationLoading, setRecommendationLoading] = useState(false)
     const [recommendation, setRecommendation] = useState(null)
@@ -201,6 +217,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
         recordAdaptiveSignal(resolvedSectionId, action === 'advance' ? 'intervention_decline' : 'intervention_accept', {
             action
         })
+        logEvent('support_recommendation_action', action, { action, coach_prompt: coachPrompt || null }, resolvedSectionId)
         if (activeTraceId) {
             appendInterventionTrace(activeTraceId, {
                 type: 'recommendation_action',
@@ -231,6 +248,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
         .slice(0, 5)
 
     const handleClose = () => {
+        logEvent('support_rail_close', activeTab, { active_tab: activeTab }, resolvedSectionId)
         if (activeTraceId) {
             appendInterventionTrace(activeTraceId, {
                 type: 'rail_closed',
@@ -275,7 +293,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                 {TABS.map((tab) => (
                     <button
                         key={tab.id}
-                        onClick={() => setActiveTab(tab.id)}
+                        onClick={() => selectTab(tab.id)}
                         className={`flex-1 py-3 text-xs font-semibold uppercase tracking-[0.16em] transition-colors ${activeTab === tab.id
                             ? 'border-b-2 border-[var(--ath-primary)] bg-[rgba(255,255,255,0.74)] text-[var(--ath-primary)]'
                             : 'text-[var(--ath-secondary)] hover:text-[var(--ath-text)]'

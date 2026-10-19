@@ -7,6 +7,7 @@ import { safeSessionStorageGet } from './lib/browserStorage'
 import { ToastProvider } from './lib/toast.jsx'
 import { ThemeProvider } from './lib/theme.jsx'
 import GlobalClickLogger from './components/GlobalClickLogger'
+import StudyActivityLogger from './components/StudyActivityLogger'
 import AppErrorBoundary from './components/AppErrorBoundary'
 import GlobalSearch from './components/GlobalSearch'
 import API_BASE from './lib/apiConfig'
@@ -118,6 +119,7 @@ export default function App() {
         <ToastProvider>
           <AppErrorBoundary>
             <GlobalClickLogger>
+              <StudyActivityLogger />
               <GlobalSearch />
               <Suspense fallback={<RouteFallback />}>
             <Routes>

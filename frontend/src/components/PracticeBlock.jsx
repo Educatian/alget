@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Lightbulb } from 'lucide-react'
 import API_BASE from '../lib/apiConfig'
+import { logEvent } from '../lib/loggingService'
 import { fuseTelemetry, recordAdaptiveSignal, updateMastery } from '../lib/knowledgeService'
 import { annotateMisconceptionSignal, resolveInterventionOutcome, updateLearnerModel } from '../lib/researchService'
 
@@ -33,6 +34,8 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
     const [misconceptionByProblem, setMisconceptionByProblem] = useState({})
 
     const idleTimerRef = useRef(null)
+    const shownAtRef = useRef(Date.now())
+    const attemptsRef = useRef({})
     const problems = practice?.problems || []
     const currentProblem = problems[currentIndex]
 
@@ -63,6 +66,16 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
         setHintCount(0)
         setShowHint(false)
         setConsecutiveWrong(0)
+        shownAtRef.current = Date.now()
+        if (currentProblem?.id) {
+            logEvent('practice_question_shown', currentProblem.id, {
+                problem_id: currentProblem.id,
+                concept_id: currentProblem.concept_id || null,
+                question_index: currentIndex,
+                difficulty: currentProblem.difficulty || null,
+            }, sectionId)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentProblem?.id])
 
     const handleSubmit = async (problemId) => {
@@ -95,6 +108,29 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                 : misconceptionByProblem[problemId] || 'unknown'
 
             setGradeResults((previous) => ({ ...previous, [problemId]: result }))
+            attemptsRef.current[problemId] = (attemptsRef.current[problemId] || 0) + 1
+            // Full record of this answer for the study (question, choice, outcome, effort).
+            logEvent('practice_answer', problemId, {
+                problem_id: problemId,
+                concept_id: currentProblem?.concept_id || null,
+                question_index: currentIndex,
+                question: String(currentProblem?.statement || currentProblem?.stem || currentProblem?.question || '').slice(0, 1000),
+                question_type: currentProblem?.type || null,
+                difficulty: currentProblem?.difficulty || null,
+                options: isMcq ? currentProblem.options.slice(0, 10).map((o) => String(o).slice(0, 300)) : null,
+                selected_index: selectedIndex,
+                selected_option: isMcq ? String(currentProblem.options[selectedIndex] || '').slice(0, 300) : null,
+                typed_answer: isMcq ? null : String(answer?.value || '').slice(0, 1000),
+                unit: answer?.unit || null,
+                is_correct: Boolean(result.is_correct),
+                unit_error: Boolean(result.unit_error),
+                feedback: String(result.feedback || result.explanation || '').slice(0, 1000),
+                attempt_number: attemptsRef.current[problemId],
+                time_spent_ms: Date.now() - shownAtRef.current,
+                hints_used: hintCount,
+                confidence: confidenceValue,
+                misconception_type: result.is_correct ? null : misconceptionType,
+            }, sectionId)
             recordAdaptiveSignal(
                 sectionId,
                 result.is_correct ? 'practice_correct' : 'practice_incorrect',
