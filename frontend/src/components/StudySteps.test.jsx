@@ -37,7 +37,14 @@ describe('StudySteps guidance', () => {
         const user = { ...participant, user_metadata: { study_steps: { pre: '2026-10-15T10:00:00Z' } } }
         render(<StudySteps user={user} needsLab={false} />)
         expect(screen.getByRole('button', { name: /go to my courses/i })).toBeInTheDocument()
-        expect(screen.getByText(/practice questions at the end of each section are optional/i)).toBeInTheDocument()
+        expect(screen.getByText(/practice questions are optional/i)).toBeInTheDocument()
+    })
+
+    it('keeps the learning step open until every section is complete', () => {
+        const user = { ...participant, user_metadata: { study_steps: { pre: '2026-10-15T10:00:00Z' } } }
+        render(<StudySteps user={user} needsLab={false} sectionsRemaining={3} />)
+        expect(screen.getByRole('button', { name: /finished the learning materials/i })).toBeDisabled()
+        expect(screen.getByText(/3 sections left/i)).toBeInTheDocument()
     })
 
     it('tells the participant they are done and whom to contact', () => {

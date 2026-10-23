@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { ChevronRight } from 'lucide-react'
+import { ChevronRight, Lock } from 'lucide-react'
 
 const KNOWN_CHAPTER_TITLES = {
     'bio-inspired': {
@@ -28,7 +28,7 @@ function getCourseSummary(chapters = []) {
     }
 }
 
-export default function BookToc({ toc, currentCourse, currentChapter, currentSection, onNavigate, completedSections }) {
+export default function BookToc({ toc, currentCourse, currentChapter, currentSection, onNavigate, completedSections, isLocked }) {
     const [searchQuery, setSearchQuery] = useState('')
     const [expandedChapters, setExpandedChapters] = useState([currentChapter])
 
@@ -128,12 +128,15 @@ export default function BookToc({ toc, currentCourse, currentChapter, currentSec
                                 {chapter.sections?.map((section) => {
                                     const isActive = currentChapter === chapter.id && currentSection === section.id
                                     const isDone = completedSections?.includes(`${currentCourse}/${chapter.id}/${section.id}`)
+                                    const locked = !isDone && Boolean(isLocked?.(chapter.id, section.id))
 
                                     return (
                                         <li key={section.id}>
                                             <button
                                                 onClick={() => onNavigate(chapter.id, section.id)}
-                                                className={`flex w-full items-center justify-between rounded-[1rem] px-3 py-2.5 text-left text-sm transition-all ${isActive
+                                                aria-disabled={locked || undefined}
+                                                title={locked ? 'Opens after you finish the section before it' : undefined}
+                                                className={`flex w-full ${locked ? 'opacity-60' : ''} items-center justify-between rounded-[1rem] px-3 py-2.5 text-left text-sm transition-all ${isActive
                                                     ? 'bg-[linear-gradient(135deg,var(--ath-primary),var(--ath-primary-deep))] text-white shadow-[0_16px_30px_rgba(9,56,72,0.18)]'
                                                     : 'text-[var(--ath-muted)] hover:bg-[var(--ath-panel)]'
                                                     }`}
@@ -146,6 +149,7 @@ export default function BookToc({ toc, currentCourse, currentChapter, currentSec
                                                         Done
                                                     </span>
                                                 )}
+                                                {locked && <Lock className="ml-2 h-3.5 w-3.5 shrink-0" aria-label="Locked" />}
                                             </button>
                                         </li>
                                     )

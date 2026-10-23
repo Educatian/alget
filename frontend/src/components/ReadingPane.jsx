@@ -2,6 +2,7 @@ import { Suspense, lazy, useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { logInteraction } from '../lib/loggingService'
 import PeerPulse from './PeerPulse'
+import ChapterCheckIn from './ChapterCheckIn'
 
 const ReadingNarrative = lazy(() => import('./ReadingNarrative'))
 const PracticeBlock = lazy(() => import('./PracticeBlock'))
@@ -65,7 +66,17 @@ export default function ReadingPane({
     onNavigate,
     onExitCourse,
     userId = null,
-    peerPulse
+    peerPulse,
+    studyGated = false,
+    quizDone = false,
+    onQuizComplete,
+    isLastInChapter = false,
+    chapterTitle = '',
+    checkinDone = false,
+    onCheckinDone,
+    requirementsMet = true,
+    missingRequirements = [],
+    nextLocked = false,
 }) {
     const [showSimulation, setShowSimulation] = useState(false)
     const [showIllustration, setShowIllustration] = useState(false)
@@ -351,6 +362,9 @@ export default function ReadingPane({
                     learningObjectives={meta?.learning_objectives}
                     conceptIds={meta?.concept_ids}
                     onNeedsReview={onNeedsReview}
+                    required={studyGated}
+                    alreadyDone={quizDone || isCompleted}
+                    onComplete={() => onQuizComplete?.()}
                 />
             </Suspense>
 
@@ -365,17 +379,34 @@ export default function ReadingPane({
                 />
             </Suspense>
 
-            <div className="mb-8 mt-12 flex justify-center">
+            {studyGated && isLastInChapter && meta && (
+                <ChapterCheckIn
+                    key={`${meta.course}/${meta.chapter}`}
+                    course={meta.course}
+                    chapter={meta.chapter}
+                    chapterTitle={chapterTitle}
+                    sectionId={sectionId}
+                    done={checkinDone}
+                    onDone={onCheckinDone}
+                />
+            )}
+
+            <div className="mb-8 mt-12 flex flex-col items-center gap-3">
                 <button
                     onClick={markCompleted}
-                    disabled={isCompleted}
+                    disabled={isCompleted || !requirementsMet}
                     className={`flex items-center gap-3 rounded-[1rem] px-8 py-3.5 text-lg font-semibold transition-all ${isCompleted
                         ? 'cursor-default border border-[var(--ath-line)] bg-[color-mix(in_srgb,var(--ath-primary)_12%,var(--ath-panel))] text-[var(--ath-primary)]'
-                        : 'editorial-button'
+                        : 'editorial-button disabled:cursor-not-allowed disabled:opacity-60'
                         }`}
                 >
                     {isCompleted ? 'Section Completed' : 'Mark as Complete'}
                 </button>
+                {!isCompleted && !requirementsMet && missingRequirements.length > 0 && (
+                    <p className="text-center text-sm text-[var(--ath-muted)]">
+                        To finish this section, {missingRequirements.join(' and ')}.
+                    </p>
+                )}
             </div>
 
             <div className="mb-4 grid gap-3 border-t border-[var(--ath-line)] pt-6 md:grid-cols-2">
@@ -384,7 +415,7 @@ export default function ReadingPane({
                     disabled={!previousSection}
                     onClick={() => previousSection && onNavigate?.(previousSection.chapter, previousSection.section, 'backward')}
                     className={`rounded-2xl border px-4 py-3 text-left transition-colors ${previousSection
-                        ? 'border-[var(--ath-line)] bg-white text-[var(--ath-text)] hover:bg-[var(--ath-panel)]'
+                        ? 'border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-text)] hover:bg-[color-mix(in_srgb,var(--ath-primary)_12%,var(--ath-panel))]'
                         : 'cursor-not-allowed border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-muted)] opacity-60'
                         }`}
                 >
@@ -394,11 +425,15 @@ export default function ReadingPane({
                 {nextSection ? (
                     <button
                         type="button"
+                        disabled={nextLocked}
                         onClick={() => onNavigate?.(nextSection.chapter, nextSection.section, 'forward')}
-                        className="rounded-2xl border border-[var(--ath-line)] bg-white px-4 py-3 text-right text-[var(--ath-text)] transition-colors hover:bg-[var(--ath-panel)]"
+                        className={`rounded-2xl border border-[var(--ath-line)] px-4 py-3 text-right transition-colors ${nextLocked
+                            ? 'cursor-not-allowed bg-[var(--ath-panel)] text-[var(--ath-muted)] opacity-60'
+                            : 'bg-[var(--ath-panel)] text-[var(--ath-text)] hover:bg-[color-mix(in_srgb,var(--ath-primary)_12%,var(--ath-panel))]'
+                            }`}
                     >
-                        <span className="block text-xs font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Next</span>
-                        <span className="mt-1 block text-sm font-semibold">{`${nextSection.chapter}.${nextSection.section} ${nextSection.title}`}</span>
+                        <span className="block text-xs font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">{nextLocked ? 'Next (locked)' : 'Next'}</span>
+                        <span className="mt-1 block text-sm font-semibold">{nextLocked ? 'Complete this section to unlock' : `${nextSection.chapter}.${nextSection.section} ${nextSection.title}`}</span>
                     </button>
                 ) : (
                     // Last section: send the learner back to their study steps / course list.

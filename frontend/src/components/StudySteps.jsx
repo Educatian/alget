@@ -19,7 +19,7 @@ function scrollToId(id) {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
 
-export default function StudySteps({ user, needsLab }) {
+export default function StudySteps({ user, needsLab, sectionsRemaining = 0 }) {
     const steps = getStudySteps(user)
     const labCompleted = useEventDone('sim_lab_completed', Boolean(steps) && needsLab)
     const [opened, setOpened] = useState({})
@@ -98,7 +98,8 @@ export default function StudySteps({ user, needsLab }) {
             <ol className="mt-6 space-y-3">
                 {steps.map((step, index) => {
                     const isCurrent = step.id === current?.id
-                    const learnBlocked = step.kind === 'learn' && needsLab && !labCompleted
+                    const labMissing = needsLab && !labCompleted
+                    const learnBlocked = step.kind === 'learn' && (labMissing || sectionsRemaining > 0)
                     return (
                         <li
                             key={step.id}
@@ -190,10 +191,15 @@ export default function StudySteps({ user, needsLab }) {
                                                 )}
                                             </div>
                                             <p className="mb-3 text-xs text-[var(--ath-muted)]">
-                                                The practice questions at the end of each section are optional. We encourage you to try the
-                                                section quizzes and the knowledge check, because they matter most for the study.
+                                                Each section opens after you finish the one before it: answer its short quiz, and at the end of
+                                                each chapter send your check-in to BigAL. The practice questions are optional.
                                             </p>
-                                            {learnBlocked && (
+                                            {sectionsRemaining > 0 && (
+                                                <p className="mb-2 text-sm text-[var(--ath-secondary)]">
+                                                    {sectionsRemaining} {sectionsRemaining === 1 ? 'section' : 'sections'} left to complete.
+                                                </p>
+                                            )}
+                                            {labMissing && (
                                                 <p className="mb-2 text-sm text-[var(--ath-secondary)]">
                                                     Complete one Simulation Lab first (see below), then come back here.
                                                 </p>

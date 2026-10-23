@@ -277,6 +277,10 @@ export default function MainApp({ user, onLogout }) {
     const learningLocked = Boolean(studyEnrollment) && !user?.user_metadata?.study_steps?.pre
     const showLab = !learningLocked && (studyEnrollment ? studyEnrollment.lab : unlockedMode === 'engineering')
     const visibleCourseIds = new Set(visibleCourses.map((course) => course.id))
+    // Study participants finish the learning step only after every section of their courses.
+    const sectionsRemaining = studyEnrollment
+        ? visibleCourses.reduce((left, course) => left + Math.max(0, course.sections - (progressStats?.courseBreakdown?.[course.id] || 0)), 0)
+        : 0
     const visibleBookmarks = bookmarks.filter((bookmark) => visibleCourseIds.has(bookmark.course)).slice(0, 3)
     const visibleRecentSection = recentSection && visibleCourseIds.has(recentSection.course) ? recentSection : null
     const evaluationPrompts = visibleCourses
@@ -453,7 +457,7 @@ export default function MainApp({ user, onLogout }) {
                             </div>
                         </section>
 
-                        {studyEnrollment && <StudySteps user={user} needsLab={studyEnrollment.lab} />}
+                        {studyEnrollment && <StudySteps user={user} needsLab={studyEnrollment.lab} sectionsRemaining={sectionsRemaining} />}
 
                         {learningLocked && (
                             <p className="mt-6 text-sm text-[var(--ath-muted)]">

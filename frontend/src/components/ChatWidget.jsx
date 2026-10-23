@@ -38,6 +38,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
     const courseInfo = COURSE_INFO[course] || { label: 'Your course', prompt: 'Ask me anything about this section.' }
     const messagesEndRef = useRef(null)
     const lastAutoQuestionRef = useRef(null)
+    const pendingSendRef = useRef(null) // message to send once saved history has loaded
 
     // Expose methods via ref
     useImperativeHandle(ref, () => ({
@@ -97,7 +98,8 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
         setIsOpen(true)
         if (!message) return
         if (autoSend) {
-            void sendMessageWithText(message)
+            if (userId && !historyLoaded) pendingSendRef.current = message
+            else void sendMessageWithText(message)
         } else {
             setInputValue(message)
         }
@@ -108,6 +110,15 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
         window.addEventListener('open-chat', handler)
         return () => window.removeEventListener('open-chat', handler)
     }, [])
+
+    // Send a message that arrived (e.g. a chapter check-in) before history loaded.
+    useEffect(() => {
+        if (!historyLoaded || !pendingSendRef.current) return
+        const message = pendingSendRef.current
+        pendingSendRef.current = null
+        void sendMessageWithText(message)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [historyLoaded])
 
     // Save chat history to Supabase
     const saveHistory = async (newMessages) => {

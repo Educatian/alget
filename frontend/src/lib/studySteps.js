@@ -31,8 +31,8 @@ function stepsFor(track) {
             id: 'learn', kind: 'learn',
             title: bio ? 'Learn: Bio-Inspired Design and one Simulation Lab' : 'Learn: Engineering Statics and Dynamics',
             description: bio
-                ? 'Work through the Bio-Inspired Design module, try the Generative Bio-Design Lab, and complete one Simulation Lab.'
-                : 'Work through the Engineering Statics and Engineering Dynamics materials at your own pace.',
+                ? 'Work through every section of the Bio-Inspired Design module in order, try the Generative Bio-Design Lab, and complete one Simulation Lab. Each section ends with a short quiz, and each chapter ends with a check-in with BigAL.'
+                : 'Work through every section of Engineering Statics and Engineering Dynamics in order. Each section ends with a short quiz, and each chapter ends with a check-in with BigAL.',
         },
         {
             id: 'posttest', kind: 'survey', surveyId: SURVEYS.posttest, wave: 'post',
