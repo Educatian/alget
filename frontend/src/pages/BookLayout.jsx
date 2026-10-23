@@ -15,14 +15,15 @@ import {
     Search
 } from 'lucide-react'
 import { getStreak } from '../lib/streak'
-import { accountLabel } from '../lib/studyTrack'
+import { accountLabel, getStudyEnrollment } from '../lib/studyTrack'
+import { supabase } from '../lib/supabase'
 import { useToast } from '../lib/toastContext'
 import BookToc from '../components/BookToc'
 import ChapterPassport from '../components/ChapterPassport'
 import RetentionBanner from '../components/RetentionBanner'
 import OnboardingTour from '../components/OnboardingTour'
 import ThemeToggle from '../components/ThemeToggle'
-import { logPageView, logStuckEvent } from '../lib/loggingService'
+import { logEvent, logPageView, logStuckEvent } from '../lib/loggingService'
 import { recordAdaptiveSignal } from '../lib/knowledgeService'
 import { useCourseProgress } from '../hooks/useCourseProgress'
 import { useSocialPresence } from '../hooks/useSocialPresence'
@@ -187,6 +188,64 @@ export default function BookLayout({ user, onLogout }) {
 
     const [streak, setStreak] = useState(() => getStreak())
     const toast = useToast()
+
+    // ---- Study requirements (participants only) ------------------------------
+    // Sections open in order; a section is finished by answering its quiz (and, on
+    // the last section of a chapter, sending the chapter check-in to BigAL).
+    const studyGated = Boolean(getStudyEnrollment(user))
+    const progressReady = ['synced', 'local'].includes(progressStats?.syncStatus)
+    const firstOpenIndex = useMemo(() => {
+        const i = flatSections.findIndex((s) => !isCompleted(course, s.chapter, s.section))
+        return i < 0 ? flatSections.length - 1 : i
+    }, [flatSections, isCompleted, course])
+    const isSectionLocked = useCallback((ch, sec) => {
+        if (!studyGated || !progressReady || isCompleted(course, ch, sec)) return false
+        const i = flatSections.findIndex((s) => s.chapter === ch && s.section === sec)
+        return i > firstOpenIndex
+    }, [studyGated, progressReady, flatSections, firstOpenIndex, isCompleted, course])
+    const isLastInChapter = !nextSection || nextSection.chapter !== chapter
+    const chapterTitle = flatSections[currentSectionIndex]?.chapterTitle || sectionData?.meta?.chapter_title || ''
+    const [quizDone, setQuizDone] = useState(false)
+    const [checkinDone, setCheckinDone] = useState(false)
+    const sectionAlreadyCompleted = isCompleted(course, chapter, section)
+
+    useEffect(() => {
+        setQuizDone(false)
+        setCheckinDone(false)
+        if (!studyGated) return undefined
+        let active = true
+        Promise.resolve(supabase.from('event_logs')
+            .select('event_type, event_target')
+            .in('event_type', ['section_quiz_completed', 'section_quiz_skipped', 'chapter_checkin'])
+            .in('event_target', [sectionPath, `${course}/${chapter}`]))
+            .then(({ data }) => {
+                if (!active) return
+                const rows = data || []
+                setQuizDone(rows.some((r) => r.event_target === sectionPath && r.event_type !== 'chapter_checkin'))
+                setCheckinDone(rows.some((r) => r.event_type === 'chapter_checkin'))
+            })
+            .catch(() => {})
+        return () => { active = false }
+    }, [studyGated, sectionPath, course, chapter])
+
+    const requirementsMet = !studyGated || sectionAlreadyCompleted || (quizDone && (!isLastInChapter || checkinDone))
+    const missingRequirements = [
+        !quizDone && "answer this section's quiz",
+        isLastInChapter && !checkinDone && 'send the chapter check-in to BigAL',
+    ].filter(Boolean)
+    const nextLocked = studyGated && !sectionAlreadyCompleted
+
+    // Opening a later section directly (e.g. by URL) goes back to the first unfinished one.
+    useEffect(() => {
+        if (!studyGated || !progressReady || !flatSections.length || currentSectionIndex < 0) return
+        if (currentSectionIndex > firstOpenIndex && !isCompleted(course, chapter, section)) {
+            const target = flatSections[firstOpenIndex]
+            logEvent('section_locked_redirect', sectionPath, { to: `${course}/${target.chapter}/${target.section}` }, sectionPath)
+            toast.info('Please finish the sections in order. Taking you to your next section.')
+            navigate(`/book/${course}/${target.chapter}/${target.section}`, { replace: true })
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [studyGated, progressReady, flatSections, currentSectionIndex, firstOpenIndex])
     useEffect(() => {
         const handler = (event) => {
             const detail = event.detail || {}
@@ -309,12 +368,17 @@ export default function BookLayout({ user, onLogout }) {
     }, [railContext, railOpen, sectionData, sectionPath])
 
     const handleNavigate = useCallback((nextChapter, nextSection, direction = 'forward') => {
+        if (isSectionLocked(nextChapter, nextSection)) {
+            logEvent('section_locked_attempt', `${course}/${nextChapter}/${nextSection}`, { from: sectionPath }, sectionPath)
+            toast.info('This section opens after you finish the one before it (quiz and, at the end of a chapter, the BigAL check-in).')
+            return
+        }
         setTransitionDirection(direction)
         setStuckEvent(null)
         setRailContext(null)
         setRailOpen(false)
         navigate(`/book/${course}/${nextChapter}/${nextSection}`)
-    }, [course, navigate])
+    }, [course, navigate, isSectionLocked, sectionPath, toast])
 
     const handleBookmarkToggle = useCallback(() => {
         toggleBookmark(course, chapter, section, {
@@ -667,6 +731,7 @@ export default function BookLayout({ user, onLogout }) {
                                 currentSection={section}
                                 onNavigate={handleNavigate}
                                 completedSections={completedSections}
+                                isLocked={isSectionLocked}
                             />
                         </>
                     )}
@@ -703,7 +768,18 @@ export default function BookLayout({ user, onLogout }) {
                                         isBookmarked={currentBookmarked}
                                         toggleBookmark={handleBookmarkToggle}
                                         isCompleted={isCompleted(course, chapter, section)}
+                                        studyGated={studyGated}
+                                        quizDone={quizDone}
+                                        onQuizComplete={() => setQuizDone(true)}
+                                        isLastInChapter={isLastInChapter}
+                                        chapterTitle={chapterTitle}
+                                        checkinDone={checkinDone}
+                                        onCheckinDone={() => setCheckinDone(true)}
+                                        requirementsMet={requirementsMet}
+                                        missingRequirements={missingRequirements}
+                                        nextLocked={nextLocked}
                                         markCompleted={() => {
+                                            if (!requirementsMet) return
                                             const alreadyCompleted = isCompleted(course, chapter, section)
                                             markCompleted(course, chapter, section)
                                             if (!alreadyCompleted) {
@@ -749,7 +825,7 @@ export default function BookLayout({ user, onLogout }) {
                                 <span className="mx-1 text-[var(--ath-line-strong)]">/</span>
                                 <span>{flatSections.length || 1}</span>
                             </div>
-                            {nextSection && (
+                            {nextSection && !nextLocked && (
                                 <button
                                     type="button"
                                     onClick={() => handleNavigate(nextSection.chapter, nextSection.section, 'forward')}

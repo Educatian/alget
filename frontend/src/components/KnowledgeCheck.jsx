@@ -23,7 +23,10 @@ export default function KnowledgeCheck({
     sectionTitle,
     learningObjectives,
     conceptIds,
-    onNeedsReview
+    onNeedsReview,
+    required = false,
+    alreadyDone = false,
+    onComplete
 }) {
     const [status, setStatus] = useState('idle')
     const [questions, setQuestions] = useState([])
@@ -235,6 +238,7 @@ export default function KnowledgeCheck({
         }
 
         setStatus('completed')
+        onComplete?.('completed')
         const correct = results.filter((r) => r.isCorrect).length
         logEvent('section_quiz_completed', quizSection, {
             correct,
@@ -250,7 +254,7 @@ export default function KnowledgeCheck({
 
     if (status === 'idle') {
         return (
-            <div className="mt-12 overflow-hidden rounded-[2rem] border border-[var(--ath-line)] bg-[linear-gradient(180deg,rgba(200,226,236,0.18),rgba(255,255,255,0.88))] shadow-[0_24px_60px_rgba(15,23,42,0.06)]">
+            <div className="mt-12 overflow-hidden rounded-[2rem] border border-[var(--ath-line)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--ath-primary)_6%,var(--ath-panel)),var(--ath-panel))] shadow-[0_24px_60px_rgba(15,23,42,0.06)]">
                 <div className="h-1 w-full bg-[linear-gradient(90deg,var(--ath-primary),#4a7382)]" />
                 <div className="p-8 text-center md:p-10">
                     <div className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full border border-[var(--ath-line)] bg-white/75 px-4 py-2 text-[0.72rem] font-bold uppercase tracking-[0.2em] text-[var(--ath-primary)]">
@@ -260,6 +264,13 @@ export default function KnowledgeCheck({
                     <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[var(--ath-muted)]">
                         Generate a short adaptive quiz for this section. Missed questions can now feed directly into the support rail for targeted review.
                     </p>
+                    {required && (
+                        <p className={`mx-auto mt-3 max-w-2xl text-sm font-semibold ${alreadyDone ? 'text-[var(--ath-primary)]' : 'text-[var(--ath-text)]'}`}>
+                            {alreadyDone
+                                ? 'Done for this section. You can take it again if you like.'
+                                : 'Required: answer all the questions in this quiz to complete the section. Your score does not need to be perfect.'}
+                        </p>
+                    )}
                     <button
                         onClick={handleStart}
                         className="editorial-button mt-7 px-6 py-3 text-sm"
@@ -289,9 +300,23 @@ export default function KnowledgeCheck({
             <div className="mt-12 rounded-[2rem] border border-[color-mix(in_srgb,var(--ath-danger)_30%,transparent)] bg-[color-mix(in_srgb,var(--ath-danger)_10%,var(--ath-panel))] p-8 text-center shadow-sm">
                 <p className="editorial-kicker text-[var(--ath-danger)]">Knowledge Check</p>
                 <p className="mt-4 text-sm font-medium text-[var(--ath-danger)]">We could not generate the assessment right now.</p>
-                <button onClick={() => setStatus('idle')} className="mt-5 text-sm font-semibold text-[var(--ath-primary)]">
-                    Try Again
-                </button>
+                <div className="mt-5 flex flex-wrap justify-center gap-4">
+                    <button onClick={() => setStatus('idle')} className="text-sm font-semibold text-[var(--ath-primary)]">
+                        Try Again
+                    </button>
+                    {required && !alreadyDone && (
+                        // A technical failure must not block a participant; the skip is logged.
+                        <button
+                            onClick={() => {
+                                logEvent('section_quiz_skipped', quizSection, { reason: 'generation_failed' }, quizSection)
+                                onComplete?.('skipped')
+                            }}
+                            className="text-sm font-semibold text-[var(--ath-muted)] underline"
+                        >
+                            Continue without the quiz
+                        </button>
+                    )}
+                </div>
             </div>
         )
     }
