@@ -53,7 +53,7 @@ describe('MainApp', () => {
         fireEvent.click(screen.getByRole('button', { name: /unlock/i }))
 
         expect(await screen.findByText('Engineering Statics')).toBeInTheDocument()
-        expect(screen.getByText('ME 201: Engineering Dynamics')).toBeInTheDocument()
+        expect(screen.getByText('Engineering Dynamics')).toBeInTheDocument()
         expect(screen.getByText('Bio-Inspired Design')).toBeInTheDocument()
         expect(screen.getByText('3 available')).toBeInTheDocument()
     })
