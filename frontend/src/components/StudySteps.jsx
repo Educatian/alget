@@ -19,7 +19,7 @@ function scrollToId(id) {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
 
-export default function StudySteps({ user, needsLab, sectionsRemaining = 0 }) {
+export default function StudySteps({ user, needsLab, sectionsRemaining = 0, courseChoicePending = false }) {
     const steps = getStudySteps(user)
     const labCompleted = useEventDone('sim_lab_completed', Boolean(steps) && needsLab)
     const [opened, setOpened] = useState({})
@@ -99,7 +99,7 @@ export default function StudySteps({ user, needsLab, sectionsRemaining = 0 }) {
                 {steps.map((step, index) => {
                     const isCurrent = step.id === current?.id
                     const labMissing = needsLab && !labCompleted
-                    const learnBlocked = step.kind === 'learn' && (labMissing || sectionsRemaining > 0)
+                    const learnBlocked = step.kind === 'learn' && (labMissing || courseChoicePending || sectionsRemaining > 0)
                     return (
                         <li
                             key={step.id}
@@ -194,6 +194,11 @@ export default function StudySteps({ user, needsLab, sectionsRemaining = 0 }) {
                                                 Each section opens after you finish the one before it: answer its short quiz, and at the end of
                                                 each chapter send your check-in to BigAL. The practice questions are optional.
                                             </p>
+                                            {courseChoicePending && (
+                                                <p className="mb-2 text-sm text-[var(--ath-secondary)]">
+                                                    First choose your course below.
+                                                </p>
+                                            )}
                                             {sectionsRemaining > 0 && (
                                                 <p className="mb-2 text-sm text-[var(--ath-secondary)]">
                                                     {sectionsRemaining} {sectionsRemaining === 1 ? 'section' : 'sections'} left to complete.

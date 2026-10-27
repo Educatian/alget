@@ -18,6 +18,7 @@ import {
     Sparkles
 } from 'lucide-react'
 import { BioInspiredIllustration, StaticsIllustration } from '../components/CourseIllustrations'
+import StudyCourseChoice from '../components/StudyCourseChoice'
 import StudySteps from '../components/StudySteps'
 import ThemeToggle from '../components/ThemeToggle'
 import { useCourseProgress } from '../hooks/useCourseProgress'
@@ -25,7 +26,7 @@ import { useEventDone } from '../lib/useEventDone'
 import { supabase } from '../lib/supabase'
 import API_BASE from '../lib/apiConfig'
 import { getEvaluationStatus } from '../lib/researchService'
-import { accountLabel, enrollInStudy, getStudyEnrollment } from '../lib/studyTrack'
+import { accountLabel, chooseStudyCourse, enrollInStudy, getStudyEnrollment } from '../lib/studyTrack'
 import { safeSessionStorageGet, safeSessionStorageSet } from '../lib/browserStorage'
 import '../index.css'
 
@@ -277,6 +278,12 @@ export default function MainApp({ user, onLogout }) {
     const learningLocked = Boolean(studyEnrollment) && !user?.user_metadata?.study_steps?.pre
     const showLab = !learningLocked && (studyEnrollment ? studyEnrollment.lab : unlockedMode === 'engineering')
     const visibleCourseIds = new Set(visibleCourses.map((course) => course.id))
+    // Basic track: one course, chosen after the pre-survey; it can be changed until a section is finished.
+    const courseChoices = studyEnrollment?.courseChoice
+        ? engineeringCourses.filter((course) => studyEnrollment.courseChoice.includes(course.id))
+        : []
+    const showCourseChoice = !learningLocked && Boolean(studyEnrollment?.needsCourseChoice)
+    const canChangeCourse = Boolean(studyEnrollment?.chosenCourse) && !(progressStats?.courseBreakdown?.[studyEnrollment.chosenCourse] > 0)
     // Study participants finish the learning step only after every section of their courses.
     const sectionsRemaining = studyEnrollment
         ? visibleCourses.reduce((left, course) => left + Math.max(0, course.sections - (progressStats?.courseBreakdown?.[course.id] || 0)), 0)
@@ -457,7 +464,9 @@ export default function MainApp({ user, onLogout }) {
                             </div>
                         </section>
 
-                        {studyEnrollment && <StudySteps user={user} needsLab={studyEnrollment.lab} sectionsRemaining={sectionsRemaining} />}
+                        {studyEnrollment && <StudySteps user={user} needsLab={studyEnrollment.lab} sectionsRemaining={sectionsRemaining} courseChoicePending={Boolean(studyEnrollment.needsCourseChoice)} />}
+
+                        {showCourseChoice && <StudyCourseChoice user={user} courses={courseChoices} />}
 
                         {learningLocked && (
                             <p className="mt-6 text-sm text-[var(--ath-muted)]">
@@ -627,7 +636,21 @@ export default function MainApp({ user, onLogout }) {
                             </section>
                         )}
 
-                        {!learningLocked && <section id="study-courses" className="mt-10 grid gap-8 lg:grid-cols-2">
+                        {!learningLocked && canChangeCourse && (
+                            <p className="mt-6 text-sm text-[var(--ath-muted)]">
+                                Want the other course instead?{' '}
+                                <button
+                                    type="button"
+                                    onClick={() => { chooseStudyCourse(user, null).catch(() => {}) }}
+                                    className="font-semibold text-[var(--ath-primary)] underline"
+                                >
+                                    Change my course
+                                </button>{' '}
+                                (possible until you finish your first section).
+                            </p>
+                        )}
+
+                        {!learningLocked && !showCourseChoice && <section id="study-courses" className="mt-10 grid gap-8 lg:grid-cols-2">
                             {visibleCourses.map((course) => {
                                 const courseDone = (progressStats?.courseBreakdown?.[course.id] || 0) >= course.sections
                                 return (

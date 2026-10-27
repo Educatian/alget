@@ -19,8 +19,11 @@ const SURVEYS = {
 
 // kind: 'survey' opens Qualtrics; 'learn' is the ALGET work itself.
 // surveyId null means the survey for that track is not ready yet.
-function stepsFor(track) {
+const COURSE_NAMES = { statics: 'Engineering Statics', dynamics: 'Engineering Dynamics' }
+
+function stepsFor(track, chosenCourse) {
     const bio = track === 'bio'
+    const basicCourse = COURSE_NAMES[chosenCourse]
     return [
         {
             id: 'pre', kind: 'survey', surveyId: SURVEYS.pre, wave: 'pre',
@@ -29,10 +32,12 @@ function stepsFor(track) {
         },
         {
             id: 'learn', kind: 'learn',
-            title: bio ? 'Learn: Bio-Inspired Design and one Simulation Lab' : 'Learn: Engineering Statics and Dynamics',
+            title: bio
+                ? 'Learn: Bio-Inspired Design and one Simulation Lab'
+                : basicCourse ? `Learn: ${basicCourse}` : 'Learn: Engineering Statics or Dynamics (your choice)',
             description: bio
                 ? 'Work through every section of the Bio-Inspired Design module in order, try the Generative Bio-Design Lab, and complete one Simulation Lab. Each section ends with a short quiz, and each chapter ends with a check-in with BigAL.'
-                : 'Work through every section of Engineering Statics and Engineering Dynamics in order. Each section ends with a short quiz, and each chapter ends with a check-in with BigAL.',
+                : `${basicCourse ? `Work through every section of ${basicCourse} in order.` : 'Choose Engineering Statics or Engineering Dynamics, then work through every section of that course in order.'} Each section ends with a short quiz, and each chapter ends with a check-in with BigAL.`,
         },
         {
             id: 'posttest', kind: 'survey', surveyId: SURVEYS.posttest, wave: 'post',
@@ -57,7 +62,7 @@ export function getStudySteps(user) {
     if (!enrollment) return null
     const done = user?.user_metadata?.study_steps || {}
     let previousDone = true
-    return stepsFor(enrollment.track).map((step) => {
+    return stepsFor(enrollment.track, enrollment.chosenCourse).map((step) => {
         const item = {
             ...step,
             done: Boolean(done[step.id]),
@@ -75,6 +80,7 @@ export function surveyUrl(step, enrollment) {
     url.searchParams.set('study_id', enrollment.studyId || '')
     url.searchParams.set('cohort', `study-${enrollment.track}`)
     url.searchParams.set('wave', step.wave)
+    if (enrollment.chosenCourse) url.searchParams.set('course', enrollment.chosenCourse)
     return url.toString()
 }
 

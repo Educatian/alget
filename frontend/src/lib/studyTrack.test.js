@@ -1,17 +1,19 @@
 import { describe, expect, it, vi } from 'vitest'
 
-vi.mock('./supabase', () => ({ supabase: { auth: {} } }))
+const updateUser = vi.fn(async () => ({ error: null }))
+vi.mock('./supabase', () => ({ supabase: { auth: { updateUser } } }))
+vi.mock('./loggingService', () => ({ logEvent: vi.fn() }))
 
-const { accountLabel, canOpenCourse, canOpenLab, getStudyEnrollment } = await import('./studyTrack')
+const { accountLabel, canOpenCourse, canOpenLab, chooseStudyCourse, getStudyEnrollment } = await import('./studyTrack')
 
 const preDone = { study_steps: { pre: '2026-10-15T10:00:00Z' } }
-const basic = { app_metadata: { study_track: 'basic', study_id: 'id-1' }, user_metadata: preDone }
+const basic = { app_metadata: { study_track: 'basic', study_id: 'id-1' }, user_metadata: { ...preDone, study_course: 'statics' } }
 const bio = { app_metadata: { study_track: 'bio', study_id: 'id-2' }, user_metadata: preDone }
 const regular = { app_metadata: { provider: 'email' } }
 
 describe('studyTrack', () => {
     it('reads the track from app_metadata', () => {
-        expect(getStudyEnrollment(basic)).toMatchObject({ track: 'basic', studyId: 'id-1', courses: ['statics', 'dynamics'], lab: false })
+        expect(getStudyEnrollment(basic)).toMatchObject({ track: 'basic', studyId: 'id-1', courses: ['statics'], chosenCourse: 'statics', needsCourseChoice: false, lab: false })
         expect(getStudyEnrollment(bio)).toMatchObject({ track: 'bio', courses: ['bio-inspired'], lab: true })
         expect(getStudyEnrollment(regular)).toBeNull()
         expect(getStudyEnrollment({ app_metadata: { study_track: 'other' } })).toBeNull()
@@ -20,12 +22,23 @@ describe('studyTrack', () => {
 
     it('limits study participants to their track', () => {
         expect(canOpenCourse(basic, 'statics')).toBe(true)
-        expect(canOpenCourse(basic, 'dynamics')).toBe(true)
+        expect(canOpenCourse(basic, 'dynamics')).toBe(false)
         expect(canOpenCourse(basic, 'bio-inspired')).toBe(false)
         expect(canOpenCourse(bio, 'bio-inspired')).toBe(true)
         expect(canOpenCourse(bio, 'statics')).toBe(false)
         expect(canOpenLab(basic)).toBe(false)
         expect(canOpenLab(bio)).toBe(true)
+    })
+
+    it('asks basic-track participants to choose one course first', async () => {
+        const unchosen = { app_metadata: basic.app_metadata, user_metadata: preDone }
+        expect(getStudyEnrollment(unchosen)).toMatchObject({ courses: [], needsCourseChoice: true, courseChoice: ['statics', 'dynamics'] })
+        expect(canOpenCourse(unchosen, 'statics')).toBe(false)
+        await chooseStudyCourse(unchosen, 'dynamics')
+        expect(updateUser).toHaveBeenCalledWith({ data: { study_course: 'dynamics' } })
+        updateUser.mockClear()
+        await chooseStudyCourse(unchosen, 'bio-inspired')
+        expect(updateUser).not.toHaveBeenCalled()
     })
 
     it('keeps courses and labs closed until the pre-survey is done', () => {
