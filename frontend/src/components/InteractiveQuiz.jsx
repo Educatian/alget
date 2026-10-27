@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { recordAdaptiveSignal, updateMastery } from '../lib/knowledgeService';
+import { logEvent } from '../lib/loggingService';
 
 export default function InteractiveQuiz({ question, options, explanation, conceptId, conceptid, defaultConceptId, sectionId, ...rest }) {
     const [selectedOption, setSelectedOption] = useState(null);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [feedbackSaved, setFeedbackSaved] = useState(false);
+    const [attempt, setAttempt] = useState(0);
     // Markdown attributes arrive under the raw HTML name (`correct-index`).
     const correctIndex = Number(rest['correct-index'] ?? rest.correctIndex ?? -1);
 
@@ -40,6 +42,19 @@ export default function InteractiveQuiz({ question, options, explanation, concep
 
         const resolvedConceptId = conceptId || conceptid || defaultConceptId || null;
         const wasCorrect = Boolean(parsedOptions[selectedOption]?.isCorrect);
+        const attemptNumber = attempt + 1;
+        setAttempt(attemptNumber);
+
+        // Full record of this in-reading question for the study (question, choice, outcome).
+        logEvent('inline_quiz_answer', resolvedConceptId || String(question || '').slice(0, 120), {
+            question: String(question || '').slice(0, 1000),
+            options: parsedOptions.slice(0, 10).map((o) => String(o.text ?? '').slice(0, 300)),
+            selected_index: selectedOption,
+            selected_option: String(parsedOptions[selectedOption]?.text ?? '').slice(0, 300),
+            is_correct: wasCorrect,
+            concept_id: resolvedConceptId,
+            attempt_number: attemptNumber,
+        }, sectionId || null);
 
         if (sectionId) {
             recordAdaptiveSignal(sectionId, wasCorrect ? 'inline_quiz_correct' : 'inline_quiz_incorrect', {
