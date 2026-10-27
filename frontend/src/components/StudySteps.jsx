@@ -21,7 +21,11 @@ function scrollToId(id) {
 
 export default function StudySteps({ user, needsLab, sectionsRemaining = 0, courseChoicePending = false }) {
     const steps = getStudySteps(user)
-    const labCompleted = useEventDone('sim_lab_completed', Boolean(steps) && needsLab)
+    const labTrialsDone = useEventDone('sim_lab_completed', Boolean(steps) && needsLab)
+    const labCsvUploaded = useEventDone('sim_lab_csv_uploaded', Boolean(steps) && needsLab)
+    const labCsvSkipped = useEventDone('sim_lab_csv_skipped', Boolean(steps) && needsLab)
+    // The lab counts once its trials are done and its CSV is uploaded (or the learner reported the download failed).
+    const labCompleted = labTrialsDone && (labCsvUploaded || labCsvSkipped)
     const [opened, setOpened] = useState({})
     const [saving, setSaving] = useState(null)
     const [error, setError] = useState('')
@@ -206,7 +210,7 @@ export default function StudySteps({ user, needsLab, sectionsRemaining = 0, cour
                                             )}
                                             {labMissing && (
                                                 <p className="mb-2 text-sm text-[var(--ath-secondary)]">
-                                                    Complete one Simulation Lab first (see below), then come back here.
+                                                    Complete one Simulation Lab first, including uploading its results file (see below), then come back here.
                                                 </p>
                                             )}
                                             <button

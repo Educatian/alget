@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, CheckCircle2, CircleHelp, FlaskConical, LifeBuoy } from 'lucide-react'
+import LabCsvUpload from '../components/LabCsvUpload'
 import UnityLabFrame from '../components/UnityLabFrame'
 import { computeLabProgress } from '../lib/labProgress'
 import { SIM_LAB_TIME, SIM_LABS, getSimLab } from '../lib/simLabs'
-import { loadLabChoice, loadSavedLabEvents, recordLabCompleted, recordLabStuck, saveLabChoice } from '../lib/simLabStore'
+import { loadLabChoice, loadLabCsvDone, loadSavedLabEvents, recordLabCompleted, recordLabStuck, saveLabChoice } from '../lib/simLabStore'
 import '../index.css'
 
 const HELP_AFTER_MS = 10 * 60 * 1000
@@ -89,11 +90,13 @@ function LabRunner({ lab }) {
     const [loaded, setLoaded] = useState(false)
     const [showHelp, setShowHelp] = useState(false)
     const [dismissedDone, setDismissedDone] = useState(false)
+    const [csvDone, setCsvDone] = useState(false)
     const completionLogged = useRef(false)
 
     useEffect(() => {
         let active = true
         loadLabChoice().then((previous) => { if (active && previous !== lab.id) saveLabChoice(lab.id, previous) })
+        loadLabCsvDone(lab.id).then((done) => { if (active && done) setCsvDone(true) })
         loadSavedLabEvents(lab.simId).then((saved) => {
             if (!active) return
             // A completion reached on an earlier visit was already recorded then.
@@ -165,14 +168,21 @@ function LabRunner({ lab }) {
                                     ? 'Your best design met the goal.'
                                     : 'Your designs have not met the goal yet, and that is fine: completing the trials is what counts.'}
                             </p>
+                            <LabCsvUpload lab={lab} done={csvDone} onDone={() => setCsvDone(true)} />
                             <div className="mt-4 flex flex-wrap gap-3">
-                                <button onClick={() => navigate('/learn')} className="editorial-button px-5 py-2.5 text-sm">
+                                <button onClick={() => navigate('/learn')} disabled={!csvDone} className="editorial-button px-5 py-2.5 text-sm disabled:opacity-60">
                                     Continue to the next part <ArrowRight className="h-4 w-4" aria-hidden="true" />
                                 </button>
                                 <button onClick={() => setDismissedDone(true)} className="editorial-button-secondary px-5 py-2.5 text-sm">
                                     Keep experimenting (optional)
                                 </button>
                             </div>
+                        </div>
+                    )}
+
+                    {progress.complete && dismissedDone && !csvDone && (
+                        <div className="editorial-surface border-l-4 border-[var(--ath-primary)] p-5">
+                            <LabCsvUpload lab={lab} done={csvDone} onDone={() => setCsvDone(true)} />
                         </div>
                     )}
 

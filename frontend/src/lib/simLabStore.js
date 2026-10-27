@@ -72,6 +72,21 @@ export function recordLabCompleted(lab, progress) {
     }, lab.sectionId)
 }
 
+// Whether the learner has uploaded this lab's CSV, or said the download did not work.
+export async function loadLabCsvDone(labId) {
+    if (!isSupabaseConfigured) return false
+    try {
+        const { data } = await supabase.from('event_logs')
+            .select('id')
+            .eq('event_target', labId)
+            .in('event_type', ['sim_lab_csv_uploaded', 'sim_lab_csv_skipped'])
+            .limit(1)
+        return (data || []).length > 0
+    } catch {
+        return false
+    }
+}
+
 export function recordLabStuck(lab, progress, reason) {
     logEvent('sim_lab_stuck', lab.id, { lab: lab.id, reason, trials_done: progress.trialsDone }, lab.sectionId)
 }

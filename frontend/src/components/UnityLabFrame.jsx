@@ -9,6 +9,8 @@ function addParentOrigin(src) {
 
 // Embeds a Unity WebGL lab (a different origin, so allow-same-origin only lets
 // the lab use its own storage; it cannot reach ALGET's page or session).
+// allow-downloads lets the lab's Export CSV save a file, which the learner then
+// uploads on the lab page (LabCsvUpload).
 export default function UnityLabFrame({ sectionId, simId, source, src, title, onEvent }) {
     const iframeRef = useRef(null)
     const embeddedSrc = useMemo(() => addParentOrigin(src), [src])
@@ -25,7 +27,7 @@ export default function UnityLabFrame({ sectionId, simId, source, src, title, on
                 ref={iframeRef}
                 src={embeddedSrc}
                 title={title}
-                sandbox="allow-scripts allow-same-origin"
+                sandbox="allow-scripts allow-same-origin allow-downloads"
                 allow="fullscreen"
                 loading="lazy"
                 className="block h-[clamp(560px,76vh,780px)] w-full border-0"
