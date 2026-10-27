@@ -38,7 +38,8 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
     const courseInfo = COURSE_INFO[course] || { label: 'Your course', prompt: 'Ask me anything about this section.' }
     const messagesEndRef = useRef(null)
     const lastAutoQuestionRef = useRef(null)
-    const pendingSendRef = useRef(null) // message to send once saved history has loaded
+    // Message from an open-chat event (e.g. a chapter check-in), sent once saved history has loaded.
+    const [pendingMessage, setPendingMessage] = useState(null)
 
     // Expose methods via ref
     useImperativeHandle(ref, () => ({
@@ -93,32 +94,26 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
     //   - message + autoSend=false → open and prefill input (user can edit)
     //   - message + autoSend=true (default) → open and send immediately,
     //     so the rail launcher feels like one continuous chat thread
-    const handleOpenChatEvent = useEffectEvent((detail) => {
-        const { message, autoSend = true } = detail || {}
-        setIsOpen(true)
-        if (!message) return
-        if (autoSend) {
-            if (userId && !historyLoaded) pendingSendRef.current = message
-            else void sendMessageWithText(message)
-        } else {
-            setInputValue(message)
-        }
-    })
-
+    // The listener only calls state setters: it is registered once, so it must not
+    // read component state (that would be the state from the first render).
     useEffect(() => {
-        const handler = (event) => handleOpenChatEvent(event.detail)
+        const handler = (event) => {
+            const { message, autoSend = true } = event.detail || {}
+            setIsOpen(true)
+            if (!message) return
+            if (autoSend) setPendingMessage(message)
+            else setInputValue(message)
+        }
         window.addEventListener('open-chat', handler)
         return () => window.removeEventListener('open-chat', handler)
     }, [])
 
-    // Send a message that arrived (e.g. a chapter check-in) before history loaded.
     useEffect(() => {
-        if (!historyLoaded || !pendingSendRef.current) return
-        const message = pendingSendRef.current
-        pendingSendRef.current = null
-        void sendMessageWithText(message)
+        if (!pendingMessage || loading || (userId && !historyLoaded)) return
+        setPendingMessage(null)
+        void sendMessageWithText(pendingMessage)
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [historyLoaded])
+    }, [pendingMessage, historyLoaded, loading])
 
     // Save chat history to Supabase
     const saveHistory = async (newMessages) => {

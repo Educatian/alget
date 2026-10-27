@@ -64,7 +64,7 @@ KNOWN_CHAPTER_TITLES = {
 
 KNOWN_COURSE_TITLES = {
     "statics": "Engineering Statics",
-    "dynamics": "ME 201: Engineering Dynamics",
+    "dynamics": "Engineering Dynamics",
     "bio-inspired": "Bio-Inspired Design",
     "inst-design": "Foundations of Instructional Design",
     "ai-ethics": "AI and Ethics",
@@ -268,7 +268,7 @@ def get_fallback_toc(course: str) -> dict:
     elif course == "dynamics":
         return {
             "course": "dynamics",
-            "title": "ME 201: Engineering Dynamics",
+            "title": "Engineering Dynamics",
             "chapters": [
                 {
                     "id": "01",

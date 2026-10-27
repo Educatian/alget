@@ -56,7 +56,7 @@ const engineeringCourses = [
     },
     {
         id: 'dynamics',
-        title: 'ME 201: Engineering Dynamics',
+        title: 'Engineering Dynamics',
         icon: <CourseMark Icon={Atom} />,
         description: 'Foundational curriculum for motion, force relationships, energy, and momentum with adaptive reading and practice support.',
         topics: ['Kinematics', 'Kinetics', 'Work & Energy', 'Impulse & Momentum'],
