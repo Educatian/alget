@@ -37,6 +37,15 @@ describe('studySteps', () => {
         expect(basicUrl.searchParams.get('cohort')).toBe('study-basic')
     })
 
+    it('names the chosen basic-track course and sends it to Qualtrics', () => {
+        const unchosen = getStudySteps(basic()).find((s) => s.id === 'learn')
+        expect(unchosen.title).toMatch(/statics or dynamics/i)
+        expect(new URL(getStudySteps(basic()).find((s) => s.id === 'posttest').url).searchParams.has('course')).toBe(false)
+        const user = { ...basic(), user_metadata: { study_steps: {}, study_course: 'dynamics' } }
+        expect(getStudySteps(user).find((s) => s.id === 'learn').title).toBe('Learn: Engineering Dynamics')
+        expect(new URL(getStudySteps(user).find((s) => s.id === 'posttest').url).searchParams.get('course')).toBe('dynamics')
+    })
+
     it('saves a step once, keeping earlier steps', async () => {
         await markStepDone(bio({ pre: 'earlier' }), 'learn')
         expect(updateUser).toHaveBeenCalledWith({ data: { study_steps: { pre: 'earlier', learn: expect.any(String) } } })

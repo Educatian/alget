@@ -3,9 +3,12 @@
 // backend/study_enrollment.py. Users without a study track are unaffected.
 import API_BASE from './apiConfig'
 import { supabase } from './supabase'
+import { logEvent } from './loggingService'
 
+// courseChoice: the participant completes one of these courses, chosen after the
+// pre-survey and saved in user_metadata.study_course.
 export const STUDY_TRACKS = {
-    basic: { label: 'Basic track', courses: ['statics', 'dynamics'], lab: false },
+    basic: { label: 'Basic track', courseChoice: ['statics', 'dynamics'], lab: false },
     bio: { label: 'Bio-inspired track', courses: ['bio-inspired'], lab: true },
 }
 
@@ -13,7 +16,28 @@ export function getStudyEnrollment(user) {
     const meta = user?.app_metadata || {}
     const track = STUDY_TRACKS[meta.study_track] ? meta.study_track : null
     if (!track) return null
-    return { track, studyId: meta.study_id || null, ...STUDY_TRACKS[track] }
+    const config = STUDY_TRACKS[track]
+    if (!config.courseChoice) return { track, studyId: meta.study_id || null, ...config, chosenCourse: null, needsCourseChoice: false }
+    const saved = user?.user_metadata?.study_course
+    const chosenCourse = config.courseChoice.includes(saved) ? saved : null
+    return {
+        track, studyId: meta.study_id || null, ...config,
+        courses: chosenCourse ? [chosenCourse] : [],
+        chosenCourse,
+        needsCourseChoice: !chosenCourse,
+    }
+}
+
+// Saves the participant's course for the track (or clears it to choose again).
+// The session's user updates through onAuthStateChange.
+export async function chooseStudyCourse(user, courseId) {
+    const enrollment = getStudyEnrollment(user)
+    if (!enrollment?.courseChoice) return
+    if (courseId !== null && !enrollment.courseChoice.includes(courseId)) return
+    const previous = enrollment.chosenCourse
+    const { error } = await supabase.auth.updateUser({ data: { study_course: courseId } })
+    if (error) throw new Error('Could not save your choice. Please try again.')
+    logEvent(courseId ? 'study_course_chosen' : 'study_course_cleared', courseId || previous, { course: courseId, previous })
 }
 
 // What to show as the account name: Study ID sign-ins have a placeholder email.
