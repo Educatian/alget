@@ -37,8 +37,9 @@ describe('AI Literacy course content', () => {
         expect(src.searchParams.get('book')).toBe('ai')
         expect(src.searchParams.get('lesson')).toBe('next-word')
         expect(src.searchParams.get('embed')).toBe('1')
-        const video = await screen.findByLabelText('How a language model writes (70 s)')
+        const video = await screen.findByLabelText('How a language model writes (1 min 16 s)')
         expect(video.getAttribute('src')).toBe('/media/ai-literacy/NextWordVideo.mp4')
+        expect(video.querySelector('track[kind="captions"]').getAttribute('src')).toBe('/media/ai-literacy/NextWordVideo.vtt')
     })
 
     it('embeds a lab and a video in each module, and no external YouTube videos', () => {

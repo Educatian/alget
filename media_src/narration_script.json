@@ -1,0 +1,42 @@
+{
+  "v1": [
+    "Here's a question. You ask a chatbot the exact same thing twice. Do you get the same answer?",
+    "To find out, let's watch a language model write one sentence. It begins: the cat sat on the... and now it has to choose the next word.",
+    "It doesn't look anything up. Instead, it gives every word it knows a probability.",
+    "Mat is the most likely. Sofa and floor, less so. Moon, almost never. And all of the bars together always add up to one hundred percent.",
+    "Then it rolls a weighted die. Most of the time, the tallest bar wins. But not every time.",
+    "So the same question can come back with a different answer.",
+    "There's a dial for this, called temperature. Turn it down, and the top word takes over. Turn it up, and the bars even out, so surprising words show up more often.",
+    "Now the important part. Take the sentence: the capital of Australia is... Sydney gets a big share, because those words often appear together. But the capital is Canberra.",
+    "A model predicts likely words, and likely is not the same as true. Fluent answers still need checking. Try it yourself in the probability wheel lab."
+  ],
+  "v2": [
+    "Imagine an app that spots pets in your photos. Its makers say it is ninety percent accurate. Sounds great. But accurate for whom?",
+    "Look at the photos it learned from. Almost all of them were taken in daylight. Only one in twenty was taken at night.",
+    "Next, we test it on the photos people really upload, where about a third are taken at night.",
+    "Overall, it scores about ninety percent. But let's split the results by group.",
+    "Day photos: ninety-seven percent. Night photos: about seventy-five. One night photo in four is wrong, and the average hid the gap.",
+    "Adding more daytime photos would not help. What helps is covering the missing group. So we make a quarter of the training photos night photos, and train again.",
+    "Now both groups are above ninety-five percent.",
+    "Real systems have shown the same pattern. Face analysis and speech recognition tools have worked far worse for people who were under-represented in their training data. So whenever you hear an accuracy number, ask: accurate for whom?"
+  ],
+  "v3": [
+    "An AI tool answers your question, and every sentence comes with a citation. Can you trust it?",
+    "Here is the answer, about the campus library on a Saturday. Instead of judging it as a whole, split it into claims, and check each one.",
+    "Claim one says the library opens at nine. Open the cited source and find the exact line. It says ten. Contradicted.",
+    "Second claim: show your student ID after eight. The source says exactly that. Supported.",
+    "The third claim cites section four point two of the access policy. But the policy only has three sections. That citation points at nothing. No real source.",
+    "Finally, claim four: study rooms can be booked a week ahead. Supported.",
+    "Two supported, one contradicted, and one invented. And all four had citations. A citation is a claim too.",
+    "So split the answer into claims, find each source yourself, confirm it says the same thing, then keep, fix, or drop. Practice in the claim-checking lab."
+  ],
+  "v4": [
+    "You paste a draft into a chatbot and ask for feedback. Where does that text actually go?",
+    "Here's the prompt. Along with the essay, it includes a name, a student ID, and a health detail.",
+    "Every prompt is processed on the provider's servers. Depending on the settings, it may also be kept in your history, used to train future models, or shared with anyone who has a link.",
+    "With all of those switched on, three personal details are copied into four places. And deleting the chat from your list may not remove every copy.",
+    "Now the same request, done carefully. Remove what the task doesn't need, and turn off training and sharing where you can.",
+    "Same feedback on the essay, and no personal details anywhere.",
+    "Share only what the task needs, check each tool's settings, and prefer tools your university has approved. Try it yourself in the data trail lab."
+  ]
+}

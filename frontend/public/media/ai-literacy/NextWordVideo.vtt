@@ -1,0 +1,37 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:05.925
+Here's a question. You ask a chatbot the exact same thing twice. Do you get the same answer?
+
+2
+00:00:06.400 --> 00:00:15.350
+To find out, let's watch a language model write one sentence. It begins: the cat sat on the... and now it has to choose the next word.
+
+3
+00:00:15.833 --> 00:00:21.408
+It doesn't look anything up. Instead, it gives every word it knows a probability.
+
+4
+00:00:21.867 --> 00:00:31.367
+Mat is the most likely. Sofa and floor, less so. Moon, almost never. And all of the bars together always add up to one hundred percent.
+
+5
+00:00:31.833 --> 00:00:38.158
+Then it rolls a weighted die. Most of the time, the tallest bar wins. But not every time.
+
+6
+00:00:38.633 --> 00:00:42.383
+So the same question can come back with a different answer.
+
+7
+00:00:42.867 --> 00:00:53.067
+There's a dial for this, called temperature. Turn it down, and the top word takes over. Turn it up, and the bars even out, so surprising words show up more often.
+
+8
+00:00:53.533 --> 00:01:05.033
+Now the important part. Take the sentence: the capital of Australia is... Sydney gets a big share, because those words often appear together. But the capital is Canberra.
+
+9
+00:01:05.500 --> 00:01:15.200
+A model predicts likely words, and likely is not the same as true. Fluent answers still need checking. Try it yourself in the probability wheel lab.

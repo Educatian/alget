@@ -104,7 +104,7 @@ When you ask a chatbot a question, it does not look the answer up in a list of f
 
 The pieces a model reads and writes are called **tokens**: whole words or parts of words. For each next token, the model gives every token it knows a **probability**. Then it **samples**: it picks one, with likely tokens picked more often. The chosen token is added to the text, and the process repeats until the reply is done.
 
-<lesson-video src="/media/ai-literacy/NextWordVideo.mp4" title="How a language model writes (70 s)" caption="No sound: captions on screen. Watch how the bars change with temperature." />
+<lesson-video src="/media/ai-literacy/NextWordVideo.mp4" title="How a language model writes (1 min 16 s)" caption="Narrated, with captions. Watch how the bars change with temperature." />
 
 ## Try it: the probability wheel
 
@@ -264,7 +264,7 @@ An **overall accuracy** is an average across everyone tested. If one group is sm
 
 This is not only a lab effect. In 2018, Joy Buolamwini and Timnit Gebru tested commercial face-analysis systems and found far higher error rates for darker-skinned women than for lighter-skinned men. In 2020, a study of speech-recognition systems found much higher error rates for Black speakers than for white speakers. In both cases, the groups with the highest errors were under-represented in the data the systems learned from.
 
-<lesson-video src="/media/ai-literacy/BiasVideo.mp4" title="Accurate for whom? (50 s)" caption="No sound: captions on screen. Compare the overall bar with the night-photo bar." />
+<lesson-video src="/media/ai-literacy/BiasVideo.mp4" title="Accurate for whom? (1 min 9 s)" caption="Narrated, with captions. Compare the overall bar with the night-photo bar." />
 
 {quiz("A model is 95 % accurate overall but 70 % accurate for one group. What should you conclude?", ["It works well for everyone.", "The overall number hides a large gap; the group needs attention.", "The group is using it wrong.", "Accuracy numbers are meaningless."], 1, "disaggregated_accuracy")}
 
@@ -468,7 +468,7 @@ In the lab, an AI answer about the library makes four claims, each with a citati
 
 Professional fact-checkers do not just read a page closely; they **leave it** to see what other sources say about the claim and about the source. This is called **lateral reading**. For an AI answer, that means searching for the cited source yourself, checking it exists, and reading what it actually says.
 
-<lesson-video src="/media/ai-literacy/ClaimsVideo.mp4" title="Check claim by claim (45 s)" caption="No sound: captions on screen. Predict each stamp before it lands." />
+<lesson-video src="/media/ai-literacy/ClaimsVideo.mp4" title="Check claim by claim (1 min 9 s)" caption="Narrated, with captions. Predict each stamp before it lands." />
 
 {quiz("An AI answer cites 'Smith (2021), Journal of Learning, p. 45'. You cannot find the article anywhere. What should you do with the claim?", ["Keep it; the citation looks precise.", "Treat it as unsupported and find real evidence or drop it.", "Change the year and keep it.", "Cite the chatbot instead."], 1, "fabricated_citations")}
 
@@ -519,7 +519,7 @@ Deleting a chat from your list may not remove every copy. Check each tool's priv
 
 In the lab, choose what goes into a prompt and which settings are on, then send it and watch where each piece ends up.
 
-<lesson-video src="/media/ai-literacy/DataTrailVideo.mp4" title="Where does your prompt go? (46 s)" caption="No sound: captions on screen. Count the copies of personal details." />
+<lesson-video src="/media/ai-literacy/DataTrailVideo.mp4" title="Where does your prompt go? (58 s)" caption="Narrated, with captions. Count the copies of personal details." />
 
 <sketch-lab book="ai" lesson="privacy" title="Your data trail" caption="Predict first: if you delete the chat, where is that information now?" />
 

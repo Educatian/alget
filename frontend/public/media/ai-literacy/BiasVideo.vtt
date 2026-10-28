@@ -1,0 +1,33 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:08.750
+Imagine an app that spots pets in your photos. Its makers say it is ninety percent accurate. Sounds great. But accurate for whom?
+
+2
+00:00:09.233 --> 00:00:16.583
+Look at the photos it learned from. Almost all of them were taken in daylight. Only one in twenty was taken at night.
+
+3
+00:00:17.067 --> 00:00:22.917
+Next, we test it on the photos people really upload, where about a third are taken at night.
+
+4
+00:00:23.367 --> 00:00:28.742
+Overall, it scores about ninety percent. But let's split the results by group.
+
+5
+00:00:29.200 --> 00:00:38.625
+Day photos: ninety-seven percent. Night photos: about seventy-five. One night photo in four is wrong, and the average hid the gap.
+
+6
+00:00:39.100 --> 00:00:48.925
+Adding more daytime photos would not help. What helps is covering the missing group. So we make a quarter of the training photos night photos, and train again.
+
+7
+00:00:49.400 --> 00:00:52.600
+Now both groups are above ninety-five percent.
+
+8
+00:00:53.067 --> 00:01:08.192
+Real systems have shown the same pattern. Face analysis and speech recognition tools have worked far worse for people who were under-represented in their training data. So whenever you hear an accuracy number, ask: accurate for whom?

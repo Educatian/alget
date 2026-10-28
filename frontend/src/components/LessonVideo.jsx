@@ -2,7 +2,8 @@ import { logEvent } from '../lib/loggingService'
 
 /**
  * LessonVideo — a short course video served from this site (frontend/public/media/...).
- * Videos are rendered from media_src/ (ManimGL) and are silent with on-screen captions.
+ * Videos are narrated lectures rendered from media_src/ (ManimGL + Kokoro TTS); each has a
+ * WebVTT caption file with the same name next to it.
  *
  * MDX usage:
  *   <lesson-video src="/media/ai-literacy/NextWordVideo.mp4" title="…" caption="…" />
@@ -28,10 +29,12 @@ export default function LessonVideo({ src, title, caption, sectionId }) {
                 onPlay={(e) => log('lesson_video_play', e)}
                 onPause={(e) => log('lesson_video_pause', e)}
                 onEnded={(e) => log('lesson_video_finished', e)}
-            />
+            >
+                <track kind="captions" src={src.replace(/\.mp4$/i, '.vtt')} srcLang="en" label="English" default />
+            </video>
             <figcaption className="flex flex-wrap items-center justify-between gap-2 border-t border-[var(--ath-line)] bg-[var(--ath-panel)] px-4 py-2 text-xs text-[var(--ath-muted)]">
                 <span className="font-semibold text-[var(--ath-text)]">{title}</span>
-                <span>{caption || 'No sound: captions appear on screen.'}</span>
+                {caption && <span>{caption}</span>}
             </figcaption>
         </figure>
     )
