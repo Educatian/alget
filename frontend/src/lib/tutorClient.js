@@ -9,14 +9,14 @@ import { authHeaders } from './account'
 export const TUTOR_URL = (import.meta.env.VITE_TUTOR_URL || '').replace(/\/$/, '')
 export const TUTOR_ENABLED = Boolean(TUTOR_URL)
 
-async function post(path, body) {
+async function post(path, body, timeoutMs = 12000) {
     if (!TUTOR_ENABLED) return null
     try {
         const res = await fetch(`${TUTOR_URL}${path}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', ...authHeaders() },
             body: JSON.stringify(body),
-            signal: AbortSignal.timeout(12000),
+            signal: AbortSignal.timeout(timeoutMs),
         })
         const data = await res.json().catch(() => null)
         return res.ok ? data : { error: data?.error || `http_${res.status}` }
@@ -35,8 +35,8 @@ export const explainPassage = ({ sectionId, exact, mode }) =>
 
 /** Feedback on the section's written activity. This one sends the learner's own text. */
 export const requestFeedback = ({ sectionId, text, revision, previous }) =>
-    post('/feedback', { section_id: sectionId, text, revision, previous })
+    post('/feedback', { section_id: sectionId, text, revision, previous }, 35000) // up to two model calls of 15 s
 
 /** Tutor margin notes on the section, aimed at the learner's misconceptions (if any). */
 export const requestAnnotations = ({ sectionId, misconceptionIds = [] }) =>
-    post('/annotate', { section_id: sectionId, misconception_ids: misconceptionIds })
+    post('/annotate', { section_id: sectionId, misconception_ids: misconceptionIds }, 20000)

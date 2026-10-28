@@ -261,3 +261,15 @@ test('annotations keep only quotes that are in the section, and are cached', asy
     assert.equal(again.cached, true)
     assert.equal(calls.length, 1)
 })
+
+test('feedback that quotes a strong answer back is not treated as a leak', async () => {
+    const strong = 'A chatbot gives every possible next token a probability, then samples one, so the same question can come out differently. Likely is not the same as true, so a fluent answer can still be wrong and needs checking.'
+    mockFetch([{
+        criteria: [{ id: 'probability', status: 'met', comment: 'You say it gives every possible next token a probability.' }, { id: 'sampling', status: 'met', comment: 'You explain it samples one, so the same question can come out differently.' }, { id: 'likely_not_true', status: 'met', comment: 'You separate likely from true and say fluent answers need checking.' }],
+        marks: [{ quote: 'samples one', kind: 'strength', note: 'Right word for it.' }],
+        next_step: 'Could you add an example of a fluent answer that turned out to be wrong?',
+        ready: true,
+    }])
+    const res = await post('/feedback', { section_id: 'ai-literacy/01/02', text: strong })
+    assert.deepEqual([res.status, (await res.json()).ready], [200, true])
+})

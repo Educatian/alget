@@ -51,7 +51,7 @@ async function underDailyCap(env) {
 
 const configured = (env) => Boolean(env.FOUNDRY_API_KEY && env.FOUNDRY_ENDPOINT && env.MODEL)
 
-export async function callModel(env, messages, schema, { temperature = 0.4, maxTokens = 400 } = {}) {
+export async function callModel(env, messages, schema, { temperature = 0.4, maxTokens = 400, timeoutMs } = {}) {
     // Reasoning deployments (gpt-5 family) take reasoning_effort and no custom temperature, and
     // spend part of the token budget on reasoning.
     const reasoning = Boolean(env.REASONING_EFFORT)
@@ -65,7 +65,8 @@ export async function callModel(env, messages, schema, { temperature = 0.4, maxT
             ...(reasoning ? { reasoning_effort: env.REASONING_EFFORT } : { temperature }),
             response_format: { type: 'json_schema', json_schema: schema },
         }),
-        signal: AbortSignal.timeout(Number(env.TIMEOUT_MS || 8000)),
+        // Longer outputs (written feedback, tutor notes) pass their own, longer timeout.
+        signal: AbortSignal.timeout(timeoutMs || Number(env.TIMEOUT_MS || 8000)),
     })
     if (!res.ok) throw new Error(`model ${res.status}`)
     const data = await res.json()

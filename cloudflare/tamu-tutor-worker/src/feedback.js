@@ -13,9 +13,14 @@ const MAX_MARKS = 4
 
 const words = (s) => String(s).toLowerCase().match(/[a-z0-9']{4,}/g) || []
 
-/** Share of the reference's content words reproduced by a feedback string (0..1). */
-export function referenceOverlap(textOut, reference) {
-    const ref = new Set(words(reference))
+/**
+ * Share of the reference's content words that the feedback supplies and the learner did not write
+ * (0..1). Words already in the learner's text do not count: quoting a good answer back is not a
+ * leak (counting them blocked feedback on strong answers).
+ */
+export function referenceOverlap(textOut, reference, learnerText = '') {
+    const own = new Set(words(learnerText))
+    const ref = new Set(words(reference).filter((w) => !own.has(w)))
     const out = words(textOut)
     if (!ref.size || !out.length) return 0
     const hits = new Set(out.filter((w) => ref.has(w)))
@@ -48,10 +53,10 @@ export async function feedback(body, env, callModel) {
 
     let leak = 0
     for (const strict of [false, true]) {
-        const out = await callModel(env, feedbackMessages({ activity, text, revision, previous, sectionText, strict }), FEEDBACK_SCHEMA, { temperature: 0.3, maxTokens: 900 })
+        const out = await callModel(env, feedbackMessages({ activity, text, revision, previous, sectionText, strict }), FEEDBACK_SCHEMA, { temperature: 0.3, maxTokens: 900, timeoutMs: 15000 })
         const clean = cleanFeedback(out, activity, text)
         const said = [clean.next_step, ...clean.criteria.map((c) => c.comment), ...clean.marks.map((m) => m.note)].join(' ')
-        leak = referenceOverlap(said, activity.reference)
+        leak = referenceOverlap(said, activity.reference, text)
         if (leak < 0.45) return [{ ...clean, revision, retried: strict }, 200, { revision, met: clean.criteria.filter((c) => c.status === 'met').length, marks: clean.marks.length, retried: strict }]
     }
     return [{ error: 'guard_blocked' }, 422, { revision, guard: 'reference_overlap', overlap: Math.round(leak * 100) / 100 }]

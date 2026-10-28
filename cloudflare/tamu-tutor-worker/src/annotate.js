@@ -19,7 +19,7 @@ export async function annotate(body, env, callModel) {
     if (cached) return [{ ...cached, cached: true }, 200, { focus: ids.length, cached: true }]
 
     const focus = ids.map((id) => known.find((m) => m.id === id)).map((m) => `${m.description} (${m.feedback})`).join('; ')
-    const out = await callModel(env, annotateMessages({ sectionTitle: section.meta?.title || body.section_id, sectionText: sectionPlainText(section.content), focus }), ANNOTATE_SCHEMA, { temperature: 0.3, maxTokens: 600 })
+    const out = await callModel(env, annotateMessages({ sectionTitle: section.meta?.title || body.section_id, sectionText: sectionPlainText(section.content), focus }), ANNOTATE_SCHEMA, { temperature: 0.3, maxTokens: 600, timeoutMs: 12000 })
     const notes = (out.notes || [])
         .map((n) => ({ quote: String(n.quote || '').trim(), kind: n.kind, note: String(n.note || '').slice(0, 200) }))
         .filter((n) => n.quote.split(/\s+/).length >= 2 && quoteInSection(n.quote, section.content) && ['key_idea', 'watch_out', 'connect'].includes(n.kind))

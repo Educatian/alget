@@ -1,4 +1,4 @@
-﻿{
+{
   // TAMU preview tutor. Separate from the production backend (alget-backend) and from the
   // existing alget-tamu-api worker. Models run on UA's Microsoft Foundry (UA OIT's approved
   // route); MODEL is the Foundry deployment name. The key is a secret set by the owner:
@@ -14,7 +14,7 @@
     "REASONING_EFFORT": "",
     "CONTENT_BASE": "https://tamu-3d-labs.alget-tamu-ai-literacy.pages.dev/demo-api",
     "ALLOWED_ORIGINS": "https://tamu-3d-labs.alget-tamu-ai-literacy.pages.dev",
-    "DAILY_CAP": "500",
+    "DAILY_CAP": "3000",
     "TIMEOUT_MS": "8000"
   },
   "kv_namespaces": [
