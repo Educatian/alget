@@ -27,6 +27,12 @@ function share(source, target) {
     return words.filter((w) => have.has(w)).length / words.length
 }
 
+/** True when a hint tells the learner they picked something; used when they have checked no wrong answer. */
+export function claimsPick(hintText) {
+    return /\byou(?:'ve| have)?\s+(?:already\s+)?(?:picked|chose|chosen|selected|answered|went with|marked|guessed)\b/i.test(String(hintText || ''))
+        || /\byour\s+(?:pick|choice|answer|selection|option)\b/i.test(String(hintText || ''))
+}
+
 /** Returns null when the hint is safe, otherwise a short reason code. */
 export function findLeak(hintText, problem, picks = []) {
     const text = String(hintText || '')

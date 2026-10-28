@@ -7,6 +7,7 @@ import { afterEach, test } from 'node:test'
 import worker from '../src/index.js'
 import { hashPassword, normalizeId } from '../src/accounts.js'
 import { hintMessages } from '../src/prompts.js'
+import { claimsPick } from '../src/leakGuard.js'
 
 // Course JSON exported for the static preview (scripts/export_static_demo.py -> frontend/dist/demo-api).
 const DEMO_API = fileURLToPath(new URL('../../../frontend/dist/demo-api/', import.meta.url))
@@ -338,12 +339,28 @@ test('a second site (ID_PREFIX UTK) signs in its own IDs and lists only its own 
     assert.equal((await get('/instructor/student?id=TAMU-001', e, 'd'.repeat(64))).status, 400)
 })
 
-test('hint prompt: no picks means the tutor must not claim the learner picked an option', () => {
+test('hint with no checked wrong answer: prompt never frames a pick, and a hint that claims one is regenerated', async () => {
     const problem = { stem: 'How does the model choose the next word?', options: ['Looks it up', 'Samples by probability', 'Copies the prompt'], correct_index: 1 }
-    const none = hintMessages({ problem, misconception: null, passage: 'text', picks: [], rung: 1, strict: false })
-    assert.match(none[0].content, /has not picked a wrong option yet/)
+    const none = hintMessages({ problem, misconception: { description: 'Believing it looks answers up', feedback: 'x' }, passage: 'text', picks: [], rung: 1, strict: true })
+    assert.match(none[0].content, /has not checked a wrong answer yet/)
+    assert.doesNotMatch(none[0].content, /You picked|learner's own pick/)
+    assert.match(none[1].content, /background only; do not assume the learner holds it/)
     assert.match(none[1].content, /wrong picks so far: none yet/)
     const one = hintMessages({ problem, misconception: null, passage: 'text', picks: [0], rung: 1, strict: false })
-    assert.doesNotMatch(one[0].content, /has not picked/)
+    assert.doesNotMatch(one[0].content, /has not checked/)
     assert.match(one[1].content, /wrong picks so far: A \("Looks it up"\)/)
+
+    // Aside's live failures, word for word in shape.
+    for (const t of ['You picked an option. What would the passage need to say?', 'You chose that the chatbot has general intelligence.', 'Your answer assumes speed.', "You've selected the first one."]) assert.equal(claimsPick(t), true, t)
+    for (const t of ['Think about what the passage says about how a calculator gets its behavior.', 'Which one learns from examples?']) assert.equal(claimsPick(t), false, t)
+
+    const claim = { hint: 'You picked an option. Where does the passage say how replies are made?', check_question: 'What happens before each word?' }
+    const noPicks = { ...hintBody, picks: [] }
+    mockFetch([claim, SAFE])
+    const ok = await post('/hint', noPicks)
+    assert.deepEqual([ok.status, (await ok.json()).retried], [200, true])
+    mockFetch([claim, claim])
+    assert.equal((await post('/hint', noPicks)).status, 422)
+    mockFetch([claim])
+    assert.equal((await post('/hint', hintBody)).status, 200) // with a real wrong pick, naming it is fine
 })

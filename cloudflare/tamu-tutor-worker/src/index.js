@@ -30,7 +30,7 @@ import { saveEvents } from './events.js'
 import { feedback } from './feedback.js'
 import { annotate } from './annotate.js'
 import { isSectionId, loadSection, quoteInSection, sectionPlainText } from './content.js'
-import { findLeak } from './leakGuard.js'
+import { claimsPick, findLeak } from './leakGuard.js'
 import { EXPLAIN_MODES, EXPLAIN_SCHEMA, HINT_SCHEMA, JUDGE_SCHEMA, explainMessages, hintMessages, judgeMessages } from './prompts.js'
 
 function cors(origin, env) {
@@ -93,7 +93,7 @@ async function hint(body, env) {
     for (const strict of [false, true]) {
         const out = await callModel(env, hintMessages({ problem, misconception, passage, picks, rung, strict }), HINT_SCHEMA)
         const text = `${out.hint} ${out.check_question}`
-        guard = findLeak(text, problem, picks)
+        guard = findLeak(text, problem, picks) || (!picks.length && claimsPick(text) ? 'claims_pick' : null)
         if (!guard) {
             const verdict = await callModel(env, judgeMessages({ problem, text }), JUDGE_SCHEMA, { temperature: 0 })
             if (verdict.reveals_answer) guard = 'judge_reveals'

@@ -48,27 +48,38 @@ export const EXPLAIN_SCHEMA = {
 export function hintMessages({ problem, misconception, passage, picks, rung, strict }) {
     const options = problem.options.map((o, i) => `${letter(i)}. ${o}`).join('\n')
     const picked = picks.length ? picks.map((i) => `${letter(i)} ("${problem.options[i]}")`).join(', ') : 'none yet'
+    // With no checked wrong answer the tutor must not claim the learner chose anything (index.js also checks
+    // this): an unchecked selection is never sent, so a hint can't tell a right selection from a wrong one.
+    const fromPick = picks.length
+        ? [
+            '- Never ask an either-or question that sets the correct idea against a wrong one ("Is it X, or Y?"): naming the correct idea gives it away. Bad: "Does it look answers up, or pick tokens by probability?" Good: "You picked looking answers up. Where does the passage say what the model does before each word?"',
+            '- Work from the learner\'s own wrong picks listed below, and only those: ask what the passage would need to say for that pick to be right, or tell them which part of the passage to reread by its topic, not its conclusion.',
+            '- The check question is one the learner can ask about their own pick. It must not contain the key idea of the correct option.',
+        ]
+        : [
+            '- Never ask an either-or question that sets the correct idea against a wrong one ("Is it X, or Y?"): naming the correct idea gives it away.',
+            '- The learner has not checked a wrong answer yet. Never say or imply that they picked, chose or selected anything, and do not discuss any particular option as theirs.',
+            '- Tell them which part of the passage to reread by its topic, not its conclusion, and what to look for there.',
+            '- The check question is one the learner can answer from the passage. It must not contain the key idea of the correct option.',
+        ]
     const system = [
         'You are a Socratic tutor for first- to third-year university students in an AI literacy course.',
         'Your job is to help the learner reason their way to the answer, never to give it.',
         'Rules:',
         '- Never state, quote, paraphrase or point to the correct option, by text, letter or position.',
         '- Never say which option is right. You may say why an option the learner already picked is off.',
-        '- Never ask an either-or question that sets the correct idea against a wrong one ("Is it X, or Y?"): naming the correct idea gives it away. Bad: "Does it look answers up, or pick tokens by probability?" Good: "You picked looking answers up. Where does the passage say what the model does before each word?"',
-        '- Work from the learner\'s own pick: ask what the passage would need to say for that pick to be right, or tell them which part of the passage to reread by its topic, not its conclusion.',
-        '- The check question is one the learner can ask about their own pick. It must not contain the key idea of the correct option.',
+        ...fromPick,
         '- At most 60 words, in plain friendly English.',
         '- Use only ideas from the course passage below.',
-        picks.length ? '' : '- The learner has not picked a wrong option yet. Never say or imply that they picked one; point them to where in the passage to look.',
         rung >= 2 ? '- This learner has already had hints; be a little more specific about where in the passage to look, still without revealing the answer.' : '',
-        strict ? '- Your previous hint gave away too much. Stay further from the answer: talk only about the learner\'s pick and where to look.' : '',
+        strict ? `- Your previous hint was rejected. Stay further from the answer: talk only about ${picks.length ? 'the learner\'s own pick' : 'the passage'} and where to look.` : '',
         'Return JSON only.',
     ].filter(Boolean).join('\n')
     const user = [
         `Question: ${problem.stem || problem.statement}`,
         `Options:\n${options}`,
         `Correct option (for you only, never reveal): ${letter(problem.correct_index)}`,
-        misconception ? `Common misconception this question targets: ${misconception.description} (${misconception.feedback})` : '',
+        misconception ? `Common misconception this question targets (background only; do not assume the learner holds it): ${misconception.description} (${misconception.feedback})` : '',
         `Learner's wrong picks so far: ${picked}`,
         passage ? `Course passage:\n"""${passage}"""` : '',
     ].filter(Boolean).join('\n\n')
