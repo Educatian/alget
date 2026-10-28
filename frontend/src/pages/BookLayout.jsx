@@ -23,6 +23,8 @@ import ChapterPassport from '../components/ChapterPassport'
 import RetentionBanner from '../components/RetentionBanner'
 import OnboardingTour from '../components/OnboardingTour'
 import ThemeToggle from '../components/ThemeToggle'
+import ReaderSettings from '../components/ReaderSettings'
+import { STATIC_DEMO } from '../lib/staticDemo'
 import { logEvent, logPageView, logStuckEvent } from '../lib/loggingService'
 import { recordAdaptiveSignal } from '../lib/knowledgeService'
 import { useCourseProgress } from '../hooks/useCourseProgress'
@@ -136,7 +138,9 @@ export default function BookLayout({ user, onLogout }) {
     const [tocError, setTocError] = useState(null)
     const [sectionData, setSectionData] = useState(null)
     const [loadedSectionPath, setLoadedSectionPath] = useState('')
-    const [railOpen, setRailOpen] = useState(false)
+    const [railOpenState, setRailOpen] = useState(false)
+    // The support rail and chat need the backend (AI tutor); the static preview leaves them out.
+    const railOpen = railOpenState && !STATIC_DEMO
     const [railContext, setRailContext] = useState(null)
     const [stuckEvent, setStuckEvent] = useState(null)
     const [highlightQuestion, setHighlightQuestion] = useState(null)
@@ -598,7 +602,7 @@ export default function BookLayout({ user, onLogout }) {
                             <Bookmark className={`h-4 w-4 ${currentBookmarked ? 'fill-current' : ''}`} aria-hidden="true" />
                         </button>
 
-                        <button
+                        {!STATIC_DEMO && <button
                             onClick={toggleRail}
                             className={`flex h-9 w-9 items-center justify-center rounded-lg text-sm font-semibold transition-all duration-200 ${railOpen
                                 ? 'bg-[var(--ath-panel-muted)] text-[var(--ath-muted)] hover:bg-[rgba(200,226,236,0.45)]'
@@ -608,7 +612,7 @@ export default function BookLayout({ user, onLogout }) {
                             title={railOpen ? 'Close support' : 'Open support'}
                         >
                             {railOpen ? <PanelRightClose className="h-4 w-4" aria-hidden="true" /> : <PanelRightOpen className="h-4 w-4" aria-hidden="true" />}
-                        </button>
+                        </button>}
 
                         <button
                             type="button"
@@ -633,6 +637,7 @@ export default function BookLayout({ user, onLogout }) {
 
                         <div className="h-8 w-px bg-[var(--ath-line)]"></div>
 
+                        <ReaderSettings />
                         <ThemeToggle />
 
                         <Popover.Root>
@@ -738,7 +743,7 @@ export default function BookLayout({ user, onLogout }) {
                 </aside>
 
                 <div className="group/nav relative min-h-0 flex-1 overflow-hidden">
-                    <main ref={mainScrollRef} className="h-full min-h-0 overflow-y-auto">
+                    <main ref={mainScrollRef} className="reader-main h-full min-h-0 overflow-y-auto">
                         <div
                             key={sectionPath}
                             className={`min-h-full ${transitionDirection === 'backward' ? 'animate-section-backward' : 'animate-section-forward'}`}
@@ -889,7 +894,7 @@ export default function BookLayout({ user, onLogout }) {
                 )}
             </div>
 
-            <Suspense fallback={null}>
+            {!STATIC_DEMO && <Suspense fallback={null}>
                 <ChatWidget
                     key={sectionPath}
                     ref={chatWidgetRef}
@@ -904,7 +909,7 @@ export default function BookLayout({ user, onLogout }) {
                         course
                     }}
                 />
-            </Suspense>
+            </Suspense>}
         </div>
     )
 }

@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import { Lightbulb } from 'lucide-react'
 import API_BASE from '../lib/apiConfig'
 import { STATIC_DEMO, gradeMultipleChoice } from '../lib/staticDemo'
+import { buildHintLadder, revealPassage } from '../lib/hintLadder'
+import { recordReviewOutcome } from '../lib/reviewSchedule'
 import { logEvent } from '../lib/loggingService'
 import { fuseTelemetry, recordAdaptiveSignal, updateMastery } from '../lib/knowledgeService'
 import { annotateMisconceptionSignal, resolveInterventionOutcome, updateLearnerModel } from '../lib/researchService'
@@ -23,7 +25,10 @@ function buildReviewPayload(problem, reason, preferredTab = 'explain') {
     }
 }
 
-export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, sectionId }) {
+// Multiple-choice tries before the answer is shown; each wrong pick is struck out for the retry.
+const MAX_MCQ_ATTEMPTS = 2
+
+export default function PracticeBlock({ practice, misconceptions = [], sectionContent = '', onStuckEvent, onNeedsReview, sectionId }) {
     const [currentIndex, setCurrentIndex] = useState(0)
     const [answers, setAnswers] = useState({})
     const [gradeResults, setGradeResults] = useState({})
@@ -33,12 +38,20 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
     const [showHint, setShowHint] = useState(false)
     const [confidenceByProblem, setConfidenceByProblem] = useState({})
     const [misconceptionByProblem, setMisconceptionByProblem] = useState({})
+    const [rungsByProblem, setRungsByProblem] = useState({})
+    const [struckByProblem, setStruckByProblem] = useState({})
+    const [revealedByProblem, setRevealedByProblem] = useState({})
 
     const idleTimerRef = useRef(null)
     const shownAtRef = useRef(Date.now())
     const attemptsRef = useRef({})
     const problems = practice?.problems || []
     const currentProblem = problems[currentIndex]
+    const authoredMisconception = misconceptions.find((m) => m.id === currentProblem?.misconception_id) || null
+    const struck = struckByProblem[currentProblem?.id] || []
+    // Rungs already shown are kept as shown; the next one is built from the current struck options.
+    const shownRungs = rungsByProblem[currentProblem?.id] || []
+    const nextRung = buildHintLadder(currentProblem, authoredMisconception, sectionContent, struck)[shownRungs.length] || null
 
     useEffect(() => {
         const resetIdleTimer = () => {
@@ -108,8 +121,8 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                 ? 'unit_error'
                 : misconceptionByProblem[problemId] || 'unknown'
 
-            setGradeResults((previous) => ({ ...previous, [problemId]: result }))
             attemptsRef.current[problemId] = (attemptsRef.current[problemId] || 0) + 1
+            setGradeResults((previous) => ({ ...previous, [problemId]: { ...result, attempt: attemptsRef.current[problemId] } }))
             // Full record of this answer for the study (question, choice, outcome, effort).
             logEvent('practice_answer', problemId, {
                 problem_id: problemId,
@@ -131,7 +144,12 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                 hints_used: hintCount,
                 confidence: confidenceValue,
                 misconception_type: result.is_correct ? null : misconceptionType,
+                authored_misconception_id: result.is_correct ? null : currentProblem?.misconception_id || null,
+                hint_rungs_seen: (rungsByProblem[problemId] || []).length,
             }, sectionId)
+            if (isMcq && !result.is_correct) {
+                setStruckByProblem((previous) => ({ ...previous, [problemId]: [...new Set([...(previous[problemId] || []), selectedIndex])] }))
+            }
             recordAdaptiveSignal(
                 sectionId,
                 result.is_correct ? 'practice_correct' : 'practice_incorrect',
@@ -155,10 +173,13 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
             }
 
             if (currentProblem?.concept_id) {
+                const hintUsed = hintCount > 0 || (rungsByProblem[problemId] || []).length > 0
+                // Review items come from earlier sections; schedule them under their own section.
+                recordReviewOutcome(currentProblem.concept_id, currentProblem.review_of || sectionId, result.is_correct, hintUsed)
                 await updateMastery(
                     { [currentProblem.concept_id]: 1.0 },
                     result.is_correct,
-                    { hintUsed: hintCount > 0, sectionId }
+                    { hintUsed, sectionId }
                 )
                 updateLearnerModel({
                     sectionId,
@@ -216,14 +237,24 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
             conceptId: currentProblem?.concept_id || null
         })
 
-        const event = new CustomEvent('open-chat', {
-            detail: {
-                message: `I'm struggling with this problem: "${currentProblem?.statement || currentProblem?.stem}". Can you give me a specific Socratic hint without revealing the full answer?`
+        // Climb the offline ladder first; the AI tutor (when a backend exists) comes after it.
+        const rung = nextRung
+        if (rung) {
+            setRungsByProblem((previous) => ({ ...previous, [currentProblem.id]: [...shownRungs, rung] }))
+            if (rung.kind === 'eliminate') {
+                setStruckByProblem((previous) => ({ ...previous, [currentProblem.id]: [...new Set([...(previous[currentProblem.id] || []), rung.eliminate])] }))
+                if (answers[currentProblem.id]?.selectedIndex === rung.eliminate) updateAnswer(currentProblem.id, 'selectedIndex', undefined)
             }
-        })
-        window.dispatchEvent(event)
+            logEvent('hint_rung', currentProblem.id, { problem_id: currentProblem.id, rung: shownRungs.length + 1, kind: rung.kind }, sectionId)
+        } else if (!STATIC_DEMO) {
+            window.dispatchEvent(new CustomEvent('open-chat', {
+                detail: {
+                    message: `I'm struggling with this problem: "${currentProblem?.statement || currentProblem?.stem}". Can you give me a specific Socratic hint without revealing the full answer?`
+                }
+            }))
+        }
 
-        if (currentProblem?.concept_id) {
+        if (currentProblem?.concept_id && !STATIC_DEMO) {
             fuseTelemetry(currentProblem.concept_id, 'hint_request', 1.0).catch(console.error)
         }
 
@@ -296,6 +327,15 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
     const selectedIndex = answers[currentProblem?.id]?.selectedIndex
     const hasSelection = isMcq ? Number.isInteger(selectedIndex) : Boolean(answers[currentProblem?.id]?.value)
     const confidenceValue = Number(confidenceByProblem[currentProblem?.id] || 3)
+    const answerShown = Boolean(currentResult?.is_correct || !isMcq || revealedByProblem[currentProblem?.id] || (currentResult?.attempt || 0) >= MAX_MCQ_ATTEMPTS)
+    const retryProblem = () => {
+        setGradeResults((previous) => {
+            const next = { ...previous }
+            delete next[currentProblem.id]
+            return next
+        })
+        updateAnswer(currentProblem.id, 'selectedIndex', undefined)
+    }
 
     return (
         <div className="space-y-4">
@@ -326,17 +366,21 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
             </div>
 
             <div className="relative rounded-2xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.82)] p-6 shadow-sm">
-                <button
-                    type="button"
-                    onClick={handleHintRequest}
-                    title={currentProblem?.hint ? 'Show hint' : 'Ask the tutor for a hint'}
-                    aria-label="Get a hint"
-                    className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-white/70 text-[var(--ath-secondary)] shadow-sm transition-all hover:bg-[color-mix(in_srgb,var(--ath-accent)_12%,var(--ath-panel))] hover:text-[#8a5b1a]"
-                >
-                    <Lightbulb className="h-4 w-4" />
-                </button>
+                {!currentResult && (
+                    <button
+                        type="button"
+                        onClick={handleHintRequest}
+                        disabled={STATIC_DEMO && !nextRung}
+                        title={nextRung ? `Hint: ${nextRung.title}` : STATIC_DEMO ? 'No more hints' : 'Ask the tutor for a hint'}
+                        aria-label={nextRung ? `Get a hint: ${nextRung.title}` : 'Ask the tutor for a hint'}
+                        className="absolute right-4 top-4 inline-flex min-h-[40px] items-center gap-1.5 rounded-lg border border-[var(--ath-line)] bg-[var(--ath-panel)] px-3 text-xs font-semibold text-[var(--ath-secondary)] shadow-sm transition-colors hover:bg-[color-mix(in_srgb,var(--ath-accent)_12%,var(--ath-panel))] hover:text-[var(--ath-text)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ath-primary)] disabled:cursor-default disabled:opacity-50"
+                    >
+                        <Lightbulb className="h-4 w-4" aria-hidden="true" />
+                        {nextRung ? `Hint ${shownRungs.length + 1}` : STATIC_DEMO ? 'No more hints' : 'Ask tutor'}
+                    </button>
+                )}
 
-                <p className="pr-10 text-base font-medium leading-7 text-[var(--ath-text)]">
+                <p className="pr-28 text-base font-medium leading-7 text-[var(--ath-text)]">
                     {currentProblem?.stem || currentProblem?.statement}
                 </p>
 
@@ -359,15 +403,20 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                             <div className="space-y-2" role="radiogroup" aria-label="Answer options">
                                 {currentProblem.options.map((option, index) => {
                                     const isSelected = selectedIndex === index
+                                    const isStruck = struck.includes(index)
                                     return (
                                         <button
                                             key={index}
                                             type="button"
                                             role="radio"
                                             aria-checked={isSelected}
+                                            disabled={isStruck}
+                                            aria-label={isStruck ? `${option} (ruled out)` : undefined}
                                             onClick={() => updateAnswer(currentProblem?.id, 'selectedIndex', index)}
                                             className={`group flex w-full items-start gap-3 rounded-xl border px-4 py-3 text-left text-sm leading-6 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)] ${
-                                                isSelected
+                                                isStruck
+                                                    ? 'cursor-not-allowed border-dashed border-[var(--ath-line)] bg-transparent text-[var(--ath-muted)] line-through opacity-60'
+                                                    : isSelected
                                                     ? 'border-[var(--ath-primary)] bg-[color-mix(in_srgb,var(--ath-accent)_12%,var(--ath-panel))] text-[var(--ath-text)] shadow-sm'
                                                     : 'border-[var(--ath-line)] bg-white/80 text-[var(--ath-text)] hover:border-[var(--ath-primary-deep)] hover:bg-[rgba(255,255,255,0.95)]'
                                             }`}
@@ -443,6 +492,22 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                                 </p>
                             </div>
                         )}
+
+                        {shownRungs.length > 0 && (
+                            <ol className="space-y-2" aria-label="Hints" aria-live="polite">
+                                {shownRungs.map((rung, i) => (
+                                    <li key={rung.kind} className="rounded-xl border border-[var(--ath-line)] bg-[color-mix(in_srgb,var(--ath-accent)_10%,var(--ath-panel))] p-3">
+                                        <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Hint {i + 1} · {rung.title}</p>
+                                        <p className="mt-1 text-sm leading-6 text-[var(--ath-text)]">{rung.kind === 'reread' ? `“${rung.text}”` : rung.text}</p>
+                                        {rung.kind === 'reread' && (
+                                            <button type="button" onClick={() => revealPassage(rung.anchor)} className="mt-2 min-h-[36px] rounded-lg px-2 text-xs font-semibold text-[var(--ath-primary)] underline-offset-2 hover:underline">
+                                                Show me in the text
+                                            </button>
+                                        )}
+                                    </li>
+                                ))}
+                            </ol>
+                        )}
                     </div>
                 ) : (
                     <div className={`mt-6 rounded-[1.3rem] p-5 ${
@@ -454,7 +519,7 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                             <p className={`text-sm font-semibold ${currentResult.is_correct ? 'text-[var(--ath-primary)]' : 'text-[var(--ath-danger)]'}`}>
                                 {currentResult.is_correct ? 'Correct Answer' : 'Not Quite Yet'}
                             </p>
-                            {!currentResult.is_correct && (
+                            {!currentResult.is_correct && !STATIC_DEMO && (
                                 <button
                                     type="button"
                                     onClick={() => onNeedsReview?.(
@@ -471,14 +536,37 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                             )}
                         </div>
 
-                        {currentResult.explanation && (
+                        {!currentResult.is_correct && authoredMisconception && (
+                            <div className="mt-3 rounded-xl border border-[var(--ath-line)] bg-[var(--ath-panel)] p-3">
+                                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Common mix-up</p>
+                                <p className="mt-1 text-sm font-semibold leading-6 text-[var(--ath-text)]">{authoredMisconception.description}</p>
+                                <p className="mt-1 text-sm leading-6 text-[var(--ath-muted)]">{authoredMisconception.feedback}</p>
+                            </div>
+                        )}
+
+                        {answerShown && currentResult.explanation && (
                             <p className="mt-3 text-sm leading-7 text-[var(--ath-muted)]">{currentResult.explanation}</p>
                         )}
 
-                        {!currentResult.is_correct && currentResult.expected && (
+                        {answerShown && !currentResult.is_correct && currentResult.expected && (
                             <p className="mt-3 text-sm text-[var(--ath-muted)]">
                                 Expected target: <code className="rounded bg-white/80 px-2 py-1 text-[var(--ath-text)]">{currentResult.expected}</code>
                             </p>
+                        )}
+
+                        {!answerShown && (
+                            <div className="mt-4 flex flex-wrap gap-2">
+                                <button type="button" onClick={retryProblem} className="editorial-button min-h-[40px] px-4 py-2 text-sm">
+                                    Try again ({MAX_MCQ_ATTEMPTS - (currentResult.attempt || 0)} left)
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => setRevealedByProblem((previous) => ({ ...previous, [currentProblem.id]: true }))}
+                                    className="min-h-[40px] rounded-lg px-3 text-sm font-semibold text-[var(--ath-secondary)] hover:text-[var(--ath-text)]"
+                                >
+                                    Show answer
+                                </button>
+                            </div>
                         )}
 
                         {!currentResult.is_correct && (
@@ -490,6 +578,7 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                                     className="editorial-input mt-3"
                                 >
                                     <option value="unknown">Not sure yet</option>
+                                    {authoredMisconception && <option value={authoredMisconception.id}>{authoredMisconception.description}</option>}
                                     <option value="unit_error">Unit error</option>
                                     <option value="sign_error">Sign or direction error</option>
                                     <option value="formula_selection">Wrong formula or relation</option>

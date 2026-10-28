@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap');
 @import "tailwindcss";
 
 :root,
@@ -598,12 +598,36 @@ h6,
   box-shadow: 0 18px 40px rgba(16, 33, 42, 0.22);
 }
 
+/* Reader settings (components/ReaderSettings.jsx) set these variables; the fallbacks are the defaults. */
 .reading-narrative {
-  max-width: min(76ch, 100%);
+  max-width: min(var(--reader-measure, 62ch), 100%);
   margin-right: auto;
   margin-left: auto;
   color: var(--ath-text);
-  font-size: 1.0625rem;
+  font-family: var(--reader-font, inherit);
+  font-size: var(--reader-font-size, 1.0625rem);
+  letter-spacing: var(--reader-tracking, normal);
+}
+
+/* Labs and videos leave the text column and use the reading area's width. */
+.reader-main {
+  container-type: inline-size;
+}
+
+.reading-breakout {
+  --breakout: min(var(--breakout-max, 76rem), calc(100cqi - 3rem));
+  width: var(--breakout);
+  max-width: none;
+  margin-left: calc((100% - var(--breakout)) / 2);
+  letter-spacing: normal;
+}
+
+.reading-breakout--media {
+  --breakout-max: 60rem;
+}
+
+.reading-breakout.content-card:hover {
+  transform: none;
 }
 
 .reading-narrative .markdown-content-wrapper {
@@ -651,22 +675,22 @@ h6,
 }
 
 .reading-narrative p {
-  margin: 1.35rem 0;
+  margin: var(--reader-para-space, 1.45em) 0;
   color: var(--ath-text);
-  font-size: 1.0625rem;
-  line-height: 1.78;
+  font-size: var(--reader-font-size, 1.0625rem);
+  line-height: var(--reader-line-height, 1.8);
 }
 
 .reading-narrative ul,
 .reading-narrative ol {
-  margin: 1.35rem 0 1.6rem;
+  margin: var(--reader-para-space, 1.45em) 0;
   padding-left: 1.4rem;
 }
 
 .reading-narrative li {
-  margin: 0.6rem 0;
+  margin: calc(var(--reader-para-space, 1.45em) * 0.45) 0;
   padding-left: 0.15rem;
-  line-height: 1.78;
+  line-height: var(--reader-line-height, 1.8);
 }
 
 .reading-narrative strong {
@@ -692,17 +716,12 @@ h6,
 }
 
 @media (max-width: 720px) {
-  .reading-narrative {
-    font-size: 1rem;
-  }
-
   .reading-narrative h2 {
     margin-top: 2.35rem;
   }
 
-  .reading-narrative p {
-    font-size: 1rem;
-    line-height: 1.82;
+  .reading-breakout {
+    --breakout: calc(100cqi - 1.5rem);
   }
 }
 

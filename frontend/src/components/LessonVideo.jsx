@@ -18,7 +18,7 @@ export default function LessonVideo({ src, title, caption, sectionId }) {
     }
     const log = (type, e) => logEvent(type, null, { video: src, at_s: Math.round(e.currentTarget.currentTime) }, sectionId)
     return (
-        <figure className="my-8 overflow-hidden rounded-2xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.85)] shadow-sm">
+        <figure className="reading-breakout reading-breakout--media not-prose my-10 overflow-hidden rounded-2xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.85)] shadow-sm">
             <video
                 src={src}
                 controls

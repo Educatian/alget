@@ -4,8 +4,9 @@
     VITE_STATIC_DEMO=true VITE_API_BASE=/demo-api npm run build
     python ../scripts/export_static_demo.py dist            # course defaults to ai-literacy
 
-Writes dist/demo-api/book/<course>/toc.json, .../<chapter>/<section>.json and
-search/index.json (this course only), plus a Cloudflare Pages _redirects file that maps
+Writes dist/demo-api/book/<course>/toc.json, .../<chapter>/<section>.json,
+mastery_graph/<course>/<chapter>.json and search/index.json (this course only), plus a
+Cloudflare Pages _redirects file that maps
 the reader's extensionless API paths onto those files. Responses come from the real
 FastAPI handlers, so the demo shows exactly what the backend would serve.
 """
@@ -23,6 +24,7 @@ REDIRECTS = """\
 /demo-api/book/:course/toc /demo-api/book/:course/toc.json 200
 /demo-api/book/:course/:chapter/:section /demo-api/book/:course/:chapter/:section.json 200
 /demo-api/search/index /demo-api/search/index.json 200
+/demo-api/mastery_graph/:course/:chapter /demo-api/mastery_graph/:course/:chapter.json 200
 """
 
 
@@ -44,6 +46,12 @@ def main(dist: Path, course: str) -> None:
     write(api / "book" / course / "toc.json", toc)
     count = 0
     for chapter in toc["chapters"]:
+        # Chapter brain-network graph with no mastery; the browser applies the reader's own.
+        graph = client.post("/api/mastery_graph", json={
+            "mastery_data": {}, "course": course, "current_section_id": f"{course}/{chapter['id']}/-", "current_concepts": [],
+        })
+        graph.raise_for_status()
+        write(api / "mastery_graph" / course / f"{chapter['id']}.json", graph.json())
         for section in chapter["sections"]:
             ch, sec = str(chapter["id"]), str(section["id"])
             write(api / "book" / course / ch / f"{sec}.json", get(f"/api/book/{course}/{ch}/{sec}"))

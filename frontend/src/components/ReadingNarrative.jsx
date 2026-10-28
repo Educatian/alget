@@ -302,10 +302,9 @@ export default function ReadingNarrative({
     }, [activeHeading, onHeadingChange])
 
     return (
-        <article
-            className="prose reading-narrative mb-8"
-            style={{ contentVisibility: 'auto', containIntrinsicSize: '1200px' }}
-        >
+        // No content-visibility here: its paint/layout containment clips the wide labs and videos
+        // to the text column and traps the 3D lab's focus-mode overlay inside the article.
+        <article className="prose reading-narrative mb-8">
             <Markdown
                 remarkPlugins={remarkPlugins}
                 rehypePlugins={rehypePlugins}

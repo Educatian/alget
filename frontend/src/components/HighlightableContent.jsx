@@ -2,8 +2,14 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import { useTextSelection } from '../hooks/useTextSelection'
 import { logHighlightCreate } from '../lib/loggingService'
 import API_BASE from '../lib/apiConfig'
-import { Download, Hash, MessageSquarePlus, Sparkles, Highlighter, X } from 'lucide-react'
+import { BookOpen, Hash, MessageSquarePlus, Sparkles, Volume2, X } from 'lucide-react'
 import HighlightDiscussion from './HighlightDiscussion'
+import NotebookPanel from './NotebookPanel'
+import { captureAnchor, wrapAnchor } from '../lib/annotationAnchor'
+import { HIGHLIGHT_TAGS, tagFor } from '../lib/localAnnotations'
+import { canReadAloud, readAloud } from '../lib/readAloud'
+import { isSupabaseConfigured } from '../lib/supabase'
+import { STATIC_DEMO } from '../lib/staticDemo'
 
 function getInitials(alias = '') {
     return alias
@@ -32,6 +38,11 @@ export default function HighlightableContent({
     const [editingNoteId, setEditingNoteId] = useState(null)
     const [hoveredHighlight, setHoveredHighlight] = useState(null)
     const [discussionHighlightId, setDiscussionHighlightId] = useState(null)
+    const [noteColor, setNoteColor] = useState('yellow')
+    const [notebookOpen, setNotebookOpen] = useState(false)
+    const selectedAnchorRef = useRef(null)
+    const contentObserverRef = useRef(null)
+    const [contentVersion, setContentVersion] = useState(0)
 
     // Esc-to-close on the discussion modal (a11y).
     useEffect(() => {
@@ -49,6 +60,7 @@ export default function HighlightableContent({
         popularHighlights,
         saveHighlight,
         updateHighlightNote,
+        updateHighlightColor,
         deleteHighlight,
     } = useTextSelection({ sectionId, userId })
 
@@ -239,33 +251,49 @@ export default function HighlightableContent({
             })
         })
 
-        // Apply user's highlights (yellow)
+        // Apply the user's highlights in their tag colour. Highlights with an anchor are pinned to
+        // one place (see lib/annotationAnchor.js); older ones fall back to the first text match.
         highlights.forEach(h => {
-            applyHighlight(h.text_content, {
-                className: `bg-yellow-200 rounded px-0.5 cursor-pointer hover:bg-yellow-300 transition-colors ${h.note ? 'border-b-2 border-yellow-500' : ''}`,
-                title: h.note ? `${h.note} (click to edit)` : 'Click to remove or add a note',
+            const tag = tagFor(h.color)
+            const openEditor = () => {
+                // Clicking your own highlight opens its editor (note, colour tag, remove).
+                setEditingNoteId(h.id)
+                setNoteInput(h.note || '')
+                setNoteColor(h.color || 'yellow')
+                setShowNoteInput(true)
+            }
+            const options = {
+                className: `${tag.mark} rounded px-0.5 cursor-pointer transition-colors ${h.note ? tag.underline : ''}`,
+                title: `${tag.label}${h.note ? `: ${h.note}` : ''} (click to edit)`,
                 type: 'user',
                 highlightId: h.id,
                 note: h.note,
-                onClick: (id, currentNote) => {
-                    if (currentNote) {
-                        // Edit note
-                        setEditingNoteId(id)
-                        setNoteInput(currentNote)
-                        setShowNoteInput(true)
-                    } else {
-                        // Open the note editor by default — adding a note is
-                        // the lower-stakes action and matches what most learners
-                        // want when they click their own un-noted highlight.
-                        // Deletion is now an explicit button inside the editor
-                        // (see the note-input popover below). The earlier
-                        // OK/Cancel-as-delete-vs-note flow was confusing.
-                        setEditingNoteId(id)
-                        setNoteInput('')
-                        setShowNoteInput(true)
-                    }
-                },
+                onClick: openEditor,
                 onHover: setHoveredHighlight
+            }
+            if (!h.anchor?.exact) {
+                applyHighlight(h.text_content, options)
+                return
+            }
+            wrapAnchor(container, h.anchor, (first) => {
+                const mark = document.createElement('mark')
+                mark.className = options.className
+                mark.setAttribute('data-highlight', 'user')
+                mark.setAttribute('data-highlight-id', String(h.id))
+                if (first) mark.setAttribute('data-highlight-start', '')
+                if (h.note) mark.setAttribute('data-note', h.note)
+                mark.title = options.title
+                mark.addEventListener('click', (e) => {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    openEditor()
+                })
+                mark.addEventListener('mouseenter', () => {
+                    const rect = mark.getBoundingClientRect()
+                    setHoveredHighlight({ id: h.id, note: h.note, label: tag.label, text: h.text_content, x: rect.left + rect.width / 2, y: rect.top - 10 })
+                })
+                mark.addEventListener('mouseleave', () => setHoveredHighlight(null))
+                return mark
             })
         })
 
@@ -317,7 +345,29 @@ export default function HighlightableContent({
                 liveHost.appendChild(badge)
             }
         }
-    }, [activeHeading, children, deleteHighlight, highlights, peerHighlights, popularHighlights, presenceSummary, sameHeadingCount])
+
+        // Drop the mutations this pass made, so the observer below only reacts to new content.
+        contentObserverRef.current?.takeRecords()
+    }, [activeHeading, children, contentVersion, deleteHighlight, highlights, peerHighlights, popularHighlights, presenceSummary, sameHeadingCount])
+
+    // The reading text renders after this component (lazy MDX), so re-apply highlights whenever
+    // the content changes; otherwise saved highlights are painted before their text exists.
+    useEffect(() => {
+        const container = containerRef.current
+        if (!container) return undefined
+        let timer
+        const observer = new MutationObserver(() => {
+            window.clearTimeout(timer)
+            timer = window.setTimeout(() => setContentVersion((v) => v + 1), 150)
+        })
+        observer.observe(container, { childList: true, subtree: true, characterData: true })
+        contentObserverRef.current = observer
+        return () => {
+            window.clearTimeout(timer)
+            observer.disconnect()
+            contentObserverRef.current = null
+        }
+    }, [])
 
     // Ref to persist the selected text even after browser selection clears
     const selectedTextRef = useRef(null)
@@ -355,6 +405,7 @@ export default function HighlightableContent({
             }
             setSelectionState(newState)
             selectedTextRef.current = text // Persist in ref
+            selectedAnchorRef.current = captureAnchor(range, container)
         }, 10)
     }, [showNoteInput])
 
@@ -363,7 +414,9 @@ export default function HighlightableContent({
         setShowNoteInput(false)
         setEditingNoteId(null)
         setNoteInput('')
+        setNoteColor('yellow')
         selectedTextRef.current = null
+        selectedAnchorRef.current = null
         window.getSelection()?.removeAllRanges()
     }, [])
 
@@ -388,7 +441,7 @@ export default function HighlightableContent({
         // Use ref for text since browser selection may have been cleared
         const text = selectedTextRef.current || selectionState?.text
         if (text) {
-            await saveHighlight(text, color, noteInput)
+            await saveHighlight(text, color, noteInput, selectedAnchorRef.current)
             logHighlightCreate(text.length, !!noteInput, sectionId)
 
             // Stealth AI-as-peer dispatch removed 2026-04-26.
@@ -401,14 +454,24 @@ export default function HighlightableContent({
         }
     }
 
-    // Save note for existing highlight
+    // Save note (and colour tag) for an existing highlight
     const saveNote = async () => {
         if (editingNoteId) {
             await updateHighlightNote(editingNoteId, noteInput)
-            setShowNoteInput(false)
-            setEditingNoteId(null)
-            setNoteInput('')
+            const current = highlights.find((h) => h.id === editingNoteId)
+            if (current && (current.color || 'yellow') !== noteColor) await updateHighlightColor(editingNoteId, noteColor)
+            clearSelection()
         }
+    }
+
+    const removeEditingHighlight = async () => {
+        if (editingNoteId) await deleteHighlight(editingNoteId)
+        clearSelection()
+    }
+
+    const readSelectionAloud = () => {
+        const text = selectedTextRef.current || selectionState?.text
+        if (text) readAloud(text)
     }
 
     // Handle ask BigAL
@@ -417,30 +480,6 @@ export default function HighlightableContent({
             onAskBigAL(selectionState.text)
             clearSelection()
         }
-    }
-
-    // Export highlights as Markdown
-    const exportNotes = () => {
-        if (highlights.length === 0) {
-            alert('No highlights to export yet.')
-            return
-        }
-
-        const markdown = [
-            `# Highlights from ${sectionId}`,
-            `*Exported on ${new Date().toLocaleDateString()}*\n`,
-            ...highlights.map((h, i) =>
-                `## Highlight ${i + 1}\n> ${h.text_content}\n${h.note ? `\n**Note:** ${h.note}\n` : ''}`
-            )
-        ].join('\n')
-
-        const blob = new Blob([markdown], { type: 'text/markdown' })
-        const url = URL.createObjectURL(blob)
-        const a = document.createElement('a')
-        a.href = url
-        a.download = `highlights-${sectionId.replace(/\//g, '-')}.md`
-        a.click()
-        URL.revokeObjectURL(url)
     }
 
     return (
@@ -504,18 +543,21 @@ export default function HighlightableContent({
                 <div
                     className="fixed z-[100] flex items-center gap-1 rounded-full border border-slate-700 bg-slate-900 p-1 shadow-2xl animate-in fade-in zoom-in-95 duration-200"
                     style={{
-                        top: selectionState.rect.top - 60,
-                        left: Math.max(10, selectionState.rect.left + (selectionState.rect.width / 2) - 76),
+                        top: Math.max(10, selectionState.rect.top - 60),
+                        left: Math.min(window.innerWidth - 340, Math.max(10, selectionState.rect.left + (selectionState.rect.width / 2) - 165)),
                     }}
                 >
-                    <button
-                        onClick={() => handleHighlight('yellow')}
-                        className="flex h-9 w-9 items-center justify-center rounded-full text-white transition-colors hover:bg-slate-800 group"
-                        aria-label="Highlight"
-                        title="Highlight"
-                    >
-                        <Highlighter className="w-4 h-4 text-yellow-400 group-hover:text-yellow-300" />
-                    </button>
+                    {Object.entries(HIGHLIGHT_TAGS).map(([color, tag]) => (
+                        <button
+                            key={color}
+                            onClick={() => handleHighlight(color)}
+                            className="flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:bg-slate-800"
+                            aria-label={`Highlight as ${tag.label}`}
+                            title={`Highlight: ${tag.label}`}
+                        >
+                            <span className={`h-4 w-4 rounded-full ring-2 ring-slate-900 ${tag.dot}`} aria-hidden="true" />
+                        </button>
+                    ))}
 
                     <div className="w-px h-5 bg-slate-700 mx-1"></div>
 
@@ -528,16 +570,27 @@ export default function HighlightableContent({
                         <MessageSquarePlus className="w-4 h-4 text-emerald-400 group-hover:text-emerald-300" />
                     </button>
 
-                    <div className="w-px h-5 bg-slate-700 mx-1"></div>
+                    {canReadAloud() && (
+                        <button
+                            onClick={readSelectionAloud}
+                            className="flex h-9 w-9 items-center justify-center rounded-full text-white transition-colors hover:bg-slate-800 group"
+                            aria-label="Read aloud"
+                            title="Read aloud"
+                        >
+                            <Volume2 className="w-4 h-4 text-sky-300 group-hover:text-sky-200" />
+                        </button>
+                    )}
 
-                    <button
-                        onClick={handleAskBigAL}
-                        className="flex h-9 w-9 items-center justify-center rounded-full text-white transition-colors hover:bg-slate-800 group"
-                        aria-label="Ask BigAL"
-                        title="Ask BigAL"
-                    >
-                        <Sparkles className="w-4 h-4 text-indigo-400 group-hover:text-indigo-300" />
-                    </button>
+                    {!STATIC_DEMO && (
+                        <button
+                            onClick={handleAskBigAL}
+                            className="flex h-9 w-9 items-center justify-center rounded-full text-white transition-colors hover:bg-slate-800 group"
+                            aria-label="Ask BigAL"
+                            title="Ask BigAL"
+                        >
+                            <Sparkles className="w-4 h-4 text-indigo-400 group-hover:text-indigo-300" />
+                        </button>
+                    )}
 
                     <button
                         onClick={clearSelection}
@@ -564,17 +617,41 @@ export default function HighlightableContent({
                     }}
                 >
                     <p className="text-xs text-gray-500 mb-2">
-                        {editingNoteId ? 'Edit note:' : `Add note to highlighted text`}
+                        {editingNoteId ? 'Edit highlight' : `Add note to highlighted text`}
                     </p>
+                    <div className="mb-2 flex flex-wrap gap-1.5" role="radiogroup" aria-label="Tag">
+                        {Object.entries(HIGHLIGHT_TAGS).map(([color, tag]) => (
+                            <button
+                                key={color}
+                                type="button"
+                                role="radio"
+                                aria-checked={noteColor === color}
+                                onClick={() => setNoteColor(color)}
+                                className={`inline-flex min-h-[32px] items-center gap-1.5 rounded-full border px-2.5 text-xs font-semibold ${noteColor === color ? 'border-gray-700 text-gray-900' : 'border-gray-200 text-gray-500 hover:border-gray-400'}`}
+                            >
+                                <span className={`h-2.5 w-2.5 rounded-full ${tag.dot}`} aria-hidden="true" />
+                                {tag.label}
+                            </button>
+                        ))}
+                    </div>
                     <textarea
                         value={noteInput}
                         onChange={(e) => setNoteInput(e.target.value)}
                         placeholder="Type your note..."
+                        aria-label="Note"
                         className="w-full px-2 py-1.5 text-sm border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-yellow-300 resize-none"
                         rows={3}
                         autoFocus
                     />
-                    <div className="flex justify-end gap-2 mt-3">
+                    <div className="flex items-center justify-end gap-2 mt-3">
+                        {editingNoteId && (
+                            <button
+                                onClick={removeEditingHighlight}
+                                className="mr-auto px-2 py-1.5 text-xs font-semibold text-rose-600 hover:bg-rose-50 rounded cursor-pointer pointer-events-auto"
+                            >
+                                Remove
+                            </button>
+                        )}
                         <button
                             onClick={clearSelection}
                             className="px-4 py-1.5 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded cursor-pointer pointer-events-auto"
@@ -586,12 +663,12 @@ export default function HighlightableContent({
                                 if (editingNoteId) {
                                     saveNote();
                                 } else {
-                                    handleHighlight('yellow');
+                                    handleHighlight(noteColor);
                                 }
                             }}
                             className="px-4 py-1.5 text-xs bg-yellow-400 hover:bg-yellow-500 rounded font-medium cursor-pointer pointer-events-auto shadow-sm"
                         >
-                            {editingNoteId ? 'Save Note' : 'Highlight + Note'}
+                            {editingNoteId ? 'Save' : 'Highlight + Note'}
                         </button>
                     </div>
                 </div>
@@ -614,7 +691,7 @@ export default function HighlightableContent({
                     {hoveredHighlight?.note && (
                         <p className={`text-[var(--ath-muted)] ${hoveredHighlight?.label ? 'mt-2' : ''}`}>{hoveredHighlight.note}</p>
                     )}
-                    {hoveredHighlight?.id && (
+                    {hoveredHighlight?.id && isSupabaseConfigured && (
                         <button
                             type="button"
                             onClick={() => setDiscussionHighlightId(hoveredHighlight.id)}
@@ -648,17 +725,25 @@ export default function HighlightableContent({
                 </div>
             )}
 
-            {/* Footer with export and stats */}
+            <NotebookPanel
+                open={notebookOpen}
+                onClose={() => setNotebookOpen(false)}
+                highlights={highlights}
+                sectionId={sectionId}
+                localOnly={!isSupabaseConfigured}
+            />
+
+            {/* Footer with notebook and stats */}
             {(highlights.length > 0 || popularHighlights.length > 0) && (
                 <div className="pointer-events-none sticky bottom-4 z-40 mt-8 flex justify-end gap-2 px-4">
                     {highlights.length > 0 && (
                         <button
-                            onClick={exportNotes}
+                            onClick={() => setNotebookOpen(true)}
                             className="pointer-events-auto flex h-10 items-center gap-2 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.9)] px-3 text-xs font-semibold text-[var(--ath-muted)] shadow-md backdrop-blur-xl hover:bg-[var(--ath-panel)]"
-                            aria-label={`Export ${highlights.length} highlights`}
+                            aria-label={`Open notebook: ${highlights.length} highlights in this section`}
                         >
-                            <Download className="h-4 w-4 text-[var(--ath-primary)]" aria-hidden="true" />
-                            {highlights.length}
+                            <BookOpen className="h-4 w-4 text-[var(--ath-primary)]" aria-hidden="true" />
+                            Notebook · {highlights.length}
                         </button>
                     )}
                     {popularHighlights.length > 0 && (

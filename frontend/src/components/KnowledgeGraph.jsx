@@ -4,6 +4,7 @@ import { Minus, Plus, RotateCcw } from 'lucide-react'
 import { supabase } from '../lib/supabase'
 import API_BASE from '../lib/apiConfig'
 import { getLocalMasteryMap } from '../lib/knowledgeService'
+import { STATIC_DEMO, applyMasteryToGraph } from '../lib/staticDemo'
 
 const VIEW_W = 540
 const VIEW_H = 360
@@ -255,23 +256,29 @@ export default function KnowledgeGraph({
                     }
                 }
 
-                const response = await fetch(`${API_BASE}/mastery_graph`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        mastery_data: masteryMap,
-                        course,
-                        current_section_id: currentSectionId,
-                        current_concepts: currentConcepts,
-                    }),
-                })
+                // The static demo ships each chapter's graph and applies mastery here.
+                const chapter = currentSectionId?.split('/')[1]
+                const response = STATIC_DEMO
+                    ? await fetch(`${API_BASE}/mastery_graph/${course}/${chapter}`)
+                    : await fetch(`${API_BASE}/mastery_graph`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            mastery_data: masteryMap,
+                            course,
+                            current_section_id: currentSectionId,
+                            current_concepts: currentConcepts,
+                        }),
+                    })
 
                 if (!response.ok) {
                     const errText = await response.text()
                     throw new Error(`Failed to load graph data: ${response.status} ${errText}`)
                 }
 
-                const data = await response.json()
+                const data = STATIC_DEMO
+                    ? applyMasteryToGraph(await response.json(), masteryMap, currentSectionId, currentConcepts)
+                    : await response.json()
                 const layout = buildLayout(data.nodes || [], data.links || [])
 
                 if (!isCancelled) {

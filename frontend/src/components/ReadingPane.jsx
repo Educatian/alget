@@ -3,6 +3,7 @@ import { ChevronDown } from 'lucide-react'
 import { logInteraction } from '../lib/loggingService'
 import PeerPulse from './PeerPulse'
 import ChapterCheckIn from './ChapterCheckIn'
+import SkillReview from './SkillReview'
 
 const ReadingNarrative = lazy(() => import('./ReadingNarrative'))
 const PracticeBlock = lazy(() => import('./PracticeBlock'))
@@ -121,7 +122,7 @@ export default function ReadingPane({
         )
     }
 
-    const { meta, content, simulation, illustration, practice } = sectionData
+    const { meta, content, simulation, illustration, practice, misconceptions } = sectionData
     const workProduct = inferWorkProduct(meta)
     const contentHasLearningTargets = /(^|\n)##\s+Learning Targets\b/.test(content || '')
     const canResumeRecent = recentSection?.sectionId
@@ -223,6 +224,8 @@ export default function ReadingPane({
                     )}
                 </div>
             </header>
+
+            <SkillReview key={sectionId} course={meta?.course} sectionId={sectionId} conceptIds={meta?.concept_ids || []} />
 
             <Suspense fallback={<PanelFallback label="Loading Reading Narrative..." />}>
                 <ReadingNarrative
@@ -373,6 +376,8 @@ export default function ReadingPane({
             <Suspense fallback={<PanelFallback label="Loading Practice..." />}>
                 <PracticeBlock
                     practice={practice}
+                    misconceptions={misconceptions}
+                    sectionContent={content}
                     sectionId={`${meta?.course}/${meta?.chapter}/${meta?.section}`}
                     onStuckEvent={onStuckEvent}
                     onNeedsReview={onNeedsReview}

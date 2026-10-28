@@ -138,7 +138,8 @@ def load_section(course: str, chapter: str, section: str) -> dict:
         "content": content or "*Content not available*",
         "simulation": None,  # Will be loaded separately if exists
         "illustration": None,
-        "practice": load_practice_for_section(course, chapter, section)
+        "practice": load_practice_for_section(course, chapter, section),
+        "misconceptions": load_misconceptions_for_section(course, chapter, section),
     }
 
 
@@ -151,6 +152,17 @@ def load_practice_for_section(course: str, chapter: str, section: str) -> dict:
             return json.load(f)
     
     return {"problems": []}
+
+
+def load_misconceptions_for_section(course: str, chapter: str, section: str) -> list:
+    """Load the section's misconception catalogue (id, description, trigger, feedback, rail_action)."""
+    path = get_content_path(course, chapter, section) / f"{section}.misconceptions.json"
+
+    if path.exists():
+        with open(path, 'r', encoding='utf-8') as f:
+            return json.load(f).get("misconceptions", [])
+
+    return []
 
 
 def generate_toc(course: str) -> dict:

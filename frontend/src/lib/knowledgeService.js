@@ -2,6 +2,7 @@ import API_BASE from './apiConfig';
 import { supabase } from './supabase';
 import { logEvent } from './loggingService';
 import { buildLearnerProfileSnapshot, startInterventionTrace } from './researchService';
+import { STATIC_DEMO, bktUpdate } from './staticDemo';
 
 const ADAPTIVE_SIGNAL_KEY = 'alget_adaptive_signals_v1';
 const LOCAL_MASTERY_KEY = 'alget_local_mastery_v1';
@@ -402,19 +403,24 @@ export const updateMastery = async (qMatrix, isCorrect, options = {}) => {
             ? Object.fromEntries(Object.entries(qMatrix).map(([cid, w]) => [cid, Number(w) * 0.6]))
             : qMatrix
 
-        // 2. Call Python backend BKT engine
-        const response = await fetch(`${API_BASE}/grade`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                current_states: currentStates,
-                q_matrix: adjustedQMatrix,
-                is_correct: isCorrect
-            })
-        });
+        // 2. Call Python backend BKT engine (the static demo runs the same model in the browser)
+        let new_states
+        if (STATIC_DEMO) {
+            new_states = bktUpdate(currentStates, adjustedQMatrix, isCorrect)
+        } else {
+            const response = await fetch(`${API_BASE}/grade`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    current_states: currentStates,
+                    q_matrix: adjustedQMatrix,
+                    is_correct: isCorrect
+                })
+            });
 
-        if (!response.ok) throw new Error('BKT grading failed');
-        const { new_states } = await response.json();
+            if (!response.ok) throw new Error('BKT grading failed');
+            ({ new_states } = await response.json());
+        }
         persistLocalMasteryStates(new_states, {
             sectionId,
             courseId,

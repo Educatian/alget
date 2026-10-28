@@ -1,8 +1,11 @@
 import { useState, useEffect, useCallback } from 'react'
-import { supabase } from '../lib/supabase'
+import { isSupabaseConfigured, supabase } from '../lib/supabase'
 import { useToast } from '../lib/toastContext'
+import { readLocalHighlights, writeLocalHighlights } from '../lib/localAnnotations'
 
 const SHOW_PEER_HIGHLIGHTS = false
+// Without Supabase (static preview, local dev) highlights live in this browser only.
+const LOCAL_ONLY = !isSupabaseConfigured
 
 /**
  * Hook to handle text selection, highlighting, and notes
@@ -14,10 +17,17 @@ export function useTextSelection({ sectionId, userId }) {
     const [popularHighlights, setPopularHighlights] = useState([])
     const [peerHighlights, setPeerHighlights] = useState([])
     const [loading, setLoading] = useState(false)
+    const [loadedSection, setLoadedSection] = useState(null)
 
     // Fetch existing highlights for this section
     useEffect(() => {
         if (!sectionId) return
+
+        if (LOCAL_ONLY) {
+            setHighlights(readLocalHighlights(sectionId))
+            setLoadedSection(sectionId)
+            return
+        }
 
         const fetchHighlights = async () => {
             setLoading(true)
@@ -95,8 +105,15 @@ export function useTextSelection({ sectionId, userId }) {
         })
     }, [])
 
-    // Save highlight with optional note
-    const saveHighlight = useCallback(async (text, color = 'yellow', note = '') => {
+    // Local-only mode: every change is written straight back to this browser. The section check
+    // stops the previous section's list being written under a new section during navigation.
+    useEffect(() => {
+        if (LOCAL_ONLY && sectionId && loadedSection === sectionId) writeLocalHighlights(sectionId, highlights)
+    }, [highlights, loadedSection, sectionId])
+
+    // Save highlight with optional note. `anchor` ({exact, prefix, suffix, start, end}) pins it
+    // to one place in the text; see lib/annotationAnchor.js.
+    const saveHighlight = useCallback(async (text, color = 'yellow', note = '', anchor = null) => {
         if (!sectionId || !text) return null
 
         // Create local highlight object first
@@ -104,9 +121,10 @@ export function useTextSelection({ sectionId, userId }) {
             id: `local-${Date.now()}`,
             user_id: userId,
             section_id: sectionId,
-            text_content: text,
+            text_content: anchor?.exact || text,
             color,
             note: note || null,
+            anchor,
             created_at: new Date().toISOString()
         }
 
@@ -116,7 +134,7 @@ export function useTextSelection({ sectionId, userId }) {
         window.getSelection()?.removeAllRanges()
 
         // Persist to database if userId exists
-        if (userId) {
+        if (userId && !LOCAL_ONLY) {
             try {
                 const { data, error } = await supabase
                     .from('highlights')
@@ -136,9 +154,9 @@ export function useTextSelection({ sectionId, userId }) {
                     console.warn('Highlight saved locally only (DB error):', error.message)
                     toast.warning('Highlight saved offline only - will sync when connection returns.')
                 } else if (data) {
-                    // Replace local highlight with DB version
+                    // Replace local highlight with DB version (the table has no anchor column)
                     setHighlights(prev => prev.map(h =>
-                        h.id === localHighlight.id ? data : h
+                        h.id === localHighlight.id ? { ...data, anchor } : h
                     ))
                 }
             } catch (err) {
@@ -150,6 +168,18 @@ export function useTextSelection({ sectionId, userId }) {
         return localHighlight
     }, [userId, sectionId, toast])
 
+    // Change a highlight's colour tag (Insight / Question / Confusion / Connection)
+    const updateHighlightColor = useCallback(async (highlightId, color) => {
+        setHighlights(prev => prev.map(h => (h.id === highlightId ? { ...h, color } : h)))
+        if (highlightId && !String(highlightId).startsWith('local-') && userId && !LOCAL_ONLY) {
+            try {
+                await supabase.from('highlights').update({ color }).eq('id', highlightId).eq('user_id', userId)
+            } catch (err) {
+                console.warn('Could not update highlight colour:', err)
+            }
+        }
+    }, [userId])
+
     // Update highlight note
     const updateHighlightNote = useCallback(async (highlightId, note) => {
         // Update local state
@@ -158,7 +188,7 @@ export function useTextSelection({ sectionId, userId }) {
         ))
 
         // Persist to database
-        if (highlightId && !String(highlightId).startsWith('local-') && userId) {
+        if (highlightId && !String(highlightId).startsWith('local-') && userId && !LOCAL_ONLY) {
             try {
                 await supabase
                     .from('highlights')
@@ -178,7 +208,7 @@ export function useTextSelection({ sectionId, userId }) {
         setHighlights(prev => prev.filter(h => h.id !== highlightId))
 
         // Only delete from database if not local-only
-        if (highlightId && !String(highlightId).startsWith('local-') && userId) {
+        if (highlightId && !String(highlightId).startsWith('local-') && userId && !LOCAL_ONLY) {
             try {
                 await supabase
                     .from('highlights')
@@ -201,6 +231,7 @@ export function useTextSelection({ sectionId, userId }) {
         handleSelection,
         saveHighlight,
         updateHighlightNote,
+        updateHighlightColor,
         deleteHighlight,
         clearSelection: () => setSelection(null)
     }

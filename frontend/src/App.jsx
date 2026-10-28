@@ -33,7 +33,7 @@ const E2E_USER = import.meta.env.VITE_E2E_AUTH_BYPASS === 'true'
 function DemoNotice() {
   return (
     <div role="note" className="pointer-events-none fixed bottom-3 left-3 z-50 max-w-xs rounded-full border border-[var(--ath-line)] bg-[var(--ath-panel)] px-3 py-1 text-xs text-[var(--ath-muted)] shadow-sm">
-      Preview: no accounts, nothing you do is saved or sent.
+      Preview: no account. Notes and progress stay in this browser; nothing is sent.
     </div>
   )
 }
