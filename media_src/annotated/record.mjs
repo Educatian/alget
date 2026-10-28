@@ -96,8 +96,9 @@ try {
         const base = join(BUILD, 'manim', `${clip}.mp4`)
         const baseDur = duration(base)
         run('ffmpeg', ['-y', '-loglevel', 'error', '-i', base, '-i', segment, '-filter_complex',
-            '[0:a]aformat=sample_rates=44100:channel_layouts=stereo[a0];[1:a]aformat=sample_rates=44100:channel_layouts=stereo[a1];[0:v][a0][1:v][a1]concat=n=2:v=1:a=1[v][a]',
-            '-map', '[v]', '-map', '[a]', '-c:v', 'libx264', '-preset', 'medium', '-crf', '21', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', join(OUT, `${clip}.mp4`)])
+            // Narration is normalized to -16 LUFS (spoken-word target); the raw TTS mix sits near -30 dB.
+            '[0:a]aformat=sample_rates=44100:channel_layouts=stereo[a0];[1:a]aformat=sample_rates=44100:channel_layouts=stereo[a1];[0:v][a0][1:v][a1]concat=n=2:v=1:a=1[v][a];[a]loudnorm=I=-16:TP=-1.5:LRA=11,aresample=44100[an]',
+            '-map', '[v]', '-map', '[an]', '-c:v', 'libx264', '-preset', 'medium', '-crf', '21', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', join(OUT, `${clip}.mp4`)])
 
         // 4. Captions: base cues, then the reading cues shifted by the base length.
         const cues = parseVtt(readFileSync(join(BUILD, 'manim', `${clip}.vtt`), 'utf8'))

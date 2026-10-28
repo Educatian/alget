@@ -14,7 +14,7 @@ const SESSION = /^[0-9a-f-]{36}$/
 const text = (v, max) => (v === null || v === undefined || v === '' ? null : String(v).slice(0, max))
 
 export async function saveEvents(studentId, body, env) {
-    if (!env.EVENTS) return [{ error: 'not_configured' }, 503]
+    if (!env.DB) return [{ error: 'not_configured' }, 503]
     const sessionId = String(body?.session_id || '')
     const events = Array.isArray(body?.events) ? body.events : null
     if (!SESSION.test(sessionId) || !events || !events.length || events.length > MAX_BATCH) return [{ error: 'bad_events' }, 400]
@@ -30,10 +30,10 @@ export async function saveEvents(studentId, body, env) {
         rows.push([studentId, sessionId, seq, ts, serverTs, e.event, text(e.section_id, 80), text(e.target, 200), data])
     }
     if (rows.length) {
-        const insert = env.EVENTS.prepare(
+        const insert = env.DB.prepare(
             'INSERT OR IGNORE INTO events (student_id, session_id, seq, client_ts, server_ts, event, section_id, target, data) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
         )
-        await env.EVENTS.batch(rows.map((r) => insert.bind(...r)))
+        await env.DB.batch(rows.map((r) => insert.bind(...r)))
     }
     return [{ ok: true, stored: rows.length, skipped: events.length - rows.length }, 200]
 }

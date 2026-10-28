@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
+import { createHash } from 'node:crypto'
+import { readFileSync, readdirSync } from 'node:fs'
+import { DatabaseSync } from 'node:sqlite'
 import { fileURLToPath } from 'node:url'
 import { afterEach, test } from 'node:test'
 import worker from '../src/index.js'
@@ -21,10 +23,33 @@ function memoryKv(seed = {}) {
     }
 }
 
+/** D1 stand-in on Node's built-in SQLite, with the real migrations applied. */
+function sqliteD1() {
+    const db = new DatabaseSync(':memory:')
+    const dir = new URL('../migrations/', import.meta.url)
+    for (const f of readdirSync(dir).sort()) db.exec(readFileSync(new URL(f, dir), 'utf8'))
+    const stmt = (sql, values = []) => ({
+        sql, values,
+        bind: (...v) => stmt(sql, v),
+        first: async () => db.prepare(sql).get(...values) ?? null,
+        all: async () => ({ results: db.prepare(sql).all(...values) }),
+        run: async () => db.prepare(sql).run(...values),
+    })
+    return { db, prepare: (sql) => stmt(sql), batch: async (list) => list.map((s) => db.prepare(s.sql).run(...s.values)) }
+}
+
+/** A D1 with a live session for TOKEN (TAMU-001), as after a sign-in. */
+function signedInDb() {
+    const d1 = sqliteD1()
+    d1.db.prepare('INSERT INTO sessions (token_hash, student_id, created, expires) VALUES (?, ?, ?, ?)')
+        .run(createHash('sha256').update(TOKEN).digest('hex'), 'TAMU-001', new Date().toISOString(), Math.floor(Date.now() / 1000) + 3600)
+    return d1
+}
+
 const env = (over = {}) => ({
     ALLOWED_ORIGINS: ORIGIN, CONTENT_BASE: 'https://content.test/demo-api', MODEL: 'test-deployment', TUTOR_ENABLED: 'true',
     FOUNDRY_ENDPOINT: 'https://foundry.test/openai/v1/', FOUNDRY_API_KEY: 'test-key', DAILY_CAP: '500',
-    ACCOUNTS: memoryKv({ [`session:${TOKEN}`]: 'TAMU-001' }), ...over,
+    ACCOUNTS: memoryKv(), DB: signedInDb(), ...over,
 })
 
 const realFetch = globalThis.fetch
@@ -141,6 +166,9 @@ test('signs in with a roster ID and password, locks out after repeated failures'
     const ok = await post('/login', { id: 'tamu7', password: ' Maple-River-42 ' }, ORIGIN, e, null)
     const { token, id } = await ok.json()
     assert.deepEqual([ok.status, id, /^[0-9a-f]{64}$/.test(token)], [200, 'TAMU-007', true])
+    // Only a hash of the token is stored, and the session is readable straight away (D1, not KV).
+    const row = e.DB.db.prepare('SELECT token_hash, student_id FROM sessions WHERE student_id = ?').get('TAMU-007')
+    assert.deepEqual([row.token_hash === token, row.token_hash === createHash('sha256').update(token).digest('hex')], [false, true])
     assert.equal((await get('/progress', e, token)).status, 200)
     assert.equal((await post('/logout', {}, ORIGIN, e, token)).status, 200)
     assert.equal((await get('/progress', e, token)).status, 401)
@@ -166,23 +194,16 @@ test('saves only allowed progress keys, per student', async () => {
     const { id, items } = await (await get('/progress', e)).json()
     assert.equal(id, 'TAMU-001')
     assert.deepEqual(items, { 'alget_highlights_v1:ai-literacy/01/02': '[{"id":1}]' })
+    // Another student sees only their own rows.
+    e.DB.db.prepare('INSERT INTO sessions VALUES (?, ?, ?, ?)').run(createHash('sha256').update('c'.repeat(64)).digest('hex'), 'TAMU-002', 'now', Math.floor(Date.now() / 1000) + 60)
+    assert.deepEqual((await (await get('/progress', e, 'c'.repeat(64))).json()).items, {})
+    // Expired sessions do not count.
+    e.DB.db.prepare('UPDATE sessions SET expires = 1 WHERE student_id = ?').run('TAMU-002')
+    assert.equal((await get('/progress', e, 'c'.repeat(64))).status, 401)
 })
 
-/** Stand-in for a D1 binding: records the rows each batch inserts, honouring UNIQUE(session_id, seq). */
-function memoryD1() {
-    const rows = []
-    return {
-        rows,
-        prepare: () => ({ bind: (...values) => ({ values }) }),
-        batch: async (stmts) => {
-            for (const { values } of stmts) if (!rows.some((r) => r[1] === values[1] && r[2] === values[2])) rows.push(values)
-        },
-    }
-}
-
 test('stores learning events under the signed-in ID, once per session and seq', async () => {
-    const EVENTS = memoryD1()
-    const e = env({ EVENTS })
+    const e = env()
     const session_id = '123e4567-e89b-42d3-a456-426614174000'
     const ts = '2026-10-28T15:00:00.000Z'
     const batch = { session_id, events: [
@@ -193,8 +214,8 @@ test('stores learning events under the signed-in ID, once per session and seq', 
     const res = await post('/events', batch, ORIGIN, e)
     assert.deepEqual(await res.json(), { ok: true, stored: 2, skipped: 1 })
     await post('/events', batch, ORIGIN, e)
-    assert.equal(EVENTS.rows.length, 2)
-    assert.deepEqual(EVENTS.rows.map((r) => [r[0], r[2], r[5], r[8]]), [['TAMU-001', 1, 'page_view', null], ['TAMU-001', 2, 'practice_answer', '{"correct":false,"attempt":1}']])
+    const rows = e.DB.db.prepare('SELECT student_id, seq, event, data FROM events ORDER BY seq').all().map((r) => [r.student_id, r.seq, r.event, r.data])
+    assert.deepEqual(rows, [['TAMU-001', 1, 'page_view', null], ['TAMU-001', 2, 'practice_answer', '{"correct":false,"attempt":1}']])
     assert.equal((await post('/events', { session_id: 'nope', events: batch.events }, ORIGIN, e)).status, 400)
     assert.equal((await post('/events', batch, ORIGIN, e, null)).status, 401)
 })

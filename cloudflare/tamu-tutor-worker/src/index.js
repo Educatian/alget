@@ -127,7 +127,7 @@ export default {
         const route = `${request.method} ${url.pathname}`
         const routes = ['POST /login', 'POST /logout', 'GET /progress', 'POST /progress', 'POST /events', 'POST /hint', 'POST /explain', 'POST /feedback', 'POST /annotate']
         if (!routes.includes(route)) return json({ error: 'not_found' }, 404, headers)
-        if (!env.ACCOUNTS) return json({ error: 'not_configured' }, 503, headers)
+        if (!env.ACCOUNTS || !env.DB) return json({ error: 'not_configured' }, 503, headers)
 
         let body = null
         if (request.method === 'POST' && route !== 'POST /logout') {
