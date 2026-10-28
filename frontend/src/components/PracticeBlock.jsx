@@ -57,6 +57,9 @@ export default function PracticeBlock({ practice, misconceptions = [], sectionCo
     const nextRung = buildHintLadder(currentProblem, authoredMisconception, sectionContent, struck)[shownRungs.length] || null
     // After the offline ladder, the AI tutor (when configured) gives up to two Socratic hints.
     const aiHintsUsed = shownRungs.filter((r) => r.kind === 'ai').length
+    // The learner's own wrong answers, for the AI tutor; options a hint ruled out are struck too but were never picked.
+    const ruledOut = shownRungs.filter((r) => r.kind === 'eliminate').map((r) => r.eliminate)
+    const wrongPicks = struck.filter((i) => !ruledOut.includes(i))
     const canAskAi = TUTOR_ENABLED && isMcqProblem(currentProblem) && aiHintsUsed < MAX_AI_HINTS && !shownRungs.some((r) => r.kind === 'ai-unavailable')
     const [aiLoading, setAiLoading] = useState(false)
 
@@ -256,7 +259,7 @@ export default function PracticeBlock({ practice, misconceptions = [], sectionCo
         } else if (canAskAi) {
             const problemId = currentProblem.id
             setAiLoading(true)
-            const res = await askTutorHint({ sectionId: currentProblem.review_of || sectionId, problemId, rung: aiHintsUsed + 1, picks: struck })
+            const res = await askTutorHint({ sectionId: currentProblem.review_of || sectionId, problemId, rung: aiHintsUsed + 1, picks: wrongPicks })
             setAiLoading(false)
             const aiRung = res?.hint
                 ? { kind: 'ai', title: 'AI tutor', text: `${res.hint}${res.check_question ? ` ${res.check_question}` : ''}` }

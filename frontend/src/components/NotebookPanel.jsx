@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Download, Search, X } from 'lucide-react'
 import { HIGHLIGHT_TAGS, highlightsToMarkdown, listAllLocalHighlights, tagFor } from '../lib/localAnnotations'
 import { logEvent } from '../lib/loggingService'
+import { ACCOUNTS_ENABLED } from '../lib/account'
 
 /**
  * Notebook drawer: the reader's highlights and notes, filterable by tag and text, for this
@@ -126,7 +127,7 @@ export default function NotebookPanel({ open, onClose, highlights, sectionId, lo
                     })}
                 </ol>
                 <p className="border-t border-[var(--ath-line)] px-5 py-2 text-[11px] text-[var(--ath-muted)]">
-                    {localOnly ? 'Saved in this browser only.' : 'Saved to your account.'}
+                    {ACCOUNTS_ENABLED ? 'Saved to your student ID.' : localOnly ? 'Saved in this browser only.' : 'Saved to your account.'}
                 </p>
             </aside>
         </div>

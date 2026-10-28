@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url'
 import { afterEach, test } from 'node:test'
 import worker from '../src/index.js'
 import { hashPassword, normalizeId } from '../src/accounts.js'
+import { hintMessages } from '../src/prompts.js'
 
 // Course JSON exported for the static preview (scripts/export_static_demo.py -> frontend/dist/demo-api).
 const DEMO_API = fileURLToPath(new URL('../../../frontend/dist/demo-api/', import.meta.url))
@@ -335,4 +336,14 @@ test('a second site (ID_PREFIX UTK) signs in its own IDs and lists only its own 
     assert.deepEqual(o.students.map((x) => x.id), ['UTK-001', 'UTK-002'])
     assert.equal((await get('/instructor/student?id=UTK-002', e, 'd'.repeat(64))).status, 200)
     assert.equal((await get('/instructor/student?id=TAMU-001', e, 'd'.repeat(64))).status, 400)
+})
+
+test('hint prompt: no picks means the tutor must not claim the learner picked an option', () => {
+    const problem = { stem: 'How does the model choose the next word?', options: ['Looks it up', 'Samples by probability', 'Copies the prompt'], correct_index: 1 }
+    const none = hintMessages({ problem, misconception: null, passage: 'text', picks: [], rung: 1, strict: false })
+    assert.match(none[0].content, /has not picked a wrong option yet/)
+    assert.match(none[1].content, /wrong picks so far: none yet/)
+    const one = hintMessages({ problem, misconception: null, passage: 'text', picks: [0], rung: 1, strict: false })
+    assert.doesNotMatch(one[0].content, /has not picked/)
+    assert.match(one[1].content, /wrong picks so far: A \("Looks it up"\)/)
 })

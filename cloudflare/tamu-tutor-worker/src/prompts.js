@@ -59,6 +59,7 @@ export function hintMessages({ problem, misconception, passage, picks, rung, str
         '- The check question is one the learner can ask about their own pick. It must not contain the key idea of the correct option.',
         '- At most 60 words, in plain friendly English.',
         '- Use only ideas from the course passage below.',
+        picks.length ? '' : '- The learner has not picked a wrong option yet. Never say or imply that they picked one; point them to where in the passage to look.',
         rung >= 2 ? '- This learner has already had hints; be a little more specific about where in the passage to look, still without revealing the answer.' : '',
         strict ? '- Your previous hint gave away too much. Stay further from the answer: talk only about the learner\'s pick and where to look.' : '',
         'Return JSON only.',

@@ -3,6 +3,7 @@ import * as Popover from '@radix-ui/react-popover'
 import { Type } from 'lucide-react'
 import { DEFAULT_READER_PREFS, READER_OPTIONS, applyReaderPrefs, loadReaderPrefs, saveReaderPrefs } from '../lib/readerPrefs'
 import { logEvent } from '../lib/loggingService'
+import { ACCOUNTS_ENABLED } from '../lib/account'
 
 const ROWS = [
     { key: 'size', label: 'Text size' },
@@ -85,7 +86,7 @@ export default function ReaderSettings() {
                             </fieldset>
                         ))}
                     </div>
-                    <p className="mt-3 text-[11px] leading-4 text-[var(--ath-muted)]">Saved in this browser only.</p>
+                    <p className="mt-3 text-[11px] leading-4 text-[var(--ath-muted)]">{ACCOUNTS_ENABLED ? 'Saved to your student ID.' : 'Saved in this browser only.'}</p>
                 </Popover.Content>
             </Popover.Portal>
         </Popover.Root>
