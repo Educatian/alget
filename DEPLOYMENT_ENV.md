@@ -22,6 +22,19 @@ These values should be configured in the deployment platform rather than committ
 1. `backend/supabase_social_features.sql`
 2. `backend/supabase_learning_features.sql`
 
+## TAMU static preview (branch `tamu/ai-literacy`)
+
+A read-only preview of the AI Literacy course with no Supabase, backend or accounts. It is published as the
+`tamu-3d-labs` preview branch of the `alget-tamu-ai-literacy` Pages project (the project's production site is
+separate and must not be overwritten): https://tamu-3d-labs.alget-tamu-ai-literacy.pages.dev
+
+```
+cd frontend
+VITE_STATIC_DEMO=true VITE_API_BASE=/demo-api npm run build   # do not set VITE_SUPABASE_*
+python ../scripts/export_static_demo.py dist
+npx wrangler pages deploy dist --project-name alget-tamu-ai-literacy --branch tamu-3d-labs
+```
+
 ## Notes
 
 - `ENGINEERING_ACCESS_CODE` and `EDUCATION_ACCESS_CODE` now validate server-side through `/api/access/validate`.

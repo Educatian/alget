@@ -12,6 +12,7 @@ import AppErrorBoundary from './components/AppErrorBoundary'
 import GlobalSearch from './components/GlobalSearch'
 import API_BASE from './lib/apiConfig'
 import { canOpenCourse, canOpenLab } from './lib/studyTrack'
+import { DEMO_START, DEMO_USER, STATIC_DEMO } from './lib/staticDemo'
 import './index.css'
 
 const LandingPage = lazy(() => import('./pages/LandingPage'))
@@ -27,7 +28,15 @@ const InstructorDashboard = lazy(() => import('./pages/InstructorDashboard'))
 
 const E2E_USER = import.meta.env.VITE_E2E_AUTH_BYPASS === 'true'
   ? { id: 'e2e-user', email: 'e2e@alget.test' }
-  : null
+  : DEMO_USER
+
+function DemoNotice() {
+  return (
+    <div role="note" className="pointer-events-none fixed bottom-3 left-3 z-50 max-w-xs rounded-full border border-[var(--ath-line)] bg-[var(--ath-panel)] px-3 py-1 text-xs text-[var(--ath-muted)] shadow-sm">
+      Preview: no accounts, nothing you do is saved or sent.
+    </div>
+  )
+}
 
 function RouteFallback() {
   return (
@@ -55,7 +64,7 @@ export default function App() {
 
   useEffect(() => {
     // Load the course table of contents when the app starts.
-    fetch(`${API_BASE}/book/inst-design/toc`, { method: 'GET' }).catch(() => {})
+    if (!STATIC_DEMO) fetch(`${API_BASE}/book/inst-design/toc`, { method: 'GET' }).catch(() => {})
 
     if (E2E_USER) {
       return undefined
@@ -121,18 +130,21 @@ export default function App() {
             <GlobalClickLogger>
               <StudyActivityLogger />
               <GlobalSearch />
+              {STATIC_DEMO && <DemoNotice />}
               <Suspense fallback={<RouteFallback />}>
             <Routes>
               <Route
                 path="/"
                 element={
-                  <LandingPage onLogin={handleLogin} user={user} onLogout={handleLogout} />
+                  STATIC_DEMO ? <Navigate to={DEMO_START} replace /> : (
+                    <LandingPage onLogin={handleLogin} user={user} onLogout={handleLogout} />
+                  )
                 }
               />
               <Route
                 path="/learn"
                 element={
-                  user ? (
+                  STATIC_DEMO ? <Navigate to={DEMO_START} replace /> : user ? (
                     <MainApp user={user} onLogout={handleLogout} />
                   ) : (
                     <Navigate to="/" replace />

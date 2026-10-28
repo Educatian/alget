@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Lightbulb } from 'lucide-react'
 import API_BASE from '../lib/apiConfig'
+import { STATIC_DEMO, gradeMultipleChoice } from '../lib/staticDemo'
 import { logEvent } from '../lib/loggingService'
 import { fuseTelemetry, recordAdaptiveSignal, updateMastery } from '../lib/knowledgeService'
 import { annotateMisconceptionSignal, resolveInterventionOutcome, updateLearnerModel } from '../lib/researchService'
@@ -91,7 +92,8 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
         setLoading(true)
 
         try {
-            const response = await fetch(`${API_BASE}/grade/${problemId}`, {
+            // The static demo has no backend; multiple choice is graded here by the same rule.
+            const result = STATIC_DEMO && isMcq ? gradeMultipleChoice(currentProblem, selectedIndex) : await (await fetch(`${API_BASE}/grade/${problemId}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -100,8 +102,7 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                     section_id: sectionId || null,
                     selected_option: selectedIndex,
                 })
-            })
-            const result = await response.json()
+            })).json()
             const confidenceValue = Number(confidenceByProblem[problemId] || 3)
             const misconceptionType = result.unit_error
                 ? 'unit_error'
