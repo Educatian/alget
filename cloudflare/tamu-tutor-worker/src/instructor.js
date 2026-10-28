@@ -5,13 +5,15 @@
  *   GET /instructor/student?id=TAMU-007 one student: sections, mastery, written work, recent activity
  *
  * Built from the learning events and per-student progress in D1. Test and instructor IDs
- * (TAMU-9xx) are left out. Note and highlight text is never returned, only counts; written
+ * (9xx, for example TAMU-901) are left out. Note and highlight text is never returned, only counts; written
  * activities (submitted work) are returned in full.
  */
 import { ACTIVITIES } from './activities.js'
 import { loadSection } from './content.js'
+import { idPrefix } from './accounts.js'
 
-const STUDENT = "student_id NOT LIKE 'TAMU-9%'"
+// IDs are <prefix>-NNN; 9xx are instructor and test accounts.
+const STUDENT = "student_id NOT LIKE '%-9__'"
 const ACTIVE_NOW_MIN = 10
 
 /** Sections in course order, with their practice items and concepts. */
@@ -33,11 +35,11 @@ async function roster(env) {
     const ids = []
     let cursor
     do {
-        const page = await env.ACCOUNTS.list({ prefix: 'account:TAMU-', cursor })
+        const page = await env.ACCOUNTS.list({ prefix: `account:${idPrefix(env)}-`, cursor })
         ids.push(...page.keys.map((k) => k.name.slice('account:'.length)))
         cursor = page.list_complete ? null : page.cursor
     } while (cursor)
-    return ids.filter((id) => !id.startsWith('TAMU-9')).sort()
+    return ids.filter((id) => !/-9\d\d$/.test(id)).sort()
 }
 
 const all = async (env, sql, ...binds) => (await env.DB.prepare(sql).bind(...binds).all()).results
@@ -164,7 +166,7 @@ export async function overview(env) {
 }
 
 export async function studentDetail(env, id) {
-    if (!/^TAMU-\d{3}$/.test(String(id || ''))) return [{ error: 'bad_student' }, 400]
+    if (!new RegExp(`^${idPrefix(env)}-\\d{3}$`).test(String(id || ''))) return [{ error: 'bad_student' }, 400]
     const [sections, counts, progress, recent, base] = await Promise.all([
         course(env),
         sectionCounts(env, 'AND student_id = ?', id),

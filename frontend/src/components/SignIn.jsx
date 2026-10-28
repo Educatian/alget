@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { signIn } from '../lib/account'
+import { ID_PREFIX, signIn } from '../lib/account'
 
 const MESSAGES = {
     bad_credentials: 'That ID and password do not match. Check both and try again.',
@@ -7,7 +7,7 @@ const MESSAGES = {
     network: 'Could not reach the server. Check your connection and try again.',
 }
 
-/** Sign-in for the TAMU preview: a roster ID (TAMU-001 ...) and the password from the instructor. */
+/** Sign-in for the accounts preview: a roster ID (TAMU-001, UTK-001 ...) and the password from the instructor. */
 export default function SignIn({ onSignedIn }) {
     const [id, setId] = useState('')
     const [password, setPassword] = useState('')
@@ -45,7 +45,7 @@ export default function SignIn({ onSignedIn }) {
                     id="signin-id"
                     value={id}
                     onChange={(e) => setId(e.target.value)}
-                    placeholder="TAMU-001"
+                    placeholder={`${ID_PREFIX}-001`}
                     autoComplete="username"
                     autoCapitalize="characters"
                     spellCheck={false}

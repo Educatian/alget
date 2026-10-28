@@ -11,7 +11,7 @@
  *     server -> {type: 'shared', section, passages: [...]}   see shared.js
  *   GET /healthz
  *
- * Counts are of other students (not the reader, instructors, or TAMU-9xx test IDs) and carry no
+ * Counts are of other students (not the reader, instructors, or 9xx test IDs such as TAMU-999) and carry no
  * names. One ClassRoom Durable Object holds the course's sockets; it hibernates between messages.
  */
 import { sessionInfo } from '../../tamu-tutor-worker/src/accounts.js'
@@ -23,7 +23,7 @@ const STALE_MS = 120_000
 const SECTION = /^[a-z0-9-]+\/\d\d\/\d\d$/
 const RECOMPUTE_MS = 2000
 
-const isStudent = (e) => e.role === 'student' && !/^TAMU-9/.test(e.id || '')
+const isStudent = (e) => e.role === 'student' && !/-9\d\d$/.test(e.id || '')
 
 /** What one reader is told: other students online, how many are reading each section, and where in theirs. */
 export function presenceFor(entries, self, now = Date.now()) {

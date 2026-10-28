@@ -12,6 +12,8 @@ import { STATIC_DEMO } from './staticDemo'
 
 const URL = (import.meta.env.VITE_TUTOR_URL || '').replace(/\/$/, '')
 export const ACCOUNTS_ENABLED = STATIC_DEMO && Boolean(URL) && import.meta.env.VITE_TAMU_ACCOUNTS === 'true'
+// The site's roster prefix (TAMU-001, UTK-001); the same build serves each site with its own workers.
+export const ID_PREFIX = /^[A-Z]{2,6}$/.test(import.meta.env.VITE_ID_PREFIX || '') ? import.meta.env.VITE_ID_PREFIX : 'TAMU'
 
 const SESSION_KEY = 'alget_tamu_session_v1'
 const PENDING_KEY = 'alget_tamu_pending_v1'

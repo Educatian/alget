@@ -124,10 +124,10 @@ export function sharedPassages(rows, minStudents = MIN_STUDENTS) {
     return out.slice(0, MAX_PASSAGES)
 }
 
-/** Shared passages for one section, from D1. Test and instructor IDs (TAMU-9xx) are left out. */
+/** Shared passages for one section, from D1. Test and instructor IDs (9xx, such as TAMU-999) are left out. */
 export async function sharedForSection(env, sectionId) {
     const { results } = await env.DB.prepare(
-        "SELECT student_id, value FROM progress WHERE key = ? AND student_id NOT LIKE 'TAMU-9%'",
+        "SELECT student_id, value FROM progress WHERE key = ? AND student_id NOT LIKE '%-9__'",
     ).bind(`alget_highlights_v1:${sectionId}`).all()
     return sharedPassages(results || [])
 }

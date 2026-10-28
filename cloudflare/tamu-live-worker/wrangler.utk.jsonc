@@ -1,0 +1,20 @@
+{
+  // UTK site live class (multi-site study): the same code as alget-tamu-live, reading the UTK
+  // tutor's D1 (alget-utk-events). Deploy with
+  //   npx wrangler deploy -c wrangler.utk.jsonc
+  "$schema": "../backend-worker/node_modules/wrangler/config-schema.json",
+  "name": "alget-utk-live",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-24",
+  "vars": {
+    "ALLOWED_ORIGINS": "https://alget-utk-ai-literacy.pages.dev"
+  },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "alget-utk-events", "database_id": "d56357de-81b1-45d7-aa14-66afc24a9008" }
+  ],
+  "durable_objects": {
+    "bindings": [{ "name": "CLASSROOM", "class_name": "ClassRoom" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["ClassRoom"] }],
+  "observability": { "enabled": true, "head_sampling_rate": 1 }
+}

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BookOpen, Download, LogOut, RefreshCw, X } from 'lucide-react'
-import { instructorGet } from '../lib/account'
+import { ID_PREFIX, instructorGet } from '../lib/account'
 import { logEvent } from '../lib/loggingService'
 import { DEMO_START } from '../lib/staticDemo'
 
@@ -95,7 +95,7 @@ function downloadCsv(data) {
     const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }))
     const a = document.createElement('a')
     a.href = url
-    a.download = `tamu-ai-literacy-progress-${new Date().toISOString().slice(0, 10)}.csv`
+    a.download = `${ID_PREFIX.toLowerCase()}-ai-literacy-progress-${new Date().toISOString().slice(0, 10)}.csv`
     a.click()
     URL.revokeObjectURL(url)
 }
@@ -377,7 +377,7 @@ export default function TamuDashboard({ user, onLogout }) {
             <header className="border-b border-[var(--ath-line)] bg-[var(--ath-panel)]">
                 <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6">
                     <div>
-                        <p className="editorial-kicker">AI Literacy · TAMU</p>
+                        <p className="editorial-kicker">AI Literacy · {ID_PREFIX}</p>
                         <h1 className="text-xl font-semibold text-[var(--ath-text)]">Class dashboard</h1>
                     </div>
                     <div className="flex items-center gap-2">

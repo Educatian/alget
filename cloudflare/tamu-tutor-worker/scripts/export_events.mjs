@@ -1,7 +1,7 @@
 /**
- * Exports the TAMU learning events from D1 for analysis:
+ * Exports a site's learning events from D1 for analysis (TAMU by default; --db alget-utk-events for UTK):
  *
- *   node scripts/export_events.mjs --out <folder> [--since 2026-11-01] [--student TAMU-007] [--local]
+ *   node scripts/export_events.mjs --out <folder> [--since 2026-11-01] [--student TAMU-007] [--db alget-utk-events] [--local]
  *
  * Writes, outside the repository:
  *   events.csv     one row per event, ordered by student, session start and seq
@@ -18,12 +18,16 @@ const arg = (name, fallback) => { const i = process.argv.indexOf(`--${name}`); r
 const out = arg('out')
 const since = arg('since')
 const student = arg('student')
+const db = arg('db', 'alget-tamu-events')
+if (!/^alget-[a-z]+-events$/.test(db)) throw new Error('--db must be a site events database, like alget-utk-events')
+// Each site's database is declared in its own wrangler config (wrangler.utk.jsonc for alget-utk-events).
+const config = db === 'alget-tamu-events' ? 'wrangler.jsonc' : `wrangler.${db.split('-')[1]}.jsonc`
 const where_db = process.argv.includes('--local') ? '--local' : '--remote' // --local reads the wrangler dev database
 const repo = resolve(fileURLToPath(new URL('../../..', import.meta.url)))
 if (!out) throw new Error('give --out <folder>')
 if (resolve(out).toLowerCase().startsWith(repo.toLowerCase() + sep)) throw new Error('refusing to write learner data inside the repository')
 if (since && !/^\d{4}-\d{2}-\d{2}$/.test(since)) throw new Error('--since must be YYYY-MM-DD')
-if (student && !/^TAMU-\d{3}$/.test(student)) throw new Error('--student must look like TAMU-007')
+if (student && !/^[A-Z]{2,6}-\d{3}$/.test(student)) throw new Error('--student must look like TAMU-007')
 
 const COLUMNS = ['student_id', 'session_id', 'seq', 'client_ts', 'server_ts', 'event', 'section_id', 'target', 'data']
 const where = [since ? `client_ts >= '${since}'` : '', student ? `student_id = '${student}'` : ''].filter(Boolean).join(' AND ')
@@ -33,7 +37,7 @@ const WIN = process.platform === 'win32'
 
 function query(sql) {
     // On Windows npx.cmd needs a shell, which splits arguments on spaces, so quote them there.
-    const args = ['--yes', 'wrangler@4.93.0', 'd1', 'execute', 'alget-tamu-events', where_db, '--json', '--command', sql].map((a) => (WIN && /[\s,()*>=]/.test(a) ? `"${a}"` : a))
+    const args = ['--yes', 'wrangler@4.93.0', 'd1', 'execute', db, '-c', config, where_db, '--json', '--command', sql].map((a) => (WIN && /[\s,()*>=]/.test(a) ? `"${a}"` : a))
     const raw = execFileSync(WIN ? 'npx.cmd' : 'npx', args, {
         cwd: fileURLToPath(new URL('..', import.meta.url)), encoding: 'utf8', maxBuffer: 256 * 1024 * 1024, shell: WIN,
     })

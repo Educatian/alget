@@ -78,6 +78,7 @@ test('presence counts other students only, by section and by heading', () => {
         e('TAMU-006', 'ai-literacy/01/02', 'Tokens', { lastSeen: now - 300_000 }),
         e('TAMU-999', 'ai-literacy/01/02', 'Tokens'),
         e('TAMU-901', 'ai-literacy/01/02', 'Tokens', { role: 'instructor' }),
+        e('UTK-950', 'ai-literacy/01/02', 'Tokens'), // 9xx test IDs on any site
     ]
     assert.deepEqual(presenceFor(all, me, now), {
         online: 4, reading: 3, here: 2,

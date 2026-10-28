@@ -1,0 +1,34 @@
+{
+  // UTK site tutor (multi-site study): the same code as alget-tamu-tutor with its own accounts,
+  // sessions, progress and learning events, so the two sites never share data. Deploy with
+  //   npx wrangler deploy -c wrangler.utk.jsonc
+  // The Foundry key is a secret set by the owner:
+  //   npx wrangler secret put FOUNDRY_API_KEY --name alget-utk-tutor
+  "$schema": "../backend-worker/node_modules/wrangler/config-schema.json",
+  "name": "alget-utk-tutor",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-24",
+  "vars": {
+    "ID_PREFIX": "UTK",
+    "TUTOR_ENABLED": "true",
+    "FOUNDRY_ENDPOINT": "https://ua-education-sail-and-me-foundry.openai.azure.com/openai/v1",
+    "MODEL": "gpt-4.1-mini",
+    "REASONING_EFFORT": "",
+    "CONTENT_BASE": "https://alget-utk-ai-literacy.pages.dev/demo-api",
+    "ALLOWED_ORIGINS": "https://alget-utk-ai-literacy.pages.dev",
+    "DAILY_CAP": "3000",
+    "TIMEOUT_MS": "8000"
+  },
+  "kv_namespaces": [
+    { "binding": "USAGE", "id": "583e4f89afd44febb789ffa6f76e4eb8" },
+    // alget-utk-accounts: password hashes and sign-in lockouts.
+    { "binding": "ACCOUNTS", "id": "e7b0e5562ea84c5eaeb8c1c98583383e" }
+  ],
+  "d1_databases": [
+    { "binding": "DB", "database_name": "alget-utk-events", "database_id": "d56357de-81b1-45d7-aa14-66afc24a9008", "migrations_dir": "migrations" }
+  ],
+  "ratelimits": [
+    { "name": "RATE_LIMITER", "namespace_id": "4208", "simple": { "limit": 12, "period": 60 } }
+  ],
+  "observability": { "enabled": true, "head_sampling_rate": 1 }
+}

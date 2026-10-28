@@ -1,8 +1,8 @@
 /**
- * Makes the TAMU preview roster: IDs TAMU-001..N, each with its own easy password
- * (word-word-number, for example maple-river-42).
+ * Makes a site's roster: IDs TAMU-001..N (or UTK-001..N with --prefix UTK), each with its own
+ * easy password (word-word-number, for example maple-river-42).
  *
- *   node scripts/make_accounts.mjs --count 40 --roster <roster.csv> --kv <kv-bulk.json> [--start 1]
+ *   node scripts/make_accounts.mjs --count 40 --roster <roster.csv> --kv <kv-bulk.json> [--start 1] [--prefix UTK]
  *
  * TAMU-9xx IDs are reserved for instructor and test accounts (--start 999 --count 1), so their
  * events can be left out of analysis. An instructor account opens the class dashboard and gets a
@@ -42,6 +42,8 @@ const start = Number(arg('start', 1))
 const rosterPath = arg('roster')
 const fromRoster = arg('from-roster')
 const role = arg('role', 'student')
+const prefix = arg('prefix', 'TAMU')
+if (!/^[A-Z]{2,6}$/.test(prefix)) throw new Error('--prefix must be 2-6 capital letters, like TAMU or UTK')
 const name = arg('name', null)
 if (!['student', 'instructor'].includes(role)) throw new Error('--role must be student or instructor')
 const kvPath = arg('kv')
@@ -62,7 +64,7 @@ if (fromRoster) {
     // Roster columns: ID,Password[,Role,Name]
     const entries = readFileSync(fromRoster, 'utf8').split(/\r?\n/).slice(1)
         .map((line) => line.trim().split(','))
-        .filter(([id, password]) => /^TAMU-\d{3}$/.test(id) && password)
+        .filter(([id, password]) => /^[A-Z]{2,6}-\d{3}$/.test(id) && password)
     writeFileSync(kvPath, JSON.stringify(entries.map(([id, password, r, n]) => hashed(id, password, r === 'instructor' ? { role: r, ...(n ? { name: n } : {}) } : {}))))
     console.log(`rebuilt ${entries.length} account hashes from ${fromRoster} -> ${kvPath}`)
     process.exit(0)
@@ -82,7 +84,7 @@ for (let n = start; n < start + count; n++) {
         password = role === 'instructor' ? `${a}-${b}-${c}-${randomInt(10, 100)}` : `${a}-${b}-${randomInt(10, 100)}`
     } while (used.has(password))
     used.add(password)
-    const id = `TAMU-${String(n).padStart(3, '0')}`
+    const id = `${prefix}-${String(n).padStart(3, '0')}`
     rows.push(role === 'instructor' ? `${id},${password},instructor,${name || ''}` : `${id},${password}`)
     kv.push(hashed(id, password, accountExtra))
 }

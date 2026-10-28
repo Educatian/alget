@@ -135,6 +135,40 @@ without it the live class stays off. Local testing needs both workers in one `wr
 sharing one local D1 file fail with D1 internal errors): run them behind a small router that sends `/live` to the
 live worker and everything else to the tutor worker.
 
+## UTK site (multi-site study, same branch)
+
+The same build and worker code as the TAMU preview, run for Prof. Yukyeong Song's course at UTK on its own
+Cloudflare resources, so accounts, sessions, progress, learning events and the live class never mix with TAMU:
+
+| | TAMU | UTK |
+|---|---|---|
+| Site | `tamu-3d-labs.alget-tamu-ai-literacy.pages.dev` | https://alget-utk-ai-literacy.pages.dev (Pages project `alget-utk-ai-literacy`, branch `main`) |
+| Tutor worker | `alget-tamu-tutor` (`wrangler.jsonc`) | `alget-utk-tutor` (`wrangler.utk.jsonc`) |
+| Live worker | `alget-tamu-live` (`wrangler.jsonc`) | `alget-utk-live` (`wrangler.utk.jsonc`) |
+| D1 | `alget-tamu-events` | `alget-utk-events` |
+| KV | `alget-tamu-accounts`, `alget-tamu-tutor-usage` | `alget-utk-accounts`, `alget-utk-tutor-usage` |
+| IDs | `TAMU-001`.. | `UTK-001`.. (worker var `ID_PREFIX`, build var `VITE_ID_PREFIX`) |
+
+IDs ending in 9xx are instructor and test accounts on every site. UTK roster: `UTK-001`..`UTK-040`, `UTK-999` (test),
+instructors `UTK-901` (Prof. Yukyeong Song) and `UTK-902` (Dr. Zhen Xu); rosters on the owner's Desktop
+(`UTK-AI-Literacy-Accounts.csv`, `UTK-instructor-accounts.csv`, `UTK-test-account.csv`).
+
+```
+npx wrangler secret put FOUNDRY_API_KEY --name alget-utk-tutor          # owner only; AI steps are off until set
+cd cloudflare/tamu-tutor-worker && npx wrangler d1 migrations apply alget-utk-events -c wrangler.utk.jsonc --remote
+npx wrangler deploy -c wrangler.utk.jsonc                               # and the same in cloudflare/tamu-live-worker
+node scripts/make_accounts.mjs --prefix UTK --count 40 --roster <outside-repo>/roster.csv --kv <tmp>/kv.json
+npx wrangler kv bulk put <tmp>/kv.json --namespace-id e7b0e5562ea84c5eaeb8c1c98583383e --remote
+node scripts/export_events.mjs --db alget-utk-events --out <folder>
+```
+
+Build the UTK site like the TAMU one with `VITE_TUTOR_URL=https://alget-utk-tutor.jewoong-moon.workers.dev`,
+`VITE_LIVE_URL=https://alget-utk-live.jewoong-moon.workers.dev` and `VITE_ID_PREFIX=UTK`, then
+`npx wrangler pages deploy <dist> --project-name alget-utk-ai-literacy --branch main`. In Git Bash set
+`MSYS_NO_PATHCONV=1` first: otherwise `VITE_API_BASE=/demo-api` is rewritten to a Windows path and no section loads.
+Local testing: `node scripts/seed_local_test_account.mjs --prefix UTK --config wrangler.utk.jsonc` seeds
+UTK-001/002/900/950.
+
 ## Notes
 
 - `ENGINEERING_ACCESS_CODE` and `EDUCATION_ACCESS_CODE` now validate server-side through `/api/access/validate`.

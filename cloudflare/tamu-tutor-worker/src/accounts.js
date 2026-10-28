@@ -22,10 +22,14 @@ const MAX_TOTAL = 2_000_000
 
 export const PROGRESS_KEY = /^((alget_highlights_v1|alget_activity_v1):[a-z0-9-]+\/\d\d\/\d\d|alget_review_v1|alget_local_mastery_v1|alget_adaptive_signals_v1|alget_reader_prefs_v1|alget_onboarding_completed_v1)$/
 
-/** Accepts "TAMU-007", "tamu007" or just "7". */
-export function normalizeId(raw) {
-    const digits = String(raw || '').trim().toUpperCase().replace(/^TAMU-?/, '')
-    return /^\d{1,3}$/.test(digits) ? `TAMU-${digits.padStart(3, '0')}` : null
+/** The site's roster prefix (ID_PREFIX var: TAMU, UTK). */
+export const idPrefix = (env) => (/^[A-Z]{2,6}$/.test(env?.ID_PREFIX || '') ? env.ID_PREFIX : 'TAMU')
+
+/** Accepts "TAMU-007", "tamu007" or just "7" (with the site's prefix). */
+export function normalizeId(raw, site) {
+    const prefix = typeof site === 'string' ? site : 'TAMU' // also when used as a .map callback
+    const digits = String(raw || '').trim().toUpperCase().replace(new RegExp(`^${prefix}-?`), '')
+    return /^\d{1,3}$/.test(digits) ? `${prefix}-${digits.padStart(3, '0')}` : null
 }
 
 const hex = (buf) => [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, '0')).join('')
@@ -45,7 +49,7 @@ function sameHex(a, b) {
 
 /** Returns [body, status]. */
 export async function login(body, env) {
-    const id = normalizeId(body?.id)
+    const id = normalizeId(body?.id, idPrefix(env))
     const password = String(body?.password || '').trim().toLowerCase()
     if (!id || !password) return [{ error: 'bad_credentials' }, 401]
     const fails = Number(await env.ACCOUNTS.get(`fail:${id}`)) || 0

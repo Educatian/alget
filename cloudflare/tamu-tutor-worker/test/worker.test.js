@@ -177,6 +177,7 @@ test('signs in with a roster ID and password, locks out after repeated failures'
     assert.equal((await post('/login', { id: '7', password: 'maple-river-42' }, ORIGIN, e, null)).status, 429)
     assert.equal((await post('/login', { id: 'TAMU-999', password: 'x' }, ORIGIN, e, null)).status, 401)
     assert.deepEqual(['7', 'tamu-007', 'TAMU007', 'TAMU-1000', 'abc'].map(normalizeId), ['TAMU-007', 'TAMU-007', 'TAMU-007', null, null])
+    assert.deepEqual(['7', 'utk-007', 'UTK007', 'TAMU-007'].map((x) => normalizeId(x, 'UTK')), ['UTK-007', 'UTK-007', 'UTK-007', null])
 })
 
 test('requires a session for progress and AI calls', async () => {
@@ -313,4 +314,25 @@ test('instructor dashboard: instructors only, roster status, section and item st
     const row = d.sections.find((x) => x.id === sec)
     assert.deepEqual([row.status, row.activity.text, row.activity.ready, row.highlights, row.notes], ['done', 'My answer.', true, 1, 1])
     assert.ok(!JSON.stringify(d).includes('private note') && !JSON.stringify(d).includes('secret quote'))
+})
+
+test('a second site (ID_PREFIX UTK) signs in its own IDs and lists only its own roster', async () => {
+    mockFetch([])
+    const salt = '00'.repeat(16)
+    const account = JSON.stringify({ salt, iter: 1000, hash: await hashPassword('fern-otter-12', salt, 1000) })
+    const e = env({
+        ID_PREFIX: 'UTK',
+        ACCOUNTS: memoryKv({ 'account:UTK-001': account, 'account:UTK-002': '{}', 'account:UTK-901': '{"role":"instructor"}', 'account:UTK-999': '{}', 'account:TAMU-001': '{}' }),
+    })
+    const res = await post('/login', { id: '1', password: 'fern-otter-12' }, ORIGIN, e, null)
+    assert.deepEqual([res.status, (await res.json()).id], [200, 'UTK-001'])
+    assert.equal((await post('/login', { id: 'TAMU-001', password: 'fern-otter-12' }, ORIGIN, e, null)).status, 401)
+
+    const later = Math.floor(Date.now() / 1000) + 3600
+    e.DB.db.prepare('INSERT INTO sessions (token_hash, student_id, created, expires, role) VALUES (?, ?, ?, ?, ?)')
+        .run(createHash('sha256').update('d'.repeat(64)).digest('hex'), 'UTK-901', 'now', later, 'instructor')
+    const o = await (await get('/instructor/overview', e, 'd'.repeat(64))).json()
+    assert.deepEqual(o.students.map((x) => x.id), ['UTK-001', 'UTK-002'])
+    assert.equal((await get('/instructor/student?id=UTK-002', e, 'd'.repeat(64))).status, 200)
+    assert.equal((await get('/instructor/student?id=TAMU-001', e, 'd'.repeat(64))).status, 400)
 })
