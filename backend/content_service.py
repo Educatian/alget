@@ -68,6 +68,7 @@ KNOWN_COURSE_TITLES = {
     "bio-inspired": "Bio-Inspired Design",
     "inst-design": "Foundations of Instructional Design",
     "ai-ethics": "AI and Ethics",
+    "ai-literacy": "AI Literacy for College Learners",
     "ail606-supplement": "AIL 606: Software Technology Supplement",
     "cat531-supplement": "CAT 531: Technology and Teaching Supplement",
     "cat100-supplement": "CAT 100: Computer Concepts and Applications Supplement",

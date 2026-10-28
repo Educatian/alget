@@ -1,0 +1,49 @@
+{
+  "problems": [
+    {
+      "id": "ail_302_a",
+      "type": "multiple_choice",
+      "concept_id": "prompt_components",
+      "stem": "Which part is missing from: 'Summarize this article in bullet points'?",
+      "options": [
+        "Format.",
+        "Goal and context: why you need the summary and what you will use it for.",
+        "Nothing is missing.",
+        "The model's name."
+      ],
+      "correct_index": 1,
+      "explanation": "The request gives a format but no goal or context, so the model cannot prioritize.",
+      "misconception_id": "short_prompts_are_best"
+    },
+    {
+      "id": "ail_302_b",
+      "type": "multiple_choice",
+      "concept_id": "iteration",
+      "stem": "The first reply is generic. What is the best next step?",
+      "options": [
+        "Accept it.",
+        "Add context and constraints, or ask a focused follow-up.",
+        "Give up on AI.",
+        "Ask the same thing in capital letters."
+      ],
+      "correct_index": 1,
+      "explanation": "Refining the request usually improves the result.",
+      "misconception_id": "first_answer_is_final"
+    },
+    {
+      "id": "ail_302_c",
+      "type": "multiple_choice",
+      "concept_id": "asking_for_uncertainty",
+      "stem": "Why ask the model which part it is least sure about?",
+      "options": [
+        "To make it apologize.",
+        "To find the parts most worth checking.",
+        "To speed it up.",
+        "To change its temperature."
+      ],
+      "correct_index": 1,
+      "explanation": "It points you to likely weak spots, though you still need to verify everything important.",
+      "misconception_id": "first_answer_is_final"
+    }
+  ]
+}

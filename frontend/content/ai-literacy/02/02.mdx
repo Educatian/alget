@@ -1,0 +1,25 @@
+# Bias In, Bias Out
+
+If some kinds of examples are rare in the training data, the model often learns them poorly. The result can be a system that looks accurate on average while failing a particular group again and again.
+
+## See it happen
+
+In the lab, a pet-photo model is trained mostly on daytime photos. Train it, then look at the test results: the overall gauge looks good, but the night-photo tiles tell a different story. Then change the training mix and train again.
+
+<sketch-lab book="ai" lesson="bias" title="Bias in, bias out: the photo model" caption="Predict first: is a model that is 92 % accurate overall equally good for everyone's photos?" />
+
+## Averages hide gaps
+
+An **overall accuracy** is an average across everyone tested. If one group is small, its failures barely move the average. That is why responsible evaluations report **disaggregated** results: accuracy for each group separately.
+
+## Real cases
+
+This is not only a lab effect. In 2018, Joy Buolamwini and Timnit Gebru tested commercial face-analysis systems and found far higher error rates for darker-skinned women than for lighter-skinned men. In 2020, a study of speech-recognition systems found much higher error rates for Black speakers than for white speakers. In both cases, the groups with the highest errors were under-represented in the data the systems learned from.
+
+<lesson-video src="/media/ai-literacy/BiasVideo.mp4" title="Accurate for whom? (50 s)" caption="No sound: captions on screen. Compare the overall bar with the night-photo bar." />
+
+<interactive-quiz question="A model is 95 % accurate overall but 70 % accurate for one group. What should you conclude?" options='["It works well for everyone.", "The overall number hides a large gap; the group needs attention.", "The group is using it wrong.", "Accuracy numbers are meaningless."]' correct-index="1" conceptid="disaggregated_accuracy" />
+
+## Fixing it
+
+More data helps only if it covers the missing group. In the lab, adding more daytime photos changes nothing for night photos; adding night photos closes the gap. Real fixes also include testing each group, involving affected people, and deciding when a system should not be used at all.

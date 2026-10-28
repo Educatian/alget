@@ -1,0 +1,21 @@
+{
+  "section_id": "ai_literacy_0302",
+  "misconceptions": [
+    {
+      "id": "short_prompts_are_best",
+      "pattern": "minimal_prompting",
+      "description": "Believing shorter prompts always work best.",
+      "trigger": "learner gives one-line requests and blames the tool",
+      "feedback": "Goal, context, constraints and format usually improve the result.",
+      "rail_action": "reframe"
+    },
+    {
+      "id": "first_answer_is_final",
+      "pattern": "single_shot",
+      "description": "Treating the first reply as final.",
+      "trigger": "learner never asks a follow-up",
+      "feedback": "Iterate: question, refine and check. The first reply is a draft.",
+      "rail_action": "reframe"
+    }
+  ]
+}

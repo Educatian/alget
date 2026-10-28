@@ -1,0 +1,17 @@
+{
+  "chapter_title": "How AI Works",
+  "title": "What Counts as AI?",
+  "description": "Recognize AI in everyday tools, tell narrow AI from the idea of general AI, and describe AI as systems that learn patterns from data.",
+  "learning_objectives": [
+    "Describe artificial intelligence as systems that perform tasks by learning patterns from data.",
+    "Identify at least three AI systems you already use as a student.",
+    "Distinguish narrow AI, which exists today, from the idea of general AI."
+  ],
+  "concept_ids": [
+    "ai_definition",
+    "narrow_vs_general_ai",
+    "everyday_ai"
+  ],
+  "estimated_time_minutes": 10,
+  "order": 1
+}

@@ -1,0 +1,49 @@
+{
+  "problems": [
+    {
+      "id": "ail_202_a",
+      "type": "multiple_choice",
+      "concept_id": "representation_bias",
+      "stem": "Why might a model do worse on night photos?",
+      "options": [
+        "Night photos are always blurry.",
+        "Night photos were rare in its training data.",
+        "Models cannot see dark colors.",
+        "The test was unfair."
+      ],
+      "correct_index": 1,
+      "explanation": "Under-represented examples are learned poorly.",
+      "misconception_id": "more_data_fixes_bias"
+    },
+    {
+      "id": "ail_202_b",
+      "type": "multiple_choice",
+      "concept_id": "disaggregated_accuracy",
+      "stem": "What does disaggregated accuracy mean?",
+      "options": [
+        "Accuracy reported separately for each group.",
+        "Accuracy rounded to whole numbers.",
+        "Accuracy measured twice.",
+        "Accuracy without any test data."
+      ],
+      "correct_index": 0,
+      "explanation": "Reporting by group reveals gaps that averages hide.",
+      "misconception_id": "average_is_enough"
+    },
+    {
+      "id": "ail_202_c",
+      "type": "multiple_choice",
+      "concept_id": "real_world_harm",
+      "stem": "What did the 2018 Gender Shades study find?",
+      "options": [
+        "All face systems were equally accurate.",
+        "Error rates were much higher for darker-skinned women.",
+        "Face systems never make errors.",
+        "Only lighting mattered."
+      ],
+      "correct_index": 1,
+      "explanation": "The study documented large accuracy gaps by skin type and gender.",
+      "misconception_id": "bias_is_rare"
+    }
+  ]
+}

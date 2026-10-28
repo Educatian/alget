@@ -1,0 +1,49 @@
+{
+  "problems": [
+    {
+      "id": "ail_201_a",
+      "type": "multiple_choice",
+      "concept_id": "training_data",
+      "stem": "What is training data?",
+      "options": [
+        "The settings menu of an app.",
+        "The examples a model learns patterns from.",
+        "The user manual.",
+        "A list of the model's mistakes."
+      ],
+      "correct_index": 1,
+      "explanation": "Models learn by adjusting to many examples called training data.",
+      "misconception_id": "data_is_neutral"
+    },
+    {
+      "id": "ail_201_b",
+      "type": "multiple_choice",
+      "concept_id": "labels",
+      "stem": "In a photo classifier, what is a label?",
+      "options": [
+        "The file name.",
+        "The correct answer attached to each training example, such as 'cat'.",
+        "The photo's brightness.",
+        "The camera brand."
+      ],
+      "correct_index": 1,
+      "explanation": "Labels tell the model the right answer for each training example.",
+      "misconception_id": "labels_are_objective"
+    },
+    {
+      "id": "ail_201_c",
+      "type": "multiple_choice",
+      "concept_id": "generalization",
+      "stem": "Why test a model on examples held back from training?",
+      "options": [
+        "To make training faster.",
+        "To see whether it works on new examples it has not seen.",
+        "To delete bad data.",
+        "To give the model more labels."
+      ],
+      "correct_index": 1,
+      "explanation": "Held-out testing checks generalization.",
+      "misconception_id": "data_is_neutral"
+    }
+  ]
+}

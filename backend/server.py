@@ -2271,6 +2271,7 @@ SEARCH_COURSE_IDS = [
     "bio-inspired",
     "inst-design",
     "ai-ethics",
+    "ai-literacy",
     "ail606-supplement",
     "cat531-supplement",
     "cat100-supplement",

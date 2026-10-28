@@ -84,6 +84,19 @@ const engineeringCourses = [
 
 const educationCourses = [
     {
+        id: 'ai-literacy',
+        title: 'AI Literacy for College Learners',
+        icon: <CourseMark Icon={Sparkles} />,
+        description: 'How AI writes, why data shapes who it works for, how to ask clearly and check claims, and where your data goes. Short videos and four interactive 3D labs.',
+        topics: ['How AI Works', 'Bias', 'Checking Claims', 'Privacy'],
+        chapters: 4,
+        sections: 12,
+        moduleLabel: '4 modules',
+        level: 'Undergraduate',
+        gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
+        badge: '3D labs'
+    },
+    {
         id: 'inst-design',
         title: 'Foundation of Instructional Design',
         icon: <CourseMark Icon={GraduationCap} />,

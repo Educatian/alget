@@ -1,0 +1,17 @@
+{
+  "chapter_title": "Data, Training and Bias",
+  "title": "Bias In, Bias Out",
+  "description": "Use a 3D lab to see how an imbalanced training set produces a model that fails one group, and fix it by covering the missing group.",
+  "learning_objectives": [
+    "Explain how under-representation in training data can cause worse results for a group.",
+    "Show why a single overall accuracy number can hide a gap between groups.",
+    "Describe how rebalancing training data can reduce the gap."
+  ],
+  "concept_ids": [
+    "representation_bias",
+    "disaggregated_accuracy",
+    "real_world_harm"
+  ],
+  "estimated_time_minutes": 15,
+  "order": 2
+}

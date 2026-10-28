@@ -5,6 +5,7 @@ export const ENGINEERING_COURSE_IDS = [
 ]
 
 export const EDUCATION_COURSE_IDS = [
+    'ai-literacy',
     'inst-design',
     'ai-ethics',
     'ail606-supplement',

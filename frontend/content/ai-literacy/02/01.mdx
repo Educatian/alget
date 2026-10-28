@@ -1,0 +1,30 @@
+# Learning from Data
+
+Every AI system you met in Module 1 learned from **training data**: a large set of examples. What is in that data shapes what the system can do, and what it gets wrong.
+
+## Examples, labels and patterns
+
+Imagine teaching a model to recognize pets in photos. You collect thousands of photos and **label** each one: *cat*, *dog*, *no pet*. During **training**, the model adjusts millions of internal numbers until its guesses match the labels as often as possible. It is not memorizing each photo; it is finding **patterns** that separate cats from dogs.
+
+Language models learn in a similar way, but the "label" is simply the next word in real text. That is why they absorb the style, the facts and also the errors and stereotypes in the text they were trained on.
+
+## Generalization
+
+A model is useful only if it works on **new** examples it never saw. This is called **generalization**. Teams test it by holding back some labelled examples and checking accuracy on them. A model generalizes well to new examples that *resemble its training data*. When new examples differ, for instance photos taken at night when training photos were mostly in daylight, accuracy can drop sharply. Lesson 2.2 lets you see this happen.
+
+## People make the data decisions
+
+Data does not appear on its own. People decide:
+
+- **What to collect**, and from whom.
+- **What labels mean**, and who does the labelling.
+- **What counts as success**, such as which errors matter most.
+- **What gets left out**, often by accident.
+
+Each choice affects who the system works well for.
+
+<interactive-quiz question="A model is tested on new examples that look like its training data and does well. What does that show?" options='["It will work equally well on every kind of example.", "It generalizes to examples similar to its training data.", "It memorized the test answers.", "Its training data had no errors."]' correct-index="1" conceptid="generalization" />
+
+## Try this
+
+Pick one AI feature from your Module 1 list. Write down what its training examples probably were, who might have labelled them, and one kind of user or situation that might be missing from that data.

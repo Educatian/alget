@@ -1,0 +1,49 @@
+{
+  "problems": [
+    {
+      "id": "ail_401_a",
+      "type": "multiple_choice",
+      "concept_id": "prompt_data_flow",
+      "stem": "Where does a prompt always go when you send it to a chatbot?",
+      "options": [
+        "Nowhere; it stays on your laptop.",
+        "To the provider's servers for processing.",
+        "Only to your professor.",
+        "Directly into a public website."
+      ],
+      "correct_index": 1,
+      "explanation": "Prompts are processed on the provider's servers.",
+      "misconception_id": "chats_are_private"
+    },
+    {
+      "id": "ail_401_b",
+      "type": "multiple_choice",
+      "concept_id": "data_minimization",
+      "stem": "What is data minimization?",
+      "options": [
+        "Using fewer apps.",
+        "Sharing only the information the task needs.",
+        "Deleting old files.",
+        "Typing shorter prompts."
+      ],
+      "correct_index": 1,
+      "explanation": "Leave out details the task does not require.",
+      "misconception_id": "chats_are_private"
+    },
+    {
+      "id": "ail_401_c",
+      "type": "multiple_choice",
+      "concept_id": "settings_and_retention",
+      "stem": "You delete a chat. What is true?",
+      "options": [
+        "Every copy is gone everywhere, guaranteed.",
+        "Copies may still exist, depending on the provider's retention and training settings.",
+        "The chat becomes public.",
+        "The model forgets everything it learned."
+      ],
+      "correct_index": 1,
+      "explanation": "Deletion from your list may not remove all copies; check the service's policies.",
+      "misconception_id": "delete_means_gone"
+    }
+  ]
+}

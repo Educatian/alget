@@ -1,0 +1,21 @@
+{
+  "section_id": "ai_literacy_0403",
+  "misconceptions": [
+    {
+      "id": "ask_ai_to_verify_itself",
+      "pattern": "self_verification",
+      "description": "Asking the AI whether it is correct as the only check.",
+      "trigger": "learner asks 'are you sure?' and accepts yes",
+      "feedback": "A model can confidently confirm its own errors. Check independent sources.",
+      "rail_action": "reframe"
+    },
+    {
+      "id": "plan_is_one_time",
+      "pattern": "static_plan",
+      "description": "Treating an AI use plan as fixed.",
+      "trigger": "learner writes the plan once and never revisits it",
+      "feedback": "Revisit the plan as tools, course policies and your goals change.",
+      "rail_action": "reframe"
+    }
+  ]
+}

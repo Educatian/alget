@@ -1,0 +1,17 @@
+{
+  "chapter_title": "Asking AI Well and Checking the Results",
+  "title": "Checking Claims and Sources",
+  "description": "Check AI answers claim by claim against their sources, and spot contradicted claims and fabricated references.",
+  "learning_objectives": [
+    "Break an AI answer into separate claims that can be checked.",
+    "Judge each claim as supported, contradicted or without a real source.",
+    "Use lateral reading to check sources outside the answer itself."
+  ],
+  "concept_ids": [
+    "claim_checking",
+    "fabricated_citations",
+    "lateral_reading"
+  ],
+  "estimated_time_minutes": 15,
+  "order": 3
+}

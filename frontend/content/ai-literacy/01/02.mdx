@@ -1,0 +1,25 @@
+# How Language Models Write
+
+When you ask a chatbot a question, it does not look the answer up in a list of facts. A **large language model** writes its reply one small piece at a time. At every step it answers a narrow question: *given everything so far, which word is likely to come next?*
+
+## One word at a time
+
+The pieces a model reads and writes are called **tokens**: whole words or parts of words. For each next token, the model gives every token it knows a **probability**. Then it **samples**: it picks one, with likely tokens picked more often. The chosen token is added to the text, and the process repeats until the reply is done.
+
+<lesson-video src="/media/ai-literacy/NextWordVideo.mp4" title="How a language model writes (70 s)" caption="No sound: captions on screen. Watch how the bars change with temperature." />
+
+## Try it: the probability wheel
+
+In the lab below, each slice of the wheel is one candidate next word, and its size is the probability. Spinning the wheel is sampling. Change the **temperature** and watch the slices change size, but notice that together they always make 100 %.
+
+<sketch-lab book="ai" lesson="next-word" title="How AI writes: the probability wheel" caption="Make a prediction first, then watch the demonstration and try the Australia sentence." />
+
+## Why the same question gets different answers
+
+Because each word is sampled, the same prompt can produce different replies. Low temperature makes the top word nearly certain, so answers become more repetitive. High temperature evens out the slices, so answers become more varied and more surprising.
+
+## Fluent is not the same as true
+
+The model learned which words tend to follow which, from enormous amounts of text. That makes its writing fluent. But "likely to come next" is not the same as "true". In the lab, *Sydney* gets a big slice after "The capital of Australia is", because the two words often appear together, yet the capital is Canberra. This is one root of **hallucinations**: confident, well-written statements that are wrong.
+
+<interactive-quiz question="You ask a chatbot the same question twice and get two different answers. What is the best explanation?" options='["The chatbot changed its mind after learning something new.", "Each reply samples words from probabilities, so it can vary.", "One of the replies came from a different company.", "The first answer was deleted."]' correct-index="1" conceptid="sampling_temperature" />

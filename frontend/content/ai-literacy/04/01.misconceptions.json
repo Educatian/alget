@@ -1,0 +1,21 @@
+{
+  "section_id": "ai_literacy_0401",
+  "misconceptions": [
+    {
+      "id": "chats_are_private",
+      "pattern": "private_channel",
+      "description": "Believing chatbot conversations are private by default.",
+      "trigger": "learner pastes personal or confidential details",
+      "feedback": "Prompts go to the provider and may be stored, used for training or shared. Leave out what is not needed.",
+      "rail_action": "reframe"
+    },
+    {
+      "id": "delete_means_gone",
+      "pattern": "deletion_finality",
+      "description": "Believing deleting a chat removes it everywhere.",
+      "trigger": "learner shares sensitive data planning to delete it later",
+      "feedback": "Deletion may not reach every copy. The safest protection is not to include sensitive data in the first place.",
+      "rail_action": "reframe"
+    }
+  ]
+}

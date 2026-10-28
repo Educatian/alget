@@ -1,0 +1,21 @@
+{
+  "section_id": "ai_literacy_0103",
+  "misconceptions": [
+    {
+      "id": "ai_knows_everything_current",
+      "pattern": "omniscience",
+      "description": "Assuming the model knows current facts.",
+      "trigger": "learner asks about this week's events and trusts the answer",
+      "feedback": "Models learn from data up to a cutoff. Check dates and recent facts against a current source.",
+      "rail_action": "reframe"
+    },
+    {
+      "id": "ai_is_an_oracle",
+      "pattern": "authority_transfer",
+      "description": "Treating AI output as authoritative.",
+      "trigger": "learner cites the chatbot as the source of a fact",
+      "feedback": "A chatbot is not a source. Find and cite the original evidence.",
+      "rail_action": "reframe"
+    }
+  ]
+}

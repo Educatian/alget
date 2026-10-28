@@ -1,0 +1,21 @@
+{
+  "section_id": "ai_literacy_0202",
+  "misconceptions": [
+    {
+      "id": "average_is_enough",
+      "pattern": "aggregate_only",
+      "description": "Trusting a single overall accuracy number.",
+      "trigger": "learner says '92 % accurate, so it works'",
+      "feedback": "Ask: accurate for whom? Look for results broken down by group.",
+      "rail_action": "reframe"
+    },
+    {
+      "id": "more_data_fixes_bias",
+      "pattern": "volume_fix",
+      "description": "Believing more data always fixes bias.",
+      "trigger": "learner adds more of the same data to fix a gap",
+      "feedback": "More of the same data does not help the missing group. Coverage of that group does.",
+      "rail_action": "reframe"
+    }
+  ]
+}

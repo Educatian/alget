@@ -76,7 +76,8 @@ describe('MainApp', () => {
         expect(screen.getByText('AIL 606: Software Technology Supplement')).toBeInTheDocument()
         expect(screen.getByText('CAT 531: Technology and Teaching Supplement')).toBeInTheDocument()
         expect(screen.getByText('CAT 100: Computer Concepts Supplement')).toBeInTheDocument()
-        expect(screen.getByText('5 available')).toBeInTheDocument()
+        expect(screen.getByText('AI Literacy for College Learners')).toBeInTheDocument()
+        expect(screen.getByText('6 available')).toBeInTheDocument()
     })
 
     it('shows a new participant only their study steps until the pre-survey is done', () => {

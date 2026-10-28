@@ -1,0 +1,49 @@
+{
+  "problems": [
+    {
+      "id": "ail_403_a",
+      "type": "multiple_choice",
+      "concept_id": "ai_use_plan",
+      "stem": "Which task fits best in 'tasks I will use AI for'?",
+      "options": [
+        "Writing my reflection on my own experience.",
+        "Getting feedback on the clarity of a paragraph I wrote.",
+        "Choosing my thesis for me.",
+        "Taking a closed-book quiz."
+      ],
+      "correct_index": 1,
+      "explanation": "Feedback on your own writing is support work you can check.",
+      "misconception_id": "plan_is_one_time"
+    },
+    {
+      "id": "ail_403_b",
+      "type": "multiple_choice",
+      "concept_id": "verification_habits",
+      "stem": "What is the most reliable way to check an AI-provided fact?",
+      "options": [
+        "Ask the AI again.",
+        "Find the original source and confirm it says the same thing.",
+        "Check whether the answer is long.",
+        "Ask a friend if it sounds right."
+      ],
+      "correct_index": 1,
+      "explanation": "Independent, original sources are the standard for checking facts.",
+      "misconception_id": "ask_ai_to_verify_itself"
+    },
+    {
+      "id": "ail_403_c",
+      "type": "multiple_choice",
+      "concept_id": "transfer",
+      "stem": "Why revisit your AI use plan after each major assignment?",
+      "options": [
+        "Tools, policies and your own needs change.",
+        "Plans expire legally.",
+        "It is required by every AI tool.",
+        "To make it longer."
+      ],
+      "correct_index": 0,
+      "explanation": "Reflection keeps the plan useful as conditions change.",
+      "misconception_id": "plan_is_one_time"
+    }
+  ]
+}

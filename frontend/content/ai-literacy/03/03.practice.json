@@ -1,0 +1,49 @@
+{
+  "problems": [
+    {
+      "id": "ail_303_a",
+      "type": "multiple_choice",
+      "concept_id": "fabricated_citations",
+      "stem": "What is a fabricated reference?",
+      "options": [
+        "A real source you disagree with.",
+        "A citation to a source, page or section that does not exist.",
+        "A source older than five years.",
+        "A source in another language."
+      ],
+      "correct_index": 1,
+      "explanation": "Language models can produce plausible-looking citations that point to nothing.",
+      "misconception_id": "citation_means_supported"
+    },
+    {
+      "id": "ail_303_b",
+      "type": "multiple_choice",
+      "concept_id": "claim_checking",
+      "stem": "Most claims in an AI answer check out. What about the rest?",
+      "options": [
+        "They are probably fine too.",
+        "Each claim still needs checking on its own.",
+        "Delete the whole answer.",
+        "Ask the AI if it is sure."
+      ],
+      "correct_index": 1,
+      "explanation": "Accuracy on some claims says nothing certain about the others.",
+      "misconception_id": "mostly_right_means_right"
+    },
+    {
+      "id": "ail_303_c",
+      "type": "multiple_choice",
+      "concept_id": "lateral_reading",
+      "stem": "What is lateral reading?",
+      "options": [
+        "Reading a page very slowly.",
+        "Leaving the page to see what other sources say about the claim and the source.",
+        "Reading only the headings.",
+        "Reading the page sideways."
+      ],
+      "correct_index": 1,
+      "explanation": "Lateral reading checks claims against independent sources.",
+      "misconception_id": "citation_means_supported"
+    }
+  ]
+}

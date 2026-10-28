@@ -1,0 +1,17 @@
+{
+  "chapter_title": "How AI Works",
+  "title": "How Language Models Write",
+  "description": "See how a language model produces text one word at a time by assigning probabilities and sampling, and why fluent text is not the same as true text.",
+  "learning_objectives": [
+    "Explain that a language model predicts a probability for each possible next word and samples one.",
+    "Describe what the temperature setting changes in a model's output.",
+    "Explain why a likely-sounding answer can still be false."
+  ],
+  "concept_ids": [
+    "next_token_prediction",
+    "sampling_temperature",
+    "fluency_vs_truth"
+  ],
+  "estimated_time_minutes": 15,
+  "order": 2
+}

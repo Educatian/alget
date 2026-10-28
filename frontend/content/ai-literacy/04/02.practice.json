@@ -1,0 +1,49 @@
+{
+  "problems": [
+    {
+      "id": "ail_402_a",
+      "type": "multiple_choice",
+      "concept_id": "course_ai_policy",
+      "stem": "Where should you first look for the rules on AI use in a course?",
+      "options": [
+        "Social media.",
+        "The syllabus, course site or assignment instructions.",
+        "Another course's syllabus.",
+        "The chatbot's own advice."
+      ],
+      "correct_index": 1,
+      "explanation": "Policies are set per course; check the course's own materials and ask if unclear.",
+      "misconception_id": "one_rule_everywhere"
+    },
+    {
+      "id": "ail_402_b",
+      "type": "multiple_choice",
+      "concept_id": "ai_disclosure",
+      "stem": "What makes an AI disclosure useful?",
+      "options": [
+        "Saying the tool's name only.",
+        "Stating the tool, what it was used for, and what you did with the output.",
+        "Keeping it vague.",
+        "Apologizing."
+      ],
+      "correct_index": 1,
+      "explanation": "Specific disclosures let instructors judge your process.",
+      "misconception_id": "vague_disclosure_is_enough"
+    },
+    {
+      "id": "ail_402_c",
+      "type": "multiple_choice",
+      "concept_id": "academic_integrity",
+      "stem": "Why keep a record of your prompts and changes?",
+      "options": [
+        "To show a clear account of your process if questions arise.",
+        "To train the AI.",
+        "To make the work longer.",
+        "It is never useful."
+      ],
+      "correct_index": 0,
+      "explanation": "A record supports honest disclosure and protects you.",
+      "misconception_id": "vague_disclosure_is_enough"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "chapter_title": "Asking AI Well and Checking the Results",
+  "title": "Writing a Clear Request",
+  "description": "Write prompts with a clear goal, context, constraints and format, and improve results by iterating.",
+  "learning_objectives": [
+    "Include goal, context, constraints and output format in a request.",
+    "Improve a weak prompt by adding missing information.",
+    "Use follow-up turns to refine, question and check an output."
+  ],
+  "concept_ids": [
+    "prompt_components",
+    "iteration",
+    "asking_for_uncertainty"
+  ],
+  "estimated_time_minutes": 12,
+  "order": 2
+}

@@ -1,0 +1,21 @@
+{
+  "section_id": "ai_literacy_0303",
+  "misconceptions": [
+    {
+      "id": "citation_means_supported",
+      "pattern": "citation_trust",
+      "description": "Assuming a citation means the claim is backed up.",
+      "trigger": "learner keeps a claim because it has a reference",
+      "feedback": "Check that the source exists and actually says the claim. Citations can be invented.",
+      "rail_action": "reframe"
+    },
+    {
+      "id": "mostly_right_means_right",
+      "pattern": "halo_effect",
+      "description": "Trusting a whole answer because parts were right.",
+      "trigger": "learner stops checking after two correct claims",
+      "feedback": "Check claim by claim. One correct claim does not vouch for the next.",
+      "rail_action": "reframe"
+    }
+  ]
+}

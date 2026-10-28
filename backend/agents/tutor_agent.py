@@ -140,6 +140,7 @@ class TutorAgent:
         domain_map = {
             "inst-design": "Instructional Design and Educational Technology",
             "ai-ethics": "AI Ethics, Governance, and Responsible Deployment",
+            "ai-literacy": "AI Literacy for College Learners",
             "statics": "Engineering Statics",
             "dynamics": "Engineering Dynamics",
         }

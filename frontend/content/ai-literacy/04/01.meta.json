@@ -1,0 +1,17 @@
+{
+  "chapter_title": "Responsible Use and Privacy",
+  "title": "Your Data Trail",
+  "description": "Trace where the parts of a prompt can travel and choose what to include and which settings to use.",
+  "learning_objectives": [
+    "Describe the places prompt data can go: the provider's servers, saved history, model training and shared links.",
+    "Apply data minimization: leave out details the task does not need.",
+    "Check a tool's settings and your institution's guidance before sharing sensitive material."
+  ],
+  "concept_ids": [
+    "prompt_data_flow",
+    "data_minimization",
+    "settings_and_retention"
+  ],
+  "estimated_time_minutes": 12,
+  "order": 1
+}

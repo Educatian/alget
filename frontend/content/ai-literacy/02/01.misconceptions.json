@@ -1,0 +1,21 @@
+{
+  "section_id": "ai_literacy_0201",
+  "misconceptions": [
+    {
+      "id": "data_is_neutral",
+      "pattern": "neutral_data",
+      "description": "Believing data is neutral and objective.",
+      "trigger": "learner says 'the model just reflects reality'",
+      "feedback": "Data reflects choices about what to collect, how to label it and who is included. Those choices shape results.",
+      "rail_action": "reframe"
+    },
+    {
+      "id": "labels_are_objective",
+      "pattern": "objective_labels",
+      "description": "Assuming labels are always correct and agreed.",
+      "trigger": "learner ignores who labelled the data",
+      "feedback": "Labels are human judgments. They can be inconsistent or reflect the labellers' assumptions.",
+      "rail_action": "reframe"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "chapter_title": "How AI Works",
+  "title": "Strengths and Limits",
+  "description": "Match AI tools to the tasks they do well, and recognize the limits that call for human checking.",
+  "learning_objectives": [
+    "List tasks where language models are typically helpful.",
+    "Describe common limits: hallucinations, outdated knowledge, weak arithmetic and invented citations.",
+    "Decide when an AI output needs checking before use."
+  ],
+  "concept_ids": [
+    "ai_strengths",
+    "hallucination",
+    "knowledge_limits"
+  ],
+  "estimated_time_minutes": 10,
+  "order": 3
+}

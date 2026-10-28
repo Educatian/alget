@@ -1,0 +1,21 @@
+{
+  "section_id": "ai_literacy_0101",
+  "misconceptions": [
+    {
+      "id": "ai_is_any_computer",
+      "pattern": "overextension",
+      "description": "Treating any computer program as AI.",
+      "trigger": "learner calls a calculator or spreadsheet formula AI",
+      "feedback": "Ask whether the system learned from data. Programs that only follow hand-written rules are not what we mean by AI here.",
+      "rail_action": "reframe"
+    },
+    {
+      "id": "ai_is_only_chatbots",
+      "pattern": "underextension",
+      "description": "Thinking AI means only chatbots.",
+      "trigger": "learner cannot name AI in search, cameras or recommendations",
+      "feedback": "Most AI is built into everyday tools: spam filters, recommendations, autocomplete, face unlock. Chatbots are one visible example.",
+      "rail_action": "reframe"
+    }
+  ]
+}

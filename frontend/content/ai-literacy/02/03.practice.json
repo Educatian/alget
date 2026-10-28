@@ -1,0 +1,49 @@
+{
+  "problems": [
+    {
+      "id": "ail_203_a",
+      "type": "multiple_choice",
+      "concept_id": "error_costs",
+      "stem": "An AI detector says your own essay was AI-written. What kind of error is this?",
+      "options": [
+        "A false positive.",
+        "A false negative.",
+        "A correct detection.",
+        "A sampling error."
+      ],
+      "correct_index": 0,
+      "explanation": "Flagging genuine work as AI-generated is a false positive.",
+      "misconception_id": "errors_are_equal"
+    },
+    {
+      "id": "ail_203_b",
+      "type": "multiple_choice",
+      "concept_id": "evaluation_questions",
+      "stem": "Which question best checks whether a tool works for your group?",
+      "options": [
+        "Is the tool popular?",
+        "Was it tested on people like the ones it will be used on, with results reported by group?",
+        "Does it use the newest model?",
+        "Is it free?"
+      ],
+      "correct_index": 1,
+      "explanation": "Test populations and disaggregated results show who the tool works for.",
+      "misconception_id": "average_is_enough"
+    },
+    {
+      "id": "ail_203_c",
+      "type": "multiple_choice",
+      "concept_id": "human_oversight",
+      "stem": "What makes human oversight meaningful?",
+      "options": [
+        "A person glances at the output after the decision is made.",
+        "A person with authority reviews outputs, can override them and is accountable.",
+        "The AI explains itself.",
+        "The tool has a warning label."
+      ],
+      "correct_index": 1,
+      "explanation": "Oversight requires authority, information and accountability.",
+      "misconception_id": "rubber_stamp_oversight"
+    }
+  ]
+}

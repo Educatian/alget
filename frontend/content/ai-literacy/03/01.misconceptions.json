@@ -1,0 +1,21 @@
+{
+  "section_id": "ai_literacy_0301",
+  "misconceptions": [
+    {
+      "id": "good_output_means_learning",
+      "pattern": "output_equals_learning",
+      "description": "Equating a good product with learning.",
+      "trigger": "learner says 'the essay is good, so I learned it'",
+      "feedback": "Learning comes from doing the thinking. A good product you did not think through may leave the skill unpracticed.",
+      "rail_action": "reframe"
+    },
+    {
+      "id": "ai_takes_responsibility",
+      "pattern": "responsibility_shift",
+      "description": "Believing AI use shifts responsibility.",
+      "trigger": "learner blames the tool for errors in submitted work",
+      "feedback": "You choose what to submit, so you are responsible for it. Check before you use.",
+      "rail_action": "reframe"
+    }
+  ]
+}

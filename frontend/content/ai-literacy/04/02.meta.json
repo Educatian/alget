@@ -1,0 +1,17 @@
+{
+  "chapter_title": "Responsible Use and Privacy",
+  "title": "Integrity and Disclosure",
+  "description": "Follow course AI policies, disclose AI use honestly, and keep a record of how AI contributed to your work.",
+  "learning_objectives": [
+    "Locate and apply the AI policy for a specific course.",
+    "Write a clear disclosure statement describing how AI was used.",
+    "Keep a simple record of prompts and changes to support honest disclosure."
+  ],
+  "concept_ids": [
+    "course_ai_policy",
+    "ai_disclosure",
+    "academic_integrity"
+  ],
+  "estimated_time_minutes": 10,
+  "order": 2
+}

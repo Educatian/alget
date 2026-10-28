@@ -1,0 +1,21 @@
+{
+  "section_id": "ai_literacy_0402",
+  "misconceptions": [
+    {
+      "id": "one_rule_everywhere",
+      "pattern": "uniform_policy",
+      "description": "Assuming one AI rule applies to every course.",
+      "trigger": "learner applies a permissive rule from another class",
+      "feedback": "AI policies vary by course and by assignment. Check each one.",
+      "rail_action": "reframe"
+    },
+    {
+      "id": "vague_disclosure_is_enough",
+      "pattern": "token_disclosure",
+      "description": "Thinking 'I used AI' is enough disclosure.",
+      "trigger": "learner writes a one-word disclosure",
+      "feedback": "Say what tool, for what, and what you did with the output.",
+      "rail_action": "reframe"
+    }
+  ]
+}

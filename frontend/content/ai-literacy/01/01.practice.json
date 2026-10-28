@@ -1,0 +1,49 @@
+{
+  "problems": [
+    {
+      "id": "ail_101_a",
+      "type": "multiple_choice",
+      "concept_id": "ai_definition",
+      "stem": "What most clearly separates an AI spam filter from a calculator?",
+      "options": [
+        "The spam filter is faster.",
+        "The spam filter learned its behavior from labelled examples; the calculator follows fixed rules.",
+        "The calculator uses more electricity.",
+        "The spam filter never makes mistakes."
+      ],
+      "correct_index": 1,
+      "explanation": "AI systems learn patterns from data. Fixed-rule tools do exactly what they were programmed to do.",
+      "misconception_id": "ai_is_any_computer"
+    },
+    {
+      "id": "ail_101_b",
+      "type": "multiple_choice",
+      "concept_id": "narrow_vs_general_ai",
+      "stem": "A chatbot writes a strong essay outline. What does that show?",
+      "options": [
+        "It has general intelligence and can do any task.",
+        "It is good at one kind of task, producing text, which is narrow AI.",
+        "It understands the topic the way an expert does.",
+        "It can be trusted on every fact in the outline."
+      ],
+      "correct_index": 1,
+      "explanation": "Fluent text shows skill at a narrow task. It is not evidence of general intelligence or of factual accuracy.",
+      "misconception_id": "fluency_means_general"
+    },
+    {
+      "id": "ail_101_c",
+      "type": "multiple_choice",
+      "concept_id": "everyday_ai",
+      "stem": "Which campus tool is most likely to use AI?",
+      "options": [
+        "A printed course catalog.",
+        "A library search that ranks results by relevance.",
+        "A room-number sign.",
+        "A paper attendance sheet."
+      ],
+      "correct_index": 1,
+      "explanation": "Ranking search results by learned relevance is a common use of AI.",
+      "misconception_id": "ai_is_only_chatbots"
+    }
+  ]
+}

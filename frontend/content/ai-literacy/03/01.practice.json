@@ -1,0 +1,49 @@
+{
+  "problems": [
+    {
+      "id": "ail_301_a",
+      "type": "multiple_choice",
+      "concept_id": "task_delegation",
+      "stem": "Which part of a research paper is the best candidate to delegate?",
+      "options": [
+        "Forming your thesis.",
+        "Formatting references you have already found and checked.",
+        "Choosing which evidence supports your argument.",
+        "Writing your conclusion."
+      ],
+      "correct_index": 1,
+      "explanation": "Formatting checked references is support work; the argument is core work.",
+      "misconception_id": "delegate_everything"
+    },
+    {
+      "id": "ail_301_b",
+      "type": "multiple_choice",
+      "concept_id": "protecting_learning_goals",
+      "stem": "Why can delegating core work hurt you even if the result looks good?",
+      "options": [
+        "Because AI is always wrong.",
+        "Because you skip practicing the skill the assignment is meant to build.",
+        "Because it takes longer.",
+        "Because instructors dislike technology."
+      ],
+      "correct_index": 1,
+      "explanation": "Learning comes from doing the thinking; outsourcing it removes the practice.",
+      "misconception_id": "good_output_means_learning"
+    },
+    {
+      "id": "ail_301_c",
+      "type": "multiple_choice",
+      "concept_id": "final_decision",
+      "stem": "Who is responsible for work you submit that used AI?",
+      "options": [
+        "The AI company.",
+        "You.",
+        "Nobody.",
+        "The instructor."
+      ],
+      "correct_index": 1,
+      "explanation": "You remain accountable for what you submit.",
+      "misconception_id": "ai_takes_responsibility"
+    }
+  ]
+}

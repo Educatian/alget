@@ -1,0 +1,49 @@
+{
+  "problems": [
+    {
+      "id": "ail_103_a",
+      "type": "multiple_choice",
+      "concept_id": "hallucination",
+      "stem": "What is an AI hallucination?",
+      "options": [
+        "A picture the AI draws.",
+        "A confident statement from the AI that is false.",
+        "A slow response.",
+        "A refusal to answer."
+      ],
+      "correct_index": 1,
+      "explanation": "Hallucinations are fluent, confident outputs that are not true.",
+      "misconception_id": "fluency_means_truth"
+    },
+    {
+      "id": "ail_103_b",
+      "type": "multiple_choice",
+      "concept_id": "knowledge_limits",
+      "stem": "Why might a chatbot get a recent event wrong?",
+      "options": [
+        "It learned from data up to a cutoff date and may not search the web.",
+        "It dislikes current events.",
+        "It is not allowed to use dates.",
+        "Recent events are always secret."
+      ],
+      "correct_index": 0,
+      "explanation": "Models learn from data up to a point in time; without search they cannot know later events.",
+      "misconception_id": "ai_knows_everything_current"
+    },
+    {
+      "id": "ail_103_c",
+      "type": "multiple_choice",
+      "concept_id": "ai_strengths",
+      "stem": "Which use plays to a language model's strengths?",
+      "options": [
+        "Getting exact statistics you will cite without checking.",
+        "Getting three alternative explanations of a concept you are studying.",
+        "Getting a final grade decision.",
+        "Getting medical diagnoses."
+      ],
+      "correct_index": 1,
+      "explanation": "Re-explaining concepts is a strength, and you can judge which explanation helps.",
+      "misconception_id": "ai_is_an_oracle"
+    }
+  ]
+}

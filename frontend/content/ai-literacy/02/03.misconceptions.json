@@ -1,0 +1,21 @@
+{
+  "section_id": "ai_literacy_0203",
+  "misconceptions": [
+    {
+      "id": "errors_are_equal",
+      "pattern": "symmetric_errors",
+      "description": "Treating all errors as equally costly.",
+      "trigger": "learner reports only overall error rate",
+      "feedback": "False positives and false negatives harm different people in different ways. Ask who pays for each.",
+      "rail_action": "reframe"
+    },
+    {
+      "id": "rubber_stamp_oversight",
+      "pattern": "nominal_oversight",
+      "description": "Assuming any human in the loop is enough.",
+      "trigger": "learner says 'a person signs off, so it is fine'",
+      "feedback": "A reviewer needs time, information and permission to overrule the tool, or oversight is only a formality.",
+      "rail_action": "reframe"
+    }
+  ]
+}

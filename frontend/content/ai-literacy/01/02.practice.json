@@ -1,0 +1,49 @@
+{
+  "problems": [
+    {
+      "id": "ail_102_a",
+      "type": "multiple_choice",
+      "concept_id": "next_token_prediction",
+      "stem": "What does a language model do at each step of writing a reply?",
+      "options": [
+        "Looks the answer up in a database of facts.",
+        "Gives each possible next token a probability and samples one.",
+        "Copies a full answer written by a person.",
+        "Asks a human expert."
+      ],
+      "correct_index": 1,
+      "explanation": "Language models build replies token by token from learned probabilities.",
+      "misconception_id": "model_looks_up_answers"
+    },
+    {
+      "id": "ail_102_b",
+      "type": "multiple_choice",
+      "concept_id": "sampling_temperature",
+      "stem": "What happens when you lower the temperature?",
+      "options": [
+        "The most likely word becomes even more likely, so output is more predictable.",
+        "The model learns new facts.",
+        "Every word becomes equally likely.",
+        "The model stops making mistakes."
+      ],
+      "correct_index": 0,
+      "explanation": "Low temperature sharpens the probabilities toward the top choice.",
+      "misconception_id": "temperature_is_accuracy"
+    },
+    {
+      "id": "ail_102_c",
+      "type": "multiple_choice",
+      "concept_id": "fluency_vs_truth",
+      "stem": "Why can a well-written AI answer still be wrong?",
+      "options": [
+        "Because grammar checkers are turned off.",
+        "Because the model chooses likely words, and likely is not the same as true.",
+        "Because long answers are always wrong.",
+        "Because AI never uses real data."
+      ],
+      "correct_index": 1,
+      "explanation": "The model optimizes for plausible text. Plausible text can contain false claims.",
+      "misconception_id": "fluency_means_truth"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "chapter_title": "Data, Training and Bias",
+  "title": "Learning from Data",
+  "description": "Understand training data, labels and generalization, and see that choices about data are human choices.",
+  "learning_objectives": [
+    "Describe how a model learns from labelled training examples.",
+    "Explain generalization: performing on new examples the model has not seen.",
+    "Identify human decisions involved in collecting and labelling data."
+  ],
+  "concept_ids": [
+    "training_data",
+    "labels",
+    "generalization"
+  ],
+  "estimated_time_minutes": 10,
+  "order": 1
+}

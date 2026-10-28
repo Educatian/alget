@@ -1,0 +1,21 @@
+{
+  "section_id": "ai_literacy_0102",
+  "misconceptions": [
+    {
+      "id": "model_looks_up_answers",
+      "pattern": "retrieval_model",
+      "description": "Believing the model retrieves stored answers.",
+      "trigger": "learner says the chatbot 'searched its database'",
+      "feedback": "A language model generates text from learned probabilities. Some tools also search the web, but the writing itself is generated.",
+      "rail_action": "reframe"
+    },
+    {
+      "id": "fluency_means_truth",
+      "pattern": "fluency_heuristic",
+      "description": "Trusting text because it is fluent and confident.",
+      "trigger": "learner accepts an answer because it 'sounds right'",
+      "feedback": "Fluency comes from predicting likely words. Check facts against sources, especially names, numbers and citations.",
+      "rail_action": "reframe"
+    }
+  ]
+}

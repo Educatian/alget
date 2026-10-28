@@ -12,6 +12,7 @@ const COURSE_INFO = {
     dynamics: { label: 'Engineering Dynamics', prompt: 'Ask me about motion, forces, energy, and momentum in this section.' },
     'bio-inspired': { label: 'Bio-Inspired Engineering', prompt: 'Ask me about bridging biological mechanisms into engineering design.' },
     'inst-design': { label: 'Instructional Design', prompt: 'Ask me about creating effective learning experiences.' },
+    'ai-literacy': { label: 'AI Literacy', prompt: 'Ask me how AI tools work, how to check their answers, or how to use them responsibly in your courses.' },
 }
 
 function courseOf(context) {

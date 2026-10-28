@@ -1,0 +1,17 @@
+{
+  "chapter_title": "Data, Training and Bias",
+  "title": "Accurate for Whom?",
+  "description": "Turn the bias lesson into questions you can ask about any AI tool used in your courses, jobs or campus life.",
+  "learning_objectives": [
+    "Ask evaluation questions about who an AI tool was tested on.",
+    "Explain why different errors can have different costs for different people.",
+    "Describe the role of human oversight when an AI tool affects decisions about people."
+  ],
+  "concept_ids": [
+    "evaluation_questions",
+    "error_costs",
+    "human_oversight"
+  ],
+  "estimated_time_minutes": 10,
+  "order": 3
+}

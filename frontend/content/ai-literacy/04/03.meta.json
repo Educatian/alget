@@ -1,0 +1,17 @@
+{
+  "chapter_title": "Responsible Use and Privacy",
+  "title": "Your AI Use Plan",
+  "description": "Bring the course together in a personal AI use plan you can apply to your next assignments.",
+  "learning_objectives": [
+    "Write a personal plan for when and how you will use AI in your courses.",
+    "Choose the checks you will run on AI outputs.",
+    "Set your own rules for data you will not share."
+  ],
+  "concept_ids": [
+    "ai_use_plan",
+    "verification_habits",
+    "transfer"
+  ],
+  "estimated_time_minutes": 15,
+  "order": 3
+}
