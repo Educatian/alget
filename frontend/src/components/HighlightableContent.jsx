@@ -31,7 +31,8 @@ export default function HighlightableContent({
     sectionId,
     userId,
     onAskBigAL,
-    presenceSummary = null
+    presenceSummary = null,
+    liveHeadingCounts = null
 }) {
     const containerRef = useRef(null)
     const [selectionState, setSelectionState] = useState(null)
@@ -45,6 +46,7 @@ export default function HighlightableContent({
     const [explainRequest, setExplainRequest] = useState(null)
     const selectedAnchorRef = useRef(null)
     const contentObserverRef = useRef(null)
+    const loggedSharedRef = useRef(new Set())
     const [contentVersion, setContentVersion] = useState(0)
 
     // Esc-to-close on the discussion modal (a11y).
@@ -73,6 +75,35 @@ export default function HighlightableContent({
     const underlinePassageCount = popularHighlights.length
     const underlineReaderCount = popularHighlights.reduce((sum, item) => sum + (item.highlight_count || 0), 0)
     const activeHeading = presenceSummary?.activeHeading || ''
+
+    // TAMU live class: a "N here" badge on every heading classmates are reading now. Kept apart from
+    // the highlight pass below, so classmates moving around never re-wrap marks or break a selection.
+    const liveHeadingRef = useRef(liveHeadingCounts)
+    const applyLiveHeadingBadges = useCallback(() => {
+        const container = containerRef.current
+        if (!container) return
+        container.querySelectorAll('[data-live-presence-badge="live"]').forEach((badge) => badge.remove())
+        const counts = liveHeadingRef.current || {}
+        Array.from(container.querySelectorAll('h1, h2, h3, h4')).forEach((headingNode) => {
+            const n = counts[headingNode.innerText?.trim()] || 0
+            if (!n) return
+            const badge = document.createElement('span')
+            badge.className = 'ml-3 inline-flex translate-y-[-0.1rem] select-none items-center gap-1.5 rounded-full border border-[rgba(15,118,110,0.18)] bg-[rgba(255,255,255,0.82)] px-2 py-0.5 align-middle text-[10px] font-bold uppercase tracking-[0.14em] text-teal-800 shadow-sm after:content-[attr(data-label)]'
+            badge.setAttribute('data-live-presence-badge', 'live')
+            // Label drawn by CSS: the reader reports headings by innerText, which must stay clean.
+            badge.setAttribute('data-label', `${n} here`)
+            badge.title = `${n} classmate${n === 1 ? '' : 's'} reading this part now`
+            const pulse = document.createElement('span')
+            pulse.className = 'inline-block h-2 w-2 rounded-full bg-emerald-500 animate-pulse'
+            badge.appendChild(pulse)
+            headingNode.appendChild(badge)
+        })
+        contentObserverRef.current?.takeRecords()
+    }, [])
+    useEffect(() => {
+        liveHeadingRef.current = liveHeadingCounts
+        applyLiveHeadingBadges()
+    }, [applyLiveHeadingBadges, liveHeadingCounts])
 
     // Apply highlights to DOM after content renders
     useEffect(() => {
@@ -243,6 +274,40 @@ export default function HighlightableContent({
 
         // Apply popular highlights (blue underline)
         popularHighlights.forEach(ph => {
+            if (ph.shared && ph.anchor) {
+                // TAMU live class: a passage 2+ classmates underlined, pinned by its anchor. The count
+                // badge is skipped by the anchoring walk, so offsets stay the same for everyone.
+                const tags = Object.entries(ph.tags || {}).sort((a, b) => b[1] - a[1])
+                    .map(([color, n]) => `${n} ${tagFor(color).label}`).join(', ')
+                const label = `${ph.highlight_count} classmates underlined this`
+                const marks = wrapAnchor(container, ph.anchor, () => {
+                    const mark = document.createElement('mark')
+                    mark.className = 'bg-transparent rounded-none px-0 cursor-help underline decoration-dotted decoration-2 underline-offset-4 decoration-[rgba(15,118,110,0.8)] text-inherit'
+                    mark.setAttribute('data-highlight', 'shared')
+                    mark.title = `${label}${tags ? ` (${tags})` : ''}`
+                    mark.addEventListener('mouseenter', () => {
+                        const rect = mark.getBoundingClientRect()
+                        setHoveredHighlight({ x: rect.left + rect.width / 2, y: rect.top - 10, label, note: tags ? `Tagged ${tags}` : null, isPopular: true })
+                        if (!loggedSharedRef.current.has(ph.anchor.start)) {
+                            loggedSharedRef.current.add(ph.anchor.start)
+                            logEvent('shared_highlight_view', null, { count: ph.highlight_count, tags: ph.tags, start: ph.anchor.start, length: ph.anchor.exact.length }, sectionId)
+                        }
+                    })
+                    mark.addEventListener('mouseleave', () => setHoveredHighlight(null))
+                    return mark
+                })
+                const last = marks.at(-1)
+                if (last) {
+                    const badge = document.createElement('sup')
+                    badge.setAttribute('data-collab-badge', 'shared')
+                    // Label drawn by CSS, so it is never part of selected or anchored text.
+                    badge.className = 'ml-0.5 select-none rounded-full bg-[rgba(15,118,110,0.12)] px-1 text-[10px] font-bold text-teal-800 after:content-[attr(data-label)]'
+                    badge.setAttribute('data-label', ph.highlight_count > 9 ? '9+' : String(ph.highlight_count))
+                    badge.title = label
+                    last.after(badge)
+                }
+                return
+            }
             applyHighlight(ph.text_content, {
                 className: 'bg-[rgba(200,226,236,0.22)] border-b-2 border-[rgba(15,81,103,0.55)] rounded px-0.5 cursor-help transition-colors hover:bg-[rgba(200,226,236,0.35)]',
                 title: `${ph.highlight_count} readers highlighted this passage`,
@@ -300,7 +365,9 @@ export default function HighlightableContent({
             })
         })
 
-        if (sameHeadingCount > 0) {
+        if (liveHeadingRef.current) {
+            applyLiveHeadingBadges()
+        } else if (sameHeadingCount > 0) {
             const headings = Array.from(container.querySelectorAll('h1, h2, h3, h4'))
             const normalizedActiveHeading = activeHeading.trim().toLowerCase()
             const liveHost = headings.find((headingNode) => (
@@ -351,7 +418,7 @@ export default function HighlightableContent({
 
         // Drop the mutations this pass made, so the observer below only reacts to new content.
         contentObserverRef.current?.takeRecords()
-    }, [activeHeading, children, contentVersion, deleteHighlight, highlights, peerHighlights, popularHighlights, presenceSummary, sameHeadingCount])
+    }, [activeHeading, applyLiveHeadingBadges, children, contentVersion, deleteHighlight, highlights, peerHighlights, popularHighlights, presenceSummary, sameHeadingCount, sectionId])
 
     // The reading text renders after this component (lazy MDX), so re-apply highlights whenever
     // the content changes; otherwise saved highlights are painted before their text exists.
@@ -508,7 +575,8 @@ export default function HighlightableContent({
     return (
         <div ref={containerRef} className="relative select-text">
             {(livePeerCount > 0 || underlinePassageCount > 0 || presenceSummary?.connected) && (
-                <div className="pointer-events-none sticky top-4 z-30 mb-4 flex justify-end px-4">
+                // data-collab-badge keeps this strip's changing text out of highlight anchors (lib/annotationAnchor.js).
+                <div data-collab-badge="strip" className="pointer-events-none sticky top-4 z-30 mb-4 flex justify-end px-4">
                     <div className="pointer-events-auto inline-flex max-w-full items-center gap-2 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.82)] px-2.5 py-2 shadow-[0_12px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl">
                         <div className="flex -space-x-2">
                             {livePeerCount > 0 ? presenceSummary.peers.slice(0, 3).map((peer) => (

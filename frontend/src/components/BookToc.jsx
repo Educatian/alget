@@ -28,7 +28,7 @@ function getCourseSummary(chapters = []) {
     }
 }
 
-export default function BookToc({ toc, currentCourse, currentChapter, currentSection, onNavigate, completedSections, isLocked }) {
+export default function BookToc({ toc, currentCourse, currentChapter, currentSection, onNavigate, completedSections, isLocked, liveCounts = null }) {
     const [searchQuery, setSearchQuery] = useState('')
     const [expandedChapters, setExpandedChapters] = useState([currentChapter])
 
@@ -144,6 +144,15 @@ export default function BookToc({ toc, currentCourse, currentChapter, currentSec
                                                 <span className="line-clamp-2">
                                                     {chapter.id}.{section.id} {section.title}
                                                 </span>
+                                                {liveCounts?.[`${currentCourse}/${chapter.id}/${section.id}`] > 0 && (
+                                                    <span
+                                                        className={`ml-2 inline-flex shrink-0 items-center gap-1 rounded-full px-1.5 py-0.5 text-[10px] font-semibold ${isActive ? 'bg-white/20 text-white' : 'bg-emerald-50 text-emerald-800'}`}
+                                                        title="Classmates reading this section now"
+                                                    >
+                                                        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500" aria-hidden="true" />
+                                                        {liveCounts[`${currentCourse}/${chapter.id}/${section.id}`]} reading
+                                                    </span>
+                                                )}
                                                 {isDone && (
                                                     <span className={`ml-2 shrink-0 text-xs font-bold ${isActive ? 'text-white' : 'text-emerald-600'}`}>
                                                         Done

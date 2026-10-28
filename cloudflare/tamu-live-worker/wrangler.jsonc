@@ -1,0 +1,20 @@
+{
+  // TAMU preview live class: presence and shared underlines over WebSockets (src/index.js).
+  // Separate from the tutor worker (alget-tamu-tutor); it reads that worker's D1 for sessions and
+  // synced highlights and never writes to it.
+  "$schema": "../backend-worker/node_modules/wrangler/config-schema.json",
+  "name": "alget-tamu-live",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-24",
+  "vars": {
+    "ALLOWED_ORIGINS": "https://tamu-3d-labs.alget-tamu-ai-literacy.pages.dev"
+  },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "alget-tamu-events", "database_id": "db507ff2-9bf7-4808-8186-1497f63e6f2e" }
+  ],
+  "durable_objects": {
+    "bindings": [{ "name": "CLASSROOM", "class_name": "ClassRoom" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["ClassRoom"] }],
+  "observability": { "enabled": true, "head_sampling_rate": 1 }
+}

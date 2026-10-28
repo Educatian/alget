@@ -114,6 +114,27 @@ node scripts/sweep.mjs                                                 # live le
 Build the preview with `VITE_TUTOR_URL=https://alget-tamu-tutor.jewoong-moon.workers.dev` to turn the AI steps on;
 without it the reader stays fully offline.
 
+### TAMU live class worker (`cloudflare/tamu-live-worker`)
+
+Real-time social cues for the TAMU preview, as a separate worker so the tutor worker and the Supabase-based
+presence/peer-highlight code are untouched: https://alget-tamu-live.jewoong-moon.workers.dev. One Durable Object
+(`ClassRoom`, SQLite class, hibernating WebSockets) holds a socket per open reader; the session token travels in
+the WebSocket subprotocol list, never in the URL. Readers report only their section, heading and whether the tab is
+hidden. Every reader is told, without names: classmates online, how many are reading each section (contents panel
+pill), how many are at each heading of their section ("N here" badge), and the passages that 2+ classmates
+underlined in their section (dotted underline with a count and colour-tag counts; `src/shared.js` builds them from
+the synced highlights in D1 and never returns notes). Instructors and TAMU-9xx IDs are not counted. The worker only
+reads the tutor worker's D1 (sessions, progress).
+
+```
+cd cloudflare/tamu-live-worker && npm test && npx wrangler deploy
+```
+
+Build the preview with `VITE_LIVE_URL=https://alget-tamu-live.jewoong-moon.workers.dev` (needs the accounts build);
+without it the live class stays off. Local testing needs both workers in one `wrangler dev` process (two processes
+sharing one local D1 file fail with D1 internal errors): run them behind a small router that sends `/live` to the
+live worker and everything else to the tutor worker.
+
 ## Notes
 
 - `ENGINEERING_ACCESS_CODE` and `EDUCATION_ACCESS_CODE` now validate server-side through `/api/access/validate`.

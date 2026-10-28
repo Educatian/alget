@@ -54,6 +54,9 @@ sequential pattern mining).
 | `activity_feedback_error` | activity id | `error` | written activity |
 | `activity_revise_start` | activity id | `after_round` | written activity |
 | `highlight_create` / `_update` / `_delete` | highlight id | text and note lengths, tag | annotation |
+| `shared_highlight_view` | – | count of classmates, colour-tag counts, start offset, length (first hover per passage per visit) | social annotation |
+| `live_class_open` | – | online, in this section, reading anywhere (opening the live class list) | social presence |
+| `live_class_jump` | section opened | classmates reading it | social presence |
 | `ai_explain` | | `mode`, `status`, `quote_length` | "Explain this passage" |
 | `read_aloud` | | `text_length` | read aloud |
 | `notebook_open` / `_jump` / `_export` | | scope, tag, counts | notebook |

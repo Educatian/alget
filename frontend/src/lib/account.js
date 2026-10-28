@@ -77,6 +77,7 @@ export async function flush({ keepalive = false } = {}) {
             const left = readJson(PENDING_KEY) || {}
             for (const [key, value] of Object.entries(set)) if (left[key] === value) delete left[key]
             rawSet.call(store(), PENDING_KEY, JSON.stringify(left))
+            if (res.ok) window.dispatchEvent(new CustomEvent('alget-progress-synced', { detail: Object.keys(set) }))
             if (Object.keys(left).length) timer = setTimeout(flush, FLUSH_MS)
             return
         }

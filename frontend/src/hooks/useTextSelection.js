@@ -1,7 +1,8 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import { isSupabaseConfigured, supabase } from '../lib/supabase'
 import { useToast } from '../lib/toastContext'
 import { readLocalHighlights, writeLocalHighlights } from '../lib/localAnnotations'
+import { useLiveShared } from './useLiveClass'
 
 const SHOW_PEER_HIGHLIGHTS = false
 // Without Supabase (static preview, local dev) highlights live in this browser only.
@@ -18,6 +19,12 @@ export function useTextSelection({ sectionId, userId }) {
     const [peerHighlights, setPeerHighlights] = useState([])
     const [loading, setLoading] = useState(false)
     const [loadedSection, setLoadedSection] = useState(null)
+    // TAMU live class: passages several classmates underlined, anchored like the reader's own.
+    const liveShared = useLiveShared(sectionId)
+    const livePopular = useMemo(
+        () => liveShared.map((p) => ({ text_content: p.exact, anchor: p, highlight_count: p.count, tags: p.tags, shared: true })),
+        [liveShared]
+    )
 
     // Fetch existing highlights for this section
     useEffect(() => {
@@ -226,7 +233,7 @@ export function useTextSelection({ sectionId, userId }) {
         selection,
         highlights,
         peerHighlights,
-        popularHighlights,
+        popularHighlights: livePopular.length ? livePopular : popularHighlights,
         loading,
         handleSelection,
         saveHighlight,

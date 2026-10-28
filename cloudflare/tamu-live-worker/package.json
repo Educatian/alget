@@ -1,0 +1,9 @@
+{
+  "name": "alget-tamu-live",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/live.test.js",
+    "deploy": "wrangler deploy"
+  }
+}

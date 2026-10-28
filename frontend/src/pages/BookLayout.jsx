@@ -31,6 +31,8 @@ import { logEvent, logPageView, logStuckEvent } from '../lib/loggingService'
 import { recordAdaptiveSignal } from '../lib/knowledgeService'
 import { useCourseProgress } from '../hooks/useCourseProgress'
 import { useSocialPresence } from '../hooks/useSocialPresence'
+import { useLiveClass, useLiveShared } from '../hooks/useLiveClass'
+import LiveClassChip from '../components/LiveClassChip'
 import API_BASE from '../lib/apiConfig'
 import '../index.css'
 
@@ -187,6 +189,22 @@ export default function BookLayout({ user, onLogout }) {
         heading: activeHeading,
         focusConcept: sectionData?.meta?.concept_ids?.[0] || null
     })
+    // TAMU accounts mode: live class presence and shared underlines (cloudflare/tamu-live-worker).
+    const live = useLiveClass({ sectionId: sectionPath, heading: activeHeading })
+    const liveShared = useLiveShared(sectionPath)
+    // Presence messages arrive whenever anyone in the class moves; the reader re-renders its marks
+    // only when this section's counts change, and heading badges update on their own.
+    const liveHere = live.here
+    const liveConnected = live.connected
+    const livePresence = useMemo(() => (live.enabled ? {
+        connected: liveConnected,
+        peers: Array.from({ length: liveHere }, (_, i) => ({ key: `here-${i}`, alias: 'Classmate', colorToken: 'from-teal-600 to-emerald-400' })),
+        sameHeadingPeers: [],
+        sameConceptPeers: [],
+        activeHeading
+    } : null), [activeHeading, live.enabled, liveConnected, liveHere])
+    const liveHeadingsKey = live.enabled ? JSON.stringify(live.headings) : ''
+    const liveHeadingCounts = useMemo(() => (liveHeadingsKey ? JSON.parse(liveHeadingsKey) : null), [liveHeadingsKey])
 
     const [tocReloadKey, setTocReloadKey] = useState(0)
     const retryToc = useCallback(() => {
@@ -545,6 +563,16 @@ export default function BookLayout({ user, onLogout }) {
                     </div>
 
                     <div className="flex flex-wrap items-center gap-3">
+                        {live.enabled ? (
+                            <LiveClassChip
+                                live={live}
+                                course={course}
+                                sections={flatSections}
+                                currentPath={sectionPath}
+                                onNavigate={handleNavigate}
+                                sharedCount={liveShared.length}
+                            />
+                        ) : (
                         <Popover.Root>
                             <Popover.Trigger asChild>
                                 <button
@@ -596,6 +624,7 @@ export default function BookLayout({ user, onLogout }) {
                                 </Popover.Content>
                             </Popover.Portal>
                         </Popover.Root>
+                        )}
 
                         <button
                             type="button"
@@ -769,6 +798,7 @@ export default function BookLayout({ user, onLogout }) {
                                 onNavigate={handleNavigate}
                                 completedSections={completedSections}
                                 isLocked={isSectionLocked}
+                                liveCounts={live.enabled ? live.sections : null}
                             />
                         </>
                     )}
@@ -785,7 +815,8 @@ export default function BookLayout({ user, onLogout }) {
                                     sectionId={sectionPath}
                                     userId={user?.id}
                                     onAskBigAL={(text) => setHighlightQuestion(text)}
-                                    presenceSummary={{
+                                    liveHeadingCounts={liveHeadingCounts}
+                                    presenceSummary={livePresence || {
                                         connected: socialState.connected,
                                         peers: socialState.peers,
                                         sameHeadingPeers: socialState.sameHeadingPeers,
