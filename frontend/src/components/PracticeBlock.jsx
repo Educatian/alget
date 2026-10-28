@@ -4,6 +4,7 @@ import API_BASE from '../lib/apiConfig'
 import { STATIC_DEMO, gradeMultipleChoice } from '../lib/staticDemo'
 import { buildHintLadder, revealPassage } from '../lib/hintLadder'
 import { recordReviewOutcome } from '../lib/reviewSchedule'
+import { TUTOR_ENABLED, askTutorHint } from '../lib/tutorClient'
 import { logEvent } from '../lib/loggingService'
 import { fuseTelemetry, recordAdaptiveSignal, updateMastery } from '../lib/knowledgeService'
 import { annotateMisconceptionSignal, resolveInterventionOutcome, updateLearnerModel } from '../lib/researchService'
@@ -27,6 +28,8 @@ function buildReviewPayload(problem, reason, preferredTab = 'explain') {
 
 // Multiple-choice tries before the answer is shown; each wrong pick is struck out for the retry.
 const MAX_MCQ_ATTEMPTS = 2
+const MAX_AI_HINTS = 2
+const isMcqProblem = (p) => p?.type === 'multiple_choice' && Array.isArray(p?.options)
 
 export default function PracticeBlock({ practice, misconceptions = [], sectionContent = '', onStuckEvent, onNeedsReview, sectionId }) {
     const [currentIndex, setCurrentIndex] = useState(0)
@@ -52,6 +55,10 @@ export default function PracticeBlock({ practice, misconceptions = [], sectionCo
     // Rungs already shown are kept as shown; the next one is built from the current struck options.
     const shownRungs = rungsByProblem[currentProblem?.id] || []
     const nextRung = buildHintLadder(currentProblem, authoredMisconception, sectionContent, struck)[shownRungs.length] || null
+    // After the offline ladder, the AI tutor (when configured) gives up to two Socratic hints.
+    const aiHintsUsed = shownRungs.filter((r) => r.kind === 'ai').length
+    const canAskAi = TUTOR_ENABLED && isMcqProblem(currentProblem) && aiHintsUsed < MAX_AI_HINTS && !shownRungs.some((r) => r.kind === 'ai-unavailable')
+    const [aiLoading, setAiLoading] = useState(false)
 
     useEffect(() => {
         const resetIdleTimer = () => {
@@ -228,7 +235,7 @@ export default function PracticeBlock({ practice, misconceptions = [], sectionCo
         }
     }
 
-    const handleHintRequest = () => {
+    const handleHintRequest = async () => {
         const nextCount = hintCount + 1
         setHintCount(nextCount)
         setShowHint(true)
@@ -246,6 +253,16 @@ export default function PracticeBlock({ practice, misconceptions = [], sectionCo
                 if (answers[currentProblem.id]?.selectedIndex === rung.eliminate) updateAnswer(currentProblem.id, 'selectedIndex', undefined)
             }
             logEvent('hint_rung', currentProblem.id, { problem_id: currentProblem.id, rung: shownRungs.length + 1, kind: rung.kind }, sectionId)
+        } else if (canAskAi) {
+            const problemId = currentProblem.id
+            setAiLoading(true)
+            const res = await askTutorHint({ sectionId: currentProblem.review_of || sectionId, problemId, rung: aiHintsUsed + 1, picks: struck })
+            setAiLoading(false)
+            const aiRung = res?.hint
+                ? { kind: 'ai', title: 'AI tutor', text: `${res.hint}${res.check_question ? ` ${res.check_question}` : ''}` }
+                : { kind: 'ai-unavailable', title: 'AI tutor', text: 'The AI tutor can\'t help with this one right now. Try rereading the passage the first hint points to.' }
+            setRungsByProblem((previous) => ({ ...previous, [problemId]: [...(previous[problemId] || []), aiRung] }))
+            logEvent('hint_rung', problemId, { problem_id: problemId, rung: shownRungs.length + 1, kind: aiRung.kind, tutor_status: res?.hint ? 'ok' : String(res?.error || 'unknown').slice(0, 40) }, sectionId)
         } else if (!STATIC_DEMO) {
             window.dispatchEvent(new CustomEvent('open-chat', {
                 detail: {
@@ -370,13 +387,13 @@ export default function PracticeBlock({ practice, misconceptions = [], sectionCo
                     <button
                         type="button"
                         onClick={handleHintRequest}
-                        disabled={STATIC_DEMO && !nextRung}
-                        title={nextRung ? `Hint: ${nextRung.title}` : STATIC_DEMO ? 'No more hints' : 'Ask the tutor for a hint'}
-                        aria-label={nextRung ? `Get a hint: ${nextRung.title}` : 'Ask the tutor for a hint'}
+                        disabled={aiLoading || (STATIC_DEMO && !nextRung && !canAskAi)}
+                        title={nextRung ? `Hint: ${nextRung.title}` : canAskAi ? 'Ask the AI tutor for a hint (it will not give the answer)' : STATIC_DEMO ? 'No more hints' : 'Ask the tutor for a hint'}
+                        aria-label={nextRung ? `Get a hint: ${nextRung.title}` : canAskAi ? 'Get a hint from the AI tutor' : 'Ask the tutor for a hint'}
                         className="absolute right-4 top-4 inline-flex min-h-[40px] items-center gap-1.5 rounded-lg border border-[var(--ath-line)] bg-[var(--ath-panel)] px-3 text-xs font-semibold text-[var(--ath-secondary)] shadow-sm transition-colors hover:bg-[color-mix(in_srgb,var(--ath-accent)_12%,var(--ath-panel))] hover:text-[var(--ath-text)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ath-primary)] disabled:cursor-default disabled:opacity-50"
                     >
                         <Lightbulb className="h-4 w-4" aria-hidden="true" />
-                        {nextRung ? `Hint ${shownRungs.length + 1}` : STATIC_DEMO ? 'No more hints' : 'Ask tutor'}
+                        {aiLoading ? 'Thinking…' : nextRung ? `Hint ${shownRungs.length + 1}` : canAskAi ? 'Ask AI tutor' : STATIC_DEMO ? 'No more hints' : 'Ask tutor'}
                     </button>
                 )}
 
@@ -496,8 +513,10 @@ export default function PracticeBlock({ practice, misconceptions = [], sectionCo
                         {shownRungs.length > 0 && (
                             <ol className="space-y-2" aria-label="Hints" aria-live="polite">
                                 {shownRungs.map((rung, i) => (
-                                    <li key={rung.kind} className="rounded-xl border border-[var(--ath-line)] bg-[color-mix(in_srgb,var(--ath-accent)_10%,var(--ath-panel))] p-3">
-                                        <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Hint {i + 1} · {rung.title}</p>
+                                    <li key={`${rung.kind}-${i}`} className="rounded-xl border border-[var(--ath-line)] bg-[color-mix(in_srgb,var(--ath-accent)_10%,var(--ath-panel))] p-3">
+                                        <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">
+                                            Hint {i + 1} · {rung.title}{rung.kind === 'ai' && <span className="ml-2 rounded bg-[var(--ath-panel)] px-1.5 py-0.5 normal-case tracking-normal">AI-generated</span>}
+                                        </p>
                                         <p className="mt-1 text-sm leading-6 text-[var(--ath-text)]">{rung.kind === 'reread' ? `“${rung.text}”` : rung.text}</p>
                                         {rung.kind === 'reread' && (
                                             <button type="button" onClick={() => revealPassage(rung.anchor)} className="mt-2 min-h-[36px] rounded-lg px-2 text-xs font-semibold text-[var(--ath-primary)] underline-offset-2 hover:underline">

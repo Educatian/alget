@@ -30,10 +30,26 @@ separate and must not be overwritten): https://tamu-3d-labs.alget-tamu-ai-litera
 
 ```
 cd frontend
-VITE_STATIC_DEMO=true VITE_API_BASE=/demo-api npm run build   # do not set VITE_SUPABASE_*
+VITE_STATIC_DEMO=true VITE_API_BASE=/demo-api VITE_TUTOR_URL=https://alget-tamu-tutor.jewoong-moon.workers.dev npm run build   # no VITE_SUPABASE_*
 python ../scripts/export_static_demo.py dist
 npx wrangler pages deploy dist --project-name alget-tamu-ai-literacy --branch tamu-3d-labs
 ```
+
+### TAMU tutor worker (`cloudflare/tamu-tutor-worker`)
+
+AI hints and "explain this passage" for the TAMU preview only: https://alget-tamu-tutor.jewoong-moon.workers.dev
+(separate from `alget-backend` and `alget-tamu-api`). It reads course data from the preview's `/demo-api`, accepts
+calls only from the preview origin, limits each IP to 12 calls a minute and the whole worker to `DAILY_CAP` calls a
+day (KV `alget-tamu-tutor-usage`), and every hint passes `src/leakGuard.js`. `TUTOR_ENABLED=false` switches it off.
+
+```
+npx wrangler secret put OPENROUTER_API_KEY --name alget-tamu-tutor   # owner only
+cd cloudflare/tamu-tutor-worker && npm test && npx wrangler deploy
+node scripts/sweep.mjs                                                 # live leak/grounding sweep (~120 calls)
+```
+
+Build the preview with `VITE_TUTOR_URL=https://alget-tamu-tutor.jewoong-moon.workers.dev` to turn the AI steps on;
+without it the reader stays fully offline.
 
 ## Notes
 

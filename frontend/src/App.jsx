@@ -13,6 +13,7 @@ import GlobalSearch from './components/GlobalSearch'
 import API_BASE from './lib/apiConfig'
 import { canOpenCourse, canOpenLab } from './lib/studyTrack'
 import { DEMO_START, DEMO_USER, STATIC_DEMO } from './lib/staticDemo'
+import { TUTOR_ENABLED } from './lib/tutorClient'
 import './index.css'
 
 const LandingPage = lazy(() => import('./pages/LandingPage'))
@@ -32,8 +33,10 @@ const E2E_USER = import.meta.env.VITE_E2E_AUTH_BYPASS === 'true'
 
 function DemoNotice() {
   return (
-    <div role="note" className="pointer-events-none fixed bottom-3 left-3 z-50 max-w-xs rounded-full border border-[var(--ath-line)] bg-[var(--ath-panel)] px-3 py-1 text-xs text-[var(--ath-muted)] shadow-sm">
-      Preview: no account. Notes and progress stay in this browser; nothing is sent.
+    <div role="note" className="pointer-events-none fixed bottom-3 left-3 z-50 max-w-sm rounded-2xl border border-[var(--ath-line)] bg-[var(--ath-panel)] px-3 py-1 text-xs text-[var(--ath-muted)] shadow-sm">
+      {TUTOR_ENABLED
+        ? 'Preview: no account. Notes and progress stay in this browser. AI hints and explanations come from an AI service; only question IDs and course text are sent.'
+        : 'Preview: no account. Notes and progress stay in this browser; nothing is sent.'}
     </div>
   )
 }

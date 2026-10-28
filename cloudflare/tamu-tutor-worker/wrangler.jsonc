@@ -1,0 +1,24 @@
+﻿{
+  // TAMU preview tutor. Separate from the production backend (alget-backend) and from the
+  // existing alget-tamu-api worker. The OpenRouter key is a secret set by the owner:
+  //   npx wrangler secret put OPENROUTER_API_KEY --name alget-tamu-tutor
+  "$schema": "../backend-worker/node_modules/wrangler/config-schema.json",
+  "name": "alget-tamu-tutor",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-24",
+  "vars": {
+    "TUTOR_ENABLED": "true",
+    "MODEL": "google/gemini-3.1-flash-lite",
+    "CONTENT_BASE": "https://tamu-3d-labs.alget-tamu-ai-literacy.pages.dev/demo-api",
+    "ALLOWED_ORIGINS": "https://tamu-3d-labs.alget-tamu-ai-literacy.pages.dev",
+    "DAILY_CAP": "500",
+    "TIMEOUT_MS": "8000"
+  },
+  "kv_namespaces": [
+    { "binding": "USAGE", "id": "13a6f326f29d4646ab8187e1324bc6c4" }
+  ],
+  "ratelimits": [
+    { "name": "RATE_LIMITER", "namespace_id": "4207", "simple": { "limit": 12, "period": 60 } }
+  ],
+  "observability": { "enabled": true, "head_sampling_rate": 1 }
+}

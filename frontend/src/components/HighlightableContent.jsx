@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { useTextSelection } from '../hooks/useTextSelection'
-import { logHighlightCreate } from '../lib/loggingService'
+import { logEvent, logHighlightCreate } from '../lib/loggingService'
+import { TUTOR_ENABLED } from '../lib/tutorClient'
+import ExplainCard from './ExplainCard'
 import API_BASE from '../lib/apiConfig'
 import { BookOpen, Hash, MessageSquarePlus, Sparkles, Volume2, X } from 'lucide-react'
 import HighlightDiscussion from './HighlightDiscussion'
@@ -40,6 +42,7 @@ export default function HighlightableContent({
     const [discussionHighlightId, setDiscussionHighlightId] = useState(null)
     const [noteColor, setNoteColor] = useState('yellow')
     const [notebookOpen, setNotebookOpen] = useState(false)
+    const [explainRequest, setExplainRequest] = useState(null)
     const selectedAnchorRef = useRef(null)
     const contentObserverRef = useRef(null)
     const [contentVersion, setContentVersion] = useState(0)
@@ -469,6 +472,19 @@ export default function HighlightableContent({
         clearSelection()
     }
 
+    const openExplain = () => {
+        const quote = selectedAnchorRef.current?.exact?.trim() || selectedTextRef.current || selectionState?.text
+        if (quote) setExplainRequest({ quote, anchor: selectedAnchorRef.current })
+        clearSelection()
+    }
+
+    const saveExplanationAsNote = async (note) => {
+        if (!explainRequest) return
+        await saveHighlight(explainRequest.quote, 'yellow', note, explainRequest.anchor)
+        logHighlightCreate(explainRequest.quote.length, true, sectionId)
+        setExplainRequest(null)
+    }
+
     const readSelectionAloud = () => {
         const text = selectedTextRef.current || selectionState?.text
         if (text) readAloud(text)
@@ -578,6 +594,17 @@ export default function HighlightableContent({
                             title="Read aloud"
                         >
                             <Volume2 className="w-4 h-4 text-sky-300 group-hover:text-sky-200" />
+                        </button>
+                    )}
+
+                    {TUTOR_ENABLED && (
+                        <button
+                            onClick={openExplain}
+                            className="flex h-9 w-9 items-center justify-center rounded-full text-white transition-colors hover:bg-slate-800 group"
+                            aria-label="Explain this passage (AI)"
+                            title="Explain this passage (AI)"
+                        >
+                            <Sparkles className="w-4 h-4 text-amber-300 group-hover:text-amber-200" />
                         </button>
                     )}
 
@@ -723,6 +750,16 @@ export default function HighlightableContent({
                         />
                     </div>
                 </div>
+            )}
+
+            {explainRequest && (
+                <ExplainCard
+                    request={explainRequest}
+                    sectionId={sectionId}
+                    onClose={() => setExplainRequest(null)}
+                    onSaveNote={saveExplanationAsNote}
+                    onLog={(mode, status) => logEvent('ai_explain', null, { mode, status, quote_length: explainRequest.quote.length }, sectionId)}
+                />
             )}
 
             <NotebookPanel

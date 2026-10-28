@@ -1,0 +1,9 @@
+{
+  "name": "alget-tamu-tutor",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/leakGuard.test.js test/worker.test.js",
+    "deploy": "wrangler deploy"
+  }
+}
