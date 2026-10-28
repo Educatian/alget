@@ -20,6 +20,7 @@ function memoryKv(seed = {}) {
         get: async (k, type) => (store.has(k) ? (type === 'json' ? JSON.parse(store.get(k)) : store.get(k)) : null),
         put: async (k, v) => { store.set(k, v) },
         delete: async (k) => { store.delete(k) },
+        list: async ({ prefix = '' } = {}) => ({ keys: [...store.keys()].filter((k) => k.startsWith(prefix)).sort().map((name) => ({ name })), list_complete: true }),
     }
 }
 
@@ -195,7 +196,7 @@ test('saves only allowed progress keys, per student', async () => {
     assert.equal(id, 'TAMU-001')
     assert.deepEqual(items, { 'alget_highlights_v1:ai-literacy/01/02': '[{"id":1}]' })
     // Another student sees only their own rows.
-    e.DB.db.prepare('INSERT INTO sessions VALUES (?, ?, ?, ?)').run(createHash('sha256').update('c'.repeat(64)).digest('hex'), 'TAMU-002', 'now', Math.floor(Date.now() / 1000) + 60)
+    e.DB.db.prepare('INSERT INTO sessions (token_hash, student_id, created, expires) VALUES (?, ?, ?, ?)').run(createHash('sha256').update('c'.repeat(64)).digest('hex'), 'TAMU-002', 'now', Math.floor(Date.now() / 1000) + 60)
     assert.deepEqual((await (await get('/progress', e, 'c'.repeat(64))).json()).items, {})
     // Expired sessions do not count.
     e.DB.db.prepare('UPDATE sessions SET expires = 1 WHERE student_id = ?').run('TAMU-002')
@@ -272,4 +273,44 @@ test('feedback that quotes a strong answer back is not treated as a leak', async
     }])
     const res = await post('/feedback', { section_id: 'ai-literacy/01/02', text: strong })
     assert.deepEqual([res.status, (await res.json()).ready], [200, true])
+})
+
+test('instructor dashboard: instructors only, roster status, section and item stats, no test IDs', async () => {
+    mockFetch([])
+    const e = env({ ACCOUNTS: memoryKv({ 'account:TAMU-001': '{}', 'account:TAMU-002': '{}', 'account:TAMU-003': '{}', 'account:TAMU-901': '{"role":"instructor"}', 'account:TAMU-999': '{}' }) })
+    const db = e.DB.db
+    const hash = (t) => createHash('sha256').update(t).digest('hex')
+    const later = Math.floor(Date.now() / 1000) + 3600
+    db.prepare('INSERT INTO sessions (token_hash, student_id, created, expires, role) VALUES (?, ?, ?, ?, ?)').run(hash('d'.repeat(64)), 'TAMU-901', 'now', later, 'instructor')
+    const ev = (student, seq, event, section, target, data) => db.prepare('INSERT INTO events (student_id, session_id, seq, client_ts, server_ts, event, section_id, target, data) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)')
+        .run(student, `s-${student}`, seq, new Date(Date.now() - (100 - seq) * 1000).toISOString(), 'now', event, section ?? null, target ?? null, data ? JSON.stringify(data) : null)
+    const sec = 'ai-literacy/01/02'
+    // TAMU-001 finishes 1.2: all three items, two right first time, and a written activity round.
+    ev('TAMU-001', 1, 'page_view', sec)
+    ev('TAMU-001', 2, 'practice_answer', sec, 'ail_102_a', { attempt_number: 1, is_correct: true })
+    ev('TAMU-001', 3, 'practice_answer', sec, 'ail_102_b', { attempt_number: 1, is_correct: false, selected_index: 0 })
+    ev('TAMU-001', 4, 'practice_answer', sec, 'ail_102_b', { attempt_number: 2, is_correct: true })
+    ev('TAMU-001', 5, 'practice_answer', sec, 'ail_102_c', { attempt_number: 1, is_correct: true })
+    ev('TAMU-001', 6, 'activity_feedback_received', sec, 'ail_102_apply', { ready: true })
+    // TAMU-002 only reads; TAMU-999 is a test account.
+    ev('TAMU-002', 1, 'page_view', sec)
+    ev('TAMU-999', 1, 'page_view', sec)
+    db.prepare('INSERT INTO progress VALUES (?, ?, ?, ?)').run('TAMU-001', `alget_activity_v1:${sec}`, JSON.stringify({ text: 'My answer.', rounds: [{ text: 'My answer.', ready: true, criteria: [{ id: 'sampling', status: 'met' }] }] }), 'now')
+    db.prepare('INSERT INTO progress VALUES (?, ?, ?, ?)').run('TAMU-001', `alget_highlights_v1:${sec}`, JSON.stringify([{ id: 1, text_content: 'secret quote', note: 'private note' }]), 'now')
+
+    assert.equal((await get('/instructor/overview', e)).status, 403) // TOKEN is a student session
+    const res = await get('/instructor/overview', e, 'd'.repeat(64))
+    assert.equal(res.status, 200)
+    const o = await res.json()
+    assert.deepEqual(o.students.map((s) => s.id), ['TAMU-001', 'TAMU-002', 'TAMU-003'])
+    const [s1, s2, s3] = o.students
+    assert.deepEqual([s1.status, s1.sections[1], s1.sections_done, s1.practice_first_try_accuracy, s1.activities_complete], ['active_now', 'done', 1, 67, 1])
+    assert.deepEqual([s2.sections[1], s2.sections_done, s3.status, s3.flags], ['reading', 0, 'not_started', ['not_started']])
+    const item = o.section_stats[1].items.find((i) => i.id === 'ail_102_b')
+    assert.deepEqual([o.section_stats[1].done, item.first_try_accuracy, item.common_wrong.count], [1, 0, 1])
+
+    const d = await (await get('/instructor/student?id=TAMU-001', e, 'd'.repeat(64))).json()
+    const row = d.sections.find((x) => x.id === sec)
+    assert.deepEqual([row.status, row.activity.text, row.activity.ready, row.highlights, row.notes], ['done', 'My answer.', true, 1, 1])
+    assert.ok(!JSON.stringify(d).includes('private note') && !JSON.stringify(d).includes('secret quote'))
 })

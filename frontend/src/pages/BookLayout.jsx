@@ -13,7 +13,8 @@ import {
     Network,
     PanelRightClose,
     PanelRightOpen,
-    Search
+    Search,
+    Users
 } from 'lucide-react'
 import { getStreak } from '../lib/streak'
 import { accountLabel, getStudyEnrollment } from '../lib/studyTrack'
@@ -696,6 +697,16 @@ export default function BookLayout({ user, onLogout }) {
                         >
                             <Home className="h-4 w-4" aria-hidden="true" />
                         </button>
+                        {user?.role === 'instructor' && (
+                            <button
+                                onClick={() => navigate('/teach')}
+                                className="flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-secondary)] transition-all hover:bg-[rgba(255,255,255,0.85)] hover:text-[var(--ath-text)]"
+                                title="Class dashboard"
+                                aria-label="Open the class dashboard"
+                            >
+                                <Users className="h-4 w-4" aria-hidden="true" />
+                            </button>
+                        )}
                         <button
                             onClick={() => navigate('/analytics')}
                             className="flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-secondary)] transition-all hover:bg-[rgba(255,255,255,0.85)] hover:text-[var(--ath-text)]"

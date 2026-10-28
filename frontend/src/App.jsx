@@ -14,7 +14,7 @@ import API_BASE from './lib/apiConfig'
 import { canOpenCourse, canOpenLab } from './lib/studyTrack'
 import { DEMO_START, DEMO_USER, STATIC_DEMO } from './lib/staticDemo'
 import { TUTOR_ENABLED } from './lib/tutorClient'
-import { ACCOUNTS_ENABLED, resumeSession, signOut, studentUser } from './lib/account'
+import { ACCOUNTS_ENABLED, isInstructor, resumeSession, signOut, studentUser } from './lib/account'
 import SignIn from './components/SignIn'
 import './index.css'
 
@@ -27,6 +27,7 @@ const SimLab = lazy(() => import('./pages/SimLab'))
 const StudyProgress = lazy(() => import('./pages/StudyProgress'))
 const AnalyticsDashboard = lazy(() => import('./pages/AnalyticsDashboard'))
 const StudentDashboard = lazy(() => import('./pages/StudentDashboard'))
+const TamuDashboard = lazy(() => import('./pages/TamuDashboard'))
 const InstructorDashboard = lazy(() => import('./pages/InstructorDashboard'))
 
 const E2E_USER = import.meta.env.VITE_E2E_AUTH_BYPASS === 'true'
@@ -45,7 +46,7 @@ function DemoNotice() {
     setHidden(true)
   }
   const text = ACCOUNTS_ENABLED
-    ? 'Notes and progress are saved to your student ID on the course server. AI hints, explanations and tutor notes come from the university\'s AI service, which receives question IDs and course text, and your written answers when you ask for feedback.'
+    ? 'Notes and progress are saved to your student ID on the course server; your instructor can see your progress and written activities. AI hints, explanations and tutor notes come from the university\'s AI service, which receives question IDs and course text, and your written answers when you ask for feedback.'
     : TUTOR_ENABLED
       ? 'Preview: no account. Notes and progress stay in this browser. AI hints and explanations come from an AI service; only question IDs and course text are sent.'
       : 'Preview: no account. Notes and progress stay in this browser; nothing is sent.'
@@ -86,9 +87,10 @@ export default function App() {
     if (!STATIC_DEMO) fetch(`${API_BASE}/book/inst-design/toc`, { method: 'GET' }).catch(() => {})
 
     if (ACCOUNTS_ENABLED) {
-      resumeSession().then((id) => {
-        if (id) initSession(studentUser(id))
-        setUser(id ? studentUser(id) : null)
+      resumeSession().then((s) => {
+        const resumed = s ? studentUser(s.id, s.role, s.name) : null
+        if (resumed) initSession(resumed)
+        setUser(resumed)
         setLoading(false)
       })
       const signedOut = () => {
@@ -164,7 +166,11 @@ export default function App() {
   if (ACCOUNTS_ENABLED && !user) {
     return (
       <ThemeProvider>
-        <SignIn onSignedIn={(id) => handleLogin(studentUser(id))} />
+        <SignIn onSignedIn={(s) => {
+          // Instructors land on the class dashboard.
+          if (s.role === 'instructor') window.history.replaceState(null, '', '/teach')
+          handleLogin(studentUser(s.id, s.role, s.name))
+        }} />
       </ThemeProvider>
     )
   }
@@ -183,11 +189,17 @@ export default function App() {
               <Route
                 path="/"
                 element={
-                  STATIC_DEMO ? <Navigate to={DEMO_START} replace /> : (
+                  STATIC_DEMO ? <Navigate to={isInstructor(user) ? '/teach' : DEMO_START} replace /> : (
                     <LandingPage onLogin={handleLogin} user={user} onLogout={handleLogout} />
                   )
                 }
               />
+              {ACCOUNTS_ENABLED && (
+                <Route
+                  path="/teach"
+                  element={isInstructor(user) ? <TamuDashboard user={user} onLogout={handleLogout} /> : <Navigate to={DEMO_START} replace />}
+                />
+              )}
               <Route
                 path="/learn"
                 element={

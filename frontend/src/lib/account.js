@@ -29,7 +29,9 @@ const readJson = (key) => {
 }
 
 export const currentSession = () => readJson(SESSION_KEY)
-export const studentUser = (id) => ({ id, email: id })
+/** App user for a signed-in account; instructors carry role "instructor" and a display name. */
+export const studentUser = (id, role = 'student', name = null) => ({ id, email: name ? `${name} (${id})` : id, role })
+export const isInstructor = (user) => user?.role === 'instructor'
 
 export function authHeaders() {
     const token = currentSession()?.token
@@ -125,13 +127,13 @@ export async function signIn(id, password) {
     if (!res.ok) return { error: data.error || `http_${res.status}`, minutes: data.minutes }
     // Another student's data may still be here if they closed the tab without signing out.
     for (const key of [...syncedKeys(), PENDING_KEY]) rawRemove.call(store(), key)
-    rawSet.call(store(), SESSION_KEY, JSON.stringify({ token: data.token, id: data.id }))
+    rawSet.call(store(), SESSION_KEY, JSON.stringify({ token: data.token, id: data.id, role: data.role || 'student', name: data.name || null }))
     try { await loadProgress(data.token) } catch { /* start empty; changes still sync */ }
     watchStorage()
-    return { id: data.id }
+    return { id: data.id, role: data.role || 'student', name: data.name || null }
 }
 
-/** On page load: resume a saved session, sending unsent changes before reading the server copy. */
+/** On page load: resume a saved session ({id, role, name}), sending unsent changes before reading the server copy. */
 export async function resumeSession() {
     const session = currentSession()
     if (!session?.token) return null
@@ -144,7 +146,19 @@ export async function resumeSession() {
         }
     } catch { /* offline: keep working from this browser's copy */ }
     watchStorage()
-    return session.id
+    return { id: session.id, role: session.role || 'student', name: session.name || null }
+}
+
+/** GET an instructor dashboard route (/instructor/overview, /instructor/student?id=). */
+export async function instructorGet(path) {
+    const res = await fetch(`${URL}${path}`, { headers: authHeaders() })
+    if (res.status === 401) {
+        signedOutHere()
+        throw new Error('signed_out')
+    }
+    const data = await res.json().catch(() => ({}))
+    if (!res.ok) throw new Error(data.error || `http_${res.status}`)
+    return data
 }
 
 export async function signOut() {

@@ -59,12 +59,14 @@ export async function login(body, env) {
     if (fails) await env.ACCOUNTS.delete(`fail:${id}`)
     const token = hex(crypto.getRandomValues(new Uint8Array(32)))
     const now = Math.floor(Date.now() / 1000)
+    // Instructor accounts carry role "instructor" in their KV record (make_accounts.mjs --role instructor).
+    const role = account.role === 'instructor' ? 'instructor' : 'student'
     await env.DB.batch([
         env.DB.prepare('DELETE FROM sessions WHERE expires < ?').bind(now),
-        env.DB.prepare('INSERT INTO sessions (token_hash, student_id, created, expires) VALUES (?, ?, ?, ?)')
-            .bind(await sha256(token), id, new Date().toISOString(), now + SESSION_DAYS * 24 * 3600),
+        env.DB.prepare('INSERT INTO sessions (token_hash, student_id, created, expires, role) VALUES (?, ?, ?, ?, ?)')
+            .bind(await sha256(token), id, new Date().toISOString(), now + SESSION_DAYS * 24 * 3600, role),
     ])
-    return [{ token, id }, 200]
+    return [{ token, id, role, name: account.name || null }, 200]
 }
 
 const sha256 = async (text) => hex(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text)))
@@ -73,13 +75,18 @@ const bearer = (request) => {
     return /^[0-9a-f]{64}$/.test(token) ? token : null
 }
 
-/** The signed-in ID for a request, or null. */
-export async function sessionId(request, env) {
+/** The signed-in account for a request ({id, role}), or null. */
+export async function sessionInfo(request, env) {
     const token = bearer(request)
     if (!token || !env.DB) return null
-    const row = await env.DB.prepare('SELECT student_id FROM sessions WHERE token_hash = ? AND expires > ?')
+    const row = await env.DB.prepare('SELECT student_id, role FROM sessions WHERE token_hash = ? AND expires > ?')
         .bind(await sha256(token), Math.floor(Date.now() / 1000)).first()
-    return row?.student_id || null
+    return row ? { id: row.student_id, role: row.role || 'student' } : null
+}
+
+/** The signed-in ID for a request, or null. */
+export async function sessionId(request, env) {
+    return (await sessionInfo(request, env))?.id || null
 }
 
 export async function logout(request, env) {

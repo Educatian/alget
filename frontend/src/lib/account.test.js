@@ -40,7 +40,7 @@ describe('TAMU accounts', () => {
     it('loads the student copy, replacing what another reader left, and sends later changes', async () => {
         window.localStorage.setItem('alget_review_v1', '{"someone":"else"}')
         const worker = fakeWorker({ 'alget_highlights_v1:ai-literacy/01/02': '[{"id":1}]' })
-        expect(await signIn('TAMU-007', 'maple-river-42')).toEqual({ id: 'TAMU-007' })
+        expect(await signIn('TAMU-007', 'maple-river-42')).toEqual({ id: 'TAMU-007', role: 'student', name: null })
         expect(authHeaders()).toEqual({ Authorization: `Bearer ${TOKEN}` })
         expect(window.localStorage.getItem('alget_review_v1')).toBeNull()
         expect(window.localStorage.getItem('alget_highlights_v1:ai-literacy/01/02')).toBe('[{"id":1}]')

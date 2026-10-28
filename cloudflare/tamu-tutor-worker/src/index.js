@@ -1,7 +1,7 @@
 /**
  * ALGET TAMU tutor: Socratic hints and grounded passage explanations for the TAMU static preview.
  *
- *   POST /login    {id, password}                               -> {token, id}
+ *   POST /login    {id, password}                               -> {token, id, role, name}
  *   POST /logout
  *   GET  /progress                                              -> {id, items}
  *   POST /progress {set: {key: value | null}}
@@ -10,6 +10,7 @@
  *   POST /explain  {section_id, exact, mode}                    -> {explanation, check_question, in_section}
  *   POST /feedback {section_id, text, revision, previous}       -> {criteria, marks, next_step, ready}  (feedback.js)
  *   POST /annotate {section_id, misconception_ids}              -> {notes: [{quote, kind, note}]}       (annotate.js)
+ *   GET  /instructor/overview, /instructor/student?id=         instructor sessions only               (instructor.js)
  *   GET  /healthz
  *
  * Everything except /login and /healthz needs a session (Authorization: Bearer <token>); see
@@ -23,7 +24,8 @@
  * FOUNDRY_ENDPOINT is the resource's .../openai/v1 base, MODEL is the deployment name.
  */
 import { bestParagraph } from '../../../frontend/src/lib/hintLadder.js'
-import { getProgress, login, logout, saveProgress, sessionId } from './accounts.js'
+import { getProgress, login, logout, saveProgress, sessionInfo } from './accounts.js'
+import { overview, studentDetail } from './instructor.js'
 import { saveEvents } from './events.js'
 import { feedback } from './feedback.js'
 import { annotate } from './annotate.js'
@@ -126,7 +128,7 @@ export default {
         if (!headers) return json({ error: 'origin_not_allowed' }, 403, {})
         if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers })
         const route = `${request.method} ${url.pathname}`
-        const routes = ['POST /login', 'POST /logout', 'GET /progress', 'POST /progress', 'POST /events', 'POST /hint', 'POST /explain', 'POST /feedback', 'POST /annotate']
+        const routes = ['POST /login', 'POST /logout', 'GET /progress', 'POST /progress', 'POST /events', 'POST /hint', 'POST /explain', 'POST /feedback', 'POST /annotate', 'GET /instructor/overview', 'GET /instructor/student']
         if (!routes.includes(route)) return json({ error: 'not_found' }, 404, headers)
         if (!env.ACCOUNTS || !env.DB) return json({ error: 'not_configured' }, 503, headers)
 
@@ -145,9 +147,16 @@ export default {
         }
         if (route === 'POST /logout') return json(...(await logout(request, env)), headers)
 
-        const id = await sessionId(request, env)
-        if (!id) return json({ error: 'signed_out' }, 401, headers)
+        const session = await sessionInfo(request, env)
+        if (!session) return json({ error: 'signed_out' }, 401, headers)
+        const id = session.id
         if (env.RATE_LIMITER && !(await env.RATE_LIMITER.limit({ key: `${url.pathname}:${id}` })).success) return json({ error: 'rate_limited' }, 429, headers)
+        if (url.pathname.startsWith('/instructor/')) {
+            if (session.role !== 'instructor') return json({ error: 'instructors_only' }, 403, headers)
+            const [result, status] = url.pathname === '/instructor/overview' ? await overview(env) : await studentDetail(env, url.searchParams.get('id'))
+            console.log(JSON.stringify({ route: url.pathname, status }))
+            return json(result, status, headers)
+        }
         if (route === 'GET /progress') return json(...(await getProgress(id, env)), headers)
         if (route === 'POST /progress') return json(...(await saveProgress(id, body, env)), headers)
         if (route === 'POST /events') return json(...(await saveEvents(id, body, env)), headers)

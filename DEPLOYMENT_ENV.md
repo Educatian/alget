@@ -59,6 +59,24 @@ node scripts/make_accounts.mjs --from-roster <outside-repo>/roster.csv --kv <tmp
 npx wrangler kv bulk put <tmp>/kv.json --namespace-id 91434d52ecd14b9caf4988d193993652 --remote   # then delete kv.json
 ```
 
+### Instructor accounts and class dashboard
+
+`TAMU-901` is the instructor account for Prof. Yeonji Jung (roster `TAMU-instructor-account.csv` on the owner's
+Desktop; passphrase word-word-word-NN). An instructor session lands on `/teach`, the class dashboard
+(`frontend/src/pages/TamuDashboard.jsx`): summary cards, the roster with 12-section status, accuracy, check-ins,
+written activities, hints, stuck counts and flags, a per-student drawer (section detail, concept mastery, written
+activities with feedback criteria, recent events), per-item stats with the most common wrong answer, CSV download,
+refresh every minute. It reads `GET /instructor/overview` and `/instructor/student?id=` (worker `instructor.js`),
+which return 403 for student sessions. TAMU-9xx IDs are left out of the dashboard; note and highlight text is never
+returned, only counts. Make another instructor:
+
+```
+node scripts/make_accounts.mjs --start 902 --count 1 --role instructor --name "Prof. Name" --roster <outside-repo>/instructor.csv --kv <tmp>/kv.json
+```
+
+Local testing: `node scripts/seed_local_test_account.mjs` adds local-only TAMU-001/002/900 (`local-test-42`) and the
+instructor TAMU-950 (`local-teach-42`).
+
 ### Learning events
 
 One row per action in D1 `alget-tamu-events` (table `events`), keyed by student, session and sequence number; typed

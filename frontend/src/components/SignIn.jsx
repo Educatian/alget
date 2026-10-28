@@ -24,7 +24,7 @@ export default function SignIn({ onSignedIn }) {
             setError(MESSAGES[result.error] || 'Sign-in did not work. Try again in a moment.')
             return
         }
-        onSignedIn(result.id)
+        onSignedIn(result)
     }
 
     return (
@@ -37,7 +37,7 @@ export default function SignIn({ onSignedIn }) {
                 <p className="editorial-kicker">AI Literacy</p>
                 <h1 id="signin-title" className="mt-1 text-2xl font-semibold text-[var(--ath-text)]">Sign in</h1>
                 <p className="mt-2 text-sm text-[var(--ath-muted)]">
-                    Use the student ID and password your instructor gave you. Your notes and progress are saved to your ID.
+                    Use the student ID and password your instructor gave you. Your notes, progress and written activities are saved to your ID, and your instructor can see your progress and written activities.
                 </p>
 
                 <label htmlFor="signin-id" className="mt-6 block text-sm font-medium text-[var(--ath-text)]">Student ID</label>
