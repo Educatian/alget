@@ -16,6 +16,20 @@ export const HINT_SCHEMA = {
     },
 }
 
+export const JUDGE_SCHEMA = {
+    name: 'leak_judge',
+    strict: true,
+    schema: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+            reveals_answer: { type: 'boolean', description: 'True if the text states, paraphrases or strongly implies the correct option.' },
+            reason: { type: 'string', description: 'One short sentence.' },
+        },
+        required: ['reveals_answer', 'reason'],
+    },
+}
+
 export const EXPLAIN_SCHEMA = {
     name: 'passage_explanation',
     strict: true,
@@ -40,10 +54,13 @@ export function hintMessages({ problem, misconception, passage, picks, rung, str
         'Rules:',
         '- Never state, quote, paraphrase or point to the correct option, by text, letter or position.',
         '- Never say which option is right. You may say why an option the learner already picked is off.',
-        '- Ask one guiding question or give one nudge, at most 60 words, in plain friendly English.',
+        '- Never ask an either-or question that sets the correct idea against a wrong one ("Is it X, or Y?"): naming the correct idea gives it away. Bad: "Does it look answers up, or pick tokens by probability?" Good: "You picked looking answers up. Where does the passage say what the model does before each word?"',
+        '- Work from the learner\'s own pick: ask what the passage would need to say for that pick to be right, or tell them which part of the passage to reread by its topic, not its conclusion.',
+        '- The check question is one the learner can ask about their own pick. It must not contain the key idea of the correct option.',
+        '- At most 60 words, in plain friendly English.',
         '- Use only ideas from the course passage below.',
-        rung >= 2 ? '- This learner has already had hints; be a little more specific about the key idea, still without revealing the answer.' : '',
-        strict ? '- Your previous hint gave away too much. Stay further from the answer: focus on the concept, not on any option.' : '',
+        rung >= 2 ? '- This learner has already had hints; be a little more specific about where in the passage to look, still without revealing the answer.' : '',
+        strict ? '- Your previous hint gave away too much. Stay further from the answer: talk only about the learner\'s pick and where to look.' : '',
         'Return JSON only.',
     ].filter(Boolean).join('\n')
     const user = [
@@ -54,6 +71,23 @@ export function hintMessages({ problem, misconception, passage, picks, rung, str
         `Learner's wrong picks so far: ${picked}`,
         passage ? `Course passage:\n"""${passage}"""` : '',
     ].filter(Boolean).join('\n\n')
+    return [{ role: 'system', content: system }, { role: 'user', content: user }]
+}
+
+/** Second check after the lexical guard: catches answers given away in other words. */
+export function judgeMessages({ problem, text }) {
+    const system = [
+        'You check tutoring hints for a multiple-choice question. A hint must help the learner think without giving the answer away.',
+        'Say reveals_answer = true if the hint or its check question states, paraphrases or strongly implies the correct option,',
+        'including by naming its key idea in an either-or question. Mentioning the topic of the question is fine.',
+        // A stricter judge (key idea first, worked example) blocked 21 of 36 hints in the 2026-10-28 sweep.
+        'Return JSON only.',
+    ].join('\n')
+    const user = [
+        `Question: ${problem.stem || problem.statement}`,
+        `Correct option: ${problem.options[problem.correct_index]}`,
+        `Hint and check question:\n"""${text}"""`,
+    ].join('\n\n')
     return [{ role: 'system', content: system }, { role: 'user', content: user }]
 }
 

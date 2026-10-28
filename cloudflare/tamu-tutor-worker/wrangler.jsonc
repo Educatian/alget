@@ -1,14 +1,17 @@
 ﻿{
   // TAMU preview tutor. Separate from the production backend (alget-backend) and from the
-  // existing alget-tamu-api worker. The OpenRouter key is a secret set by the owner:
-  //   npx wrangler secret put OPENROUTER_API_KEY --name alget-tamu-tutor
+  // existing alget-tamu-api worker. Models run on UA's Microsoft Foundry (UA OIT's approved
+  // route); MODEL is the Foundry deployment name. The key is a secret set by the owner:
+  //   npx wrangler secret put FOUNDRY_API_KEY --name alget-tamu-tutor
   "$schema": "../backend-worker/node_modules/wrangler/config-schema.json",
   "name": "alget-tamu-tutor",
   "main": "src/index.js",
   "compatibility_date": "2026-09-24",
   "vars": {
     "TUTOR_ENABLED": "true",
-    "MODEL": "google/gemini-3.1-flash-lite",
+    "FOUNDRY_ENDPOINT": "https://ua-education-sail-and-me-foundry.openai.azure.com/openai/v1",
+    "MODEL": "gpt-4.1-mini",
+    "REASONING_EFFORT": "",
     "CONTENT_BASE": "https://tamu-3d-labs.alget-tamu-ai-literacy.pages.dev/demo-api",
     "ALLOWED_ORIGINS": "https://tamu-3d-labs.alget-tamu-ai-literacy.pages.dev",
     "DAILY_CAP": "500",

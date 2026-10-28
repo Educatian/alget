@@ -38,12 +38,17 @@ npx wrangler pages deploy dist --project-name alget-tamu-ai-literacy --branch ta
 ### TAMU tutor worker (`cloudflare/tamu-tutor-worker`)
 
 AI hints and "explain this passage" for the TAMU preview only: https://alget-tamu-tutor.jewoong-moon.workers.dev
-(separate from `alget-backend` and `alget-tamu-api`). It reads course data from the preview's `/demo-api`, accepts
+(separate from `alget-backend` and `alget-tamu-api`). Model calls go to UA's Microsoft Foundry (UA OIT allows only
+Foundry or Gemini on UA enterprise accounts; OpenRouter is not covered): `FOUNDRY_ENDPOINT` is the resource's
+`/openai/v1` base and `MODEL` is the deployment name. For a gpt-5-family deployment set `REASONING_EFFORT` (for
+example `low`). It currently uses the SAIL and ME Foundry resource (`UA-Education-SAIL-and-ME-RG`, owner's
+decision 2026-10-28), so usage bills to that project. It reads course data from the preview's `/demo-api`, accepts
 calls only from the preview origin, limits each IP to 12 calls a minute and the whole worker to `DAILY_CAP` calls a
-day (KV `alget-tamu-tutor-usage`), and every hint passes `src/leakGuard.js`. `TUTOR_ENABLED=false` switches it off.
+day (KV `alget-tamu-tutor-usage`), and every hint passes `src/leakGuard.js` and then a model leak judge
+(`judgeMessages` in `src/prompts.js`) that catches answers given away in other words. `TUTOR_ENABLED=false` switches it off.
 
 ```
-npx wrangler secret put OPENROUTER_API_KEY --name alget-tamu-tutor   # owner only
+npx wrangler secret put FOUNDRY_API_KEY --name alget-tamu-tutor      # owner only (Foundry home page > API key)
 cd cloudflare/tamu-tutor-worker && npm test && npx wrangler deploy
 node scripts/sweep.mjs                                                 # live leak/grounding sweep (~120 calls)
 ```
