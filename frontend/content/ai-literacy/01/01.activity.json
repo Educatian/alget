@@ -1,0 +1,23 @@
+{
+  "id": "ail_101_apply",
+  "prompt": "List three features on your phone or laptop that learned from data. For each one, say what it predicts and what data it probably learned from.",
+  "min_words": 30,
+  "criteria": [
+    {
+      "id": "three_features",
+      "label": "Names three real features",
+      "look_for": "three concrete features that plausibly learned from data (not fixed-rule tools like a calculator)"
+    },
+    {
+      "id": "predicts",
+      "label": "Says what each one predicts",
+      "look_for": "for each feature, what it predicts or recommends"
+    },
+    {
+      "id": "data",
+      "label": "Names likely training data",
+      "look_for": "for each feature, a plausible source of examples it learned from"
+    }
+  ],
+  "reference": "1. Autocomplete predicts the next word I will type; it learned from large amounts of typed text. 2. The spam filter predicts whether an email is spam; it learned from emails people marked as spam. 3. Photo grouping predicts which photos show the same person; it learned from labelled photos of faces."
+}

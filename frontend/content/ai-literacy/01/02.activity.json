@@ -1,0 +1,23 @@
+{
+  "id": "ail_102_apply",
+  "prompt": "Explain to a friend why asking a chatbot the same question twice can give two different answers, and why a fluent answer can still be wrong.",
+  "min_words": 30,
+  "criteria": [
+    {
+      "id": "probability",
+      "label": "Explains next-token probabilities",
+      "look_for": "the model gives possible next words probabilities"
+    },
+    {
+      "id": "sampling",
+      "label": "Explains sampling",
+      "look_for": "the next word is sampled, so likely words usually but not always win, so answers vary"
+    },
+    {
+      "id": "likely_not_true",
+      "label": "Separates likely from true",
+      "look_for": "fluent or likely text is not the same as true, so answers need checking"
+    }
+  ],
+  "reference": "A chatbot writes one token at a time. For each next token it gives every possible token a probability, then samples one, so the same question can come out differently. Because it picks words that are likely to follow, its writing sounds fluent, but likely is not the same as true, so a fluent answer can still be wrong and needs checking."
+}

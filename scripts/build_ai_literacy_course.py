@@ -9,6 +9,8 @@ NN.practice.json and NN.misconceptions.json. Edit the content here and re-run:
 were checked against YouTube oEmbed on 2026-10-28.
 """
 import json
+import re
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1] / "frontend" / "content" / "ai-literacy"
@@ -648,20 +650,110 @@ Go back to the four 3D labs: the probability wheel, the photo model, the claim s
                        "Revisit the plan as tools, course policies and your goals change.")])
 
 
+# Lecture clips (media_src: ManimGL lecture + pen-annotated reading, with in-clip check-ins).
+# The four placed in the bodies above keep their place; the others go after the section's opening
+# paragraph. Titles carry the measured length of the published clip.
+MEDIA = ROOT.parent.parent / "public" / "media" / "ai-literacy"
+CLIPS = {
+    (1, 1): ("WhatIsAIVideo", "What counts as AI?", "Sort the tools: rules or learning from examples?"),
+    (1, 3): ("StrengthsVideo", "Easy to check, or hard?", "Ask: how would I know if this were wrong?"),
+    (2, 1): ("TrainingDataVideo", "How a model learns from data", "Watch what happens on photos unlike the training data."),
+    (2, 3): ("FiveQuestionsVideo", "Five questions to ask", "Notice which errors cost whom."),
+    (3, 1): ("DelegateVideo", "What to hand to AI", "Sort support work from core work."),
+    (3, 2): ("ClearRequestVideo", "Build a clear request", "Watch the request gain a goal, context, constraints and a format."),
+    (4, 2): ("DisclosureVideo", "Disclose clearly", "Three parts: what tool, for what, what you did."),
+    (4, 3): ("PlanVideo", "Your AI use plan", "Fill in the six parts, then revisit."),
+}
+CLIP_NOTE = "Narrated, with captions, quick check-ins and a pen-annotated reading."
+
+
+def clip_length(name):
+    try:
+        out = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(MEDIA / f"{name}.mp4")],
+                             capture_output=True, text=True, check=True).stdout
+        secs = round(float(out))
+    except (OSError, ValueError, subprocess.CalledProcessError):
+        return None
+    return f"{secs // 60} min {secs % 60} s" if secs >= 60 else f"{secs} s"
+
+
+def finish_body(s):
+    """Clip tags with measured lengths, the new section clips, and the written activity."""
+    body = s["body"]
+
+    def retitle(m):
+        name, title, caption = m.group(1), m.group(2), m.group(3)
+        length = clip_length(name)
+        title = re.sub(r"\s*\([^)]*\)$", "", title) + (f" ({length})" if length else "")
+        return f'<lesson-video src="/media/ai-literacy/{name}.mp4" title="{title}" caption="{CLIP_NOTE} {caption.split(". ", 1)[-1]}" />'
+
+    body = re.sub(r'<lesson-video src="/media/ai-literacy/(\w+)\.mp4" title="([^"]*)" caption="([^"]*)" />', retitle, body)
+    clip = CLIPS.get((s["ch"], s["sec"]))
+    if clip and (MEDIA / f"{clip[0]}.mp4").exists():
+        name, title, caption = clip
+        length = clip_length(name)
+        tag = f'<lesson-video src="/media/ai-literacy/{name}.mp4" title="{title}{f" ({length})" if length else ""}" caption="{CLIP_NOTE} {caption}" />'
+        heading, rest = body.split("\n\n", 1)
+        intro, after = rest.split("\n\n", 1)
+        body = f"{heading}\n\n{intro}\n\n{tag}\n\n{after}"
+    # The written activity (NN.activity.json) replaces a "Try this" paragraph, or ends the section.
+    if re.search(r"\n## Try this\n\n[^\n]+", body):
+        body = re.sub(r"\n## Try this\n\n[^\n]+", "\n## Try this\n\n<apply-activity />", body)
+    else:
+        body += "\n\n## Apply it\n\n<apply-activity />"
+    return body
+
+
+# Time on task, estimated from the content itself (minutes). Study reading is slower than
+# skimming; check-ins, labs, practice and the written activity use typical times for first-
+# to third-year students. The breakdown is printed so it can be reported.
+READ_WPM = 180
+PER_CHECKIN, PER_LAB, PER_QUIZ, PER_ITEM, PER_ACTIVITY = 0.5, 6.0, 1.0, 1.2, 8.0
+
+
+def time_budget(body, problems):
+    prose = re.sub(r"<[^>]+>", " ", body)
+    reading = len(re.findall(r"[A-Za-z0-9']+", prose)) / READ_WPM
+    clips = [m.group(1) for m in re.finditer(r'<lesson-video src="/media/ai-literacy/(\w+)\.mp4"', body)]
+    watching = checkins = 0.0
+    for name in clips:
+        try:
+            out = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(MEDIA / f"{name}.mp4")],
+                                 capture_output=True, text=True, check=True).stdout
+            watching += float(out) / 60
+        except (OSError, ValueError, subprocess.CalledProcessError):
+            pass
+        quiz = MEDIA / f"{name}.quiz.json"
+        if quiz.exists():
+            checkins += len(json.loads(quiz.read_text(encoding="utf-8"))["checkpoints"]) * PER_CHECKIN
+    parts = {
+        "reading": reading, "clips": watching, "check_ins": checkins,
+        "labs": body.count("<sketch-lab ") * PER_LAB, "quizzes": body.count("<interactive-quiz ") * PER_QUIZ,
+        "practice": len(problems) * PER_ITEM, "written_activity": body.count("<apply-activity") * PER_ACTIVITY,
+    }
+    return {k: round(v, 1) for k, v in parts.items()}
+
+
 def write():
+    total = 0.0
     for s in SECTIONS:
         d = ROOT / f"{s['ch']:02d}"
         d.mkdir(parents=True, exist_ok=True)
         stem = f"{s['sec']:02d}"
-        (d / f"{stem}.mdx").write_text(s["body"] + "\n", encoding="utf-8")
+        body = finish_body(s)
+        (d / f"{stem}.mdx").write_text(body + "\n", encoding="utf-8")
+        budget = time_budget(body, s["problems"])
+        minutes = round(sum(budget.values()))
+        total += minutes
+        print(f"  {s['ch']}.{s['sec']} {minutes:>3} min  {budget}")
         meta = {"chapter_title": s["chapter_title"], "title": s["title"], "description": s["description"],
                 "learning_objectives": s["objectives"], "concept_ids": s["concepts"],
-                "estimated_time_minutes": s["minutes"], "order": s["sec"]}
+                "estimated_time_minutes": minutes, "time_budget": budget, "order": s["sec"]}
         (d / f"{stem}.meta.json").write_text(json.dumps(meta, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         (d / f"{stem}.practice.json").write_text(json.dumps({"problems": s["problems"]}, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         mis = {"section_id": f"ai_literacy_{s['ch']:02d}{s['sec']:02d}", "misconceptions": s["misconceptions"]}
         (d / f"{stem}.misconceptions.json").write_text(json.dumps(mis, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    print(f"wrote {len(SECTIONS)} sections to {ROOT}")
+    print(f"wrote {len(SECTIONS)} sections to {ROOT}; estimated time on task {total:.0f} min ({total / 60:.1f} h)")
 
 
 if __name__ == "__main__":

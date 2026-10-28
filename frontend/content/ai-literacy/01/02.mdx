@@ -6,7 +6,7 @@ When you ask a chatbot a question, it does not look the answer up in a list of f
 
 The pieces a model reads and writes are called **tokens**: whole words or parts of words. For each next token, the model gives every token it knows a **probability**. Then it **samples**: it picks one, with likely tokens picked more often. The chosen token is added to the text, and the process repeats until the reply is done.
 
-<lesson-video src="/media/ai-literacy/NextWordVideo.mp4" title="How a language model writes (1 min 16 s)" caption="Narrated, with captions. Watch how the bars change with temperature." />
+<lesson-video src="/media/ai-literacy/NextWordVideo.mp4" title="How a language model writes (1 min 38 s)" caption="Narrated, with captions, quick check-ins and a pen-annotated reading. Watch how the bars change with temperature." />
 
 ## Try it: the probability wheel
 
@@ -23,3 +23,7 @@ Because each word is sampled, the same prompt can produce different replies. Low
 The model learned which words tend to follow which, from enormous amounts of text. That makes its writing fluent. But "likely to come next" is not the same as "true". In the lab, *Sydney* gets a big slice after "The capital of Australia is", because the two words often appear together, yet the capital is Canberra. This is one root of **hallucinations**: confident, well-written statements that are wrong.
 
 <interactive-quiz question="You ask a chatbot the same question twice and get two different answers. What is the best explanation?" options='["The chatbot changed its mind after learning something new.", "Each reply samples words from probabilities, so it can vary.", "One of the replies came from a different company.", "The first answer was deleted."]' correct-index="1" conceptid="sampling_temperature" />
+
+## Apply it
+
+<apply-activity />

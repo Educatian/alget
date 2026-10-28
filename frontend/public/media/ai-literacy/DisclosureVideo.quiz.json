@@ -1,0 +1,32 @@
+{
+  "checkpoints": [
+    {
+      "id": "DisclosureVideo_q1",
+      "after_cue": 2,
+      "rewatch_cue": 2,
+      "question": "Two of your courses have different AI rules. Which rule applies to an essay?",
+      "options": [
+        "The strictest course's rule",
+        "The policy of the course the essay is for",
+        "The chatbot's terms of use",
+        "Whatever classmates do"
+      ],
+      "correct": 1,
+      "explain": "Integrity means following the rules of the course you are in."
+    },
+    {
+      "id": "DisclosureVideo_q2",
+      "after_cue": 4,
+      "rewatch_cue": 3,
+      "question": "Which disclosure is most useful to an instructor?",
+      "options": [
+        "I used AI.",
+        "AI was used responsibly.",
+        "I used a chatbot to brainstorm; I kept two ideas, rewrote them and checked them against the readings.",
+        "No comment."
+      ],
+      "correct": 2,
+      "explain": "Say what tool, for what, and what you did with the output."
+    }
+  ]
+}

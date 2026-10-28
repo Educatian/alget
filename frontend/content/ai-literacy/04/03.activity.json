@@ -1,0 +1,23 @@
+{
+  "id": "ail_403_apply",
+  "prompt": "Write your AI Use Plan: one or two sentences for each part: tasks you will use AI for, tasks you will keep, how you will ask, how you will check, what you will never share, and how you will disclose.",
+  "min_words": 30,
+  "criteria": [
+    {
+      "id": "use_keep",
+      "label": "Use and keep are clear",
+      "look_for": "support tasks for AI and core skills kept for yourself"
+    },
+    {
+      "id": "ask_check",
+      "label": "Asking and checking routine",
+      "look_for": "a request template and a concrete checking routine"
+    },
+    {
+      "id": "share_disclose",
+      "label": "Privacy and disclosure rules",
+      "look_for": "what will never be shared and a disclosure sentence"
+    }
+  ],
+  "reference": "Use AI for: grammar checks and practice questions. Keep: my arguments and lab analysis. Ask: goal, context, constraints, format. Check: find the original source for every fact or citation. Never share: my ID, health details or classmates' work. Disclose: tool, what for, what I changed."
+}

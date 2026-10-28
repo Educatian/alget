@@ -3,6 +3,7 @@ import { RotateCcw } from 'lucide-react'
 import API_BASE from '../lib/apiConfig'
 import { getLocalMasteryMap } from '../lib/knowledgeService'
 import { dueConcepts } from '../lib/reviewSchedule'
+import { logEvent } from '../lib/loggingService'
 
 const PracticeBlock = lazy(() => import('./PracticeBlock'))
 
@@ -56,6 +57,7 @@ export default function SkillReview({ course, sectionId, conceptIds = [] }) {
                 console.warn('Could not load review items:', err)
             }
         }
+        logEvent('review_start', null, { due: due.length, items: problems.length, concepts: due.map((d) => d.conceptId) }, sectionId)
         setReview({ problems, misconceptions })
     }
 

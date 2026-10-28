@@ -7,7 +7,8 @@
 Writes dist/demo-api/book/<course>/toc.json, .../<chapter>/<section>.json,
 mastery_graph/<course>/<chapter>.json and search/index.json (this course only), plus a
 Cloudflare Pages _redirects file that maps
-the reader's extensionless API paths onto those files. Responses come from the real
+the reader's extensionless API paths onto those files, and a _worker.js/_routes.json pair that
+serves the lecture clips with byte ranges (for seeking). Responses come from the real
 FastAPI handlers, so the demo shows exactly what the backend would serve.
 """
 import json
@@ -26,6 +27,36 @@ REDIRECTS = """\
 /demo-api/search/index /demo-api/search/index.json 200
 /demo-api/mastery_graph/:course/:chapter /demo-api/mastery_graph/:course/:chapter.json 200
 """
+
+# Pages static hosting answers Range requests with the whole file, so browsers cannot seek in the
+# lecture clips. This advanced-mode worker, limited to /media/* by _routes.json, serves those
+# files with byte ranges; every other path stays on plain static hosting (and _redirects).
+MEDIA_WORKER = """\
+export default {
+    async fetch(request, env) {
+        const url = new URL(request.url)
+        const asset = await env.ASSETS.fetch(new Request(url.toString(), { method: 'GET' }))
+        if (!asset.ok || !/\\.(mp4|webm)$/i.test(url.pathname)) return asset
+        const headers = new Headers(asset.headers)
+        headers.set('Accept-Ranges', 'bytes')
+        const range = request.headers.get('Range')
+        if (request.method === 'HEAD') return new Response(null, { status: 200, headers })
+        if (!range) return new Response(asset.body, { status: 200, headers })
+        const body = await asset.arrayBuffer()
+        const size = body.byteLength
+        const m = /^bytes=(\\d*)-(\\d*)$/.exec(range.trim())
+        let start = m && m[1] !== '' ? Number(m[1]) : m && m[2] !== '' ? Math.max(0, size - Number(m[2])) : NaN
+        let end = m && m[1] !== '' && m[2] !== '' ? Math.min(Number(m[2]), size - 1) : size - 1
+        if (!m || !(start >= 0) || start >= size || start > end) {
+            return new Response(null, { status: 416, headers: { 'Content-Range': `bytes */${size}` } })
+        }
+        headers.set('Content-Range', `bytes ${start}-${end}/${size}`)
+        headers.set('Content-Length', String(end - start + 1))
+        return new Response(body.slice(start, end + 1), { status: 206, headers })
+    },
+}
+"""
+MEDIA_ROUTES = {"version": 1, "include": ["/media/*"], "exclude": []}
 
 
 def write(path: Path, data) -> None:
@@ -62,6 +93,8 @@ def main(dist: Path, course: str) -> None:
     write(api / "search" / "index.json", {**index, "items": entries})
 
     (dist / "_redirects").write_text(REDIRECTS, encoding="utf-8")
+    (dist / "_worker.js").write_text(MEDIA_WORKER, encoding="utf-8")
+    (dist / "_routes.json").write_text(json.dumps(MEDIA_ROUTES), encoding="utf-8")
     print(f"exported {course}: toc, {count} sections, {len(entries)} search entries -> {api}")
 
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import * as Popover from '@radix-ui/react-popover'
 import { Type } from 'lucide-react'
 import { DEFAULT_READER_PREFS, READER_OPTIONS, applyReaderPrefs, loadReaderPrefs, saveReaderPrefs } from '../lib/readerPrefs'
+import { logEvent } from '../lib/loggingService'
 
 const ROWS = [
     { key: 'size', label: 'Text size' },
@@ -15,10 +16,15 @@ const ROWS = [
 /** "Aa" reader settings: typography choices for the reading column, saved in this browser. */
 export default function ReaderSettings() {
     const [prefs, setPrefs] = useState(loadReaderPrefs)
+    const [logged, setLogged] = useState(prefs)
 
     useEffect(() => {
         applyReaderPrefs(prefs)
         saveReaderPrefs(prefs)
+        const changed = Object.keys(prefs).filter((k) => prefs[k] !== logged[k])
+        if (changed.length) logEvent('reader_settings_change', changed.join(','), Object.fromEntries(changed.map((k) => [k, prefs[k]])))
+        setLogged(prefs)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [prefs])
 
     const isDefault = Object.entries(DEFAULT_READER_PREFS).every(([k, v]) => prefs[k] === v)

@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:05.450
+Here is a weak request: explain the Calvin cycle. You will get a generic answer.
+
+2
+00:00:05.900 --> 00:00:09.375
+Add a goal: I am preparing for a biology quiz.
+
+3
+00:00:09.833 --> 00:00:15.083
+Add context: I understand the light reactions, but not the Calvin cycle.
+
+4
+00:00:15.567 --> 00:00:21.267
+Add constraints: plain language, under one hundred and fifty words, no skipped steps.
+
+5
+00:00:21.733 --> 00:00:27.358
+And add a format: end with three practice questions, with the answers at the bottom.
+
+6
+00:00:27.833 --> 00:00:33.533
+Now the model has a target it can hit, and you have something you can check against your textbook.
+
+7
+00:00:34.000 --> 00:00:38.800
+Then iterate. Ask which part it is least sure about, or ask it to quiz you.
+
+8
+00:00:40.066 --> 00:00:43.891
+Let's mark the clear request, part by part. The goal.
+
+9
+00:00:44.341 --> 00:00:45.991
+The context.
+
+10
+00:00:46.441 --> 00:00:48.766
+The constraints, and the format.
+
+11
+00:00:49.216 --> 00:00:52.491
+And remember: the first reply is a draft.

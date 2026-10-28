@@ -74,6 +74,117 @@ export function hintMessages({ problem, misconception, passage, picks, rung, str
     return [{ role: 'system', content: system }, { role: 'user', content: user }]
 }
 
+export const FEEDBACK_SCHEMA = {
+    name: 'written_feedback',
+    strict: true,
+    schema: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+            criteria: {
+                type: 'array',
+                items: {
+                    type: 'object',
+                    additionalProperties: false,
+                    properties: {
+                        id: { type: 'string' },
+                        status: { type: 'string', enum: ['met', 'partly', 'not_yet'] },
+                        comment: { type: 'string', description: 'One short sentence about this criterion in the learner\'s text.' },
+                    },
+                    required: ['id', 'status', 'comment'],
+                },
+            },
+            marks: {
+                type: 'array',
+                description: 'At most 4 pen marks on the learner\'s own words.',
+                items: {
+                    type: 'object',
+                    additionalProperties: false,
+                    properties: {
+                        quote: { type: 'string', description: 'An exact, short span copied from the learner\'s text.' },
+                        kind: { type: 'string', enum: ['strength', 'issue', 'question'] },
+                        note: { type: 'string', description: 'At most 20 words.' },
+                    },
+                    required: ['quote', 'kind', 'note'],
+                },
+            },
+            next_step: { type: 'string', description: 'One concrete revision step, as a hint, at most 40 words.' },
+            ready: { type: 'boolean', description: 'True when every criterion is met.' },
+        },
+        required: ['criteria', 'marks', 'next_step', 'ready'],
+    },
+}
+
+/** Feedback on a learner's written activity, like a teacher marking with coloured pens. */
+export function feedbackMessages({ activity, text, revision, previous, sectionText, strict }) {
+    const system = [
+        'You give formative feedback on a short written activity in a university AI literacy course.',
+        'Mark the learner\'s work like a teacher with coloured pens: tick what is good, mark the first real problem where it happens, and ask about anything unclear.',
+        'Rules:',
+        '- Judge each criterion as met, partly or not_yet, with one short comment.',
+        '- Marks quote the learner\'s own words exactly (copy a short span of 3 to 15 words). Never quote anything else.',
+        '- Give hints, not answers: never write the answer for them, never supply the missing content, never quote or paraphrase the reference.',
+        '- next_step is one concrete thing to revise, phrased as a nudge or question.',
+        '- Use only ideas from the course section. Be warm, specific and brief.',
+        '- Do not judge spelling or grammar unless it changes the meaning.',
+        revision > 1 ? '- This is a revision. Say what improved in your comments, and judge it against the same criteria.' : '',
+        strict ? '- Your previous feedback gave away too much of the reference. Point to what is missing without stating it.' : '',
+        'Return JSON only.',
+    ].filter(Boolean).join('\n')
+    const user = [
+        `Activity: ${activity.prompt}`,
+        `Criteria:\n${activity.criteria.map((c) => `- ${c.id}: ${c.label} (look for: ${c.look_for})`).join('\n')}`,
+        `Reference answer (for you only, never reveal or paraphrase):\n"""${activity.reference}"""`,
+        previous ? `Your previous judgement: ${previous.map((c) => `${c.id}=${c.status}`).join(', ')}` : '',
+        `Course section (excerpt):\n"""${sectionText.slice(0, 3000)}"""`,
+        `Learner's text (revision ${revision}):\n"""${text}"""`,
+    ].filter(Boolean).join('\n\n')
+    return [{ role: 'system', content: system }, { role: 'user', content: user }]
+}
+
+export const ANNOTATE_SCHEMA = {
+    name: 'tutor_annotations',
+    strict: true,
+    schema: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+            notes: {
+                type: 'array',
+                description: '2 or 3 margin notes on the section text.',
+                items: {
+                    type: 'object',
+                    additionalProperties: false,
+                    properties: {
+                        quote: { type: 'string', description: 'An exact span of 3 to 15 words copied from the section text.' },
+                        kind: { type: 'string', enum: ['key_idea', 'watch_out', 'connect'] },
+                        note: { type: 'string', description: 'At most 25 words, addressed to the learner.' },
+                    },
+                    required: ['quote', 'kind', 'note'],
+                },
+            },
+        },
+        required: ['notes'],
+    },
+}
+
+/** Tutor annotations on the passage, aimed at what this learner is stuck on. */
+export function annotateMessages({ sectionTitle, sectionText, focus }) {
+    const system = [
+        'You are a tutor annotating a textbook section for one university student, the way a teacher writes in the margin.',
+        'Pick 2 or 3 short spans of the section text that matter most for what the student is stuck on, and write a margin note for each.',
+        'kind: key_idea for the idea to hold on to, watch_out for the mix-up to avoid, connect for a link to something they already know.',
+        'Rules: quote the section text exactly; notes guide attention and ask the student to think, they do not answer any practice question; use only the section text; at most 25 words per note.',
+        'Return JSON only.',
+    ].join('\n')
+    const user = [
+        `Section: ${sectionTitle}`,
+        `What the student is stuck on: ${focus || 'the main ideas of this section'}`,
+        `Section text:\n"""${sectionText.slice(0, 6000)}"""`,
+    ].join('\n\n')
+    return [{ role: 'system', content: system }, { role: 'user', content: user }]
+}
+
 /** Second check after the lexical guard: catches answers given away in other words. */
 export function judgeMessages({ problem, text }) {
     const system = [

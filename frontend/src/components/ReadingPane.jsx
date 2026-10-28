@@ -4,6 +4,9 @@ import { logInteraction } from '../lib/loggingService'
 import PeerPulse from './PeerPulse'
 import ChapterCheckIn from './ChapterCheckIn'
 import SkillReview from './SkillReview'
+import { STATIC_DEMO } from '../lib/staticDemo'
+
+const TutorAgent = lazy(() => import('./TutorAgent'))
 
 const ReadingNarrative = lazy(() => import('./ReadingNarrative'))
 const PracticeBlock = lazy(() => import('./PracticeBlock'))
@@ -383,6 +386,21 @@ export default function ReadingPane({
                     onNeedsReview={onNeedsReview}
                 />
             </Suspense>
+
+            {/* The preview has no support rail, so the tutor agent intervenes and adapts here. */}
+            {STATIC_DEMO && sectionId && (
+                <Suspense fallback={null}>
+                    <TutorAgent
+                        key={sectionId}
+                        sectionId={sectionId}
+                        practice={practice}
+                        misconceptions={misconceptions}
+                        conceptIds={meta?.concept_ids || []}
+                        nextSection={nextLocked ? null : nextSection}
+                        onNavigate={(chapter, section) => onNavigate?.(chapter, section, 'forward')}
+                    />
+                </Suspense>
+            )}
 
             {studyGated && isLastInChapter && meta && (
                 <ChapterCheckIn

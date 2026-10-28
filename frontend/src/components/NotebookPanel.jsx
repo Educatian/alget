@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Download, Search, X } from 'lucide-react'
 import { HIGHLIGHT_TAGS, highlightsToMarkdown, listAllLocalHighlights, tagFor } from '../lib/localAnnotations'
+import { logEvent } from '../lib/loggingService'
 
 /**
  * Notebook drawer: the reader's highlights and notes, filterable by tag and text, for this
@@ -14,6 +15,11 @@ export default function NotebookPanel({ open, onClose, highlights, sectionId, lo
     const [scope, setScope] = useState('section')
     const [tag, setTag] = useState('all')
     const [query, setQuery] = useState('')
+
+    useEffect(() => {
+        if (open) logEvent('notebook_open', null, { highlights: highlights.length }, sectionId)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [open])
 
     useEffect(() => {
         if (!open) return undefined
@@ -37,6 +43,7 @@ export default function NotebookPanel({ open, onClose, highlights, sectionId, lo
     if (!open) return null
 
     const jump = (h) => {
+        logEvent('notebook_jump', String(h.id), { to_section: h.section_id, tag: h.color || 'yellow', scope }, sectionId)
         if (h.section_id !== sectionId) {
             onClose()
             navigate(`/book/${h.section_id}`)
@@ -52,6 +59,7 @@ export default function NotebookPanel({ open, onClose, highlights, sectionId, lo
     }
 
     const exportMarkdown = () => {
+        logEvent('notebook_export', null, { scope, tag, items: items.length }, sectionId)
         const blob = new Blob([highlightsToMarkdown(items, scope === 'course' ? `Notebook: ${course}` : `Notebook: ${sectionId}`)], { type: 'text/markdown' })
         const url = URL.createObjectURL(blob)
         const a = document.createElement('a')

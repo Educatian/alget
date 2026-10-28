@@ -1,0 +1,32 @@
+{
+  "checkpoints": [
+    {
+      "id": "WhatIsAIVideo_q1",
+      "after_cue": 4,
+      "rewatch_cue": 3,
+      "question": "Which of these learned its behavior from examples?",
+      "options": [
+        "A calculator",
+        "An alarm clock",
+        "Autocomplete on your phone",
+        "A light switch"
+      ],
+      "correct": 2,
+      "explain": "Autocomplete learned from huge amounts of typed text. The others follow fixed rules."
+    },
+    {
+      "id": "WhatIsAIVideo_q2",
+      "after_cue": 6,
+      "rewatch_cue": 5,
+      "question": "A chatbot writes excellent essays. What does that tell you about whether it can drive a car?",
+      "options": [
+        "It can probably drive.",
+        "Nothing: it is narrow AI, built for text.",
+        "It is general AI.",
+        "It understands roads."
+      ],
+      "correct": 1,
+      "explain": "Narrow AI is built for one kind of task."
+    }
+  ]
+}

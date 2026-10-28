@@ -18,6 +18,7 @@ const ArtifactStudio = lazy(() => import('./ArtifactStudio'))
 const YouTubeEmbed = lazy(() => import('./YouTubeEmbed'))
 const SketchLab = lazy(() => import('./SketchLab'))
 const LessonVideo = lazy(() => import('./LessonVideo'))
+const ApplyActivity = lazy(() => import('./ApplyActivity'))
 
 const TorqueDiagram = lazy(() => import('./TorqueDiagram').then((module) => ({ default: module.TorqueDiagram })))
 const MicroTurbulenceDiagram = lazy(() => import('./AeroacousticsDiagram').then((module) => ({ default: module.MicroTurbulenceDiagram })))
@@ -234,6 +235,7 @@ export default function ReadingNarrative({
         'youtube-embed': (props) => renderLazyMarkdownModule(YouTubeEmbed, props),
         'sketch-lab': ({ book, lesson, title, caption }) => renderLazyMarkdownModule(SketchLab, { book, lesson, title, caption, sectionId }),
         'lesson-video': ({ src, title, caption }) => renderLazyMarkdownModule(LessonVideo, { src, title, caption, sectionId }),
+        'apply-activity': () => renderLazyMarkdownModule(ApplyActivity, { sectionId }),
         'torque-diagram': (props) => renderLazyMarkdownModule(TorqueDiagram, props),
         'kinematics-diagram': (props) => renderLazyMarkdownModule(KinematicsDiagram, props),
         'micro-turbulence-diagram': (props) => renderLazyMarkdownModule(MicroTurbulenceDiagram, props),

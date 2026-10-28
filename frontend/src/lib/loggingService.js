@@ -4,6 +4,8 @@
  */
 import { supabase, supabaseConfig, isSupabaseConfigured } from './supabase'
 import API_BASE from './apiConfig'
+import { ACCOUNTS_ENABLED, authHeaders } from './account'
+import { TUTOR_URL } from './tutorClient'
 
 // Session state
 let sessionId = null
@@ -17,7 +19,9 @@ let lastClickTime = 0
 let cachedAccessToken = null
 
 // Config
-const FLUSH_INTERVAL_MS = 5000
+// TAMU accounts send to the tutor worker, which allows 12 calls a minute per student.
+const FLUSH_INTERVAL_MS = ACCOUNTS_ENABLED ? 10000 : 5000
+const MAX_QUEUED = 2000
 const CLICK_MERGE_MS = 500
 const SCROLL_THRESHOLD = 10 // 10% increments
 
@@ -48,8 +52,11 @@ export async function initSession(user) {
         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
     }
 
-    // Create session in database
-    if (userId && userId !== '00000000-0000-0000-0000-000000000000') {
+    if (ACCOUNTS_ENABLED) {
+        // The worker stores events only; the session's device details travel as its first event.
+        logEvent('session_start', null, deviceInfo)
+    } else if (userId && userId !== '00000000-0000-0000-0000-000000000000') {
+        // Create session in database
         try {
             await supabase.from('user_sessions').insert({
                 id: sessionId,
@@ -64,7 +71,7 @@ export async function initSession(user) {
     // created; public sign-up is disabled so only Study IDs and invited staff have accounts.)
 
     // Cache access token for unload-time sendBeacon (which can't await)
-    if (isSupabaseConfigured) {
+    if (isSupabaseConfigured && !ACCOUNTS_ENABLED) {
         try {
             const { data: { session: authSession } } = await supabase.auth.getSession()
             cachedAccessToken = authSession?.access_token || null
@@ -380,11 +387,37 @@ export function logContentAudit(sectionId, eventData = {}) {
     return logEvent('content_audit', eventData.support_type || 'support', eventData, sectionId)
 }
 
+/** TAMU accounts: send queued events to the tutor worker's /events store (D1). */
+async function flushToWorker({ keepalive = false } = {}) {
+    const queued = eventQueue.splice(0, 200)
+    const bySession = new Map()
+    for (const e of queued) {
+        if (!bySession.has(e.session_id)) bySession.set(e.session_id, [])
+        bySession.get(e.session_id).push({ seq: e.sequence_num, ts: e.client_ts, event: e.event_type, target: e.event_target, section_id: e.section_id, data: e.event_data })
+    }
+    for (const [session, events] of bySession) {
+        try {
+            const res = await fetch(`${TUTOR_URL}/events`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', ...authHeaders() },
+                body: JSON.stringify({ session_id: session, events }),
+                keepalive,
+            })
+            // Retry later unless the batch itself was refused or the student signed out.
+            if (!res.ok && ![400, 401].includes(res.status)) throw new Error(`events_http_${res.status}`)
+        } catch {
+            eventQueue = [...queued.filter((e) => e.session_id === session), ...eventQueue].slice(-MAX_QUEUED)
+        }
+    }
+    if (eventQueue.length >= 200 && !keepalive) setTimeout(() => flushToWorker(), 1000)
+}
+
 /**
  * Flush events to database
  */
-async function flushEvents() {
+async function flushEvents(options) {
     if (eventQueue.length === 0 || !userId) return
+    if (ACCOUNTS_ENABLED) return flushToWorker(options)
 
     // Note: We are no longer skipping the flush for the guest user ('00000000...'), 
     // because we have replaced it with `guestId` in initSession. 
@@ -442,7 +475,7 @@ export async function endSession() {
     await flushEvents()
 
     // Update session record
-    if (userId && userId !== '00000000-0000-0000-0000-000000000000') {
+    if (!ACCOUNTS_ENABLED && userId && userId !== '00000000-0000-0000-0000-000000000000') {
         try {
             await supabase.from('user_sessions').update({
                 ended_at: new Date().toISOString(),
@@ -466,6 +499,10 @@ export async function endSession() {
  * Handle page unload
  */
 function handleUnload() {
+    if (ACCOUNTS_ENABLED) {
+        flushEvents({ keepalive: true })
+        return
+    }
     if (eventQueue.length === 0 || !userId || !navigator.sendBeacon) return
     if (!isSupabaseConfigured || !supabaseConfig.url || !supabaseConfig.anonKey) return
 
@@ -489,7 +526,7 @@ function handleUnload() {
  */
 function handleVisibilityChange() {
     if (document.hidden) {
-        flushEvents()
+        flushEvents({ keepalive: ACCOUNTS_ENABLED })
     }
 }
 

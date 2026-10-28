@@ -1,0 +1,2711 @@
+{
+  "_about": "Annotated-reading segments appended to each lecture clip. Each beat is narrated (narration key r<N>_b<i>, made by ../make_narration.py) while a pen marks phrases of the passage with Rough Notation and writes margin notes in Hershey script. Colours follow PenMentor's teacher pens: green = key idea, red = watch out / common mistake, blue = definition or term, yellow = highlight. Every phrase must appear verbatim in the passage.",
+  "segments": {
+    "NextWordVideo": {
+      "voice": "r1",
+      "title": "How Language Models Write",
+      "passage": [
+        "When you ask a chatbot a question, it does not look the answer up in a list of facts. A large language model writes its reply one small piece at a time.",
+        "For each next token, the model gives every token it knows a probability. Then it samples: it picks one, with likely tokens picked more often.",
+        "But \"likely to come next\" is not the same as \"true\"."
+      ],
+      "beats": [
+        {
+          "say": "Now let's read the key passage with a pen. First: the model does not look the answer up.",
+          "marks": [
+            {
+              "type": "underline",
+              "phrase": "does not look the answer up in a list of facts",
+              "color": "red"
+            }
+          ],
+          "note": {
+            "text": "not a database",
+            "near": "does not look the answer up in a list of facts",
+            "color": "red"
+          },
+          "draw": [
+            {
+              "r": [
+                40,
+                70,
+                120,
+                95
+              ],
+              "fill": "blue"
+            },
+            {
+              "l": [
+                100,
+                70,
+                100,
+                38
+              ]
+            },
+            {
+              "c": [
+                100,
+                30,
+                16
+              ],
+              "color": "red",
+              "fill": "red"
+            },
+            {
+              "c": [
+                75,
+                108,
+                20
+              ]
+            },
+            {
+              "c": [
+                125,
+                108,
+                20
+              ]
+            },
+            {
+              "p": "M 78 140 Q 100 152 122 140"
+            }
+          ]
+        },
+        {
+          "say": "The key idea: every token gets a probability.",
+          "marks": [
+            {
+              "type": "circle",
+              "phrase": "probability",
+              "color": "blue"
+            },
+            {
+              "type": "underline",
+              "phrase": "gives every token it knows",
+              "color": "green"
+            }
+          ],
+          "draw": [
+            {
+              "c": [
+                320,
+                115,
+                170
+              ],
+              "fill": "yellow"
+            },
+            {
+              "l": [
+                320,
+                115,
+                320,
+                30
+              ]
+            },
+            {
+              "l": [
+                320,
+                115,
+                400,
+                150
+              ]
+            },
+            {
+              "l": [
+                320,
+                115,
+                255,
+                175
+              ]
+            },
+            {
+              "t": "mat 60%",
+              "at": [
+                262,
+                205
+              ],
+              "size": 0.026,
+              "color": "blue"
+            }
+          ]
+        },
+        {
+          "say": "Then it samples. Likely tokens are picked more often, but not every time.",
+          "marks": [
+            {
+              "type": "box",
+              "phrase": "samples",
+              "color": "blue"
+            },
+            {
+              "type": "highlight",
+              "phrase": "with likely tokens picked more often",
+              "color": "yellow"
+            }
+          ],
+          "note": {
+            "text": "usually, not always",
+            "near": "with likely tokens picked more often",
+            "color": "blue"
+          },
+          "draw": [
+            {
+              "r": [
+                215,
+                240,
+                72,
+                72
+              ]
+            },
+            {
+              "c": [
+                235,
+                258,
+                11
+              ],
+              "fill": "ink"
+            },
+            {
+              "c": [
+                251,
+                276,
+                11
+              ],
+              "fill": "ink"
+            },
+            {
+              "c": [
+                267,
+                294,
+                11
+              ],
+              "fill": "ink"
+            },
+            {
+              "t": "roll!",
+              "at": [
+                300,
+                262
+              ],
+              "size": 0.032,
+              "color": "red"
+            }
+          ]
+        },
+        {
+          "say": "And the sentence to remember: likely is not the same as true.",
+          "marks": [
+            {
+              "type": "circle",
+              "phrase": "true",
+              "color": "red"
+            },
+            {
+              "type": "underline",
+              "phrase": "is not the same as",
+              "color": "red"
+            }
+          ],
+          "note": {
+            "text": "check the facts",
+            "near": "is not the same as",
+            "color": "red"
+          },
+          "draw": [
+            {
+              "e": [
+                100,
+                255,
+                190,
+                80
+              ]
+            },
+            {
+              "poly": [
+                [
+                  85,
+                  213
+                ],
+                [
+                  100,
+                  178
+                ],
+                [
+                  115,
+                  216
+                ]
+              ]
+            },
+            {
+              "t": "Sydney?",
+              "at": [
+                40,
+                238
+              ],
+              "size": 0.032,
+              "color": "red"
+            },
+            {
+              "l": [
+                35,
+                262,
+                165,
+                252
+              ],
+              "color": "red",
+              "w": 3.4
+            }
+          ]
+        }
+      ]
+    },
+    "BiasVideo": {
+      "voice": "r2",
+      "title": "Bias In, Bias Out",
+      "passage": [
+        "If some kinds of examples are rare in the training data, the model often learns them poorly.",
+        "An overall accuracy is an average across everyone tested. If one group is small, its failures barely move the average.",
+        "More data helps only if it covers the missing group."
+      ],
+      "beats": [
+        {
+          "say": "Let's read this with a pen. Examples that are rare in the training data are learned poorly.",
+          "marks": [
+            {
+              "type": "underline",
+              "phrase": "rare in the training data",
+              "color": "red"
+            }
+          ],
+          "note": {
+            "text": "like night photos",
+            "near": "rare in the training data",
+            "color": "red"
+          },
+          "draw": [
+            {
+              "r": [
+                30,
+                90,
+                150,
+                100
+              ],
+              "fill": "orange"
+            },
+            {
+              "c": [
+                105,
+                140,
+                62
+              ]
+            },
+            {
+              "c": [
+                105,
+                140,
+                30
+              ]
+            },
+            {
+              "r": [
+                45,
+                72,
+                40,
+                18
+              ]
+            },
+            {
+              "t": "click",
+              "at": [
+                50,
+                205
+              ],
+              "size": 0.03,
+              "color": "ink"
+            }
+          ]
+        },
+        {
+          "say": "An overall accuracy is an average, and a small group's failures barely move it.",
+          "marks": [
+            {
+              "type": "box",
+              "phrase": "overall accuracy",
+              "color": "blue"
+            },
+            {
+              "type": "highlight",
+              "phrase": "its failures barely move the average",
+              "color": "yellow"
+            }
+          ],
+          "note": {
+            "text": "accurate for whom?",
+            "near": "its failures barely move the average",
+            "color": "blue"
+          },
+          "draw": [
+            {
+              "c": [
+                270,
+                75,
+                56
+              ],
+              "fill": "yellow"
+            },
+            {
+              "l": [
+                270,
+                30,
+                270,
+                14
+              ]
+            },
+            {
+              "l": [
+                310,
+                75,
+                328,
+                75
+              ]
+            },
+            {
+              "l": [
+                232,
+                75,
+                214,
+                75
+              ]
+            },
+            {
+              "l": [
+                300,
+                45,
+                312,
+                33
+              ]
+            },
+            {
+              "p": "M 395 45 A 38 38 0 1 0 430 110 A 30 30 0 1 1 395 45",
+              "fill": "blue"
+            },
+            {
+              "t": "day 97%",
+              "at": [
+                225,
+                120
+              ],
+              "size": 0.026,
+              "color": "green"
+            },
+            {
+              "t": "night 75%",
+              "at": [
+                345,
+                135
+              ],
+              "size": 0.026,
+              "color": "red"
+            }
+          ]
+        },
+        {
+          "say": "And the fix: more data helps only if it covers the missing group.",
+          "marks": [
+            {
+              "type": "underline",
+              "phrase": "only if it covers",
+              "color": "green"
+            },
+            {
+              "type": "circle",
+              "phrase": "missing group",
+              "color": "green"
+            }
+          ],
+          "draw": [
+            {
+              "l": [
+                230,
+                312,
+                430,
+                312
+              ]
+            },
+            {
+              "r": [
+                255,
+                200,
+                48,
+                112
+              ],
+              "fill": "green"
+            },
+            {
+              "r": [
+                345,
+                250,
+                48,
+                62
+              ],
+              "fill": "red"
+            },
+            {
+              "t": "add night photos!",
+              "at": [
+                15,
+                290
+              ],
+              "size": 0.03,
+              "color": "green"
+            }
+          ]
+        }
+      ]
+    },
+    "ClaimsVideo": {
+      "voice": "r3",
+      "title": "Checking Claims and Sources",
+      "passage": [
+        "A citation is itself a claim: it can be wrong, or point to something that does not exist.",
+        "Supported: the source says the same thing. Contradicted: the source says something different. No real source: the cited source, page or section cannot be found.",
+        "Professional fact-checkers do not just read a page closely; they leave it to see what other sources say about the claim and about the source."
+      ],
+      "beats": [
+        {
+          "say": "Pen out. First line: a citation is itself a claim.",
+          "marks": [
+            {
+              "type": "circle",
+              "phrase": "A citation is itself a claim",
+              "color": "red"
+            }
+          ],
+          "note": {
+            "text": "check it too",
+            "near": "A citation is itself a claim",
+            "color": "red"
+          },
+          "draw": [
+            {
+              "r": [
+                30,
+                30,
+                140,
+                185
+              ],
+              "fill": "#e7dfcf"
+            },
+            {
+              "l": [
+                50,
+                70,
+                150,
+                70
+              ]
+            },
+            {
+              "l": [
+                50,
+                100,
+                150,
+                100
+              ]
+            },
+            {
+              "l": [
+                50,
+                130,
+                135,
+                130
+              ]
+            },
+            {
+              "l": [
+                50,
+                160,
+                150,
+                160
+              ]
+            },
+            {
+              "t": "[1] [2] [3]",
+              "at": [
+                45,
+                225
+              ],
+              "size": 0.026,
+              "color": "blue"
+            }
+          ]
+        },
+        {
+          "say": "Three stamps for each claim: supported, contradicted, and no real source.",
+          "marks": [
+            {
+              "type": "box",
+              "phrase": "Supported",
+              "color": "green"
+            },
+            {
+              "type": "box",
+              "phrase": "Contradicted",
+              "color": "red"
+            },
+            {
+              "type": "box",
+              "phrase": "No real source",
+              "color": "red"
+            }
+          ],
+          "draw": [
+            {
+              "r": [
+                205,
+                40,
+                110,
+                52
+              ],
+              "color": "green"
+            },
+            {
+              "t": "ok",
+              "at": [
+                238,
+                52
+              ],
+              "size": 0.034,
+              "color": "green"
+            },
+            {
+              "r": [
+                205,
+                112,
+                110,
+                52
+              ],
+              "color": "red"
+            },
+            {
+              "t": "wrong",
+              "at": [
+                220,
+                124
+              ],
+              "size": 0.03,
+              "color": "red"
+            },
+            {
+              "r": [
+                205,
+                184,
+                110,
+                52
+              ],
+              "color": "red"
+            },
+            {
+              "t": "??",
+              "at": [
+                240,
+                196
+              ],
+              "size": 0.034,
+              "color": "red"
+            }
+          ]
+        },
+        {
+          "say": "And the fact-checkers' habit: they leave the page to see what other sources say.",
+          "marks": [
+            {
+              "type": "underline",
+              "phrase": "they leave it",
+              "color": "blue"
+            },
+            {
+              "type": "highlight",
+              "phrase": "what other sources say",
+              "color": "yellow"
+            }
+          ],
+          "note": {
+            "text": "lateral reading",
+            "near": "they leave it",
+            "color": "blue"
+          },
+          "draw": [
+            {
+              "c": [
+                385,
+                120,
+                92
+              ],
+              "fill": "blue"
+            },
+            {
+              "l": [
+                417,
+                152,
+                452,
+                205
+              ],
+              "w": 6
+            },
+            {
+              "t": "leave the page",
+              "at": [
+                290,
+                260
+              ],
+              "size": 0.03,
+              "color": "blue"
+            }
+          ]
+        }
+      ]
+    },
+    "DataTrailVideo": {
+      "voice": "r4",
+      "title": "Your Data Trail",
+      "passage": [
+        "Everything you type into a chatbot leaves your device.",
+        "You cannot always control the second part, but you always control the first: what you put in.",
+        "Deleting a chat from your list may not remove every copy.",
+        "Data minimization means sharing only what the task needs."
+      ],
+      "beats": [
+        {
+          "say": "Mark this first. Everything you type leaves your device.",
+          "marks": [
+            {
+              "type": "underline",
+              "phrase": "leaves your device",
+              "color": "red"
+            }
+          ],
+          "draw": [
+            {
+              "r": [
+                30,
+                110,
+                140,
+                92
+              ],
+              "fill": "blue"
+            },
+            {
+              "poly": [
+                [
+                  15,
+                  205
+                ],
+                [
+                  185,
+                  205
+                ],
+                [
+                  200,
+                  228
+                ],
+                [
+                  0,
+                  228
+                ]
+              ]
+            },
+            {
+              "t": "draft.docx",
+              "at": [
+                45,
+                140
+              ],
+              "size": 0.024,
+              "color": "ink"
+            }
+          ]
+        },
+        {
+          "say": "But one thing is always yours to control: what you put in.",
+          "marks": [
+            {
+              "type": "circle",
+              "phrase": "what you put in",
+              "color": "green"
+            }
+          ],
+          "note": {
+            "text": "your choice",
+            "near": "what you put in",
+            "color": "green"
+          },
+          "draw": [
+            {
+              "r": [
+                250,
+                150,
+                70,
+                58
+              ],
+              "fill": "green"
+            },
+            {
+              "p": "M 262 150 C 262 108, 308 108, 308 150"
+            },
+            {
+              "t": "you choose",
+              "at": [
+                225,
+                228
+              ],
+              "size": 0.03,
+              "color": "green"
+            }
+          ]
+        },
+        {
+          "say": "Deleting a chat may not remove every copy.",
+          "marks": [
+            {
+              "type": "highlight",
+              "phrase": "may not remove every copy",
+              "color": "yellow"
+            }
+          ],
+          "note": {
+            "text": "copies can remain",
+            "near": "may not remove every copy",
+            "color": "red"
+          },
+          "draw": [
+            {
+              "p": "M 335 85 C 325 55, 365 45, 377 62 C 388 35, 440 42, 432 72 C 455 78, 452 110, 425 110 L 345 110 C 318 110, 318 85, 335 85 Z",
+              "fill": "blue"
+            },
+            {
+              "l": [
+                172,
+                140,
+                325,
+                95
+              ],
+              "color": "red"
+            },
+            {
+              "r": [
+                330,
+                130,
+                26,
+                32
+              ],
+              "color": "red"
+            },
+            {
+              "r": [
+                366,
+                130,
+                26,
+                32
+              ],
+              "color": "red"
+            },
+            {
+              "r": [
+                402,
+                130,
+                26,
+                32
+              ],
+              "color": "red"
+            },
+            {
+              "t": "copies",
+              "at": [
+                345,
+                185
+              ],
+              "size": 0.026,
+              "color": "red"
+            }
+          ]
+        },
+        {
+          "say": "So practise data minimization: share only what the task needs.",
+          "marks": [
+            {
+              "type": "box",
+              "phrase": "Data minimization",
+              "color": "blue"
+            },
+            {
+              "type": "underline",
+              "phrase": "sharing only what the task needs",
+              "color": "green"
+            }
+          ],
+          "draw": [
+            {
+              "t": "only what's needed",
+              "at": [
+                20,
+                270
+              ],
+              "size": 0.032,
+              "color": "green"
+            },
+            {
+              "p": "M 330 292 L 348 312 L 392 262",
+              "color": "green",
+              "w": 4
+            }
+          ]
+        }
+      ]
+    },
+    "WhatIsAIVideo": {
+      "voice": "r5",
+      "title": "What Counts as AI?",
+      "passage": [
+        "A calculator follows fixed rules. A spam filter learns from millions of emails that people marked as spam, and it keeps adjusting.",
+        "When you ask \"is this AI?\", a useful test is: did the system learn its behavior from examples?",
+        "Every system above is narrow AI: it is built for one kind of task."
+      ],
+      "beats": [
+        {
+          "say": "Let's mark up the definition. Fixed rules on one side, learning from examples on the other.",
+          "marks": [
+            {
+              "type": "underline",
+              "phrase": "follows fixed rules",
+              "color": "red"
+            },
+            {
+              "type": "underline",
+              "phrase": "learns from millions of emails",
+              "color": "green"
+            }
+          ],
+          "draw": [
+            {
+              "r": [
+                30,
+                30,
+                110,
+                150
+              ],
+              "fill": "#e7dfcf"
+            },
+            {
+              "r": [
+                45,
+                45,
+                80,
+                28
+              ]
+            },
+            {
+              "c": [
+                55,
+                100,
+                16
+              ]
+            },
+            {
+              "c": [
+                85,
+                100,
+                16
+              ]
+            },
+            {
+              "c": [
+                115,
+                100,
+                16
+              ]
+            },
+            {
+              "c": [
+                55,
+                130,
+                16
+              ]
+            },
+            {
+              "c": [
+                85,
+                130,
+                16
+              ]
+            },
+            {
+              "c": [
+                115,
+                130,
+                16
+              ]
+            },
+            {
+              "c": [
+                55,
+                160,
+                16
+              ]
+            },
+            {
+              "c": [
+                85,
+                160,
+                16
+              ]
+            },
+            {
+              "c": [
+                115,
+                160,
+                16
+              ]
+            },
+            {
+              "t": "2+2=4",
+              "at": [
+                30,
+                186
+              ],
+              "size": 0.028,
+              "color": "red"
+            }
+          ]
+        },
+        {
+          "say": "Here is the test to remember.",
+          "marks": [
+            {
+              "type": "box",
+              "phrase": "did the system learn its behavior from examples?",
+              "color": "green"
+            }
+          ],
+          "note": {
+            "text": "the AI test",
+            "near": "did the system learn its behavior from examples?",
+            "color": "green"
+          },
+          "draw": [
+            {
+              "r": [
+                230,
+                40,
+                130,
+                85
+              ]
+            },
+            {
+              "poly": [
+                [
+                  230,
+                  40
+                ],
+                [
+                  295,
+                  92
+                ],
+                [
+                  360,
+                  40
+                ]
+              ]
+            },
+            {
+              "t": "spam?",
+              "at": [
+                250,
+                140
+              ],
+              "size": 0.03,
+              "color": "blue"
+            },
+            {
+              "r": [
+                395,
+                40,
+                40,
+                52
+              ]
+            },
+            {
+              "r": [
+                403,
+                50,
+                40,
+                52
+              ]
+            },
+            {
+              "r": [
+                411,
+                60,
+                40,
+                52
+              ],
+              "fill": "green"
+            },
+            {
+              "l": [
+                365,
+                85,
+                392,
+                72
+              ],
+              "color": "green"
+            },
+            {
+              "t": "examples",
+              "at": [
+                365,
+                125
+              ],
+              "size": 0.024,
+              "color": "green"
+            }
+          ]
+        },
+        {
+          "say": "And the name for the tools you use today: narrow A I, built for one kind of task.",
+          "marks": [
+            {
+              "type": "circle",
+              "phrase": "narrow AI",
+              "color": "blue"
+            },
+            {
+              "type": "highlight",
+              "phrase": "built for one kind of task",
+              "color": "yellow"
+            }
+          ],
+          "draw": [
+            {
+              "r": [
+                40,
+                228,
+                55,
+                95
+              ],
+              "fill": "orange"
+            },
+            {
+              "l": [
+                55,
+                308,
+                80,
+                308
+              ]
+            },
+            {
+              "t": "narrow AI:",
+              "at": [
+                125,
+                238
+              ],
+              "size": 0.032,
+              "color": "blue"
+            },
+            {
+              "t": "one job",
+              "at": [
+                150,
+                280
+              ],
+              "size": 0.032,
+              "color": "blue"
+            }
+          ]
+        }
+      ]
+    },
+    "StrengthsVideo": {
+      "voice": "r6",
+      "title": "Strengths and Limits",
+      "passage": [
+        "It is very good at producing plausible language. It is not built to guarantee that what it writes is accurate.",
+        "Notice the pattern: these are tasks where you can judge the result.",
+        "Before using an AI output, ask: how would I know if this were wrong?"
+      ],
+      "beats": [
+        {
+          "say": "Pen out. Plausible language, yes. Guaranteed accuracy, no.",
+          "marks": [
+            {
+              "type": "circle",
+              "phrase": "plausible language",
+              "color": "green"
+            },
+            {
+              "type": "underline",
+              "phrase": "not built to guarantee",
+              "color": "red"
+            }
+          ],
+          "draw": [
+            {
+              "r": [
+                30,
+                40,
+                48,
+                48
+              ]
+            },
+            {
+              "p": "M 38 64 L 52 80 L 74 46",
+              "color": "green",
+              "w": 4
+            },
+            {
+              "t": "plausible",
+              "at": [
+                95,
+                50
+              ],
+              "size": 0.03,
+              "color": "green"
+            },
+            {
+              "r": [
+                30,
+                120,
+                48,
+                48
+              ]
+            },
+            {
+              "l": [
+                38,
+                128,
+                70,
+                160
+              ],
+              "color": "red",
+              "w": 4
+            },
+            {
+              "l": [
+                70,
+                128,
+                38,
+                160
+              ],
+              "color": "red",
+              "w": 4
+            },
+            {
+              "t": "accurate?",
+              "at": [
+                95,
+                130
+              ],
+              "size": 0.03,
+              "color": "red"
+            }
+          ]
+        },
+        {
+          "say": "The pattern behind the good uses: tasks where you can judge the result.",
+          "marks": [
+            {
+              "type": "highlight",
+              "phrase": "tasks where you can judge the result",
+              "color": "yellow"
+            }
+          ],
+          "note": {
+            "text": "use AI here",
+            "near": "tasks where you can judge the result",
+            "color": "green"
+          },
+          "draw": [
+            {
+              "c": [
+                330,
+                95,
+                100
+              ],
+              "fill": "yellow"
+            },
+            {
+              "r": [
+                310,
+                143,
+                40,
+                30
+              ]
+            },
+            {
+              "l": [
+                330,
+                30,
+                330,
+                10
+              ]
+            },
+            {
+              "l": [
+                385,
+                60,
+                402,
+                48
+              ]
+            },
+            {
+              "l": [
+                275,
+                60,
+                258,
+                48
+              ]
+            },
+            {
+              "t": "you can judge it",
+              "at": [
+                240,
+                190
+              ],
+              "size": 0.03,
+              "color": "green"
+            }
+          ]
+        },
+        {
+          "say": "And the question to ask every time.",
+          "marks": [
+            {
+              "type": "box",
+              "phrase": "how would I know if this were wrong?",
+              "color": "blue"
+            }
+          ],
+          "note": {
+            "text": "ask first",
+            "near": "how would I know if this were wrong?",
+            "color": "blue"
+          },
+          "draw": [
+            {
+              "t": "how would I know?",
+              "at": [
+                30,
+                250
+              ],
+              "size": 0.036,
+              "color": "blue"
+            }
+          ]
+        }
+      ]
+    },
+    "TrainingDataVideo": {
+      "voice": "r7",
+      "title": "Learning from Data",
+      "passage": [
+        "During training, the model adjusts millions of internal numbers until its guesses match the labels as often as possible. It is not memorizing each photo; it is finding patterns that separate cats from dogs.",
+        "A model generalizes well to new examples that resemble its training data.",
+        "Each choice affects who the system works well for."
+      ],
+      "beats": [
+        {
+          "say": "Let's annotate. Training means adjusting numbers until the guesses match the labels.",
+          "marks": [
+            {
+              "type": "underline",
+              "phrase": "adjusts millions of internal numbers",
+              "color": "blue"
+            },
+            {
+              "type": "circle",
+              "phrase": "labels",
+              "color": "blue"
+            }
+          ],
+          "draw": [
+            {
+              "c": [
+                80,
+                90,
+                105
+              ],
+              "fill": "orange"
+            },
+            {
+              "poly": [
+                [
+                  36,
+                  66
+                ],
+                [
+                  44,
+                  22
+                ],
+                [
+                  72,
+                  46
+                ]
+              ]
+            },
+            {
+              "poly": [
+                [
+                  88,
+                  46
+                ],
+                [
+                  116,
+                  22
+                ],
+                [
+                  124,
+                  66
+                ]
+              ]
+            },
+            {
+              "c": [
+                62,
+                86,
+                10
+              ],
+              "fill": "ink"
+            },
+            {
+              "c": [
+                98,
+                86,
+                10
+              ],
+              "fill": "ink"
+            },
+            {
+              "l": [
+                40,
+                108,
+                70,
+                104
+              ]
+            },
+            {
+              "l": [
+                90,
+                104,
+                120,
+                108
+              ]
+            },
+            {
+              "t": "cat",
+              "at": [
+                62,
+                150
+              ],
+              "size": 0.028,
+              "color": "ink"
+            },
+            {
+              "c": [
+                215,
+                90,
+                105
+              ],
+              "fill": "#d9b38c"
+            },
+            {
+              "e": [
+                165,
+                92,
+                30,
+                72
+              ]
+            },
+            {
+              "e": [
+                265,
+                92,
+                30,
+                72
+              ]
+            },
+            {
+              "c": [
+                198,
+                84,
+                10
+              ],
+              "fill": "ink"
+            },
+            {
+              "c": [
+                232,
+                84,
+                10
+              ],
+              "fill": "ink"
+            },
+            {
+              "c": [
+                215,
+                110,
+                18
+              ],
+              "fill": "ink"
+            },
+            {
+              "t": "dog",
+              "at": [
+                197,
+                150
+              ],
+              "size": 0.028,
+              "color": "ink"
+            }
+          ]
+        },
+        {
+          "say": "Not memorizing photos, but finding patterns.",
+          "marks": [
+            {
+              "type": "box",
+              "phrase": "finding patterns",
+              "color": "green"
+            }
+          ],
+          "draw": [
+            {
+              "l": [
+                272,
+                90,
+                322,
+                90
+              ],
+              "color": "red"
+            },
+            {
+              "p": "M 312 80 L 324 90 L 312 100",
+              "color": "red"
+            },
+            {
+              "r": [
+                330,
+                50,
+                112,
+                80
+              ],
+              "fill": "blue"
+            },
+            {
+              "t": "patterns",
+              "at": [
+                343,
+                75
+              ],
+              "size": 0.026,
+              "color": "ink"
+            }
+          ]
+        },
+        {
+          "say": "It generalizes to new examples that resemble its training data.",
+          "marks": [
+            {
+              "type": "underline",
+              "phrase": "resemble its training data",
+              "color": "green"
+            }
+          ],
+          "note": {
+            "text": "what about night?",
+            "near": "resemble its training data",
+            "color": "red"
+          },
+          "draw": [
+            {
+              "r": [
+                330,
+                170,
+                112,
+                80
+              ],
+              "fill": "ink"
+            },
+            {
+              "p": "M 368 190 A 22 22 0 1 0 395 228 A 17 17 0 1 1 368 190",
+              "color": "yellow",
+              "fill": "yellow"
+            },
+            {
+              "t": "night?",
+              "at": [
+                348,
+                262
+              ],
+              "size": 0.03,
+              "color": "red"
+            }
+          ]
+        },
+        {
+          "say": "And every data choice affects who the system works well for.",
+          "marks": [
+            {
+              "type": "highlight",
+              "phrase": "Each choice affects who the system works well for",
+              "color": "yellow"
+            }
+          ],
+          "draw": [
+            {
+              "c": [
+                50,
+                225,
+                26
+              ]
+            },
+            {
+              "l": [
+                50,
+                238,
+                50,
+                285
+              ]
+            },
+            {
+              "l": [
+                30,
+                255,
+                70,
+                255
+              ]
+            },
+            {
+              "l": [
+                50,
+                285,
+                36,
+                312
+              ]
+            },
+            {
+              "l": [
+                50,
+                285,
+                64,
+                312
+              ]
+            },
+            {
+              "c": [
+                110,
+                225,
+                26
+              ]
+            },
+            {
+              "l": [
+                110,
+                238,
+                110,
+                285
+              ]
+            },
+            {
+              "l": [
+                90,
+                255,
+                130,
+                255
+              ]
+            },
+            {
+              "l": [
+                110,
+                285,
+                96,
+                312
+              ]
+            },
+            {
+              "l": [
+                110,
+                285,
+                124,
+                312
+              ]
+            },
+            {
+              "c": [
+                170,
+                225,
+                26
+              ]
+            },
+            {
+              "l": [
+                170,
+                238,
+                170,
+                285
+              ]
+            },
+            {
+              "l": [
+                150,
+                255,
+                190,
+                255
+              ]
+            },
+            {
+              "l": [
+                170,
+                285,
+                156,
+                312
+              ]
+            },
+            {
+              "l": [
+                170,
+                285,
+                184,
+                312
+              ]
+            },
+            {
+              "t": "people choose",
+              "at": [
+                170,
+                300
+              ],
+              "size": 0.03,
+              "color": "blue"
+            }
+          ]
+        }
+      ]
+    },
+    "FiveQuestionsVideo": {
+      "voice": "r8",
+      "title": "Accurate for Whom?",
+      "passage": [
+        "Who was it tested on? Do the test groups resemble the people it will be used on?",
+        "A false positive says a student's own writing was AI-generated. A false negative misses AI-written text.",
+        "Human oversight means a person with authority reviews AI outputs that affect people, can override them, and is accountable for the final decision."
+      ],
+      "beats": [
+        {
+          "say": "With the pen: question one comes first.",
+          "marks": [
+            {
+              "type": "underline",
+              "phrase": "Who was it tested on?",
+              "color": "blue"
+            }
+          ],
+          "draw": [
+            {
+              "c": [
+                90,
+                95,
+                120
+              ],
+              "fill": "blue"
+            },
+            {
+              "l": [
+                133,
+                138,
+                182,
+                196
+              ],
+              "w": 6
+            },
+            {
+              "t": "?",
+              "at": [
+                78,
+                70
+              ],
+              "size": 0.05,
+              "color": "ink"
+            }
+          ]
+        },
+        {
+          "say": "Two kinds of error, with different costs.",
+          "marks": [
+            {
+              "type": "box",
+              "phrase": "false positive",
+              "color": "red"
+            },
+            {
+              "type": "box",
+              "phrase": "false negative",
+              "color": "blue"
+            }
+          ],
+          "note": {
+            "text": "who pays?",
+            "near": "false positive",
+            "color": "red"
+          },
+          "draw": [
+            {
+              "l": [
+                320,
+                40,
+                320,
+                200
+              ]
+            },
+            {
+              "l": [
+                235,
+                70,
+                405,
+                95
+              ]
+            },
+            {
+              "l": [
+                235,
+                70,
+                225,
+                140
+              ]
+            },
+            {
+              "l": [
+                235,
+                70,
+                255,
+                140
+              ]
+            },
+            {
+              "e": [
+                240,
+                145,
+                80,
+                22
+              ],
+              "fill": "red"
+            },
+            {
+              "l": [
+                405,
+                95,
+                395,
+                165
+              ]
+            },
+            {
+              "l": [
+                405,
+                95,
+                425,
+                165
+              ]
+            },
+            {
+              "e": [
+                410,
+                170,
+                80,
+                22
+              ],
+              "fill": "green"
+            },
+            {
+              "t": "who pays?",
+              "at": [
+                255,
+                215
+              ],
+              "size": 0.03,
+              "color": "red"
+            }
+          ]
+        },
+        {
+          "say": "And real oversight has three parts: authority, the power to override, and accountability.",
+          "marks": [
+            {
+              "type": "underline",
+              "phrase": "with authority",
+              "color": "green"
+            },
+            {
+              "type": "underline",
+              "phrase": "can override them",
+              "color": "green"
+            },
+            {
+              "type": "underline",
+              "phrase": "is accountable",
+              "color": "green"
+            }
+          ],
+          "draw": [
+            {
+              "c": [
+                70,
+                250,
+                40
+              ]
+            },
+            {
+              "l": [
+                70,
+                270,
+                70,
+                318
+              ]
+            },
+            {
+              "l": [
+                40,
+                290,
+                100,
+                290
+              ]
+            },
+            {
+              "p": "M 115 245 L 145 235 L 175 245 L 170 285 L 145 305 L 120 285 Z",
+              "color": "green",
+              "fill": "green"
+            },
+            {
+              "t": "can override",
+              "at": [
+                195,
+                268
+              ],
+              "size": 0.03,
+              "color": "green"
+            }
+          ]
+        }
+      ]
+    },
+    "DelegateVideo": {
+      "voice": "r9",
+      "title": "What to Hand to AI",
+      "passage": [
+        "Delegating support work can save time. Delegating core work can mean you skip the learning the course is for, even when the result looks good.",
+        "Is this the skill the assignment is meant to build? If yes, keep it, and use AI for feedback or practice instead.",
+        "Whatever you delegate, you decide what to keep, change or throw away, and you are responsible for what you submit."
+      ],
+      "beats": [
+        {
+          "say": "Pen out. Support work can save time. Core work is where the learning is.",
+          "marks": [
+            {
+              "type": "underline",
+              "phrase": "support work can save time",
+              "color": "green"
+            },
+            {
+              "type": "circle",
+              "phrase": "skip the learning",
+              "color": "red"
+            }
+          ],
+          "draw": [
+            {
+              "r": [
+                30,
+                50,
+                140,
+                90
+              ],
+              "fill": "red"
+            },
+            {
+              "t": "keep",
+              "at": [
+                62,
+                78
+              ],
+              "size": 0.032,
+              "color": "ink"
+            },
+            {
+              "r": [
+                250,
+                50,
+                140,
+                90
+              ],
+              "fill": "blue"
+            },
+            {
+              "t": "AI",
+              "at": [
+                302,
+                78
+              ],
+              "size": 0.034,
+              "color": "ink"
+            },
+            {
+              "l": [
+                175,
+                95,
+                242,
+                95
+              ]
+            },
+            {
+              "p": "M 232 85 L 244 95 L 232 105"
+            }
+          ]
+        },
+        {
+          "say": "If it is the skill being built, keep it, and use A I for feedback instead.",
+          "marks": [
+            {
+              "type": "box",
+              "phrase": "keep it, and use AI for feedback or practice instead",
+              "color": "blue"
+            }
+          ],
+          "draw": [
+            {
+              "e": [
+                100,
+                240,
+                140,
+                95
+              ],
+              "fill": "orange"
+            },
+            {
+              "p": "M 55 235 C 75 210, 95 260, 115 230 C 130 215, 145 250, 150 240"
+            },
+            {
+              "t": "your skill",
+              "at": [
+                185,
+                230
+              ],
+              "size": 0.032,
+              "color": "red"
+            }
+          ]
+        },
+        {
+          "say": "And you are responsible for what you submit.",
+          "marks": [
+            {
+              "type": "highlight",
+              "phrase": "you are responsible for what you submit",
+              "color": "yellow"
+            }
+          ],
+          "note": {
+            "text": "your name on it",
+            "near": "you are responsible for what you submit",
+            "color": "red"
+          },
+          "draw": [
+            {
+              "l": [
+                230,
+                312,
+                445,
+                312
+              ]
+            },
+            {
+              "t": "J. Doe",
+              "at": [
+                250,
+                270
+              ],
+              "size": 0.04,
+              "color": "blue"
+            },
+            {
+              "t": "responsible",
+              "at": [
+                265,
+                175
+              ],
+              "size": 0.028,
+              "color": "red"
+            }
+          ]
+        }
+      ]
+    },
+    "ClearRequestVideo": {
+      "voice": "r10",
+      "title": "Writing a Clear Request",
+      "passage": [
+        "A model can only work with what you give it. Vague requests get generic answers.",
+        "I'm a first-year biology student preparing for a quiz. I understand the light reactions but not the Calvin cycle. Explain it in plain language in under 150 words, step by step. Then give me three practice questions with the answers at the end.",
+        "Treat the first reply as a draft."
+      ],
+      "beats": [
+        {
+          "say": "Let's mark the clear request, part by part. The goal.",
+          "marks": [
+            {
+              "type": "underline",
+              "phrase": "preparing for a quiz",
+              "color": "blue"
+            }
+          ],
+          "note": {
+            "text": "goal",
+            "near": "preparing for a quiz",
+            "color": "blue"
+          },
+          "draw": [
+            {
+              "c": [
+                90,
+                110,
+                150
+              ]
+            },
+            {
+              "c": [
+                90,
+                110,
+                100
+              ],
+              "fill": "red"
+            },
+            {
+              "c": [
+                90,
+                110,
+                50
+              ]
+            },
+            {
+              "l": [
+                205,
+                30,
+                100,
+                102
+              ],
+              "w": 4
+            },
+            {
+              "p": "M 100 90 L 98 104 L 112 102"
+            }
+          ]
+        },
+        {
+          "say": "The context.",
+          "marks": [
+            {
+              "type": "underline",
+              "phrase": "I understand the light reactions but not the Calvin cycle",
+              "color": "purple"
+            }
+          ],
+          "draw": [
+            {
+              "e": [
+                320,
+                90,
+                240,
+                110
+              ]
+            },
+            {
+              "poly": [
+                [
+                  260,
+                  132
+                ],
+                [
+                  245,
+                  165
+                ],
+                [
+                  285,
+                  138
+                ]
+              ]
+            },
+            {
+              "t": "goal + context",
+              "at": [
+                225,
+                75
+              ],
+              "size": 0.03,
+              "color": "blue"
+            }
+          ]
+        },
+        {
+          "say": "The constraints, and the format.",
+          "marks": [
+            {
+              "type": "underline",
+              "phrase": "in plain language in under 150 words, step by step",
+              "color": "orange"
+            },
+            {
+              "type": "underline",
+              "phrase": "three practice questions with the answers at the end",
+              "color": "green"
+            }
+          ],
+          "draw": [
+            {
+              "r": [
+                215,
+                175,
+                225,
+                34
+              ],
+              "fill": "orange"
+            },
+            {
+              "l": [
+                225,
+                175,
+                225,
+                189
+              ]
+            },
+            {
+              "l": [
+                245,
+                175,
+                245,
+                189
+              ]
+            },
+            {
+              "l": [
+                265,
+                175,
+                265,
+                189
+              ]
+            },
+            {
+              "l": [
+                285,
+                175,
+                285,
+                189
+              ]
+            },
+            {
+              "l": [
+                305,
+                175,
+                305,
+                189
+              ]
+            },
+            {
+              "l": [
+                325,
+                175,
+                325,
+                189
+              ]
+            },
+            {
+              "l": [
+                345,
+                175,
+                345,
+                189
+              ]
+            },
+            {
+              "l": [
+                365,
+                175,
+                365,
+                189
+              ]
+            },
+            {
+              "l": [
+                385,
+                175,
+                385,
+                189
+              ]
+            },
+            {
+              "l": [
+                405,
+                175,
+                405,
+                189
+              ]
+            },
+            {
+              "l": [
+                425,
+                175,
+                425,
+                189
+              ]
+            },
+            {
+              "t": "< 150 words",
+              "at": [
+                235,
+                218
+              ],
+              "size": 0.028,
+              "color": "orange"
+            },
+            {
+              "c": [
+                40,
+                220,
+                10
+              ],
+              "fill": "green"
+            },
+            {
+              "l": [
+                55,
+                220,
+                160,
+                220
+              ]
+            },
+            {
+              "c": [
+                40,
+                250,
+                10
+              ],
+              "fill": "green"
+            },
+            {
+              "l": [
+                55,
+                250,
+                160,
+                250
+              ]
+            },
+            {
+              "c": [
+                40,
+                280,
+                10
+              ],
+              "fill": "green"
+            },
+            {
+              "l": [
+                55,
+                280,
+                160,
+                280
+              ]
+            }
+          ]
+        },
+        {
+          "say": "And remember: the first reply is a draft.",
+          "marks": [
+            {
+              "type": "circle",
+              "phrase": "draft",
+              "color": "red"
+            }
+          ],
+          "note": {
+            "text": "iterate",
+            "near": "draft",
+            "color": "red"
+          },
+          "draw": [
+            {
+              "p": "M 345 318 C 315 292, 340 262, 378 266 C 416 270, 436 296, 412 318",
+              "color": "red",
+              "w": 3.2
+            },
+            {
+              "p": "M 399 306 L 412 320 L 425 306",
+              "color": "red"
+            },
+            {
+              "t": "draft 2",
+              "at": [
+                215,
+                296
+              ],
+              "size": 0.026,
+              "color": "red"
+            }
+          ]
+        }
+      ]
+    },
+    "DisclosureVideo": {
+      "voice": "r11",
+      "title": "Integrity and Disclosure",
+      "passage": [
+        "Integrity means following the rules of the course you are in and being honest about what you did.",
+        "A good disclosure says what tool, for what, and what you did with the output.",
+        "If your work is questioned, your drafts, notes and AI-use record are the best evidence of your process."
+      ],
+      "beats": [
+        {
+          "say": "Pen out. Integrity has two parts.",
+          "marks": [
+            {
+              "type": "underline",
+              "phrase": "following the rules of the course you are in",
+              "color": "blue"
+            },
+            {
+              "type": "underline",
+              "phrase": "being honest about what you did",
+              "color": "green"
+            }
+          ],
+          "draw": [
+            {
+              "r": [
+                30,
+                40,
+                120,
+                150
+              ],
+              "fill": "blue"
+            },
+            {
+              "l": [
+                45,
+                40,
+                45,
+                190
+              ]
+            },
+            {
+              "t": "rules",
+              "at": [
+                62,
+                95
+              ],
+              "size": 0.034,
+              "color": "ink"
+            }
+          ]
+        },
+        {
+          "say": "A good disclosure has three parts.",
+          "marks": [
+            {
+              "type": "circle",
+              "phrase": "what tool",
+              "color": "green"
+            },
+            {
+              "type": "circle",
+              "phrase": "for what",
+              "color": "green"
+            },
+            {
+              "type": "circle",
+              "phrase": "what you did with the output",
+              "color": "green"
+            }
+          ],
+          "draw": [
+            {
+              "r": [
+                205,
+                30,
+                150,
+                190
+              ]
+            },
+            {
+              "l": [
+                220,
+                70,
+                340,
+                70
+              ],
+              "color": "blue"
+            },
+            {
+              "l": [
+                220,
+                102,
+                340,
+                102
+              ],
+              "color": "blue"
+            },
+            {
+              "l": [
+                220,
+                134,
+                340,
+                134
+              ],
+              "color": "blue"
+            },
+            {
+              "l": [
+                220,
+                166,
+                340,
+                166
+              ],
+              "color": "blue"
+            },
+            {
+              "l": [
+                220,
+                198,
+                340,
+                198
+              ],
+              "color": "blue"
+            },
+            {
+              "poly": [
+                [
+                  370,
+                  200
+                ],
+                [
+                  440,
+                  70
+                ],
+                [
+                  455,
+                  78
+                ],
+                [
+                  385,
+                  208
+                ]
+              ],
+              "fill": "yellow"
+            },
+            {
+              "t": "tool / for / did",
+              "at": [
+                205,
+                235
+              ],
+              "size": 0.026,
+              "color": "green"
+            }
+          ]
+        },
+        {
+          "say": "And your record is your evidence.",
+          "marks": [
+            {
+              "type": "highlight",
+              "phrase": "your drafts, notes and AI-use record",
+              "color": "yellow"
+            }
+          ],
+          "note": {
+            "text": "keep them",
+            "near": "your drafts, notes and AI-use record",
+            "color": "green"
+          },
+          "draw": [
+            {
+              "r": [
+                40,
+                240,
+                140,
+                75
+              ],
+              "fill": "yellow"
+            },
+            {
+              "p": "M 40 240 L 70 225 L 110 225 L 120 240"
+            },
+            {
+              "t": "my record",
+              "at": [
+                200,
+                265
+              ],
+              "size": 0.032,
+              "color": "green"
+            }
+          ]
+        }
+      ]
+    },
+    "PlanVideo": {
+      "voice": "r12",
+      "title": "Your AI Use Plan",
+      "passage": [
+        "Tasks I will use AI for: two or three support tasks where AI helps you and you can check the result.",
+        "Tasks I will keep: the skills your program is meant to build, which you will do yourself.",
+        "Your plan should change as tools, courses and policies change."
+      ],
+      "beats": [
+        {
+          "say": "Let's mark up the first two entries of your plan.",
+          "marks": [
+            {
+              "type": "underline",
+              "phrase": "you can check the result",
+              "color": "green"
+            },
+            {
+              "type": "underline",
+              "phrase": "which you will do yourself",
+              "color": "blue"
+            }
+          ],
+          "draw": [
+            {
+              "r": [
+                30,
+                25,
+                175,
+                270
+              ],
+              "fill": "#e7dfcf"
+            },
+            {
+              "r": [
+                50,
+                60,
+                32,
+                32
+              ]
+            },
+            {
+              "p": "M 56 78 L 66 88 L 84 62",
+              "color": "green",
+              "w": 4
+            },
+            {
+              "l": [
+                98,
+                76,
+                185,
+                76
+              ]
+            },
+            {
+              "r": [
+                50,
+                130,
+                32,
+                32
+              ]
+            },
+            {
+              "p": "M 56 148 L 66 158 L 84 132",
+              "color": "green",
+              "w": 4
+            },
+            {
+              "l": [
+                98,
+                146,
+                185,
+                146
+              ]
+            },
+            {
+              "r": [
+                50,
+                200,
+                32,
+                32
+              ]
+            },
+            {
+              "p": "M 56 218 L 66 228 L 84 202",
+              "color": "green",
+              "w": 4
+            },
+            {
+              "l": [
+                98,
+                216,
+                185,
+                216
+              ]
+            }
+          ]
+        },
+        {
+          "say": "And circle the last word. Your plan should change.",
+          "marks": [
+            {
+              "type": "circle",
+              "phrase": "should change",
+              "color": "red"
+            }
+          ],
+          "note": {
+            "text": "revisit it",
+            "near": "should change",
+            "color": "red"
+          },
+          "draw": [
+            {
+              "p": "M 230 318 C 280 230, 380 300, 440 150",
+              "w": 3
+            },
+            {
+              "r": [
+                350,
+                55,
+                100,
+                46
+              ],
+              "fill": "yellow"
+            },
+            {
+              "l": [
+                400,
+                101,
+                400,
+                175
+              ]
+            },
+            {
+              "t": "revisit",
+              "at": [
+                362,
+                66
+              ],
+              "size": 0.028,
+              "color": "red"
+            },
+            {
+              "p": "M 250 120 C 250 90, 290 90, 290 120 L 270 150 Z",
+              "color": "red",
+              "fill": "red"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

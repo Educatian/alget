@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Annotated reading</title>
+<style>
+  html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #f5f0e6; }
+  #stage { position: relative; width: 1920px; height: 1080px; font-family: Georgia, 'Times New Roman', serif; color: #2a241f; }
+  #kicker { position: absolute; left: 150px; top: 70px; font: 600 26px Arial, sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: #8a7f72; }
+  #title { position: absolute; left: 150px; top: 112px; font: 700 52px Georgia, serif; }
+  #passage { position: absolute; left: 150px; top: 230px; width: 1050px; font-size: 41px; line-height: 1.68; }
+  #passage p { margin: 0 0 34px; }
+  #notes, #pen { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: visible; pointer-events: none; }
+  #rule { position: absolute; left: 1235px; top: 230px; width: 2px; height: 800px; background: rgba(42,36,31,0.12); }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="kicker">Reading with a pen</div>
+  <div id="title"></div>
+  <div id="rule"></div>
+  <div id="passage"></div>
+  <svg id="notes" xmlns="http://www.w3.org/2000/svg"></svg>
+  <svg id="pen" xmlns="http://www.w3.org/2000/svg">
+    <g id="penbody" transform="translate(2100 1200)">
+      <!-- nib tip at (0,0), body angled like the ManimGL pen -->
+      <g transform="rotate(26)">
+        <polygon points="0,0 -9,-28 9,-28" fill="#3a3330" stroke="#2a241f" stroke-width="1.5"/>
+        <rect x="-10" y="-150" width="20" height="122" fill="#f2ead8" stroke="#2a241f" stroke-width="2"/>
+        <rect x="-10" y="-48" width="20" height="12" fill="#c8402c" stroke="#2a241f" stroke-width="1.5"/>
+        <rect x="-10" y="-180" width="20" height="30" fill="#2a241f"/>
+      </g>
+    </g>
+  </svg>
+</div>
+<script src="node_modules/rough-notation/lib/rough-notation.iife.js"></script>
+<script src="node_modules/roughjs/bundled/rough.js"></script>
+<script src="page.js"></script>
+</body>
+</html>

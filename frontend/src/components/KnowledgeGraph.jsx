@@ -5,6 +5,7 @@ import { supabase } from '../lib/supabase'
 import API_BASE from '../lib/apiConfig'
 import { getLocalMasteryMap } from '../lib/knowledgeService'
 import { STATIC_DEMO, applyMasteryToGraph } from '../lib/staticDemo'
+import { logEvent } from '../lib/loggingService'
 
 const VIEW_W = 540
 const VIEW_H = 360
@@ -154,9 +155,15 @@ export default function KnowledgeGraph({
     const serializedCurrentConcepts = JSON.stringify(currentConceptIds)
     const navigate = useNavigate()
 
+    useEffect(() => {
+        logEvent('knowledge_graph_view', course, { concepts: currentConceptIds.length }, currentSectionId)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
     const handleNodeClick = (node) => {
         // Suppress click-to-navigate when the node was dragged.
         if (dragging?.moved) return
+        logEvent('knowledge_graph_node_open', node.id, { status: node.status, p_known: node.p_known, to_section: node.section_id }, currentSectionId)
         if (!node?.section_id) return
         navigate(`/book/${node.section_id}`)
     }

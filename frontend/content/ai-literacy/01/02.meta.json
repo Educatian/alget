@@ -12,6 +12,15 @@
     "sampling_temperature",
     "fluency_vs_truth"
   ],
-  "estimated_time_minutes": 15,
+  "estimated_time_minutes": 23,
+  "time_budget": {
+    "reading": 1.6,
+    "clips": 1.6,
+    "check_ins": 1.0,
+    "labs": 6.0,
+    "quizzes": 1.0,
+    "practice": 3.6,
+    "written_activity": 8.0
+  },
   "order": 2
 }

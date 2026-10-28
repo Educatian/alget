@@ -14,3 +14,7 @@ frontend/node_modules/
 worker-configuration.d.ts
 cloudflare-secrets.local.txt
 
+
+# Lecture clip build intermediates (rebuilt from media_src)
+media_src/build/
+frontend/dist-e2e/

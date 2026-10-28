@@ -1,0 +1,23 @@
+{
+  "id": "ail_401_apply",
+  "prompt": "You want AI feedback on a cover letter that includes your name, home address and a manager's name. Write what you would actually share, using placeholders, and explain why.",
+  "min_words": 30,
+  "criteria": [
+    {
+      "id": "placeholders",
+      "label": "Replaces personal details",
+      "look_for": "placeholders instead of name, address and the manager's name"
+    },
+    {
+      "id": "keeps_task",
+      "label": "Keeps what the task needs",
+      "look_for": "the letter content needed for useful feedback"
+    },
+    {
+      "id": "reason",
+      "label": "Explains the reason",
+      "look_for": "prompts leave the device and copies may be kept, so share only what is needed"
+    }
+  ],
+  "reference": "I would paste the letter with [my name], [my city] and [hiring manager] in place of the real details, and keep the paragraphs about my experience, since that is what the feedback is about. Prompts are processed on the provider's servers and may be kept, so I share only what the task needs."
+}

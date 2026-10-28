@@ -1,0 +1,32 @@
+{
+  "checkpoints": [
+    {
+      "id": "DelegateVideo_q1",
+      "after_cue": 3,
+      "rewatch_cue": 2,
+      "question": "Which part of a lab report is core work?",
+      "options": [
+        "Formatting the reference list",
+        "Analyzing your data",
+        "Fixing comma splices",
+        "Choosing a font"
+      ],
+      "correct": 1,
+      "explain": "Analysis is the skill the assignment is built to develop."
+    },
+    {
+      "id": "DelegateVideo_q2",
+      "after_cue": 5,
+      "rewatch_cue": 5,
+      "question": "Before you delegate a task, which question matters most?",
+      "options": [
+        "Is this the skill I am meant to build?",
+        "Which chatbot is newest?",
+        "How long will it take?",
+        "Will anyone notice?"
+      ],
+      "correct": 0,
+      "explain": "If it is the skill being built, keep it and use AI for feedback instead."
+    }
+  ]
+}

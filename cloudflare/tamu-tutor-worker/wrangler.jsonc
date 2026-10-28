@@ -18,7 +18,13 @@
     "TIMEOUT_MS": "8000"
   },
   "kv_namespaces": [
-    { "binding": "USAGE", "id": "13a6f326f29d4646ab8187e1324bc6c4" }
+    { "binding": "USAGE", "id": "13a6f326f29d4646ab8187e1324bc6c4" },
+    // Student accounts, sessions and per-ID progress (src/accounts.js).
+    { "binding": "ACCOUNTS", "id": "91434d52ecd14b9caf4988d193993652" }
+  ],
+  // Learning events for sequence analysis (src/events.js, migrations/).
+  "d1_databases": [
+    { "binding": "EVENTS", "database_name": "alget-tamu-events", "database_id": "db507ff2-9bf7-4808-8186-1497f63e6f2e", "migrations_dir": "migrations" }
   ],
   "ratelimits": [
     { "name": "RATE_LIMITER", "namespace_id": "4207", "simple": { "limit": 12, "period": 60 } }

@@ -1,0 +1,32 @@
+{
+  "checkpoints": [
+    {
+      "id": "FiveQuestionsVideo_q1",
+      "after_cue": 4,
+      "rewatch_cue": 3,
+      "question": "A detector says your own essay was written by AI. What kind of error is that?",
+      "options": [
+        "False negative",
+        "False positive",
+        "Correct detection",
+        "Sampling error"
+      ],
+      "correct": 1,
+      "explain": "It flagged human writing as AI: a false positive."
+    },
+    {
+      "id": "FiveQuestionsVideo_q2",
+      "after_cue": 6,
+      "rewatch_cue": 6,
+      "question": "Which makes human oversight real?",
+      "options": [
+        "A person glances at the score.",
+        "A person who can override the tool and is accountable for the decision.",
+        "A warning label on the dashboard.",
+        "A faster detector."
+      ],
+      "correct": 1,
+      "explain": "Oversight needs authority, time and accountability."
+    }
+  ]
+}

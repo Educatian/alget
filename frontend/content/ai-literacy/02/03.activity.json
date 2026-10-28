@@ -1,0 +1,23 @@
+{
+  "id": "ail_203_apply",
+  "prompt": "Choose an AI tool used at a university or workplace. Answer the five questions about it in one sentence each, or say where you could not find an answer.",
+  "min_words": 30,
+  "criteria": [
+    {
+      "id": "tested_on",
+      "label": "Who it was tested on",
+      "look_for": "an answer or a noted gap about the test groups"
+    },
+    {
+      "id": "errors",
+      "label": "Errors and who pays",
+      "look_for": "the kinds of errors and who bears their cost"
+    },
+    {
+      "id": "oversight",
+      "label": "Who checks the decision",
+      "look_for": "whether a person with authority reviews and can override the output"
+    }
+  ],
+  "reference": "Tool: an AI-text detector. 1. I could not find who it was tested on. 2. No accuracy by group is published. 3. It makes false positives (human work flagged) and false negatives. 4. A falsely flagged student pays with time and trust; the appeal route is unclear. 5. The policy says an instructor must review flags before any action."
+}

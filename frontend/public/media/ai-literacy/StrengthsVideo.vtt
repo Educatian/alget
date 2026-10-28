@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:06.750
+Language models are very good at producing plausible language. Plausible is not the same as right.
+
+2
+00:00:07.233 --> 00:00:15.408
+Some tasks play to that strength: rewriting your own paragraph, summarizing a text you already have, brainstorming questions.
+
+3
+00:00:15.867 --> 00:00:19.742
+Notice what they share. You can judge the result yourself.
+
+4
+00:00:20.200 --> 00:00:26.775
+Other tasks are risky: exact numbers, recent events, and citations you have never seen.
+
+5
+00:00:27.233 --> 00:00:33.283
+Here the model may invent a source or a number, and say it with exactly the same confidence.
+
+6
+00:00:33.733 --> 00:00:39.033
+So before you use any output, ask one question: how would I know if this were wrong?
+
+7
+00:00:39.500 --> 00:00:46.650
+If you can check it easily, use it with care. If you cannot, treat it as a lead to verify, not as an answer.
+
+8
+00:00:47.933 --> 00:00:52.508
+Pen out. Plausible language, yes. Guaranteed accuracy, no.
+
+9
+00:00:52.958 --> 00:00:57.758
+The pattern behind the good uses: tasks where you can judge the result.
+
+10
+00:00:58.208 --> 00:01:00.858
+And the question to ask every time.

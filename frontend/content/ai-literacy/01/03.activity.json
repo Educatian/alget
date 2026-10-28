@@ -1,0 +1,23 @@
+{
+  "id": "ail_103_apply",
+  "prompt": "Pick one task from your own coursework. Would AI output for that task be easy or hard for you to check? Explain how you would know if it were wrong.",
+  "min_words": 30,
+  "criteria": [
+    {
+      "id": "task",
+      "label": "Names a real task",
+      "look_for": "a concrete task from the learner's coursework"
+    },
+    {
+      "id": "checkability",
+      "label": "Judges how checkable it is",
+      "look_for": "says whether the output is easy or hard to check and why"
+    },
+    {
+      "id": "how_to_check",
+      "label": "Says how to catch errors",
+      "look_for": "a specific way to tell if the output were wrong, or a decision to treat it as a lead to verify"
+    }
+  ],
+  "reference": "Task: summarizing a reading for my psychology class. This is easy to check because I have the reading: I would compare each point in the summary against the article and look for anything the summary adds that is not in the text. If I asked for statistics I have not read, that would be hard to check, so I would treat them as leads and find the original source."
+}

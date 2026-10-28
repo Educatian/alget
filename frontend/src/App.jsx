@@ -14,6 +14,8 @@ import API_BASE from './lib/apiConfig'
 import { canOpenCourse, canOpenLab } from './lib/studyTrack'
 import { DEMO_START, DEMO_USER, STATIC_DEMO } from './lib/staticDemo'
 import { TUTOR_ENABLED } from './lib/tutorClient'
+import { ACCOUNTS_ENABLED, resumeSession, signOut, studentUser } from './lib/account'
+import SignIn from './components/SignIn'
 import './index.css'
 
 const LandingPage = lazy(() => import('./pages/LandingPage'))
@@ -31,12 +33,26 @@ const E2E_USER = import.meta.env.VITE_E2E_AUTH_BYPASS === 'true'
   ? { id: 'e2e-user', email: 'e2e@alget.test' }
   : DEMO_USER
 
+const NOTICE_KEY = 'alget_notice_seen_v1'
+
 function DemoNotice() {
+  const [hidden, setHidden] = useState(() => {
+    try { return window.localStorage.getItem(NOTICE_KEY) === '1' } catch { return false }
+  })
+  if (hidden) return null
+  const dismiss = () => {
+    try { window.localStorage.setItem(NOTICE_KEY, '1') } catch { /* storage unavailable */ }
+    setHidden(true)
+  }
+  const text = ACCOUNTS_ENABLED
+    ? 'Notes and progress are saved to your student ID on the course server. AI hints, explanations and tutor notes come from the university\'s AI service, which receives question IDs and course text, and your written answers when you ask for feedback.'
+    : TUTOR_ENABLED
+      ? 'Preview: no account. Notes and progress stay in this browser. AI hints and explanations come from an AI service; only question IDs and course text are sent.'
+      : 'Preview: no account. Notes and progress stay in this browser; nothing is sent.'
   return (
-    <div role="note" className="pointer-events-none fixed bottom-3 left-3 z-50 max-w-sm rounded-2xl border border-[var(--ath-line)] bg-[var(--ath-panel)] px-3 py-1 text-xs text-[var(--ath-muted)] shadow-sm">
-      {TUTOR_ENABLED
-        ? 'Preview: no account. Notes and progress stay in this browser. AI hints and explanations come from an AI service; only question IDs and course text are sent.'
-        : 'Preview: no account. Notes and progress stay in this browser; nothing is sent.'}
+    <div role="note" className="fixed bottom-3 left-3 right-3 z-50 flex items-start gap-2 rounded-2xl border border-[var(--ath-line)] bg-[var(--ath-panel)] px-3 py-1.5 text-[11px] leading-snug text-[var(--ath-muted)] shadow-sm sm:right-auto sm:max-w-sm sm:text-xs">
+      <span>{text}</span>
+      <button type="button" onClick={dismiss} className="shrink-0 rounded-md px-1.5 py-0.5 text-[11px] font-semibold text-[var(--ath-primary)] underline">Got it</button>
     </div>
   )
 }
@@ -62,12 +78,26 @@ function StudyCourseGuard({ user, children }) {
 }
 
 export default function App() {
-  const [user, setUser] = useState(E2E_USER)
-  const [loading, setLoading] = useState(!E2E_USER)
+  const [user, setUser] = useState(ACCOUNTS_ENABLED ? null : E2E_USER)
+  const [loading, setLoading] = useState(ACCOUNTS_ENABLED || !E2E_USER)
 
   useEffect(() => {
     // Load the course table of contents when the app starts.
     if (!STATIC_DEMO) fetch(`${API_BASE}/book/inst-design/toc`, { method: 'GET' }).catch(() => {})
+
+    if (ACCOUNTS_ENABLED) {
+      resumeSession().then((id) => {
+        if (id) initSession(studentUser(id))
+        setUser(id ? studentUser(id) : null)
+        setLoading(false)
+      })
+      const signedOut = () => {
+        endSession()
+        setUser(null)
+      }
+      window.addEventListener('alget-signed-out', signedOut)
+      return () => window.removeEventListener('alget-signed-out', signedOut)
+    }
 
     if (E2E_USER) {
       return undefined
@@ -110,6 +140,12 @@ export default function App() {
   }
 
   const handleLogout = async () => {
+    if (ACCOUNTS_ENABLED) {
+      await endSession() // sends the last events while the session token is still valid
+      await signOut()
+      setUser(null)
+      return
+    }
     await endSession()
     // A personal AI key saved in this browser must not carry over to the next person.
     try { window.localStorage.removeItem('openrouter_api_key') } catch { /* storage unavailable */ }
@@ -122,6 +158,14 @@ export default function App() {
       <div className="editorial-shell flex min-h-screen items-center justify-center">
         <div className="text-xl font-semibold text-[var(--ath-text)]">Loading...</div>
       </div>
+    )
+  }
+
+  if (ACCOUNTS_ENABLED && !user) {
+    return (
+      <ThemeProvider>
+        <SignIn onSignedIn={(id) => handleLogin(studentUser(id))} />
+      </ThemeProvider>
     )
   }
 

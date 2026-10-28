@@ -1,0 +1,23 @@
+{
+  "id": "ail_201_apply",
+  "prompt": "Pick one AI feature from your Module 1 list. What were its training examples, who might have labelled them, and which users or situations might be missing from that data?",
+  "min_words": 30,
+  "criteria": [
+    {
+      "id": "examples",
+      "label": "Describes training examples",
+      "look_for": "what the training examples probably were"
+    },
+    {
+      "id": "labellers",
+      "label": "Says who labelled them",
+      "look_for": "who might have produced the labels"
+    },
+    {
+      "id": "missing",
+      "label": "Names a missing group or situation",
+      "look_for": "a specific kind of user or situation likely under-represented, and why it matters"
+    }
+  ],
+  "reference": "Voice assistant: its training examples were recordings of people speaking commands, labelled with the words that were said, probably by paid transcribers. Speakers with strong regional or non-native accents, children, and noisy environments may be missing, so it may work worse for them."
+}

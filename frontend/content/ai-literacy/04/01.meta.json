@@ -12,6 +12,15 @@
     "data_minimization",
     "settings_and_retention"
   ],
-  "estimated_time_minutes": 12,
+  "estimated_time_minutes": 22,
+  "time_budget": {
+    "reading": 1.3,
+    "clips": 1.3,
+    "check_ins": 1.0,
+    "labs": 6.0,
+    "quizzes": 1.0,
+    "practice": 3.6,
+    "written_activity": 8.0
+  },
   "order": 1
 }

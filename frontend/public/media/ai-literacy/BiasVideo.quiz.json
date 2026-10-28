@@ -1,0 +1,32 @@
+{
+  "checkpoints": [
+    {
+      "id": "BiasVideo_q1",
+      "after_cue": 4,
+      "rewatch_cue": 3,
+      "question": "The app is 90% accurate overall. What should you ask next?",
+      "options": [
+        "Is it fast?",
+        "How accurate is it for each group, such as night photos?",
+        "Who made it?",
+        "Is it free?"
+      ],
+      "correct": 1,
+      "explain": "An overall number can hide a group the model does badly on."
+    },
+    {
+      "id": "BiasVideo_q2",
+      "after_cue": 6,
+      "rewatch_cue": 6,
+      "question": "What closes the night-photo gap?",
+      "options": [
+        "More daytime photos.",
+        "Adding night photos to the training data.",
+        "A bigger screen.",
+        "Asking users to take photos in daylight."
+      ],
+      "correct": 1,
+      "explain": "Covering the missing group helps; more of the same data does not."
+    }
+  ]
+}

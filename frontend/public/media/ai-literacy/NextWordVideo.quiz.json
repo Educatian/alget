@@ -1,0 +1,32 @@
+{
+  "checkpoints": [
+    {
+      "id": "NextWordVideo_q1",
+      "after_cue": 5,
+      "rewatch_cue": 4,
+      "question": "Mat has the tallest bar. What happens most of the time?",
+      "options": [
+        "The model always picks mat.",
+        "The model usually picks mat, but sometimes another word.",
+        "Every word is equally likely.",
+        "The model looks the word up."
+      ],
+      "correct": 1,
+      "explain": "It samples: the tallest bar wins most often, not every time. That is why the same question can get different answers."
+    },
+    {
+      "id": "NextWordVideo_q2",
+      "after_cue": 8,
+      "rewatch_cue": 8,
+      "question": "Why might the model write Sydney as the capital of Australia?",
+      "options": [
+        "Sydney is the capital.",
+        "Sydney and capital often appear together in text.",
+        "The model searched the web.",
+        "The temperature was zero."
+      ],
+      "correct": 1,
+      "explain": "Likely words are not always true words. The capital is Canberra."
+    }
+  ]
+}

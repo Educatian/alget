@@ -35,3 +35,19 @@ Now the important part. Take the sentence: the capital of Australia is... Sydney
 9
 00:01:05.500 --> 00:01:15.200
 A model predicts likely words, and likely is not the same as true. Fluent answers still need checking. Try it yourself in the probability wheel lab.
+
+10
+00:01:16.467 --> 00:01:22.317
+Now let's read the key passage with a pen. First: the model does not look the answer up.
+
+11
+00:01:22.767 --> 00:01:26.492
+The key idea: every token gets a probability.
+
+12
+00:01:26.942 --> 00:01:31.992
+Then it samples. Likely tokens are picked more often, but not every time.
+
+13
+00:01:32.442 --> 00:01:36.592
+And the sentence to remember: likely is not the same as true.

@@ -1,0 +1,11 @@
+{
+  "name": "alget-annotated-reading",
+  "private": true,
+  "description": "Pen-annotated reading segments for the AI Literacy lecture clips (Rough Notation + Hershey Text JS), recorded frame by frame with Playwright.",
+  "type": "module",
+  "dependencies": {
+    "hersheytext": "2.0.0",
+    "rough-notation": "0.5.1",
+    "roughjs": "^4.6.6"
+  }
+}

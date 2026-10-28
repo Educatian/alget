@@ -1,0 +1,32 @@
+{
+  "checkpoints": [
+    {
+      "id": "TrainingDataVideo_q1",
+      "after_cue": 4,
+      "rewatch_cue": 4,
+      "question": "Why do teams test on held-back photos?",
+      "options": [
+        "To train faster.",
+        "To see whether the model works on examples it has not seen.",
+        "To delete bad photos.",
+        "To add more labels."
+      ],
+      "correct": 1,
+      "explain": "That is how you check generalization."
+    },
+    {
+      "id": "TrainingDataVideo_q2",
+      "after_cue": 6,
+      "rewatch_cue": 5,
+      "question": "The training photos were mostly taken in daylight. What do you expect on night photos?",
+      "options": [
+        "The same accuracy.",
+        "Higher accuracy.",
+        "Accuracy can drop sharply.",
+        "The model refuses to answer."
+      ],
+      "correct": 2,
+      "explain": "Models generalize best to examples that look like their training data."
+    }
+  ]
+}

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { ChevronRight, Search, X } from 'lucide-react'
 import API_BASE from '../lib/apiConfig'
 import { safeLocalStorageGet, safeLocalStorageSet } from '../lib/browserStorage'
+import { logEvent } from '../lib/loggingService'
 
 /**
  * GlobalSearch — Cmd+K / Ctrl+K modal for fuzzy search across every section
@@ -194,6 +195,7 @@ export default function GlobalSearch() {
 
     const openItem = (item) => {
         if (!item) return
+        logEvent('search_result_open', `${item.course}/${item.chapter}/${item.section}`, { query_length: query.length, rank: results.indexOf(item) + 1 })
         setOpen(false)
         setQuery('')
         navigate(`/book/${item.course}/${item.chapter}/${item.section}`)

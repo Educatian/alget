@@ -1,0 +1,32 @@
+{
+  "checkpoints": [
+    {
+      "id": "DataTrailVideo_q1",
+      "after_cue": 2,
+      "rewatch_cue": 2,
+      "question": "Which part of this prompt does the feedback task actually need?",
+      "options": [
+        "The student ID",
+        "The health detail",
+        "The essay draft",
+        "The full name"
+      ],
+      "correct": 2,
+      "explain": "Only the draft is needed. Leave the rest out."
+    },
+    {
+      "id": "DataTrailVideo_q2",
+      "after_cue": 4,
+      "rewatch_cue": 3,
+      "question": "You delete the chat from your list. What is true?",
+      "options": [
+        "Every copy is gone.",
+        "Copies may remain, depending on retention and training settings.",
+        "The chat becomes public.",
+        "The model forgets what it learned."
+      ],
+      "correct": 1,
+      "explain": "Deleting from your list may not remove copies kept by the provider."
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "ail_302_apply",
+  "prompt": "Rewrite this weak request into a clear one with a goal, context, constraints and format: \"Help me with my history essay.\"",
+  "min_words": 30,
+  "criteria": [
+    {
+      "id": "goal_context",
+      "label": "Gives a goal and context",
+      "look_for": "what the learner is trying to do and what the model needs to know"
+    },
+    {
+      "id": "constraints",
+      "label": "Adds constraints",
+      "look_for": "limits such as length, level, or what not to do"
+    },
+    {
+      "id": "format",
+      "label": "Specifies the format",
+      "look_for": "what the output should look like"
+    }
+  ],
+  "reference": "I am writing a 1,500-word history essay arguing that railways changed 19th-century trade. I have a thesis but my second paragraph is weak. Without rewriting it, give me three specific questions that would help me strengthen the evidence in that paragraph, in plain language, as a numbered list."
+}

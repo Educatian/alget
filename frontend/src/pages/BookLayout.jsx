@@ -8,6 +8,7 @@ import {
     ChevronRight,
     Flame,
     Home,
+    List,
     LogOut,
     Network,
     PanelRightClose,
@@ -142,6 +143,8 @@ export default function BookLayout({ user, onLogout }) {
     // The support rail and chat need the backend (AI tutor); the static preview leaves them out.
     const railOpen = railOpenState && !STATIC_DEMO
     const [railContext, setRailContext] = useState(null)
+    // Below the md breakpoint the contents panel is an overlay, opened from the header.
+    const [tocOpen, setTocOpen] = useState(false)
     const [stuckEvent, setStuckEvent] = useState(null)
     const [highlightQuestion, setHighlightQuestion] = useState(null)
     const [transitionDirection, setTransitionDirection] = useState('forward')
@@ -378,6 +381,7 @@ export default function BookLayout({ user, onLogout }) {
             return
         }
         setTransitionDirection(direction)
+        setTocOpen(false)
         setStuckEvent(null)
         setRailContext(null)
         setRailOpen(false)
@@ -395,6 +399,8 @@ export default function BookLayout({ user, onLogout }) {
 
     const handleStuckEvent = (event) => {
         setStuckEvent(event)
+        // The preview's tutor agent (TutorAgent) intervenes on this, since the support rail is off there.
+        window.dispatchEvent(new CustomEvent('alget-stuck', { detail: { ...event, sectionId: sectionPath } }))
         setRailContext({
             type: 'stuck',
             sectionId: sectionPath,
@@ -591,6 +597,17 @@ export default function BookLayout({ user, onLogout }) {
                         </Popover.Root>
 
                         <button
+                            type="button"
+                            onClick={() => setTocOpen((v) => !v)}
+                            className="md:hidden flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-secondary)] shadow-sm"
+                            aria-label={tocOpen ? 'Close contents' : 'Open contents'}
+                            aria-expanded={tocOpen}
+                            title="Contents"
+                        >
+                            <List className="h-4 w-4" aria-hidden="true" />
+                        </button>
+
+                        <button
                             onClick={handleBookmarkToggle}
                             className={`flex h-9 w-9 items-center justify-center rounded-lg text-sm font-semibold transition-all duration-200 ${currentBookmarked
                                 ? 'border border-[rgba(15,81,103,0.12)] bg-[rgba(200,226,236,0.35)] text-[var(--ath-primary)] hover:bg-[rgba(200,226,236,0.5)]'
@@ -708,7 +725,11 @@ export default function BookLayout({ user, onLogout }) {
             </header>
 
             <div className="relative flex min-h-0 flex-1 overflow-hidden">
-                <aside className="min-h-0 w-72 shrink-0 overflow-y-auto border-r border-[var(--ath-line)] bg-[rgba(240,237,230,0.72)] backdrop-blur-3xl">
+                {tocOpen && <button type="button" aria-label="Close contents" className="fixed inset-0 z-[94] bg-black/30 md:hidden" onClick={() => setTocOpen(false)} />}
+                <aside
+                    aria-label="Course contents"
+                    className={`fixed inset-y-0 left-0 z-[95] w-[min(18rem,85vw)] overflow-y-auto border-r border-[var(--ath-line)] bg-[var(--ath-background)] transition-transform duration-200 md:static md:z-auto md:min-h-0 md:w-72 md:shrink-0 md:translate-x-0 md:bg-[rgba(240,237,230,0.72)] md:backdrop-blur-3xl ${tocOpen ? 'translate-x-0' : '-translate-x-full'}`}
+                >
                     {tocError ? (
                         <div className="m-4 rounded-2xl border border-[rgba(220,38,38,0.25)] bg-[rgba(254,242,242,0.85)] p-4 text-sm">
                             <p className="font-semibold text-[var(--ath-text)]">Couldn't load chapter list</p>

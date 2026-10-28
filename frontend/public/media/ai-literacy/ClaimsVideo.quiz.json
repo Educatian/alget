@@ -1,0 +1,32 @@
+{
+  "checkpoints": [
+    {
+      "id": "ClaimsVideo_q1",
+      "after_cue": 3,
+      "rewatch_cue": 3,
+      "question": "The answer says the library opens at nine; the cited source says ten. How do you mark claim one?",
+      "options": [
+        "Supported",
+        "Contradicted",
+        "No real source",
+        "Probably fine"
+      ],
+      "correct": 1,
+      "explain": "The source exists but says something different, so the claim is contradicted."
+    },
+    {
+      "id": "ClaimsVideo_q2",
+      "after_cue": 5,
+      "rewatch_cue": 5,
+      "question": "A claim cites section 4.2, but the policy has only three sections. What do you do?",
+      "options": [
+        "Trust it, because it has a citation.",
+        "Treat it as unsupported: the citation points at nothing.",
+        "Cite section 3 instead.",
+        "Ask the AI whether section 4.2 exists."
+      ],
+      "correct": 1,
+      "explain": "A citation is a claim too. If the source is not there, the claim has no support."
+    }
+  ]
+}

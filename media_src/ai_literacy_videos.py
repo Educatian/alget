@@ -1,4 +1,4 @@
-"""ManimGL source for the four AI Literacy module videos: narrated, pen-annotated mini-lectures.
+"""ManimGL source for the twelve AI Literacy lecture clips (one per section): narrated, pen-annotated mini-lectures.
 
 A pen cursor draws every annotation (rough circles, underlines, arrows, strike-throughs and
 handwritten notes in Ink Free) while the narration plays. Narration clips in narration/vN_bM.mp3
@@ -8,7 +8,11 @@ also writes WebVTT captions next to the video.
 
 Render (ManimGL 1.7):
     manimgl ai_literacy_videos.py NextWordVideo BiasVideo ClaimsVideo DataTrailVideo -w --hd \
-        --video_dir ../frontend/public/media/ai-literacy
+        --video_dir build/manim
+    then: node annotated/record.mjs   (appends the pen-annotated reading segment and publishes
+    the clip and captions to ../frontend/public/media/ai-literacy)
+    (and WhatIsAIVideo StrengthsVideo TrainingDataVideo FiveQuestionsVideo DelegateVideo
+     ClearRequestVideo DisclosureVideo PlanVideo for sections 1.1, 1.3, 2.1, 2.3, 3.1, 3.2, 4.2, 4.3)
 
 The numbers match the 3D labs (energy-sketchbook js/lessons/ai*.js).
 """
@@ -157,8 +161,11 @@ class Lecture(Scene):
             return f"{int(t // 3600):02d}:{int(t % 3600 // 60):02d}:{t % 60:06.3f}"
         lines = ["WEBVTT", ""]
         for i, (a, b, text) in enumerate(self.cues, start=1):
-            lines += [str(i), f"{ts(a)} --> {ts(b)}", text, ""]
-        out = HERE.parent / "frontend" / "public" / "media" / "ai-literacy" / f"{type(self).__name__}.vtt"
+            # The script spells "A I" so the narrator says the letters; captions read "AI".
+            lines += [str(i), f"{ts(a)} --> {ts(b)}", text.replace("A I", "AI"), ""]
+        # Base clip captions; annotated/record.mjs appends the reading segment and publishes both.
+        out = HERE / "build" / "manim" / f"{type(self).__name__}.vtt"
+        out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text("\n".join(lines), encoding="utf-8")
         super().tear_down()
 
@@ -587,4 +594,472 @@ class DataTrailVideo(Lecture):
 
         self.beat(7)
         self.end_card("share only what's needed", ["Check each tool's settings and terms.", "Prefer tools your university has approved.", "Try it: the data trail lab."])
+        self.settle()
+
+
+# ---------------------------------------------------------------- shared pieces for the section clips
+def boxed(text, size=0.45, width=None, fill="#fffaf0", edge=INK, weight=NORMAL):
+    t = T(text, size, INK, weight)
+    box = SurroundingRectangle(t, buff=0.18).set_stroke(edge, 1.8).set_fill(fill, 1)
+    if width:
+        box.stretch_to_fit_width(width)
+    return VGroup(box, t)
+
+
+def photo(label, color, size=1.05, dark=False):
+    sq = RoundedRectangle(width=size, height=size, corner_radius=0.08).set_fill("#1e2433" if dark else color, 0.9).set_stroke(INK, 1.5)
+    tag = T(label, 0.34, "#f8fafc" if dark else INK, BOLD).move_to(sq)
+    return VGroup(sq, tag)
+
+
+def bar_chart(rows, max_h=3.0, width=1.1):
+    """rows: (label, value 0..1, color). Bars stand on a shared baseline."""
+    g = VGroup()
+    for label, value, color in rows:
+        bar = Rectangle(width=width, height=max(0.03, max_h * value)).set_fill(color, 0.85).set_stroke(INK, 1.5)
+        pct = T(f"{round(value * 100)}%", 0.42, INK, BOLD).next_to(bar, UP, buff=0.1)
+        name = T(label, 0.38, MUTED).next_to(bar, DOWN, buff=0.15)
+        g.add(VGroup(bar, pct, name))
+    g.arrange(RIGHT, buff=0.7, aligned_edge=DOWN)
+    return g
+
+
+# ---------------------------------------------------------------- 1.1 what counts as AI
+class WhatIsAIVideo(Lecture):
+    VID = "v5"
+
+    def construct(self):
+        self.beat(1)
+        title = H("Is it AI?", 1.2, INK).to_edge(UP, buff=0.6)
+        self.write(title, 0.9)
+        tools = VGroup(*[boxed(t, 0.52, 2.95) for t in ["Calculator", "Spam filter", "Autocomplete", "Alarm clock"]]).arrange(RIGHT, buff=0.35).shift(UP * 0.6)
+        self.play(LaggedStart(*[FadeIn(t, shift=UP * 0.2) for t in tools], lag_ratio=0.25), run_time=1.4)
+        self.settle()
+
+        self.beat(2)
+        self.draw(rough_circle(tools[0], RED, pad=0.15), run_time=0.6)
+        rule = H("2 + 2 = 4, every time", 0.6, INK).next_to(tools[0], DOWN, buff=0.6)
+        self.write(rule, 0.9)
+        fixed = T("fixed rules a person wrote", 0.38, MUTED).next_to(rule, DOWN, buff=0.2)
+        self.play(FadeIn(fixed), run_time=0.4)
+        self.settle()
+
+        self.beat(3)
+        self.clear_marks()
+        self.play(FadeOut(fixed), run_time=0.2)
+        self.draw(rough_circle(tools[1], BLUE, pad=0.15), run_time=0.6)
+        mails = VGroup(*[boxed("spam" if i % 3 else "not spam", 0.3, 1.4, "#eef3ff", BLUE) for i in range(4)]).arrange(DOWN, buff=0.08).next_to(tools[1], DOWN, buff=0.7)
+        self.play(LaggedStart(*[FadeIn(m, shift=UP * 0.15) for m in mails], lag_ratio=0.2), run_time=1.0)
+        self.draw(rough_arrow(mails.get_top() + UP * 0.05, tools[1].get_bottom() + DOWN * 0.05, BLUE, 0.15), run_time=0.5)
+        learned = H("learned from examples", 0.6, BLUE).next_to(mails, RIGHT, buff=0.3)
+        self.write(learned, 0.9)
+        self.settle()
+
+        self.beat(4)
+        self.clear_marks()
+        self.play(FadeOut(mails), run_time=0.3)
+        test = H("Did it learn from examples?", 0.75).next_to(tools, DOWN, buff=0.9)
+        self.write(test, 1.1)
+        for k in (1, 2):
+            self.draw(rough_tick(tools[k].get_top() + UP * 0.4), run_time=0.35)
+        for k in (0, 3):
+            self.draw(rough_strike(tools[k][1]), run_time=0.35)
+        self.settle()
+
+        self.beat(5)
+        self.clear()
+        narrow = H("narrow AI = one kind of task", 0.85, INK).to_edge(UP, buff=0.8)
+        self.write(narrow, 1.2)
+        good = boxed("writes fluent paragraphs", 0.5, 5.4)
+        bad = boxed("drives a car", 0.5, 5.4)
+        VGroup(good, bad).arrange(DOWN, buff=0.4).shift(DOWN * 0.2)
+        self.play(FadeIn(good), FadeIn(bad), run_time=0.6)
+        self.draw(rough_tick(good.get_right() + RIGHT * 0.5), run_time=0.35)
+        self.draw(rough_strike(bad[1]), run_time=0.4)
+        self.settle()
+
+        self.beat(6)
+        gen = H("general AI?", 0.9, BLUE).next_to(bad, DOWN, buff=0.7).shift(LEFT * 2)
+        self.write(gen, 0.9)
+        note = T("a research goal, not your phone", 0.42, MUTED).next_to(gen, RIGHT, buff=0.4)
+        self.play(FadeIn(note), run_time=0.4)
+        self.settle()
+
+        self.beat(7)
+        self.end_card("what task? what examples?", ["When a headline says an app 'understands everything',", "ask which one task it learned, and from what data."])
+        self.settle()
+
+
+# ---------------------------------------------------------------- 1.3 strengths and limits
+class StrengthsVideo(Lecture):
+    VID = "v6"
+
+    def construct(self):
+        self.beat(1)
+        a = H("plausible", 1.2, INK).shift(LEFT * 2.6)
+        neq = T("is not", 0.6, MUTED)
+        b = H("right", 1.2).shift(RIGHT * 2.4)
+        self.write(a, 0.9)
+        self.play(FadeIn(neq), run_time=0.3)
+        self.write(b, 0.7)
+        self.draw(rough_underline(b), run_time=0.4)
+        self.settle()
+
+        self.beat(2)
+        self.clear()
+        left_h = T("You can check it", 0.6, GREEN, BOLD).move_to(LEFT * 3.5 + UP * 2.3)
+        right_h = T("Hard to check", 0.6, RED, BOLD).move_to(RIGHT * 3.5 + UP * 2.3)
+        self.play(FadeIn(left_h), run_time=0.3)
+        left = VGroup(*[boxed(t, 0.5, 6.0, "#effaf3", GREEN) for t in ["rewrite my own paragraph", "summarize a text I have", "brainstorm questions"]]).arrange(DOWN, buff=0.25).next_to(left_h, DOWN, buff=0.4)
+        self.play(LaggedStart(*[FadeIn(c, shift=RIGHT * 0.2) for c in left], lag_ratio=0.35), run_time=1.6)
+        self.settle()
+
+        self.beat(3)
+        self.draw(rough_circle(left, GREEN, pad=0.2, turns=1.05), run_time=0.8)
+        judge = H("you judge the result", 0.6, GREEN).next_to(left, DOWN, buff=0.45)
+        self.write(judge, 0.9)
+        self.settle()
+
+        self.beat(4)
+        self.play(FadeIn(right_h), run_time=0.3)
+        right = VGroup(*[boxed(t, 0.5, 6.0, "#fff1ef", RED) for t in ["exact numbers", "recent events", "citations I have not seen"]]).arrange(DOWN, buff=0.25).next_to(right_h, DOWN, buff=0.4)
+        self.play(LaggedStart(*[FadeIn(c, shift=LEFT * 0.2) for c in right], lag_ratio=0.35), run_time=1.6)
+        self.settle()
+
+        self.beat(5)
+        cite = boxed("Smith (2021), J. of Learning 4(2)", 0.44, 6.0, "#ffffff", MUTED).next_to(right, DOWN, buff=0.45)
+        self.play(FadeIn(cite), run_time=0.4)
+        self.draw(rough_strike(cite[1]), run_time=0.4)
+        inv = H("invented, same confidence", 0.55).next_to(cite, DOWN, buff=0.2)
+        self.write(inv, 0.9)
+        self.settle()
+
+        self.beat(6)
+        self.clear()
+        q = H("How would I know", 1.0, INK).shift(UP * 0.5)
+        q2 = H("if this were wrong?", 1.0, INK).next_to(q, DOWN, buff=0.3)
+        self.write(q, 1.0)
+        self.write(q2, 1.0)
+        self.draw(rough_underline(q2), run_time=0.5)
+        self.settle()
+
+        self.beat(7)
+        self.end_card("check it, or verify it", ["Easy to check: use it with care.", "Hard to check: treat it as a lead, not an answer."])
+        self.settle()
+
+
+# ---------------------------------------------------------------- 2.1 learning from data
+class TrainingDataVideo(Lecture):
+    VID = "v7"
+
+    def construct(self):
+        labels = [("cat", "#f6c177"), ("dog", "#9ccfd8"), ("cat", "#f6c177"), ("no pet", "#d6d3d1"), ("dog", "#9ccfd8"), ("cat", "#f6c177"), ("dog", "#9ccfd8"), ("no pet", "#d6d3d1")]
+
+        self.beat(1)
+        photos = VGroup(*[photo(l, c) for l, c in labels]).arrange_in_grid(n_rows=2, n_cols=4, buff=0.25).shift(LEFT * 2.8 + UP * 0.6)
+        self.play(LaggedStart(*[FadeIn(p, scale=0.8) for p in photos], lag_ratio=0.12), run_time=1.6)
+        tag = H("photo + label", 0.7).next_to(photos, UP, buff=0.35)
+        self.write(tag, 0.8)
+        self.settle()
+
+        self.beat(2)
+        model = RoundedRectangle(width=2.8, height=1.8, corner_radius=0.2).set_stroke(INK, 2.5).set_fill("#fffaf0", 1).move_to(RIGHT * 3.9 + UP * 0.6)
+        mlabel = T("model", 0.5, INK, BOLD).move_to(model).shift(UP * 0.45)
+        nums = T("0.12  -0.8  2.4 ...", 0.36, MUTED).move_to(model).shift(DOWN * 0.25)
+        self.play(FadeIn(VGroup(model, mlabel, nums)), run_time=0.5)
+        self.draw(rough_arrow(photos.get_right() + RIGHT * 0.1, model.get_left() + LEFT * 0.1, RED, 0.25), run_time=0.6)
+        for new in ["0.31  -0.2  1.9 ...", "0.44  0.05  1.7 ..."]:
+            self.play(Transform(nums, T(new, 0.36, MUTED).move_to(nums)), run_time=0.5)
+        guess = H("guess = label?", 0.6, GREEN).next_to(model, DOWN, buff=0.35)
+        self.write(guess, 0.7)
+        self.settle()
+
+        self.beat(3)
+        pat = H("patterns, not memory", 0.7, BLUE).next_to(photos, DOWN, buff=0.5)
+        self.write(pat, 1.0)
+        self.settle()
+
+        self.beat(4)
+        self.clear_marks()
+        held = photos[6:]
+        box = Rectangle(width=2.8, height=1.5).set_stroke(BLUE, 2.5).move_to(RIGHT * 3.9 + DOWN * 2.0)
+        self.play(FadeIn(box), held.animate.scale(0.75).move_to(box), run_time=0.9)
+        test = T("held back: test set", 0.38, BLUE, BOLD).next_to(box, DOWN, buff=0.12)
+        self.play(FadeIn(test), run_time=0.3)
+        self.settle()
+
+        self.beat(5)
+        self.clear()
+        chart = bar_chart([("photos like training", 0.92, GREEN)], 3.2).shift(LEFT * 2.2 + DOWN * 0.4)
+        self.play(GrowFromEdge(chart[0][0], DOWN), FadeIn(chart[0][1:]), run_time=0.8)
+        gen = H("generalization", 0.8, GREEN).next_to(chart, UP, buff=0.4)
+        self.write(gen, 0.9)
+        self.settle()
+
+        self.beat(6)
+        night = bar_chart([("night photos", 0.61, RED)], 3.2).next_to(chart, RIGHT, buff=1.2, aligned_edge=DOWN)
+        dark = photo("night", "#000000", 0.9, dark=True).next_to(night, RIGHT, buff=0.5)
+        self.play(FadeIn(dark), GrowFromEdge(night[0][0], DOWN), FadeIn(night[0][1:]), run_time=0.8)
+        self.draw(rough_arrow(chart[0][1].get_right() + RIGHT * 0.1, night[0][1].get_left() + LEFT * 0.1, RED, -0.3), run_time=0.6)
+        self.settle()
+
+        self.beat(7)
+        self.end_card("people make the data choices", ["What to collect.  How to label it.  What gets left out.", "Those choices decide who the model works for."])
+        self.settle()
+
+
+# ---------------------------------------------------------------- 2.3 accurate for whom
+class FiveQuestionsVideo(Lecture):
+    VID = "v8"
+
+    def construct(self):
+        qs = ["1. Who was it tested on?", "2. Accurate for each group?", "3. What kinds of errors?", "4. Who pays for the errors?", "5. Who checks the decision?"]
+
+        self.beat(1)
+        flag = boxed("FLAGGED: at risk", 0.6, None, "#fff1ef", RED, BOLD).rotate(-0.06).shift(UP * 0.6)
+        self.play(FadeIn(flag, scale=1.4), run_time=0.5)
+        five = H("ask 5 questions first", 0.85).next_to(flag, DOWN, buff=0.6)
+        self.write(five, 1.0)
+        self.settle()
+
+        self.beat(2)
+        self.clear()
+        lst = VGroup(*[T(q, 0.58, INK) for q in qs]).arrange(DOWN, aligned_edge=LEFT, buff=0.35).to_edge(LEFT, buff=0.7)
+        self.play(FadeIn(lst[0], shift=RIGHT * 0.2), run_time=0.4)
+        self.wait(1.2)
+        self.play(FadeIn(lst[1], shift=RIGHT * 0.2), run_time=0.4)
+        self.draw(rough_underline(lst[1]), run_time=0.4)
+        self.settle()
+
+        self.beat(3)
+        self.play(FadeIn(lst[2], shift=RIGHT * 0.2), run_time=0.4)
+        det = boxed("AI-text detector", 0.5, 3.6, "#eef3ff", BLUE, BOLD).move_to(RIGHT * 3.6 + UP * 2.7)
+        self.play(FadeIn(det), run_time=0.4)
+        self.settle()
+
+        self.beat(4)
+        fp = boxed("your own writing  ->  'AI'", 0.46, 4.9, "#fff1ef", RED).next_to(det, DOWN, buff=0.35)
+        fn = boxed("AI writing  ->  'human'", 0.46, 4.9, "#fffaf0", MUTED).next_to(fp, DOWN, buff=0.45)
+        self.play(FadeIn(fp, shift=UP * 0.2), run_time=0.4)
+        fpl = H("false positive", 0.5).next_to(fp, DOWN, buff=0.04).align_to(fp, RIGHT)
+        self.write(fpl, 0.6)
+        self.play(FadeIn(fn, shift=UP * 0.2), run_time=0.4)
+        fnl = H("false negative", 0.5, MUTED).next_to(fn, DOWN, buff=0.04).align_to(fn, RIGHT)
+        self.write(fnl, 0.6)
+        self.settle()
+
+        self.beat(5)
+        self.play(*[FadeOut(m) for m in (fn, fnl)], run_time=0.3)
+        chart = bar_chart([("native", 0.06, BLUE), ("non-native", 0.38, RED)], 2.4, 0.9).next_to(fpl, DOWN, buff=0.35)
+        self.play(*[GrowFromEdge(b[0], DOWN) for b in chart], *[FadeIn(b[1:]) for b in chart], run_time=0.8)
+        une = H("cost falls unevenly", 0.5).next_to(chart, LEFT, buff=0.3)
+        self.write(une, 0.8)
+        self.settle()
+
+        self.beat(6)
+        self.play(FadeIn(lst[3], shift=RIGHT * 0.2), run_time=0.4)
+        self.wait(0.8)
+        self.play(FadeIn(lst[4], shift=RIGHT * 0.2), run_time=0.4)
+        self.draw(rough_circle(lst[4], GREEN, pad=0.12), run_time=0.6)
+        over = T("a person who can override, and is accountable", 0.46, GREEN).next_to(lst, DOWN, buff=0.4).align_to(lst, LEFT)
+        self.play(FadeIn(over), run_time=0.4)
+        self.settle()
+
+        self.beat(7)
+        self.end_card("no answer is a finding", ["Ask for results by group, not one overall number.", "Know who can appeal, and who reviews the flags."])
+        self.settle()
+
+
+# ---------------------------------------------------------------- 3.1 what to hand to AI
+class DelegateVideo(Lecture):
+    VID = "v9"
+
+    def construct(self):
+        support = ["format references", "check grammar", "organize notes"]
+        core = ["form the argument", "analyze the data", "reflect on experience"]
+
+        self.beat(1)
+        q = H("What should I hand to AI?", 1.0, INK)
+        self.write(q, 1.3)
+        self.draw(rough_underline(q), run_time=0.5)
+        self.settle()
+
+        self.beat(2)
+        self.clear()
+        sh = T("Support work", 0.6, BLUE, BOLD).move_to(LEFT * 3.5 + UP * 2.3)
+        ch = T("Core work", 0.6, RED, BOLD).move_to(RIGHT * 3.5 + UP * 2.3)
+        self.play(FadeIn(sh), run_time=0.3)
+        s = VGroup(*[boxed(t, 0.52, 5.2, "#eef3ff", BLUE) for t in support]).arrange(DOWN, buff=0.25).next_to(sh, DOWN, buff=0.4)
+        self.play(LaggedStart(*[FadeIn(c, shift=RIGHT * 0.2) for c in s], lag_ratio=0.35), run_time=1.4)
+        self.settle()
+
+        self.beat(3)
+        self.play(FadeIn(ch), run_time=0.3)
+        c = VGroup(*[boxed(t, 0.52, 5.2, "#fff1ef", RED) for t in core]).arrange(DOWN, buff=0.25).next_to(ch, DOWN, buff=0.4)
+        self.play(LaggedStart(*[FadeIn(x, shift=LEFT * 0.2) for x in c], lag_ratio=0.35), run_time=1.4)
+        self.draw(rough_circle(c, RED, pad=0.2, turns=1.05), run_time=0.8)
+        skill = H("the skill being built", 0.6).next_to(c, DOWN, buff=0.45)
+        self.write(skill, 0.9)
+        self.settle()
+
+        self.beat(4)
+        ai = boxed("hand it to AI", 0.45, 3.0, "#ffffff", MUTED, BOLD).next_to(skill, DOWN, buff=0.3)
+        self.play(FadeIn(ai), run_time=0.3)
+        self.draw(rough_strike(ai[1]), run_time=0.4)
+        miss = H("looks good, learning skipped", 0.55).next_to(s, DOWN, buff=1.2)
+        self.write(miss, 1.0)
+        self.settle()
+
+        self.beat(5)
+        self.clear()
+        three = VGroup(*[T(t, 0.62, INK) for t in ["1. Is this the skill I am meant to build?", "2. Is AI allowed here, and how?", "3. Can I check the result?"]]).arrange(DOWN, aligned_edge=LEFT, buff=0.45).shift(UP * 0.6)
+        self.play(LaggedStart(*[FadeIn(t, shift=RIGHT * 0.2) for t in three], lag_ratio=0.6), run_time=2.4)
+        self.settle()
+
+        self.beat(6)
+        keep = H("you keep the final decision", 0.8).next_to(three, DOWN, buff=0.6)
+        self.write(keep, 1.2)
+        self.draw(rough_underline(keep), run_time=0.4)
+        self.settle()
+
+        self.beat(7)
+        self.end_card("keep / delegate / get feedback", ["Mark each part of your next assignment.", "Note one thing you will check in any AI output."])
+        self.settle()
+
+
+# ---------------------------------------------------------------- 3.2 writing a clear request
+class ClearRequestVideo(Lecture):
+    VID = "v10"
+
+    def construct(self):
+        parts = [("Goal", "I'm preparing for a biology quiz.", BLUE), ("Context", "I get the light reactions, not the Calvin cycle.", "#a855f7"),
+                 ("Constraints", "Plain language, under 150 words, no skipped steps.", "#ff7a1a"), ("Format", "End with 3 practice questions, answers at the end.", GREEN)]
+
+        self.beat(1)
+        weak = boxed("Explain the Calvin cycle.", 0.66, 7.4).to_edge(UP, buff=0.9)
+        self.play(FadeIn(weak), run_time=0.5)
+        stamp = boxed("generic answer", 0.5, None, "#fff1ef", RED, BOLD).rotate(-0.1).next_to(weak, DOWN, buff=0.5)
+        self.play(FadeIn(stamp, scale=1.5), run_time=0.4)
+        self.settle()
+
+        rows = VGroup()
+        for i, (name, text, color) in enumerate(parts):
+            self.beat(2 + i)
+            if i == 0:
+                self.play(FadeOut(stamp), run_time=0.3)
+            row = VGroup(T(name, 0.5, color, BOLD), T(text, 0.5, INK)).arrange(RIGHT, buff=0.3)
+            rows.add(row)
+            rows.arrange(DOWN, aligned_edge=LEFT, buff=0.32).next_to(weak, DOWN, buff=0.5)
+            self.play(FadeIn(row, shift=RIGHT * 0.2), run_time=0.5)
+            self.draw(rough_underline(row[0], color, 0.06), run_time=0.35)
+            self.settle()
+
+        self.beat(6)
+        self.draw(rough_tick(weak.get_right() + RIGHT * 0.5), run_time=0.4)
+        target = H("a target it can hit, an answer you can check", 0.55, GREEN).next_to(rows, DOWN, buff=0.45)
+        self.write(target, 1.2)
+        self.settle()
+
+        self.beat(7)
+        self.clear()
+        follow = VGroup(*[boxed(t, 0.5, 8.4, "#eef3ff", BLUE) for t in ["Which part are you least sure about?", "Give me a source I can check for step 2.", "Ask me three questions to check I understood."]]).arrange(DOWN, buff=0.3).shift(DOWN * 0.3)
+        it = H("iterate", 1.0).next_to(follow, UP, buff=0.4)
+        self.write(it, 0.6)
+        self.play(LaggedStart(*[FadeIn(f, shift=UP * 0.15) for f in follow], lag_ratio=0.4), run_time=1.6)
+        self.park()
+        self.settle()
+
+
+# ---------------------------------------------------------------- 4.2 integrity and disclosure
+class DisclosureVideo(Lecture):
+    VID = "v11"
+
+    def construct(self):
+        self.beat(1)
+        courses = VGroup(*[boxed(t, 0.5, 4.2, f, e) for t, f, e in [("Course A: AI banned", "#fff1ef", RED), ("Course B: AI required", "#effaf3", GREEN), ("Course C: some tasks", "#eef3ff", BLUE)]]).arrange(RIGHT, buff=0.3).shift(UP * 0.8)
+        self.play(LaggedStart(*[FadeIn(c, shift=UP * 0.2) for c in courses], lag_ratio=0.35), run_time=1.4)
+        rule = H("so what is the rule?", 0.8).next_to(courses, DOWN, buff=0.6)
+        self.write(rule, 0.9)
+        self.settle()
+
+        self.beat(2)
+        self.clear_marks()
+        self.draw(rough_circle(courses[2], RED, pad=0.15), run_time=0.6)
+        here = H("the course you are in", 0.65).next_to(courses, DOWN, buff=0.6)
+        self.write(here, 0.9)
+        ask = T("syllabus, course site, assignment. Unclear? Ask first.", 0.48, MUTED).next_to(here, DOWN, buff=0.25)
+        self.play(FadeIn(ask), run_time=0.4)
+        self.settle()
+
+        self.beat(3)
+        self.clear()
+        vague = boxed("I used AI.", 0.6, 4.0).to_edge(UP, buff=0.9).shift(LEFT * 2)
+        self.play(FadeIn(vague), run_time=0.4)
+        self.draw(rough_strike(vague[1]), run_time=0.4)
+        nothing = H("tells almost nothing", 0.6).next_to(vague, RIGHT, buff=0.4)
+        self.write(nothing, 0.8)
+        self.settle()
+
+        self.beat(4)
+        rows = VGroup(*[VGroup(T(a, 0.52, BLUE, BOLD), T(b, 0.52, INK)).arrange(RIGHT, buff=0.3) for a, b in [
+            ("Tool:", "a chatbot"), ("For:", "brainstorming counterarguments"), ("What I did:", "chose two, rewrote them, checked the readings")]]).arrange(DOWN, aligned_edge=LEFT, buff=0.3).next_to(vague, DOWN, buff=0.7).set_x(0)
+        for r in rows:
+            self.play(FadeIn(r, shift=RIGHT * 0.2), run_time=0.5)
+            self.wait(0.4)
+        self.draw(rough_tick(rows.get_corner(UR) + RIGHT * 0.5), run_time=0.4)
+        self.settle()
+
+        self.beat(5)
+        log = VGroup(*[boxed(t, 0.44, 7.2, "#fffaf0", MUTED) for t in ["prompt 1: outline ideas  ->  kept 2 of 5", "prompt 2: grammar check  ->  accepted 3 fixes"]]).arrange(DOWN, buff=0.15).next_to(rows, DOWN, buff=0.5).set_x(-1)
+        self.play(LaggedStart(*[FadeIn(l, shift=UP * 0.15) for l in log], lag_ratio=0.4), run_time=1.0)
+        rec = H("keep a record", 0.6, GREEN).next_to(log, RIGHT, buff=0.3)
+        self.write(rec, 0.7)
+        self.settle()
+
+        self.beat(6)
+        self.end_card("detectors are not proof", ["Your drafts, notes and AI-use record", "are the best evidence of your own process."])
+        self.settle()
+
+
+# ---------------------------------------------------------------- 4.3 your AI use plan
+class PlanVideo(Lecture):
+    VID = "v12"
+
+    def construct(self):
+        slots = [("Use AI for", "support tasks I can check"), ("Keep for me", "the skills my program builds"), ("How I ask", "goal, context, constraints, format"),
+                 ("How I check", "claims, sources, numbers"), ("Never share", "personal and confidential details"), ("How I disclose", "tool, for what, what I did")]
+
+        self.beat(1)
+        title = H("My AI Use Plan", 1.0, INK).to_edge(UP, buff=0.35)
+        self.write(title, 1.0)
+        boxes = VGroup()
+        for name, _ in slots:
+            b = RoundedRectangle(width=5.4, height=1.3, corner_radius=0.12).set_stroke(INK, 1.8).set_fill("#fffaf0", 1)
+            t = T(name, 0.5, INK, BOLD).move_to(b).shift(UP * 0.28)
+            boxes.add(VGroup(b, t))
+        boxes.arrange_in_grid(n_rows=3, n_cols=2, h_buff=0.5, v_buff=0.3).next_to(title, DOWN, buff=0.35)
+        self.play(LaggedStart(*[FadeIn(b) for b in boxes], lag_ratio=0.15), run_time=1.2)
+        self.settle()
+
+        def fill(k):
+            txt = T(slots[k][1], 0.42, MUTED).move_to(boxes[k][0]).shift(DOWN * 0.24)
+            self.play(FadeIn(txt, shift=UP * 0.1), run_time=0.4)
+            self.draw(rough_tick(boxes[k][0].get_right() + LEFT * 0.4 + UP * 0.22, GREEN, 0.18), run_time=0.3)
+
+        for n, ks in [(2, (0, 1)), (3, (2,)), (4, (3, 4)), (5, (5,))]:
+            self.beat(n)
+            for k in ks:
+                fill(k)
+                self.wait(0.5)
+            self.settle()
+
+        self.beat(6)
+        loop = rough_arrow(boxes.get_corner(DR) + RIGHT * 0.4 + UP * 0.2, boxes.get_corner(UR) + RIGHT * 0.4 + DOWN * 0.2, BLUE, 0.9)
+        self.draw(loop, run_time=0.8)
+        rev = H("revisit after each assignment", 0.55, BLUE).next_to(boxes, DOWN, buff=0.25)
+        self.write(rev, 1.0)
+        self.settle()
+
+        self.beat(7)
+        self.end_card("AI literacy in practice", ["Tools and policies change; your plan changes with them.", "Write yours in the activity below."])
         self.settle()

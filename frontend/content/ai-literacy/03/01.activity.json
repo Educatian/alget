@@ -1,0 +1,23 @@
+{
+  "id": "ail_301_apply",
+  "prompt": "Take an upcoming assignment. List its parts and mark each one keep, delegate or get feedback, with one reason for each.",
+  "min_words": 30,
+  "criteria": [
+    {
+      "id": "parts",
+      "label": "Lists the assignment's parts",
+      "look_for": "at least three concrete parts"
+    },
+    {
+      "id": "labels",
+      "label": "Marks each part",
+      "look_for": "each part labelled keep, delegate or get feedback"
+    },
+    {
+      "id": "reasons",
+      "label": "Gives reasons tied to learning",
+      "look_for": "reasons that protect the skill the assignment builds"
+    }
+  ],
+  "reference": "Research essay: thesis and argument: keep, because forming the argument is the skill being graded. Finding sources: keep, but ask AI for search terms. Reference list formatting: delegate, I can check it against the style guide. Draft paragraphs: get feedback on clarity after I write them myself."
+}

@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:07.425
+How does a model learn to spot a cat? Start with thousands of photos, each with a label: cat, dog, or no pet.
+
+2
+00:00:07.900 --> 00:00:15.400
+During training, the model adjusts millions of numbers until its guesses match the labels as often as possible.
+
+3
+00:00:15.867 --> 00:00:21.592
+It is not memorizing photos. It is finding patterns that separate cats from dogs.
+
+4
+00:00:22.067 --> 00:00:29.642
+To see whether it really learned, the team holds back labelled photos the model has never seen, and tests on those.
+
+5
+00:00:30.100 --> 00:00:37.400
+That is generalization: working on new examples. It works best on examples that look like the training data.
+
+6
+00:00:37.867 --> 00:00:44.267
+Show it a kind of photo it rarely saw, like one taken at night, and accuracy can drop sharply.
+
+7
+00:00:44.733 --> 00:00:53.183
+And remember: people chose what to collect, how to label it, and what got left out. Those choices decide who the model works for.
+
+8
+00:00:54.467 --> 00:01:00.067
+Let's annotate. Training means adjusting numbers until the guesses match the labels.
+
+9
+00:01:00.517 --> 00:01:04.117
+Not memorizing photos, but finding patterns.
+
+10
+00:01:04.567 --> 00:01:09.142
+It generalizes to new examples that resemble its training data.
+
+11
+00:01:09.592 --> 00:01:13.617
+And every data choice affects who the system works well for.

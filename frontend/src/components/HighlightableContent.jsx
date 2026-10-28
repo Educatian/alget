@@ -463,12 +463,16 @@ export default function HighlightableContent({
             await updateHighlightNote(editingNoteId, noteInput)
             const current = highlights.find((h) => h.id === editingNoteId)
             if (current && (current.color || 'yellow') !== noteColor) await updateHighlightColor(editingNoteId, noteColor)
+            logEvent('highlight_update', String(editingNoteId), { note_length: noteInput.length, tag: noteColor, tag_changed: (current?.color || 'yellow') !== noteColor }, sectionId)
             clearSelection()
         }
     }
 
     const removeEditingHighlight = async () => {
-        if (editingNoteId) await deleteHighlight(editingNoteId)
+        if (editingNoteId) {
+            await deleteHighlight(editingNoteId)
+            logEvent('highlight_delete', String(editingNoteId), {}, sectionId)
+        }
         clearSelection()
     }
 
@@ -487,7 +491,10 @@ export default function HighlightableContent({
 
     const readSelectionAloud = () => {
         const text = selectedTextRef.current || selectionState?.text
-        if (text) readAloud(text)
+        if (text) {
+            readAloud(text)
+            logEvent('read_aloud', null, { text_length: text.length }, sectionId)
+        }
     }
 
     // Handle ask BigAL

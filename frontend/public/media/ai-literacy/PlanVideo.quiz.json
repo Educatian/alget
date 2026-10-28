@@ -1,0 +1,32 @@
+{
+  "checkpoints": [
+    {
+      "id": "PlanVideo_q1",
+      "after_cue": 3,
+      "rewatch_cue": 3,
+      "question": "Which entry belongs under 'How I ask'?",
+      "options": [
+        "I never share my student ID.",
+        "Goal, context, constraints and format in every request.",
+        "I check every citation.",
+        "I name the tool I used."
+      ],
+      "correct": 1,
+      "explain": "Those are the four parts of a clear request."
+    },
+    {
+      "id": "PlanVideo_q2",
+      "after_cue": 6,
+      "rewatch_cue": 6,
+      "question": "When should you revisit your plan?",
+      "options": [
+        "Never",
+        "After each major assignment",
+        "Only when a tool is banned",
+        "Once a year"
+      ],
+      "correct": 1,
+      "explain": "Tools, courses and your own needs change, so the plan does too."
+    }
+  ]
+}

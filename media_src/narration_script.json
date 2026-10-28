@@ -38,5 +38,139 @@
     "Now the same request, done carefully. Remove what the task doesn't need, and turn off training and sharing where you can.",
     "Same feedback on the essay, and no personal details anywhere.",
     "Share only what the task needs, check each tool's settings, and prefer tools your university has approved. Try it yourself in the data trail lab."
+  ],
+  "v5": [
+    "Quick test. Which of these is A I: a calculator, a spam filter, autocomplete, or an alarm clock?",
+    "A calculator follows fixed rules that a person wrote. Two plus two is four, every single time.",
+    "A spam filter is different. It learned from millions of emails that people marked as spam, and it keeps adjusting.",
+    "So here is the test: did the system learn its behavior from examples? Spam filter and autocomplete, yes. Calculator and alarm clock, no.",
+    "Every A I you use today is narrow A I. It is built for one kind of task. A model that writes fluent paragraphs cannot drive a car.",
+    "General A I, one system that could learn any task the way people do, is still a research goal. It is not what is on your phone.",
+    "So when a headline says an app understands everything, ask: what one task did it learn, and from what examples?"
+  ],
+  "v6": [
+    "Language models are very good at producing plausible language. Plausible is not the same as right.",
+    "Some tasks play to that strength: rewriting your own paragraph, summarizing a text you already have, brainstorming questions.",
+    "Notice what they share. You can judge the result yourself.",
+    "Other tasks are risky: exact numbers, recent events, and citations you have never seen.",
+    "Here the model may invent a source or a number, and say it with exactly the same confidence.",
+    "So before you use any output, ask one question: how would I know if this were wrong?",
+    "If you can check it easily, use it with care. If you cannot, treat it as a lead to verify, not as an answer."
+  ],
+  "v7": [
+    "How does a model learn to spot a cat? Start with thousands of photos, each with a label: cat, dog, or no pet.",
+    "During training, the model adjusts millions of numbers until its guesses match the labels as often as possible.",
+    "It is not memorizing photos. It is finding patterns that separate cats from dogs.",
+    "To see whether it really learned, the team holds back labelled photos the model has never seen, and tests on those.",
+    "That is generalization: working on new examples. It works best on examples that look like the training data.",
+    "Show it a kind of photo it rarely saw, like one taken at night, and accuracy can drop sharply.",
+    "And remember: people chose what to collect, how to label it, and what got left out. Those choices decide who the model works for."
+  ],
+  "v8": [
+    "An A I tool flags students as at risk. Before you trust it, ask five questions.",
+    "Who was it tested on? And how accurate is it for each group, not just overall?",
+    "What kinds of errors happen? Take an A I text detector.",
+    "A false positive says your own writing was made by A I. A false negative misses text that really was.",
+    "Detectors have been shown to flag writing by non-native English speakers more often. So the cost of false positives falls on some students more than others.",
+    "Then ask who pays for the errors, and who checks the decision. Real oversight means a person who can override the tool, and is accountable.",
+    "If you cannot find these answers, that is a finding too."
+  ],
+  "v9": [
+    "Before you type anything into a chatbot, ask: what should I hand to A I at all?",
+    "Split the assignment. Support work: formatting references, checking grammar, organizing your notes.",
+    "Core work: forming the argument, analyzing the data, reflecting on your experience. That is the skill the assignment is building.",
+    "Delegate the core work, and the result may look good, but you skipped the learning.",
+    "Three questions before you delegate. Is this the skill I am meant to build? Is A I allowed here, and how? Can I check the result?",
+    "Whatever you delegate, you keep the final decision. You are responsible for what you submit.",
+    "Try it now: mark each part of your next assignment keep, delegate, or get feedback."
+  ],
+  "v10": [
+    "Here is a weak request: explain the Calvin cycle. You will get a generic answer.",
+    "Add a goal: I am preparing for a biology quiz.",
+    "Add context: I understand the light reactions, but not the Calvin cycle.",
+    "Add constraints: plain language, under one hundred and fifty words, no skipped steps.",
+    "And add a format: end with three practice questions, with the answers at the bottom.",
+    "Now the model has a target it can hit, and you have something you can check against your textbook.",
+    "Then iterate. Ask which part it is least sure about, or ask it to quiz you."
+  ],
+  "v11": [
+    "One course bans A I. Another requires it. A third allows it for some tasks. So what is the rule?",
+    "The rule is the policy of the course you are in. Find it in the syllabus or the assignment, and ask your instructor if it is unclear.",
+    "When A I is allowed, disclose it. Just saying I used A I tells your instructor almost nothing.",
+    "A good disclosure says three things: what tool, for what, and what you did with the output.",
+    "Keep a record of your key prompts, and of what you kept or changed.",
+    "Detectors make mistakes. If your work is questioned, your drafts and your record are the best evidence of your own process."
+  ],
+  "v12": [
+    "You have learned how A I writes, who it works for, how to ask, and how to check. Now turn it into a plan.",
+    "First, the support tasks you will hand to A I, and the core skills you will keep for yourself.",
+    "Second, how you will ask: goal, context, constraints, and format.",
+    "Third, how you will check claims, sources and numbers, and what you will never share.",
+    "Fourth, a disclosure sentence you can adapt to each course.",
+    "Then revisit the plan after each big assignment. Did A I help where you expected? Did your checks catch anything?",
+    "Your plan will change as tools and policies change. That is what A I literacy looks like in practice."
+  ],
+  "r1": [
+    "Now let's read the key passage with a pen. First: the model does not look the answer up.",
+    "The key idea: every token gets a probability.",
+    "Then it samples. Likely tokens are picked more often, but not every time.",
+    "And the sentence to remember: likely is not the same as true."
+  ],
+  "r2": [
+    "Let's read this with a pen. Examples that are rare in the training data are learned poorly.",
+    "An overall accuracy is an average, and a small group's failures barely move it.",
+    "And the fix: more data helps only if it covers the missing group."
+  ],
+  "r3": [
+    "Pen out. First line: a citation is itself a claim.",
+    "Three stamps for each claim: supported, contradicted, and no real source.",
+    "And the fact-checkers' habit: they leave the page to see what other sources say."
+  ],
+  "r4": [
+    "Mark this first. Everything you type leaves your device.",
+    "But one thing is always yours to control: what you put in.",
+    "Deleting a chat may not remove every copy.",
+    "So practise data minimization: share only what the task needs."
+  ],
+  "r5": [
+    "Let's mark up the definition. Fixed rules on one side, learning from examples on the other.",
+    "Here is the test to remember.",
+    "And the name for the tools you use today: narrow A I, built for one kind of task."
+  ],
+  "r6": [
+    "Pen out. Plausible language, yes. Guaranteed accuracy, no.",
+    "The pattern behind the good uses: tasks where you can judge the result.",
+    "And the question to ask every time."
+  ],
+  "r7": [
+    "Let's annotate. Training means adjusting numbers until the guesses match the labels.",
+    "Not memorizing photos, but finding patterns.",
+    "It generalizes to new examples that resemble its training data.",
+    "And every data choice affects who the system works well for."
+  ],
+  "r8": [
+    "With the pen: question one comes first.",
+    "Two kinds of error, with different costs.",
+    "And real oversight has three parts: authority, the power to override, and accountability."
+  ],
+  "r9": [
+    "Pen out. Support work can save time. Core work is where the learning is.",
+    "If it is the skill being built, keep it, and use A I for feedback instead.",
+    "And you are responsible for what you submit."
+  ],
+  "r10": [
+    "Let's mark the clear request, part by part. The goal.",
+    "The context.",
+    "The constraints, and the format.",
+    "And remember: the first reply is a draft."
+  ],
+  "r11": [
+    "Pen out. Integrity has two parts.",
+    "A good disclosure has three parts.",
+    "And your record is your evidence."
+  ],
+  "r12": [
+    "Let's mark up the first two entries of your plan.",
+    "And circle the last word. Your plan should change."
   ]
 }

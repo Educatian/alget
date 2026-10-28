@@ -1,0 +1,23 @@
+{
+  "id": "ail_303_apply",
+  "prompt": "An AI answer says: \"The library opens at 7 a.m. on Sundays (Library Policy, section 6).\" Describe, step by step, how you would check this claim.",
+  "min_words": 30,
+  "criteria": [
+    {
+      "id": "find_source",
+      "label": "Finds the source independently",
+      "look_for": "locating the cited policy yourself, not through the chatbot"
+    },
+    {
+      "id": "verify",
+      "label": "Checks existence and wording",
+      "look_for": "checking that section 6 exists and says the same thing"
+    },
+    {
+      "id": "decide",
+      "label": "Decides what to do",
+      "look_for": "keep, fix or drop the claim, citing the real source"
+    }
+  ],
+  "reference": "First I would find the library's policy on the library website myself. Then I would check whether it has a section 6 at all and read what it says about Sunday hours. If the section is missing or says something else, I treat the claim as unsupported and use the hours from the real source, citing that page, not the chatbot."
+}

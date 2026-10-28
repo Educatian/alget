@@ -1,0 +1,23 @@
+{
+  "id": "ail_202_apply",
+  "prompt": "A photo app is 92% accurate overall but much worse on night photos. Explain how this can happen, and what would actually fix it.",
+  "min_words": 30,
+  "criteria": [
+    {
+      "id": "average",
+      "label": "Explains the average hiding a gap",
+      "look_for": "a small group's failures barely move the overall number"
+    },
+    {
+      "id": "cause",
+      "label": "Names the data cause",
+      "look_for": "night photos were rare in the training data"
+    },
+    {
+      "id": "fix",
+      "label": "Gives a fix that works",
+      "look_for": "add or cover the missing group (night photos) and report accuracy for each group; more of the same data does not help"
+    }
+  ],
+  "reference": "The 92% is an average across everyone tested. Night photos were rare in the training data, so the model learned them poorly, and because they are a small part of the test set, their errors barely move the average. Adding more daytime photos would not help; adding night photos to training and reporting accuracy separately for day and night would."
+}

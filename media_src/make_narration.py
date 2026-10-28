@@ -24,10 +24,14 @@ def main():
     script = json.loads((HERE / "narration_script.json").read_text(encoding="utf-8"))
     OUT.mkdir(exist_ok=True)
     pipeline = KPipeline(lang_code="a")  # American English
-    durations = {}
+    # Keep clips already made so existing videos keep their timing; delete an mp3 to remake it.
+    durations_file = OUT / "durations.json"
+    durations = json.loads(durations_file.read_text(encoding="utf-8-sig")) if durations_file.exists() else {}
     for vid, beats in script.items():
         for i, text in enumerate(beats, start=1):
             key = f"{vid}_b{i}"
+            if key in durations and (OUT / f"{key}.mp3").exists():
+                continue
             audio = np.concatenate([np.asarray(chunk.audio) for chunk in pipeline(text, voice=VOICE, speed=SPEED)])
             wav = OUT / f"{key}.wav"
             sf.write(wav, audio, RATE)

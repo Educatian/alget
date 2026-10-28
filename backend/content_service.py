@@ -140,6 +140,7 @@ def load_section(course: str, chapter: str, section: str) -> dict:
         "illustration": None,
         "practice": load_practice_for_section(course, chapter, section),
         "misconceptions": load_misconceptions_for_section(course, chapter, section),
+        "activity": load_activity_for_section(course, chapter, section),
     }
 
 
@@ -163,6 +164,22 @@ def load_misconceptions_for_section(course: str, chapter: str, section: str) -> 
             return json.load(f).get("misconceptions", [])
 
     return []
+
+
+def load_activity_for_section(course: str, chapter: str, section: str) -> dict | None:
+    """Load the section's written activity (prompt and criteria) without its reference answer.
+
+    The reference stays server-side: the TAMU tutor worker bundles the activity files and uses it
+    only to give feedback, so it is never sent to the browser.
+    """
+    path = get_content_path(course, chapter, section) / f"{section}.activity.json"
+
+    if path.exists():
+        with open(path, 'r', encoding='utf-8') as f:
+            activity = json.load(f)
+        return {k: v for k, v in activity.items() if k != "reference"}
+
+    return None
 
 
 def generate_toc(course: str) -> dict:

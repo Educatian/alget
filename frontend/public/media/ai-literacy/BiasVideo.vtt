@@ -31,3 +31,15 @@ Now both groups are above ninety-five percent.
 8
 00:00:53.067 --> 00:01:08.192
 Real systems have shown the same pattern. Face analysis and speech recognition tools have worked far worse for people who were under-represented in their training data. So whenever you hear an accuracy number, ask: accurate for whom?
+
+9
+00:01:09.467 --> 00:01:15.267
+Let's read this with a pen. Examples that are rare in the training data are learned poorly.
+
+10
+00:01:15.717 --> 00:01:21.192
+An overall accuracy is an average, and a small group's failures barely move it.
+
+11
+00:01:21.642 --> 00:01:26.142
+And the fix: more data helps only if it covers the missing group.

@@ -1,9 +1,19 @@
 /**
  * ALGET TAMU tutor: Socratic hints and grounded passage explanations for the TAMU static preview.
  *
+ *   POST /login    {id, password}                               -> {token, id}
+ *   POST /logout
+ *   GET  /progress                                              -> {id, items}
+ *   POST /progress {set: {key: value | null}}
+ *   POST /events   {session_id, events: [...]}                  (events.js)
  *   POST /hint     {section_id, problem_id, rung, picks}       -> {hint, check_question}
  *   POST /explain  {section_id, exact, mode}                    -> {explanation, check_question, in_section}
+ *   POST /feedback {section_id, text, revision, previous}       -> {criteria, marks, next_step, ready}  (feedback.js)
+ *   POST /annotate {section_id, misconception_ids}              -> {notes: [{quote, kind, note}]}       (annotate.js)
  *   GET  /healthz
+ *
+ * Everything except /login and /healthz needs a session (Authorization: Bearer <token>); see
+ * accounts.js. Rate limits count per student ID, since a class often shares one campus IP.
  *
  * Questions, answers and section text are loaded from the preview's exported course JSON, never
  * taken from the request. Requests carry no learner writing. Every hint passes the answer-leak
@@ -13,6 +23,10 @@
  * FOUNDRY_ENDPOINT is the resource's .../openai/v1 base, MODEL is the deployment name.
  */
 import { bestParagraph } from '../../../frontend/src/lib/hintLadder.js'
+import { getProgress, login, logout, saveProgress, sessionId } from './accounts.js'
+import { saveEvents } from './events.js'
+import { feedback } from './feedback.js'
+import { annotate } from './annotate.js'
 import { isSectionId, loadSection, quoteInSection, sectionPlainText } from './content.js'
 import { findLeak } from './leakGuard.js'
 import { EXPLAIN_MODES, EXPLAIN_SCHEMA, HINT_SCHEMA, JUDGE_SCHEMA, explainMessages, hintMessages, judgeMessages } from './prompts.js'
@@ -20,7 +34,7 @@ import { EXPLAIN_MODES, EXPLAIN_SCHEMA, HINT_SCHEMA, JUDGE_SCHEMA, explainMessag
 function cors(origin, env) {
     const allowed = String(env.ALLOWED_ORIGINS || '').split(',').map((s) => s.trim()).filter(Boolean)
     return allowed.includes(origin)
-        ? { 'Access-Control-Allow-Origin': origin, 'Access-Control-Allow-Methods': 'POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type', 'Access-Control-Max-Age': '86400', Vary: 'Origin' }
+        ? { 'Access-Control-Allow-Origin': origin, 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Authorization', 'Access-Control-Max-Age': '86400', Vary: 'Origin' }
         : null
 }
 
@@ -37,7 +51,7 @@ async function underDailyCap(env) {
 
 const configured = (env) => Boolean(env.FOUNDRY_API_KEY && env.FOUNDRY_ENDPOINT && env.MODEL)
 
-export async function callModel(env, messages, schema, { temperature = 0.4 } = {}) {
+export async function callModel(env, messages, schema, { temperature = 0.4, maxTokens = 400 } = {}) {
     // Reasoning deployments (gpt-5 family) take reasoning_effort and no custom temperature, and
     // spend part of the token budget on reasoning.
     const reasoning = Boolean(env.REASONING_EFFORT)
@@ -47,7 +61,7 @@ export async function callModel(env, messages, schema, { temperature = 0.4 } = {
         body: JSON.stringify({
             model: env.MODEL,
             messages,
-            max_completion_tokens: reasoning ? 2000 : 400,
+            max_completion_tokens: reasoning ? 2000 + maxTokens : maxTokens,
             ...(reasoning ? { reasoning_effort: env.REASONING_EFFORT } : { temperature }),
             response_format: { type: 'json_schema', json_schema: schema },
         }),
@@ -110,25 +124,47 @@ export default {
         if (url.pathname === '/healthz') return json({ ok: true, enabled: env.TUTOR_ENABLED === 'true', configured: configured(env) }, 200, {})
         if (!headers) return json({ error: 'origin_not_allowed' }, 403, {})
         if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers })
-        if (request.method !== 'POST' || !['/hint', '/explain'].includes(url.pathname)) return json({ error: 'not_found' }, 404, headers)
+        const route = `${request.method} ${url.pathname}`
+        const routes = ['POST /login', 'POST /logout', 'GET /progress', 'POST /progress', 'POST /events', 'POST /hint', 'POST /explain', 'POST /feedback', 'POST /annotate']
+        if (!routes.includes(route)) return json({ error: 'not_found' }, 404, headers)
+        if (!env.ACCOUNTS) return json({ error: 'not_configured' }, 503, headers)
+
+        let body = null
+        if (request.method === 'POST' && route !== 'POST /logout') {
+            try {
+                body = await request.json()
+            } catch {
+                return json({ error: 'bad_json' }, 400, headers)
+            }
+        }
+        if (route === 'POST /login') {
+            const [result, status] = await login(body, env)
+            console.log(JSON.stringify({ route: '/login', status }))
+            return json(result, status, headers)
+        }
+        if (route === 'POST /logout') return json(...(await logout(request, env)), headers)
+
+        const id = await sessionId(request, env)
+        if (!id) return json({ error: 'signed_out' }, 401, headers)
+        if (env.RATE_LIMITER && !(await env.RATE_LIMITER.limit({ key: `${url.pathname}:${id}` })).success) return json({ error: 'rate_limited' }, 429, headers)
+        if (route === 'GET /progress') return json(...(await getProgress(id, env)), headers)
+        if (route === 'POST /progress') return json(...(await saveProgress(id, body, env)), headers)
+        if (route === 'POST /events') return json(...(await saveEvents(id, body, env)), headers)
+
         if (env.TUTOR_ENABLED !== 'true') return json({ error: 'disabled' }, 503, headers)
         if (!configured(env)) return json({ error: 'not_configured' }, 503, headers)
-
-        const ip = request.headers.get('CF-Connecting-IP') || 'unknown'
-        if (env.RATE_LIMITER && !(await env.RATE_LIMITER.limit({ key: ip })).success) return json({ error: 'rate_limited' }, 429, headers)
-
-        let body
-        try {
-            body = await request.json()
-        } catch {
-            return json({ error: 'bad_json' }, 400, headers)
-        }
         if (!isSectionId(body?.section_id)) return json({ error: 'bad_section' }, 400, headers)
         if (!(await underDailyCap(env))) return json({ error: 'daily_cap' }, 429, headers)
 
         const started = Date.now()
         try {
-            const [result, status, meta = {}] = url.pathname === '/hint' ? await hint(body, env) : await explain(body, env)
+            const handlers = {
+                '/hint': () => hint(body, env),
+                '/explain': () => explain(body, env),
+                '/feedback': () => feedback(body, env, callModel),
+                '/annotate': () => annotate(body, env, callModel),
+            }
+            const [result, status, meta = {}] = await handlers[url.pathname]()
             // Metadata only: no course text, no model output, no IP.
             console.log(JSON.stringify({ route: url.pathname, status, ms: Date.now() - started, ...meta }))
             return json(result, status, headers)

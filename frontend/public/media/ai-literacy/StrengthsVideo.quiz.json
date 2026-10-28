@@ -1,0 +1,32 @@
+{
+  "checkpoints": [
+    {
+      "id": "StrengthsVideo_q1",
+      "after_cue": 3,
+      "rewatch_cue": 2,
+      "question": "What do the 'you can check it' tasks have in common?",
+      "options": [
+        "They are short.",
+        "You can judge the result yourself.",
+        "The model is never wrong on them.",
+        "They need the web."
+      ],
+      "correct": 1,
+      "explain": "Use AI where you can tell whether the result is right."
+    },
+    {
+      "id": "StrengthsVideo_q2",
+      "after_cue": 5,
+      "rewatch_cue": 4,
+      "question": "A chatbot gives you a citation you have never seen. What is the right move?",
+      "options": [
+        "Use it; it looks real.",
+        "Treat it as a lead and find the source yourself.",
+        "Ask the chatbot if it is sure.",
+        "Remove the claim without checking."
+      ],
+      "correct": 1,
+      "explain": "Invented citations come with the same confidence as real ones."
+    }
+  ]
+}

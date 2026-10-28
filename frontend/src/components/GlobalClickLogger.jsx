@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { logClick, logEvent, logScroll } from '../lib/loggingService'
+import { ACCOUNTS_ENABLED } from '../lib/account'
 
 const POINTER_SAMPLE_MS = 100     // one mouse position every 100 ms while moving
 const POINTER_FLUSH_MS = 5000     // send the movement path every 5 s
@@ -74,7 +75,9 @@ export default function GlobalClickLogger({ children, sectionId }) {
             if (samples.length < POINTER_MAX_SAMPLES) samples.push([e.clientX, e.clientY, now - pathStart])
         }
         const flushPointer = () => {
-            if (samples.length >= 2 && distance >= 20) {
+            // TAMU accounts: no mouse paths (not needed for sequence analysis, and they would use
+            // most of the event store's daily write budget).
+            if (!ACCOUNTS_ENABLED && samples.length >= 2 && distance >= 20) {
                 logEvent('pointer_path', null, {
                     samples, sample_count: samples.length, distance_px: Math.round(distance),
                     duration_ms: samples[samples.length - 1][2], pointer_type: 'mouse',
@@ -94,7 +97,10 @@ export default function GlobalClickLogger({ children, sectionId }) {
             if (!el || !('value' in el)) return
             const field = describeField(el)
             if (field.type === 'password' || field.type === 'email') return
-            const value = field.type === 'checkbox' || field.type === 'radio' ? el.checked : String(el.value ?? '').slice(0, 1000)
+            const choice = field.type === 'checkbox' || field.type === 'radio' ? el.checked : String(el.value ?? '').slice(0, 1000)
+            // TAMU accounts: typed text (notes, written answers) is not logged, only its length.
+            const typed = ACCOUNTS_ENABLED && (field.tag === 'textarea' || ['text', 'search', ''].includes(field.type || ''))
+            const value = typed ? { length: String(el.value ?? '').length } : choice
             logEvent('input_commit', field.name, { ...field, value, path: window.location.pathname }, sectionId)
         }
 
