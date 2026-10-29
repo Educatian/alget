@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
-import { ChevronRight, Lock } from 'lucide-react'
+import { CalendarClock, ChevronRight, Lock } from 'lucide-react'
+import { chapterDue } from '../lib/deadlines'
 
 const KNOWN_CHAPTER_TITLES = {
     'bio-inspired': {
@@ -20,12 +21,33 @@ function resolveChapterTitle(currentCourse, chapter) {
     return KNOWN_CHAPTER_TITLES[currentCourse]?.[chapter?.id] || `Chapter ${chapter?.id || ''}`.trim()
 }
 
+const DUE_STYLE = {
+    upcoming: { cls: 'bg-[var(--ath-panel)] text-[var(--ath-secondary)]', text: (l) => `Due ${l}` },
+    due_soon: { cls: 'bg-amber-100 text-amber-900', text: (l) => `Due soon · ${l}` },
+    past_due: { cls: 'bg-rose-100 text-rose-900', text: (l) => `Past due · ${l}` },
+    done: { cls: 'bg-emerald-100 text-emerald-900', text: (l) => `Done · was due ${l}` },
+}
+
 function getCourseSummary(chapters = []) {
     const sectionCount = chapters.reduce((count, chapter) => count + (chapter.sections?.length || 0), 0)
     return {
         chapterCount: chapters.length,
         sectionCount
     }
+}
+
+function DueChip({ chapter, course, completedSections }) {
+    const sections = chapter.sections || []
+    const done = sections.filter((s) => completedSections?.includes(`${course}/${chapter.id}/${s.id}`)).length
+    const due = chapterDue(chapter.id, done, sections.length)
+    if (!due) return null
+    const style = DUE_STYLE[due.state]
+    return (
+        <span className={`mt-1.5 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-semibold ${style.cls}`} title={`Chapter ${chapter.id} is due ${due.label}, 11:59 PM Central. Sections stay open after the due date.`}>
+            <CalendarClock className="h-3 w-3" aria-hidden="true" />
+            {style.text(due.label)}
+        </span>
+    )
 }
 
 export default function BookToc({ toc, currentCourse, currentChapter, currentSection, onNavigate, completedSections, isLocked, liveCounts = null }) {
@@ -116,6 +138,7 @@ export default function BookToc({ toc, currentCourse, currentChapter, currentSec
                             <div className="min-w-0">
                                 <p className="editorial-label">Chapter {chapter.id}</p>
                                 <p className="truncate text-base font-semibold text-[var(--ath-text)]">{chapter.title}</p>
+                                <DueChip chapter={chapter} course={currentCourse} completedSections={completedSections} />
                             </div>
                             <ChevronRight
                                 className={`h-4 w-4 shrink-0 text-[var(--ath-secondary)] transition-transform ${expandedChapters.includes(chapter.id) ? 'rotate-90' : ''}`}

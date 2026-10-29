@@ -3,6 +3,7 @@ import { annotate } from 'rough-notation'
 import API_BASE from '../lib/apiConfig'
 import { logEvent } from '../lib/loggingService'
 import { TUTOR_ENABLED, requestFeedback } from '../lib/tutorClient'
+import AiBadge from './AiBadge'
 
 /**
  * "Apply it": the section's written activity with a feedback loop. The learner writes, says which
@@ -157,6 +158,7 @@ export default function ApplyActivity({ sectionId }) {
                         {TUTOR_ENABLED && (
                             <button type="button" onClick={ask} disabled={!enough || busy || outOfRounds} className="rounded-lg bg-[var(--ath-primary)] px-3 py-1.5 text-sm font-semibold text-[var(--ath-background)] disabled:opacity-50">
                                 {busy ? 'Reading your answer…' : rounds.length ? `Get feedback on revision ${rounds.length + 1}` : 'Get feedback'}
+                                <AiBadge onDark className="ml-1.5" />
                             </button>
                         )}
                         {outOfRounds && <span className="text-xs text-[var(--ath-muted)]">You have used all {MAX_ROUNDS} feedback rounds. Compare your answer with the criteria yourself.</span>}
@@ -174,7 +176,7 @@ export default function ApplyActivity({ sectionId }) {
                         </ol>
                     )}
                     <p className={`rounded-xl px-3 py-2 text-sm ${done ? 'bg-emerald-50 text-emerald-900' : 'bg-[rgba(200,226,236,0.35)] text-[var(--ath-text)]'}`}>
-                        <span className="font-semibold">{done ? 'All criteria met. ' : 'Next step: '}</span>{done ? 'Nice work: your answer covers everything this activity asks for.' : last.next_step}
+                        <AiBadge className="mr-1.5" /><span className="font-semibold">{done ? 'All criteria met. ' : 'Next step: '}</span>{done ? 'Nice work: your answer covers everything this activity asks for.' : last.next_step}
                     </p>
                     <div className="flex flex-wrap items-center gap-2">
                         {!done && !outOfRounds && <button type="button" onClick={revise} className="rounded-lg bg-[var(--ath-primary)] px-3 py-1.5 text-sm font-semibold text-[var(--ath-background)]">Revise my answer</button>}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Sparkles, X } from 'lucide-react'
 import { explainPassage } from '../lib/tutorClient'
+import AiBadge from './AiBadge'
 
 const MODES = [
     { id: 'explain', label: 'Explain' },
@@ -41,7 +42,7 @@ export default function ExplainCard({ request, sectionId, onClose, onSaveNote, o
         <aside role="dialog" aria-label="AI explanation" className="fixed bottom-4 right-4 z-[130] flex max-h-[70vh] w-[min(26rem,calc(100vw-2rem))] flex-col rounded-2xl border border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-text)] shadow-[var(--ath-shadow)]">
             <header className="flex items-center gap-2 border-b border-[var(--ath-line)] px-4 py-3">
                 <Sparkles className="h-4 w-4 text-[var(--ath-primary)]" aria-hidden="true" />
-                <h2 className="mr-auto text-sm font-semibold">AI explanation</h2>
+                <h2 className="mr-auto flex items-center gap-2 text-sm font-semibold">AI explanation <AiBadge /></h2>
                 <button type="button" onClick={onClose} aria-label="Close explanation" className="flex h-9 w-9 items-center justify-center rounded-lg hover:bg-[var(--ath-panel-muted)]">
                     <X className="h-4 w-4" aria-hidden="true" />
                 </button>

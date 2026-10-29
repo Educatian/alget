@@ -8,6 +8,7 @@ import worker from '../src/index.js'
 import { hashPassword, normalizeId } from '../src/accounts.js'
 import { hintMessages } from '../src/prompts.js'
 import { claimsPick } from '../src/leakGuard.js'
+import { computeAnalytics } from '../src/analytics.js'
 
 // Course JSON exported for the static preview (scripts/export_static_demo.py -> frontend/dist/demo-api).
 const DEMO_API = fileURLToPath(new URL('../../../frontend/dist/demo-api/', import.meta.url))
@@ -363,4 +364,57 @@ test('hint with no checked wrong answer: prompt never frames a pick, and a hint 
     assert.equal((await post('/hint', noPicks)).status, 422)
     mockFetch([claim])
     assert.equal((await post('/hint', hintBody)).status, 200) // with a real wrong pick, naming it is fine
+})
+
+test('class analytics: item difficulty and discrimination, practice curve, help seeking (pure)', () => {
+    const sections = [{ id: 's/01/01', items: [{ id: 'a', concept: 'c1', stem: 'A?' }, { id: 'b', concept: 'c1', stem: 'B?' }], concepts: ['c1'] }]
+    const practice = []
+    // Five students; each item correlates with the score on the other one.
+    const scores = [['p1', 1, 1], ['p2', 1, 1], ['p3', 1, 0], ['p4', 1, 0], ['p5', 0, 0]]
+    for (const [id, a, b] of scores) {
+        practice.push({ student_id: id, target: 'a', attempt: 1, correct: a }, { student_id: id, target: 'b', attempt: 1, correct: b })
+        practice.push({ student_id: id, target: 'b', attempt: 2, correct: 1 }) // retries are not first tries
+    }
+    const out = computeAnalytics({ sections, practice, cells: [], hints: [{ student_id: 'p5', hints: 4, ai_hints: 1 }], hourly: [], mastery: [{ student_id: 'p1', value: '{"c1":{"p_known":0.8}}' }] })
+    const [a, b] = out.items
+    assert.deepEqual([a.difficulty, b.difficulty, a.n], [0.8, 0.4, 5])
+    assert.deepEqual([a.discrimination, b.discrimination], [0.41, 0.41]) // r = 0.4 / sqrt(1.2 * 0.8)
+    assert.deepEqual(out.curve, [{ group: 1, from: 1, to: 3, error_rate: 0.4, n: 10 }]) // 4 wrong of 10 first tries
+    assert.deepEqual(out.help.find((h) => h.student === 'p5'), { student: 'p5', items: 2, accuracy: 0, hints_per_item: 2, ai_hints: 1 })
+    assert.deepEqual(out.concepts, [{ concept: 'c1', values: [0.8] }])
+})
+
+test('analytics and discussions are on for TAMU only, and discussions keep hidden posts from students', async () => {
+    mockFetch([])
+    const later = Math.floor(Date.now() / 1000) + 3600
+    const hash = (t) => createHash('sha256').update(t).digest('hex')
+    const e = env({ ACCOUNTS: memoryKv({ 'account:TAMU-001': '{}', 'account:TAMU-901': '{"role":"instructor"}' }) })
+    e.DB.db.prepare('INSERT INTO sessions (token_hash, student_id, created, expires, role) VALUES (?, ?, ?, ?, ?)').run(hash('d'.repeat(64)), 'TAMU-901', 'now', later, 'instructor')
+    const sec = 'ai-literacy/01/01'
+
+    assert.equal((await get('/instructor/analytics', e)).status, 403)
+    const a = await get('/instructor/analytics', e, 'd'.repeat(64))
+    assert.equal(a.status, 200)
+    assert.ok(Array.isArray((await a.json()).items))
+
+    assert.equal((await post('/discussion', { section_id: sec, body: '   ' }, ORIGIN, e)).status, 400)
+    const first = await (await post('/discussion', { section_id: sec, body: 'Is a spam filter narrow AI?', anchor: 'A spam filter learns from millions of emails' }, ORIGIN, e)).json()
+    assert.equal((await post('/discussion', { section_id: sec, body: 'Yes, one task.', parent_id: first.id }, ORIGIN, e, 'd'.repeat(64))).status, 200)
+    let list = await (await get(`/discussion?section=${sec}`, e)).json()
+    assert.deepEqual(list.posts.map((p) => [p.author, p.role, p.mine, p.parent_id]), [['TAMU-001', 'student', true, null], ['TAMU-901', 'instructor', false, first.id]])
+    assert.equal(list.posts[0].anchor, 'A spam filter learns from millions of emails')
+
+    await post('/discussion', { section_id: sec, body: 'A second question.' }, ORIGIN, e)
+    assert.equal((await post('/discussion/hide', { id: first.id }, ORIGIN, e)).status, 403)
+    assert.equal((await post('/discussion/hide', { id: first.id }, ORIGIN, e, 'd'.repeat(64))).status, 200)
+    list = await (await get(`/discussion?section=${sec}`, e)).json()
+    assert.deepEqual(list.posts.map((p) => p.body), ['A second question.']) // the reply under the hidden thread goes too
+    const staff = await (await get(`/discussion?section=${sec}`, e, 'd'.repeat(64))).json()
+    assert.deepEqual(staff.posts.map((p) => p.hidden), [true, false, false])
+
+    const utk = env({ ID_PREFIX: 'UTK', ACCOUNTS: memoryKv({ 'account:UTK-901': '{"role":"instructor"}' }) })
+    utk.DB.db.prepare('INSERT INTO sessions (token_hash, student_id, created, expires, role) VALUES (?, ?, ?, ?, ?)').run(hash('d'.repeat(64)), 'UTK-901', 'now', later, 'instructor')
+    assert.equal((await get('/instructor/analytics', utk, 'd'.repeat(64))).status, 404)
+    assert.equal((await get(`/discussion?section=${sec}`, utk, 'd'.repeat(64))).status, 404)
+    assert.equal((await post('/discussion', { section_id: sec, body: 'hi' }, ORIGIN, utk, 'd'.repeat(64))).status, 404)
 })

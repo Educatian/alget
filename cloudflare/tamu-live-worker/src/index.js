@@ -6,9 +6,11 @@
  *   GET /live   WebSocket, subprotocols ['alget-live', <session token>]
  *     client -> {type: 'where', section, heading, away}     what the reader has on screen
  *     client -> {type: 'highlights', section}               after the reader's highlights synced
+ *     client -> {type: 'discussion', section}               after the reader posted in that section's discussion
  *     client -> 'ping'                                       keep-alive, answered 'pong'
  *     server -> {type: 'presence', online, reading, sections: {section: n}, headings: {heading: n}, here}
  *     server -> {type: 'shared', section, passages: [...]}   see shared.js
+ *     server -> {type: 'discussion', section}                a new post there: readers in that section reload it
  *   GET /healthz
  *
  * Counts are of other students (not the reader, instructors, or 9xx test IDs such as TAMU-999) and carry no
@@ -86,6 +88,14 @@ export class ClassRoom {
         } else if (msg?.type === 'highlights' && section) {
             ws.serializeAttachment({ ...a, at: Date.now() })
             this.recompute(section)
+        } else if (msg?.type === 'discussion' && section) {
+            ws.serializeAttachment({ ...a, at: Date.now() })
+            const body = JSON.stringify({ type: 'discussion', section })
+            for (const e of this.entries()) {
+                if (e.section === section) {
+                    try { e.ws.send(body) } catch { /* gone */ }
+                }
+            }
         }
     }
 

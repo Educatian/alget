@@ -5,6 +5,10 @@ import { getLocalMasteryMap } from '../lib/knowledgeService'
 import { logEvent } from '../lib/loggingService'
 import { TUTOR_ENABLED, requestAnnotations } from '../lib/tutorClient'
 import { recommendNextStep } from '../lib/tutorAgent'
+import AiBadge from './AiBadge'
+import { hasFeature } from '../lib/site'
+
+const AI_BADGE = hasFeature('ai-badge')
 
 /**
  * The section's tutor agent (static TAMU preview, where the support rail is off):
@@ -154,18 +158,19 @@ export default function TutorAgent({ sectionId, practice, misconceptions = [], c
                 <p className="mt-1 text-base font-semibold text-[var(--ath-text)]">{rec.title}</p>
                 <p className="mt-1 text-sm text-[var(--ath-muted)]">{rec.text}</p>
                 <div className="mt-3 flex flex-wrap gap-2">
-                    {rec.id === 'review' && TUTOR_ENABLED && <button type="button" className={primary} onClick={() => act('tutor_notes')}>Mark where to look</button>}
+                    {rec.id === 'review' && TUTOR_ENABLED && <button type="button" className={primary} onClick={() => act('tutor_notes')}>Mark where to look <AiBadge onDark className="ml-1" /></button>}
                     {rec.id === 'start' && <button type="button" className={primary} onClick={() => act('practice')}>Go to the practice</button>}
                     {(rec.id === 'review' || rec.id === 'practice') && <button type="button" className={rec.id === 'practice' ? primary : btn} onClick={() => act('practice')}>Practise again</button>}
                     {rec.id === 'apply' && <button type="button" className={primary} onClick={() => act('apply')}>Go to the written activity</button>}
                     {rec.id === 'next' && nextSection && <button type="button" className={primary} onClick={() => act('next')}>Next section</button>}
-                    {rec.id !== 'review' && TUTOR_ENABLED && notesState !== 'shown' && <button type="button" className={btn} onClick={() => act('tutor_notes')}>Tutor notes on this section</button>}
+                    {rec.id !== 'review' && TUTOR_ENABLED && notesState !== 'shown' && <button type="button" className={btn} onClick={() => act('tutor_notes')}>Tutor notes on this section <AiBadge className="ml-1" /></button>}
                 </div>
                 {notesState === 'loading' && <p className="mt-3 text-sm text-[var(--ath-muted)]">The tutor is reading the section…</p>}
                 {notesState === 'error' && <p className="mt-3 text-sm text-rose-800">Tutor notes are not available right now.</p>}
                 {notesState === 'empty' && <p className="mt-3 text-sm text-[var(--ath-muted)]">The tutor had no notes to add here.</p>}
                 {notesState === 'shown' && (
                     <ol className="mt-4 space-y-2" aria-label="Tutor notes">
+                        {AI_BADGE && <li className="flex items-center gap-2 text-xs font-semibold text-[var(--ath-secondary)]">Tutor notes <AiBadge /></li>}
                         {notes.map((n) => (
                             <li key={n.n}>
                                 <button type="button" className="flex w-full gap-2 rounded-xl bg-white px-3 py-2 text-left text-sm" onClick={() => { logEvent('tutor_notes_jump', String(n.n), { kind: n.kind }, sectionId); document.querySelector(`span[data-tutor-note="${n.n}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'center' }) }}>

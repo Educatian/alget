@@ -860,6 +860,7 @@ export default function BookLayout({ user, onLogout }) {
                                         onNavigate={handleNavigate}
                                         onExitCourse={() => navigate('/learn')}
                                         userId={user?.id || null}
+                                        classmatesHere={live.here}
                                         peerPulse={{
                                             connected: socialState.connected,
                                             peers: socialState.peers,

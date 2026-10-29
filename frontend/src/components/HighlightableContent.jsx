@@ -4,7 +4,7 @@ import { logEvent, logHighlightCreate } from '../lib/loggingService'
 import { TUTOR_ENABLED } from '../lib/tutorClient'
 import ExplainCard from './ExplainCard'
 import API_BASE from '../lib/apiConfig'
-import { BookOpen, Hash, MessageSquarePlus, Sparkles, Volume2, X } from 'lucide-react'
+import { BookOpen, Hash, MessageSquarePlus, MessagesSquare, Sparkles, Volume2, X } from 'lucide-react'
 import HighlightDiscussion from './HighlightDiscussion'
 import NotebookPanel from './NotebookPanel'
 import { captureAnchor, wrapAnchor } from '../lib/annotationAnchor'
@@ -12,6 +12,11 @@ import { HIGHLIGHT_TAGS, tagFor } from '../lib/localAnnotations'
 import { canReadAloud, readAloud } from '../lib/readAloud'
 import { isSupabaseConfigured } from '../lib/supabase'
 import { STATIC_DEMO } from '../lib/staticDemo'
+import AiBadge from './AiBadge'
+import { hasFeature } from '../lib/site'
+
+const AI_BADGE = hasFeature('ai-badge')
+const DISCUSSION = hasFeature('discussion')
 
 function getInitials(alias = '') {
     return alias
@@ -549,6 +554,12 @@ export default function HighlightableContent({
         clearSelection()
     }
 
+    const discussPassage = () => {
+        const quote = selectedAnchorRef.current?.exact?.trim() || selectedTextRef.current || selectionState?.text
+        if (quote) window.dispatchEvent(new CustomEvent('alget-discuss-passage', { detail: { quote } }))
+        clearSelection()
+    }
+
     const saveExplanationAsNote = async (note) => {
         if (!explainRequest) return
         await saveHighlight(explainRequest.quote, 'yellow', note, explainRequest.anchor)
@@ -672,14 +683,26 @@ export default function HighlightableContent({
                         </button>
                     )}
 
+                    {DISCUSSION && (
+                        <button
+                            onClick={discussPassage}
+                            className="flex h-9 w-9 items-center justify-center rounded-full text-white transition-colors hover:bg-slate-800 group"
+                            aria-label="Discuss this passage"
+                            title="Discuss this passage with your class"
+                        >
+                            <MessagesSquare className="w-4 h-4 text-sky-300 group-hover:text-sky-200" />
+                        </button>
+                    )}
+
                     {TUTOR_ENABLED && (
                         <button
                             onClick={openExplain}
-                            className="flex h-9 w-9 items-center justify-center rounded-full text-white transition-colors hover:bg-slate-800 group"
+                            className={`flex h-9 ${AI_BADGE ? 'gap-1 px-2' : 'w-9'} items-center justify-center rounded-full text-white transition-colors hover:bg-slate-800 group`}
                             aria-label="Explain this passage (AI)"
                             title="Explain this passage (AI)"
                         >
                             <Sparkles className="w-4 h-4 text-amber-300 group-hover:text-amber-200" />
+                            <AiBadge onDark />
                         </button>
                     )}
 

@@ -8,6 +8,10 @@ import { TUTOR_ENABLED, askTutorHint } from '../lib/tutorClient'
 import { logEvent } from '../lib/loggingService'
 import { fuseTelemetry, recordAdaptiveSignal, updateMastery } from '../lib/knowledgeService'
 import { annotateMisconceptionSignal, resolveInterventionOutcome, updateLearnerModel } from '../lib/researchService'
+import AiBadge from './AiBadge'
+import { hasFeature } from '../lib/site'
+
+const AI_BADGE = hasFeature('ai-badge')
 
 const STUCK_RULES = {
     IDLE_TIMEOUT_MS: 90000,
@@ -397,6 +401,7 @@ export default function PracticeBlock({ practice, misconceptions = [], sectionCo
                     >
                         <Lightbulb className="h-4 w-4" aria-hidden="true" />
                         {aiLoading ? 'Thinking…' : nextRung ? `Hint ${shownRungs.length + 1}` : canAskAi ? 'Ask AI tutor' : STATIC_DEMO ? 'No more hints' : 'Ask tutor'}
+                        {!nextRung && (canAskAi || aiLoading) && <AiBadge />}
                     </button>
                 )}
 
@@ -518,7 +523,7 @@ export default function PracticeBlock({ practice, misconceptions = [], sectionCo
                                 {shownRungs.map((rung, i) => (
                                     <li key={`${rung.kind}-${i}`} className="rounded-xl border border-[var(--ath-line)] bg-[color-mix(in_srgb,var(--ath-accent)_10%,var(--ath-panel))] p-3">
                                         <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">
-                                            Hint {i + 1} · {rung.title}{rung.kind === 'ai' && <span className="ml-2 rounded bg-[var(--ath-panel)] px-1.5 py-0.5 normal-case tracking-normal">AI-generated</span>}
+                                            Hint {i + 1} · {rung.title}{rung.kind === 'ai' && (AI_BADGE ? <AiBadge className="ml-2" /> : <span className="ml-2 rounded bg-[var(--ath-panel)] px-1.5 py-0.5 normal-case tracking-normal">AI-generated</span>)}
                                         </p>
                                         <p className="mt-1 text-sm leading-6 text-[var(--ath-text)]">{rung.kind === 'reread' ? `“${rung.text}”` : rung.text}</p>
                                         {rung.kind === 'reread' && (

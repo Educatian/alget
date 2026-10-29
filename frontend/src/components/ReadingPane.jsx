@@ -5,6 +5,10 @@ import PeerPulse from './PeerPulse'
 import ChapterCheckIn from './ChapterCheckIn'
 import SkillReview from './SkillReview'
 import { STATIC_DEMO } from '../lib/staticDemo'
+import { hasFeature } from '../lib/site'
+import SectionDiscussion from './SectionDiscussion'
+
+const DISCUSSION = hasFeature('discussion')
 
 const TutorAgent = lazy(() => import('./TutorAgent'))
 
@@ -71,6 +75,7 @@ export default function ReadingPane({
     onExitCourse,
     userId = null,
     peerPulse,
+    classmatesHere = 0,
     studyGated = false,
     quizDone = false,
     onQuizComplete,
@@ -139,9 +144,12 @@ export default function ReadingPane({
                     <p className="editorial-kicker">
                         Chapter {meta?.chapter} / Section {meta?.section}
                     </p>
-                    {meta?.estimated_time_minutes && (
-                        <span className="editorial-chip">{meta.estimated_time_minutes} min read</span>
-                    )}
+                    <div className="flex items-center gap-2">
+                        {DISCUSSION && sectionId && <SectionDiscussion sectionId={sectionId} here={classmatesHere} />}
+                        {meta?.estimated_time_minutes && (
+                            <span className="editorial-chip">{meta.estimated_time_minutes} min read</span>
+                        )}
+                    </div>
                 </div>
 
                 <div className="editorial-divider mb-5"></div>

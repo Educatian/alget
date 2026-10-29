@@ -4,6 +4,12 @@ import { BookOpen, Download, LogOut, RefreshCw, X } from 'lucide-react'
 import { ID_PREFIX, instructorGet } from '../lib/account'
 import { logEvent } from '../lib/loggingService'
 import { DEMO_START } from '../lib/staticDemo'
+import { hasFeature } from '../lib/site'
+import { dueLabel, hasDeadlines, pacing } from '../lib/deadlines'
+import ClassAnalytics from '../components/ClassAnalytics'
+
+const ANALYTICS = hasFeature('analytics')
+const DEADLINES = hasDeadlines()
 
 /**
  * Class dashboard for TAMU instructor accounts (/teach): who has started, where each student is,
@@ -87,10 +93,11 @@ function csvCell(v) {
 function downloadCsv(data) {
     const head = ['id', 'status', 'last_active', 'current_section', 'sections_done', 'sections_started', ...data.sections.map((s) => `s${shortSection(s.id)}`),
         'first_try_accuracy', 'items_answered', 'checkins_correct', 'checkins_answered', 'activities_submitted', 'activities_complete',
-        'hints', 'ai_hints', 'stuck', 'interventions', 'mastery_avg', 'sessions', 'active_minutes', 'flags']
+        'hints', 'ai_hints', 'stuck', 'interventions', 'mastery_avg', 'sessions', 'active_minutes', 'flags', ...(DEADLINES ? ['behind_chapters'] : [])]
     const rows = data.students.map((s) => [s.id, s.status, s.last_active, s.current_section ? shortSection(s.current_section) : '', s.sections_done, s.sections_started, ...s.sections,
         s.practice_first_try_accuracy, s.items_answered, s.checkins_correct, s.checkins_answered, s.activities_submitted, s.activities_complete,
-        s.hints, s.ai_hints, s.stuck, s.interventions, s.mastery_avg, s.sessions, s.active_minutes, s.flags.join(' ')])
+        s.hints, s.ai_hints, s.stuck, s.interventions, s.mastery_avg, s.sessions, s.active_minutes, s.flags.join(' '),
+        ...(DEADLINES ? [pacing(data.sections.map((x) => x.id), s.sections).behind.join(' ')] : [])])
     const csv = [head, ...rows].map((r) => r.map(csvCell).join(',')).join('\r\n')
     const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }))
     const a = document.createElement('a')
@@ -122,6 +129,12 @@ function SectionSquares({ sections, statuses }) {
             ))}
         </div>
     )
+}
+
+function Pace({ sections, statuses }) {
+    const { behind, next } = pacing(sections.map((x) => x.id), statuses)
+    if (behind.length) return <span className="whitespace-nowrap rounded-full bg-rose-50 px-2 py-0.5 text-[11px] font-medium text-rose-800">Behind: Ch {behind.map(Number).join(', ')}</span>
+    return <span className="whitespace-nowrap text-xs text-[var(--ath-muted)]">{next ? `On track · Ch ${Number(next.chapter)} due ${dueLabel(next.iso)}` : 'On track'}</span>
 }
 
 function Legend() {
@@ -317,12 +330,19 @@ export default function TamuDashboard({ user, onLogout }) {
     const [filter, setFilter] = useState('all')
     const [query, setQuery] = useState('')
     const [open, setOpen] = useState(null)
+    const [analytics, setAnalytics] = useState(null)
+    const [analyticsError, setAnalyticsError] = useState('')
 
     const load = useCallback(async () => {
         setLoading(true)
         try {
             setData(await instructorGet('/instructor/overview'))
             setError('')
+            if (ANALYTICS) {
+                instructorGet('/instructor/analytics')
+                    .then((a) => { setAnalytics(a); setAnalyticsError('') })
+                    .catch((e) => setAnalyticsError(e.message))
+            }
         } catch (e) {
             setError(e.message)
         } finally {
@@ -422,15 +442,16 @@ export default function TamuDashboard({ user, onLogout }) {
                 {data && (
                     <>
                         <div role="tablist" className="mt-6 flex gap-1 border-b border-[var(--ath-line)]">
-                            {[['students', 'Students'], ['sections', 'Sections and items']].map(([key, label]) => (
-                                <button key={key} role="tab" aria-selected={tab === key} type="button" onClick={() => setTab(key)}
+                            {[['students', 'Students'], ['sections', 'Sections and items'], ...(ANALYTICS ? [['analytics', 'Class analytics']] : [])].map(([key, label]) => (
+                                <button key={key} role="tab" aria-selected={tab === key} type="button" onClick={() => { setTab(key); if (key === 'analytics') logEvent('instructor_analytics_view', 'teach') }}
                                     className={`-mb-px border-b-2 px-3 py-2 text-sm font-medium ${tab === key ? 'border-[var(--ath-primary)] text-[var(--ath-text)]' : 'border-transparent text-[var(--ath-muted)] hover:text-[var(--ath-text)]'}`}>
                                     {label}
                                 </button>
                             ))}
                         </div>
 
-                        {tab === 'sections' ? <div className="mt-4"><SectionsView data={data} /></div> : (
+                        {tab === 'analytics' ? <div className="mt-4"><ClassAnalytics overview={data} analytics={analytics} error={analyticsError} onStudent={openStudent} /></div>
+                            : tab === 'sections' ? <div className="mt-4"><SectionsView data={data} /></div> : (
                             <>
                                 <div className="mt-4 flex flex-wrap items-center gap-2">
                                     {[['all', 'All'], ['attention', 'Needs attention'], ['active', 'Active today'], ['not_started', 'Not started']].map(([key, label]) => (
@@ -458,6 +479,7 @@ export default function TamuDashboard({ user, onLogout }) {
                                                 <th className="px-3 py-2 font-medium" title="Written activities complete / submitted">Written</th>
                                                 <th className="px-3 py-2 font-medium">Hints</th>
                                                 <th className="px-3 py-2 font-medium">Stuck</th>
+                                                {DEADLINES && <th className="px-3 py-2 font-medium" title="Chapters past their due date and not finished">Pace</th>}
                                                 <th className="px-3 py-2 font-medium">Flags</th>
                                             </tr>
                                         </thead>
@@ -476,6 +498,7 @@ export default function TamuDashboard({ user, onLogout }) {
                                                     <td className="px-3 py-2">{s.activities_submitted ? `${s.activities_complete}/${s.activities_submitted}` : '–'}</td>
                                                     <td className="px-3 py-2">{s.hints}</td>
                                                     <td className={`px-3 py-2 ${s.flags.includes('often_stuck') ? 'font-semibold text-rose-700' : ''}`}>{s.stuck}</td>
+                                                    {DEADLINES && <td className="px-3 py-2"><Pace sections={data.sections} statuses={s.sections} /></td>}
                                                     <td className="px-3 py-2">
                                                         <div className="flex flex-wrap gap-1">
                                                             {s.flags.filter((f) => f !== 'not_started').map((f) => (
@@ -486,7 +509,7 @@ export default function TamuDashboard({ user, onLogout }) {
                                                 </tr>
                                             ))}
                                             {students.length === 0 && (
-                                                <tr><td colSpan={11} className="px-3 py-6 text-center text-sm text-[var(--ath-muted)]">No students match this filter.</td></tr>
+                                                <tr><td colSpan={DEADLINES ? 12 : 11} className="px-3 py-6 text-center text-sm text-[var(--ath-muted)]">No students match this filter.</td></tr>
                                             )}
                                         </tbody>
                                     </table>

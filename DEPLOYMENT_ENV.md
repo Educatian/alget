@@ -169,6 +169,22 @@ Build the UTK site like the TAMU one with `VITE_TUTOR_URL=https://alget-utk-tuto
 Local testing: `node scripts/seed_local_test_account.mjs --prefix UTK --config wrangler.utk.jsonc` seeds
 UTK-001/002/900/950.
 
+### Site-only features (TAMU)
+
+Some features are on for one site only, keyed by the roster prefix in `frontend/src/lib/site.js` and
+`cloudflare/tamu-tutor-worker/src/site.js` (no build or worker vars). TAMU has all four; UTK has none:
+
+| Feature | Where |
+|---|---|
+| `ai-badge` | "✦ AI" pill on Explain this passage, Ask AI tutor and AI hints, Get feedback, Tutor notes |
+| `deadlines` | chapter due dates (`chapterDue` in `site.js`) in the course sidebar and a Pace column on the roster; nothing locks |
+| `analytics` | "Class analytics" tab: `GET /instructor/analytics` (`analytics.js`) |
+| `discussion` | section discussions: `GET/POST /discussion`, `POST /discussion/hide` (`discussion.js`, table `posts`), live via the live worker's `discussion` message |
+
+Deploying them needs the `posts` table first (`npx wrangler d1 migrations apply alget-tamu-events --remote` in
+`cloudflare/tamu-tutor-worker`), then the tutor worker, the live worker and the TAMU site. Applying the migration to
+UTK is harmless; its worker answers 404 for these routes.
+
 ## Notes
 
 - `ENGINEERING_ACCESS_CODE` and `EDUCATION_ACCESS_CODE` now validate server-side through `/api/access/validate`.

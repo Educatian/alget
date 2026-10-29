@@ -4,7 +4,8 @@
  * reading each section and which part of this one, and which passages several classmates underlined.
  *
  * The reader reports only what is on screen (section, heading, tab hidden) and, after its
- * highlights sync, which section changed. Counts carry no names.
+ * highlights sync, which section changed. Counts carry no names. Sites with section discussions also
+ * hear when someone posts in the reader's section ('alget-discussion' window event).
  */
 import { ACCOUNTS_ENABLED, currentSession } from './account'
 
@@ -56,6 +57,7 @@ function connect() {
         try { msg = JSON.parse(event.data) } catch { return }
         if (msg.type === 'presence') emit({ presence: msg })
         if (msg.type === 'shared' && msg.section) emit({ shared: { ...state.shared, [msg.section]: msg.passages || [] } })
+        if (msg.type === 'discussion' && msg.section) window.dispatchEvent(new CustomEvent('alget-discussion', { detail: { section: msg.section } }))
     }
     socket.onclose = () => {
         clearInterval(pingTimer)
@@ -95,6 +97,11 @@ export function subscribeLive(fn) {
             ws = null
         }
     }
+}
+
+/** After posting in a section's discussion: classmates reading that section reload it. */
+export function notifyDiscussion(section) {
+    send({ type: 'discussion', section })
 }
 
 export function setLiveWhere(section, heading) {

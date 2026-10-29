@@ -164,6 +164,22 @@ export async function instructorGet(path) {
     return data
 }
 
+/** Signed-in request to the tutor worker (JSON in and out); used by section discussions. */
+export async function accountRequest(path, { method = 'GET', body } = {}) {
+    const res = await fetch(`${URL}${path}`, {
+        method,
+        headers: { ...(body ? { 'Content-Type': 'application/json' } : {}), ...authHeaders() },
+        body: body ? JSON.stringify(body) : undefined,
+    })
+    if (res.status === 401) {
+        signedOutHere()
+        throw new Error('signed_out')
+    }
+    const data = await res.json().catch(() => ({}))
+    if (!res.ok) throw new Error(data.error || `http_${res.status}`)
+    return data
+}
+
 export async function signOut() {
     await flush()
     const headers = authHeaders()

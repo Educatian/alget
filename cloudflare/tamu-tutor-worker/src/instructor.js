@@ -13,11 +13,11 @@ import { loadSection } from './content.js'
 import { idPrefix } from './accounts.js'
 
 // IDs are <prefix>-NNN; 9xx are instructor and test accounts.
-const STUDENT = "student_id NOT LIKE '%-9__'"
+export const STUDENT = "student_id NOT LIKE '%-9__'"
 const ACTIVE_NOW_MIN = 10
 
 /** Sections in course order, with their practice items and concepts. */
-async function course(env) {
+export async function course(env) {
     const ids = Object.keys(ACTIVITIES).sort()
     const sections = await Promise.all(ids.map(async (id) => {
         const s = await loadSection(env, id)
@@ -42,7 +42,7 @@ async function roster(env) {
     return ids.filter((id) => !/-9\d\d$/.test(id)).sort()
 }
 
-const all = async (env, sql, ...binds) => (await env.DB.prepare(sql).bind(...binds).all()).results
+export const all = async (env, sql, ...binds) => (await env.DB.prepare(sql).bind(...binds).all()).results
 
 /** Per-student, per-section counts from the event log. */
 async function sectionCounts(env, where = '', ...binds) {
@@ -82,7 +82,7 @@ function activityLabel(lastTs, now) {
 
 const pct = (a, b) => (b ? Math.round((a / b) * 100) : null)
 
-function masteryMap(value) {
+export function masteryMap(value) {
     try {
         return Object.fromEntries(Object.entries(JSON.parse(value) || {}).map(([c, r]) => [c, Math.round(Number(r?.p_known ?? r?.mastery_score ?? 0) * 100) / 100]))
     } catch {

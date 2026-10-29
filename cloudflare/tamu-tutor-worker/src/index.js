@@ -11,6 +11,8 @@
  *   POST /feedback {section_id, text, revision, previous}       -> {criteria, marks, next_step, ready}  (feedback.js)
  *   POST /annotate {section_id, misconception_ids}              -> {notes: [{quote, kind, note}]}       (annotate.js)
  *   GET  /instructor/overview, /instructor/student?id=         instructor sessions only               (instructor.js)
+ *   GET  /instructor/analytics                                 class charts, sites with analytics     (analytics.js)
+ *   GET/POST /discussion, POST /discussion/hide                section discussions, sites with them   (discussion.js)
  *   GET  /healthz
  *
  * Everything except /login and /healthz needs a session (Authorization: Bearer <token>); see
@@ -27,6 +29,9 @@ import { bestParagraph } from '../../../frontend/src/lib/hintLadder.js'
 import { getProgress, login, logout, saveProgress, sessionInfo } from './accounts.js'
 import { overview, studentDetail } from './instructor.js'
 import { saveEvents } from './events.js'
+import { analytics } from './analytics.js'
+import { addPost, hidePost, listPosts } from './discussion.js'
+import { siteHas } from './site.js'
 import { feedback } from './feedback.js'
 import { annotate } from './annotate.js'
 import { isSectionId, loadSection, quoteInSection, sectionPlainText } from './content.js'
@@ -128,7 +133,8 @@ export default {
         if (!headers) return json({ error: 'origin_not_allowed' }, 403, {})
         if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers })
         const route = `${request.method} ${url.pathname}`
-        const routes = ['POST /login', 'POST /logout', 'GET /progress', 'POST /progress', 'POST /events', 'POST /hint', 'POST /explain', 'POST /feedback', 'POST /annotate', 'GET /instructor/overview', 'GET /instructor/student']
+        const routes = ['POST /login', 'POST /logout', 'GET /progress', 'POST /progress', 'POST /events', 'POST /hint', 'POST /explain', 'POST /feedback', 'POST /annotate', 'GET /instructor/overview', 'GET /instructor/student', 'GET /instructor/analytics',
+            'GET /discussion', 'POST /discussion', 'POST /discussion/hide']
         if (!routes.includes(route)) return json({ error: 'not_found' }, 404, headers)
         if (!env.ACCOUNTS || !env.DB) return json({ error: 'not_configured' }, 503, headers)
 
@@ -153,13 +159,24 @@ export default {
         if (env.RATE_LIMITER && !(await env.RATE_LIMITER.limit({ key: `${url.pathname}:${id}` })).success) return json({ error: 'rate_limited' }, 429, headers)
         if (url.pathname.startsWith('/instructor/')) {
             if (session.role !== 'instructor') return json({ error: 'instructors_only' }, 403, headers)
-            const [result, status] = url.pathname === '/instructor/overview' ? await overview(env) : await studentDetail(env, url.searchParams.get('id'))
+            if (url.pathname === '/instructor/analytics' && !siteHas(env, 'analytics')) return json({ error: 'not_found' }, 404, headers)
+            const [result, status] = url.pathname === '/instructor/overview' ? await overview(env)
+                : url.pathname === '/instructor/analytics' ? await analytics(env)
+                    : await studentDetail(env, url.searchParams.get('id'))
             console.log(JSON.stringify({ route: url.pathname, status }))
             return json(result, status, headers)
         }
         if (route === 'GET /progress') return json(...(await getProgress(id, env)), headers)
         if (route === 'POST /progress') return json(...(await saveProgress(id, body, env)), headers)
         if (route === 'POST /events') return json(...(await saveEvents(id, body, env)), headers)
+        if (url.pathname.startsWith('/discussion')) {
+            if (!siteHas(env, 'discussion')) return json({ error: 'not_found' }, 404, headers)
+            const [result, status] = route === 'GET /discussion' ? await listPosts(env, session, url.searchParams.get('section'))
+                : route === 'POST /discussion' ? await addPost(env, session, body)
+                    : await hidePost(env, session, body)
+            if (request.method === 'POST') console.log(JSON.stringify({ route: url.pathname, status }))
+            return json(result, status, headers)
+        }
 
         if (env.TUTOR_ENABLED !== 'true') return json({ error: 'disabled' }, 503, headers)
         if (!configured(env)) return json({ error: 'not_configured' }, 503, headers)
