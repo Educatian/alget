@@ -15,6 +15,7 @@ let lastScrollDepth = 0
 let lastClickTarget = null
 let lastClickTime = 0
 let cachedAccessToken = null
+let authSubscription = null
 
 // Config
 const FLUSH_INTERVAL_MS = 5000
@@ -72,6 +73,14 @@ export async function initSession(user) {
             console.warn('[Logging] Could not cache access token:', err)
             cachedAccessToken = null
         }
+
+        // Access tokens expire after an hour; keep the unload copy current so a tab
+        // left open for hours can still send its last events.
+        authSubscription?.unsubscribe()
+        const { data } = supabase.auth.onAuthStateChange((_event, authSession) => {
+            if (authSession?.access_token) cachedAccessToken = authSession.access_token
+        })
+        authSubscription = data?.subscription || null
     }
 
     // Start flush timer
@@ -396,7 +405,12 @@ async function flushEvents() {
     const eventsToSend = await validateResearchEvents(queuedEvents)
 
     try {
-        const { error } = await supabase.from('event_logs').insert(eventsToSend)
+        // A batch can be resent after its first attempt was saved (e.g. the reply was lost
+        // when the laptop slept). A plain insert then fails on (session_id, sequence_num) and
+        // the whole batch, plus everything queued after it, is retried and rejected forever.
+        const { error } = await supabase
+            .from('event_logs')
+            .upsert(eventsToSend, { onConflict: 'session_id,sequence_num', ignoreDuplicates: true })
         if (error) {
             // Put events back in queue for retry
             eventQueue = [...eventsToSend, ...eventQueue]
@@ -455,6 +469,8 @@ export async function endSession() {
 
     // Cleanup
     clearInterval(flushTimer)
+    authSubscription?.unsubscribe()
+    authSubscription = null
     window.removeEventListener('beforeunload', handleUnload)
     window.removeEventListener('visibilitychange', handleVisibilityChange)
 
