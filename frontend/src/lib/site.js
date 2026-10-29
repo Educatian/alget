@@ -20,6 +20,10 @@ const SITES = {
             '04': '2026-11-15T23:59:00-06:00',
         },
     },
+    UTK: {
+        features: ['discussion'],
+        chapterDue: {},
+    },
 }
 
 const SITE = SITES[ID_PREFIX] || { features: [], chapterDue: {} }

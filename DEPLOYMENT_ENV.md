@@ -169,10 +169,10 @@ Build the UTK site like the TAMU one with `VITE_TUTOR_URL=https://alget-utk-tuto
 Local testing: `node scripts/seed_local_test_account.mjs --prefix UTK --config wrangler.utk.jsonc` seeds
 UTK-001/002/900/950.
 
-### Site-only features (TAMU)
+### Site-only features (TAMU, UTK)
 
-Some features are on for one site only, keyed by the roster prefix in `frontend/src/lib/site.js` and
-`cloudflare/tamu-tutor-worker/src/site.js` (no build or worker vars). TAMU has all four; UTK has none:
+Some features are on for some sites only, keyed by the roster prefix in `frontend/src/lib/site.js` and
+`cloudflare/tamu-tutor-worker/src/site.js` (no build or worker vars). TAMU has all four; UTK has `discussion` only:
 
 | Feature | Where |
 |---|---|
@@ -182,8 +182,9 @@ Some features are on for one site only, keyed by the roster prefix in `frontend/
 | `discussion` | section discussions: `GET/POST /discussion`, `POST /discussion/hide` (`discussion.js`, table `posts`), live via the live worker's `discussion` message |
 
 Deploying them needs the `posts` table first (`npx wrangler d1 migrations apply alget-tamu-events --remote` in
-`cloudflare/tamu-tutor-worker`), then the tutor worker, the live worker and the TAMU site. Applying the migration to
-UTK is harmless; its worker answers 404 for these routes.
+`cloudflare/tamu-tutor-worker`), then the tutor worker, the live worker and the TAMU site. For UTK discussions, apply
+the same migration to its database (`npx wrangler d1 migrations apply alget-utk-events --remote -c wrangler.utk.jsonc`),
+then deploy the UTK tutor and live workers (`-c wrangler.utk.jsonc`) and the UTK site.
 
 ## Notes
 

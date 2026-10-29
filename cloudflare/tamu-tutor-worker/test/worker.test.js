@@ -384,7 +384,7 @@ test('class analytics: item difficulty and discrimination, practice curve, help 
     assert.deepEqual(out.concepts, [{ concept: 'c1', values: [0.8] }])
 })
 
-test('analytics and discussions are on for TAMU only, and discussions keep hidden posts from students', async () => {
+test('analytics is on for TAMU only, discussions for TAMU and UTK, and discussions keep hidden posts from students', async () => {
     mockFetch([])
     const later = Math.floor(Date.now() / 1000) + 3600
     const hash = (t) => createHash('sha256').update(t).digest('hex')
@@ -415,6 +415,10 @@ test('analytics and discussions are on for TAMU only, and discussions keep hidde
     const utk = env({ ID_PREFIX: 'UTK', ACCOUNTS: memoryKv({ 'account:UTK-901': '{"role":"instructor"}' }) })
     utk.DB.db.prepare('INSERT INTO sessions (token_hash, student_id, created, expires, role) VALUES (?, ?, ?, ?, ?)').run(hash('d'.repeat(64)), 'UTK-901', 'now', later, 'instructor')
     assert.equal((await get('/instructor/analytics', utk, 'd'.repeat(64))).status, 404)
-    assert.equal((await get(`/discussion?section=${sec}`, utk, 'd'.repeat(64))).status, 404)
-    assert.equal((await post('/discussion', { section_id: sec, body: 'hi' }, ORIGIN, utk, 'd'.repeat(64))).status, 404)
+    assert.equal((await post('/discussion', { section_id: sec, body: 'hi' }, ORIGIN, utk, 'd'.repeat(64))).status, 200)
+    const utkList = await (await get(`/discussion?section=${sec}`, utk, 'd'.repeat(64))).json()
+    assert.deepEqual(utkList.posts.map((p) => [p.body, p.author]), [['hi', 'UTK-901']]) // UTK has discussion, not analytics
+    const other = env({ ID_PREFIX: 'UNI', ACCOUNTS: memoryKv({ 'account:UNI-901': '{"role":"instructor"}' }) })
+    other.DB.db.prepare('INSERT INTO sessions (token_hash, student_id, created, expires, role) VALUES (?, ?, ?, ?, ?)').run(hash('d'.repeat(64)), 'UNI-901', 'now', later, 'instructor')
+    assert.equal((await get(`/discussion?section=${sec}`, other, 'd'.repeat(64))).status, 404) // a site without the feature
 })

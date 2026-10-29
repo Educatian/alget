@@ -6,6 +6,7 @@ import { idPrefix } from './accounts.js'
 
 const SITE_FEATURES = {
     TAMU: ['analytics', 'discussion'],
+    UTK: ['discussion'],
 }
 
 export const siteHas = (env, name) => (SITE_FEATURES[idPrefix(env)] || []).includes(name)
