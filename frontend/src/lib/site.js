@@ -12,12 +12,12 @@ import { ACCOUNTS_ENABLED, ID_PREFIX } from './account'
 const SITES = {
     TAMU: {
         features: ['ai-badge', 'deadlines', 'analytics', 'discussion'],
-        // LTPS 210: ALGET is introduced Thu Nov 5; Case Analysis 3 is due Sun Nov 15, 11:59 PM CT.
+        // Chapter due dates set by the TAMU instructor (Sundays, 11:59 PM CT).
         chapterDue: {
             '01': '2026-11-08T23:59:00-06:00',
-            '02': '2026-11-11T23:59:00-06:00',
-            '03': '2026-11-13T23:59:00-06:00',
-            '04': '2026-11-15T23:59:00-06:00',
+            '02': '2026-11-15T23:59:00-06:00',
+            '03': '2026-11-22T23:59:00-06:00',
+            '04': '2026-11-29T23:59:00-06:00',
         },
     },
     UTK: {
