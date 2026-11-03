@@ -453,6 +453,17 @@ export const updateMastery = async (qMatrix, isCorrect, options = {}) => {
             .from('mastery')
             .upsert(upsertData, { onConflict: 'user_id,concept_id' });
 
+        // The study record of every BKT result: the mastery table rejects concepts missing
+        // from the concepts catalog, and then neither it nor the research mirror below is written.
+        logEvent('bkt_update', Object.keys(new_states)[0] || null, {
+            previous_states: currentStates,
+            new_states,
+            q_matrix: adjustedQMatrix,
+            is_correct: isCorrect,
+            hint_used: hintUsed,
+            mastery_saved: !upsertError,
+        }, sectionId);
+
         if (upsertError) {
             console.warn('[Mastery] Supabase upsert failed; local mastery was kept:', upsertError);
             return new_states;
