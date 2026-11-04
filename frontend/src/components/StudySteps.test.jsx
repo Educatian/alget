@@ -1,4 +1,4 @@
-import { cleanup, render, screen, waitFor } from '@testing-library/react'
+import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
 const updateUser = vi.fn(async () => ({ error: null }))
@@ -28,6 +28,31 @@ describe('StudySteps return from Qualtrics', () => {
         render(<StudySteps user={participant} needsLab={false} />)
         expect(screen.getByRole('alert')).toHaveTextContent(/ended early/i)
         expect(updateUser).not.toHaveBeenCalled()
+        expect(screen.getByRole('link', { name: /open pre-survey/i })).toBeInTheDocument()
+    })
+})
+
+describe('StudySteps backup button', () => {
+    const openSurvey = () => {
+        render(<StudySteps user={participant} needsLab={false} />)
+        fireEvent.click(screen.getByRole('link', { name: /open pre-survey/i }))
+        fireEvent.click(screen.getByRole('button', { name: /i reached the end of the survey/i }))
+    }
+
+    it('asks for confirmation before ticking the step', async () => {
+        openSurvey()
+        expect(updateUser).not.toHaveBeenCalled()
+        expect(screen.getByRole('alertdialog')).toHaveTextContent(/final page.*gift card cannot be processed/i)
+        fireEvent.click(screen.getByRole('button', { name: /yes, i saw the final page/i }))
+        await waitFor(() => expect(updateUser).toHaveBeenCalledWith({ data: { study_steps: { pre: expect.any(String) } } }))
+    })
+
+    it('does not tick the step when the participant goes back', () => {
+        openSurvey()
+        fireEvent.click(screen.getByRole('button', { name: /no, go back/i }))
+        expect(updateUser).not.toHaveBeenCalled()
+        expect(screen.queryByRole('alertdialog')).not.toBeInTheDocument()
+        expect(screen.getByRole('button', { name: /i reached the end of the survey/i })).toBeInTheDocument()
         expect(screen.getByRole('link', { name: /open pre-survey/i })).toBeInTheDocument()
     })
 })
