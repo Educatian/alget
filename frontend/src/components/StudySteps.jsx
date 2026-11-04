@@ -27,6 +27,7 @@ export default function StudySteps({ user, needsLab, sectionsRemaining = 0, cour
     // The lab counts once its trials are done and its CSV is uploaded (or the learner reported the download failed).
     const labCompleted = labTrialsDone && (labCsvUploaded || labCsvSkipped)
     const [opened, setOpened] = useState({})
+    const [confirming, setConfirming] = useState(null)
     const [saving, setSaving] = useState(null)
     const [error, setError] = useState('')
     const [endedEarly, setEndedEarly] = useState(null)
@@ -154,15 +155,44 @@ export default function StudySteps({ user, needsLab, sectionsRemaining = 0, cour
                                                 >
                                                     Open {step.title.toLowerCase()} <ExternalLink className="h-4 w-4" aria-hidden="true" />
                                                 </a>
-                                                {opened[step.id] && (
+                                                {opened[step.id] && confirming !== step.id && (
                                                     <button
                                                         type="button"
-                                                        disabled={saving === step.id}
-                                                        onClick={() => finish(step.id)}
-                                                        className="editorial-button-secondary px-5 py-2.5 text-sm disabled:opacity-60"
+                                                        onClick={() => {
+                                                            setConfirming(step.id)
+                                                            logEvent('study_step_confirm_shown', step.id, { step: step.id })
+                                                        }}
+                                                        className="editorial-button-secondary px-5 py-2.5 text-sm"
                                                     >
                                                         I reached the end of the survey
                                                     </button>
+                                                )}
+                                                {confirming === step.id && (
+                                                    <div role="alertdialog" aria-label="Confirm you finished the survey" className="w-full rounded-lg border border-[var(--ath-line)] p-3">
+                                                        <p className="text-sm font-medium text-[var(--ath-text)]">
+                                                            Did you see the survey&apos;s final page? If you have not finished it, your gift card cannot be processed.
+                                                        </p>
+                                                        <div className="mt-3 flex flex-wrap gap-3">
+                                                            <button
+                                                                type="button"
+                                                                disabled={saving === step.id}
+                                                                onClick={() => finish(step.id)}
+                                                                className="editorial-button-secondary px-5 py-2.5 text-sm disabled:opacity-60"
+                                                            >
+                                                                Yes, I saw the final page
+                                                            </button>
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => {
+                                                                    setConfirming(null)
+                                                                    logEvent('study_step_confirm_cancelled', step.id, { step: step.id })
+                                                                }}
+                                                                className="px-3 py-2.5 text-sm font-semibold text-[var(--ath-primary)] underline"
+                                                            >
+                                                                No, go back to the survey
+                                                            </button>
+                                                        </div>
+                                                    </div>
                                                 )}
                                                 {opened[step.id] && (
                                                     <p className="w-full text-xs text-[var(--ath-muted)]">
