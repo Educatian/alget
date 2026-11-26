@@ -34,6 +34,7 @@ st.set_page_config(
     page_title="Bio-Inspired Design Explorer",
     page_icon="🌿",
     layout="wide",
+)
 # ============================================================================
 # DEPRECATION NOTICE
 # ============================================================================
